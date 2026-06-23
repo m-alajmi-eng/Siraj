@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'core/theme/app_colors.dart';
 import 'core/theme/time_theme_provider.dart';
+import 'features/prayer/presentation/screens/prayer_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,32 +25,11 @@ class SirajApp extends ConsumerWidget {
     return MaterialApp(
       title: 'Siraj',
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: palette.background,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'سراج',
-                style: TextStyle(
-                  color: palette.textPrimary,
-                  fontSize: 48,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                palette.label,
-                style: TextStyle(
-                  color: palette.accentPrimary,
-                  fontSize: 18,
-                ),
-              ),
-            ],
-          ),
-        ),
+      theme: ThemeData(
+        scaffoldBackgroundColor: palette.background,
+        fontFamily: 'sans-serif',
       ),
+      home: const PrayerScreen(),
     );
   }
 }
