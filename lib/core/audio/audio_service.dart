@@ -12,18 +12,47 @@ class SirajAudioService {
   final AudioPlayer _player = AudioPlayer();
   bool _isPlaying = false;
   bool get isPlaying => _isPlaying;
-  
+
   void Function()? _onComplete;
-  
   void onComplete(void Function() callback) {
     _onComplete = callback;
   }
 
+  static const String _baseUrl = 'https://everyayah.com/data';
+
+  // القراء المتحقق منهم ✅
+  static const Map<String, String> reciters = {
+    'مشاري راشد العفاسي':        'Alafasy_128kbps',
+    'عبد الباسط (مرتّل)':        'Abdul_Basit_Murattal_192kbps',
+    'عبد الباسط (مجوّد)':        'Abdul_Basit_Mujawwad_128kbps',
+    'محمود خليل الحصري':         'Husary_128kbps',
+    'محمد صديق المنشاوي':        'Minshawy_Murattal_128kbps',
+    'محمد الطبلاوي':              'Mohammad_al_Tablaway_128kbps',
+    'ماهر المعيقلي':              'Maher_AlMuaiqly_64kbps',
+    'سعد الغامدي':                'Ghamadi_40kbps',
+    'علي الحذيفي':                'Hudhaify_128kbps',
+    'هاني الرفاعي':               'Hani_Rifai_192kbps',
+    'سعود الشريم':                'Saood_ash-Shuraym_128kbps',
+    'محمد جبريل':                 'Muhammad_Jibreel_128kbps',
+    'ياسر الدوسري':               'Yasser_Ad-Dussary_128kbps',
+    'خالد عبدالله القحطاني':      'Khaalid_Abdullaah_al-Qahtaanee_192kbps',
+    'ناصر القطامي':               'Nasser_Alqatami_128kbps',
+    'أحمد نعينع':                 'Ahmed_Neana_128kbps',
+    'عبدالله بصفر':               'Abdullah_Basfar_192kbps',
+    'صلاح البدير':                'Salah_Al_Budair_128kbps',
+    'محمد عبدالكريم':             'Muhammad_AbdulKareem_128kbps',
+    'علي حجاج السويسي':           'Ali_Hajjaj_AlSuesy_128kbps',
+    'أكرم العلاقمي':              'Akram_AlAlaqimy_128kbps',
+    'عبد الرحمن السديس':          'Abdurrahmaan_As-Sudais_192kbps',
+    'محمد جبريل (64)':            'Muhammad_Jibreel_64kbps',
+  };
+
   Future<void> playAyah(int surahId, int ayahNumber,
-      {String reciter = 'ar.alafasy'}) async {
-    final global = _globalAyahNumber(surahId, ayahNumber);
-    final url =
-        'https://cdn.islamic.network/quran/audio/128/$reciter/$global.mp3';
+      {String reciter = 'Alafasy_128kbps'}) async {
+    final surah = surahId.toString().padLeft(3, '0');
+    final ayah  = ayahNumber.toString().padLeft(3, '0');
+    final url   = '$_baseUrl/$reciter/$surah$ayah.mp3';
+
     await _player.stop();
     await _player.play(UrlSource(url));
     _isPlaying = true;
@@ -45,21 +74,4 @@ class SirajAudioService {
   }
 
   void dispose() => _player.dispose();
-
-  int _globalAyahNumber(int surahId, int ayahNumber) {
-    const ayahCounts = [
-      0,7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,
-      110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,
-      54,53,92,68,60,52,55,78,96,45,26,47,60,52,82,32,54,84,54,31,
-      20,45,33,30,35,25,17,26,30,25,25,27,20,25,25,20,20,28,22,40,
-      39,29,27,26,25,23,22,24,24,22,26,29,27,26,25,24,22,23,22,23,
-      21,21,23,20,22,22,21,22,21,22,22,21,20,20,20,18,26,14,17,19,
-      18,15,19
-    ];
-    int global = 0;
-    for (int i = 1; i < surahId; i++) {
-      global += ayahCounts[i];
-    }
-    return global + ayahNumber;
-  }
-}
+} 
