@@ -37,6 +37,9 @@ dependencies:
   supabase_flutter: ^2.15.0
   firebase_core: ^4.11.0
   firebase_auth: ^6.5.4
+  flutter_riverpod: ^3.3.2
+  riverpod_annotation: ^4.0.3
+  adhan: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:
