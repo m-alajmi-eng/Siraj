@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "272805042615",
+    "project_id": "siraj-238f7",
+    "storage_bucket": "siraj-238f7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272805042615:android:2c7e212075f0493ec3f032",
+        "android_client_info": {
+          "package_name": "App.islamx.siraj"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-CFFKNOjbHfLouRDxYcpz8WHPYIKfiHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272805042615:android:fa7ddfbc1c4f8253c3f032",
+        "android_client_info": {
+          "package_name": "app.islamx.siraj"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-CFFKNOjbHfLouRDxYcpz8WHPYIKfiHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
