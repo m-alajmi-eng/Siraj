@@ -9,7 +9,6 @@ class SurahReaderScreen extends ConsumerWidget {
   final int surahId;
   const SurahReaderScreen({super.key, required this.surahId});
 
-  // البسملة = أول 38 حرف، الحرف 38 مسافة فاصلة
   static const int _basmalaLength = 39;
 
   @override
@@ -205,16 +204,11 @@ class SurahReaderScreen extends ConsumerWidget {
                   data: (ayahs) {
                     final firstText =
                         ayahs.isNotEmpty ? ayahs[0].textUthmani : '';
-
-                    // سورة التوبة لا بسملة
-                    // سورة الفاتحة: البسملة هي الآية الأولى كاملة
                     final separateBasmala = surahId != 9 &&
                         firstText.length >= _basmalaLength;
-
                     final basmalaText = separateBasmala
                         ? firstText.substring(0, _basmalaLength).trim()
                         : '';
-
                     final firstAyahText = separateBasmala
                         ? firstText.substring(_basmalaLength).trim()
                         : firstText;
@@ -463,12 +457,9 @@ class SurahReaderScreen extends ConsumerWidget {
                                   .read(selectedReciterProvider.notifier)
                                   .select(entry.value);
                               Navigator.pop(context);
-                              final currentAyah =
-                                  ref.read(audioProvider).currentAyahId ?? 1;
-                              ref.read(audioProvider.notifier).playAyah(
-                                surahId, currentAyah,
-                                totalAyahs: totalAyahs,
-                                reciter: entry.value,
+                              // إعادة التشغيل من البداية مع البسملة
+                              ref.read(audioProvider.notifier).playFromStart(
+                                surahId, totalAyahs, entry.value,
                               );
                             },
                           );
