@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'core/router/app_router.dart';
 import 'core/theme/time_theme_provider.dart';
-import 'features/prayer/presentation/screens/prayer_screen.dart';
-import 'features/quran/presentation/screens/quran_home_screen.dart';
-import 'features/athkar/presentation/screens/athkar_home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,34 +22,15 @@ class SirajApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final palette = ref.watch(timeThemeProvider);
 
-    return MaterialApp(
-      title: 'Siraj',
+    return MaterialApp.router(
+      title:                     'Siraj',
       debugShowCheckedModeBanner: false,
+      routerConfig:              appRouter,
       theme: ThemeData(
         scaffoldBackgroundColor: palette.background,
-      ),
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          backgroundColor: palette.background,
-          bottomNavigationBar: TabBar(
-            tabs: const [
-              Tab(icon: Icon(Icons.access_time), text: 'الصلاة'),
-              Tab(icon: Icon(Icons.menu_book),   text: 'القرآن'),
-              Tab(icon: Icon(Icons.spa_outlined), text: 'الأذكار'),
-            ],
-            labelColor:           palette.accentPrimary,
-            unselectedLabelColor: palette.textSecondary,
-            indicatorColor:       palette.accentPrimary,
-            indicatorSize:        TabBarIndicatorSize.label,
-          ),
-          body: const TabBarView(
-            children: [
-              PrayerScreen(),
-              QuranHomeScreen(),
-              AthkarHomeScreen(),
-            ],
-          ),
+        colorScheme: ColorScheme.dark(
+          primary: palette.accentPrimary,
+          surface: palette.surface,
         ),
       ),
     );

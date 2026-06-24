@@ -18,6 +18,8 @@ dependencies:
   adhan: ^2.0.0+1
   http: ^1.6.0
   audioplayers: ^6.8.0
+  go_router: ^17.3.0
+  geolocator: ^14.0.3
 
 dev_dependencies:
   flutter_test:

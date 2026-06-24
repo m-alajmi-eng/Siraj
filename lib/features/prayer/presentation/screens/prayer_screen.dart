@@ -8,71 +8,129 @@ class PrayerScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final palette     = ref.watch(timeThemeProvider);
-    final times       = ref.watch(prayerTimesProvider);
-    final nextPrayer  = ref.watch(nextPrayerProvider);
-    final countdown   = ref.watch(countdownProvider);
+    final palette    = ref.watch(timeThemeProvider);
+    final timesAsync = ref.watch(prayerTimesProvider);
+    final location   = ref.watch(locationProvider);
 
     return Scaffold(
       backgroundColor: palette.background,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 40),
-
-              // Next Prayer Card
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: palette.surface,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      nextPrayer,
-                      style: TextStyle(
-                        color: palette.textPrimary,
-                        fontSize: 32,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      countdown,
-                      style: TextStyle(
-                        color: palette.accentPrimary,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
+          child: timesAsync.when(
+            loading: () => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(color: palette.accentPrimary),
+                  const SizedBox(height: 16),
+                  Text(
+                    'جارٍ تحديد موقعك...',
+                    style: TextStyle(
+                      color: palette.textSecondary, fontSize: 14),
+                  ),
+                ],
               ),
-
-              const SizedBox(height: 32),
-
-              // 5 Prayers
-              _PrayerRow(name: 'الفجر',   time: times.fajr,    palette: palette),
-              _PrayerRow(name: 'الظهر',   time: times.dhuhr,   palette: palette),
-              _PrayerRow(name: 'العصر',   time: times.asr,     palette: palette),
-              _PrayerRow(name: 'المغرب',  time: times.maghrib, palette: palette),
-              _PrayerRow(name: 'العشاء',  time: times.isha,    palette: palette),
-            ],
+            ),
+            error: (e, _) => _buildContent(
+              palette, null, false),
+            data: (times) => _buildContent(
+              palette, times, location.value != null),
           ),
         ),
       ),
     );
   }
+
+  Widget _buildContent(palette, times, bool hasGPS) {
+    final nextPrayer = times?.nextPrayerName ?? '---';
+    final countdown  = times != null
+        ? _formatCountdown(times.timeUntilNextPrayer)
+        : '---';
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 8),
+
+        // الموقع
+        Row(
+          children: [
+            Icon(
+              hasGPS ? Icons.location_on : Icons.location_off_outlined,
+              color: hasGPS
+                  ? palette.accentPrimary
+                  : palette.textSecondary,
+              size: 14,
+            ),
+            const SizedBox(width: 4),
+            Text(
+              hasGPS ? 'موقعك الحالي' : 'الرياض (افتراضي)',
+              style: TextStyle(
+                color: palette.textSecondary, fontSize: 12),
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 20),
+
+        // Next Prayer Card
+        Container(
+          width:   double.infinity,
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color:        palette.surface,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            children: [
+              Text(
+                nextPrayer,
+                style: TextStyle(
+                  color:      palette.textPrimary,
+                  fontSize:   32,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                countdown,
+                style: TextStyle(
+                  color:    palette.accentPrimary,
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        const SizedBox(height: 32),
+
+        // 5 Prayers
+        if (times != null) ...[
+          _PrayerRow(name: 'الفجر',  time: times.fajr,    palette: palette),
+          _PrayerRow(name: 'الشروق', time: times.sunrise, palette: palette),
+          _PrayerRow(name: 'الظهر',  time: times.dhuhr,   palette: palette),
+          _PrayerRow(name: 'العصر',  time: times.asr,     palette: palette),
+          _PrayerRow(name: 'المغرب', time: times.maghrib, palette: palette),
+          _PrayerRow(name: 'العشاء', time: times.isha,    palette: palette),
+        ],
+      ],
+    );
+  }
+
+  String _formatCountdown(Duration duration) {
+    final hours   = duration.inHours;
+    final minutes = duration.inMinutes % 60;
+    if (hours > 0) return 'في $hours ساعة و$minutes دقيقة';
+    return 'في $minutes دقيقة';
+  }
 }
 
 class _PrayerRow extends StatelessWidget {
-  final String name;
+  final String   name;
   final DateTime time;
-  final palette;
+  final dynamic  palette;
 
   const _PrayerRow({
     required this.name,
@@ -90,20 +148,12 @@ class _PrayerRow extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            name,
+          Text(name,
             style: TextStyle(
-              color: palette.textPrimary,
-              fontSize: 18,
-            ),
-          ),
-          Text(
-            '$hour:$minute',
+              color: palette.textPrimary, fontSize: 18)),
+          Text('$hour:$minute',
             style: TextStyle(
-              color: palette.textSecondary,
-              fontSize: 18,
-            ),
-          ),
+              color: palette.textSecondary, fontSize: 18)),
         ],
       ),
     );
