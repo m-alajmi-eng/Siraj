@@ -26,13 +26,13 @@ class SirajApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final palette = ref.watch(timeThemeProvider);
+    final router  = ref.watch(appRouterProvider);
 
     return MaterialApp.router(
-      title:                     'Siraj',
+      title:                      'Siraj',
       debugShowCheckedModeBanner: false,
-      routerConfig:              appRouter,
+      routerConfig:               router,
 
-      // ─── Localization ─────────────────────────────────
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -42,10 +42,37 @@ class SirajApp extends ConsumerWidget {
       supportedLocales: AppLocalizations.supportedLocales,
 
       theme: ThemeData(
+        brightness:              Brightness.dark,
         scaffoldBackgroundColor: palette.background,
+        useMaterial3:            true,
         colorScheme: ColorScheme.dark(
-          primary: palette.accentPrimary,
-          surface: palette.surface,
+          primary:   palette.accentPrimary,
+          surface:   palette.surface,
+          onPrimary: palette.textPrimary,
+          onSurface: palette.textPrimary,
+        ),
+        textTheme: TextTheme(
+          bodyLarge:   TextStyle(color: palette.textPrimary),
+          bodyMedium:  TextStyle(color: palette.textPrimary),
+          bodySmall:   TextStyle(color: palette.textSecondary),
+          titleLarge:  TextStyle(color: palette.textPrimary),
+          titleMedium: TextStyle(color: palette.textPrimary),
+        ),
+        iconTheme: IconThemeData(color: palette.textPrimary),
+        dividerColor: palette.accentPrimary.withOpacity(0.2),
+        listTileTheme: ListTileThemeData(
+          textColor: palette.textPrimary,
+          iconColor: palette.textPrimary,
+        ),
+        switchTheme: SwitchThemeData(
+          thumbColor: WidgetStateProperty.resolveWith((states) =>
+              states.contains(WidgetState.selected)
+                  ? palette.accentPrimary
+                  : palette.textSecondary),
+          trackColor: WidgetStateProperty.resolveWith((states) =>
+              states.contains(WidgetState.selected)
+                  ? palette.accentPrimary.withOpacity(0.4)
+                  : palette.surface),
         ),
       ),
     );

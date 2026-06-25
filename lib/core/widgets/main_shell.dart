@@ -4,74 +4,84 @@ import 'package:go_router/go_router.dart';
 import '../theme/time_theme_provider.dart';
 
 class MainShell extends ConsumerWidget {
-  final StatefulNavigationShell shell;
-  const MainShell({super.key, required this.shell});
+  final StatefulNavigationShell navigationShell;
+  const MainShell({super.key, required this.navigationShell});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final palette = ref.watch(timeThemeProvider);
 
+    final tabs = [
+      _TabItem(icon: Icons.access_time_outlined, activeIcon: Icons.access_time_filled,  label: 'الصلاة'),
+      _TabItem(icon: Icons.menu_book_outlined,   activeIcon: Icons.menu_book,            label: 'القرآن'),
+      _TabItem(icon: Icons.spa_outlined,         activeIcon: Icons.spa,                  label: 'الأذكار'),
+      _TabItem(icon: Icons.library_books_outlined, activeIcon: Icons.library_books,      label: 'الحديث'),
+      _TabItem(icon: Icons.more_horiz,           activeIcon: Icons.more_horiz,           label: 'المزيد'),
+    ];
+
     return Scaffold(
       backgroundColor: palette.background,
-      body: shell,
+      body: navigationShell,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: palette.surface,
-          boxShadow: [
-            BoxShadow(
-              color:         Colors.black.withOpacity(0.1),
-              blurRadius:    8,
-              offset:        const Offset(0, -2),
+          border: Border(
+            top: BorderSide(
+              color: palette.accentPrimary.withOpacity(0.15),
+              width: 0.5,
             ),
-          ],
+          ),
         ),
         child: SafeArea(
-          child: SizedBox(
-            height: 60,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _NavItem(
-                  icon:    Icons.access_time_outlined,
-                  label:   'الصلاة',
-                  index:   0,
-                  current: shell.currentIndex,
-                  palette: palette,
-                  onTap:   () => shell.goBranch(0),
-                ),
-                _NavItem(
-                  icon:    Icons.menu_book_outlined,
-                  label:   'القرآن',
-                  index:   1,
-                  current: shell.currentIndex,
-                  palette: palette,
-                  onTap:   () => shell.goBranch(1),
-                ),
-                _NavItem(
-                  icon:    Icons.spa_outlined,
-                  label:   'الأذكار',
-                  index:   2,
-                  current: shell.currentIndex,
-                  palette: palette,
-                  onTap:   () => shell.goBranch(2),
-                ),
-                _NavItem(
-                  icon:    Icons.auto_stories_outlined,
-                  label:   'الحديث',
-                  index:   3,
-                  current: shell.currentIndex,
-                  palette: palette,
-                  onTap:   () => shell.goBranch(3),
-                ),
-                _NavItem(
-                  icon:    Icons.more_horiz,
-                  label:   'المزيد',
-                  index:   4,
-                  current: shell.currentIndex,
-                  palette: palette,
-                  onTap:   () => shell.goBranch(4),
-                ),
-              ],
+              children: tabs.asMap().entries.map((entry) {
+                final index    = entry.key;
+                final tab      = entry.value;
+                final isActive = navigationShell.currentIndex == index;
+
+                return GestureDetector(
+                  onTap: () => navigationShell.goBranch(
+                    index,
+                    initialLocation: index == navigationShell.currentIndex,
+                  ),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: isActive
+                          ? palette.accentPrimary.withOpacity(0.15)
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          isActive ? tab.activeIcon : tab.icon,
+                          color: isActive
+                              ? palette.accentPrimary
+                              : palette.textSecondary,
+                          size: 22,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          tab.label,
+                          style: TextStyle(
+                            color: isActive
+                                ? palette.accentPrimary
+                                : palette.textSecondary,
+                            fontSize: 10,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }).toList(),
             ),
           ),
         ),
@@ -80,58 +90,13 @@ class MainShell extends ConsumerWidget {
   }
 }
 
-class _NavItem extends StatelessWidget {
+class _TabItem {
   final IconData icon;
+  final IconData activeIcon;
   final String   label;
-  final int      index;
-  final int      current;
-  final dynamic  palette;
-  final VoidCallback onTap;
-
-  const _NavItem({
+  const _TabItem({
     required this.icon,
+    required this.activeIcon,
     required this.label,
-    required this.index,
-    required this.current,
-    required this.palette,
-    required this.onTap,
   });
-
-  @override
-  Widget build(BuildContext context) {
-    final isActive = index == current;
-
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: SizedBox(
-        width: 64,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              color: isActive
-                  ? palette.accentPrimary
-                  : palette.textSecondary,
-              size: 22,
-            ),
-            const SizedBox(height: 3),
-            Text(
-              label,
-              style: TextStyle(
-                color: isActive
-                    ? palette.accentPrimary
-                    : palette.textSecondary,
-                fontSize:   10,
-                fontWeight: isActive
-                    ? FontWeight.w600
-                    : FontWeight.normal,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
