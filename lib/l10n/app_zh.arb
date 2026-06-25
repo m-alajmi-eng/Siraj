@@ -1,0 +1,126 @@
+{
+  "@@locale": "zh",
+  "appName": "Siraj",
+  "prayer_title": "礼拜时间",
+  "prayer_nextPrayer": "下次礼拜",
+  "prayer_fajr": "晨礼",
+  "prayer_sunrise": "日出",
+  "prayer_dhuhr": "晌礼",
+  "prayer_asr": "晡礼",
+  "prayer_maghrib": "昏礼",
+  "prayer_isha": "宵礼",
+  "prayer_locationGPS": "您的当前位置",
+  "prayer_locationDefault": "利雅得（默认）",
+  "quran_title": "神圣古兰经",
+  "quran_meccan": "麦加章",
+  "quran_medinan": "麦地那章",
+  "quran_searchHint": "在古兰经中搜索...",
+  "quran_noResults": "没有结果",
+  "quran_searchPrompt": "输入单词进行搜索",
+  "quran_tapForTafsir": "长按经文查看注释",
+  "quran_tafsirSource": "Al-Muyassar",
+  "quran_tafsirError": "无法加载注释",
+  "quran_reciter": "诵读者",
+  "quran_selectReciter": "选择诵读者",
+  "quran_searchReciter": "搜索诵读者...",
+  "quran_playPrompt": "点击收听",
+  "athkar_title": "记念词",
+  "athkar_morning": "晨间记念词",
+  "athkar_evening": "傍晚记念词",
+  "athkar_sleep": "睡前记念词",
+  "athkar_wake": "晨起记念词",
+  "athkar_prayer": "礼拜后记念词",
+  "athkar_general": "常用记念词",
+  "athkar_tapToCount": "点击计数",
+  "athkar_transitioning": "进行中...",
+  "athkar_next": "下一个",
+  "athkar_prev": "上一个",
+  "athkar_finish": "完成",
+  "athkar_back": "返回",
+  "hadith_title": "圣训",
+  "hadith_searchHint": "搜索圣训...",
+  "hadith_noResults": "没有结果",
+  "hadith_tapForDetail": "点击阅读完整内容",
+  "hadith_retryButton": "重试",
+  "hadith_loadError": "加载失败",
+  "qibla_title": "朝拜方向",
+  "qibla_active": "指南针已激活",
+  "qibla_error": "无法确定朝拜方向",
+  "qibla_errorHint": "请开启指南针和位置服务",
+  "qibla_kaaba": "天房",
+  "qibla_fromNorth": "从北方到朝拜方向的度数",
+  "stats_title": "我的统计",
+  "stats_prayerStreak": "礼拜连续天数",
+  "stats_totalPrayers": "礼拜总数",
+  "stats_quranPages": "古兰经页数",
+  "stats_athkarSessions": "记念词",
+  "stats_khatma": "古兰经通读次数",
+  "stats_days": "连续天",
+  "stats_prayers": "次礼拜",
+  "stats_pages": "页",
+  "stats_sessions": "次",
+  "stats_khatmaUnit": "次通读",
+  "stats_currentKhatma": "当前通读进度",
+  "more_title": "更多",
+  "more_qibla": "朝拜方向",
+  "more_stats": "我的统计",
+  "common_loading": "加载中...",
+  "common_error": "加载数据出错",
+  "common_retry": "重试",
+  "common_back": "返回",
+  "common_next": "下一步",
+  "common_save": "保存",
+  "common_cancel": "取消",
+  "common_done": "完成",
+  "common_search": "搜索",
+  "common_noData": "暂无数据",
+  "common_offline": "无网络连接",
+  "prayer_countdown": "{time}后",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "{count}节",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "第{number}节注释",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "第{number}节",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name}已完成",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "{source}传述",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

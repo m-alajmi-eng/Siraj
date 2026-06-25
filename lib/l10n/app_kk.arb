@@ -1,0 +1,126 @@
+{
+  "@@locale": "kk",
+  "appName": "Сираж",
+  "prayer_title": "Намаз Уақыттары",
+  "prayer_nextPrayer": "Келесі Намаз",
+  "prayer_fajr": "Таң",
+  "prayer_sunrise": "Күн Шығу",
+  "prayer_dhuhr": "Бесін",
+  "prayer_asr": "Екінті",
+  "prayer_maghrib": "Ақшам",
+  "prayer_isha": "Құптан",
+  "prayer_locationGPS": "Сіздің қазіргі орналасуыңыз",
+  "prayer_locationDefault": "Эр-Рияд (әдепкі)",
+  "quran_title": "Қасиетті Құран",
+  "quran_meccan": "Меккелік",
+  "quran_medinan": "Мединелік",
+  "quran_searchHint": "Құраннан іздеу...",
+  "quran_noResults": "Нәтиже табылмады",
+  "quran_searchPrompt": "Іздеу үшін сөз енгізіңіз",
+  "quran_tapForTafsir": "Тапсир үшін аятты ұстап тұрыңыз",
+  "quran_tafsirSource": "Әл-Муяссар",
+  "quran_tafsirError": "Тапсирды жүктеу мүмкін болмады",
+  "quran_reciter": "Қари",
+  "quran_selectReciter": "Қариді таңдаңыз",
+  "quran_searchReciter": "Қариді іздеу...",
+  "quran_playPrompt": "Тыңдау үшін түртіңіз",
+  "athkar_title": "Зікірлер",
+  "athkar_morning": "Таңғы Зікірлер",
+  "athkar_evening": "Кешкі Зікірлер",
+  "athkar_sleep": "Ұйқы Зікірлері",
+  "athkar_wake": "Ояну Зікірлері",
+  "athkar_prayer": "Намаздан Кейінгі Зікірлер",
+  "athkar_general": "Жалпы Зікірлер",
+  "athkar_tapToCount": "Санау үшін түртіңіз",
+  "athkar_transitioning": "Өтуде...",
+  "athkar_next": "Келесі",
+  "athkar_prev": "Алдыңғы",
+  "athkar_finish": "Аяқтау",
+  "athkar_back": "Артқа",
+  "hadith_title": "Хадис",
+  "hadith_searchHint": "Хадис іздеу...",
+  "hadith_noResults": "Нәтиже табылмады",
+  "hadith_tapForDetail": "Толық оқу үшін түртіңіз",
+  "hadith_retryButton": "Қайталап көру",
+  "hadith_loadError": "Жүктеу мүмкін болмады",
+  "qibla_title": "Қибла Бағыты",
+  "qibla_active": "Компас белсенді",
+  "qibla_error": "Қибла бағытын анықтау мүмкін болмады",
+  "qibla_errorHint": "Компас пен орналасуды қосыңыз",
+  "qibla_kaaba": "Кааба",
+  "qibla_fromNorth": "Солтүстіктен Қиблаға дейінгі градус",
+  "stats_title": "Менің Статистикам",
+  "stats_prayerStreak": "Намаз Сериясы",
+  "stats_totalPrayers": "Жалпы Намаздар",
+  "stats_quranPages": "Құран Беттері",
+  "stats_athkarSessions": "Зікірлер",
+  "stats_khatma": "Құран Хатымы",
+  "stats_days": "қатарлы күн",
+  "stats_prayers": "намаз",
+  "stats_pages": "бет",
+  "stats_sessions": "сеанс",
+  "stats_khatmaUnit": "хатым",
+  "stats_currentKhatma": "Ағымдағы Хатым Прогресі",
+  "more_title": "Көбірек",
+  "more_qibla": "Қибла Бағыты",
+  "more_stats": "Менің Статистикам",
+  "common_loading": "Жүктелуде...",
+  "common_error": "Деректерді жүктеу қатесі",
+  "common_retry": "Қайталап көру",
+  "common_back": "Артқа",
+  "common_next": "Келесі",
+  "common_save": "Сақтау",
+  "common_cancel": "Болдырмау",
+  "common_done": "Дайын",
+  "common_search": "Іздеу",
+  "common_noData": "Деректер жоқ",
+  "common_offline": "Интернет байланысы жоқ",
+  "prayer_countdown": "{time} кейін",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "{count} аят",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "{number} аяттың тапсиры",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "{number} аят",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name} аяқталды",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "{source} риуаят еткен",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

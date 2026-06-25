@@ -1,0 +1,126 @@
+{
+  "@@locale": "te",
+  "appName": "సిరాజ్",
+  "prayer_title": "నమాజ్ వేళలు",
+  "prayer_nextPrayer": "తర్వాత నమాజ్",
+  "prayer_fajr": "ఫజ్ర్",
+  "prayer_sunrise": "సూర్యోదయం",
+  "prayer_dhuhr": "జుహ్ర్",
+  "prayer_asr": "అస్ర్",
+  "prayer_maghrib": "మగ్రిబ్",
+  "prayer_isha": "ఇషా",
+  "prayer_locationGPS": "మీ ప్రస్తుత స్థానం",
+  "prayer_locationDefault": "రియాద్ (డిఫాల్ట్)",
+  "quran_title": "పవిత్ర ఖురాన్",
+  "quran_meccan": "మక్కీ",
+  "quran_medinan": "మదనీ",
+  "quran_searchHint": "ఖురాన్‌లో వెతకండి...",
+  "quran_noResults": "ఫలితాలు లేవు",
+  "quran_searchPrompt": "వెతకడానికి ఒక పదం టైప్ చేయండి",
+  "quran_tapForTafsir": "తఫ్సీర్ కోసం ఆయత్‌ను నొక్కి పట్టుకోండి",
+  "quran_tafsirSource": "అల్-ముయస్సర్",
+  "quran_tafsirError": "తఫ్సీర్ లోడ్ చేయడం సాధ్యం కాలేదు",
+  "quran_reciter": "ఖారీ",
+  "quran_selectReciter": "ఖారీని ఎంచుకోండి",
+  "quran_searchReciter": "ఖారీని వెతకండి...",
+  "quran_playPrompt": "వినడానికి నొక్కండి",
+  "athkar_title": "జిక్ర్",
+  "athkar_morning": "తెల్లవారు జిక్ర్",
+  "athkar_evening": "సాయంత్రం జిక్ర్",
+  "athkar_sleep": "నిద్ర జిక్ర్",
+  "athkar_wake": "నిద్రలేపే జిక్ర్",
+  "athkar_prayer": "నమాజ్ తర్వాత జిక్ర్",
+  "athkar_general": "సాధారణ జిక్ర్",
+  "athkar_tapToCount": "లెక్కించడానికి నొక్కండి",
+  "athkar_transitioning": "కొనసాగుతోంది...",
+  "athkar_next": "తర్వాత",
+  "athkar_prev": "మునుపటి",
+  "athkar_finish": "ముగించు",
+  "athkar_back": "వెనక్కి",
+  "hadith_title": "హదీస్",
+  "hadith_searchHint": "హదీస్ వెతకండి...",
+  "hadith_noResults": "ఫలితాలు లేవు",
+  "hadith_tapForDetail": "పూర్తిగా చదవడానికి నొక్కండి",
+  "hadith_retryButton": "మళ్ళీ ప్రయత్నించు",
+  "hadith_loadError": "లోడ్ విఫలమైంది",
+  "qibla_title": "ఖిబ్లా దిశ",
+  "qibla_active": "కంపాస్ సక్రియంగా ఉంది",
+  "qibla_error": "ఖిబ్లా దిశను నిర్ణయించడం సాధ్యం కాలేదు",
+  "qibla_errorHint": "కంపాస్ మరియు స్థానాన్ని ప్రారంభించండి",
+  "qibla_kaaba": "కాబా",
+  "qibla_fromNorth": "ఉత్తరం నుండి ఖిబ్లా వరకు డిగ్రీలు",
+  "stats_title": "నా గణాంకాలు",
+  "stats_prayerStreak": "నమాజ్ శ్రేణి",
+  "stats_totalPrayers": "మొత్తం నమాజ్లు",
+  "stats_quranPages": "ఖురాన్ పేజీలు",
+  "stats_athkarSessions": "జిక్ర్",
+  "stats_khatma": "ఖురాన్ పూర్తి",
+  "stats_days": "వరుస రోజులు",
+  "stats_prayers": "నమాజ్లు",
+  "stats_pages": "పేజీలు",
+  "stats_sessions": "సెషన్లు",
+  "stats_khatmaUnit": "పూర్తి",
+  "stats_currentKhatma": "ప్రస్తుత పూర్తి పురోగతి",
+  "more_title": "మరిన్ని",
+  "more_qibla": "ఖిబ్లా దిశ",
+  "more_stats": "నా గణాంకాలు",
+  "common_loading": "లోడ్ అవుతోంది...",
+  "common_error": "డేటా లోడ్ చేయడంలో లోపం",
+  "common_retry": "మళ్ళీ ప్రయత్నించు",
+  "common_back": "వెనక్కి",
+  "common_next": "తర్వాత",
+  "common_save": "సేవ్ చేయి",
+  "common_cancel": "రద్దు చేయి",
+  "common_done": "పూర్తయింది",
+  "common_search": "వెతకు",
+  "common_noData": "డేటా లేదు",
+  "common_offline": "ఇంటర్నెట్ కనెక్షన్ లేదు",
+  "prayer_countdown": "{time} లో",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "{count} ఆయాలు",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "{number}వ ఆయత్ తఫ్సీర్",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "{number}వ ఆయత్",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name} పూర్తయింది",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "{source} ఉల్లేఖించారు",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

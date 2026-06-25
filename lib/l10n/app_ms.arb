@@ -1,0 +1,126 @@
+{
+  "@@locale": "ms",
+  "appName": "Siraj",
+  "prayer_title": "Waktu Solat",
+  "prayer_nextPrayer": "Solat Seterusnya",
+  "prayer_fajr": "Subuh",
+  "prayer_sunrise": "Syuruk",
+  "prayer_dhuhr": "Zohor",
+  "prayer_asr": "Asar",
+  "prayer_maghrib": "Maghrib",
+  "prayer_isha": "Isyak",
+  "prayer_locationGPS": "Lokasi semasa anda",
+  "prayer_locationDefault": "Riyadh (lalai)",
+  "quran_title": "Al-Quran Al-Karim",
+  "quran_meccan": "Makkiyah",
+  "quran_medinan": "Madaniyah",
+  "quran_searchHint": "Cari dalam Al-Quran...",
+  "quran_noResults": "Tiada keputusan",
+  "quran_searchPrompt": "Taip perkataan untuk mencari",
+  "quran_tapForTafsir": "Tekan lama ayat untuk tafsir",
+  "quran_tafsirSource": "Al-Muyassar",
+  "quran_tafsirError": "Gagal memuatkan tafsir",
+  "quran_reciter": "Qari",
+  "quran_selectReciter": "Pilih Qari",
+  "quran_searchReciter": "Cari qari...",
+  "quran_playPrompt": "Ketuk untuk mendengar",
+  "athkar_title": "Zikir",
+  "athkar_morning": "Zikir Pagi",
+  "athkar_evening": "Zikir Petang",
+  "athkar_sleep": "Zikir Tidur",
+  "athkar_wake": "Zikir Bangun",
+  "athkar_prayer": "Zikir Selepas Solat",
+  "athkar_general": "Zikir Umum",
+  "athkar_tapToCount": "Ketuk untuk kira",
+  "athkar_transitioning": "Beralih...",
+  "athkar_next": "Seterusnya",
+  "athkar_prev": "Sebelumnya",
+  "athkar_finish": "Selesai",
+  "athkar_back": "Kembali",
+  "hadith_title": "Hadith",
+  "hadith_searchHint": "Cari hadith...",
+  "hadith_noResults": "Tiada keputusan",
+  "hadith_tapForDetail": "Ketuk untuk baca penuh",
+  "hadith_retryButton": "Cuba Lagi",
+  "hadith_loadError": "Gagal memuatkan",
+  "qibla_title": "Arah Kiblat",
+  "qibla_active": "Kompas aktif",
+  "qibla_error": "Tidak dapat menentukan arah kiblat",
+  "qibla_errorHint": "Pastikan kompas dan lokasi diaktifkan",
+  "qibla_kaaba": "Kaabah",
+  "qibla_fromNorth": "Darjah dari Utara ke Kiblat",
+  "stats_title": "Statistik Saya",
+  "stats_prayerStreak": "Streak Solat",
+  "stats_totalPrayers": "Jumlah Solat",
+  "stats_quranPages": "Halaman Al-Quran",
+  "stats_athkarSessions": "Zikir",
+  "stats_khatma": "Khatam Al-Quran",
+  "stats_days": "hari berturut-turut",
+  "stats_prayers": "solat",
+  "stats_pages": "halaman",
+  "stats_sessions": "sesi",
+  "stats_khatmaUnit": "khatam",
+  "stats_currentKhatma": "Kemajuan Khatam Semasa",
+  "more_title": "Lagi",
+  "more_qibla": "Arah Kiblat",
+  "more_stats": "Statistik Saya",
+  "common_loading": "Memuatkan...",
+  "common_error": "Ralat memuatkan data",
+  "common_retry": "Cuba Lagi",
+  "common_back": "Kembali",
+  "common_next": "Seterusnya",
+  "common_save": "Simpan",
+  "common_cancel": "Batal",
+  "common_done": "Selesai",
+  "common_search": "Cari",
+  "common_noData": "Tiada data",
+  "common_offline": "Tiada sambungan internet",
+  "prayer_countdown": "Dalam {time}",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "{count} ayat",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "Tafsir Ayat {number}",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "Ayat {number}",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name} selesai",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "Diriwayatkan oleh {source}",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

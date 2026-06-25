@@ -1,0 +1,126 @@
+{
+  "@@locale": "sw",
+  "appName": "Siraj",
+  "prayer_title": "Nyakati za Sala",
+  "prayer_nextPrayer": "Sala Inayofuata",
+  "prayer_fajr": "Alfajiri",
+  "prayer_sunrise": "Machweo ya Jua",
+  "prayer_dhuhr": "Adhuhuri",
+  "prayer_asr": "Alasiri",
+  "prayer_maghrib": "Magharibi",
+  "prayer_isha": "Isha",
+  "prayer_locationGPS": "Mahali pako sasa hivi",
+  "prayer_locationDefault": "Riyadh (chaguo-msingi)",
+  "quran_title": "Qurani Tukufu",
+  "quran_meccan": "Makkiya",
+  "quran_medinan": "Madaniya",
+  "quran_searchHint": "Tafuta katika Qurani...",
+  "quran_noResults": "Hakuna matokeo",
+  "quran_searchPrompt": "Andika neno kutafuta",
+  "quran_tapForTafsir": "Bonyeza kwa muda mrefu aya kwa tafsiri",
+  "quran_tafsirSource": "Al-Muyassar",
+  "quran_tafsirError": "Imeshindwa kupakia tafsiri",
+  "quran_reciter": "Msomaji",
+  "quran_selectReciter": "Chagua Msomaji",
+  "quran_searchReciter": "Tafuta msomaji...",
+  "quran_playPrompt": "Gusa kusikiliza",
+  "athkar_title": "Adhkari",
+  "athkar_morning": "Adhkari ya Asubuhi",
+  "athkar_evening": "Adhkari ya Jioni",
+  "athkar_sleep": "Adhkari ya Kulala",
+  "athkar_wake": "Adhkari ya Kuamka",
+  "athkar_prayer": "Adhkari Baada ya Sala",
+  "athkar_general": "Adhkari ya Jumla",
+  "athkar_tapToCount": "Gusa kuhesabu",
+  "athkar_transitioning": "Inaendelea...",
+  "athkar_next": "Inayofuata",
+  "athkar_prev": "Iliyotangulia",
+  "athkar_finish": "Maliza",
+  "athkar_back": "Rudi",
+  "hadith_title": "Hadithi",
+  "hadith_searchHint": "Tafuta hadithi...",
+  "hadith_noResults": "Hakuna matokeo",
+  "hadith_tapForDetail": "Gusa kusoma kamili",
+  "hadith_retryButton": "Jaribu Tena",
+  "hadith_loadError": "Imeshindwa kupakia",
+  "qibla_title": "Mwelekeo wa Qibla",
+  "qibla_active": "Dira inafanya kazi",
+  "qibla_error": "Imeshindwa kuamua mwelekeo wa Qibla",
+  "qibla_errorHint": "Washa dira na eneo",
+  "qibla_kaaba": "Kaaba",
+  "qibla_fromNorth": "Digrii kutoka Kaskazini kwenda Qibla",
+  "stats_title": "Takwimu Zangu",
+  "stats_prayerStreak": "Mfululizo wa Sala",
+  "stats_totalPrayers": "Jumla ya Sala",
+  "stats_quranPages": "Kurasa za Qurani",
+  "stats_athkarSessions": "Adhkari",
+  "stats_khatma": "Ukamilishaji wa Qurani",
+  "stats_days": "siku mfululizo",
+  "stats_prayers": "sala",
+  "stats_pages": "kurasa",
+  "stats_sessions": "vikao",
+  "stats_khatmaUnit": "ukamilishaji",
+  "stats_currentKhatma": "Maendeleo ya Ukamilishaji wa Sasa",
+  "more_title": "Zaidi",
+  "more_qibla": "Mwelekeo wa Qibla",
+  "more_stats": "Takwimu Zangu",
+  "common_loading": "Inapakia...",
+  "common_error": "Hitilafu ya kupakia data",
+  "common_retry": "Jaribu Tena",
+  "common_back": "Rudi",
+  "common_next": "Inayofuata",
+  "common_save": "Hifadhi",
+  "common_cancel": "Ghairi",
+  "common_done": "Imekamilika",
+  "common_search": "Tafuta",
+  "common_noData": "Hakuna data",
+  "common_offline": "Hakuna muunganisho wa intaneti",
+  "prayer_countdown": "Katika {time}",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "Aya {count}",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "Tafsiri ya Aya {number}",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "Aya {number}",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name} imekamilika",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "Iliyosimuliwa na {source}",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

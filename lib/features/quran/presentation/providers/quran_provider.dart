@@ -12,7 +12,17 @@ final surahsProvider = FutureProvider<List<SurahEntity>>((ref) async {
   return dataSource.getSurahs();
 });
 
-final ayahsProvider = FutureProvider.family<List<AyahEntity>, int>((ref, surahId) async {
+final ayahsProvider =
+    FutureProvider.family<List<AyahEntity>, int>((ref, surahId) async {
   final dataSource = ref.watch(quranDataSourceProvider);
   return dataSource.getAyahs(surahId);
+});
+
+final tafsirProvider =
+    FutureProvider.family<String, Map<String, int>>((ref, params) async {
+  final dataSource = ref.watch(quranDataSourceProvider);
+  return dataSource.getTafsir(
+    params['surahId']!,
+    params['ayahNumber']!,
+  );
 });

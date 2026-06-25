@@ -1,0 +1,126 @@
+{
+  "@@locale": "ru",
+  "appName": "Сирадж",
+  "prayer_title": "Время намаза",
+  "prayer_nextPrayer": "Следующий намаз",
+  "prayer_fajr": "Фаджр",
+  "prayer_sunrise": "Восход",
+  "prayer_dhuhr": "Зухр",
+  "prayer_asr": "Аср",
+  "prayer_maghrib": "Магриб",
+  "prayer_isha": "Иша",
+  "prayer_locationGPS": "Ваше текущее местоположение",
+  "prayer_locationDefault": "Эр-Рияд (по умолчанию)",
+  "quran_title": "Священный Коран",
+  "quran_meccan": "Мекканская",
+  "quran_medinan": "Мединская",
+  "quran_searchHint": "Поиск в Коране...",
+  "quran_noResults": "Результатов нет",
+  "quran_searchPrompt": "Введите слово для поиска",
+  "quran_tapForTafsir": "Нажмите и удерживайте аят для тафсира",
+  "quran_tafsirSource": "Аль-Муяссар",
+  "quran_tafsirError": "Не удалось загрузить тафсир",
+  "quran_reciter": "Чтец",
+  "quran_selectReciter": "Выбрать чтеца",
+  "quran_searchReciter": "Найти чтеца...",
+  "quran_playPrompt": "Нажмите для прослушивания",
+  "athkar_title": "Азкар",
+  "athkar_morning": "Утренние азкар",
+  "athkar_evening": "Вечерние азкар",
+  "athkar_sleep": "Азкар перед сном",
+  "athkar_wake": "Азкар после пробуждения",
+  "athkar_prayer": "Азкар после намаза",
+  "athkar_general": "Общие азкар",
+  "athkar_tapToCount": "Нажмите для счёта",
+  "athkar_transitioning": "Переход...",
+  "athkar_next": "Следующий",
+  "athkar_prev": "Предыдущий",
+  "athkar_finish": "Завершить",
+  "athkar_back": "Назад",
+  "hadith_title": "Хадис",
+  "hadith_searchHint": "Поиск хадисов...",
+  "hadith_noResults": "Результатов нет",
+  "hadith_tapForDetail": "Нажмите для полного чтения",
+  "hadith_retryButton": "Повторить",
+  "hadith_loadError": "Не удалось загрузить",
+  "qibla_title": "Направление Киблы",
+  "qibla_active": "Компас активен",
+  "qibla_error": "Не удалось определить направление Киблы",
+  "qibla_errorHint": "Включите компас и геолокацию",
+  "qibla_kaaba": "Кааба",
+  "qibla_fromNorth": "Градусов от севера к Кибле",
+  "stats_title": "Моя статистика",
+  "stats_prayerStreak": "Серия намазов",
+  "stats_totalPrayers": "Всего намазов",
+  "stats_quranPages": "Страниц Корана",
+  "stats_athkarSessions": "Азкар",
+  "stats_khatma": "Хатм Корана",
+  "stats_days": "дней подряд",
+  "stats_prayers": "намазов",
+  "stats_pages": "страниц",
+  "stats_sessions": "сессий",
+  "stats_khatmaUnit": "хатм",
+  "stats_currentKhatma": "Прогресс текущего хатма",
+  "more_title": "Ещё",
+  "more_qibla": "Направление Киблы",
+  "more_stats": "Моя статистика",
+  "common_loading": "Загрузка...",
+  "common_error": "Ошибка загрузки данных",
+  "common_retry": "Повторить",
+  "common_back": "Назад",
+  "common_next": "Далее",
+  "common_save": "Сохранить",
+  "common_cancel": "Отмена",
+  "common_done": "Готово",
+  "common_search": "Поиск",
+  "common_noData": "Нет данных",
+  "common_offline": "Нет подключения к интернету",
+  "prayer_countdown": "Через {time}",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "{count} аятов",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "Тафсир аята {number}",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "Аят {number}",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name} завершён",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "Передано от {source}",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

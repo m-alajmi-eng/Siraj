@@ -1,0 +1,126 @@
+{
+  "@@locale": "uz",
+  "appName": "Siraj",
+  "prayer_title": "Namoz Vaqtlari",
+  "prayer_nextPrayer": "Keyingi Namoz",
+  "prayer_fajr": "Bomdod",
+  "prayer_sunrise": "Quyosh Chiqishi",
+  "prayer_dhuhr": "Peshin",
+  "prayer_asr": "Asr",
+  "prayer_maghrib": "Shom",
+  "prayer_isha": "Xufton",
+  "prayer_locationGPS": "Joriy joylashuvingiz",
+  "prayer_locationDefault": "Ar-Riyod (standart)",
+  "quran_title": "Muqaddas Qur'on",
+  "quran_meccan": "Makkiy",
+  "quran_medinan": "Madaniy",
+  "quran_searchHint": "Qur'onda qidirish...",
+  "quran_noResults": "Natija topilmadi",
+  "quran_searchPrompt": "Qidirish uchun so'z kiriting",
+  "quran_tapForTafsir": "Tafsir uchun oyatni bosib turing",
+  "quran_tafsirSource": "Al-Muyassar",
+  "quran_tafsirError": "Tafsirni yuklab bo'lmadi",
+  "quran_reciter": "Qori",
+  "quran_selectReciter": "Qori tanlang",
+  "quran_searchReciter": "Qori qidirish...",
+  "quran_playPrompt": "Tinglash uchun bosing",
+  "athkar_title": "Zikrlar",
+  "athkar_morning": "Ertalabki Zikrlar",
+  "athkar_evening": "Kechki Zikrlar",
+  "athkar_sleep": "Uxlash Zikrlari",
+  "athkar_wake": "Uyg'onish Zikrlari",
+  "athkar_prayer": "Namozdan Keyin Zikrlar",
+  "athkar_general": "Umumiy Zikrlar",
+  "athkar_tapToCount": "Hisoblash uchun bosing",
+  "athkar_transitioning": "O'tilmoqda...",
+  "athkar_next": "Keyingisi",
+  "athkar_prev": "Oldingi",
+  "athkar_finish": "Yakunlash",
+  "athkar_back": "Orqaga",
+  "hadith_title": "Hadis",
+  "hadith_searchHint": "Hadis qidirish...",
+  "hadith_noResults": "Natija topilmadi",
+  "hadith_tapForDetail": "To'liq o'qish uchun bosing",
+  "hadith_retryButton": "Qayta urinish",
+  "hadith_loadError": "Yuklab bo'lmadi",
+  "qibla_title": "Qibla Yo'nalishi",
+  "qibla_active": "Kompas faol",
+  "qibla_error": "Qibla yo'nalishini aniqlab bo'lmadi",
+  "qibla_errorHint": "Kompas va joylashuvni yoqing",
+  "qibla_kaaba": "Ka'ba",
+  "qibla_fromNorth": "Shimoldan Qiblaga darajalar",
+  "stats_title": "Mening Statistikam",
+  "stats_prayerStreak": "Namoz Ketma-ketligi",
+  "stats_totalPrayers": "Jami Namozlar",
+  "stats_quranPages": "Qur'on Sahifalari",
+  "stats_athkarSessions": "Zikrlar",
+  "stats_khatma": "Qur'on Xatmi",
+  "stats_days": "ketma-ket kun",
+  "stats_prayers": "namoz",
+  "stats_pages": "sahifa",
+  "stats_sessions": "seans",
+  "stats_khatmaUnit": "xatm",
+  "stats_currentKhatma": "Joriy Xatm Jarayoni",
+  "more_title": "Ko'proq",
+  "more_qibla": "Qibla Yo'nalishi",
+  "more_stats": "Mening Statistikam",
+  "common_loading": "Yuklanmoqda...",
+  "common_error": "Ma'lumotlarni yuklashda xato",
+  "common_retry": "Qayta urinish",
+  "common_back": "Orqaga",
+  "common_next": "Keyingisi",
+  "common_save": "Saqlash",
+  "common_cancel": "Bekor qilish",
+  "common_done": "Bajarildi",
+  "common_search": "Qidirish",
+  "common_noData": "Ma'lumot yo'q",
+  "common_offline": "Internet ulanishi yo'q",
+  "prayer_countdown": "{time} ichida",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "{count} oyat",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "{number}-oyat tafsiri",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "{number}-oyat",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name} yakunlandi",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "{source} rivoyat qilgan",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "@@locale": "fa",
+  "appName": "سراج",
+  "prayer_title": "اوقات نماز",
+  "prayer_nextPrayer": "نماز بعدی",
+  "prayer_fajr": "صبح",
+  "prayer_sunrise": "طلوع آفتاب",
+  "prayer_dhuhr": "ظهر",
+  "prayer_asr": "عصر",
+  "prayer_maghrib": "مغرب",
+  "prayer_isha": "عشاء",
+  "prayer_locationGPS": "موقعیت فعلی شما",
+  "prayer_locationDefault": "ریاض (پیش‌فرض)",
+  "quran_title": "قرآن کریم",
+  "quran_meccan": "مکی",
+  "quran_medinan": "مدنی",
+  "quran_searchHint": "جستجو در قرآن...",
+  "quran_noResults": "نتیجه‌ای یافت نشد",
+  "quran_searchPrompt": "کلمه‌ای برای جستجو بنویسید",
+  "quran_tapForTafsir": "برای تفسیر روی آیه نگه دارید",
+  "quran_tafsirSource": "المیسر",
+  "quran_tafsirError": "بارگذاری تفسیر ناموفق بود",
+  "quran_reciter": "قاری",
+  "quran_selectReciter": "انتخاب قاری",
+  "quran_searchReciter": "جستجوی قاری...",
+  "quran_playPrompt": "برای شنیدن لمس کنید",
+  "athkar_title": "اذکار",
+  "athkar_morning": "اذکار صبح",
+  "athkar_evening": "اذکار شام",
+  "athkar_sleep": "اذکار خواب",
+  "athkar_wake": "اذکار بیداری",
+  "athkar_prayer": "اذکار بعد از نماز",
+  "athkar_general": "اذکار عمومی",
+  "athkar_tapToCount": "برای شمارش لمس کنید",
+  "athkar_transitioning": "در حال انتقال...",
+  "athkar_next": "بعدی",
+  "athkar_prev": "قبلی",
+  "athkar_finish": "پایان",
+  "athkar_back": "بازگشت",
+  "hadith_title": "حدیث شریف",
+  "hadith_searchHint": "جستجو در احادیث...",
+  "hadith_noResults": "نتیجه‌ای یافت نشد",
+  "hadith_tapForDetail": "برای خواندن کامل لمس کنید",
+  "hadith_retryButton": "تلاش مجدد",
+  "hadith_loadError": "بارگذاری ناموفق",
+  "qibla_title": "جهت قبله",
+  "qibla_active": "قطب‌نما فعال است",
+  "qibla_error": "تعیین جهت قبله ممکن نیست",
+  "qibla_errorHint": "قطب‌نما و موقعیت را فعال کنید",
+  "qibla_kaaba": "کعبه",
+  "qibla_fromNorth": "درجه از شمال به سمت قبله",
+  "stats_title": "آمار من",
+  "stats_prayerStreak": "رشته نماز",
+  "stats_totalPrayers": "مجموع نمازها",
+  "stats_quranPages": "صفحات قرآن",
+  "stats_athkarSessions": "اذکار",
+  "stats_khatma": "ختم قرآن",
+  "stats_days": "روز متوالی",
+  "stats_prayers": "نماز",
+  "stats_pages": "صفحه",
+  "stats_sessions": "جلسه",
+  "stats_khatmaUnit": "ختم",
+  "stats_currentKhatma": "پیشرفت ختم فعلی",
+  "more_title": "بیشتر",
+  "more_qibla": "جهت قبله",
+  "more_stats": "آمار من",
+  "common_loading": "در حال بارگذاری...",
+  "common_error": "خطا در بارگذاری داده",
+  "common_retry": "تلاش مجدد",
+  "common_back": "بازگشت",
+  "common_next": "بعدی",
+  "common_save": "ذخیره",
+  "common_cancel": "لغو",
+  "common_done": "انجام شد",
+  "common_search": "جستجو",
+  "common_noData": "داده‌ای موجود نیست",
+  "common_offline": "اتصال به اینترنت وجود ندارد",
+  "prayer_countdown": "در {time}",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "{count} آیه",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "تفسیر آیه {number}",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "آیه {number}",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name} تکمیل شد",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "روایت از {source}",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

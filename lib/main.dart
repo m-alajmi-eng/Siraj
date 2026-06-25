@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/app_localizations.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/time_theme_provider.dart';
+import 'core/storage/cache_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,6 +14,8 @@ Future<void> main() async {
     url: 'https://pzcnkzsicyxlzqwjznvh.supabase.co',
     anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6Y25renNpY3l4bHpxd2p6bnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyMDY2NjQsImV4cCI6MjA5Nzc4MjY2NH0.W2z_NZKyc1HD9CifqKvupIVcSrW1MinDAYsfpZ6ewm8',
   );
+
+  await CacheService.init();
 
   runApp(const ProviderScope(child: SirajApp()));
 }
@@ -26,6 +31,16 @@ class SirajApp extends ConsumerWidget {
       title:                     'Siraj',
       debugShowCheckedModeBanner: false,
       routerConfig:              appRouter,
+
+      // ─── Localization ─────────────────────────────────
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+
       theme: ThemeData(
         scaffoldBackgroundColor: palette.background,
         colorScheme: ColorScheme.dark(

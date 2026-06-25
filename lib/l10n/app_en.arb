@@ -1,0 +1,123 @@
+{
+  "@@locale": "en",
+
+  "appName": "Siraj",
+
+  "prayer_title": "Prayer Times",
+  "prayer_nextPrayer": "Next Prayer",
+  "prayer_fajr": "Fajr",
+  "prayer_sunrise": "Sunrise",
+  "prayer_dhuhr": "Dhuhr",
+  "prayer_asr": "Asr",
+  "prayer_maghrib": "Maghrib",
+  "prayer_isha": "Isha",
+  "prayer_countdown": "In {time}",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {"type": "String"}
+    }
+  },
+  "prayer_locationGPS": "Your current location",
+  "prayer_locationDefault": "Riyadh (default)",
+
+  "quran_title": "The Holy Quran",
+  "quran_meccan": "Meccan",
+  "quran_medinan": "Medinan",
+  "quran_ayahCount": "{count} verses",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "quran_searchHint": "Search the Holy Quran...",
+  "quran_noResults": "No results found",
+  "quran_searchPrompt": "Type a word to search",
+  "quran_tapForTafsir": "Long press any verse for tafsir",
+  "quran_tafsirTitle": "Tafsir of Verse {number}",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {"type": "int"}
+    }
+  },
+  "quran_tafsirSource": "Al-Muyassar",
+  "quran_tafsirError": "Could not load tafsir",
+  "quran_reciter": "Reciter",
+  "quran_selectReciter": "Select Reciter",
+  "quran_searchReciter": "Search for a reciter...",
+  "quran_playPrompt": "Tap to listen",
+  "quran_ayahNumber": "Verse {number}",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {"type": "int"}
+    }
+  },
+
+  "athkar_title": "Athkar",
+  "athkar_morning": "Morning Athkar",
+  "athkar_evening": "Evening Athkar",
+  "athkar_sleep": "Sleep Athkar",
+  "athkar_wake": "Waking Athkar",
+  "athkar_prayer": "Post-Prayer Athkar",
+  "athkar_general": "General Athkar",
+  "athkar_tapToCount": "Tap to count",
+  "athkar_transitioning": "Moving to next...",
+  "athkar_completed": "{name} completed",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "athkar_next": "Next",
+  "athkar_prev": "Previous",
+  "athkar_finish": "Finish",
+  "athkar_back": "Back",
+  "athkar_source": "Narrated by {source}",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {"type": "String"}
+    }
+  },
+
+  "hadith_title": "Hadith",
+  "hadith_searchHint": "Search hadiths...",
+  "hadith_noResults": "No results found",
+  "hadith_tapForDetail": "Tap to read full hadith",
+  "hadith_retryButton": "Try Again",
+  "hadith_loadError": "Failed to load",
+
+  "qibla_title": "Qibla Direction",
+  "qibla_active": "Compass active",
+  "qibla_error": "Could not determine Qibla direction",
+  "qibla_errorHint": "Make sure compass and location are enabled",
+  "qibla_kaaba": "Kaaba",
+  "qibla_fromNorth": "Degrees from North toward Qibla",
+
+  "stats_title": "My Stats",
+  "stats_prayerStreak": "Prayer Streak",
+  "stats_totalPrayers": "Total Prayers",
+  "stats_quranPages": "Quran Pages",
+  "stats_athkarSessions": "Athkar",
+  "stats_khatma": "Quran Completions",
+  "stats_days": "consecutive days",
+  "stats_prayers": "prayers",
+  "stats_pages": "pages",
+  "stats_sessions": "sessions",
+  "stats_khatmaUnit": "completion",
+  "stats_currentKhatma": "Current Khatma Progress",
+
+  "more_title": "More",
+  "more_qibla": "Qibla Direction",
+  "more_stats": "My Stats",
+
+  "common_loading": "Loading...",
+  "common_error": "Error loading data",
+  "common_retry": "Try Again",
+  "common_back": "Back",
+  "common_next": "Next",
+  "common_save": "Save",
+  "common_cancel": "Cancel",
+  "common_done": "Done",
+  "common_search": "Search",
+  "common_noData": "No data available",
+  "common_offline": "No internet connection"
+}

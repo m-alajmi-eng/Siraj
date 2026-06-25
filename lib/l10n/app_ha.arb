@@ -1,0 +1,126 @@
+{
+  "@@locale": "ha",
+  "appName": "Siraj",
+  "prayer_title": "Lokutan Sallah",
+  "prayer_nextPrayer": "Sallah ta Gaba",
+  "prayer_fajr": "Asuba",
+  "prayer_sunrise": "Fitowar Rana",
+  "prayer_dhuhr": "Azahar",
+  "prayer_asr": "La'asar",
+  "prayer_maghrib": "Magariba",
+  "prayer_isha": "Isha'i",
+  "prayer_locationGPS": "Wurinka na yanzu",
+  "prayer_locationDefault": "Riyadh (tsoho)",
+  "quran_title": "Al-Qur'ani Mai Tsarki",
+  "quran_meccan": "Makkiyya",
+  "quran_medinan": "Madaniyya",
+  "quran_searchHint": "Nema a cikin Al-Qur'ani...",
+  "quran_noResults": "Babu sakamakon bincike",
+  "quran_searchPrompt": "Rubuta kalma don bincike",
+  "quran_tapForTafsir": "Riƙe aya don tafsiri",
+  "quran_tafsirSource": "Al-Muyassar",
+  "quran_tafsirError": "Ba a iya loda tafsiri",
+  "quran_reciter": "Mai Karatu",
+  "quran_selectReciter": "Zaɓi Mai Karatu",
+  "quran_searchReciter": "Nema mai karatu...",
+  "quran_playPrompt": "Taɓa don sauraro",
+  "athkar_title": "Azkar",
+  "athkar_morning": "Azkar na Safiya",
+  "athkar_evening": "Azkar na Yamma",
+  "athkar_sleep": "Azkar na Barci",
+  "athkar_wake": "Azkar na Farkawa",
+  "athkar_prayer": "Azkar bayan Sallah",
+  "athkar_general": "Azkar na Gaba ɗaya",
+  "athkar_tapToCount": "Taɓa don ƙidaya",
+  "athkar_transitioning": "Ana tafiya...",
+  "athkar_next": "Na Gaba",
+  "athkar_prev": "Na Baya",
+  "athkar_finish": "Kammala",
+  "athkar_back": "Koma",
+  "hadith_title": "Hadisi",
+  "hadith_searchHint": "Nema hadisi...",
+  "hadith_noResults": "Babu sakamakon bincike",
+  "hadith_tapForDetail": "Taɓa don karanta cikakke",
+  "hadith_retryButton": "Sake Gwadawa",
+  "hadith_loadError": "Ba a iya loda",
+  "qibla_title": "Alkibla",
+  "qibla_active": "Compass yana aiki",
+  "qibla_error": "Ba a iya tantance alkibla",
+  "qibla_errorHint": "Kunna compass da wuri",
+  "qibla_kaaba": "Ka'aba",
+  "qibla_fromNorth": "Digiri daga Arewa zuwa Alkibla",
+  "stats_title": "Ƙididdiga Na",
+  "stats_prayerStreak": "Jerin Sallah",
+  "stats_totalPrayers": "Wadarta Sallah",
+  "stats_quranPages": "Shafukan Al-Qur'ani",
+  "stats_athkarSessions": "Azkar",
+  "stats_khatma": "Kammala Al-Qur'ani",
+  "stats_days": "kwanaki a jere",
+  "stats_prayers": "sallah",
+  "stats_pages": "shafuka",
+  "stats_sessions": "zaman",
+  "stats_khatmaUnit": "kammala",
+  "stats_currentKhatma": "Ci gaban Kammala na Yanzu",
+  "more_title": "Ƙari",
+  "more_qibla": "Alkibla",
+  "more_stats": "Ƙididdiga Na",
+  "common_loading": "Ana loda...",
+  "common_error": "Kuskure wajen loda bayanan",
+  "common_retry": "Sake Gwadawa",
+  "common_back": "Koma",
+  "common_next": "Na Gaba",
+  "common_save": "Ajiye",
+  "common_cancel": "Soke",
+  "common_done": "An Gama",
+  "common_search": "Bincike",
+  "common_noData": "Babu bayanan",
+  "common_offline": "Babu haɗin intanet",
+  "prayer_countdown": "A cikin {time}",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "Ayoyi {count}",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "Tafsirin Aya ta {number}",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "Aya ta {number}",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name} ya kammala",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "Rawaito daga {source}",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

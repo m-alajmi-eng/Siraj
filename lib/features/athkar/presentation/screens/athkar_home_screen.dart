@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../providers/athkar_provider.dart';
-import 'athkar_category_screen.dart';
 
 class AthkarHomeScreen extends ConsumerWidget {
   const AthkarHomeScreen({super.key});
@@ -32,13 +32,12 @@ class AthkarHomeScreen extends ConsumerWidget {
               Text(
                 'الأذكار',
                 style: TextStyle(
-                  color: palette.textPrimary,
-                  fontSize: 28,
+                  color:      palette.textPrimary,
+                  fontSize:   28,
                   fontWeight: FontWeight.w300,
                 ),
               ),
               const SizedBox(height: 24),
-
               categories.when(
                 loading: () => Center(
                   child: CircularProgressIndicator(
@@ -61,15 +60,8 @@ class AthkarHomeScreen extends ConsumerWidget {
                     itemBuilder: (context, index) {
                       final cat = cats[index];
                       return GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => AthkarCategoryScreen(
-                              categoryId:   cat.id,
-                              categoryName: cat.name,
-                            ),
-                          ),
-                        ),
+                        onTap: () => context.go(
+                          '/athkar/${cat.id}?name=${cat.name}'),
                         child: Container(
                           decoration: BoxDecoration(
                             color:        palette.surface,
@@ -81,7 +73,7 @@ class AthkarHomeScreen extends ConsumerWidget {
                               Icon(
                                 icons[cat.id] ?? Icons.star_outline,
                                 color: palette.accentPrimary,
-                                size: 32,
+                                size:  32,
                               ),
                               const SizedBox(height: 8),
                               Text(

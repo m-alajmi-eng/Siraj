@@ -1,10 +1,13 @@
+import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../data/datasources/prayer_local_datasource.dart';
 import '../../domain/entities/prayer_times_entity.dart';
 
-// Provider للموقع
 final locationProvider = FutureProvider<Position?>((ref) async {
+  // Linux لا يدعم GPS
+  if (!Platform.isAndroid && !Platform.isIOS) return null;
+
   bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) return null;
 
@@ -22,12 +25,10 @@ final locationProvider = FutureProvider<Position?>((ref) async {
   );
 });
 
-// Provider لأوقات الصلاة مع GPS
 final prayerTimesProvider = FutureProvider<PrayerTimesEntity>((ref) async {
-  final position = await ref.watch(locationProvider.future);
+  final position   = await ref.watch(locationProvider.future);
   final dataSource = PrayerLocalDataSource();
 
-  // إذا لم يتوفر GPS — الرياض افتراضياً
   final lat = position?.latitude  ?? 24.7136;
   final lng = position?.longitude ?? 46.6753;
 
@@ -44,7 +45,7 @@ final nextPrayerProvider = FutureProvider<String>((ref) async {
 });
 
 final countdownProvider = FutureProvider<String>((ref) async {
-  final times = await ref.watch(prayerTimesProvider.future);
+  final times    = await ref.watch(prayerTimesProvider.future);
   final duration = times.timeUntilNextPrayer;
   final hours    = duration.inHours;
   final minutes  = duration.inMinutes % 60;

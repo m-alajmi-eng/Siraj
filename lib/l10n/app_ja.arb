@@ -1,0 +1,126 @@
+{
+  "@@locale": "ja",
+  "appName": "シラージュ",
+  "prayer_title": "礼拝時間",
+  "prayer_nextPrayer": "次の礼拝",
+  "prayer_fajr": "ファジュル",
+  "prayer_sunrise": "日の出",
+  "prayer_dhuhr": "ズフル",
+  "prayer_asr": "アスル",
+  "prayer_maghrib": "マグリブ",
+  "prayer_isha": "イシャー",
+  "prayer_locationGPS": "現在地",
+  "prayer_locationDefault": "リヤド（デフォルト）",
+  "quran_title": "神聖なるクルアーン",
+  "quran_meccan": "マッカ章",
+  "quran_medinan": "マディーナ章",
+  "quran_searchHint": "クルアーンを検索...",
+  "quran_noResults": "結果なし",
+  "quran_searchPrompt": "検索する単語を入力",
+  "quran_tapForTafsir": "節を長押しでタフスィール",
+  "quran_tafsirSource": "アル・ムヤッサル",
+  "quran_tafsirError": "タフスィールを読み込めません",
+  "quran_reciter": "朗誦者",
+  "quran_selectReciter": "朗誦者を選択",
+  "quran_searchReciter": "朗誦者を検索...",
+  "quran_playPrompt": "タップして聴く",
+  "athkar_title": "ズィクル",
+  "athkar_morning": "朝のズィクル",
+  "athkar_evening": "夕方のズィクル",
+  "athkar_sleep": "就寝のズィクル",
+  "athkar_wake": "起床のズィクル",
+  "athkar_prayer": "礼拝後のズィクル",
+  "athkar_general": "一般的なズィクル",
+  "athkar_tapToCount": "タップして数える",
+  "athkar_transitioning": "移行中...",
+  "athkar_next": "次へ",
+  "athkar_prev": "前へ",
+  "athkar_finish": "終了",
+  "athkar_back": "戻る",
+  "hadith_title": "ハディース",
+  "hadith_searchHint": "ハディースを検索...",
+  "hadith_noResults": "結果なし",
+  "hadith_tapForDetail": "タップして全文を読む",
+  "hadith_retryButton": "再試行",
+  "hadith_loadError": "読み込み失敗",
+  "qibla_title": "キブラの方向",
+  "qibla_active": "コンパス有効",
+  "qibla_error": "キブラの方向を特定できません",
+  "qibla_errorHint": "コンパスと位置情報を有効にしてください",
+  "qibla_kaaba": "カアバ",
+  "qibla_fromNorth": "北からキブラへの度数",
+  "stats_title": "マイ統計",
+  "stats_prayerStreak": "礼拝連続記録",
+  "stats_totalPrayers": "礼拝合計",
+  "stats_quranPages": "クルアーンページ数",
+  "stats_athkarSessions": "ズィクル",
+  "stats_khatma": "クルアーン完読回数",
+  "stats_days": "連続日",
+  "stats_prayers": "回",
+  "stats_pages": "ページ",
+  "stats_sessions": "セッション",
+  "stats_khatmaUnit": "回完読",
+  "stats_currentKhatma": "現在の完読進捗",
+  "more_title": "その他",
+  "more_qibla": "キブラの方向",
+  "more_stats": "マイ統計",
+  "common_loading": "読み込み中...",
+  "common_error": "データ読み込みエラー",
+  "common_retry": "再試行",
+  "common_back": "戻る",
+  "common_next": "次へ",
+  "common_save": "保存",
+  "common_cancel": "キャンセル",
+  "common_done": "完了",
+  "common_search": "検索",
+  "common_noData": "データなし",
+  "common_offline": "インターネット接続なし",
+  "prayer_countdown": "{time}後",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "{count}節",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "第{number}節のタフスィール",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "第{number}節",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name}完了",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "{source}伝承",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

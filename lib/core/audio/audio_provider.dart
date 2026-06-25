@@ -70,7 +70,7 @@ class AudioNotifier extends Notifier<AudioState> {
         playAyah(
           surahId, next,
           totalAyahs: state.totalAyahs,
-          reciter: reciter,
+          reciter:    reciter,
         );
       } else {
         state = state.copyWith(isPlaying: false);
@@ -86,7 +86,7 @@ class AudioNotifier extends Notifier<AudioState> {
     await service.stop();
     state = const AudioState();
 
-    // تشغيل البسملة أولاً (عدا الفاتحة والتوبة)
+    // البسملة أولاً (عدا الفاتحة والتوبة)
     if (surahId != 1 && surahId != 9) {
       final completer = Completer<void>();
       service.onComplete(() => completer.complete());

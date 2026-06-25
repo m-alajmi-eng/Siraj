@@ -1,0 +1,123 @@
+{
+  "@@locale": "ar",
+
+  "appName": "سراج",
+
+  "prayer_title": "أوقات الصلاة",
+  "prayer_nextPrayer": "الصلاة القادمة",
+  "prayer_fajr": "الفجر",
+  "prayer_sunrise": "الشروق",
+  "prayer_dhuhr": "الظهر",
+  "prayer_asr": "العصر",
+  "prayer_maghrib": "المغرب",
+  "prayer_isha": "العشاء",
+  "prayer_countdown": "في {time}",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {"type": "String"}
+    }
+  },
+  "prayer_locationGPS": "موقعك الحالي",
+  "prayer_locationDefault": "الرياض (افتراضي)",
+
+  "quran_title": "القرآن الكريم",
+  "quran_meccan": "مكية",
+  "quran_medinan": "مدنية",
+  "quran_ayahCount": "{count} آية",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "quran_searchHint": "ابحث في القرآن الكريم...",
+  "quran_noResults": "لا توجد نتائج",
+  "quran_searchPrompt": "اكتب كلمة للبحث",
+  "quran_tapForTafsir": "اضغط مطولاً على أي آية لعرض التفسير",
+  "quran_tafsirTitle": "تفسير الآية {number}",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {"type": "int"}
+    }
+  },
+  "quran_tafsirSource": "الميسر",
+  "quran_tafsirError": "تعذّر تحميل التفسير",
+  "quran_reciter": "القارئ",
+  "quran_selectReciter": "اختر القارئ",
+  "quran_searchReciter": "ابحث عن قارئ...",
+  "quran_playPrompt": "اضغط للاستماع",
+  "quran_ayahNumber": "الآية {number}",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {"type": "int"}
+    }
+  },
+
+  "athkar_title": "الأذكار",
+  "athkar_morning": "أذكار الصباح",
+  "athkar_evening": "أذكار المساء",
+  "athkar_sleep": "أذكار النوم",
+  "athkar_wake": "أذكار الاستيقاظ",
+  "athkar_prayer": "أذكار بعد الصلاة",
+  "athkar_general": "أذكار متنوعة",
+  "athkar_tapToCount": "اضغط للعدّ",
+  "athkar_transitioning": "جارٍ الانتقال...",
+  "athkar_completed": "اكتملت {name}",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "athkar_next": "التالي",
+  "athkar_prev": "السابق",
+  "athkar_finish": "إنهاء",
+  "athkar_back": "رجوع",
+  "athkar_source": "رواه {source}",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {"type": "String"}
+    }
+  },
+
+  "hadith_title": "الحديث الشريف",
+  "hadith_searchHint": "ابحث في الأحاديث...",
+  "hadith_noResults": "لا توجد نتائج للبحث",
+  "hadith_tapForDetail": "اضغط لعرض كامل",
+  "hadith_retryButton": "إعادة المحاولة",
+  "hadith_loadError": "تعذّر التحميل",
+
+  "qibla_title": "اتجاه القبلة",
+  "qibla_active": "البوصلة نشطة",
+  "qibla_error": "تعذّر تحديد اتجاه القبلة",
+  "qibla_errorHint": "تأكد من تفعيل البوصلة والموقع",
+  "qibla_kaaba": "الكعبة",
+  "qibla_fromNorth": "من الشمال باتجاه القبلة",
+
+  "stats_title": "إحصائياتي",
+  "stats_prayerStreak": "سلسلة الصلوات",
+  "stats_totalPrayers": "إجمالي الصلوات",
+  "stats_quranPages": "صفحات القرآن",
+  "stats_athkarSessions": "الأذكار",
+  "stats_khatma": "ختمات القرآن",
+  "stats_days": "يوم متتالي",
+  "stats_prayers": "صلاة",
+  "stats_pages": "صفحة",
+  "stats_sessions": "جلسة",
+  "stats_khatmaUnit": "ختمة",
+  "stats_currentKhatma": "تقدم الختمة الحالية",
+
+  "more_title": "المزيد",
+  "more_qibla": "اتجاه القبلة",
+  "more_stats": "إحصائياتي",
+
+  "common_loading": "جار التحميل...",
+  "common_error": "خطأ في التحميل",
+  "common_retry": "إعادة المحاولة",
+  "common_back": "رجوع",
+  "common_next": "التالي",
+  "common_save": "حفظ",
+  "common_cancel": "إلغاء",
+  "common_done": "تم",
+  "common_search": "بحث",
+  "common_noData": "لا توجد بيانات",
+  "common_offline": "لا يوجد اتصال بالإنترنت"
+}

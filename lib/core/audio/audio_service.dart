@@ -20,7 +20,6 @@ class SirajAudioService {
 
   static const String _baseUrl = 'https://everyayah.com/data';
 
-  // القراء المتحقق منهم ✅
   static const Map<String, String> reciters = {
     'مشاري راشد العفاسي':        'Alafasy_128kbps',
     'عبد الباسط (مرتّل)':        'Abdul_Basit_Murattal_192kbps',
@@ -74,4 +73,4 @@ class SirajAudioService {
   }
 
   void dispose() => _player.dispose();
-} 
+}

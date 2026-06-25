@@ -1,0 +1,126 @@
+{
+  "@@locale": "pt",
+  "appName": "Siraj",
+  "prayer_title": "Horários de Oração",
+  "prayer_nextPrayer": "Próxima Oração",
+  "prayer_fajr": "Fajr",
+  "prayer_sunrise": "Nascer do Sol",
+  "prayer_dhuhr": "Dhuhr",
+  "prayer_asr": "Asr",
+  "prayer_maghrib": "Maghrib",
+  "prayer_isha": "Isha",
+  "prayer_locationGPS": "Sua localização atual",
+  "prayer_locationDefault": "Riade (padrão)",
+  "quran_title": "O Sagrado Alcorão",
+  "quran_meccan": "Mequense",
+  "quran_medinan": "Medinense",
+  "quran_searchHint": "Pesquisar no Alcorão...",
+  "quran_noResults": "Sem resultados",
+  "quran_searchPrompt": "Digite uma palavra para pesquisar",
+  "quran_tapForTafsir": "Pressione um versículo para tafsir",
+  "quran_tafsirSource": "Al-Muyassar",
+  "quran_tafsirError": "Não foi possível carregar o tafsir",
+  "quran_reciter": "Recitador",
+  "quran_selectReciter": "Selecionar Recitador",
+  "quran_searchReciter": "Procurar recitador...",
+  "quran_playPrompt": "Toque para ouvir",
+  "athkar_title": "Athkar",
+  "athkar_morning": "Athkar da Manhã",
+  "athkar_evening": "Athkar da Tarde",
+  "athkar_sleep": "Athkar para Dormir",
+  "athkar_wake": "Athkar ao Acordar",
+  "athkar_prayer": "Athkar após a Oração",
+  "athkar_general": "Athkar Geral",
+  "athkar_tapToCount": "Toque para contar",
+  "athkar_transitioning": "Avançando...",
+  "athkar_next": "Próximo",
+  "athkar_prev": "Anterior",
+  "athkar_finish": "Finalizar",
+  "athkar_back": "Voltar",
+  "hadith_title": "Hadith",
+  "hadith_searchHint": "Pesquisar hadiths...",
+  "hadith_noResults": "Sem resultados",
+  "hadith_tapForDetail": "Toque para ler completo",
+  "hadith_retryButton": "Tentar Novamente",
+  "hadith_loadError": "Falha ao carregar",
+  "qibla_title": "Direção da Qibla",
+  "qibla_active": "Bússola ativa",
+  "qibla_error": "Não foi possível determinar a direção da Qibla",
+  "qibla_errorHint": "Ative a bússola e a localização",
+  "qibla_kaaba": "Caaba",
+  "qibla_fromNorth": "Graus do Norte em direção à Qibla",
+  "stats_title": "Minhas Estatísticas",
+  "stats_prayerStreak": "Sequência de Orações",
+  "stats_totalPrayers": "Total de Orações",
+  "stats_quranPages": "Páginas do Alcorão",
+  "stats_athkarSessions": "Athkar",
+  "stats_khatma": "Completamentos do Alcorão",
+  "stats_days": "dias consecutivos",
+  "stats_prayers": "orações",
+  "stats_pages": "páginas",
+  "stats_sessions": "sessões",
+  "stats_khatmaUnit": "completamento",
+  "stats_currentKhatma": "Progresso do Khatm Atual",
+  "more_title": "Mais",
+  "more_qibla": "Direção da Qibla",
+  "more_stats": "Minhas Estatísticas",
+  "common_loading": "Carregando...",
+  "common_error": "Erro ao carregar dados",
+  "common_retry": "Tentar Novamente",
+  "common_back": "Voltar",
+  "common_next": "Próximo",
+  "common_save": "Salvar",
+  "common_cancel": "Cancelar",
+  "common_done": "Concluído",
+  "common_search": "Pesquisar",
+  "common_noData": "Sem dados",
+  "common_offline": "Sem conexão à internet",
+  "prayer_countdown": "Em {time}",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "{count} versículos",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "Tafsir do Versículo {number}",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "Versículo {number}",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name} concluído",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "Narrado por {source}",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

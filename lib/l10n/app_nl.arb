@@ -1,0 +1,126 @@
+{
+  "@@locale": "nl",
+  "appName": "Siraj",
+  "prayer_title": "Gebedstijden",
+  "prayer_nextPrayer": "Volgend Gebed",
+  "prayer_fajr": "Fajr",
+  "prayer_sunrise": "Zonsopgang",
+  "prayer_dhuhr": "Dhuhr",
+  "prayer_asr": "Asr",
+  "prayer_maghrib": "Maghrib",
+  "prayer_isha": "Isha",
+  "prayer_locationGPS": "Uw huidige locatie",
+  "prayer_locationDefault": "Riyad (standaard)",
+  "quran_title": "De Heilige Koran",
+  "quran_meccan": "Mekkaans",
+  "quran_medinan": "Medinensisch",
+  "quran_searchHint": "Zoeken in de Koran...",
+  "quran_noResults": "Geen resultaten",
+  "quran_searchPrompt": "Typ een woord om te zoeken",
+  "quran_tapForTafsir": "Houd een vers ingedrukt voor tafsir",
+  "quran_tafsirSource": "Al-Muyassar",
+  "quran_tafsirError": "Tafsir kon niet worden geladen",
+  "quran_reciter": "Recitator",
+  "quran_selectReciter": "Selecteer Recitator",
+  "quran_searchReciter": "Zoek recitator...",
+  "quran_playPrompt": "Tik om te luisteren",
+  "athkar_title": "Athkar",
+  "athkar_morning": "Ochtend Athkar",
+  "athkar_evening": "Avond Athkar",
+  "athkar_sleep": "Slaap Athkar",
+  "athkar_wake": "Ontwaken Athkar",
+  "athkar_prayer": "Athkar na Gebed",
+  "athkar_general": "Algemene Athkar",
+  "athkar_tapToCount": "Tik om te tellen",
+  "athkar_transitioning": "Verder gaan...",
+  "athkar_next": "Volgende",
+  "athkar_prev": "Vorige",
+  "athkar_finish": "Voltooien",
+  "athkar_back": "Terug",
+  "hadith_title": "Hadith",
+  "hadith_searchHint": "Hadith zoeken...",
+  "hadith_noResults": "Geen resultaten",
+  "hadith_tapForDetail": "Tik om volledig te lezen",
+  "hadith_retryButton": "Opnieuw proberen",
+  "hadith_loadError": "Laden mislukt",
+  "qibla_title": "Qibla Richting",
+  "qibla_active": "Kompas actief",
+  "qibla_error": "Qibla richting kon niet worden bepaald",
+  "qibla_errorHint": "Schakel kompas en locatie in",
+  "qibla_kaaba": "Kaaba",
+  "qibla_fromNorth": "Graden van Noord naar Qibla",
+  "stats_title": "Mijn Statistieken",
+  "stats_prayerStreak": "Gebed Reeks",
+  "stats_totalPrayers": "Totaal Gebeden",
+  "stats_quranPages": "Koran Pagina's",
+  "stats_athkarSessions": "Athkar",
+  "stats_khatma": "Koran Voltooiingen",
+  "stats_days": "opeenvolgende dagen",
+  "stats_prayers": "gebeden",
+  "stats_pages": "pagina's",
+  "stats_sessions": "sessies",
+  "stats_khatmaUnit": "voltooiing",
+  "stats_currentKhatma": "Huidige Khatm Voortgang",
+  "more_title": "Meer",
+  "more_qibla": "Qibla Richting",
+  "more_stats": "Mijn Statistieken",
+  "common_loading": "Laden...",
+  "common_error": "Fout bij laden",
+  "common_retry": "Opnieuw proberen",
+  "common_back": "Terug",
+  "common_next": "Volgende",
+  "common_save": "Opslaan",
+  "common_cancel": "Annuleren",
+  "common_done": "Klaar",
+  "common_search": "Zoeken",
+  "common_noData": "Geen gegevens",
+  "common_offline": "Geen internetverbinding",
+  "prayer_countdown": "Over {time}",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "{count} verzen",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "Tafsir van Vers {number}",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "Vers {number}",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name} voltooid",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "Overgeleverd door {source}",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}

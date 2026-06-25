@@ -1,0 +1,126 @@
+{
+  "@@locale": "am",
+  "appName": "ሲራጅ",
+  "prayer_title": "የሶላት ጊዜዎች",
+  "prayer_nextPrayer": "ቀጣይ ሶላት",
+  "prayer_fajr": "ፈጅር",
+  "prayer_sunrise": "ፀሐይ ወጣ",
+  "prayer_dhuhr": "ዙህር",
+  "prayer_asr": "ዐስር",
+  "prayer_maghrib": "መግሪብ",
+  "prayer_isha": "ዒሻ",
+  "prayer_locationGPS": "የአሁን ቦታዎ",
+  "prayer_locationDefault": "ሪያድ (ነባሪ)",
+  "quran_title": "ቅዱስ ቁርዓን",
+  "quran_meccan": "መካዊ",
+  "quran_medinan": "መዲናዊ",
+  "quran_searchHint": "በቁርዓን ውስጥ ፈልግ...",
+  "quran_noResults": "ምንም ውጤት የለም",
+  "quran_searchPrompt": "ለመፈለግ ቃል ይፃፉ",
+  "quran_tapForTafsir": "ተፍሲር ለማግኘት አያህን ይጫኑ",
+  "quran_tafsirSource": "አል-ሙያሳር",
+  "quran_tafsirError": "ተፍሲር ማስጫን አልተቻለም",
+  "quran_reciter": "ቃሪ",
+  "quran_selectReciter": "ቃሪ ይምረጡ",
+  "quran_searchReciter": "ቃሪ ፈልግ...",
+  "quran_playPrompt": "ለማዳመጥ መታ ያድርጉ",
+  "athkar_title": "አዝካር",
+  "athkar_morning": "የጠዋት አዝካር",
+  "athkar_evening": "የምሽት አዝካር",
+  "athkar_sleep": "የእንቅልፍ አዝካር",
+  "athkar_wake": "የንቃት አዝካር",
+  "athkar_prayer": "ሶላት በኋላ አዝካር",
+  "athkar_general": "ጠቅላላ አዝካር",
+  "athkar_tapToCount": "ለመቁጠር መታ ያድርጉ",
+  "athkar_transitioning": "እየቀጠለ...",
+  "athkar_next": "ቀጣይ",
+  "athkar_prev": "ቀዳሚ",
+  "athkar_finish": "ጨርስ",
+  "athkar_back": "ተመለስ",
+  "hadith_title": "ሐዲስ",
+  "hadith_searchHint": "ሐዲስ ፈልግ...",
+  "hadith_noResults": "ምንም ውጤት የለም",
+  "hadith_tapForDetail": "ሙሉ ለማንበብ መታ ያድርጉ",
+  "hadith_retryButton": "እንደገና ሞክር",
+  "hadith_loadError": "ማስጫን አልተቻለም",
+  "qibla_title": "የቅብላ አቅጣጫ",
+  "qibla_active": "ኮምፓስ ንቁ ነው",
+  "qibla_error": "የቅብላ አቅጣጫ ማወቅ አልተቻለም",
+  "qibla_errorHint": "ኮምፓስ እና ቦታ ያብሩ",
+  "qibla_kaaba": "ካዕባ",
+  "qibla_fromNorth": "ከሰሜን ወደ ቅብላ ዲግሪ",
+  "stats_title": "የኔ ስታቲስቲክስ",
+  "stats_prayerStreak": "የሶላት ተከታታይ",
+  "stats_totalPrayers": "ጠቅላላ ሶላቶች",
+  "stats_quranPages": "የቁርዓን ገፆች",
+  "stats_athkarSessions": "አዝካር",
+  "stats_khatma": "የቁርዓን ጭዳ",
+  "stats_days": "ተከታታይ ቀናት",
+  "stats_prayers": "ሶላቶች",
+  "stats_pages": "ገፆች",
+  "stats_sessions": "ክፍለ ጊዜዎች",
+  "stats_khatmaUnit": "ጭዳ",
+  "stats_currentKhatma": "የአሁን ጭዳ እድገት",
+  "more_title": "ተጨማሪ",
+  "more_qibla": "የቅብላ አቅጣጫ",
+  "more_stats": "የኔ ስታቲስቲክስ",
+  "common_loading": "እየጫነ...",
+  "common_error": "ዳታ ማስጫን ስህተት",
+  "common_retry": "እንደገና ሞክር",
+  "common_back": "ተመለስ",
+  "common_next": "ቀጣይ",
+  "common_save": "አስቀምጥ",
+  "common_cancel": "ሰርዝ",
+  "common_done": "ተጠናቋል",
+  "common_search": "ፈልግ",
+  "common_noData": "ምንም ዳታ የለም",
+  "common_offline": "የኢንተርኔት ግንኙነት የለም",
+  "prayer_countdown": "በ{time} ውስጥ",
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "quran_ayahCount": "{count} አያቶች",
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_tafsirTitle": "የ{number}ኛ አያህ ተፍሲር",
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quran_ayahNumber": "{number}ኛ አያህ",
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "athkar_completed": "{name} ተጠናቋል",
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "athkar_source": "በ{source} ተዘግቧል",
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
+}
