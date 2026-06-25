@@ -18,6 +18,7 @@ import '../../features/qibla/presentation/screens/qibla_screen.dart';
 import '../../features/stats/presentation/screens/stats_screen.dart';
 import '../../features/settings/presentation/screens/settings_screen.dart';
 import '../../features/calendar/presentation/screens/calendar_screen.dart';
+import '../../features/sharing/presentation/screens/share_card_screen.dart';
 
 // ─── More Screen ──────────────────────────────────────────
 class MoreScreen extends ConsumerWidget {
@@ -63,6 +64,16 @@ class MoreScreen extends ConsumerWidget {
              icon:  Icons.bar_chart,
              label: 'إحصائياتي',
              onTap: () => context.push('/more/stats'),
+           ),
+           _MoreTile(
+             icon:  Icons.card_giftcard,
+             label: 'بطاقات المشاركة',
+             onTap: () => context.push('/more/share', extra: {
+               'title':    'آية كريمة',
+               'subtitle': 'سورة البقرة',
+               'content':  'بسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+               'type':     'quran',
+             }),
            ),
 
            if (flags.isFull) ...[
@@ -226,6 +237,18 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                GoRoute(
                  path:    'stats',
                  builder: (_, __) => const StatsScreen(),
+               ),
+               GoRoute(
+                 path: 'share',
+                 builder: (_, state) {
+                   final extra = state.extra as Map<String, String>? ?? {};
+                   return ShareCardScreen(
+                     title:    extra['title']    ?? '',
+                     subtitle: extra['subtitle'] ?? '',
+                     content:  extra['content']  ?? '',
+                     type:     extra['type']     ?? 'quran',
+                   );
+                 },
                ),
              ],
            ),
