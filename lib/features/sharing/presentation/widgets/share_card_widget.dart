@@ -6,7 +6,9 @@ class ShareCardWidget extends StatelessWidget {
   final String content;
   final Color  backgroundColor;
   final Color  accentColor;
-  final String type; // quran / athkar / hadith / achievement
+  final String type;
+  final double width;
+  final double height;
 
   const ShareCardWidget({
     super.key,
@@ -16,6 +18,8 @@ class ShareCardWidget extends StatelessWidget {
     required this.backgroundColor,
     required this.accentColor,
     required this.type,
+    required this.width,
+    required this.height,
   });
 
   String get _typeIcon {
@@ -31,127 +35,153 @@ class ShareCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width:  340,
-      height: 340,
+      width:  width,
+      height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(16),
         gradient: LinearGradient(
           begin:  Alignment.topRight,
           end:    Alignment.bottomLeft,
           colors: [
             backgroundColor,
-            backgroundColor.withOpacity(0.85),
-            accentColor.withOpacity(0.3),
+            backgroundColor.withOpacity(0.9),
+            accentColor.withOpacity(0.25),
           ],
         ),
       ),
-      child: Stack(
-        children: [
-
-          // ─── خلفية دوائر زخرفية ───────────────────────
-          Positioned(
-            top:   -40,
-            right: -40,
-            child: Container(
-              width:  160,
-              height: 160,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: accentColor.withOpacity(0.08),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Stack(
+          children: [
+            Positioned(
+              top: -30, right: -30,
+              child: Container(
+                width: 100, height: 100,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: accentColor.withOpacity(0.07),
+                ),
               ),
             ),
-          ),
-          Positioned(
-            bottom: -30,
-            left:   -30,
-            child: Container(
-              width:  120,
-              height: 120,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: accentColor.withOpacity(0.06),
+            Positioned(
+              bottom: -20, left: -20,
+              child: Container(
+                width: 80, height: 80,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: accentColor.withOpacity(0.05),
+                ),
               ),
             ),
-          ),
-
-          // ─── المحتوى ──────────────────────────────────
-          Padding(
-            padding: const EdgeInsets.all(28),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+            Column(
               children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(18, 18, 18, 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(_typeIcon,
+                            style: const TextStyle(fontSize: 14)),
+                        ),
+                        const SizedBox(height: 8),
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              content,
+                              textAlign:     TextAlign.right,
+                              textDirection: TextDirection.rtl,
+                              overflow:      TextOverflow.fade,
+                              style: TextStyle(
+                                color:      Colors.white,
+                                fontSize:   type == 'quran' ? 15 : 14,
+                                fontFamily: type == 'quran' ? 'QuranFont' : null,
+                                height:     1.8,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            if (subtitle.isNotEmpty) ...[
+                              Text(subtitle,
+                                style: TextStyle(
+                                  color:    Colors.white.withOpacity(0.5),
+                                  fontSize: 9,
+                                )),
+                              const SizedBox(width: 5),
+                              Container(
+                                width: 1, height: 9,
+                                color: Colors.white.withOpacity(0.3)),
+                              const SizedBox(width: 5),
+                            ],
+                            Text(
+                              title,
+                              style: TextStyle(
+                                color:      accentColor.withOpacity(0.9),
+                                fontSize:   10,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
 
-                // أيقونة النوع
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // شعار سراج
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        color:        accentColor.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(20),
+                // ─── شريط SIRAJ.App السفلي ─────────────
+                Container(
+                  width:  double.infinity,
+                  height: 28,
+                  decoration: BoxDecoration(
+                    color: accentColor.withOpacity(0.12),
+                    border: Border(
+                      top: BorderSide(
+                        color: accentColor.withOpacity(0.2),
+                        width: 0.5,
                       ),
-                      child: Text(
-                        'سراج',
-                        style: TextStyle(
-                          color:      accentColor,
-                          fontSize:   12,
-                          fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 4, height: 4,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white.withOpacity(0.5),
                         ),
                       ),
-                    ),
-                    Text(
-                      _typeIcon,
-                      style: const TextStyle(fontSize: 24),
-                    ),
-                  ],
-                ),
-
-                const Spacer(),
-
-                // المحتوى الرئيسي
-                Text(
-                  content,
-                  textAlign:     TextAlign.right,
-                  textDirection: TextDirection.rtl,
-                  maxLines:      5,
-                  overflow:      TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color:      Colors.white,
-                    fontSize:   type == 'quran' ? 20 : 16,
-                    fontFamily: type == 'quran' ? 'QuranFont' : null,
-                    height:     1.8,
-                    fontWeight: FontWeight.w400,
+                      const SizedBox(width: 6),
+                      const Text(
+                        'SIRAJ.App',
+                        style: TextStyle(
+                          color:         Colors.white,
+                          fontSize:      10,
+                          fontWeight:    FontWeight.w600,
+                          letterSpacing: 1.5,
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Container(
+                        width: 4, height: 4,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white.withOpacity(0.5),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-
-                const SizedBox(height: 16),
-
-                // العنوان والمصدر
-                Text(
-                  title,
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color:      accentColor,
-                    fontSize:   13,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                if (subtitle.isNotEmpty)
-                  Text(
-                    subtitle,
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color:    Colors.white.withOpacity(0.6),
-                      fontSize: 11,
-                    ),
-                  ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
