@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -6,6 +7,7 @@ import 'l10n/app_localizations.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/time_theme_provider.dart';
 import 'core/storage/cache_service.dart';
+import 'core/notifications/adhan_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +18,15 @@ Future<void> main() async {
   );
 
   await CacheService.init();
+
+  // تفعيل الأذان (Android/iOS فقط)
+  if (Platform.isAndroid || Platform.isIOS) {
+    await AdhanService.init();
+    await AdhanService.schedulePrayerNotifications(
+      latitude:  24.7136,
+      longitude: 46.6753,
+    );
+  }
 
   runApp(const ProviderScope(child: SirajApp()));
 }

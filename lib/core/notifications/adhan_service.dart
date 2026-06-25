@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:adhan/adhan.dart';
@@ -7,26 +8,25 @@ class AdhanService {
   static final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
 
-  // أصوات الأذان المتاحة
   static const Map<String, String> adhanSounds = {
-    'مكي (الحرم المكي)':       'https://www.islamcan.com/audio/adhan/azan1.mp3',
-    'مديني (الحرم النبوي)':    'https://www.islamcan.com/audio/adhan/azan2.mp3',
-    'مصطفى إسماعيل':           'https://www.islamcan.com/audio/adhan/azan3.mp3',
-    'عراقي':                   'https://www.islamcan.com/audio/adhan/azan4.mp3',
-    'تركي':                    'https://www.islamcan.com/audio/adhan/azan5.mp3',
-    'مغربي':                   'https://www.islamcan.com/audio/adhan/azan6.mp3',
-    'أندونيسي':                'https://www.islamcan.com/audio/adhan/azan7.mp3',
-    'كلاسيكي':                 'https://www.islamcan.com/audio/adhan/azan8.mp3',
+    'مكي (الحرم المكي)':    'https://www.islamcan.com/audio/adhan/azan1.mp3',
+    'مديني (الحرم النبوي)': 'https://www.islamcan.com/audio/adhan/azan2.mp3',
+    'مصطفى إسماعيل':        'https://www.islamcan.com/audio/adhan/azan3.mp3',
+    'عراقي':                'https://www.islamcan.com/audio/adhan/azan4.mp3',
+    'تركي':                 'https://www.islamcan.com/audio/adhan/azan5.mp3',
+    'مغربي':                'https://www.islamcan.com/audio/adhan/azan6.mp3',
+    'أندونيسي':             'https://www.islamcan.com/audio/adhan/azan7.mp3',
+    'كلاسيكي':              'https://www.islamcan.com/audio/adhan/azan8.mp3',
   };
 
   static Future<void> init() async {
+    if (!Platform.isAndroid && !Platform.isIOS) return;
+
     const android  = AndroidInitializationSettings('@mipmap/ic_launcher');
-    const linux    = LinuxInitializationSettings(defaultActionName: 'فتح');
-    const settings = InitializationSettings(android: android, linux: linux);
+    const settings = InitializationSettings(android: android);
     await _notifications.initialize(settings);
   }
 
-  // تشغيل الأذان
   static Future<void> playAdhan(String soundUrl) async {
     await _player.stop();
     await _player.play(UrlSource(soundUrl));
@@ -36,11 +36,12 @@ class AdhanService {
     await _player.stop();
   }
 
-  // جدولة إشعارات الصلاة
   static Future<void> schedulePrayerNotifications({
     required double latitude,
     required double longitude,
   }) async {
+    if (!Platform.isAndroid && !Platform.isIOS) return;
+
     await _notifications.cancelAll();
 
     final coordinates = Coordinates(latitude, longitude);
@@ -82,11 +83,10 @@ class AdhanService {
     required String   body,
     required DateTime time,
   }) async {
-    await _notifications.zonedSchedule(
+    await _notifications.show(
       id,
       title,
       body,
-      time,
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'prayer_channel',
@@ -95,9 +95,7 @@ class AdhanService {
           importance: Importance.high,
           priority:   Priority.high,
         ),
-        linux: LinuxNotificationDetails(),
       ),
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
     );
   }
 
