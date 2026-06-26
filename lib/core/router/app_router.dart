@@ -6,6 +6,7 @@ import '../widgets/main_shell.dart';
 import '../mode/app_mode.dart';
 import '../mode/app_mode_provider.dart';
 import '../mode/feature_flags.dart';
+import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/prayer/presentation/screens/prayer_screen.dart';
 import '../../features/quran/presentation/screens/quran_home_screen.dart';
@@ -142,7 +143,7 @@ const _categoryNames = {
 final appRouterProvider = Provider<GoRouter>((ref) {
  final box        = Hive.box('settings');
  final isDone     = box.get('onboarding_done', defaultValue: false);
- final initialLoc = isDone ? '/prayer' : '/onboarding';
+ final initialLoc = isDone ? '/home' : '/onboarding';
 
  return GoRouter(
    initialLocation: initialLoc,
@@ -160,8 +161,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
            MainShell(navigationShell: shell),
        branches: [
 
-         // ── Prayer ──
+         // ── Home + Prayer ──
          StatefulShellBranch(routes: [
+           GoRoute(
+             path:    '/home',
+             builder: (_, __) => const HomeScreen(),
+           ),
            GoRoute(
              path:    '/prayer',
              builder: (_, __) => const PrayerScreen(),
