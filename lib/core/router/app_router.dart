@@ -20,6 +20,7 @@ import '../../features/settings/presentation/screens/settings_screen.dart';
 import '../../features/calendar/presentation/screens/calendar_screen.dart';
 import '../../features/sharing/presentation/screens/share_card_screen.dart';
 import '../../features/radio/presentation/screens/radio_screen.dart';
+import '../../features/mosques/presentation/screens/mosques_screen.dart';
 
 // ─── More Screen ──────────────────────────────────────────
 class MoreScreen extends ConsumerWidget {
@@ -93,7 +94,7 @@ class MoreScreen extends ConsumerWidget {
              _MoreTile(
                icon:  Icons.mosque,
                label: 'المساجد القريبة',
-               onTap: () {},
+               onTap: () => context.push('/more/mosques'),
              ),
            ],
          ],
@@ -254,6 +255,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                GoRoute(
                  path:    'radio',
                  builder: (_, __) => const RadioScreen(),
+               ),
+               GoRoute(
+                 path:    'mosques',
+                 builder: (_, __) => const MosquesScreen(),
                ),
              ],
            ),
