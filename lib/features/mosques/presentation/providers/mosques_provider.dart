@@ -10,7 +10,12 @@ class Mosque {
   final double lat;
   final double lon;
 
-  Mosque({required this.id, required this.name, required this.lat, required this.lon});
+  Mosque({
+    required this.id,
+    required this.name,
+    required this.lat,
+    required this.lon,
+  });
 }
 
 // ─── منطق جلب البيانات ───
@@ -19,15 +24,12 @@ class MosquesNotifier extends Notifier<List<Mosque>> {
   List<Mosque> build() => [];
 
   Future<void> fetchNearbyMosques() async {
-    // 1. طلب إذن الموقع
     LocationPermission permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) return;
 
-    // 2. الحصول على الموقع الحالي
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
 
-    // 3. بناء طلب Overpass API للبحث عن المساجد في محيط 2000 متر
     final query = '''
     [out:json];
     node["amenity"="place_of_worship"]["religion"="muslim"](around:2000,${position.latitude},${position.longitude});
@@ -40,14 +42,14 @@ class MosquesNotifier extends Notifier<List<Mosque>> {
     );
 
     if (response.statusCode == 200) {
-      final data = json.decode(response.body);
+      final data     = json.decode(response.body);
       final List elements = data['elements'];
-      
+
       state = elements.map((e) => Mosque(
-        id: e['id'].toString(),
+        id:   e['id'].toString(),
         name: e['tags']['name'] ?? 'مسجد غير مسمى',
-        lat: e['lat'],
-        lon: e['lon'],
+        lat:  e['lat'],
+        lon:  e['lon'],
       )).toList();
     }
   }

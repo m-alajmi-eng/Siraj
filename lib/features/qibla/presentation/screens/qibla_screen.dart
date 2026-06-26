@@ -235,4 +235,4 @@ class QiblaScreen extends ConsumerWidget {
       ),
     );
   }
-}
+} 

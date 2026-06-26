@@ -40,4 +40,4 @@ class PrayerTimesEntity {
   Duration get timeUntilNextPrayer {
     return nextPrayerTime.difference(DateTime.now());
   }
-}
+} 

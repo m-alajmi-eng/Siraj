@@ -6,6 +6,7 @@ import '../../../../core/audio/audio_provider.dart';
 import '../../../../core/audio/audio_service.dart';
 import '../../../../core/storage/cache_service.dart';
 import '../providers/quran_provider.dart';
+import '../../../qke/presentation/screens/verse_portal_screen.dart';
 
 class SurahReaderScreen extends ConsumerStatefulWidget {
  final int surahId;
@@ -363,7 +364,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                padding: const EdgeInsets.symmetric(
                  vertical: 6, horizontal: 16),
                child: Text(
-                 'اضغط مطولاً على أي آية للتفسير والمشاركة',
+                 'اضغط مطولاً على أي آية للبوابة والتفسير والمشاركة',
                  style: TextStyle(
                    color:    palette.textSecondary,
                    fontSize: 11,
@@ -413,6 +414,40 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
              ),
            ),
            const SizedBox(height: 8),
+           ListTile(
+             leading: Icon(Icons.auto_awesome,
+               color: palette.accentPrimary),
+             title: Text(
+               'بوابة الآية',
+               textAlign: TextAlign.right,
+               style: TextStyle(color: palette.textPrimary),
+             ),
+             subtitle: Text(
+               'تفسير · كلمات · سياق',
+               textAlign: TextAlign.right,
+               style: TextStyle(
+                 color: palette.textSecondary, fontSize: 12),
+             ),
+             onTap: () {
+               Navigator.pop(ctx);
+               Navigator.of(context).push(
+                 PageRouteBuilder(
+                   transitionDuration:
+                       const Duration(milliseconds: 400),
+                   pageBuilder: (_, __, ___) => VersePortalScreen(
+                     surahId:    surahId,
+                     ayahNumber: ayahNumber,
+                   ),
+                   transitionsBuilder: (_, animation, __, child) =>
+                       FadeTransition(
+                         opacity: CurvedAnimation(
+                           parent: animation, curve: Curves.easeInOut),
+                         child: child,
+                       ),
+                 ),
+               );
+             },
+           ),
            ListTile(
              leading: Icon(Icons.auto_stories,
                color: palette.accentPrimary),

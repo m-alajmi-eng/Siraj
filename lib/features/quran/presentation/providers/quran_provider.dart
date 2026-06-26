@@ -25,4 +25,4 @@ final tafsirProvider =
     params['surahId']!,
     params['ayahNumber']!,
   );
-});
+}); 

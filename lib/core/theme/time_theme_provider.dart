@@ -13,4 +13,4 @@ final timeThemeProvider = Provider<SirajPalette>((ref) {
   if (hour >= 15 && hour < 18) return SirajColors.asr;
   if (hour >= 18 && hour < 20) return SirajColors.maghrib;
   return SirajColors.isha;
-});
+}); 

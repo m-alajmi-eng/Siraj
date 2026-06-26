@@ -383,4 +383,4 @@ class HadithHomeScreen extends ConsumerWidget {
       text:          TextSpan(children: spans),
     );
   }
-}
+} 

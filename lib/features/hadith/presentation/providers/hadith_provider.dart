@@ -22,4 +22,4 @@ final hadithsProvider = FutureProvider.family<List<HadithEntity>, String>(
     final dataSource = ref.watch(hadithDataSourceProvider);
     return dataSource.getHadiths(collection);
   },
-);
+); 

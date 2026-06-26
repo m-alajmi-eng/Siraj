@@ -29,4 +29,4 @@ class FeatureFlags {
   bool get showNewMuslim   => isFull;
   bool get showCalendar    => isFull;
   bool get showShareCards  => isFull;
-}
+} 
