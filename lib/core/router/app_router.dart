@@ -19,6 +19,7 @@ import '../../features/stats/presentation/screens/stats_screen.dart';
 import '../../features/settings/presentation/screens/settings_screen.dart';
 import '../../features/calendar/presentation/screens/calendar_screen.dart';
 import '../../features/sharing/presentation/screens/share_card_screen.dart';
+import '../../features/radio/presentation/screens/radio_screen.dart';
 
 // ─── More Screen ──────────────────────────────────────────
 class MoreScreen extends ConsumerWidget {
@@ -71,7 +72,7 @@ class MoreScreen extends ConsumerWidget {
              onTap: () => context.push('/more/share', extra: {
                'title':    'آية كريمة',
                'subtitle': 'سورة البقرة',
-               'content':  'بسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+               'content':  'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
                'type':     'quran',
              }),
            ),
@@ -87,7 +88,7 @@ class MoreScreen extends ConsumerWidget {
              _MoreTile(
                icon:  Icons.radio,
                label: 'راديو القرآن',
-               onTap: () {},
+               onTap: () => context.push('/more/radio'),
              ),
              _MoreTile(
                icon:  Icons.mosque,
@@ -249,6 +250,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                      type:     extra['type']     ?? 'quran',
                    );
                  },
+               ),
+               GoRoute(
+                 path:    'radio',
+                 builder: (_, __) => const RadioScreen(),
                ),
              ],
            ),

@@ -24,7 +24,7 @@ dependencies:
   go_router: ^14.8.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  geolocator: ^13.0.4
+  geolocator: ^14.0.3
   flutter_qiblah: ^3.1.0+1
   flutter_local_notifications: ^19.0.0
   font_awesome_flutter: ^11.0.0
