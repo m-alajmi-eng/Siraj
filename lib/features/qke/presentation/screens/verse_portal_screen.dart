@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../../data/qke_repository.dart';
 
@@ -77,6 +78,21 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                     IconButton(
                       icon: Icon(Icons.close, color: palette.textPrimary),
                       onPressed: () => Navigator.pop(context),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.share_outlined,
+                        color: palette.accentPrimary),
+                      onPressed: () {
+                        final muyassar = portal.tafsirs
+                            .where((t) => t.sourceId == 'muyassar-ar')
+                            .firstOrNull;
+                        context.push('/more/share', extra: {
+                          'title':    'آية كريمة',
+                          'subtitle': '${portal.surahName} · آية ${portal.ayahNumber}',
+                          'content':  portal.textUthmani,
+                          'type':     'quran',
+                        });
+                      },
                     ),
                     Expanded(
                       child: Column(
