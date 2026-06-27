@@ -7,6 +7,7 @@ import '../../../../core/audio/audio_service.dart';
 import '../../../../core/storage/cache_service.dart';
 import '../providers/quran_provider.dart';
 import '../../../qke/presentation/screens/verse_portal_screen.dart';
+import '../../data/datasources/quran_remote_datasource.dart';
 
 class SurahReaderScreen extends ConsumerStatefulWidget {
  final int surahId;
@@ -486,103 +487,101 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
    );
  }
 
- void _showTafsir(
-   BuildContext context,
-   dynamic palette,
-   int surahId,
-   int ayahNumber,
- ) {
-   showModalBottomSheet(
-     context:            context,
-     backgroundColor:    palette.surface,
-     isScrollControlled: true,
-     shape: const RoundedRectangleBorder(
-       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-     ),
-     builder: (ctx) => Consumer(
-       builder: (ctx, ref, _) {
-         final tafsirAsync = ref.watch(tafsirProvider({
-           'surahId':    surahId,
-           'ayahNumber': ayahNumber,
-         }));
+  void _showTafsir(
+    BuildContext context,
+    dynamic palette,
+    int surahId,
+    int ayahNumber,
+  ) {
+    final dataSource = QuranRemoteDataSource();
 
-         return SizedBox(
-           height: MediaQuery.of(context).size.height * 0.6,
-           child: Column(
-             children: [
-               const SizedBox(height: 12),
-               Container(
-                 width:  40, height: 4,
-                 decoration: BoxDecoration(
-                   color:        palette.textSecondary.withOpacity(0.3),
-                   borderRadius: BorderRadius.circular(2),
-                 ),
-               ),
-               const SizedBox(height: 16),
-               Row(
-                 mainAxisAlignment: MainAxisAlignment.center,
-                 children: [
-                   Text(
-                     'تفسير الآية $ayahNumber',
-                     style: TextStyle(
-                       color:      palette.textPrimary,
-                       fontSize:   16,
-                       fontWeight: FontWeight.w500,
-                     ),
-                   ),
-                   const SizedBox(width: 8),
-                   Container(
-                     padding: const EdgeInsets.symmetric(
-                       horizontal: 8, vertical: 3),
-                     decoration: BoxDecoration(
-                       color: palette.accentPrimary.withOpacity(0.15),
-                       borderRadius: BorderRadius.circular(8),
-                     ),
-                     child: Text(
-                       'الميسر',
-                       style: TextStyle(
-                         color:    palette.accentPrimary,
-                         fontSize: 11,
-                       ),
-                     ),
-                   ),
-                 ],
-               ),
-               const SizedBox(height: 16),
-               Expanded(
-                 child: tafsirAsync.when(
-                   loading: () => Center(
-                     child: CircularProgressIndicator(
-                       color: palette.accentPrimary)),
-                   error: (e, _) => Center(
-                     child: Text('تعذّر تحميل التفسير',
-                       style: TextStyle(
-                         color: palette.textSecondary))),
-                   data: (tafsir) => SingleChildScrollView(
-                     padding: const EdgeInsets.symmetric(
-                       horizontal: 20),
-                     child: Text(
-                       tafsir,
-                       textAlign:     TextAlign.right,
-                       textDirection: TextDirection.rtl,
-                       style: TextStyle(
-                         color:    palette.textPrimary,
-                         fontSize: 16,
-                         height:   1.8,
-                       ),
-                     ),
-                   ),
-                 ),
-               ),
-               const SizedBox(height: 16),
-             ],
-           ),
-         );
-       },
-     ),
-   );
- }
-
+    showModalBottomSheet(
+      context:            context,
+      backgroundColor:    palette.surface,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (ctx) => SizedBox(
+        height: MediaQuery.of(context).size.height * 0.6,
+        child: Column(
+          children: [
+            const SizedBox(height: 12),
+            Container(
+              width:  40, height: 4,
+              decoration: BoxDecoration(
+                color:        palette.textSecondary.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'تفسير الآية $ayahNumber',
+                  style: TextStyle(
+                    color:      palette.textPrimary,
+                    fontSize:   16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8, vertical: 3),
+                  decoration: BoxDecoration(
+                    color: palette.accentPrimary.withOpacity(0.15),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'الميسر',
+                    style: TextStyle(
+                      color:    palette.accentPrimary,
+                      fontSize: 11,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: FutureBuilder<String>(
+                future: dataSource.getTafsir(surahId, ayahNumber),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: palette.accentPrimary));
+                  }
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text('تعذّر تحميل التفسير',
+                        style: TextStyle(
+                          color: palette.textSecondary)));
+                  }
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      snapshot.data ?? '',
+                      textAlign:     TextAlign.right,
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                        color:    palette.textPrimary,
+                        fontSize: 16,
+                        height:   1.8,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
  String _toArabicNumeral(int number) {
    const arabic = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
    return number.toString()
