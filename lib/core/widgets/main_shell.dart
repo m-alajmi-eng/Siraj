@@ -22,6 +22,13 @@ class MainShell extends ConsumerWidget {
    return Scaffold(
      backgroundColor: palette.background,
      body: navigationShell,
+     floatingActionButton: FloatingActionButton(
+       mini:            true,
+       backgroundColor: palette.accentPrimary,
+       onPressed:       () => context.push('/more/search'),
+       child: const Icon(Icons.search, color: Colors.white, size: 20),
+     ),
+     floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
      bottomNavigationBar: Container(
        decoration: BoxDecoration(
          color: palette.surface,

@@ -34,27 +34,6 @@ class QuranHomeScreen extends ConsumerWidget {
                       fontWeight: FontWeight.w300,
                     ),
                   ),
-                  // زر البحث
-                  GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const QuranSearchScreen()),
-                    ),
-                    child: Container(
-                      width:  40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color:        palette.surface,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(
-                        Icons.search,
-                        color: palette.accentPrimary,
-                        size:  20,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
