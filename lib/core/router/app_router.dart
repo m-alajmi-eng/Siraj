@@ -22,6 +22,7 @@ import '../../features/calendar/presentation/screens/calendar_screen.dart';
 import '../../features/sharing/presentation/screens/share_card_screen.dart';
 import '../../features/radio/presentation/screens/radio_screen.dart';
 import '../../features/mosques/presentation/screens/mosques_screen.dart';
+import '../../features/search/presentation/screens/search_screen.dart';
 
 // ─── More Screen ──────────────────────────────────────────
 class MoreScreen extends ConsumerWidget {
@@ -48,6 +49,11 @@ class MoreScreen extends ConsumerWidget {
            ),
            const SizedBox(height: 24),
 
+           _MoreTile(
+             icon:  Icons.search,
+             label: 'البحث الموحد',
+             onTap: () => context.push('/more/search'),
+           ),
            _MoreTile(
              icon:  Icons.settings,
              label: 'الإعدادات',
@@ -229,6 +235,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
              path:    '/more',
              builder: (_, __) => const MoreScreen(),
              routes: [
+               GoRoute(
+                 path:    'search',
+                 builder: (_, __) => const SearchScreen(),
+               ),
                GoRoute(
                  path:    'settings',
                  builder: (_, __) => const SettingsScreen(),
