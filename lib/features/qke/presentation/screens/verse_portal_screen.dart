@@ -162,7 +162,7 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                                 fontWeight: FontWeight.w500,
                               )),
                             Text(
-                              'آية ${portal.ayahNumber} · ${portal.revelationType == "Meccan" ? "مكية" : "مدنية"}',
+                              'آية ${portal.ayahNumber}/${portal.ayahCount} · ${portal.revelationType == "Meccan" ? "مكية" : "مدنية"}',
                               style: TextStyle(
                                 color:    palette.accentPrimary,
                                 fontSize: 12,
