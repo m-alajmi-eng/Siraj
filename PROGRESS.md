@@ -1,151 +1,137 @@
-# SIRAJ — Islamic Knowledge App | Progress Report
+# SIRAAJ — Development Progress Report
 
-> A comprehensive smart Islamic application
-> Last updated: June 2026
+## Project Overview
+SIRAAJ is an elite Islamic Knowledge & Guidance Platform built with Flutter + Supabase.
+Solo developer leading all architecture, decisions, and testing. Claude used as a coding assistant.
 
----
+## Tech Stack
+- Flutter 3.44.2 + Riverpod 3.x + GoRouter
+- Supabase (PostgreSQL) — primary database
+- Firebase Auth
+- audioplayers + Hive (offline cache)
+- Ubuntu 22.04 / Target: Android
 
-## 🏗️ Tech Stack
+## Phase 1 — COMPLETED ✅
 
-| Component | Technology |
-|-----------|-----------|
-| Frontend | Flutter 3.44.2 + Riverpod 3.x + GoRouter |
-| Backend | Supabase (PostgreSQL) |
-| Auth | Firebase Auth |
-| Audio | audioplayers |
-| Cache | Hive (offline-first) |
-| Package ID | app.islamx.siraj |
-| GitHub | github.com/m-alajmi-eng/Siraj |
+### Core Infrastructure
+- Clean Architecture (features/core/data/presentation)
+- 8 dynamic prayer-time themes (Fajr → Night)
+- Offline-first with Hive cache
+- 30-language localization (l10n)
+- AppMode (Lite/Full) via feature flags
+- Onboarding screen
+- Settings screen
 
----
+### Islamic Features
+- Prayer times (Adhan package, 6 calculation methods)
+- Azan audio (8 voices, islamcan.com)
+- Qibla direction (compass)
+- Islamic calendar + upcoming events
+- Athkar (morning/evening/sleep)
+- Radio (50+ Quran stations)
+- Nearby mosques (Overpass API)
+- Share cards (6 platforms)
 
-## ✅ Completed Milestones
+### Quran
+- Full Quran (114 surahs, 6236 ayahs) from alquran.cloud
+- Audio recitation (23 reciters)
+- Search by text
+- Long press ayah → options menu
+- Copy ayah to clipboard
+- Save last surah position
 
-### Core Architecture
-- Clean Architecture (data/domain/presentation)
-- 8 time-based themes that change with prayer times
-- AppMode (Lite/Full) + Feature Flags
-- Offline-first with Hive Cache
-- Onboarding + Settings
-- l10n ready (30 languages)
+### QKE — Quran Knowledge Engine (Signature Feature)
+- 6,236 ayahs with clean Uthmani text
+- 49,888 tafsir entries (8 sources):
+  - Tabari, Ibn Kathir, Baghawi, Saadi
+  - Muyassar (King Fahd), Mukhtasar (AR/EN/BN)
+- 77,432 word meanings with morphology + word text
+- 201 asbab al-nuzul entries
+- Citation Engine (CitationBadge, tafsirSourcesMap)
 
-### MVP Features
-- ✅ Prayer times (adhan + geolocator)
-- ✅ Qibla direction
-- ✅ Adhan audio (8 voices from islamcan.com)
-- ✅ Quran reader (Uthmani font)
-- ✅ Audio recitation (23 reciters)
-- ✅ Athkar (6 categories)
-- ✅ Hadith (6 books via jsdelivr)
-- ✅ Islamic calendar (Hijri)
-- ✅ User statistics
-- ✅ Share cards (6 platforms)
-- ✅ Quran radio (50+ stations)
-- ✅ Nearby mosques (Overpass API)
+### Verse Portal (Book Experience)
+- Opens from long press on any ayah
+- Horizontal index with page chips
+- One page per scholar/tafsir source
+- Linguistic page (word in Quran font + meaning + morphology)
+- Asbab al-nuzul page
+- Hadiths page (coming soon)
+- Stories & Sira page (coming soon)
+- Ayah counter (e.g. 4/286)
+- Language auto-detection (AR/EN/BN)
+- Share button
 
-### QKE — Quranic Knowledge Engine
-- ✅ 114 surahs + 6,236 ayahs (clean Uthmani text)
-- ✅ 49,888 tafsir entries (8 verified sources)
-- ✅ 77,432 word meanings + morphology
-- ✅ 201 asbab al-nuzul (reasons of revelation)
-- ✅ VersePortalScreen — 4 knowledge layers:
- - Quick understanding (Muyassar)
- - Word explorer
- - Reasons of revelation
- - Full tafsir (8 scholars)
-- ✅ Navigation buttons between layers
-
-### Citation Engine
-- ✅ CitationBadge — verified source badge on every text
-- ✅ 8 sources: Tabari, Ibn Kathir, Baghawi, Saadi, Muyassar, Mukhtasar (AR/EN/BN)
-- ✅ Scholar name + book title + death year
-
-### Home Screen
-- ✅ Hijri date display
-- ✅ Next prayer card
-- ✅ Upcoming Islamic event
-- ✅ Quick access grid (6 buttons)
-- ✅ Verse of the day
+### Hadith
+- 34,153 hadiths imported (6 books):
+  - Bukhari: 7,580
+  - Muslim: 7,360
+  - Tirmidhi: 3,924
+  - Abu Dawud: 5,272
+  - Nasai: 5,679
+  - Ibn Majah: 4,338
+- Clean text (tashkeel removed for search)
+- Browseable by book in Hadith screen
 
 ### Unified Search Engine
-- ✅ Search in Quran ayahs
-- ✅ Search in tafsir (Muyassar)
-- ✅ Search in word meanings
-- ✅ Global search FAB on all screens
+- Searches: Quran ayahs + Tafsir + Word meanings + Hadiths
+- Results open Verse Portal (for Quran results)
+- Color-coded result types
+- Citation badges on results
 
----
+### Home Screen
+- Hijri date + day name
+- Next prayer card (dynamic gradient)
+- Upcoming Islamic event
+- Quick access grid (6 buttons)
+- Smart Quran button ("Continue Reading" if last surah saved)
+- Daily Ayah (7 rotating ayahs)
 
-## 🗄️ Supabase Schema
+## Supabase Schema
+- surahs (114 rows)
+- ayahs (6,236 rows)
+- tafsir (49,888 rows)
+- tafsir_sources (8 rows)
+- word_meanings (77,432 rows)
+- asbab_al_nuzul (201 rows)
+- hadith_books (6 rows)
+- hadiths (34,153 rows)
 
-| Table | Content |
-|-------|---------|
-| surahs | 114 surahs |
-| ayahs | 6,236 ayahs |
-| tafsir_sources | 8 verified sources |
-| tafsir | 49,888 cleaned tafsir entries |
-| word_meanings | 77,432 word meanings |
-| asbab_al_nuzul | 201 reasons of revelation |
-| hadith_books | 6 hadith books |
-| hadiths | ~34,000 hadiths (importing) |
+## Phase 2 — IN PROGRESS 🔄
+- Figma design system (full UI/UX redesign)
+- King Fahd Mushaf pages (604 pages)
+- Stories & Sira content
+- Hadith linked to ayahs in Verse Portal
+- Prophet stories + Companions biographies
 
----
+## Phase 3 — PLANNED
+- Smart azan notifications
+- Full Figma design implementation
+- Visual identity
 
-## ⏳ In Progress
+## Phase 4 — PLANNED (AI)
+- pgvector semantic search
+- Claude Haiku integration
+- RAG knowledge journeys
 
-- 🔄 Importing hadiths (~34,000 entries)
-- ⬜ Android device testing
-- ⬜ UI/UX redesign (Figma)
-- ⬜ Hadith search integration
-- ⬜ ARB translations (30 languages)
-
----
-
-## 🗺️ Roadmap
-
-### Phase 2 — Content Quality
-- Import verified hadiths with source references
-- Stories of Prophets and Companions
-- Quran translations
-
-### Phase 3 — User Experience
-- Professional UI/UX design (Figma)
-- Complete visual identity
-- Smart adhan notifications
-
-### Phase 4 — Intelligence
-- pgvector — semantic search
-- Knowledge Journey feature
-- Claude Haiku + RAG integration
-
-### Phase 5 — Infrastructure
+## Phase 5 — PLANNED (Infrastructure)
+- Community analytics (most read/searched ayahs)
 - Redis/Upstash caching
 - Meilisearch
-- Cloudflare Pro
-- pg_dump + S3 backup
+- Umami/Grafana dashboards
 
-### Phase 6 — Launch
-- Android + iOS production build
-- Beta testing (50-100 users)
+## Phase 6 — PLANNED (Launch)
+- Android + iOS build
+- Beta (50-100 users)
 - Official launch
 
----
+## Key Architecture Decisions
+- No AI generation in Phase 1 — internal search only
+- Religious content never auto-translated
+- Themes change automatically by prayer time
+- King Fahd Mushaf pages deferred to Figma phase
+- Community stats deferred to Phase 5 (needs real server data)
 
-## 📝 Key Architecture Decisions
-
-- **Riverpod 3.x**: No StateProvider, no ProviderScope.parent
-- **audioplayers**: Chosen over just_audio (no Linux support)
-- **ilike search**: Used instead of textSearch (FTS not enabled)
-- **FutureBuilder**: Used for tafsir bottom sheet (Consumer+Map family caused infinite loop)
-- **RLS disabled**: On all Supabase tables (anon key reads freely)
-- **Search**: ilike on text_uthmani + tafsir.text + word_meanings.meaning_ar
-
----
-
-## 👨‍💻 Development
-
-Built by a solo developer with AI assistance (Claude by Anthropic).
-Every architectural decision, test, and bug fix was driven by the developer.
-Claude served as a coding assistant throughout the development process.
-
-*Lenovo tablet — Ubuntu 22.04 — 7.4GB RAM*
-*Development environment: Flutter + Cursor IDE*
+## Development Notes
+The developer led every architectural decision, feature prioritization, debugging session,
+and quality review throughout Phase 1. Claude served as a coding assistant for implementation.
+All product decisions, Islamic content standards, and release criteria were defined by the developer.
