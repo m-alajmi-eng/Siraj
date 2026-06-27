@@ -47,6 +47,7 @@ class PortalData {
   final String textUthmani;
   final String surahName;
   final String revelationType;
+  final int    ayahCount;
   final List<TafsirEntry> tafsirs;
   final List<WordMeaning> words;
   final String? asbabAlNuzul;
@@ -58,6 +59,7 @@ class PortalData {
     required this.textUthmani,
     required this.surahName,
     required this.revelationType,
+    required this.ayahCount,
     required this.tafsirs,
     required this.words,
     this.asbabAlNuzul,
@@ -75,7 +77,7 @@ class QkeRepository {
     // 1. جلب الآية + السورة
     final ayahRes = await _client
         .from('ayahs')
-        .select('id, surah_id, ayah_number, text_uthmani, surahs(name_arabic, revelation_type)')
+        .select('id, surah_id, ayah_number, text_uthmani, surahs(name_arabic, revelation_type, ayah_count)')
         .eq('surah_id', surahId)
         .eq('ayah_number', ayahNumber)
         .single();
@@ -141,6 +143,7 @@ class QkeRepository {
       textUthmani:    ayahRes['text_uthmani'] ?? '',
       surahName:      surah['name_arabic'] ?? '',
       revelationType: surah['revelation_type'] ?? '',
+      ayahCount:       (surah['ayah_count'] as int?) ?? 0,
       tafsirs:        tafsirs,
       words:          words,
       asbabAlNuzul:   asbab,

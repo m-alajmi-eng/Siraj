@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../providers/search_provider.dart';
+import '../../../qke/presentation/screens/verse_portal_screen.dart';
 import '../providers/search_provider.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
@@ -221,7 +222,18 @@ class _ResultsList extends StatelessWidget {
       itemCount: results.length,
       itemBuilder: (_, i) {
         final r = results[i];
-        return Container(
+        return GestureDetector(
+          onTap: () {
+            if (r.surahId > 0 && r.ayahNumber > 0) {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (_) => VersePortalScreen(
+                  surahId:    r.surahId,
+                  ayahNumber: r.ayahNumber,
+                ),
+              ));
+            }
+          },
+          child: Container(
           margin:  const EdgeInsets.only(bottom: 10),
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
@@ -298,6 +310,7 @@ class _ResultsList extends StatelessWidget {
                 ),
               ),
             ],
+          ),
           ),
         );
       },
