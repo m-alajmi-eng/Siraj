@@ -66,11 +66,19 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
       ));
     }
 
-    // قصص وأحاديث (قريباً)
+    // الأحاديث المتعلقة بالآية (قريباً)
+    pages.add(_PageItem(
+      id:    'hadiths',
+      icon:  Icons.format_quote,
+      label: 'أحاديث',
+      comingSoon: true,
+    ));
+
+    // القصص والسير (قريباً)
     pages.add(_PageItem(
       id:    'stories',
       icon:  Icons.auto_stories,
-      label: 'قصص وأحاديث',
+      label: 'قصص وسير',
       comingSoon: true,
     ));
 
@@ -278,7 +286,10 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                       final page = pages[i];
 
                       if (page.comingSoon) {
-                        return _ComingSoonPage(palette: palette);
+                        return _ComingSoonPage(
+                          palette: palette,
+                          title:   page.label,
+                        );
                       }
 
                       if (page.id == 'quick') {
@@ -541,7 +552,8 @@ class _AsbabPage extends StatelessWidget {
 // ═══════════════════════════════════════════════════════════
 class _ComingSoonPage extends StatelessWidget {
   final dynamic palette;
-  const _ComingSoonPage({required this.palette});
+  final String  title;
+  const _ComingSoonPage({required this.palette, this.title = 'قريباً'});
 
   @override
   Widget build(BuildContext context) {
@@ -553,7 +565,7 @@ class _ComingSoonPage extends StatelessWidget {
             size:  64,
             color: palette.textSecondary.withOpacity(0.3)),
           const SizedBox(height: 16),
-          Text('قصص وأحاديث',
+          Text(title,
             style: TextStyle(
               color:      palette.textPrimary,
               fontSize:   18,
