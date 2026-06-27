@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../../../prayer/presentation/providers/prayer_provider.dart';
 import '../../../calendar/presentation/providers/calendar_provider.dart';
+import '../../../../core/storage/cache_service.dart';
 
 class HomeScreen extends ConsumerWidget {
  const HomeScreen({super.key});
@@ -15,6 +16,8 @@ class HomeScreen extends ConsumerWidget {
    final hijriDate   = ref.watch(hijriTodayProvider);
    final hijriToday  = '${hijriDate.day} ${_monthName(hijriDate.month)} ${hijriDate.year}هـ';
    final nextEvent   = ref.watch(nextEventProvider);
+    final lastSurahId    = CacheService.getSetting('last_surah_id') as int?;
+    final lastAyahNumber = CacheService.getSetting('last_ayah_number') as int?;
 
    return Scaffold(
      backgroundColor: palette.background,
@@ -173,12 +176,14 @@ class HomeScreen extends ConsumerWidget {
                crossAxisSpacing: 12,
                childAspectRatio: 1.1,
                children: [
-                 _QuickTile(
-                   icon:    Icons.menu_book,
-                   label:   'القرآن',
-                   palette: palette,
-                   onTap:   () => context.go('/quran'),
-                 ),
+       _QuickTile(
+         icon:    Icons.menu_book,
+         label:   lastSurahId != null ? 'أكمل القراءة' : 'القرآن',
+         palette: palette,
+         onTap:   () => lastSurahId != null
+             ? context.push('/quran/surah/${lastSurahId!}')
+             : context.go('/quran'),
+       ),
                  _QuickTile(
                    icon:    Icons.self_improvement,
                    label:   'أذكار',

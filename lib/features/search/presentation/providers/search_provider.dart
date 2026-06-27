@@ -125,6 +125,26 @@ class SearchNotifier extends Notifier<SearchState> {
        ));
      }
 
+
+     // ── بحث في الأحاديث ──────────────────────
+     final hadithRes = await _client
+         .from('hadiths')
+         .select('hadith_number, text_ar, book_id, hadith_books(name_ar)')
+         .ilike('text_ar', '%$query%')
+         .limit(5);
+
+     for (final r in hadithRes) {
+       final book = r['hadith_books'] as Map?;
+       results.add(SearchResult(
+         type:       'hadith',
+         surahId:    0,
+         ayahNumber: r['hadith_number'] ?? 0,
+         surahName:  book?['name_ar'] ?? '',
+         text:       r['text_ar'] ?? '',
+         source:     book?['name_ar'] ?? '',
+       ));
+     }
+
      state = state.copyWith(
        isLoading: false,
        results:   results,

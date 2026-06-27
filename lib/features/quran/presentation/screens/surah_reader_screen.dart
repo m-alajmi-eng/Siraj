@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/time_theme_provider.dart';
@@ -22,6 +23,14 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
  static const int _basmalaLength = 39;
 
  @override
+
+  @override
+  void initState() {
+    super.initState();
+    // حفظ آخر سورة مفتوحة
+    CacheService.saveSetting("last_surah_id", widget.surahId);
+  }
+
  Widget build(BuildContext context) {
    final palette         = ref.watch(timeThemeProvider);
    final ayahsAsync      = ref.watch(ayahsProvider(widget.surahId));
@@ -387,6 +396,8 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
    required int          ayahNumber,
    required String       ayahText,
  }) {
+    CacheService.saveSetting('last_surah_id', surahId);
+    CacheService.saveSetting('last_ayah_number', ayahNumber);
    showModalBottomSheet(
      context:         context,
      backgroundColor: palette.surface,
@@ -480,6 +491,21 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                });
              },
            ),
+ListTile(
+  leading: Icon(Icons.copy, color: palette.accentPrimary),
+  title: Text(
+    'نسخ الآية',
+    textAlign: TextAlign.right,
+    style: TextStyle(color: palette.textPrimary),
+  ),
+  onTap: () {
+    Navigator.pop(ctx);
+    Clipboard.setData(ClipboardData(text: ayahText));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('تم نسخ الآية'), duration: Duration(seconds: 2)),
+    );
+  },
+),
            const SizedBox(height: 8),
          ],
        ),

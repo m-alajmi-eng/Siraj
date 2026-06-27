@@ -322,6 +322,7 @@ class _ResultsList extends StatelessWidget {
       case 'ayah':   return 'آية';
       case 'tafsir': return 'تفسير';
       case 'word':   return 'كلمة';
+      case 'hadith': return 'حديث';
       default:       return type;
     }
   }
@@ -331,6 +332,7 @@ class _ResultsList extends StatelessWidget {
       case 'ayah':   return Colors.blue;
       case 'tafsir': return Colors.green;
       case 'word':   return Colors.orange;
+      case 'hadith': return Colors.teal;
       default:       return Colors.grey;
     }
   }
