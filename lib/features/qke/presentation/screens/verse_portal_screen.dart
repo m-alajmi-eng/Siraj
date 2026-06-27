@@ -6,521 +6,585 @@ import '../../../../core/widgets/citation_badge.dart';
 import '../../data/qke_repository.dart';
 
 class VersePortalScreen extends ConsumerStatefulWidget {
- final int surahId;
- final int ayahNumber;
+  final int surahId;
+  final int ayahNumber;
 
- const VersePortalScreen({
-   super.key,
-   required this.surahId,
-   required this.ayahNumber,
- });
+  const VersePortalScreen({
+    super.key,
+    required this.surahId,
+    required this.ayahNumber,
+  });
 
- @override
- ConsumerState<VersePortalScreen> createState() => _VersePortalScreenState();
+  @override
+  ConsumerState<VersePortalScreen> createState() => _VersePortalScreenState();
 }
 
 class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
- final PageController _pageController = PageController();
- int _currentPage = 0;
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
 
- @override
- void dispose() {
-   _pageController.dispose();
-   super.dispose();
- }
+  // بناء قائمة الصفحات ديناميكياً
+  List<_PageItem> _buildPageItems(PortalData portal) {
+    final pages = <_PageItem>[];
 
- @override
- Widget build(BuildContext context) {
-   final palette = ref.watch(timeThemeProvider);
-   final portalAsync = ref.watch(portalProvider((
-     surahId:    widget.surahId,
-     ayahNumber: widget.ayahNumber,
-   )));
+    // الفهم السريع
+    final muyassar = portal.tafsirs
+        .where((t) => t.sourceId == 'muyassar-ar')
+        .firstOrNull;
+    pages.add(_PageItem(
+      id:    'quick',
+      icon:  Icons.lightbulb_outline,
+      label: 'الفهم السريع',
+    ));
 
-   return Scaffold(
-     backgroundColor: palette.background,
-     body: portalAsync.when(
-       loading: () => Center(
-         child: CircularProgressIndicator(color: palette.accentPrimary),
-       ),
-       error: (e, _) => Center(
-         child: Padding(
-           padding: const EdgeInsets.all(24),
-           child: Column(
-             mainAxisSize: MainAxisSize.min,
-             children: [
-               Icon(Icons.error_outline,
-                 color: palette.textSecondary, size: 48),
-               const SizedBox(height: 16),
-               Text(
-                 'تعذّر فتح البوابة',
-                 textAlign: TextAlign.center,
-                 style: TextStyle(color: palette.textPrimary, fontSize: 16),
-               ),
-               const SizedBox(height: 8),
-               TextButton(
-                 onPressed: () => Navigator.pop(context),
-                 child: Text('رجوع',
-                   style: TextStyle(color: palette.accentPrimary)),
-               ),
-             ],
-           ),
-         ),
-       ),
-       data: (portal) => SafeArea(
-         child: Column(
-           children: [
+    // كل مفسّر بصفحة مستقلة
+    for (final t in portal.tafsirs) {
+      if (t.sourceId == 'muyassar-ar') continue; // مدرج في الفهم السريع
+      final src = tafsirSourcesMap[t.sourceId];
+      pages.add(_PageItem(
+        id:    t.sourceId,
+        icon:  _iconForSource(t.sourceId),
+        label: src?['scholar'] ?? t.scholar,
+      ));
+    }
 
-             // ─── Header ─────────────────────────────
-             Padding(
-               padding: const EdgeInsets.all(16),
-               child: Row(
-                 children: [
-                   IconButton(
-                     icon: Icon(Icons.close, color: palette.textPrimary),
-                     onPressed: () => Navigator.pop(context),
-                   ),
-                   IconButton(
-                     icon: Icon(Icons.share_outlined,
-                       color: palette.accentPrimary),
-                     onPressed: () {
-                       context.push('/more/share', extra: {
-                         'title':    'آية كريمة',
-                         'subtitle': '${portal.surahName} · آية ${portal.ayahNumber}',
-                         'content':  portal.textUthmani,
-                         'type':     'quran',
-                       });
-                     },
-                   ),
-                   Expanded(
-                     child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.end,
-                       children: [
-                         Text(
-                           portal.surahName,
-                           style: TextStyle(
-                             color:      palette.textPrimary,
-                             fontSize:   18,
-                             fontWeight: FontWeight.w500,
-                           ),
-                         ),
-                         Text(
-                           'آية ${portal.ayahNumber} · ${portal.revelationType == "Meccan" ? "مكية" : "مدنية"}',
-                           style: TextStyle(
-                             color:    palette.accentPrimary,
-                             fontSize: 12,
-                           ),
-                         ),
-                       ],
-                     ),
-                   ),
-                 ],
-               ),
-             ),
+    // الشرح اللغوي
+    if (portal.words.isNotEmpty) {
+      pages.add(_PageItem(
+        id:    'words',
+        icon:  Icons.translate,
+        label: 'الشرح اللغوي',
+      ));
+    }
 
-             // ─── الآية ──────────────────────────────
-             Container(
-               width: double.infinity,
-               constraints: const BoxConstraints(maxHeight: 180),
-               margin: const EdgeInsets.symmetric(horizontal: 20),
-               padding: const EdgeInsets.all(20),
-               decoration: BoxDecoration(
-                 color: palette.accentPrimary.withOpacity(0.08),
-                 borderRadius: BorderRadius.circular(20),
-                 border: Border.all(
-                   color: palette.accentPrimary.withOpacity(0.2)),
-               ),
-               child: SingleChildScrollView(
-                 child: Text(
-                   portal.textUthmani,
-                   textAlign: TextAlign.center,
-                   textDirection: TextDirection.rtl,
-                   style: TextStyle(
-                     color:      palette.textPrimary,
-                     fontSize:   24,
-                     height:     2.0,
-                     fontFamily: 'QuranFont',
-                   ),
-                 ),
-               ),
-             ),
+    // سبب النزول
+    if (portal.asbabAlNuzul != null) {
+      pages.add(_PageItem(
+        id:    'asbab',
+        icon:  Icons.history_edu,
+        label: 'سبب النزول',
+      ));
+    }
 
-             const SizedBox(height: 16),
+    // قصص وأحاديث (قريباً)
+    pages.add(_PageItem(
+      id:    'stories',
+      icon:  Icons.auto_stories,
+      label: 'قصص وأحاديث',
+      comingSoon: true,
+    ));
 
-             // ─── أزرار التنقل + مؤشر الصفحات ─────────
-             Row(
-               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-               children: [
-                 IconButton(
-                   icon: Icon(Icons.chevron_left,
-                     color: _currentPage < _pageCount(portal) - 1
-                         ? palette.accentPrimary
-                         : palette.textSecondary.withOpacity(0.3),
-                     size: 32),
-                   onPressed: _currentPage < _pageCount(portal) - 1
-                       ? () => _pageController.nextPage(
-                           duration: const Duration(milliseconds: 300),
-                           curve: Curves.easeInOut)
-                       : null,
-                 ),
-                 Row(
-                   mainAxisSize: MainAxisSize.min,
-                   children: List.generate(_pageCount(portal), (i) {
-                     final active = i == _currentPage;
-                     return AnimatedContainer(
-                       duration: const Duration(milliseconds: 250),
-                       margin: const EdgeInsets.symmetric(horizontal: 4),
-                       width:  active ? 24 : 8,
-                       height: 8,
-                       decoration: BoxDecoration(
-                         color: active
-                             ? palette.accentPrimary
-                             : palette.accentPrimary.withOpacity(0.3),
-                         borderRadius: BorderRadius.circular(4),
-                       ),
-                     );
-                   }),
-                 ),
-                 IconButton(
-                   icon: Icon(Icons.chevron_right,
-                     color: _currentPage > 0
-                         ? palette.accentPrimary
-                         : palette.textSecondary.withOpacity(0.3),
-                     size: 32),
-                   onPressed: _currentPage > 0
-                       ? () => _pageController.previousPage(
-                           duration: const Duration(milliseconds: 300),
-                           curve: Curves.easeInOut)
-                       : null,
-                 ),
-               ],
-             ),
+    return pages;
+  }
 
-             const SizedBox(height: 8),
+  IconData _iconForSource(String sourceId) {
+    switch (sourceId) {
+      case 'tabari-ar':     return Icons.menu_book;
+      case 'ibn-kathir-ar': return Icons.book;
+      case 'baghawi-ar':    return Icons.library_books;
+      case 'saadi-ar':      return Icons.bookmark;
+      case 'mukhtasar-ar':  return Icons.article;
+      case 'mukhtasar-en':  return Icons.language;
+      case 'mukhtasar-bn':  return Icons.translate;
+      default:              return Icons.menu_book;
+    }
+  }
 
-             // ─── الطبقات (PageView) ─────────────────
-             Expanded(
-               child: PageView(
-                 controller: _pageController,
-                 onPageChanged: (i) => setState(() => _currentPage = i),
-                 children: _buildPages(portal, palette),
-               ),
-             ),
-           ],
-         ),
-       ),
-     ),
-   );
- }
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
- int _pageCount(PortalData p) {
-   int count = 1;
-   if (p.words.isNotEmpty)     count++;
-   if (p.asbabAlNuzul != null) count++;
-   if (p.tafsirs.isNotEmpty)   count++;
-   return count;
- }
+  @override
+  Widget build(BuildContext context) {
+    final palette = ref.watch(timeThemeProvider);
+    final portalAsync = ref.watch(portalProvider((
+      surahId:    widget.surahId,
+      ayahNumber: widget.ayahNumber,
+    )));
 
- List<Widget> _buildPages(PortalData portal, dynamic palette) {
-   final pages = <Widget>[];
+    return Scaffold(
+      backgroundColor: palette.background,
+      body: portalAsync.when(
+        loading: () => Center(
+          child: CircularProgressIndicator(color: palette.accentPrimary)),
+        error: (e, _) => Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.error_outline, color: palette.textSecondary, size: 48),
+              const SizedBox(height: 16),
+              Text('تعذّر فتح البوابة',
+                style: TextStyle(color: palette.textPrimary, fontSize: 16)),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('رجوع',
+                  style: TextStyle(color: palette.accentPrimary)),
+              ),
+            ],
+          ),
+        ),
+        data: (portal) {
+          final pages = _buildPageItems(portal);
+          return SafeArea(
+            child: Column(
+              children: [
 
-   final muyassar = portal.tafsirs
-       .where((t) => t.sourceId == 'muyassar-ar')
-       .firstOrNull;
-   pages.add(_QuickUnderstanding(
-     portal:   portal,
-     muyassar: muyassar,
-     palette:  palette,
-   ));
+                // ─── Header ────────────────────────────
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12, vertical: 8),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.close, color: palette.textPrimary),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.share_outlined,
+                          color: palette.accentPrimary),
+                        onPressed: () => context.push('/more/share', extra: {
+                          'title':    'آية كريمة',
+                          'subtitle': '${portal.surahName} · آية ${portal.ayahNumber}',
+                          'content':  portal.textUthmani,
+                          'type':     'quran',
+                        }),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(portal.surahName,
+                              style: TextStyle(
+                                color:      palette.textPrimary,
+                                fontSize:   17,
+                                fontWeight: FontWeight.w500,
+                              )),
+                            Text(
+                              'آية ${portal.ayahNumber} · ${portal.revelationType == "Meccan" ? "مكية" : "مدنية"}',
+                              style: TextStyle(
+                                color:    palette.accentPrimary,
+                                fontSize: 12,
+                              )),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
 
-   if (portal.words.isNotEmpty) {
-     pages.add(_WordExplorer(words: portal.words, palette: palette));
-   }
+                // ─── الآية ─────────────────────────────
+                Container(
+                  width: double.infinity,
+                  constraints: const BoxConstraints(maxHeight: 160),
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: palette.accentPrimary.withOpacity(0.08),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: palette.accentPrimary.withOpacity(0.2)),
+                  ),
+                  child: SingleChildScrollView(
+                    child: Text(
+                      portal.textUthmani,
+                      textAlign:     TextAlign.center,
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                        color:      palette.textPrimary,
+                        fontSize:   22,
+                        height:     2.0,
+                        fontFamily: 'QuranFont',
+                      ),
+                    ),
+                  ),
+                ),
 
-   if (portal.asbabAlNuzul != null) {
-     pages.add(_AsbabPage(text: portal.asbabAlNuzul!, palette: palette));
-   }
+                const SizedBox(height: 8),
 
-   if (portal.tafsirs.isNotEmpty) {
-     pages.add(_TafsirExplorer(tafsirs: portal.tafsirs, palette: palette));
-   }
+                // ─── فهرس الصفحات (أفقي) ───────────────
+                SizedBox(
+                  height: 56,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    itemCount: pages.length,
+                    itemBuilder: (_, i) {
+                      final active = i == _currentPage;
+                      final page   = pages[i];
+                      return GestureDetector(
+                        onTap: () {
+                          _pageController.animateToPage(i,
+                            duration: const Duration(milliseconds: 300),
+                            curve:    Curves.easeInOut);
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 4, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: active
+                                ? palette.accentPrimary
+                                : palette.surface,
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: active
+                                  ? palette.accentPrimary
+                                  : palette.accentPrimary.withOpacity(0.2)),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                page.comingSoon
+                                    ? Icons.lock_outline
+                                    : page.icon,
+                                size:  14,
+                                color: active
+                                    ? Colors.white
+                                    : palette.textSecondary,
+                              ),
+                              const SizedBox(width: 6),
+                              Text(
+                                page.label,
+                                style: TextStyle(
+                                  color: active
+                                      ? Colors.white
+                                      : palette.textSecondary,
+                                  fontSize:   12,
+                                  fontWeight: active
+                                      ? FontWeight.w600
+                                      : FontWeight.normal,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
 
-   return pages;
- }
+                // ─── محتوى الصفحات ──────────────────────
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    onPageChanged: (i) => setState(() => _currentPage = i),
+                    itemCount: pages.length,
+                    itemBuilder: (_, i) {
+                      final page = pages[i];
+
+                      if (page.comingSoon) {
+                        return _ComingSoonPage(palette: palette);
+                      }
+
+                      if (page.id == 'quick') {
+                        final muyassar = portal.tafsirs
+                            .where((t) => t.sourceId == 'muyassar-ar')
+                            .firstOrNull;
+                        return _TafsirPage(
+                          title:    'الفهم السريع',
+                          text:     muyassar?.text ?? 'لا يتوفر تفسير ميسّر.',
+                          sourceId: 'muyassar-ar',
+                          palette:  palette,
+                        );
+                      }
+
+                      if (page.id == 'words') {
+                        return _WordsPage(
+                          words:   portal.words,
+                          palette: palette,
+                        );
+                      }
+
+                      if (page.id == 'asbab') {
+                        return _AsbabPage(
+                          text:    portal.asbabAlNuzul!,
+                          palette: palette,
+                        );
+                      }
+
+                      // صفحة مفسّر
+                      final tafsir = portal.tafsirs
+                          .where((t) => t.sourceId == page.id)
+                          .firstOrNull;
+                      if (tafsir == null) {
+                        return _EmptyPage(
+                          message: 'لا يتوفر هذا التفسير للآية',
+                          palette: palette,
+                        );
+                      }
+                      return _TafsirPage(
+                        title:    page.label,
+                        text:     tafsir.text,
+                        sourceId: tafsir.sourceId,
+                        palette:  palette,
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 }
 
 // ═══════════════════════════════════════════════════════════
-// صفحة الفهم السريع
+// نموذج صفحة الفهرس
 // ═══════════════════════════════════════════════════════════
-class _QuickUnderstanding extends StatelessWidget {
- final PortalData    portal;
- final TafsirEntry?  muyassar;
- final dynamic       palette;
+class _PageItem {
+  final String   id;
+  final IconData icon;
+  final String   label;
+  final bool     comingSoon;
 
- const _QuickUnderstanding({
-   required this.portal,
-   required this.muyassar,
-   required this.palette,
- });
-
- @override
- Widget build(BuildContext context) {
-   return SingleChildScrollView(
-     padding: const EdgeInsets.all(20),
-     child: Column(
-       crossAxisAlignment: CrossAxisAlignment.stretch,
-       children: [
-         _SectionTitle('المعنى الإجمالي', Icons.lightbulb_outline, palette),
-         const SizedBox(height: 12),
-         Text(
-           muyassar?.text ?? 'لا يتوفر تفسير ميسّر لهذه الآية.',
-           textAlign: TextAlign.right,
-           textDirection: TextDirection.rtl,
-           style: TextStyle(
-             color:    palette.textPrimary,
-             fontSize: 16,
-             height:   1.9,
-           ),
-         ),
-         if (muyassar != null) ...[
-           const SizedBox(height: 16),
-           CitationBadge(
-             scholar:   'مجمع الملك فهد',
-             bookTitle: 'التفسير الميسّر',
-             palette:   palette,
-             compact:   true,
-           ),
-         ],
-       ],
-     ),
-   );
- }
+  _PageItem({
+    required this.id,
+    required this.icon,
+    required this.label,
+    this.comingSoon = false,
+  });
 }
 
 // ═══════════════════════════════════════════════════════════
-// مستكشف الكلمات
+// صفحة تفسير
 // ═══════════════════════════════════════════════════════════
-class _WordExplorer extends StatelessWidget {
- final List<WordMeaning> words;
- final dynamic           palette;
+class _TafsirPage extends StatelessWidget {
+  final String  title;
+  final String  text;
+  final String  sourceId;
+  final dynamic palette;
 
- const _WordExplorer({required this.words, required this.palette});
+  const _TafsirPage({
+    required this.title,
+    required this.text,
+    required this.sourceId,
+    required this.palette,
+  });
 
- @override
- Widget build(BuildContext context) {
-   return SingleChildScrollView(
-     padding: const EdgeInsets.all(20),
-     child: Column(
-       crossAxisAlignment: CrossAxisAlignment.stretch,
-       children: [
-         _SectionTitle('مستكشف الكلمات', Icons.translate, palette),
-         const SizedBox(height: 8),
-         CitationBadge(
-           scholar:   'مركز تفسير',
-           bookTitle: 'Tafsir MCP — 77,432 كلمة',
-           palette:   palette,
-           compact:   true,
-         ),
-         const SizedBox(height: 16),
-         ...words.map((w) => Container(
-           margin: const EdgeInsets.only(bottom: 12),
-           padding: const EdgeInsets.all(16),
-           decoration: BoxDecoration(
-             color:        palette.surface,
-             borderRadius: BorderRadius.circular(14),
-           ),
-           child: Column(
-             crossAxisAlignment: CrossAxisAlignment.end,
-             children: [
-               Text(
-                 w.meaningAr,
-                 textAlign:     TextAlign.right,
-                 textDirection: TextDirection.rtl,
-                 style: TextStyle(
-                   color:    palette.textPrimary,
-                   fontSize: 15,
-                   height:   1.7,
-                 ),
-               ),
-               if (w.morphology.isNotEmpty) ...[
-                 const SizedBox(height: 8),
-                 Text(
-                   w.morphology,
-                   textAlign:     TextAlign.right,
-                   textDirection: TextDirection.rtl,
-                   style: TextStyle(
-                     color:    palette.textSecondary,
-                     fontSize: 13,
-                     height:   1.6,
-                   ),
-                 ),
-               ],
-             ],
-           ),
-         )),
-       ],
-     ),
-   );
- }
+  @override
+  Widget build(BuildContext context) {
+    final src = tafsirSourcesMap[sourceId];
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Citation
+          CitationBadge(
+            scholar:   src?['scholar'] ?? title,
+            bookTitle: src?['bookTitle'] ?? '',
+            palette:   palette,
+          ),
+          const SizedBox(height: 16),
+          // النص — اكتشاف اللغة تلقائياً
+          Builder(builder: (context) {
+            final isArabic = RegExp(r'[\u0600-\u06FF]').hasMatch(text);
+            return Text(
+              text,
+              textAlign:     isArabic ? TextAlign.right : TextAlign.left,
+              textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
+              style: TextStyle(
+                color:    palette.textPrimary,
+                fontSize: 16,
+                height:   1.9,
+                fontFamily: isArabic ? null : 'sans-serif',
+              ),
+            );
+          }),
+        ],
+      ),
+    );
+  }
 }
 
 // ═══════════════════════════════════════════════════════════
-// أسباب النزول
+// صفحة الشرح اللغوي
+// ═══════════════════════════════════════════════════════════
+class _WordsPage extends StatelessWidget {
+  final List<WordMeaning> words;
+  final dynamic           palette;
+
+  const _WordsPage({required this.words, required this.palette});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          CitationBadge(
+            scholar:   'مركز تفسير',
+            bookTitle: 'Tafsir MCP — 77,432 كلمة',
+            palette:   palette,
+            compact:   true,
+          ),
+          const SizedBox(height: 16),
+          ...words.map((w) => Container(
+            margin:  const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color:        palette.surface,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: palette.accentPrimary.withOpacity(0.15)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                // الكلمة بخط قرآني ولون مميز
+                if (w.wordText.isNotEmpty) ...[
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8, horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: palette.accentPrimary.withOpacity(0.08),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      w.wordText,
+                      textAlign:     TextAlign.center,
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                        color:      palette.accentPrimary,
+                        fontSize:   22,
+                        fontFamily: 'QuranFont',
+                        height:     1.8,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                ],
+                // المعنى
+                Text(w.meaningAr,
+                  textAlign:     TextAlign.right,
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                    color:    palette.textPrimary,
+                    fontSize: 15,
+                    height:   1.7,
+                  )),
+                if (w.morphology.isNotEmpty) ...[
+                  const SizedBox(height: 6),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: palette.accentPrimary.withOpacity(0.06),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(w.morphology,
+                      textAlign:     TextAlign.right,
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                        color:    palette.textSecondary,
+                        fontSize: 12,
+                      )),
+                  ),
+                ],
+              ],
+            ),
+          )),
+        ],
+      ),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// صفحة سبب النزول
 // ═══════════════════════════════════════════════════════════
 class _AsbabPage extends StatelessWidget {
- final String  text;
- final dynamic palette;
+  final String  text;
+  final dynamic palette;
 
- const _AsbabPage({required this.text, required this.palette});
+  const _AsbabPage({required this.text, required this.palette});
 
- @override
- Widget build(BuildContext context) {
-   return SingleChildScrollView(
-     padding: const EdgeInsets.all(20),
-     child: Column(
-       crossAxisAlignment: CrossAxisAlignment.stretch,
-       children: [
-         _SectionTitle('سبب النزول', Icons.history_edu, palette),
-         const SizedBox(height: 12),
-         Text(
-           text,
-           textAlign:     TextAlign.right,
-           textDirection: TextDirection.rtl,
-           style: TextStyle(
-             color:    palette.textPrimary,
-             fontSize: 16,
-             height:   1.9,
-           ),
-         ),
-         const SizedBox(height: 16),
-         CitationBadge(
-           scholar:   'مركز تفسير',
-           bookTitle: 'Tafsir MCP — أسباب النزول',
-           palette:   palette,
-           compact:   true,
-         ),
-       ],
-     ),
-   );
- }
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          CitationBadge(
+            scholar:   'مركز تفسير',
+            bookTitle: 'Tafsir MCP — أسباب النزول',
+            palette:   palette,
+            compact:   true,
+          ),
+          const SizedBox(height: 16),
+          Text(text,
+            textAlign:     TextAlign.right,
+            textDirection: TextDirection.rtl,
+            style: TextStyle(
+              color:    palette.textPrimary,
+              fontSize: 16,
+              height:   1.9,
+            )),
+        ],
+      ),
+    );
+  }
 }
 
 // ═══════════════════════════════════════════════════════════
-// مستكشف التفاسير
+// صفحة قريباً
 // ═══════════════════════════════════════════════════════════
-class _TafsirExplorer extends StatelessWidget {
- final List<TafsirEntry> tafsirs;
- final dynamic           palette;
+class _ComingSoonPage extends StatelessWidget {
+  final dynamic palette;
+  const _ComingSoonPage({required this.palette});
 
- const _TafsirExplorer({required this.tafsirs, required this.palette});
-
- @override
- Widget build(BuildContext context) {
-   return SingleChildScrollView(
-     padding: const EdgeInsets.all(20),
-     child: Column(
-       crossAxisAlignment: CrossAxisAlignment.stretch,
-       children: [
-         _SectionTitle('التفاسير', Icons.menu_book, palette),
-         const SizedBox(height: 16),
-         ...tafsirs.map((t) {
-           final src = tafsirSourcesMap[t.sourceId];
-           return Container(
-             margin: const EdgeInsets.only(bottom: 16),
-             padding: const EdgeInsets.all(16),
-             decoration: BoxDecoration(
-               color:        palette.surface,
-               borderRadius: BorderRadius.circular(14),
-             ),
-             child: Column(
-               crossAxisAlignment: CrossAxisAlignment.end,
-               children: [
-                 CitationBadge(
-                   scholar:   src?['scholar'] ?? t.scholar,
-                   bookTitle: src?['bookTitle'] ?? t.bookTitle,
-                   palette:   palette,
-                 ),
-                 const SizedBox(height: 12),
-                 Text(
-                   t.text,
-                   textAlign:     TextAlign.right,
-                   textDirection: TextDirection.rtl,
-                   style: TextStyle(
-                     color:    palette.textPrimary,
-                     fontSize: 15,
-                     height:   1.9,
-                   ),
-                 ),
-               ],
-             ),
-           );
-         }),
-       ],
-     ),
-   );
- }
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.auto_stories,
+            size:  64,
+            color: palette.textSecondary.withOpacity(0.3)),
+          const SizedBox(height: 16),
+          Text('قصص وأحاديث',
+            style: TextStyle(
+              color:      palette.textPrimary,
+              fontSize:   18,
+              fontWeight: FontWeight.w500,
+            )),
+          const SizedBox(height: 8),
+          Text('قريباً — بعد استيراد الأحاديث',
+            style: TextStyle(
+              color:    palette.textSecondary,
+              fontSize: 14,
+            )),
+        ],
+      ),
+    );
+  }
 }
 
 // ═══════════════════════════════════════════════════════════
-// عناصر مساعدة
+// صفحة فارغة
 // ═══════════════════════════════════════════════════════════
-class _SectionTitle extends StatelessWidget {
- final String   title;
- final IconData icon;
- final dynamic  palette;
+class _EmptyPage extends StatelessWidget {
+  final String  message;
+  final dynamic palette;
 
- const _SectionTitle(this.title, this.icon, this.palette);
+  const _EmptyPage({required this.message, required this.palette});
 
- @override
- Widget build(BuildContext context) {
-   return Row(
-     mainAxisAlignment: MainAxisAlignment.end,
-     children: [
-       Text(
-         title,
-         style: TextStyle(
-           color:      palette.textPrimary,
-           fontSize:   20,
-           fontWeight: FontWeight.w600,
-         ),
-       ),
-       const SizedBox(width: 8),
-       Icon(icon, color: palette.accentPrimary, size: 22),
-     ],
-   );
- }
-}
-
-class _SourceBadge extends StatelessWidget {
- final String  label;
- final dynamic palette;
-
- const _SourceBadge(this.label, this.palette);
-
- @override
- Widget build(BuildContext context) {
-   return Container(
-     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-     decoration: BoxDecoration(
-       color: palette.accentPrimary.withOpacity(0.12),
-       borderRadius: BorderRadius.circular(8),
-       border: Border.all(color: palette.accentPrimary.withOpacity(0.3)),
-     ),
-     child: Row(
-       mainAxisSize: MainAxisSize.min,
-       children: [
-         Text(
-           label,
-           style: TextStyle(
-             color:      palette.accentPrimary,
-             fontSize:   12,
-             fontWeight: FontWeight.w500,
-           ),
-         ),
-         const SizedBox(width: 4),
-         Icon(Icons.verified, size: 12, color: palette.accentPrimary),
-       ],
-     ),
-   );
- }
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(message,
+        style: TextStyle(color: palette.textSecondary, fontSize: 15)),
+    );
+  }
 }

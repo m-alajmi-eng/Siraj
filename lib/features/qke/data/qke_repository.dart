@@ -8,16 +8,19 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class WordMeaning {
   final int    position;
   final String meaningAr;
+  final String wordText;
   final String morphology;
 
   WordMeaning({
     required this.position,
+    required this.wordText,
     required this.meaningAr,
     required this.morphology,
   });
 
   factory WordMeaning.fromJson(Map<String, dynamic> j) => WordMeaning(
     position:   j['word_position'] ?? 0,
+    wordText:   j['word_text'] ?? '',
     meaningAr:  j['meaning_ar'] ?? '',
     morphology: j['morphology'] ?? '',
   );
@@ -109,7 +112,7 @@ class QkeRepository {
     // 3. معاني الكلمات
     final wordsRes = await _client
         .from('word_meanings')
-        .select('word_position, meaning_ar, morphology')
+        .select('word_position, word_text, meaning_ar, morphology')
         .eq('ayah_id', ayahId)
         .order('word_position');
 
