@@ -1,0 +1,15 @@
+const List<Map<String, String>> quranTranslations = [
+  {'edition': 'en.sahih',       'language': 'English',   'author': 'Saheeh International', 'direction': 'ltr'},
+  {'edition': 'en.pickthall',   'language': 'English',   'author': 'Pickthall',            'direction': 'ltr'},
+  {'edition': 'en.yusufali',    'language': 'English',   'author': 'Yusuf Ali',            'direction': 'ltr'},
+  {'edition': 'bn.bengali',     'language': 'বাংলা',     'author': 'Muhiuddin Khan',       'direction': 'ltr'},
+  {'edition': 'ur.jalandhry',   'language': 'اردو',      'author': 'جالندہری',             'direction': 'rtl'},
+  {'edition': 'ur.maududi',     'language': 'اردو',      'author': 'مودودی',               'direction': 'rtl'},
+  {'edition': 'fr.hamidullah',  'language': 'Français',  'author': 'Hamidullah',           'direction': 'ltr'},
+  {'edition': 'id.indonesian',  'language': 'Indonesia', 'author': 'Kemenag RI',           'direction': 'ltr'},
+  {'edition': 'tr.diyanet',     'language': 'Türkçe',    'author': 'Diyanet İşleri',       'direction': 'ltr'},
+  {'edition': 'ru.kuliev',      'language': 'Русский',   'author': 'Кулиев',               'direction': 'ltr'},
+  {'edition': 'de.bubenheim',   'language': 'Deutsch',   'author': 'Bubenheim & Elyas',    'direction': 'ltr'},
+  {'edition': 'es.garcia',      'language': 'Español',   'author': 'García',               'direction': 'ltr'},
+  {'edition': 'zh.majian',      'language': '中文',       'author': 'Ma Jian',              'direction': 'ltr'},
+];

@@ -26,6 +26,31 @@ class WordMeaning {
   );
 }
 
+class RelatedHadith {
+  final int    id;
+  final String text;
+  final String bookName;
+  final int    hadithNumber;
+
+  RelatedHadith({
+    required this.id,
+    required this.text,
+    required this.bookName,
+    required this.hadithNumber,
+  });
+
+  factory RelatedHadith.fromJson(Map<String, dynamic> j) {
+    final hadith = j['hadiths'] as Map?;
+    final book   = hadith?['hadith_books'] as Map?;
+    return RelatedHadith(
+      id:           j['hadith_id'] ?? 0,
+      text:         hadith?['text_ar'] ?? '',
+      bookName:     book?['name_ar'] ?? '',
+      hadithNumber: hadith?['hadith_number'] ?? 0,
+    );
+  }
+}
+
 class TafsirEntry {
   final String sourceId;
   final String scholar;
@@ -48,7 +73,8 @@ class PortalData {
   final String surahName;
   final String revelationType;
   final int    ayahCount;
-  final List<TafsirEntry> tafsirs;
+  final List<TafsirEntry>    tafsirs;
+  final List<RelatedHadith>  relatedHadiths;
   final List<WordMeaning> words;
   final String? asbabAlNuzul;
 
@@ -61,6 +87,7 @@ class PortalData {
     required this.revelationType,
     required this.ayahCount,
     required this.tafsirs,
+    required this.relatedHadiths,
     required this.words,
     this.asbabAlNuzul,
   });
@@ -136,6 +163,19 @@ class QkeRepository {
 
     final surah = ayahRes['surahs'] ?? {};
 
+      // جلب الأحاديث المرتبطة
+      List<RelatedHadith> relatedHadiths = [];
+      try {
+        final hadithsRes = await _client
+            .from('ayah_hadiths')
+            .select('hadith_id, hadiths(text_ar, hadith_number, hadith_books(name_ar))')
+            .eq('ayah_id', ayahId)
+            .limit(5);
+        relatedHadiths = hadithsRes
+            .map((j) => RelatedHadith.fromJson(j))
+            .toList();
+      } catch (_) {}
+
     return PortalData(
       ayahId:         ayahId,
       surahId:        surahId,
@@ -147,6 +187,7 @@ class QkeRepository {
       tafsirs:        tafsirs,
       words:          words,
       asbabAlNuzul:   asbab,
+      relatedHadiths: relatedHadiths,
     );
   }
 }

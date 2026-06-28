@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../core/widgets/citation_badge.dart';
 import '../../data/qke_repository.dart';
+import '../../../../core/constants/translations.dart';
+import '../../data/translation_service.dart';
 
 class VersePortalScreen extends ConsumerStatefulWidget {
   final int surahId;
@@ -65,6 +67,13 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
         label: 'سبب النزول',
       ));
     }
+
+    // الترجمات
+    pages.add(_PageItem(
+      id:    'translations',
+      icon:  Icons.translate,
+      label: 'ترجمات',
+    ));
 
     // الأحاديث المتعلقة بالآية (قريباً)
     pages.add(_PageItem(
@@ -285,7 +294,20 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                     itemBuilder: (_, i) {
                       final page = pages[i];
 
+                if (page.id == 'translations') {
+                  return _TranslationsPage(
+                    palette:    palette,
+                    surahId:    widget.surahId,
+                    ayahNumber: widget.ayahNumber,
+                  );
+                }
                       if (page.comingSoon) {
+                        if (page.id == 'hadiths') {
+                          return _HadithsPage(
+                            palette: palette,
+                            hadiths: portal.relatedHadiths,
+                          );
+                        }
                         return _ComingSoonPage(
                           palette: palette,
                           title:   page.label,
@@ -597,6 +619,155 @@ class _EmptyPage extends StatelessWidget {
     return Center(
       child: Text(message,
         style: TextStyle(color: palette.textSecondary, fontSize: 15)),
+    );
+  }
+}
+
+// ─── Hadiths Page ─────────────────────────────────────────
+class _HadithsPage extends StatelessWidget {
+  final dynamic              palette;
+  final List<RelatedHadith>  hadiths;
+  const _HadithsPage({required this.palette, required this.hadiths});
+
+  @override
+  Widget build(BuildContext context) {
+    if (hadiths.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.format_quote, size: 64, color: palette.textSecondary),
+            const SizedBox(height: 16),
+            Text('لا توجد أحاديث مرتبطة بهذه الآية حتى الآن',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: palette.textSecondary, fontSize: 14)),
+            const SizedBox(height: 8),
+            Text('نعمل على إضافة المحتوى تدريجياً',
+              style: TextStyle(color: palette.textSecondary, fontSize: 12)),
+          ],
+        ),
+      );
+    }
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: hadiths.length,
+      itemBuilder: (_, i) {
+        final h = hadiths[i];
+        return Container(
+          margin:  const EdgeInsets.only(bottom: 12),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color:        palette.surface,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: palette.accentPrimary.withOpacity(0.15)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('حديث \${h.hadithNumber}',
+                    style: TextStyle(color: palette.textSecondary, fontSize: 12)),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    decoration: BoxDecoration(
+                      color:        palette.accentPrimary.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(h.bookName,
+                      style: TextStyle(color: palette.accentPrimary, fontSize: 12)),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Text(h.text,
+                textAlign:     TextAlign.right,
+                textDirection: TextDirection.rtl,
+                style: TextStyle(
+                  color:    palette.textPrimary,
+                  fontSize: 14,
+                  height:   1.8,
+                )),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ─── Translations Page ────────────────────────────────────
+class _TranslationsPage extends ConsumerWidget {
+  final dynamic palette;
+  final int     surahId;
+  final int     ayahNumber;
+  const _TranslationsPage({
+    required this.palette,
+    required this.surahId,
+    required this.ayahNumber,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: quranTranslations.map((t) {
+        final async = ref.watch(translationProvider((
+          edition:    t['edition']!,
+          surahId:    surahId,
+          ayahNumber: ayahNumber,
+        )));
+        final isRtl = t['direction'] == 'rtl';
+        return Container(
+          margin:  const EdgeInsets.only(bottom: 12),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color:        palette.surface,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: palette.accentPrimary.withOpacity(0.1)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(t['author'] ?? '',
+                    style: TextStyle(color: palette.textSecondary, fontSize: 11)),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    decoration: BoxDecoration(
+                      color:        palette.accentPrimary.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(t['language'] ?? '',
+                      style: TextStyle(color: palette.accentPrimary, fontSize: 13,
+                        fontWeight: FontWeight.bold)),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              async.when(
+                loading: () => Center(
+                  child: SizedBox(height: 20, width: 20,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2, color: palette.accentPrimary))),
+                error: (e, _) => Text('تعذّر التحميل',
+                  style: TextStyle(color: palette.textSecondary, fontSize: 13)),
+                data: (text) => Text(text,
+                  textAlign:     isRtl ? TextAlign.right : TextAlign.left,
+                  textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
+                  style: TextStyle(
+                    color:    palette.textPrimary,
+                    fontSize: 15,
+                    height:   1.8,
+                  )),
+              ),
+            ],
+          ),
+        );
+      }).toList(),
     );
   }
 }
