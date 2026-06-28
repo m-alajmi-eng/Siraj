@@ -213,7 +213,19 @@ class HomeScreen extends ConsumerWidget {
                    label:   'تقويم',
                    palette: palette,
                    onTap:   () => context.push('/more/calendar'),
-                 ),
+      ),
+      _QuickTile(
+        icon:    Icons.auto_stories,
+        label:   'القصص والسير',
+        palette: palette,
+        onTap:   () => context.push('/more/stories'),
+      ),
+      _QuickTile(
+        icon:    Icons.child_care,
+        label:   'قصص الأطفال',
+        palette: palette,
+        onTap:   () => context.push('/more/children_stories'),
+      ),
                ],
              ),
 

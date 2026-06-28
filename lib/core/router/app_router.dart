@@ -7,6 +7,8 @@ import '../mode/app_mode.dart';
 import '../mode/app_mode_provider.dart';
 import '../mode/feature_flags.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/stories/presentation/screens/stories_screen.dart';
+import '../../features/stories/presentation/screens/children_stories_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/prayer/presentation/screens/prayer_screen.dart';
 import '../../features/quran/presentation/screens/quran_home_screen.dart';
@@ -275,6 +277,14 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                  path:    'mosques',
                  builder: (_, __) => const MosquesScreen(),
                ),
+    GoRoute(
+      path:    'stories',
+      builder: (_, __) => const StoriesScreen(),
+    ),
+    GoRoute(
+      path:    'children_stories',
+      builder: (_, __) => const ChildrenStoriesScreen(),
+    ),
              ],
            ),
          ]),
