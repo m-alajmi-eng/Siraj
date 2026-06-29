@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   audioplayers_linux
   gtk
+  media_kit_libs_linux
   url_launcher_linux
 )
 

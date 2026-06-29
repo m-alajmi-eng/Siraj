@@ -10,9 +10,19 @@ import 'core/storage/cache_service.dart';
 import 'core/locale/locale_provider.dart';
 import 'core/notifications/adhan_service.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:just_audio_media_kit/just_audio_media_kit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // backend سطح المكتب (Linux/Windows) لـ just_audio — اختياري للتطوير
+  if (Platform.isLinux || Platform.isWindows) {
+    try {
+      JustAudioMediaKit.ensureInitialized();
+    } catch (_) {
+      // libmpv غير مثبّت — الصوت يعمل على الجوال
+    }
+  }
 
   // تهيئة التشغيل الخلفي للصوت (قرآن + راديو)
   await JustAudioBackground.init(
