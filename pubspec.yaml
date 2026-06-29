@@ -44,6 +44,12 @@ flutter:
     - assets/images/
 
   fonts:
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf
+    - family: NotoSansArabic
+      fonts:
+        - asset: assets/fonts/NotoSansArabic-Regular.ttf
     - family: UthmanTNB
       fonts:
         - asset: assets/fonts/UthmanTNB_v2-0.ttf

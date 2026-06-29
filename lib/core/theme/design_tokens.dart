@@ -70,11 +70,11 @@ class SirajSemantic {
 
 // ─── Typography ─────────────────────────────────────────
 class SirajFonts {
-  static const display = 'PlayfairDisplay';
-  static const body    = 'Inter';
-  static const quran   = 'AmiriQuran';
-  static const arabic  = 'NotoNaskhArabic';
-  static const mono    = 'DMMono';
+  // خط الواجهة الموحّد لكل اللغات (لاتيني + عربي + فارسي + أوردو)
+  static const ui      = 'NotoSansArabic';
+  static const latin   = 'NotoSans';
+  // خط القرآن الكريم فقط
+  static const quran   = 'UthmanTNB';
 }
 
 class SirajSizes {
