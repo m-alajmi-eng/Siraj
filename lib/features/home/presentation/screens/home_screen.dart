@@ -39,7 +39,9 @@ class HomeScreen extends ConsumerWidget {
     final skyColors   = SirajSky.gradientColors(SirajSky.fromHour(h));
     final hijriStr    = '${hijriDate.day} ${_monthName(hijriDate.month)} ${hijriDate.year}هـ';
 
-    return Scaffold(
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
       backgroundColor: SirajCanvas.base,
       body: Stack(
         children: [
@@ -105,6 +107,7 @@ class HomeScreen extends ConsumerWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }
@@ -305,39 +308,33 @@ class _NextPrayerCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const _SectionLabel(label: 'الصلاة القادمة'),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(times.nextPrayerName ?? '',
-                      style: TextStyle(
-                        color:    Colors.white.withOpacity(0.45),
-                        fontSize: 13,
-                      )),
-                    const SizedBox(height: 4),
-                    Text(times.nextPrayerNameAr ?? '',
-                      style: const TextStyle(
-                        color:      Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize:   42,
-                        height:     1.1,
-                      )),
-                  ],
-                ),
-                Text(times.nextPrayerTime ?? '',
-                  style: TextStyle(
-                    color:      Colors.white.withOpacity(0.75),
-                    fontSize:   17,
-                    fontWeight: FontWeight.w500,
-                  )),
-              ],
-            ),
+            Text(times.nextPrayerName ?? '',
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                color:    Colors.white.withOpacity(0.45),
+                fontSize: 13,
+              )),
+            const SizedBox(height: 4),
+            Text(times.nextPrayerNameAr ?? '',
+              textAlign: TextAlign.right,
+              style: const TextStyle(
+                color:      Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize:   42,
+                height:     1.1,
+              )),
+            const SizedBox(height: 4),
+            Text(times.nextPrayerTimeStr,
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                color:      Colors.white.withOpacity(0.75),
+                fontSize:   17,
+                fontWeight: FontWeight.w500,
+              )),
             const SizedBox(height: 16),
             Container(
               height: 1.5,

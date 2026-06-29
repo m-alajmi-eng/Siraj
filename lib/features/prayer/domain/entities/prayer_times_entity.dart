@@ -40,4 +40,21 @@ class PrayerTimesEntity {
   Duration get timeUntilNextPrayer {
     return nextPrayerTime.difference(DateTime.now());
   }
-} 
+
+  String get nextPrayerNameAr => nextPrayerName;
+
+  String get nextPrayerNameEn {
+    final now = DateTime.now();
+    if (now.isBefore(fajr))    return 'Fajr';
+    if (now.isBefore(dhuhr))   return 'Dhuhr';
+    if (now.isBefore(asr))     return 'Asr';
+    if (now.isBefore(maghrib)) return 'Maghrib';
+    if (now.isBefore(isha))    return 'Isha';
+    return 'Fajr';
+  }
+
+  String get nextPrayerTimeStr {
+    final t = nextPrayerTime;
+    return t.hour.toString().padLeft(2, '0') + ':' + t.minute.toString().padLeft(2, '0');
+  }
+}
