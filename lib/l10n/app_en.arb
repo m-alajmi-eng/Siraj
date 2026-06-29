@@ -169,5 +169,41 @@
   "radio_translations": "Translations",
   "radio_tafsir": "Tafsir & Fatwa",
   "radio_athkar": "Athkar",
-  "radio_international": "International"
+  "radio_international": "International",
+  "cal_title": "Islamic Calendar",
+  "cal_todayEvents": "Today's Events",
+  "cal_nextEvent": "Next Event",
+  "cal_allEvents": "Islamic Events",
+  "cal_daysUntil": "{days} days",
+  "cal_gregorian": "Gregorian",
+  "cal_hijri": "Hijri",
+  "hm_1": "Muharram",
+  "hm_2": "Safar",
+  "hm_3": "Rabi' al-Awwal",
+  "hm_4": "Rabi' al-Thani",
+  "hm_5": "Jumada al-Ula",
+  "hm_6": "Jumada al-Akhira",
+  "hm_7": "Rajab",
+  "hm_8": "Sha'ban",
+  "hm_9": "Ramadan",
+  "hm_10": "Shawwal",
+  "hm_11": "Dhu al-Qi'dah",
+  "hm_12": "Dhu al-Hijjah",
+  "ev_new_year": "Islamic New Year",
+  "ev_ashura": "Day of Ashura",
+  "ev_mawlid": "Mawlid al-Nabi",
+  "ev_isra": "Isra' and Mi'raj",
+  "ev_ramadan_start": "First of Ramadan",
+  "ev_laylat_qadr": "Laylat al-Qadr",
+  "ev_eid_fitr": "Eid al-Fitr",
+  "ev_arafah": "Day of Arafah",
+  "ev_eid_adha": "Eid al-Adha",
+  "ev_tashreeq": "Days of Tashreeq",
+  "@cal_daysUntil": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  }
 }

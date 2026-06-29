@@ -837,6 +837,180 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إذاعات دولية'**
   String get radio_international;
+
+  /// No description provided for @cal_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'التقويم الإسلامي'**
+  String get cal_title;
+
+  /// No description provided for @cal_todayEvents.
+  ///
+  /// In ar, this message translates to:
+  /// **'مناسبات اليوم'**
+  String get cal_todayEvents;
+
+  /// No description provided for @cal_nextEvent.
+  ///
+  /// In ar, this message translates to:
+  /// **'المناسبة القادمة'**
+  String get cal_nextEvent;
+
+  /// No description provided for @cal_allEvents.
+  ///
+  /// In ar, this message translates to:
+  /// **'المناسبات الإسلامية'**
+  String get cal_allEvents;
+
+  /// No description provided for @cal_daysUntil.
+  ///
+  /// In ar, this message translates to:
+  /// **'{days} يوم'**
+  String cal_daysUntil(int days);
+
+  /// No description provided for @cal_gregorian.
+  ///
+  /// In ar, this message translates to:
+  /// **'ميلادي'**
+  String get cal_gregorian;
+
+  /// No description provided for @cal_hijri.
+  ///
+  /// In ar, this message translates to:
+  /// **'هجري'**
+  String get cal_hijri;
+
+  /// No description provided for @hm_1.
+  ///
+  /// In ar, this message translates to:
+  /// **'محرم'**
+  String get hm_1;
+
+  /// No description provided for @hm_2.
+  ///
+  /// In ar, this message translates to:
+  /// **'صفر'**
+  String get hm_2;
+
+  /// No description provided for @hm_3.
+  ///
+  /// In ar, this message translates to:
+  /// **'ربيع الأول'**
+  String get hm_3;
+
+  /// No description provided for @hm_4.
+  ///
+  /// In ar, this message translates to:
+  /// **'ربيع الآخر'**
+  String get hm_4;
+
+  /// No description provided for @hm_5.
+  ///
+  /// In ar, this message translates to:
+  /// **'جمادى الأولى'**
+  String get hm_5;
+
+  /// No description provided for @hm_6.
+  ///
+  /// In ar, this message translates to:
+  /// **'جمادى الآخرة'**
+  String get hm_6;
+
+  /// No description provided for @hm_7.
+  ///
+  /// In ar, this message translates to:
+  /// **'رجب'**
+  String get hm_7;
+
+  /// No description provided for @hm_8.
+  ///
+  /// In ar, this message translates to:
+  /// **'شعبان'**
+  String get hm_8;
+
+  /// No description provided for @hm_9.
+  ///
+  /// In ar, this message translates to:
+  /// **'رمضان'**
+  String get hm_9;
+
+  /// No description provided for @hm_10.
+  ///
+  /// In ar, this message translates to:
+  /// **'شوال'**
+  String get hm_10;
+
+  /// No description provided for @hm_11.
+  ///
+  /// In ar, this message translates to:
+  /// **'ذو القعدة'**
+  String get hm_11;
+
+  /// No description provided for @hm_12.
+  ///
+  /// In ar, this message translates to:
+  /// **'ذو الحجة'**
+  String get hm_12;
+
+  /// No description provided for @ev_new_year.
+  ///
+  /// In ar, this message translates to:
+  /// **'رأس السنة الهجرية'**
+  String get ev_new_year;
+
+  /// No description provided for @ev_ashura.
+  ///
+  /// In ar, this message translates to:
+  /// **'يوم عاشوراء'**
+  String get ev_ashura;
+
+  /// No description provided for @ev_mawlid.
+  ///
+  /// In ar, this message translates to:
+  /// **'المولد النبوي'**
+  String get ev_mawlid;
+
+  /// No description provided for @ev_isra.
+  ///
+  /// In ar, this message translates to:
+  /// **'ليلة الإسراء والمعراج'**
+  String get ev_isra;
+
+  /// No description provided for @ev_ramadan_start.
+  ///
+  /// In ar, this message translates to:
+  /// **'أول رمضان'**
+  String get ev_ramadan_start;
+
+  /// No description provided for @ev_laylat_qadr.
+  ///
+  /// In ar, this message translates to:
+  /// **'ليلة القدر'**
+  String get ev_laylat_qadr;
+
+  /// No description provided for @ev_eid_fitr.
+  ///
+  /// In ar, this message translates to:
+  /// **'عيد الفطر'**
+  String get ev_eid_fitr;
+
+  /// No description provided for @ev_arafah.
+  ///
+  /// In ar, this message translates to:
+  /// **'يوم عرفة'**
+  String get ev_arafah;
+
+  /// No description provided for @ev_eid_adha.
+  ///
+  /// In ar, this message translates to:
+  /// **'عيد الأضحى'**
+  String get ev_eid_adha;
+
+  /// No description provided for @ev_tashreeq.
+  ///
+  /// In ar, this message translates to:
+  /// **'أيام التشريق'**
+  String get ev_tashreeq;
 }
 
 class _AppLocalizationsDelegate

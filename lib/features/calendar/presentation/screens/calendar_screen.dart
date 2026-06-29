@@ -1,220 +1,182 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../core/theme/design_tokens.dart';
+import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../providers/calendar_provider.dart';
+
+// ترجمة اسم الشهر الهجري حسب رقمه
+String hijriMonthName(AppLocalizations t, int m) {
+  switch (m) {
+    case 1:  return t.hm_1;
+    case 2:  return t.hm_2;
+    case 3:  return t.hm_3;
+    case 4:  return t.hm_4;
+    case 5:  return t.hm_5;
+    case 6:  return t.hm_6;
+    case 7:  return t.hm_7;
+    case 8:  return t.hm_8;
+    case 9:  return t.hm_9;
+    case 10: return t.hm_10;
+    case 11: return t.hm_11;
+    default: return t.hm_12;
+  }
+}
+
+// ترجمة اسم الحدث حسب id (مع fallback للعربي)
+String eventName(AppLocalizations t, IslamicEvent e) {
+  switch (e.id) {
+    case 'new_year':      return t.ev_new_year;
+    case 'ashura':        return t.ev_ashura;
+    case 'mawlid':        return t.ev_mawlid;
+    case 'isra':          return t.ev_isra;
+    case 'ramadan_start': return t.ev_ramadan_start;
+    case 'laylat_qadr':   return t.ev_laylat_qadr;
+    case 'eid_fitr':      return t.ev_eid_fitr;
+    case 'arafah':        return t.ev_arafah;
+    case 'eid_adha':      return t.ev_eid_adha;
+    case 'tashreeq':      return t.ev_tashreeq;
+    default:              return e.title;
+  }
+}
 
 class CalendarScreen extends ConsumerWidget {
   const CalendarScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t           = AppLocalizations.of(context);
     final palette     = ref.watch(timeThemeProvider);
     final hijriToday  = ref.watch(hijriTodayProvider);
     final todayEvents = ref.watch(todayEventsProvider);
     final nextEvent   = ref.watch(nextEventProvider);
     final now         = DateTime.now();
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          children: [
+    return AppScaffold(
+      title: t.cal_title,
+      padding: EdgeInsets.zero,
+      child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s4),
+        children: [
+          // ─── بطاقة اليوم الهجري ───
+          Container(
+            padding: const EdgeInsets.all(SirajSpacing.s6),
+            decoration: BoxDecoration(
+              color: palette.surface,
+              borderRadius: BorderRadius.circular(SirajRadiusFull.xl),
+              border: Border.all(
+                color: palette.accentPrimary.withValues(alpha: 0.3)),
+            ),
+            child: Column(
+              children: [
+                Text('${hijriToday.day}', style: AppText.displayLarge.copyWith(
+                  color: palette.accentPrimary, fontSize: 72,
+                  fontWeight: FontWeight.w200)),
+                Text(hijriMonthName(t, hijriToday.month),
+                  style: AppText.title.copyWith(color: palette.textPrimary)),
+                Text('${hijriToday.year} ${t.cal_hijri}',
+                  style: AppText.body.copyWith(color: palette.textSecondary)),
+                const SizedBox(height: SirajSpacing.s3),
+                Divider(color: palette.accentPrimary.withValues(alpha: 0.2)),
+                const SizedBox(height: SirajSpacing.s3),
+                Text('${now.day} / ${now.month} / ${now.year}',
+                  style: AppText.bodySmall.copyWith(color: palette.textSecondary)),
+              ],
+            ),
+          ),
+          const SizedBox(height: SirajSpacing.s4),
 
-            // ─── Header ─────────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Text(
-                'التقويم الإسلامي',
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  color:      palette.textPrimary,
-                  fontSize:   28,
-                  fontWeight: FontWeight.w300,
+          // ─── مناسبات اليوم ───
+          if (todayEvents.isNotEmpty) ...[
+            _SectionTitle(title: t.cal_todayEvents, palette: palette),
+            ...todayEvents.map((e) =>
+              _EventCard(event: e, palette: palette, t: t)),
+            const SizedBox(height: SirajSpacing.s2),
+          ],
+
+          // ─── المناسبة القادمة ───
+          _SectionTitle(title: t.cal_nextEvent, palette: palette),
+          Container(
+            padding: const EdgeInsets.all(SirajSpacing.s4),
+            decoration: BoxDecoration(
+              color: palette.surface,
+              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: SirajSpacing.s3, vertical: SirajSpacing.s1),
+                  decoration: BoxDecoration(
+                    color: palette.accentPrimary,
+                    borderRadius: BorderRadius.circular(SirajRadiusFull.xl),
+                  ),
+                  child: Text(t.cal_daysUntil(nextEvent['days'] as int),
+                    style: AppText.bodySmall.copyWith(
+                      color: palette.background, fontWeight: FontWeight.w600)),
                 ),
-              ),
-            ),
-
-            // ─── اليوم الهجري ────────────────────────────
-            Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color:        palette.surface,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: palette.accentPrimary.withOpacity(0.3)),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    '${hijriToday.day}',
-                    style: TextStyle(
-                      color:      palette.accentPrimary,
-                      fontSize:   72,
-                      fontWeight: FontWeight.w200,
-                    ),
-                  ),
-                  Text(
-                    hijriToday.monthName,
-                    style: TextStyle(
-                      color:      palette.textPrimary,
-                      fontSize:   24,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  Text(
-                    '${hijriToday.year} هـ',
-                    style: TextStyle(
-                      color:    palette.textSecondary,
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Divider(
-                    color: palette.accentPrimary.withOpacity(0.2)),
-                  const SizedBox(height: 12),
-                  Text(
-                    '${now.day} ${_monthName(now.month)} ${now.year} م',
-                    style: TextStyle(
-                      color:    palette.textSecondary,
-                      fontSize: 14,
-                    ),
-                  ),
-                  Text(
-                    HijriDate.dayNames[now.weekday % 7],
-                    style: TextStyle(
-                      color:    palette.accentPrimary,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            // ─── مناسبات اليوم ───────────────────────────
-            if (todayEvents.isNotEmpty) ...[
-              _SectionTitle(
-                title: 'مناسبات اليوم', palette: palette),
-              ...todayEvents.map((e) => _EventCard(
-                event: e, palette: palette)),
-              const SizedBox(height: 8),
-            ],
-
-            // ─── القادم ──────────────────────────────────
-            _SectionTitle(
-              title: 'المناسبة القادمة', palette: palette),
-
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color:        palette.surface,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color:        palette.accentPrimary,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      '${nextEvent['days']} يوم',
-                      style: TextStyle(
-                        color:      palette.background,
-                        fontSize:   13,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Column(
+                Expanded(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        (nextEvent['event'] as IslamicEvent).title,
-                        style: TextStyle(
-                          color:      palette.textPrimary,
-                          fontSize:   16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        '${(nextEvent['event'] as IslamicEvent).hijriDay} '
-                        '${HijriDate.monthNames[(nextEvent['event'] as IslamicEvent).hijriMonth - 1]}',
-                        style: TextStyle(
-                          color:    palette.textSecondary,
-                          fontSize: 12,
-                        ),
-                      ),
+                      Text(eventName(t, nextEvent['event'] as IslamicEvent),
+                        style: AppText.body.copyWith(
+                          color: palette.textPrimary, fontWeight: FontWeight.w500)),
+                      Text('${(nextEvent['event'] as IslamicEvent).hijriDay} '
+                          '${hijriMonthName(t, (nextEvent['event'] as IslamicEvent).hijriMonth)}',
+                        style: AppText.caption.copyWith(color: palette.textSecondary)),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+          ),
+          const SizedBox(height: SirajSpacing.s4),
 
-            const SizedBox(height: 16),
-
-            // ─── كل المناسبات ────────────────────────────
-            _SectionTitle(
-              title: 'المناسبات الإسلامية', palette: palette),
-
-            ...islamicEvents.map((e) => _EventCard(
-              event: e, palette: palette)),
-
-            const SizedBox(height: 32),
-          ],
-        ),
+          // ─── كل المناسبات ───
+          _SectionTitle(title: t.cal_allEvents, palette: palette),
+          ...islamicEvents.map((e) =>
+            _EventCard(event: e, palette: palette, t: t)),
+          const SizedBox(height: SirajSpacing.s8),
+        ],
       ),
     );
   }
-
-  String _monthName(int month) {
-    const months = [
-      'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-      'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر',
-    ];
-    return months[month - 1];
-  }
 }
 
-// ─── Section Title ────────────────────────────────────────
 class _SectionTitle extends StatelessWidget {
-  final String  title;
+  final String title;
   final dynamic palette;
   const _SectionTitle({required this.title, required this.palette});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8, top: 4),
-      child: Text(
-        title,
-        textAlign: TextAlign.right,
-        style: TextStyle(
-          color:    palette.accentPrimary,
-          fontSize: 13,
-        ),
+      padding: const EdgeInsets.only(bottom: SirajSpacing.s2, top: SirajSpacing.s1),
+      child: Align(
+        alignment: AlignmentDirectional.centerStart,
+        child: Text(title, style: AppText.bodySmall.copyWith(
+          color: palette.accentPrimary)),
       ),
     );
   }
 }
 
-// ─── Event Card ───────────────────────────────────────────
 class _EventCard extends StatelessWidget {
   final IslamicEvent event;
-  final dynamic      palette;
-  const _EventCard({required this.event, required this.palette});
+  final dynamic palette;
+  final AppLocalizations t;
+  const _EventCard({required this.event, required this.palette, required this.t});
 
   Color _eventColor() {
     switch (event.type) {
-      case 'eid':     return Colors.green;
-      case 'fast':    return Colors.blue;
-      case 'blessed': return Colors.amber;
-      default:        return Colors.grey;
+      case 'eid':     return const Color(0xFF50B478);
+      case 'fast':    return const Color(0xFF6EB4D0);
+      case 'blessed': return SirajGold.pure;
+      default:        return SirajWhite.w40;
     }
   }
 
@@ -230,38 +192,25 @@ class _EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.all(14),
+      margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
+      padding: const EdgeInsets.all(SirajSpacing.s4),
       decoration: BoxDecoration(
-        color:        palette.surface,
-        borderRadius: BorderRadius.circular(12),
-        border: Border(
-          right: BorderSide(
-            color: _eventColor(),
-            width: 3,
-          ),
+        color: palette.surface,
+        borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+        border: BorderDirectional(
+          start: BorderSide(color: _eventColor(), width: 3),
         ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            '${event.hijriDay} ${HijriDate.monthNames[event.hijriMonth - 1]}',
-            style: TextStyle(
-              color:    palette.textSecondary,
-              fontSize: 12,
-            ),
-          ),
+          Text('${event.hijriDay} ${hijriMonthName(t, event.hijriMonth)}',
+            style: AppText.caption.copyWith(color: palette.textSecondary)),
           Row(
             children: [
-              Text(
-                event.title,
-                style: TextStyle(
-                  color:    palette.textPrimary,
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(width: 8),
+              Text(eventName(t, event), style: AppText.bodySmall.copyWith(
+                color: palette.textPrimary)),
+              const SizedBox(width: SirajSpacing.s2),
               Text(_eventIcon(), style: const TextStyle(fontSize: 16)),
             ],
           ),
@@ -269,4 +218,4 @@ class _EventCard extends StatelessWidget {
       ),
     );
   }
-} 
+}

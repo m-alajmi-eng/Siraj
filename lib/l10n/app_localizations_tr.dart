@@ -365,4 +365,93 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get radio_international => 'إذاعات دولية';
+
+  @override
+  String get cal_title => 'التقويم الإسلامي';
+
+  @override
+  String get cal_todayEvents => 'مناسبات اليوم';
+
+  @override
+  String get cal_nextEvent => 'المناسبة القادمة';
+
+  @override
+  String get cal_allEvents => 'المناسبات الإسلامية';
+
+  @override
+  String cal_daysUntil(int days) {
+    return '$days يوم';
+  }
+
+  @override
+  String get cal_gregorian => 'ميلادي';
+
+  @override
+  String get cal_hijri => 'هجري';
+
+  @override
+  String get hm_1 => 'محرم';
+
+  @override
+  String get hm_2 => 'صفر';
+
+  @override
+  String get hm_3 => 'ربيع الأول';
+
+  @override
+  String get hm_4 => 'ربيع الآخر';
+
+  @override
+  String get hm_5 => 'جمادى الأولى';
+
+  @override
+  String get hm_6 => 'جمادى الآخرة';
+
+  @override
+  String get hm_7 => 'رجب';
+
+  @override
+  String get hm_8 => 'شعبان';
+
+  @override
+  String get hm_9 => 'رمضان';
+
+  @override
+  String get hm_10 => 'شوال';
+
+  @override
+  String get hm_11 => 'ذو القعدة';
+
+  @override
+  String get hm_12 => 'ذو الحجة';
+
+  @override
+  String get ev_new_year => 'رأس السنة الهجرية';
+
+  @override
+  String get ev_ashura => 'يوم عاشوراء';
+
+  @override
+  String get ev_mawlid => 'المولد النبوي';
+
+  @override
+  String get ev_isra => 'ليلة الإسراء والمعراج';
+
+  @override
+  String get ev_ramadan_start => 'أول رمضان';
+
+  @override
+  String get ev_laylat_qadr => 'ليلة القدر';
+
+  @override
+  String get ev_eid_fitr => 'عيد الفطر';
+
+  @override
+  String get ev_arafah => 'يوم عرفة';
+
+  @override
+  String get ev_eid_adha => 'عيد الأضحى';
+
+  @override
+  String get ev_tashreeq => 'أيام التشريق';
 }

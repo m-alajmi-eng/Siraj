@@ -52,12 +52,14 @@ class HijriDate {
 
 // ─── المناسبات الإسلامية ──────────────────────────────────
 class IslamicEvent {
+  final String id;
   final String title;
   final int    hijriMonth;
   final int    hijriDay;
   final String type;
 
   const IslamicEvent({
+    required this.id,
     required this.title,
     required this.hijriMonth,
     required this.hijriDay,
@@ -66,10 +68,10 @@ class IslamicEvent {
 }
 
 const List<IslamicEvent> islamicEvents = [
-  IslamicEvent(title: 'رأس السنة الهجرية',     hijriMonth: 1,  hijriDay: 1,  type: 'blessed'),
+  IslamicEvent(id: 'new_year', title: 'رأس السنة الهجرية', hijriMonth: 1, hijriDay: 1, type: 'blessed'),
   IslamicEvent(title: 'يوم عاشوراء',           hijriMonth: 1,  hijriDay: 10, type: 'fast'),
   IslamicEvent(title: 'المولد النبوي',          hijriMonth: 3,  hijriDay: 12, type: 'blessed'),
-  IslamicEvent(title: 'ليلة الإسراء والمعراج', hijriMonth: 7,  hijriDay: 27, type: 'blessed'),
+  IslamicEvent(id: 'isra', title: 'ليلة الإسراء والمعراج', hijriMonth: 7, hijriDay: 27, type: 'blessed'),
   IslamicEvent(title: 'أول رمضان',             hijriMonth: 9,  hijriDay: 1,  type: 'eid'),
   IslamicEvent(title: 'ليلة القدر (27)',        hijriMonth: 9,  hijriDay: 27, type: 'blessed'),
   IslamicEvent(title: 'عيد الفطر',             hijriMonth: 10, hijriDay: 1,  type: 'eid'),

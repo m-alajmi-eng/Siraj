@@ -169,5 +169,41 @@
   "radio_translations": "تراجم",
   "radio_tafsir": "تفسير وفتاوى",
   "radio_athkar": "أذكار",
-  "radio_international": "إذاعات دولية"
+  "radio_international": "إذاعات دولية",
+  "cal_title": "التقويم الإسلامي",
+  "cal_todayEvents": "مناسبات اليوم",
+  "cal_nextEvent": "المناسبة القادمة",
+  "cal_allEvents": "المناسبات الإسلامية",
+  "cal_daysUntil": "{days} يوم",
+  "cal_gregorian": "ميلادي",
+  "cal_hijri": "هجري",
+  "hm_1": "محرم",
+  "hm_2": "صفر",
+  "hm_3": "ربيع الأول",
+  "hm_4": "ربيع الآخر",
+  "hm_5": "جمادى الأولى",
+  "hm_6": "جمادى الآخرة",
+  "hm_7": "رجب",
+  "hm_8": "شعبان",
+  "hm_9": "رمضان",
+  "hm_10": "شوال",
+  "hm_11": "ذو القعدة",
+  "hm_12": "ذو الحجة",
+  "ev_new_year": "رأس السنة الهجرية",
+  "ev_ashura": "يوم عاشوراء",
+  "ev_mawlid": "المولد النبوي",
+  "ev_isra": "ليلة الإسراء والمعراج",
+  "ev_ramadan_start": "أول رمضان",
+  "ev_laylat_qadr": "ليلة القدر",
+  "ev_eid_fitr": "عيد الفطر",
+  "ev_arafah": "يوم عرفة",
+  "ev_eid_adha": "عيد الأضحى",
+  "ev_tashreeq": "أيام التشريق",
+  "@cal_daysUntil": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  }
 }

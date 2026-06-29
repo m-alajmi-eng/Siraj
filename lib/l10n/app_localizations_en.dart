@@ -365,4 +365,93 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get radio_international => 'International';
+
+  @override
+  String get cal_title => 'Islamic Calendar';
+
+  @override
+  String get cal_todayEvents => 'Today\'s Events';
+
+  @override
+  String get cal_nextEvent => 'Next Event';
+
+  @override
+  String get cal_allEvents => 'Islamic Events';
+
+  @override
+  String cal_daysUntil(int days) {
+    return '$days days';
+  }
+
+  @override
+  String get cal_gregorian => 'Gregorian';
+
+  @override
+  String get cal_hijri => 'Hijri';
+
+  @override
+  String get hm_1 => 'Muharram';
+
+  @override
+  String get hm_2 => 'Safar';
+
+  @override
+  String get hm_3 => 'Rabi\' al-Awwal';
+
+  @override
+  String get hm_4 => 'Rabi\' al-Thani';
+
+  @override
+  String get hm_5 => 'Jumada al-Ula';
+
+  @override
+  String get hm_6 => 'Jumada al-Akhira';
+
+  @override
+  String get hm_7 => 'Rajab';
+
+  @override
+  String get hm_8 => 'Sha\'ban';
+
+  @override
+  String get hm_9 => 'Ramadan';
+
+  @override
+  String get hm_10 => 'Shawwal';
+
+  @override
+  String get hm_11 => 'Dhu al-Qi\'dah';
+
+  @override
+  String get hm_12 => 'Dhu al-Hijjah';
+
+  @override
+  String get ev_new_year => 'Islamic New Year';
+
+  @override
+  String get ev_ashura => 'Day of Ashura';
+
+  @override
+  String get ev_mawlid => 'Mawlid al-Nabi';
+
+  @override
+  String get ev_isra => 'Isra\' and Mi\'raj';
+
+  @override
+  String get ev_ramadan_start => 'First of Ramadan';
+
+  @override
+  String get ev_laylat_qadr => 'Laylat al-Qadr';
+
+  @override
+  String get ev_eid_fitr => 'Eid al-Fitr';
+
+  @override
+  String get ev_arafah => 'Day of Arafah';
+
+  @override
+  String get ev_eid_adha => 'Eid al-Adha';
+
+  @override
+  String get ev_tashreeq => 'Days of Tashreeq';
 }
