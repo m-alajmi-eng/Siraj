@@ -795,6 +795,48 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الإعدادات'**
   String get settings_title;
+
+  /// No description provided for @radio_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'إذاعات سراج'**
+  String get radio_title;
+
+  /// No description provided for @radio_all.
+  ///
+  /// In ar, this message translates to:
+  /// **'الكل'**
+  String get radio_all;
+
+  /// No description provided for @radio_quran.
+  ///
+  /// In ar, this message translates to:
+  /// **'قرآن'**
+  String get radio_quran;
+
+  /// No description provided for @radio_translations.
+  ///
+  /// In ar, this message translates to:
+  /// **'تراجم'**
+  String get radio_translations;
+
+  /// No description provided for @radio_tafsir.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفسير وفتاوى'**
+  String get radio_tafsir;
+
+  /// No description provided for @radio_athkar.
+  ///
+  /// In ar, this message translates to:
+  /// **'أذكار'**
+  String get radio_athkar;
+
+  /// No description provided for @radio_international.
+  ///
+  /// In ar, this message translates to:
+  /// **'إذاعات دولية'**
+  String get radio_international;
 }
 
 class _AppLocalizationsDelegate

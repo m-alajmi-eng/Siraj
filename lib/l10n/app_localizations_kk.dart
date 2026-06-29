@@ -344,4 +344,25 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get settings_title => 'الإعدادات';
+
+  @override
+  String get radio_title => 'إذاعات سراج';
+
+  @override
+  String get radio_all => 'الكل';
+
+  @override
+  String get radio_quran => 'قرآن';
+
+  @override
+  String get radio_translations => 'تراجم';
+
+  @override
+  String get radio_tafsir => 'تفسير وفتاوى';
+
+  @override
+  String get radio_athkar => 'أذكار';
+
+  @override
+  String get radio_international => 'إذاعات دولية';
 }

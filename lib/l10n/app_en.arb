@@ -162,5 +162,12 @@
   "home_calendar": "Calendar",
   "home_stories": "Stories",
   "home_children": "Kids",
-  "settings_title": "Settings"
+  "settings_title": "Settings",
+  "radio_title": "Siraj Radio",
+  "radio_all": "All",
+  "radio_quran": "Quran",
+  "radio_translations": "Translations",
+  "radio_tafsir": "Tafsir & Fatwa",
+  "radio_athkar": "Athkar",
+  "radio_international": "International"
 }

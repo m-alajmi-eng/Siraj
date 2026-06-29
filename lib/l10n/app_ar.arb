@@ -162,5 +162,12 @@
   "home_calendar": "التقويم",
   "home_stories": "القصص",
   "home_children": "الأطفال",
-  "settings_title": "الإعدادات"
+  "settings_title": "الإعدادات",
+  "radio_title": "إذاعات سراج",
+  "radio_all": "الكل",
+  "radio_quran": "قرآن",
+  "radio_translations": "تراجم",
+  "radio_tafsir": "تفسير وفتاوى",
+  "radio_athkar": "أذكار",
+  "radio_international": "إذاعات دولية"
 }

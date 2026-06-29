@@ -344,4 +344,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_title => 'Settings';
+
+  @override
+  String get radio_title => 'Siraj Radio';
+
+  @override
+  String get radio_all => 'All';
+
+  @override
+  String get radio_quran => 'Quran';
+
+  @override
+  String get radio_translations => 'Translations';
+
+  @override
+  String get radio_tafsir => 'Tafsir & Fatwa';
+
+  @override
+  String get radio_athkar => 'Athkar';
+
+  @override
+  String get radio_international => 'International';
 }
