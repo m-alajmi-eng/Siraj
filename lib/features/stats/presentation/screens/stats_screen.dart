@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../core/theme/design_tokens.dart';
+import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../providers/stats_provider.dart';
 
 class StatsScreen extends ConsumerWidget {
@@ -8,148 +12,116 @@ class StatsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t       = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
     final stats   = ref.watch(statsProvider);
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return AppScaffold(
+      title: t.stats_title,
+      showBack: false,
+      child: ListView(
+        children: [
+          _StatCard(
+            palette: palette,
+            icon: Icons.local_fire_department,
+            title: t.stats_prayerStreak,
+            value: '${stats.prayerStreak}',
+            unit: t.stats_daysStreak,
+            color: const Color(0xFFE8956D),
+          ),
+          const SizedBox(height: SirajSpacing.s3),
+          Row(
             children: [
-              Text(
-                'إحصائياتي',
-                style: TextStyle(
-                  color:      palette.textPrimary,
-                  fontSize:   28,
-                  fontWeight: FontWeight.w300,
+              Expanded(
+                child: _StatCard(
+                  palette: palette,
+                  icon: Icons.mosque_outlined,
+                  title: t.stats_totalPrayers,
+                  value: '${stats.totalPrayers}',
+                  unit: t.stats_prayersUnit,
+                  color: palette.accentPrimary,
                 ),
               ),
-              const SizedBox(height: 24),
-
-              // Streak
-              _StatCard(
-                palette: palette,
-                icon:    Icons.local_fire_department,
-                title:   'سلسلة الصلوات',
-                value:   '${stats.prayerStreak}',
-                unit:    'يوم متتالي',
-                color:   const Color(0xFFE8956D),
-              ),
-              const SizedBox(height: 12),
-
-              Row(
-                children: [
-                  Expanded(
-                    child: _StatCard(
-                      palette: palette,
-                      icon:    Icons.mosque_outlined,
-                      title:   'إجمالي الصلوات',
-                      value:   '${stats.totalPrayers}',
-                      unit:    'صلاة',
-                      color:   palette.accentPrimary,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _StatCard(
-                      palette: palette,
-                      icon:    Icons.menu_book_outlined,
-                      title:   'صفحات القرآن',
-                      value:   '${stats.quranPagesRead}',
-                      unit:    'صفحة',
-                      color:   palette.accentPrimary,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-
-              Row(
-                children: [
-                  Expanded(
-                    child: _StatCard(
-                      palette: palette,
-                      icon:    Icons.spa_outlined,
-                      title:   'الأذكار',
-                      value:   '${stats.athkarCompleted}',
-                      unit:    'جلسة',
-                      color:   palette.accentPrimary,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _StatCard(
-                      palette: palette,
-                      icon:    Icons.auto_stories_outlined,
-                      title:   'ختمات القرآن',
-                      value:   '${stats.quranKhatma}',
-                      unit:    'ختمة',
-                      color:   const Color(0xFFC49A38),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 24),
-
-              // تقدم الختمة
-              Container(
-                padding:     const EdgeInsets.all(20),
-                decoration:  BoxDecoration(
-                  color:        palette.surface,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      'تقدم الختمة الحالية',
-                      style: TextStyle(
-                        color:      palette.textPrimary,
-                        fontSize:   16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: LinearProgressIndicator(
-                        value: (stats.quranPagesRead % 604) / 604,
-                        backgroundColor: palette.background,
-                        valueColor: AlwaysStoppedAnimation(
-                          palette.accentPrimary),
-                        minHeight: 8,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '${stats.quranPagesRead % 604} / 604 صفحة',
-                      style: TextStyle(
-                        color:    palette.textSecondary,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
+              const SizedBox(width: SirajSpacing.s3),
+              Expanded(
+                child: _StatCard(
+                  palette: palette,
+                  icon: Icons.menu_book_outlined,
+                  title: t.stats_quranPages,
+                  value: '${stats.quranPagesRead}',
+                  unit: t.stats_pagesUnit,
+                  color: palette.accentPrimary,
                 ),
               ),
             ],
           ),
-        ),
+          const SizedBox(height: SirajSpacing.s3),
+          Row(
+            children: [
+              Expanded(
+                child: _StatCard(
+                  palette: palette,
+                  icon: Icons.spa_outlined,
+                  title: t.stats_athkar,
+                  value: '${stats.athkarCompleted}',
+                  unit: t.stats_sessionsUnit,
+                  color: palette.accentPrimary,
+                ),
+              ),
+              const SizedBox(width: SirajSpacing.s3),
+              Expanded(
+                child: _StatCard(
+                  palette: palette,
+                  icon: Icons.auto_stories_outlined,
+                  title: t.stats_khatma,
+                  value: '${stats.quranKhatma}',
+                  unit: t.stats_khatmaUnit,
+                  color: const Color(0xFFC49A38),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: SirajSpacing.s6),
+          Container(
+            padding: const EdgeInsets.all(SirajSpacing.s5),
+            decoration: BoxDecoration(
+              color: palette.surface,
+              borderRadius: BorderRadius.circular(SirajRadiusFull.lg),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(t.stats_currentKhatma, style: AppText.headline.copyWith(
+                  color: palette.textPrimary)),
+                const SizedBox(height: SirajSpacing.s3),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(SirajRadiusFull.xs),
+                  child: LinearProgressIndicator(
+                    value: (stats.quranPagesRead % 604) / 604,
+                    backgroundColor: palette.background,
+                    valueColor: AlwaysStoppedAnimation(palette.accentPrimary),
+                    minHeight: 8,
+                  ),
+                ),
+                const SizedBox(height: SirajSpacing.s2),
+                Text(t.stats_pagesOf(stats.quranPagesRead % 604, 604),
+                  style: AppText.bodySmall.copyWith(color: palette.textSecondary)),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
 class _StatCard extends StatelessWidget {
-  final dynamic  palette;
+  final dynamic palette;
   final IconData icon;
-  final String   title;
-  final String   value;
-  final String   unit;
-  final Color    color;
+  final String title;
+  final String value;
+  final String unit;
+  final Color color;
 
   const _StatCard({
     required this.palette,
@@ -163,39 +135,22 @@ class _StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:    const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(SirajSpacing.s4),
       decoration: BoxDecoration(
-        color:        palette.surface,
-        borderRadius: BorderRadius.circular(16),
+        color: palette.surface,
+        borderRadius: BorderRadius.circular(SirajRadiusFull.lg),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(icon, color: color, size: 24),
-          const SizedBox(height: 8),
-          Text(
-            value,
-            style: TextStyle(
-              color:      palette.textPrimary,
-              fontSize:   28,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-          Text(
-            unit,
-            style: TextStyle(
-              color:    palette.textSecondary,
-              fontSize: 12,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            title,
-            style: TextStyle(
-              color:    palette.textSecondary,
-              fontSize: 11,
-            ),
-          ),
+          const SizedBox(height: SirajSpacing.s2),
+          Text(value, style: AppText.displayMedium.copyWith(
+            color: palette.textPrimary)),
+          Text(unit, style: AppText.caption.copyWith(color: palette.textSecondary)),
+          const SizedBox(height: SirajSpacing.s1),
+          Text(title, style: AppText.caption.copyWith(
+            color: palette.textSecondary, fontSize: SirajSizes.sSm)),
         ],
       ),
     );

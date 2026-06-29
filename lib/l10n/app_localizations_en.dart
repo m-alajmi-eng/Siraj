@@ -636,4 +636,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get search_typeHadith => 'Hadith';
+
+  @override
+  String get stats_daysStreak => 'days in a row';
+
+  @override
+  String get stats_prayersUnit => 'prayers';
+
+  @override
+  String get stats_pagesUnit => 'pages';
+
+  @override
+  String get stats_athkar => 'Athkar';
+
+  @override
+  String get stats_sessionsUnit => 'sessions';
+
+  @override
+  String stats_pagesOf(int read, int total) {
+    return '$read / $total pages';
+  }
 }

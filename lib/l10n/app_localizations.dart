@@ -1365,6 +1365,42 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'حديث'**
   String get search_typeHadith;
+
+  /// No description provided for @stats_daysStreak.
+  ///
+  /// In ar, this message translates to:
+  /// **'يوم متتالي'**
+  String get stats_daysStreak;
+
+  /// No description provided for @stats_prayersUnit.
+  ///
+  /// In ar, this message translates to:
+  /// **'صلاة'**
+  String get stats_prayersUnit;
+
+  /// No description provided for @stats_pagesUnit.
+  ///
+  /// In ar, this message translates to:
+  /// **'صفحة'**
+  String get stats_pagesUnit;
+
+  /// No description provided for @stats_athkar.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأذكار'**
+  String get stats_athkar;
+
+  /// No description provided for @stats_sessionsUnit.
+  ///
+  /// In ar, this message translates to:
+  /// **'جلسة'**
+  String get stats_sessionsUnit;
+
+  /// No description provided for @stats_pagesOf.
+  ///
+  /// In ar, this message translates to:
+  /// **'{read} / {total} صفحة'**
+  String stats_pagesOf(int read, int total);
 }
 
 class _AppLocalizationsDelegate

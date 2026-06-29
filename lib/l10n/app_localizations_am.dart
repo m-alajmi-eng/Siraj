@@ -636,4 +636,24 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get search_typeHadith => 'حديث';
+
+  @override
+  String get stats_daysStreak => 'يوم متتالي';
+
+  @override
+  String get stats_prayersUnit => 'صلاة';
+
+  @override
+  String get stats_pagesUnit => 'صفحة';
+
+  @override
+  String get stats_athkar => 'الأذكار';
+
+  @override
+  String get stats_sessionsUnit => 'جلسة';
+
+  @override
+  String stats_pagesOf(int read, int total) {
+    return '$read / $total صفحة';
+  }
 }

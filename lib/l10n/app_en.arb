@@ -278,5 +278,21 @@
         "type": "String"
       }
     }
+  },
+  "stats_daysStreak": "days in a row",
+  "stats_prayersUnit": "prayers",
+  "stats_pagesUnit": "pages",
+  "stats_athkar": "Athkar",
+  "stats_sessionsUnit": "sessions",
+  "stats_pagesOf": "{read} / {total} pages",
+  "@stats_pagesOf": {
+    "placeholders": {
+      "read": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   }
 }

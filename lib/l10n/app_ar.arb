@@ -278,5 +278,21 @@
         "type": "String"
       }
     }
+  },
+  "stats_daysStreak": "يوم متتالي",
+  "stats_prayersUnit": "صلاة",
+  "stats_pagesUnit": "صفحة",
+  "stats_athkar": "الأذكار",
+  "stats_sessionsUnit": "جلسة",
+  "stats_pagesOf": "{read} / {total} صفحة",
+  "@stats_pagesOf": {
+    "placeholders": {
+      "read": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   }
 }
