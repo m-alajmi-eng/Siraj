@@ -10,20 +10,38 @@
   "prayer_maghrib": "মাগরিব",
   "prayer_isha": "এশা",
   "prayer_countdown": "{time} এর মধ্যে",
-  "@prayer_countdown": {"placeholders": {"time": {"type": "String"}}},
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "prayer_locationGPS": "আপনার বর্তমান অবস্থান",
   "prayer_locationDefault": "রিয়াদ (ডফল্ট)",
   "quran_title": "পবিত্র কুরআন",
   "quran_meccan": "মক",
   "quran_medinan": "মাদানী",
   "quran_ayahCount": "{count} আয়াত",
-  "@quran_ayahCount": {"placeholders": {"count": {"type": "int"}}},
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "quran_searchHint": "কুরআনে অনসন্ধান করুন...",
   "quran_noResults": "কোনো ফলাফল নেই",
   "quran_searchPrompt": "অনুসন্ধানের জন্য একটি শব্দ টাইপ করুন",
   "quran_tapForTafsir": "তাফসীরের জন্য আয়াতে দীর্ঘ চপ দিন",
   "quran_tafsirTitle": "{number} নম্বর আয়াতর তাফসীর",
-  "@quran_tafsirTitle": {"placeholders": {"number": {"type": "int"}}},
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "quran_tafsirSource": "আল-মুয়াস্সার",
   "quran_tafsirError": "তাফসীর লড করা যায়নি",
   "quran_reciter": "ক্বরী",
@@ -31,7 +49,13 @@
   "quran_searchReciter": "ক্রী অনুসন্ধান করুন...",
   "quran_playPrompt": "শুনতে স্পর্শ করুন",
   "quran_ayahNumber": "{number} নম্বর আয়াত",
-  "@quran_ayahNumber": {"placeholders": {"number": {"type": "int"}}},
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "athkar_title": "যিকর",
   "athkar_morning": "সকালের যিকর",
   "athkar_evening": "সন্ধ্যার যিকর",
@@ -42,13 +66,25 @@
   "athkar_tapToCount": "গণনার জন্য সর্শ করুন",
   "athkar_transitioning": "পরবর্তীতে যাচ্ছে...",
   "athkar_completed": "{name} সম্পন্ন",
-  "@athkar_completed": {"placeholders": {"name": {"type": "String"}}},
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "athkar_next": "পরবর্তী",
   "athkar_prev": "পূর্ববর্তী",
   "athkar_finish": "শেষ করুন",
   "athkar_back": "ফিরে যান",
   "athkar_source": "{source} কর্তৃক বর্ণিত",
-  "@athkar_source": {"placeholders": {"source": {"type": "String"}}},
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "hadith_title": "হাদীস শরীফ",
   "hadith_searchHint": "হাদীস অনুসন্ধান করুন...",
   "hadith_noResults": "কনো ফলাফল নেই",
@@ -86,5 +122,29 @@
   "common_done": "সম্পন্ন",
   "common_search": "অনুসন্ধান",
   "common_noData": "কোনো ডেটা নেই",
-  "common_offline": "ইন্টারনেট সংযোগ নেই"
-} 
+  "common_offline": "ইন্টারনেট সংযোগ নেই",
+  "nav_home": "হোম",
+  "nav_quran": "কুরআন",
+  "nav_athkar": "যকর",
+  "nav_hadith": "হাদিস",
+  "nav_more": "আরও",
+  "home_greetingNight": "বরকতময় রাত,",
+  "home_greetingFajr": "ফজরর শান্তি,",
+  "home_greetingMorning": "শুভ সকাল,",
+  "home_greetingNoon": "শভ দুপুর,",
+  "home_greetingAsr": "বরকতময় বিকেল,",
+  "home_greetingEvening": "শুভ সন্ধ,",
+  "home_greetingLateNight": "শান্তিময় রাত,",
+  "home_welcome": "স্বাগতম",
+  "home_nextPrayer": "পরবর্তী নামাজ",
+  "home_qiblaDirection": "কিবলর দিক",
+  "home_continueReading": "পড়া চালিয়ে যান",
+  "home_dailyAyah": "আজকের আয়াত",
+  "home_quickAccess": "দ্রুত অ্যাক্সেস",
+  "home_searchHint": "আপনি কী খুঁজছেন...",
+  "home_radio": "রেডিও",
+  "home_calendar": "ক্যালেন্ডার",
+  "home_stories": "গল্প",
+  "home_children": "শশুরা",
+  "settings_title": "সেটিংস"
+}

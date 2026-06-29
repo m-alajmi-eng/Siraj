@@ -122,5 +122,29 @@
         "type": "String"
       }
     }
-  }
+  },
+  "nav_home": "خانه",
+  "nav_quran": "قرآن",
+  "nav_athkar": "اذکار",
+  "nav_hadith": "حدیث",
+  "nav_more": "بیشتر",
+  "home_greetingNight": "شب مبارک،",
+  "home_greetingFajr": "سلام بر سپیده،",
+  "home_greetingMorning": "صبح بخیر،",
+  "home_greetingNoon": "ظهر بخیر،",
+  "home_greetingAsr": "عصر مبارک،",
+  "home_greetingEvening": "عصر بخیر،",
+  "home_greetingLateNight": "شب آرام،",
+  "home_welcome": "خوش آمدید",
+  "home_nextPrayer": "نماز بعدی",
+  "home_qiblaDirection": "جهت قبله",
+  "home_continueReading": "ادامه خواندن",
+  "home_dailyAyah": "آیه روز",
+  "home_quickAccess": "دسترسی سریع",
+  "home_searchHint": "دنبال چه می‌گردید...",
+  "home_radio": "رادیو",
+  "home_calendar": "تقویم",
+  "home_stories": "داستان‌ها",
+  "home_children": "کودکان",
+  "settings_title": "تنظیمات"
 }

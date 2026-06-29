@@ -10,20 +10,38 @@
   "prayer_maghrib": "Maghrib",
   "prayer_isha": "Isya",
   "prayer_countdown": "Dalam {time}",
-  "@prayer_countdown": {"placeholders": {"time": {"type": "String"}}},
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "prayer_locationGPS": "Lokasi Anda saat ini",
   "prayer_locationDefault": "Riyadh (default)",
   "quran_title": "Al-Qur'an Al-Karim",
   "quran_meccan": "Makkiyah",
   "quran_medinan": "Madaniyah",
   "quran_ayahCount": "{count} ayat",
-  "@quran_ayahCount": {"placeholders": {"count": {"type": "int"}}},
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "quran_searchHint": "Cari di Al-Qur'an...",
   "quran_noResults": "Tidak ada hasil",
   "quran_searchPrompt": "Ketik kata untuk mencari",
   "quran_tapForTafsir": "Tekan lama ayat untuk tafsir",
   "quran_tafsirTitle": "Tafsir Ayat {number}",
-  "@quran_tafsirTitle": {"placeholders": {"number": {"type": "int"}}},
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "quran_tafsirSource": "Al-Muyassar",
   "quran_tafsirError": "Gagal memuat tafsir",
   "quran_reciter": "Qari",
@@ -31,7 +49,13 @@
   "quran_searchReciter": "Cari qari...",
   "quran_playPrompt": "Ketuk untuk mendengarkan",
   "quran_ayahNumber": "Ayat {number}",
-  "@quran_ayahNumber": {"placeholders": {"number": {"type": "int"}}},
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "athkar_title": "Dzikir",
   "athkar_morning": "Dzikir Pagi",
   "athkar_evening": "Dzikir Sore",
@@ -42,13 +66,25 @@
   "athkar_tapToCount": "Ketuk untuk menghitung",
   "athkar_transitioning": "Beralih...",
   "athkar_completed": "{name} selesai",
-  "@athkar_completed": {"placeholders": {"name": {"type": "String"}}},
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "athkar_next": "Berikutnya",
   "athkar_prev": "Sebelumnya",
   "athkar_finish": "Selesai",
   "athkar_back": "Kembali",
   "athkar_source": "Diriwayatkan oleh {source}",
-  "@athkar_source": {"placeholders": {"source": {"type": "String"}}},
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "hadith_title": "Hadits",
   "hadith_searchHint": "Cari hadits...",
   "hadith_noResults": "Tidak ada hasil",
@@ -86,5 +122,29 @@
   "common_done": "Selesai",
   "common_search": "Cari",
   "common_noData": "Tidak ada data",
-  "common_offline": "Tidak ada koneksi internet"
+  "common_offline": "Tidak ada koneksi internet",
+  "nav_home": "Beranda",
+  "nav_quran": "Quran",
+  "nav_athkar": "Zikir",
+  "nav_hadith": "Hadis",
+  "nav_more": "Lainnya",
+  "home_greetingNight": "Malam yang berkah,",
+  "home_greetingFajr": "Damai di waktu fajar,",
+  "home_greetingMorning": "Selamat pagi,",
+  "home_greetingNoon": "Selamat siang,",
+  "home_greetingAsr": "Sore yang berkah,",
+  "home_greetingEvening": "Selamat sore,",
+  "home_greetingLateNight": "Malam yang tenang,",
+  "home_welcome": "Selamat datang",
+  "home_nextPrayer": "Shalat Berikutnya",
+  "home_qiblaDirection": "Arah Kiblat",
+  "home_continueReading": "LANJUTKAN MEMBACA",
+  "home_dailyAyah": "Ayat Hari Ini",
+  "home_quickAccess": "Akses Cepat",
+  "home_searchHint": "Apa yang Anda cari...",
+  "home_radio": "Radio",
+  "home_calendar": "Kalender",
+  "home_stories": "Kisah",
+  "home_children": "Anak-anak",
+  "settings_title": "Pengaturan"
 }

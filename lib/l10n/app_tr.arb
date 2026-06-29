@@ -10,20 +10,38 @@
   "prayer_maghrib": "Akşam",
   "prayer_isha": "Yatsı",
   "prayer_countdown": "{time} içinde",
-  "@prayer_countdown": {"placeholders": {"time": {"type": "String"}}},
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "prayer_locationGPS": "Mevcut konumunuz",
   "prayer_locationDefault": "Riyad (varsayılan)",
   "quran_title": "Kur'an-ı Kerim",
   "quran_meccan": "Mekki",
   "quran_medinan": "Medeni",
   "quran_ayahCount": "{count} ayet",
-  "@quran_ayahCount": {"placeholders": {"count": {"type": "int"}}},
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "quran_searchHint": "Kur'an'da ara...",
   "quran_noResults": "Sonuç bulunamadı",
   "quran_searchPrompt": "Aramak için kelime yazın",
   "quran_tapForTafsir": "Tefsir için ayete uzun basın",
   "quran_tafsirTitle": "{number}. Ayetin Tefsiri",
-  "@quran_tafsirTitle": {"placeholders": {"number": {"type": "int"}}},
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "quran_tafsirSource": "El-Müyesser",
   "quran_tafsirError": "Tefsir yüklenemedi",
   "quran_reciter": "Okuyucu",
@@ -31,7 +49,13 @@
   "quran_searchReciter": "Okuyucu ara...",
   "quran_playPrompt": "Dinlemek için dokun",
   "quran_ayahNumber": "{number}. Ayet",
-  "@quran_ayahNumber": {"placeholders": {"number": {"type": "int"}}},
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "athkar_title": "Zikirler",
   "athkar_morning": "Sabah Zikirleri",
   "athkar_evening": "Akşam Zikirleri",
@@ -42,13 +66,25 @@
   "athkar_tapToCount": "Saymak için dokun",
   "athkar_transitioning": "Geçiliyor...",
   "athkar_completed": "{name} tamamlandı",
-  "@athkar_completed": {"placeholders": {"name": {"type": "String"}}},
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "athkar_next": "Sonraki",
   "athkar_prev": "Önceki",
   "athkar_finish": "Bitir",
   "athkar_back": "Geri",
   "athkar_source": "{source} rivayet etti",
-  "@athkar_source": {"placeholders": {"source": {"type": "String"}}},
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "hadith_title": "Hadis-i Şerif",
   "hadith_searchHint": "Hadislerde ara...",
   "hadith_noResults": "Sonuç bulunamadı",
@@ -86,5 +122,29 @@
   "common_done": "Tamam",
   "common_search": "Ara",
   "common_noData": "Veri yok",
-  "common_offline": "İnternet bağlantısı yok"
+  "common_offline": "İnternet bağlantısı yok",
+  "nav_home": "Ana Sayfa",
+  "nav_quran": "Kuran",
+  "nav_athkar": "Zikirler",
+  "nav_hadith": "Hadis",
+  "nav_more": "Daha Fazla",
+  "home_greetingNight": "Mübarek gece,",
+  "home_greetingFajr": "Şafağa selam,",
+  "home_greetingMorning": "Günaydın,",
+  "home_greetingNoon": "İyi öğlenler,",
+  "home_greetingAsr": "Mübarek ikindi,",
+  "home_greetingEvening": "İyi akşamlar,",
+  "home_greetingLateNight": "Huzurlu gece,",
+  "home_welcome": "Hoş geldiniz",
+  "home_nextPrayer": "Sonraki Namaz",
+  "home_qiblaDirection": "Kıble Yönü",
+  "home_continueReading": "OKUMAYA DEVAM ET",
+  "home_dailyAyah": "Günün Ayeti",
+  "home_quickAccess": "Hızlı Erişim",
+  "home_searchHint": "Ne arıyorsunuz...",
+  "home_radio": "Radyo",
+  "home_calendar": "Takvim",
+  "home_stories": "Hikayeler",
+  "home_children": "Çocuklar",
+  "settings_title": "Ayarlar"
 }

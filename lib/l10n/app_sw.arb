@@ -122,5 +122,29 @@
         "type": "String"
       }
     }
-  }
+  },
+  "nav_home": "Nyumbani",
+  "nav_quran": "Quran",
+  "nav_athkar": "Adhkari",
+  "nav_hadith": "Hadithi",
+  "nav_more": "Zaidi",
+  "home_greetingNight": "Usiku mwema,",
+  "home_greetingFajr": "Amani ya alfajiri,",
+  "home_greetingMorning": "Habari za asubuhi,",
+  "home_greetingNoon": "Habari za mchana,",
+  "home_greetingAsr": "Alasiri njema,",
+  "home_greetingEvening": "Habari za jioni,",
+  "home_greetingLateNight": "Usiku wa amani,",
+  "home_welcome": "Karibu",
+  "home_nextPrayer": "Sala Inayofuata",
+  "home_qiblaDirection": "Mwelekeo wa Kibla",
+  "home_continueReading": "ENDELEA KUSOMA",
+  "home_dailyAyah": "Aya ya Leo",
+  "home_quickAccess": "Ufikiaji wa Haraka",
+  "home_searchHint": "Unatafuta nini...",
+  "home_radio": "Redio",
+  "home_calendar": "Kalenda",
+  "home_stories": "Hadithi",
+  "home_children": "Watoto",
+  "settings_title": "Mipangilio"
 }

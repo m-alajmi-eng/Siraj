@@ -10,20 +10,38 @@
   "prayer_maghrib": "مغرب",
   "prayer_isha": "عشاء",
   "prayer_countdown": "{time} میں",
-  "@prayer_countdown": {"placeholders": {"time": {"type": "String"}}},
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "prayer_locationGPS": "آپ کا موجودہ مقام",
   "prayer_locationDefault": "ریاض (پہلے سے طے شدہ)",
   "quran_title": "قرآن کریم",
   "quran_meccan": "مکی",
   "quran_medinan": "مدنی",
   "quran_ayahCount": "{count} آیات",
-  "@quran_ayahCount": {"placeholders": {"count": {"type": "int"}}},
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "quran_searchHint": "قرآن میں تلاش کریں...",
   "quran_noResults": "کوئی نتیجہ نہیں",
   "quran_searchPrompt": "تلاش کے لیے لفظ لکھیں",
   "quran_tapForTafsir": "تفسیر کے لیے آیت کو دیر تک دبائیں",
   "quran_tafsirTitle": "آیت {number} کی تفسیر",
-  "@quran_tafsirTitle": {"placeholders": {"number": {"type": "int"}}},
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "quran_tafsirSource": "المیسر",
   "quran_tafsirError": "تفسیر لوڈ نہیں ہو سکی",
   "quran_reciter": "قاری",
@@ -31,7 +49,13 @@
   "quran_searchReciter": "قاری تلاش کریں...",
   "quran_playPrompt": "سننے کے لیے دبائیں",
   "quran_ayahNumber": "آیت {number}",
-  "@quran_ayahNumber": {"placeholders": {"number": {"type": "int"}}},
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "athkar_title": "اذکار",
   "athkar_morning": "صبح کے اذکار",
   "athkar_evening": "شام کے اذکار",
@@ -42,13 +66,25 @@
   "athkar_tapToCount": "گنتی کے لیے دبائیں",
   "athkar_transitioning": "منتقل ہو رہا ہے...",
   "athkar_completed": "{name} مکمل",
-  "@athkar_completed": {"placeholders": {"name": {"type": "String"}}},
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "athkar_next": "اگلا",
   "athkar_prev": "پچھلا",
   "athkar_finish": "ختم کریں",
   "athkar_back": "واپس",
   "athkar_source": "{source} نے روایت کیا",
-  "@athkar_source": {"placeholders": {"source": {"type": "String"}}},
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "hadith_title": "حدیث شریف",
   "hadith_searchHint": "احادیث میں تلاش کریں...",
   "hadith_noResults": "کوئی نتیجہ نہیں",
@@ -86,5 +122,29 @@
   "common_done": "ہو گیا",
   "common_search": "تلاش",
   "common_noData": "کوئی ڈیٹا نہیں",
-  "common_offline": "انٹرنیٹ کنکشن نہیں"
+  "common_offline": "انٹرنیٹ کنکشن نہیں",
+  "nav_home": "ہوم",
+  "nav_quran": "قرآن",
+  "nav_athkar": "اذکار",
+  "nav_hadith": "حدیث",
+  "nav_more": "مزید",
+  "home_greetingNight": "مبارک رات،",
+  "home_greetingFajr": "فجر کی سلامتی،",
+  "home_greetingMorning": "صبح بخیر،",
+  "home_greetingNoon": "دوپہر بخیر،",
+  "home_greetingAsr": "مبارک سہ پہر،",
+  "home_greetingEvening": "شام بخیر،",
+  "home_greetingLateNight": "پرسکون رات،",
+  "home_welcome": "خوش آمدید",
+  "home_nextPrayer": "اگلی نماز",
+  "home_qiblaDirection": "قبلہ کی سمت",
+  "home_continueReading": "پڑھنا جاری رکھیں",
+  "home_dailyAyah": "آج کی آیت",
+  "home_quickAccess": "فوری رسائی",
+  "home_searchHint": "آپ کیا تلاش کر رہے ہیں...",
+  "home_radio": "ریڈیو",
+  "home_calendar": "کیلنڈر",
+  "home_stories": "کہانیاں",
+  "home_children": "بچے",
+  "settings_title": "ترتیبات"
 }

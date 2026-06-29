@@ -122,5 +122,29 @@
         "type": "String"
       }
     }
-  }
+  },
+  "nav_home": "主页",
+  "nav_quran": "古兰经",
+  "nav_athkar": "记主词",
+  "nav_hadith": "圣训",
+  "nav_more": "更多",
+  "home_greetingNight": "吉祥之夜，",
+  "home_greetingFajr": "黎明平安，",
+  "home_greetingMorning": "早上好，",
+  "home_greetingNoon": "下午好，",
+  "home_greetingAsr": "吉祥的午后，",
+  "home_greetingEvening": "晚上好，",
+  "home_greetingLateNight": "宁静之夜，",
+  "home_welcome": "欢迎",
+  "home_nextPrayer": "下一次礼拜",
+  "home_qiblaDirection": "朝向方位",
+  "home_continueReading": "继续阅读",
+  "home_dailyAyah": "每日经文",
+  "home_quickAccess": "快速访问",
+  "home_searchHint": "您在寻找什么...",
+  "home_radio": "广播",
+  "home_calendar": "日历",
+  "home_stories": "故事",
+  "home_children": "儿童",
+  "settings_title": "设置"
 }

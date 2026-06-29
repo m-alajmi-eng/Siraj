@@ -122,5 +122,29 @@
         "type": "String"
       }
     }
-  }
+  },
+  "nav_home": "Utama",
+  "nav_quran": "Quran",
+  "nav_athkar": "Zikir",
+  "nav_hadith": "Hadis",
+  "nav_more": "Lagi",
+  "home_greetingNight": "Malam yang berkat,",
+  "home_greetingFajr": "Damai di waktu subuh,",
+  "home_greetingMorning": "Selamat pagi,",
+  "home_greetingNoon": "Selamat tengah hari,",
+  "home_greetingAsr": "Petang yang berkat,",
+  "home_greetingEvening": "Selamat petang,",
+  "home_greetingLateNight": "Malam yang tenang,",
+  "home_welcome": "Selamat datang",
+  "home_nextPrayer": "Solat Seterusnya",
+  "home_qiblaDirection": "Arah Kiblat",
+  "home_continueReading": "TERUSKAN MEMBACA",
+  "home_dailyAyah": "Ayat Hari Ini",
+  "home_quickAccess": "Akses Pantas",
+  "home_searchHint": "Apa yang anda cari...",
+  "home_radio": "Radio",
+  "home_calendar": "Kalendar",
+  "home_stories": "Kisah",
+  "home_children": "Kanak-kanak",
+  "settings_title": "Tetapan"
 }

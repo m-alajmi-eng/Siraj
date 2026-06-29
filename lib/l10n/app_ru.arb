@@ -122,5 +122,29 @@
         "type": "String"
       }
     }
-  }
+  },
+  "nav_home": "Главная",
+  "nav_quran": "Коран",
+  "nav_athkar": "Азкары",
+  "nav_hadith": "Хадис",
+  "nav_more": "Ещё",
+  "home_greetingNight": "Благословенной ночи,",
+  "home_greetingFajr": "Мир на рассвете,",
+  "home_greetingMorning": "Доброе утро,",
+  "home_greetingNoon": "Добрый день,",
+  "home_greetingAsr": "Благословенного дня,",
+  "home_greetingEvening": "Добрый вечер,",
+  "home_greetingLateNight": "Спокойной ночи,",
+  "home_welcome": "Добро пожаловать",
+  "home_nextPrayer": "Следующая молитва",
+  "home_qiblaDirection": "Направление Киблы",
+  "home_continueReading": "ПРОДОЛЖИТЬ ЧТЕНИЕ",
+  "home_dailyAyah": "Аят дня",
+  "home_quickAccess": "Быстрый доступ",
+  "home_searchHint": "Что вы ищете...",
+  "home_radio": "Радио",
+  "home_calendar": "Календарь",
+  "home_stories": "Истории",
+  "home_children": "Дети",
+  "settings_title": "Настройки"
 }

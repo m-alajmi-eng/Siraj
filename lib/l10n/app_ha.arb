@@ -122,5 +122,29 @@
         "type": "String"
       }
     }
-  }
+  },
+  "nav_home": "Gida",
+  "nav_quran": "Alkur'ani",
+  "nav_athkar": "Azkar",
+  "nav_hadith": "Hadisi",
+  "nav_more": "Ƙari",
+  "home_greetingNight": "Dare mai albarka,",
+  "home_greetingFajr": "Salama da asuba,",
+  "home_greetingMorning": "Barka da safiya,",
+  "home_greetingNoon": "Barka da rana,",
+  "home_greetingAsr": "Yamma mai albarka,",
+  "home_greetingEvening": "Barka da yamma,",
+  "home_greetingLateNight": "Dare mai kwanciyar hankali,",
+  "home_welcome": "Barka da zuwa",
+  "home_nextPrayer": "Sallah Mai Zuwa",
+  "home_qiblaDirection": "Hanyar Alƙibla",
+  "home_continueReading": "CI GABA DA KARANTAWA",
+  "home_dailyAyah": "Ayar Yini",
+  "home_quickAccess": "Saurin Shiga",
+  "home_searchHint": "Me kake nema...",
+  "home_radio": "Rediyo",
+  "home_calendar": "Kalanda",
+  "home_stories": "Labarai",
+  "home_children": "Yara",
+  "settings_title": "Saituna"
 }

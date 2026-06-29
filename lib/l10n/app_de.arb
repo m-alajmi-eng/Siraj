@@ -122,5 +122,22 @@
         "type": "String"
       }
     }
-  }
+  },
+  "nav_home": "Start",
+  "nav_quran": "Koran",
+  "nav_athkar": "Athkar",
+  "nav_hadith": "Hadith",
+  "nav_more": "Mehr",
+  "home_greetingNight": "Gesegnete Nacht,",
+  "home_greetingFajr": "Friede über der Morgendämmerung,",
+  "home_greetingMorning": "Guten Morgen,",
+  "home_greetingNoon": "Guten Tag,",
+  "ome_dailyAyah": "Versículo del Día",
+  "home_quickAccess": "Acceso Rápido",
+  "home_searchHint": "Qué estás buscando...",
+  "home_radio": "Radio",
+  "home_calendar": "Calendario",
+  "home_stories": "Historias",
+  "home_children": "Niños",
+  "settings_title": "Ajustes"
 }

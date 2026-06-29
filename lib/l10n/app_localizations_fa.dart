@@ -264,52 +264,52 @@ class AppLocalizationsFa extends AppLocalizations {
   String get common_offline => 'اتصال به اینترنت وجود ندارد';
 
   @override
-  String get nav_home => 'الرئيسية';
+  String get nav_home => 'خانه';
 
   @override
-  String get nav_quran => 'القرآن';
+  String get nav_quran => 'قرآن';
 
   @override
-  String get nav_athkar => 'الأذكار';
+  String get nav_athkar => 'اذکار';
 
   @override
-  String get nav_hadith => 'الحديث';
+  String get nav_hadith => 'حدیث';
 
   @override
-  String get nav_more => 'المزيد';
+  String get nav_more => 'بیشتر';
 
   @override
-  String get home_greetingNight => 'ليلة مباركة،';
+  String get home_greetingNight => 'شب مبارک،';
 
   @override
-  String get home_greetingFajr => 'السلام على الفجر،';
+  String get home_greetingFajr => 'سلام بر سپیده،';
 
   @override
-  String get home_greetingMorning => 'صباح الخير،';
+  String get home_greetingMorning => 'صبح بخیر،';
 
   @override
-  String get home_greetingNoon => 'مساء النور،';
+  String get home_greetingNoon => 'ظهر بخیر،';
 
   @override
-  String get home_greetingAsr => 'عصر مبارك،';
+  String get home_greetingAsr => 'عصر مبارک،';
 
   @override
-  String get home_greetingEvening => 'مساء الخير،';
+  String get home_greetingEvening => 'عصر بخیر،';
 
   @override
-  String get home_greetingLateNight => 'ليلة هادئة،';
+  String get home_greetingLateNight => 'شب آرام،';
 
   @override
-  String get home_welcome => 'أهلاً وسهلاً';
+  String get home_welcome => 'خوش آمدید';
 
   @override
-  String get home_nextPrayer => 'الصلاة القادمة';
+  String get home_nextPrayer => 'نماز بعدی';
 
   @override
-  String get home_qiblaDirection => 'اتجاه القبلة';
+  String get home_qiblaDirection => 'جهت قبله';
 
   @override
-  String get home_continueReading => 'متابعة القراءة';
+  String get home_continueReading => 'ادامه خواندن';
 
   @override
   String home_surah(int id) {
@@ -322,26 +322,26 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
-  String get home_dailyAyah => 'آية اليوم';
+  String get home_dailyAyah => 'آیه روز';
 
   @override
-  String get home_quickAccess => 'وصول سريع';
+  String get home_quickAccess => 'دسترسی سریع';
 
   @override
-  String get home_searchHint => 'ما الذي تبحث عنه...';
+  String get home_searchHint => 'دنبال چه می‌گردید...';
 
   @override
-  String get home_radio => 'الراديو';
+  String get home_radio => 'رادیو';
 
   @override
-  String get home_calendar => 'التقويم';
+  String get home_calendar => 'تقویم';
 
   @override
-  String get home_stories => 'القصص';
+  String get home_stories => 'داستان‌ها';
 
   @override
-  String get home_children => 'الأطفال';
+  String get home_children => 'کودکان';
 
   @override
-  String get settings_title => 'الإعدادات';
+  String get settings_title => 'تنظیمات';
 }

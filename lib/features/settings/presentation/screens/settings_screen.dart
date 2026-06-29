@@ -56,6 +56,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     {'code': 'ms', 'name': 'Melayu',    'flag': '🇲🇾'},
     {'code': 'fa', 'name': 'فارسی',     'flag': '🇮🇷'},
     {'code': 'ru', 'name': 'Русский',   'flag': '🇷🇺'},
+    {'code': 'de', 'name': 'Deutsch', 'flag': '🇩🇪'},
+    {'code': 'es', 'name': 'Español', 'flag': '🇪🇸'},
+    {'code': 'ha', 'name': 'Hausa', 'flag': '🇳🇬'},
+    {'code': 'sw', 'name': 'Kiswahili', 'flag': '🇰🇪'},
+    {'code': 'zh', 'name': '中文', 'flag': '🇨'},
   ];
 
   @override

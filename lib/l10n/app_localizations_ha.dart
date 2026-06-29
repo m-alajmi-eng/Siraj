@@ -264,52 +264,52 @@ class AppLocalizationsHa extends AppLocalizations {
   String get common_offline => 'Babu haɗin intanet';
 
   @override
-  String get nav_home => 'الرئيسية';
+  String get nav_home => 'Gida';
 
   @override
-  String get nav_quran => 'القرآن';
+  String get nav_quran => 'Alkur\'ani';
 
   @override
-  String get nav_athkar => 'الأذكار';
+  String get nav_athkar => 'Azkar';
 
   @override
-  String get nav_hadith => 'الحديث';
+  String get nav_hadith => 'Hadisi';
 
   @override
-  String get nav_more => 'المزيد';
+  String get nav_more => 'Ƙari';
 
   @override
-  String get home_greetingNight => 'ليلة مباركة،';
+  String get home_greetingNight => 'Dare mai albarka,';
 
   @override
-  String get home_greetingFajr => 'السلام على الفجر،';
+  String get home_greetingFajr => 'Salama da asuba,';
 
   @override
-  String get home_greetingMorning => 'صباح الخير،';
+  String get home_greetingMorning => 'Barka da safiya,';
 
   @override
-  String get home_greetingNoon => 'مساء النور،';
+  String get home_greetingNoon => 'Barka da rana,';
 
   @override
-  String get home_greetingAsr => 'عصر مبارك،';
+  String get home_greetingAsr => 'Yamma mai albarka,';
 
   @override
-  String get home_greetingEvening => 'مساء الخير،';
+  String get home_greetingEvening => 'Barka da yamma,';
 
   @override
-  String get home_greetingLateNight => 'ليلة هادئة،';
+  String get home_greetingLateNight => 'Dare mai kwanciyar hankali,';
 
   @override
-  String get home_welcome => 'أهلاً وسهلاً';
+  String get home_welcome => 'Barka da zuwa';
 
   @override
-  String get home_nextPrayer => 'الصلاة القادمة';
+  String get home_nextPrayer => 'Sallah Mai Zuwa';
 
   @override
-  String get home_qiblaDirection => 'اتجاه القبلة';
+  String get home_qiblaDirection => 'Hanyar Alƙibla';
 
   @override
-  String get home_continueReading => 'متابعة القراءة';
+  String get home_continueReading => 'CI GABA DA KARANTAWA';
 
   @override
   String home_surah(int id) {
@@ -322,26 +322,26 @@ class AppLocalizationsHa extends AppLocalizations {
   }
 
   @override
-  String get home_dailyAyah => 'آية اليوم';
+  String get home_dailyAyah => 'Ayar Yini';
 
   @override
-  String get home_quickAccess => 'وصول سريع';
+  String get home_quickAccess => 'Saurin Shiga';
 
   @override
-  String get home_searchHint => 'ما الذي تبحث عنه...';
+  String get home_searchHint => 'Me kake nema...';
 
   @override
-  String get home_radio => 'الراديو';
+  String get home_radio => 'Rediyo';
 
   @override
-  String get home_calendar => 'التقويم';
+  String get home_calendar => 'Kalanda';
 
   @override
-  String get home_stories => 'القصص';
+  String get home_stories => 'Labarai';
 
   @override
-  String get home_children => 'الأطفال';
+  String get home_children => 'Yara';
 
   @override
-  String get settings_title => 'الإعدادات';
+  String get settings_title => 'Saituna';
 }

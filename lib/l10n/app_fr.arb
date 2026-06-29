@@ -10,20 +10,38 @@
   "prayer_maghrib": "Maghrib",
   "prayer_isha": "Isha",
   "prayer_countdown": "Dans {time}",
-  "@prayer_countdown": {"placeholders": {"time": {"type": "String"}}},
+  "@prayer_countdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "prayer_locationGPS": "Votre position actuelle",
   "prayer_locationDefault": "Riyad (par défaut)",
   "quran_title": "Le Saint Coran",
   "quran_meccan": "Mecquoise",
   "quran_medinan": "Médinoise",
   "quran_ayahCount": "{count} versets",
-  "@quran_ayahCount": {"placeholders": {"count": {"type": "int"}}},
+  "@quran_ayahCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "quran_searchHint": "Rechercher dans le Coran...",
   "quran_noResults": "Aucun résultat",
   "quran_searchPrompt": "Tapez un mot pour rechercher",
   "quran_tapForTafsir": "Appui long sur un verset pour le tafsir",
   "quran_tafsirTitle": "Tafsir du Verset {number}",
-  "@quran_tafsirTitle": {"placeholders": {"number": {"type": "int"}}},
+  "@quran_tafsirTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "quran_tafsirSource": "Al-Muyassar",
   "quran_tafsirError": "Impossible de charger le tafsir",
   "quran_reciter": "Récitant",
@@ -31,7 +49,13 @@
   "quran_searchReciter": "Rechercher un récitant...",
   "quran_playPrompt": "Appuyer pour écouter",
   "quran_ayahNumber": "Verset {number}",
-  "@quran_ayahNumber": {"placeholders": {"number": {"type": "int"}}},
+  "@quran_ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "athkar_title": "Athkar",
   "athkar_morning": "Athkar du Matin",
   "athkar_evening": "Athkar du Soir",
@@ -42,13 +66,25 @@
   "athkar_tapToCount": "Appuyer pour compter",
   "athkar_transitioning": "Transition...",
   "athkar_completed": "{name} terminé",
-  "@athkar_completed": {"placeholders": {"name": {"type": "String"}}},
+  "@athkar_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "athkar_next": "Suivant",
   "athkar_prev": "Précédent",
   "athkar_finish": "Terminer",
   "athkar_back": "Retour",
   "athkar_source": "Rapporté par {source}",
-  "@athkar_source": {"placeholders": {"source": {"type": "String"}}},
+  "@athkar_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
   "hadith_title": "Hadith",
   "hadith_searchHint": "Rechercher des hadiths...",
   "hadith_noResults": "Aucun résultat",
@@ -86,5 +122,29 @@
   "common_done": "Terminé",
   "common_search": "Rechercher",
   "common_noData": "Aucune donnée",
-  "common_offline": "Pas de connexion internet"
+  "common_offline": "Pas de connexion internet",
+  "nav_home": "Accueil",
+  "nav_quran": "Coran",
+  "nav_athkar": "Athkar",
+  "nav_hadith": "Hadith",
+  "nav_more": "Plus",
+  "home_greetingNight": "Nuit bénie,",
+  "home_greetingFajr": "Paix sur l'aube,",
+  "home_greetingMorning": "Bonjour,",
+  "home_greetingNoon": "Bon après-midi,",
+  "home_greetingAsr": "Après-midi béni,",
+  "home_greetingEvening": "Bonsoir,",
+  "home_greetingLateNight": "Nuit paisible,",
+  "home_welcome": "Bienvenue",
+  "home_nextPrayer": "Prochaine Prière",
+  "home_qiblaDirection": "Direction de la Qibla",
+  "home_continueReading": "CONTINUER LA LECTURE",
+  "home_dailyAyah": "Verset du Jour",
+  "home_quickAccess": "Accès Rapide",
+  "home_searchHint": "Que cherchez-vous...",
+  "home_radio": "Radio",
+  "home_calendar": "Calendrier",
+  "home_stories": "Histoires",
+  "home_children": "Enfants",
+  "settings_title": "Paramètres"
 }
