@@ -262,4 +262,86 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get common_offline => 'İnternet bağlantısı yok';
+
+  @override
+  String get nav_home => 'الرئيسية';
+
+  @override
+  String get nav_quran => 'القرآن';
+
+  @override
+  String get nav_athkar => 'الأذكار';
+
+  @override
+  String get nav_hadith => 'الحديث';
+
+  @override
+  String get nav_more => 'المزيد';
+
+  @override
+  String get home_greetingNight => 'ليلة مباركة،';
+
+  @override
+  String get home_greetingFajr => 'السلام على الفجر،';
+
+  @override
+  String get home_greetingMorning => 'صباح الخير،';
+
+  @override
+  String get home_greetingNoon => 'مساء النور،';
+
+  @override
+  String get home_greetingAsr => 'عصر مبارك،';
+
+  @override
+  String get home_greetingEvening => 'مساء الخير،';
+
+  @override
+  String get home_greetingLateNight => 'ليلة هادئة،';
+
+  @override
+  String get home_welcome => 'أهلاً وسهلاً';
+
+  @override
+  String get home_nextPrayer => 'الصلاة القادمة';
+
+  @override
+  String get home_qiblaDirection => 'اتجاه القبلة';
+
+  @override
+  String get home_continueReading => 'متابعة القراءة';
+
+  @override
+  String home_surah(int id) {
+    return 'سورة #$id';
+  }
+
+  @override
+  String home_ayah(int number) {
+    return 'آية $number';
+  }
+
+  @override
+  String get home_dailyAyah => 'آية اليوم';
+
+  @override
+  String get home_quickAccess => 'وصول سريع';
+
+  @override
+  String get home_searchHint => 'ما الذي تبحث عنه...';
+
+  @override
+  String get home_radio => 'الراديو';
+
+  @override
+  String get home_calendar => 'التقويم';
+
+  @override
+  String get home_stories => 'القصص';
+
+  @override
+  String get home_children => 'الأطفال';
+
+  @override
+  String get settings_title => 'الإعدادات';
 }

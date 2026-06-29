@@ -1,4 +1,5 @@
 import 'dart:io';
+import '../../../../core/locale/locale_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -146,6 +147,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                           (l) => '${l['flag']} ${l['name']}' == val);
                         setState(() => _locale = l['code']!);
                         _save('locale', l['code']);
+    ref.read(localeProvider.notifier).setLocale(l['code']!);
                       },
                     ),
                   ),

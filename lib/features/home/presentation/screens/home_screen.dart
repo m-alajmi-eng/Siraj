@@ -1,51 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/storage/cache_service.dart';
 import '../../../prayer/presentation/providers/prayer_provider.dart';
-import '../../../calendar/presentation/providers/calendar_provider.dart';
 import '../../../calendar/presentation/providers/calendar_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
-  String _greet(int h) {
-    if (h < 5)  return 'ليلة مباركة،';
-    if (h < 7)  return 'السلام على الفجر،';
-    if (h < 12) return 'صباح الخير،';
-    if (h < 15) return 'مساء النور،';
-    if (h < 18) return 'عصر مبارك،';
-    if (h < 20) return 'مساء الخير،';
-    return 'ليلة هادئة،';
-  }
-
-  String _monthName(int m) {
-    const months = ['','محرم','صفر','ربيع الأول','ربيع الثاني',
-      'جمادى الأولى','جمادى الآخرة','رجب','شعبان',
-      'رمضان','شوال','ذو القعدة','ذو الحجة'];
-    return months[m];
+  String _greet(AppLocalizations t, int h) {
+    if (h < 5)  return t.home_greetingNight;
+    if (h < 7)  return t.home_greetingFajr;
+    if (h < 12) return t.home_greetingMorning;
+    if (h < 15) return t.home_greetingNoon;
+    if (h < 18) return t.home_greetingAsr;
+    if (h < 20) return t.home_greetingEvening;
+    return t.home_greetingLateNight;
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t           = AppLocalizations.of(context);
     final prayerAsync = ref.watch(prayerTimesProvider);
     final hijriDate   = ref.watch(hijriTodayProvider);
-    final nextEvent   = ref.watch(nextEventProvider);
     final lastSurahId = CacheService.getSetting('last_surah_id') as int?;
     final lastAyahNum = CacheService.getSetting('last_ayah_number') as int?;
     final now         = DateTime.now();
     final h           = now.hour;
     final skyColors   = SirajSky.gradientColors(SirajSky.fromHour(h));
-    final hijriStr    = '${hijriDate.day} ${_monthName(hijriDate.month)} ${hijriDate.year}هـ';
+    final hijriStr    = '${hijriDate.day} / ${hijriDate.month} / ${hijriDate.year}';
 
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
+    return Scaffold(
       backgroundColor: SirajCanvas.base,
       body: Stack(
         children: [
-          // Sky
           Positioned.fill(
             child: DecoratedBox(
               decoration: BoxDecoration(
@@ -57,22 +47,16 @@ class HomeScreen extends ConsumerWidget {
               ),
             ),
           ),
-
-          // Content
           SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const SizedBox(height: 8),
-                  _Header(),
+                  const _Header(),
                   const SizedBox(height: 20),
-                  _Greeting(
-                    greeting:  _greet(h),
-                    hijriDate: hijriStr,
-                  ),
+                  _Greeting(greeting: _greet(t, h), hijriDate: hijriStr),
                   const SizedBox(height: 20),
                   prayerAsync.when(
                     loading: () => const _Skeleton(height: 180),
@@ -90,16 +74,14 @@ class HomeScreen extends ConsumerWidget {
                   ],
                   const _DailyAyah(),
                   const SizedBox(height: 20),
-                  const _SectionLabel(label: 'وصول سريع'),
+                  _SectionLabel(label: t.home_quickAccess),
                   const SizedBox(height: 12),
-                  _QuickActions(),
+                  const _QuickActions(),
                   const SizedBox(height: 100),
                 ],
               ),
             ),
           ),
-
-          // Floating Search
           Positioned(
             bottom: 16, left: 20, right: 20,
             child: _FloatingSearch(
@@ -107,14 +89,10 @@ class HomeScreen extends ConsumerWidget {
           ),
         ],
       ),
-    ),
     );
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// Glass
-// ═══════════════════════════════════════════════════════════
 class _Glass extends StatelessWidget {
   final Widget child;
   final double radius;
@@ -140,9 +118,6 @@ class _Glass extends StatelessWidget {
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// Section Label
-// ═══════════════════════════════════════════════════════════
 class _SectionLabel extends StatelessWidget {
   final String label;
   const _SectionLabel({required this.label});
@@ -168,9 +143,6 @@ class _SectionLabel extends StatelessWidget {
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// Skeleton
-// ═══════════════════════════════════════════════════════════
 class _Skeleton extends StatelessWidget {
   final double height;
   const _Skeleton({required this.height});
@@ -184,17 +156,45 @@ class _Skeleton extends StatelessWidget {
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// Header
-// ═══════════════════════════════════════════════════════════
 class _Header extends StatelessWidget {
+  const _Header();
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        Stack(
+          children: [
+            Container(
+              width: 40, height: 40,
+              decoration: BoxDecoration(
+                color:  Colors.white.withOpacity(0.07),
+                shape:  BoxShape.circle,
+                border: Border.all(color: Colors.white.withOpacity(0.09)),
+              ),
+              child: Icon(Icons.notifications_none_rounded,
+                color: Colors.white.withOpacity(0.60), size: 16),
+            ),
+            PositionedDirectional(
+              top: 9, start: 9,
+              child: Container(
+                width: 6, height: 6,
+                decoration: BoxDecoration(
+                  color:  SirajGold.pure,
+                  shape:  BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color:      SirajGold.pure.withOpacity(0.6),
+                      blurRadius: 5),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             const Text('SIRAJ',
               style: TextStyle(
@@ -211,43 +211,11 @@ class _Header extends StatelessWidget {
               )),
           ],
         ),
-        Stack(
-          children: [
-            Container(
-              width: 40, height: 40,
-              decoration: BoxDecoration(
-                color:  Colors.white.withOpacity(0.07),
-                shape:  BoxShape.circle,
-                border: Border.all(color: Colors.white.withOpacity(0.09)),
-              ),
-              child: Icon(Icons.notifications_none_rounded,
-                color: Colors.white.withOpacity(0.60), size: 16),
-            ),
-            Positioned(
-              top: 9, right: 9,
-              child: Container(
-                width: 6, height: 6,
-                decoration: BoxDecoration(
-                  color:  SirajGold.pure,
-                  shape:  BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color:      SirajGold.pure.withOpacity(0.6),
-                      blurRadius: 5),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
       ],
     );
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// Greeting
-// ═══════════════════════════════════════════════════════════
 class _Greeting extends StatelessWidget {
   final String greeting;
   final String hijriDate;
@@ -255,17 +223,18 @@ class _Greeting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(greeting,
           style: TextStyle(
-            color:   Colors.white.withOpacity(0.38),
+            color: Colors.white.withOpacity(0.38),
             fontSize: 13,
           )),
         const SizedBox(height: 2),
-        const Text('أهلاً وسهلاً',
-          style: TextStyle(
+        Text(t.home_welcome,
+          style: const TextStyle(
             color:      Colors.white,
             fontWeight: FontWeight.w500,
             fontStyle:  FontStyle.italic,
@@ -282,7 +251,6 @@ class _Greeting extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             Text(hijriDate,
-              textDirection: TextDirection.rtl,
               style: TextStyle(
                 color:    Colors.white.withOpacity(0.40),
                 fontSize: 12,
@@ -294,33 +262,27 @@ class _Greeting extends StatelessWidget {
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// Next Prayer Card
-// ═══════════════════════════════════════════════════════════
 class _NextPrayerCard extends StatelessWidget {
   final dynamic times;
   const _NextPrayerCard({required this.times});
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    final tm = times.nextPrayerTime;
+    final timeStr = tm.hour.toString().padLeft(2, '0') +
+        ':' + tm.minute.toString().padLeft(2, '0');
+
     return _Glass(
       radius: 26, alpha: 0.09,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const _SectionLabel(label: 'الصلاة القادمة'),
+            _SectionLabel(label: t.home_nextPrayer),
             const SizedBox(height: 16),
-            Text(times.nextPrayerName ?? '',
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                color:    Colors.white.withOpacity(0.45),
-                fontSize: 13,
-              )),
-            const SizedBox(height: 4),
             Text(times.nextPrayerNameAr ?? '',
-              textAlign: TextAlign.right,
               style: const TextStyle(
                 color:      Colors.white,
                 fontWeight: FontWeight.w600,
@@ -328,8 +290,7 @@ class _NextPrayerCard extends StatelessWidget {
                 height:     1.1,
               )),
             const SizedBox(height: 4),
-            Text(times.nextPrayerTimeStr,
-              textAlign: TextAlign.right,
+            Text(timeStr,
               style: TextStyle(
                 color:      Colors.white.withOpacity(0.75),
                 fontSize:   17,
@@ -346,16 +307,18 @@ class _NextPrayerCard extends StatelessWidget {
             const SizedBox(height: 16),
             GestureDetector(
               onTap: () => context.push('/more/qibla'),
-              child: Row(children: [
-                Icon(Icons.explore_outlined,
-                  color: SirajGold.vivid.withOpacity(0.72), size: 12),
-                const SizedBox(width: 4),
-                Text('اتجاه القبلة',
-                  style: TextStyle(
-                    color:    SirajGold.vivid.withOpacity(0.72),
-                    fontSize: 11,
-                  )),
-              ]),
+              child: Row(
+                children: [
+                  Icon(Icons.explore_outlined,
+                    color: SirajGold.vivid.withOpacity(0.72), size: 12),
+                  const SizedBox(width: 4),
+                  Text(t.home_qiblaDirection,
+                    style: TextStyle(
+                      color:    SirajGold.vivid.withOpacity(0.72),
+                      fontSize: 11,
+                    )),
+                ],
+              ),
             ),
           ],
         ),
@@ -364,9 +327,6 @@ class _NextPrayerCard extends StatelessWidget {
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// Continue Reading
-// ═══════════════════════════════════════════════════════════
 class _ContinueReading extends StatelessWidget {
   final int surahId;
   final int ayahNumber;
@@ -379,6 +339,7 @@ class _ContinueReading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     return GestureDetector(
       onTap: onTap,
       child: _Glass(
@@ -402,20 +363,20 @@ class _ContinueReading extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('CONTINUE READING',
+                    Text(t.home_continueReading,
                       style: TextStyle(
                         color:         Colors.white.withOpacity(0.22),
                         fontSize:      9,
                         letterSpacing: 2.8,
                       )),
                     const SizedBox(height: 3),
-                    Text('سورة #$surahId',
+                    Text(t.home_surah(surahId),
                       style: const TextStyle(
                         color:    Colors.white,
                         fontSize: 15,
                       )),
                     const SizedBox(height: 2),
-                    Text('آية $ayahNumber',
+                    Text(t.home_ayah(ayahNumber),
                       style: TextStyle(
                         color:    Colors.white.withOpacity(0.32),
                         fontSize: 11,
@@ -423,7 +384,7 @@ class _ContinueReading extends StatelessWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right, color: Colors.white38, size: 18),
+              Icon(Icons.chevron_left, color: Colors.white38, size: 18),
             ],
           ),
         ),
@@ -432,22 +393,20 @@ class _ContinueReading extends StatelessWidget {
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// Daily Ayah
-// ═══════════════════════════════════════════════════════════
 class _DailyAyah extends StatelessWidget {
   const _DailyAyah();
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     const ayahs = [
-      ('أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ القُلُوبُ',
+      ('أَلَا بِذِكْرِ اللَّهِ تَطمَئِنُّ القُلُوب',
        'Verily, in the remembrance of Allah do hearts find rest.',
        'الرعد ١٣:٢٨'),
       ('إِنَّ مَعَ العُسْرِ يُسْرًا',
        'Indeed, with hardship comes ease.',
        'الشرح ٩٤:٦'),
-      ('وَمن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا',
+      ('وَمَن يَتقِ اللَّهَ يَجْعَل لَّهُ مخْرَجًا',
        'And whoever fears Allah, He will make for him a way out.',
        'الطلاق ٦٥:٢'),
     ];
@@ -459,7 +418,7 @@ class _DailyAyah extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            const _SectionLabel(label: 'آية اليوم'),
+            _SectionLabel(label: t.home_dailyAyah),
             const SizedBox(height: 16),
             Text(ayah.$1,
               textAlign:     TextAlign.center,
@@ -503,21 +462,21 @@ class _DailyAyah extends StatelessWidget {
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// Quick Actions
-// ═══════════════════════════════════════════════════════════
 class _QuickActions extends StatelessWidget {
+  const _QuickActions();
+
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     final actions = [
-      (Icons.menu_book_rounded,    'القرآن',        '/quran',                   false),
-      (Icons.self_improvement,     'الأذكار',       '/athkar',                  false),
-      (Icons.format_quote_rounded, 'الحديث',        '/hadith',                  false),
-      (Icons.explore_outlined,     'القبلة',        '/more/qibla',              true),
-      (Icons.radio,                'الراديو',       '/more/radio',              true),
-      (Icons.calendar_month,       'التقويم',       '/more/calendar',           true),
-      (Icons.auto_stories,         'القصص',         '/more/stories',            true),
-      (Icons.child_care,           'الأطفال',       '/more/children_stories',   true),
+      (Icons.menu_book_rounded,    t.nav_quran,      '/quran',                 false),
+      (Icons.self_improvement,     t.nav_athkar,     '/athkar',                false),
+      (Icons.format_quote_rounded, t.nav_hadith,     '/hadith',                false),
+      (Icons.explore_outlined,     t.home_qiblaDirection, '/more/qibla',       true),
+      (Icons.radio,                t.home_radio,     '/more/radio',            true),
+      (Icons.calendar_month,       t.home_calendar,  '/more/calendar',         true),
+      (Icons.auto_stories,         t.home_stories,   '/more/stories',          true),
+      (Icons.child_care,           t.home_children,  '/more/children_stories', true),
     ];
 
     return GridView.builder(
@@ -533,9 +492,7 @@ class _QuickActions extends StatelessWidget {
       itemBuilder: (_, i) {
         final (icon, label, route, isPush) = actions[i];
         return GestureDetector(
-          onTap: () => isPush
-              ? context.push(route)
-              : context.go(route),
+          onTap: () => isPush ? context.push(route) : context.go(route),
           child: _Glass(
             radius: 16,
             child: Padding(
@@ -571,15 +528,13 @@ class _QuickActions extends StatelessWidget {
   }
 }
 
-// ═══════════════════════════════════════════════════════════
-// Floating Search
-// ═══════════════════════════════════════════════════════════
 class _FloatingSearch extends StatelessWidget {
   final VoidCallback onTap;
   const _FloatingSearch({required this.onTap});
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -601,26 +556,12 @@ class _FloatingSearch extends StatelessWidget {
               color: Colors.white.withOpacity(0.30), size: 14),
             const SizedBox(width: 12),
             Expanded(
-              child: Text('ما الذي تبحث عنه...',
+              child: Text(t.home_searchHint,
                 style: TextStyle(
                   color:    Colors.white.withOpacity(0.22),
                   fontSize: 13,
                 )),
             ),
-            Row(children: [
-              Container(
-                width: 3, height: 3,
-                decoration: const BoxDecoration(
-                  color: SirajGold.muted, shape: BoxShape.circle),
-              ),
-              const SizedBox(width: 6),
-              Text('بحث',
-                style: TextStyle(
-                  color:         Colors.white.withOpacity(0.16),
-                  fontSize:      10,
-                  letterSpacing: 0.8,
-                )),
-            ]),
           ],
         ),
       ),

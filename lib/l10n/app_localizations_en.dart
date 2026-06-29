@@ -262,4 +262,86 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get common_offline => 'No internet connection';
+
+  @override
+  String get nav_home => 'Home';
+
+  @override
+  String get nav_quran => 'Quran';
+
+  @override
+  String get nav_athkar => 'Athkar';
+
+  @override
+  String get nav_hadith => 'Hadith';
+
+  @override
+  String get nav_more => 'More';
+
+  @override
+  String get home_greetingNight => 'Blessed night,';
+
+  @override
+  String get home_greetingFajr => 'Peace upon the dawn,';
+
+  @override
+  String get home_greetingMorning => 'Good morning,';
+
+  @override
+  String get home_greetingNoon => 'Good afternoon,';
+
+  @override
+  String get home_greetingAsr => 'Blessed afternoon,';
+
+  @override
+  String get home_greetingEvening => 'Good evening,';
+
+  @override
+  String get home_greetingLateNight => 'Peaceful night,';
+
+  @override
+  String get home_welcome => 'Welcome';
+
+  @override
+  String get home_nextPrayer => 'Next Prayer';
+
+  @override
+  String get home_qiblaDirection => 'Qibla Direction';
+
+  @override
+  String get home_continueReading => 'CONTINUE READING';
+
+  @override
+  String home_surah(int id) {
+    return 'Surah #$id';
+  }
+
+  @override
+  String home_ayah(int number) {
+    return 'Verse $number';
+  }
+
+  @override
+  String get home_dailyAyah => 'Verse of the Day';
+
+  @override
+  String get home_quickAccess => 'Quick Access';
+
+  @override
+  String get home_searchHint => 'What are you looking for...';
+
+  @override
+  String get home_radio => 'Radio';
+
+  @override
+  String get home_calendar => 'Calendar';
+
+  @override
+  String get home_stories => 'Stories';
+
+  @override
+  String get home_children => 'Kids';
+
+  @override
+  String get settings_title => 'Settings';
 }

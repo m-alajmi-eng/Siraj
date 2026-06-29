@@ -73,8 +73,9 @@ class QuranHomeScreen extends ConsumerWidget {
                                       surah.nameArabic,
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
-                                        color:    palette.textPrimary,
-                                        fontSize: 18,
+                                        color:      palette.textPrimary,
+                                        fontSize:   22,
+                                        fontFamily: 'UthmanTNB',
                                       ),
                                     ),
                                     Text(

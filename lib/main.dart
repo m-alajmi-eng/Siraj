@@ -7,6 +7,7 @@ import 'l10n/app_localizations.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/time_theme_provider.dart';
 import 'core/storage/cache_service.dart';
+import 'core/locale/locale_provider.dart';
 import 'core/notifications/adhan_service.dart';
 
 Future<void> main() async {
@@ -38,11 +39,13 @@ class SirajApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final palette = ref.watch(timeThemeProvider);
     final router  = ref.watch(appRouterProvider);
+    final locale  = ref.watch(localeProvider);
 
     return MaterialApp.router(
       title:                      'Siraj',
       debugShowCheckedModeBanner: false,
       routerConfig:               router,
+      locale:                     locale,
 
       localizationsDelegates: const [
         AppLocalizations.delegate,

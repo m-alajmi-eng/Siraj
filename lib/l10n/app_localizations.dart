@@ -639,6 +639,162 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'لا يوجد اتصال بالإنترنت'**
   String get common_offline;
+
+  /// No description provided for @nav_home.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرئيسية'**
+  String get nav_home;
+
+  /// No description provided for @nav_quran.
+  ///
+  /// In ar, this message translates to:
+  /// **'القرآن'**
+  String get nav_quran;
+
+  /// No description provided for @nav_athkar.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأذكار'**
+  String get nav_athkar;
+
+  /// No description provided for @nav_hadith.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحديث'**
+  String get nav_hadith;
+
+  /// No description provided for @nav_more.
+  ///
+  /// In ar, this message translates to:
+  /// **'المزيد'**
+  String get nav_more;
+
+  /// No description provided for @home_greetingNight.
+  ///
+  /// In ar, this message translates to:
+  /// **'ليلة مباركة،'**
+  String get home_greetingNight;
+
+  /// No description provided for @home_greetingFajr.
+  ///
+  /// In ar, this message translates to:
+  /// **'السلام على الفجر،'**
+  String get home_greetingFajr;
+
+  /// No description provided for @home_greetingMorning.
+  ///
+  /// In ar, this message translates to:
+  /// **'صباح الخير،'**
+  String get home_greetingMorning;
+
+  /// No description provided for @home_greetingNoon.
+  ///
+  /// In ar, this message translates to:
+  /// **'مساء النور،'**
+  String get home_greetingNoon;
+
+  /// No description provided for @home_greetingAsr.
+  ///
+  /// In ar, this message translates to:
+  /// **'عصر مبارك،'**
+  String get home_greetingAsr;
+
+  /// No description provided for @home_greetingEvening.
+  ///
+  /// In ar, this message translates to:
+  /// **'مساء الخير،'**
+  String get home_greetingEvening;
+
+  /// No description provided for @home_greetingLateNight.
+  ///
+  /// In ar, this message translates to:
+  /// **'ليلة هادئة،'**
+  String get home_greetingLateNight;
+
+  /// No description provided for @home_welcome.
+  ///
+  /// In ar, this message translates to:
+  /// **'أهلاً وسهلاً'**
+  String get home_welcome;
+
+  /// No description provided for @home_nextPrayer.
+  ///
+  /// In ar, this message translates to:
+  /// **'الصلاة القادمة'**
+  String get home_nextPrayer;
+
+  /// No description provided for @home_qiblaDirection.
+  ///
+  /// In ar, this message translates to:
+  /// **'اتجاه القبلة'**
+  String get home_qiblaDirection;
+
+  /// No description provided for @home_continueReading.
+  ///
+  /// In ar, this message translates to:
+  /// **'متابعة القراءة'**
+  String get home_continueReading;
+
+  /// No description provided for @home_surah.
+  ///
+  /// In ar, this message translates to:
+  /// **'سورة #{id}'**
+  String home_surah(int id);
+
+  /// No description provided for @home_ayah.
+  ///
+  /// In ar, this message translates to:
+  /// **'آية {number}'**
+  String home_ayah(int number);
+
+  /// No description provided for @home_dailyAyah.
+  ///
+  /// In ar, this message translates to:
+  /// **'آية اليوم'**
+  String get home_dailyAyah;
+
+  /// No description provided for @home_quickAccess.
+  ///
+  /// In ar, this message translates to:
+  /// **'وصول سريع'**
+  String get home_quickAccess;
+
+  /// No description provided for @home_searchHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'ما الذي تبحث عنه...'**
+  String get home_searchHint;
+
+  /// No description provided for @home_radio.
+  ///
+  /// In ar, this message translates to:
+  /// **'الراديو'**
+  String get home_radio;
+
+  /// No description provided for @home_calendar.
+  ///
+  /// In ar, this message translates to:
+  /// **'التقويم'**
+  String get home_calendar;
+
+  /// No description provided for @home_stories.
+  ///
+  /// In ar, this message translates to:
+  /// **'القصص'**
+  String get home_stories;
+
+  /// No description provided for @home_children.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأطفال'**
+  String get home_children;
+
+  /// No description provided for @settings_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإعدادات'**
+  String get settings_title;
 }
 
 class _AppLocalizationsDelegate

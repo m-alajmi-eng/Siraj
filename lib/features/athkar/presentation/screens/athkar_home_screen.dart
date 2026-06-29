@@ -27,10 +27,11 @@ class AthkarHomeScreen extends ConsumerWidget {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
                 'الأذكار',
+                textAlign: TextAlign.start,
                 style: TextStyle(
                   color:      palette.textPrimary,
                   fontSize:   28,
@@ -40,8 +41,7 @@ class AthkarHomeScreen extends ConsumerWidget {
               const SizedBox(height: 24),
               categories.when(
                 loading: () => Center(
-                  child: CircularProgressIndicator(
-                    color: palette.accentPrimary),
+                  child: CircularProgressIndicator(color: palette.accentPrimary),
                 ),
                 error: (e, _) => Center(
                   child: Text('خطأ',
@@ -49,19 +49,17 @@ class AthkarHomeScreen extends ConsumerWidget {
                 ),
                 data: (cats) => Expanded(
                   child: GridView.builder(
-                    gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:   2,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing:  12,
-                        childAspectRatio: 1.3,
-                      ),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount:   2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing:  12,
+                      childAspectRatio: 1.3,
+                    ),
                     itemCount: cats.length,
                     itemBuilder: (context, index) {
                       final cat = cats[index];
                       return GestureDetector(
-                        onTap: () => context.go(
-                          '/athkar/${cat.id}?name=${cat.name}'),
+                        onTap: () => context.go('/athkar/${cat.id}?name=${cat.name}'),
                         child: Container(
                           decoration: BoxDecoration(
                             color:        palette.surface,
@@ -78,21 +76,21 @@ class AthkarHomeScreen extends ConsumerWidget {
                               const SizedBox(height: 8),
                               Text(
                                 cat.name,
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color:      palette.textPrimary,
                                   fontSize:   14,
                                   fontWeight: FontWeight.w500,
                                 ),
-                                textAlign: TextAlign.center,
                               ),
                               const SizedBox(height: 4),
                               Text(
                                 cat.time,
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color:    palette.textSecondary,
                                   fontSize: 11,
                                 ),
-                                textAlign: TextAlign.center,
                               ),
                             ],
                           ),

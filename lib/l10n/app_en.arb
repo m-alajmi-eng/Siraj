@@ -119,5 +119,35 @@
   "common_done": "Done",
   "common_search": "Search",
   "common_noData": "No data available",
-  "common_offline": "No internet connection"
-} 
+  "common_offline": "No internet connection",
+  "nav_home": "Home",
+  "nav_quran": "Quran",
+  "nav_athkar": "Athkar",
+  "nav_hadith": "Hadith",
+  "nav_more": "More",
+
+  "home_greetingNight": "Blessed night,",
+  "home_greetingFajr": "Peace upon the dawn,",
+  "home_greetingMorning": "Good morning,",
+  "home_greetingNoon": "Good afternoon,",
+  "home_greetingAsr": "Blessed afternoon,",
+  "home_greetingEvening": "Good evening,",
+  "home_greetingLateNight": "Peaceful night,",
+  "home_welcome": "Welcome",
+  "home_nextPrayer": "Next Prayer",
+  "home_qiblaDirection": "Qibla Direction",
+  "home_continueReading": "CONTINUE READING",
+  "home_surah": "Surah #{id}",
+  "@home_surah": {"placeholders": {"id": {"type": "int"}}},
+  "home_ayah": "Verse {number}",
+  "@home_ayah": {"placeholders": {"number": {"type": "int"}}},
+  "home_dailyAyah": "Verse of the Day",
+  "home_quickAccess": "Quick Access",
+  "home_searchHint": "What are you looking for...",
+  "home_radio": "Radio",
+  "home_calendar": "Calendar",
+  "home_stories": "Stories",
+  "home_children": "Kids",
+  "settings_title": "Settings"
+
+}
