@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/design_tokens.dart';
+import '../../../../core/theme/app_text.dart';
+import '../../../../core/widgets/glass_card.dart';
+import '../../../../core/widgets/section_label.dart';
 import '../../../../core/storage/cache_service.dart';
 import '../../../prayer/presentation/providers/prayer_provider.dart';
 import '../../../calendar/presentation/providers/calendar_provider.dart';
@@ -49,33 +52,33 @@ class HomeScreen extends ConsumerWidget {
           ),
           SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: SirajLayout.pagePadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(height: 8),
+                  const SizedBox(height: SirajSpacing.s2),
                   const _Header(),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: SirajSpacing.s5),
                   _Greeting(greeting: _greet(t, h), hijriDate: hijriStr),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: SirajSpacing.s5),
                   prayerAsync.when(
                     loading: () => const _Skeleton(height: 180),
                     error:   (e, _) => const SizedBox(),
                     data:    (times) => _NextPrayerCard(times: times),
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: SirajSpacing.s3),
                   if (lastSurahId != null) ...[
                     _ContinueReading(
                       surahId:    lastSurahId,
                       ayahNumber: lastAyahNum ?? 1,
                       onTap: () => context.push('/quran/surah/$lastSurahId'),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: SirajSpacing.s3),
                   ],
                   const _DailyAyah(),
-                  const SizedBox(height: 20),
-                  _SectionLabel(label: t.home_quickAccess),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: SirajSpacing.s5),
+                  SectionLabel(label: t.home_quickAccess),
+                  const SizedBox(height: SirajSpacing.s3),
                   const _QuickActions(),
                   const SizedBox(height: 100),
                 ],
@@ -83,75 +86,11 @@ class HomeScreen extends ConsumerWidget {
             ),
           ),
           Positioned(
-            bottom: 16, left: 20, right: 20,
-            child: _FloatingSearch(
-              onTap: () => context.push('/more/search')),
+            bottom: SirajSpacing.s4, left: SirajSpacing.s5, right: SirajSpacing.s5,
+            child: _FloatingSearch(onTap: () => context.push('/more/search')),
           ),
         ],
       ),
-    );
-  }
-}
-
-class _Glass extends StatelessWidget {
-  final Widget child;
-  final double radius;
-  final double alpha;
-  const _Glass({required this.child, this.radius = 22, this.alpha = 0.068});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(radius),
-        color:  Colors.white.withOpacity(alpha),
-        border: Border.all(color: Colors.white.withOpacity(0.10), width: 0.5),
-        boxShadow: const [
-          BoxShadow(color: Color(0x2E000000), blurRadius: 18, offset: Offset(0, 4)),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(radius),
-        child: child,
-      ),
-    );
-  }
-}
-
-class _SectionLabel extends StatelessWidget {
-  final String label;
-  const _SectionLabel({required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: 3, height: 3,
-          decoration: const BoxDecoration(
-            color: SirajGold.muted, shape: BoxShape.circle),
-        ),
-        const SizedBox(width: 7),
-        Text(label.toUpperCase(),
-          style: TextStyle(
-            color:         Colors.white.withOpacity(0.24),
-            fontSize:      10,
-            letterSpacing: 3.2,
-          )),
-      ],
-    );
-  }
-}
-
-class _Skeleton extends StatelessWidget {
-  final double height;
-  const _Skeleton({required this.height});
-
-  @override
-  Widget build(BuildContext context) {
-    return _Glass(
-      radius: 26, alpha: 0.05,
-      child: SizedBox(height: height, width: double.infinity),
     );
   }
 }
@@ -169,25 +108,21 @@ class _Header extends StatelessWidget {
             Container(
               width: 40, height: 40,
               decoration: BoxDecoration(
-                color:  Colors.white.withOpacity(0.07),
+                color:  SirajWhite.w7,
                 shape:  BoxShape.circle,
-                border: Border.all(color: Colors.white.withOpacity(0.09)),
+                border: Border.all(color: SirajWhite.w10),
               ),
-              child: Icon(Icons.notifications_none_rounded,
-                color: Colors.white.withOpacity(0.60), size: 16),
+              child: const Icon(Icons.notifications_none_rounded,
+                color: SirajWhite.w60, size: 16),
             ),
             PositionedDirectional(
               top: 9, start: 9,
               child: Container(
                 width: 6, height: 6,
-                decoration: BoxDecoration(
-                  color:  SirajGold.pure,
-                  shape:  BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color:      SirajGold.pure.withOpacity(0.6),
-                      blurRadius: 5),
-                  ],
+                decoration: const BoxDecoration(
+                  color: SirajGold.pure,
+                  shape: BoxShape.circle,
+                  boxShadow: [BoxShadow(color: SirajGold.muted, blurRadius: 5)],
                 ),
               ),
             ),
@@ -196,19 +131,11 @@ class _Header extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const Text('SIRAJ',
-              style: TextStyle(
-                color:         Colors.white,
-                fontWeight:    FontWeight.w300,
-                fontSize:      21,
-                letterSpacing: 6.0,
-              )),
-            Text('سراج · Islamic Guidance',
-              style: TextStyle(
-                color:         Colors.white.withOpacity(0.24),
-                fontSize:      10,
-                letterSpacing: 1.6,
-              )),
+            Text('SIRAJ', style: AppText.headline.copyWith(
+              fontWeight: FontWeight.w300, letterSpacing: 6.0,
+              fontSize: SirajSizes.sXl)),
+            Text('سراج · Islamic Guidance', style: AppText.label.copyWith(
+              letterSpacing: 1.6)),
           ],
         ),
       ],
@@ -227,21 +154,12 @@ class _Greeting extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(greeting,
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.38),
-            fontSize: 13,
-          )),
+        Text(greeting, style: AppText.bodySmall.copyWith(color: SirajWhite.w40)),
         const SizedBox(height: 2),
-        Text(t.home_welcome,
-          style: const TextStyle(
-            color:      Colors.white,
-            fontWeight: FontWeight.w500,
-            fontStyle:  FontStyle.italic,
-            fontSize:   29,
-            height:     1.22,
-          )),
-        const SizedBox(height: 10),
+        Text(t.home_welcome, style: AppText.displayMedium.copyWith(
+          fontWeight: FontWeight.w500, fontStyle: FontStyle.italic,
+          fontSize: 29)),
+        const SizedBox(height: SirajSpacing.s3),
         Row(
           children: [
             Container(
@@ -250,11 +168,7 @@ class _Greeting extends StatelessWidget {
                 color: SirajGold.muted, shape: BoxShape.circle),
             ),
             const SizedBox(width: 6),
-            Text(hijriDate,
-              style: TextStyle(
-                color:    Colors.white.withOpacity(0.40),
-                fontSize: 12,
-              )),
+            Text(hijriDate, style: AppText.caption),
           ],
         ),
       ],
@@ -266,6 +180,16 @@ class _NextPrayerCard extends StatelessWidget {
   final dynamic times;
   const _NextPrayerCard({required this.times});
 
+  String _prayerName(AppLocalizations t, dynamic times) {
+    final now = DateTime.now();
+    if (now.isBefore(times.fajr))    return t.prayer_fajr;
+    if (now.isBefore(times.dhuhr))   return t.prayer_dhuhr;
+    if (now.isBefore(times.asr))     return t.prayer_asr;
+    if (now.isBefore(times.maghrib)) return t.prayer_maghrib;
+    if (now.isBefore(times.isha))    return t.prayer_isha;
+    return t.prayer_fajr;
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
@@ -273,55 +197,39 @@ class _NextPrayerCard extends StatelessWidget {
     final timeStr = tm.hour.toString().padLeft(2, '0') +
         ':' + tm.minute.toString().padLeft(2, '0');
 
-    return _Glass(
-      radius: 26, alpha: 0.09,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _SectionLabel(label: t.home_nextPrayer),
-            const SizedBox(height: 16),
-            Text(times.nextPrayerNameAr ?? '',
-              style: const TextStyle(
-                color:      Colors.white,
-                fontWeight: FontWeight.w600,
-                fontSize:   42,
-                height:     1.1,
-              )),
-            const SizedBox(height: 4),
-            Text(timeStr,
-              style: TextStyle(
-                color:      Colors.white.withOpacity(0.75),
-                fontSize:   17,
-                fontWeight: FontWeight.w500,
-              )),
-            const SizedBox(height: 16),
-            Container(
-              height: 1.5,
-              decoration: BoxDecoration(
-                color:        Colors.white.withOpacity(0.08),
-                borderRadius: BorderRadius.circular(999),
-              ),
+    return GlassCard(
+      radius: SirajRadiusFull.x2l,
+      alpha: 0.09,
+      padding: const EdgeInsets.all(SirajSpacing.s5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SectionLabel(label: t.home_nextPrayer),
+          const SizedBox(height: SirajSpacing.s4),
+          Text(_prayerName(t, times), style: AppText.prayerNameBig),
+          const SizedBox(height: SirajSpacing.s1),
+          Text(timeStr, style: AppText.numeral),
+          const SizedBox(height: SirajSpacing.s4),
+          Container(
+            height: 1.5,
+            decoration: BoxDecoration(
+              color: SirajWhite.w7,
+              borderRadius: BorderRadius.circular(SirajRadiusFull.pill),
             ),
-            const SizedBox(height: 16),
-            GestureDetector(
-              onTap: () => context.push('/more/qibla'),
-              child: Row(
-                children: [
-                  Icon(Icons.explore_outlined,
-                    color: SirajGold.vivid.withOpacity(0.72), size: 12),
-                  const SizedBox(width: 4),
-                  Text(t.home_qiblaDirection,
-                    style: TextStyle(
-                      color:    SirajGold.vivid.withOpacity(0.72),
-                      fontSize: 11,
-                    )),
-                ],
-              ),
+          ),
+          const SizedBox(height: SirajSpacing.s4),
+          GestureDetector(
+            onTap: () => context.push('/more/qibla'),
+            child: Row(
+              children: [
+                const Icon(Icons.explore_outlined, color: SirajGold.strong, size: 12),
+                const SizedBox(width: SirajSpacing.s1),
+                Text(t.home_qiblaDirection, style: AppText.caption.copyWith(
+                  color: SirajGold.strong, fontSize: SirajSizes.sSm)),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -342,51 +250,37 @@ class _ContinueReading extends StatelessWidget {
     final t = AppLocalizations.of(context);
     return GestureDetector(
       onTap: onTap,
-      child: _Glass(
-        radius: 20,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: Row(
-            children: [
-              Container(
-                width: 40, height: 40,
-                decoration: BoxDecoration(
-                  color:        SirajGold.faint,
-                  borderRadius: BorderRadius.circular(13),
-                  border: Border.all(color: SirajGold.subtle),
-                ),
-                child: const Icon(Icons.menu_book_rounded,
-                  color: SirajGold.strong, size: 16),
+      child: GlassCard(
+        radius: SirajRadiusFull.xl,
+        padding: const EdgeInsets.symmetric(
+          horizontal: SirajSpacing.s5, vertical: SirajSpacing.s4),
+        child: Row(
+          children: [
+            Container(
+              width: 40, height: 40,
+              decoration: BoxDecoration(
+                color: SirajGold.faint,
+                borderRadius: BorderRadius.circular(13),
+                border: Border.all(color: SirajGold.subtle),
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(t.home_continueReading,
-                      style: TextStyle(
-                        color:         Colors.white.withOpacity(0.22),
-                        fontSize:      9,
-                        letterSpacing: 2.8,
-                      )),
-                    const SizedBox(height: 3),
-                    Text(t.home_surah(surahId),
-                      style: const TextStyle(
-                        color:    Colors.white,
-                        fontSize: 15,
-                      )),
-                    const SizedBox(height: 2),
-                    Text(t.home_ayah(ayahNumber),
-                      style: TextStyle(
-                        color:    Colors.white.withOpacity(0.32),
-                        fontSize: 11,
-                      )),
-                  ],
-                ),
-              ),
-              Icon(Icons.chevron_left, color: Colors.white38, size: 18),
-            ],
-          ),
+              child: const Icon(Icons.menu_book_rounded,
+                color: SirajGold.strong, size: 16),
+            ),
+            const SizedBox(width: SirajSpacing.s4),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(t.home_continueReading, style: AppText.label.copyWith(
+                    fontSize: SirajSizes.s2xs, letterSpacing: 2.8)),
+                  const SizedBox(height: 3),
+                  Text(t.home_surah(surahId), style: AppText.body),
+                  const SizedBox(height: 2),
+                  Text(t.home_ayah(ayahNumber), style: AppText.caption),
+                ],          ),
+            ),
+            const Icon(Icons.chevron_left, color: SirajWhite.w40, size: 18),
+          ],
         ),
       ),
     );
@@ -406,57 +300,36 @@ class _DailyAyah extends StatelessWidget {
       ('إِنَّ مَعَ العُسْرِ يُسْرًا',
        'Indeed, with hardship comes ease.',
        'الشرح ٩٤:٦'),
-      ('وَمَن يَتقِ اللَّهَ يَجْعَل لَّهُ مخْرَجًا',
+      ('وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخرَجًا',
        'And whoever fears Allah, He will make for him a way out.',
        'الطلاق ٦٥:٢'),
     ];
     final ayah = ayahs[DateTime.now().day % ayahs.length];
 
-    return _Glass(
-      radius: 20,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            _SectionLabel(label: t.home_dailyAyah),
-            const SizedBox(height: 16),
-            Text(ayah.$1,
-              textAlign:     TextAlign.center,
-              textDirection: TextDirection.rtl,
-              style: const TextStyle(
-                color:    Colors.white,
-                fontSize: 22,
-                height:   1.8,
-              )),
-            const SizedBox(height: 12),
-            Text('"${ayah.$2}"',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color:     Colors.white.withOpacity(0.70),
-                fontStyle: FontStyle.italic,
-                fontSize:  13,
-                height:    1.65,
-              )),
-            const SizedBox(height: 16),
-            Row(children: [
-              Expanded(child: Container(
-                height: 0.5,
-                color:  Colors.white.withOpacity(0.07))),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Text(ayah.$3,
-                  style: TextStyle(
-                    color:         Colors.white.withOpacity(0.22),
-                    fontSize:      10,
-                    letterSpacing: 2.2,
-                  )),
-              ),
-              Expanded(child: Container(
-                height: 0.5,
-                color:  Colors.white.withOpacity(0.07))),
-            ]),
-          ],
-        ),
+    return GlassCard(
+      radius: SirajRadiusFull.xl,
+      padding: const EdgeInsets.all(SirajSpacing.s5),
+      child: Column(
+        children: [
+          SectionLabel(label: t.home_dailyAyah),
+          const SizedBox(height: SirajSpacing.s4),
+          Text(ayah.$1, textAlign: TextAlign.center,
+            textDirection: TextDirection.rtl, style: AppText.quran),
+          const SizedBox(height: SirajSpacing.s3),
+          Text('"${ayah.$2}"', textAlign: TextAlign.center,
+            style: AppText.bodySmall.copyWith(
+              fontStyle: FontStyle.italic, height: SirajLineHeights.normal)),
+          const SizedBox(height: SirajSpacing.s4),
+          Row(children: [
+            Expanded(child: Container(height: 0.5, color: SirajWhite.w7)),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s3),
+              child: Text(ayah.$3, style: AppText.label.copyWith(
+                fontSize: SirajSizes.sXs, letterSpacing: 2.2)),
+            ),
+            Expanded(child: Container(height: 0.5, color: SirajWhite.w7)),
+          ]),
+        ],
       ),
     );
   }
@@ -469,14 +342,14 @@ class _QuickActions extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     final actions = [
-      (Icons.menu_book_rounded,    t.nav_quran,      '/quran',                 false),
-      (Icons.self_improvement,     t.nav_athkar,     '/athkar',                false),
-      (Icons.format_quote_rounded, t.nav_hadith,     '/hadith',                false),
-      (Icons.explore_outlined,     t.home_qiblaDirection, '/more/qibla',       true),
-      (Icons.radio,                t.home_radio,     '/more/radio',            true),
-      (Icons.calendar_month,       t.home_calendar,  '/more/calendar',         true),
-      (Icons.auto_stories,         t.home_stories,   '/more/stories',          true),
-      (Icons.child_care,           t.home_children,  '/more/children_stories', true),
+      (Icons.menu_book_rounded,    t.nav_quran,           '/quran',                 false),
+      (Icons.self_improvement,     t.nav_athkar,          '/athkar',                false),
+      (Icons.format_quote_rounded, t.nav_hadith,          '/hadith',                false),
+      (Icons.explore_outlined,     t.home_qiblaDirection, '/more/qibla',            true),
+      (Icons.radio,                t.home_radio,          '/more/radio',            true),
+      (Icons.calendar_month,       t.home_calendar,       '/more/calendar',         true),
+      (Icons.auto_stories,         t.home_stories,        '/more/stories',          true),
+      (Icons.child_care,           t.home_children,       '/more/children_stories', true),
     ];
 
     return GridView.builder(
@@ -484,8 +357,8 @@ class _QuickActions extends StatelessWidget {
       physics:    const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount:   4,
-        crossAxisSpacing: 9,
-        mainAxisSpacing:  9,
+        crossAxisSpacing: SirajLayout.colGutter,
+        mainAxisSpacing:  SirajLayout.colGutter,
         childAspectRatio: 0.85,
       ),
       itemCount: actions.length,
@@ -493,37 +366,42 @@ class _QuickActions extends StatelessWidget {
         final (icon, label, route, isPush) = actions[i];
         return GestureDetector(
           onTap: () => isPush ? context.push(route) : context.go(route),
-          child: _Glass(
-            radius: 16,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 36, height: 36,
-                    decoration: BoxDecoration(
-                      color:        Colors.white.withOpacity(0.06),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(0.07)),
-                    ),
-                    child: Icon(icon,
-                      color: Colors.white.withOpacity(0.72), size: 17),
+          child: GlassCard(
+            radius: SirajRadiusFull.lg,
+            padding: const EdgeInsets.symmetric(vertical: SirajSpacing.s4),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 36, height: 36,
+                  decoration: BoxDecoration(
+                    color: SirajWhite.w7,
+                    borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+                    border: Border.all(color: SirajWhite.w7),
                   ),
-                  const SizedBox(height: 9),
-                  Text(label,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color:    Colors.white.withOpacity(0.38),
-                      fontSize: 10,
-                    )),
-                ],
-              ),
+                  child: Icon(icon, color: SirajWhite.w75, size: 17),
+                ),
+                const SizedBox(height: SirajSpacing.s2),
+                Text(label, textAlign: TextAlign.center,
+                  style: AppText.caption.copyWith(fontSize: SirajSizes.sXs)),
+              ],
             ),
           ),
         );
       },
+    );
+  }
+}
+
+class _Skeleton extends StatelessWidget {
+  final double height;
+  const _Skeleton({required this.height});
+
+  @override
+  Widget build(BuildContext context) {
+    return GlassCard(
+      radius: SirajRadiusFull.x2l, alpha: 0.05,
+      child: SizedBox(height: height, width: double.infinity),
     );
   }
 }
@@ -538,30 +416,20 @@ class _FloatingSearch extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(
+          horizontal: SirajSpacing.s4, vertical: SirajSpacing.s3),
         decoration: BoxDecoration(
-          color:        const Color(0xBD08090A),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withOpacity(0.10)),
-          boxShadow: const [
-            BoxShadow(
-              color:      Color(0x80000000),
-              blurRadius: 40,
-              offset:     Offset(0, 8)),
-          ],
+          color: const Color(0xBD08090A),
+          borderRadius: BorderRadius.circular(SirajRadiusFull.lg),
+          border: Border.all(color: SirajWhite.w10),
+          boxShadow: SirajElevation.e3,
         ),
         child: Row(
           children: [
-            Icon(Icons.search,
-              color: Colors.white.withOpacity(0.30), size: 14),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(t.home_searchHint,
-                style: TextStyle(
-                  color:    Colors.white.withOpacity(0.22),
-                  fontSize: 13,
-                )),
-            ),
+            const Icon(Icons.search, color: SirajWhite.w30, size: 14),
+            const SizedBox(width: SirajSpacing.s3),
+            Expanded(child: Text(t.home_searchHint, style: AppText.bodySmall.copyWith(
+              color: SirajWhite.w20))),
           ],
         ),
       ),
