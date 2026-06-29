@@ -454,4 +454,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ev_tashreeq => 'Days of Tashreeq';
+
+  @override
+  String get stories_title => 'Stories & Seerah';
+
+  @override
+  String get stories_prophets => 'Prophets';
+
+  @override
+  String get stories_companions => 'Companions';
+
+  @override
+  String get stories_scholars => 'Scholars';
+
+  @override
+  String get stories_comingSoon => 'Soon';
+
+  @override
+  String get stories_comingSoonMsg => 'Coming soon — content in progress';
+
+  @override
+  String get children_title => 'Children\'s Stories';
 }

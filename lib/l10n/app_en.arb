@@ -205,5 +205,12 @@
         "type": "int"
       }
     }
-  }
+  },
+  "stories_title": "Stories & Seerah",
+  "stories_prophets": "Prophets",
+  "stories_companions": "Companions",
+  "stories_scholars": "Scholars",
+  "stories_comingSoon": "Soon",
+  "stories_comingSoonMsg": "Coming soon — content in progress",
+  "children_title": "Children's Stories"
 }

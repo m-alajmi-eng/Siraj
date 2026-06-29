@@ -1011,6 +1011,48 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'أيام التشريق'**
   String get ev_tashreeq;
+
+  /// No description provided for @stories_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'القصص والسير'**
+  String get stories_title;
+
+  /// No description provided for @stories_prophets.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأنبياء'**
+  String get stories_prophets;
+
+  /// No description provided for @stories_companions.
+  ///
+  /// In ar, this message translates to:
+  /// **'الصحابة'**
+  String get stories_companions;
+
+  /// No description provided for @stories_scholars.
+  ///
+  /// In ar, this message translates to:
+  /// **'العلماء'**
+  String get stories_scholars;
+
+  /// No description provided for @stories_comingSoon.
+  ///
+  /// In ar, this message translates to:
+  /// **'قريباً'**
+  String get stories_comingSoon;
+
+  /// No description provided for @stories_comingSoonMsg.
+  ///
+  /// In ar, this message translates to:
+  /// **'قريباً — نعمل على إضافة المحتوى'**
+  String get stories_comingSoonMsg;
+
+  /// No description provided for @children_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'قصص الأطفال'**
+  String get children_title;
 }
 
 class _AppLocalizationsDelegate

@@ -205,5 +205,12 @@
         "type": "int"
       }
     }
-  }
+  },
+  "stories_title": "القصص والسير",
+  "stories_prophets": "الأنبياء",
+  "stories_companions": "الصحابة",
+  "stories_scholars": "العلماء",
+  "stories_comingSoon": "قريباً",
+  "stories_comingSoonMsg": "قريباً — نعمل على إضافة المحتوى",
+  "children_title": "قصص الأطفال"
 }

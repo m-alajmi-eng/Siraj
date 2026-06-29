@@ -454,4 +454,25 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get ev_tashreeq => 'أيام التشريق';
+
+  @override
+  String get stories_title => 'القصص والسير';
+
+  @override
+  String get stories_prophets => 'الأنبياء';
+
+  @override
+  String get stories_companions => 'الصحابة';
+
+  @override
+  String get stories_scholars => 'العلماء';
+
+  @override
+  String get stories_comingSoon => 'قريباً';
+
+  @override
+  String get stories_comingSoonMsg => 'قريباً — نعمل على إضافة المحتوى';
+
+  @override
+  String get children_title => 'قصص الأطفال';
 }
