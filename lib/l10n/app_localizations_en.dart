@@ -475,4 +475,142 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get children_title => 'Children\'s Stories';
+
+  @override
+  String get settings_secIdentity => 'Identity';
+
+  @override
+  String get settings_secAdhan => 'Adhan';
+
+  @override
+  String get settings_secApp => 'App';
+
+  @override
+  String get settings_secPrivacy => 'Privacy';
+
+  @override
+  String get settings_secAbout => 'About';
+
+  @override
+  String get settings_language => 'Language';
+
+  @override
+  String get settings_chooseLanguage => 'Choose Language';
+
+  @override
+  String get settings_madhab => 'Madhab';
+
+  @override
+  String get settings_chooseMadhab => 'Choose Madhab';
+
+  @override
+  String get settings_calcMethod => 'Prayer Calculation Method';
+
+  @override
+  String get settings_chooseCalc => 'Calculation Method';
+
+  @override
+  String get settings_enableAdhan => 'Enable Adhan';
+
+  @override
+  String get settings_muezzinVoice => 'Muezzin Voice';
+
+  @override
+  String get settings_vibration => 'Vibrate instead of sound';
+
+  @override
+  String get settings_iqamaAlert => 'Pre-Iqama Alert';
+
+  @override
+  String settings_minutes(int n) {
+    return '$n min';
+  }
+
+  @override
+  String get settings_appMode => 'App Mode';
+
+  @override
+  String get settings_fullMode => 'Full Mode';
+
+  @override
+  String get settings_liteMode => 'Lite Mode';
+
+  @override
+  String get settings_fullModeDesc => 'All features available';
+
+  @override
+  String get settings_liteModeDesc => 'Essentials only — offline';
+
+  @override
+  String get settings_quranFont => 'Quran Font';
+
+  @override
+  String get settings_fontUthmani => 'Uthmani';
+
+  @override
+  String get settings_fontHafs => 'Hafs';
+
+  @override
+  String get settings_quranFontSize => 'Quran Font Size';
+
+  @override
+  String get settings_privacyNote => 'Your location stays on your device only';
+
+  @override
+  String get settings_clearCache => 'Clear Cache Data';
+
+  @override
+  String get settings_clearCacheTitle => 'Clear Cache';
+
+  @override
+  String get settings_clearCacheMsg =>
+      'Locally saved data will be deleted. Are you sure?';
+
+  @override
+  String get settings_cancel => 'Cancel';
+
+  @override
+  String get settings_delete => 'Delete';
+
+  @override
+  String get settings_version => 'Version';
+
+  @override
+  String get settings_shareApp => 'Share App';
+
+  @override
+  String get settings_tagline => 'Siraj — Light upon Light';
+
+  @override
+  String get madhab_hanafi => 'Hanafi';
+
+  @override
+  String get madhab_maliki => 'Maliki';
+
+  @override
+  String get madhab_shafi => 'Shafi\'i';
+
+  @override
+  String get madhab_hanbali => 'Hanbali';
+
+  @override
+  String get calc_MWL => 'Muslim World League';
+
+  @override
+  String get calc_ISNA => 'North America (ISNA)';
+
+  @override
+  String get calc_Egypt => 'Egyptian Authority';
+
+  @override
+  String get calc_Makkah => 'Umm al-Qura (Makkah)';
+
+  @override
+  String get calc_Kuwait => 'Kuwait';
+
+  @override
+  String get calc_Qatar => 'Qatar';
+
+  @override
+  String get calc_Dubai => 'Dubai';
 }

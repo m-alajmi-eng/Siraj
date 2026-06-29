@@ -1053,6 +1053,276 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'قصص الأطفال'**
   String get children_title;
+
+  /// No description provided for @settings_secIdentity.
+  ///
+  /// In ar, this message translates to:
+  /// **'الهوية'**
+  String get settings_secIdentity;
+
+  /// No description provided for @settings_secAdhan.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأذان'**
+  String get settings_secAdhan;
+
+  /// No description provided for @settings_secApp.
+  ///
+  /// In ar, this message translates to:
+  /// **'التطبيق'**
+  String get settings_secApp;
+
+  /// No description provided for @settings_secPrivacy.
+  ///
+  /// In ar, this message translates to:
+  /// **'الخصوصية'**
+  String get settings_secPrivacy;
+
+  /// No description provided for @settings_secAbout.
+  ///
+  /// In ar, this message translates to:
+  /// **'عن التطبيق'**
+  String get settings_secAbout;
+
+  /// No description provided for @settings_language.
+  ///
+  /// In ar, this message translates to:
+  /// **'اللغة'**
+  String get settings_language;
+
+  /// No description provided for @settings_chooseLanguage.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر اللغة'**
+  String get settings_chooseLanguage;
+
+  /// No description provided for @settings_madhab.
+  ///
+  /// In ar, this message translates to:
+  /// **'المذهب'**
+  String get settings_madhab;
+
+  /// No description provided for @settings_chooseMadhab.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر المذهب'**
+  String get settings_chooseMadhab;
+
+  /// No description provided for @settings_calcMethod.
+  ///
+  /// In ar, this message translates to:
+  /// **'طريقة حساب الصلاة'**
+  String get settings_calcMethod;
+
+  /// No description provided for @settings_chooseCalc.
+  ///
+  /// In ar, this message translates to:
+  /// **'طريقة الحساب'**
+  String get settings_chooseCalc;
+
+  /// No description provided for @settings_enableAdhan.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفعيل الأذان'**
+  String get settings_enableAdhan;
+
+  /// No description provided for @settings_muezzinVoice.
+  ///
+  /// In ar, this message translates to:
+  /// **'صوت المؤذن'**
+  String get settings_muezzinVoice;
+
+  /// No description provided for @settings_vibration.
+  ///
+  /// In ar, this message translates to:
+  /// **'اهتزاز بدل صوت'**
+  String get settings_vibration;
+
+  /// No description provided for @settings_iqamaAlert.
+  ///
+  /// In ar, this message translates to:
+  /// **'تنبيه قبل الإقامة'**
+  String get settings_iqamaAlert;
+
+  /// No description provided for @settings_minutes.
+  ///
+  /// In ar, this message translates to:
+  /// **'{n} د'**
+  String settings_minutes(int n);
+
+  /// No description provided for @settings_appMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'وضع التطبيق'**
+  String get settings_appMode;
+
+  /// No description provided for @settings_fullMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'الوضع الكامل'**
+  String get settings_fullMode;
+
+  /// No description provided for @settings_liteMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'الوضع الخفيف'**
+  String get settings_liteMode;
+
+  /// No description provided for @settings_fullModeDesc.
+  ///
+  /// In ar, this message translates to:
+  /// **'كل الميزات متاحة'**
+  String get settings_fullModeDesc;
+
+  /// No description provided for @settings_liteModeDesc.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأساسيات فقط — بدون إنترنت'**
+  String get settings_liteModeDesc;
+
+  /// No description provided for @settings_quranFont.
+  ///
+  /// In ar, this message translates to:
+  /// **'خط القرآن'**
+  String get settings_quranFont;
+
+  /// No description provided for @settings_fontUthmani.
+  ///
+  /// In ar, this message translates to:
+  /// **'عثماني'**
+  String get settings_fontUthmani;
+
+  /// No description provided for @settings_fontHafs.
+  ///
+  /// In ar, this message translates to:
+  /// **'حفص'**
+  String get settings_fontHafs;
+
+  /// No description provided for @settings_quranFontSize.
+  ///
+  /// In ar, this message translates to:
+  /// **'حجم خط القرآن'**
+  String get settings_quranFontSize;
+
+  /// No description provided for @settings_privacyNote.
+  ///
+  /// In ar, this message translates to:
+  /// **'موقعك يبقى على جهازك فقط'**
+  String get settings_privacyNote;
+
+  /// No description provided for @settings_clearCache.
+  ///
+  /// In ar, this message translates to:
+  /// **'حذف بيانات الكاش'**
+  String get settings_clearCache;
+
+  /// No description provided for @settings_clearCacheTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'حذف الكاش'**
+  String get settings_clearCacheTitle;
+
+  /// No description provided for @settings_clearCacheMsg.
+  ///
+  /// In ar, this message translates to:
+  /// **'سيتم حذف البيانات المحفوظة محلياً. هل أنت متأكد؟'**
+  String get settings_clearCacheMsg;
+
+  /// No description provided for @settings_cancel.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء'**
+  String get settings_cancel;
+
+  /// No description provided for @settings_delete.
+  ///
+  /// In ar, this message translates to:
+  /// **'حذف'**
+  String get settings_delete;
+
+  /// No description provided for @settings_version.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإصدار'**
+  String get settings_version;
+
+  /// No description provided for @settings_shareApp.
+  ///
+  /// In ar, this message translates to:
+  /// **'مشاركة التطبيق'**
+  String get settings_shareApp;
+
+  /// No description provided for @settings_tagline.
+  ///
+  /// In ar, this message translates to:
+  /// **'سراج — نور على نور'**
+  String get settings_tagline;
+
+  /// No description provided for @madhab_hanafi.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحنفي'**
+  String get madhab_hanafi;
+
+  /// No description provided for @madhab_maliki.
+  ///
+  /// In ar, this message translates to:
+  /// **'المالكي'**
+  String get madhab_maliki;
+
+  /// No description provided for @madhab_shafi.
+  ///
+  /// In ar, this message translates to:
+  /// **'الشافعي'**
+  String get madhab_shafi;
+
+  /// No description provided for @madhab_hanbali.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحنبلي'**
+  String get madhab_hanbali;
+
+  /// No description provided for @calc_MWL.
+  ///
+  /// In ar, this message translates to:
+  /// **'رابطة العالم الإسلامي'**
+  String get calc_MWL;
+
+  /// No description provided for @calc_ISNA.
+  ///
+  /// In ar, this message translates to:
+  /// **'أمريكا الشمالية (ISNA)'**
+  String get calc_ISNA;
+
+  /// No description provided for @calc_Egypt.
+  ///
+  /// In ar, this message translates to:
+  /// **'الهيئة المصرية'**
+  String get calc_Egypt;
+
+  /// No description provided for @calc_Makkah.
+  ///
+  /// In ar, this message translates to:
+  /// **'أم القرى (مكة)'**
+  String get calc_Makkah;
+
+  /// No description provided for @calc_Kuwait.
+  ///
+  /// In ar, this message translates to:
+  /// **'الكويت'**
+  String get calc_Kuwait;
+
+  /// No description provided for @calc_Qatar.
+  ///
+  /// In ar, this message translates to:
+  /// **'قطر'**
+  String get calc_Qatar;
+
+  /// No description provided for @calc_Dubai.
+  ///
+  /// In ar, this message translates to:
+  /// **'دبي'**
+  String get calc_Dubai;
 }
 
 class _AppLocalizationsDelegate

@@ -475,4 +475,142 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get children_title => 'قصص الأطفال';
+
+  @override
+  String get settings_secIdentity => 'الهوية';
+
+  @override
+  String get settings_secAdhan => 'الأذان';
+
+  @override
+  String get settings_secApp => 'التطبيق';
+
+  @override
+  String get settings_secPrivacy => 'الخصوصية';
+
+  @override
+  String get settings_secAbout => 'عن التطبيق';
+
+  @override
+  String get settings_language => 'اللغة';
+
+  @override
+  String get settings_chooseLanguage => 'اختر اللغة';
+
+  @override
+  String get settings_madhab => 'المذهب';
+
+  @override
+  String get settings_chooseMadhab => 'اختر المذهب';
+
+  @override
+  String get settings_calcMethod => 'طريقة حساب الصلاة';
+
+  @override
+  String get settings_chooseCalc => 'طريقة الحساب';
+
+  @override
+  String get settings_enableAdhan => 'تفعيل الأذان';
+
+  @override
+  String get settings_muezzinVoice => 'صوت المؤذن';
+
+  @override
+  String get settings_vibration => 'اهتزاز بدل صوت';
+
+  @override
+  String get settings_iqamaAlert => 'تنبيه قبل الإقامة';
+
+  @override
+  String settings_minutes(int n) {
+    return '$n د';
+  }
+
+  @override
+  String get settings_appMode => 'وضع التطبيق';
+
+  @override
+  String get settings_fullMode => 'الوضع الكامل';
+
+  @override
+  String get settings_liteMode => 'الوضع الخفيف';
+
+  @override
+  String get settings_fullModeDesc => 'كل الميزات متاحة';
+
+  @override
+  String get settings_liteModeDesc => 'الأساسيات فقط — بدون إنترنت';
+
+  @override
+  String get settings_quranFont => 'خط القرآن';
+
+  @override
+  String get settings_fontUthmani => 'عثماني';
+
+  @override
+  String get settings_fontHafs => 'حفص';
+
+  @override
+  String get settings_quranFontSize => 'حجم خط القرآن';
+
+  @override
+  String get settings_privacyNote => 'موقعك يبقى على جهازك فقط';
+
+  @override
+  String get settings_clearCache => 'حذف بيانات الكاش';
+
+  @override
+  String get settings_clearCacheTitle => 'حذف الكاش';
+
+  @override
+  String get settings_clearCacheMsg =>
+      'سيتم حذف البيانات المحفوظة محلياً. هل أنت متأكد؟';
+
+  @override
+  String get settings_cancel => 'إلغاء';
+
+  @override
+  String get settings_delete => 'حذف';
+
+  @override
+  String get settings_version => 'الإصدار';
+
+  @override
+  String get settings_shareApp => 'مشاركة التطبيق';
+
+  @override
+  String get settings_tagline => 'سراج — نور على نور';
+
+  @override
+  String get madhab_hanafi => 'الحنفي';
+
+  @override
+  String get madhab_maliki => 'المالكي';
+
+  @override
+  String get madhab_shafi => 'الشافعي';
+
+  @override
+  String get madhab_hanbali => 'الحنبلي';
+
+  @override
+  String get calc_MWL => 'رابطة العالم الإسلامي';
+
+  @override
+  String get calc_ISNA => 'أمريكا الشمالية (ISNA)';
+
+  @override
+  String get calc_Egypt => 'الهيئة المصرية';
+
+  @override
+  String get calc_Makkah => 'أم القرى (مكة)';
+
+  @override
+  String get calc_Kuwait => 'الكويت';
+
+  @override
+  String get calc_Qatar => 'قطر';
+
+  @override
+  String get calc_Dubai => 'دبي';
 }

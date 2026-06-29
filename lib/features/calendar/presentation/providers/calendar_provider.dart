@@ -69,17 +69,17 @@ class IslamicEvent {
 
 const List<IslamicEvent> islamicEvents = [
   IslamicEvent(id: 'new_year', title: 'رأس السنة الهجرية', hijriMonth: 1, hijriDay: 1, type: 'blessed'),
-  IslamicEvent(title: 'يوم عاشوراء',           hijriMonth: 1,  hijriDay: 10, type: 'fast'),
-  IslamicEvent(title: 'المولد النبوي',          hijriMonth: 3,  hijriDay: 12, type: 'blessed'),
+  IslamicEvent(id: 'ashura', title: 'يوم عاشوراء',           hijriMonth: 1,  hijriDay: 10, type: 'fast'),
+  IslamicEvent(id: 'mawlid', title: 'المولد النبوي',          hijriMonth: 3,  hijriDay: 12, type: 'blessed'),
   IslamicEvent(id: 'isra', title: 'ليلة الإسراء والمعراج', hijriMonth: 7, hijriDay: 27, type: 'blessed'),
-  IslamicEvent(title: 'أول رمضان',             hijriMonth: 9,  hijriDay: 1,  type: 'eid'),
-  IslamicEvent(title: 'ليلة القدر (27)',        hijriMonth: 9,  hijriDay: 27, type: 'blessed'),
-  IslamicEvent(title: 'عيد الفطر',             hijriMonth: 10, hijriDay: 1,  type: 'eid'),
-  IslamicEvent(title: 'يوم عرفة',              hijriMonth: 12, hijriDay: 9,  type: 'fast'),
-  IslamicEvent(title: 'عيد الأضحى',            hijriMonth: 12, hijriDay: 10, type: 'eid'),
-  IslamicEvent(title: 'أيام التشريق',          hijriMonth: 12, hijriDay: 11, type: 'eid'),
-  IslamicEvent(title: 'أيام التشريق',          hijriMonth: 12, hijriDay: 12, type: 'eid'),
-  IslamicEvent(title: 'أيام التشريق',          hijriMonth: 12, hijriDay: 13, type: 'eid'),
+  IslamicEvent(id: 'ramadan_start', title: 'أول رمضان',             hijriMonth: 9,  hijriDay: 1,  type: 'eid'),
+  IslamicEvent(id: 'laylat_qadr', title: 'ليلة القدر (27)',        hijriMonth: 9,  hijriDay: 27, type: 'blessed'),
+  IslamicEvent(id: 'eid_fitr', title: 'عيد الفطر',             hijriMonth: 10, hijriDay: 1,  type: 'eid'),
+  IslamicEvent(id: 'arafah', title: 'يوم عرفة',              hijriMonth: 12, hijriDay: 9,  type: 'fast'),
+  IslamicEvent(id: 'eid_adha', title: 'عيد الأضحى',            hijriMonth: 12, hijriDay: 10, type: 'eid'),
+  IslamicEvent(id: 'tashreeq', title: 'أيام التشريق',          hijriMonth: 12, hijriDay: 11, type: 'eid'),
+  IslamicEvent(id: 'tashreeq', title: 'أيام التشريق',          hijriMonth: 12, hijriDay: 12, type: 'eid'),
+  IslamicEvent(id: 'tashreeq', title: 'أيام التشريق',          hijriMonth: 12, hijriDay: 13, type: 'eid'),
 ];
 
 // ─── Providers ────────────────────────────────────────────

@@ -1,12 +1,16 @@
 import 'dart:io';
-import '../../../../core/locale/locale_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../core/locale/locale_provider.dart';
+import '../../../../core/theme/design_tokens.dart';
+import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../core/mode/app_mode.dart';
 import '../../../../core/mode/app_mode_provider.dart';
 import '../../../../core/notifications/adhan_service.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -28,22 +32,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   double _fontSize         = 20;
   String _locale           = 'ar';
 
-  final _madhabs = [
-    {'id': 'hanafi',  'name': 'الحنفي'},
-    {'id': 'maliki',  'name': 'المالكي'},
-    {'id': 'shafi',   'name': 'الشافعي'},
-    {'id': 'hanbali', 'name': 'الحنبلي'},
-  ];
-
-  final _calcMethods = [
-    {'id': 'MWL',    'name': 'رابطة العالم الإسلامي'},
-    {'id': 'ISNA',   'name': 'أمريكا الشمالية (ISNA)'},
-    {'id': 'Egypt',  'name': 'الهيئة المصرية'},
-    {'id': 'Makkah', 'name': 'أم القرى (مكة)'},
-    {'id': 'Kuwait', 'name': 'الكويت'},
-    {'id': 'Qatar',  'name': 'قطر'},
-    {'id': 'Dubai',  'name': 'دبي'},
-  ];
+  // البيانات: id فقط (تُترجم وقت العرض)
+  final _madhabIds   = ['hanafi', 'maliki', 'shafi', 'hanbali'];
+  final _calcIds     = ['MWL', 'ISNA', 'Egypt', 'Makkah', 'Kuwait', 'Qatar', 'Dubai'];
 
   final _locales = [
     {'code': 'ar', 'name': 'العربية',   'flag': '🇸🇦'},
@@ -56,31 +47,50 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     {'code': 'ms', 'name': 'Melayu',    'flag': '🇲🇾'},
     {'code': 'fa', 'name': 'فارسی',     'flag': '🇮🇷'},
     {'code': 'ru', 'name': 'Русский',   'flag': '🇷🇺'},
-    {'code': 'de', 'name': 'Deutsch', 'flag': '🇩🇪'},
-    {'code': 'es', 'name': 'Español', 'flag': '🇪🇸'},
-    {'code': 'ha', 'name': 'Hausa', 'flag': '🇳🇬'},
+    {'code': 'de', 'name': 'Deutsch',   'flag': '🇩🇪'},
+    {'code': 'es', 'name': 'Español',   'flag': '🇪🇸'},
+    {'code': 'ha', 'name': 'Hausa',     'flag': '🇳🇬'},
     {'code': 'sw', 'name': 'Kiswahili', 'flag': '🇰🇪'},
-    {'code': 'zh', 'name': '中文', 'flag': '🇨'},
+    {'code': 'zh', 'name': '中文',       'flag': '🇨🇳'},
   ];
+
+  String _madhabName(AppLocalizations t, String id) {
+    switch (id) {
+      case 'hanafi':  return t.madhab_hanafi;
+      case 'maliki':  return t.madhab_maliki;
+      case 'shafi':   return t.madhab_shafi;
+      default:        return t.madhab_hanbali;
+    }
+  }
+
+  String _calcName(AppLocalizations t, String id) {
+    switch (id) {
+      case 'MWL':    return t.calc_MWL;
+      case 'ISNA':   return t.calc_ISNA;
+      case 'Egypt':  return t.calc_Egypt;
+      case 'Makkah': return t.calc_Makkah;
+      case 'Kuwait': return t.calc_Kuwait;
+      case 'Qatar':  return t.calc_Qatar;
+      default:       return t.calc_Dubai;
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    _box             = Hive.box('settings');
-    _selectedAdhan   = _box.get('adhan_sound',  defaultValue: 'مكي (الحرم المكي)');
-    _adhanEnabled    = _box.get('adhan_enabled', defaultValue: true);
-    _vibrationEnabled = _box.get('vibration',   defaultValue: false);
-    _iqamaAlert      = _box.get('iqama_alert',  defaultValue: 10);
-    _madhab          = _box.get('madhab',        defaultValue: 'shafi');
-    _calcMethod      = _box.get('calc_method',   defaultValue: 'MWL');
-    _quranFont       = _box.get('quran_font',    defaultValue: 'uthmani');
-    _fontSize        = _box.get('font_size',     defaultValue: 20.0);
-    _locale          = _box.get('locale',        defaultValue: 'ar');
+    _box              = Hive.box('settings');
+    _selectedAdhan    = _box.get('adhan_sound',   defaultValue: 'مكي (الحرم المكي)');
+    _adhanEnabled     = _box.get('adhan_enabled', defaultValue: true);
+    _vibrationEnabled = _box.get('vibration',     defaultValue: false);
+    _iqamaAlert       = _box.get('iqama_alert',   defaultValue: 10);
+    _madhab           = _box.get('madhab',        defaultValue: 'shafi');
+    _calcMethod       = _box.get('calc_method',   defaultValue: 'MWL');
+    _quranFont        = _box.get('quran_font',    defaultValue: 'uthmani');
+    _fontSize         = _box.get('font_size',     defaultValue: 20.0);
+    _locale           = _box.get('locale',        defaultValue: 'ar');
   }
 
-  void _save(String key, dynamic value) {
-    _box.put(key, value);
-  }
+  void _save(String key, dynamic value) => _box.put(key, value);
 
   Future<void> _previewAdhan(String name) async {
     final url = AdhanService.adhanSounds[name];
@@ -89,536 +99,404 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final t       = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
     final mode    = ref.watch(appModeProvider);
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Header
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20, vertical: 16),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back,
-                      color: palette.textPrimary),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  Expanded(
-                    child: Text(
-                      'الإعدادات',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color:      palette.textPrimary,
-                        fontSize:   24,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+    return AppScaffold(
+      title: t.settings_title,
+      padding: EdgeInsets.zero,
+      child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s4),
+        children: [
+          // ── الهوية ──
+          _SectionHeader(title: t.settings_secIdentity, palette: palette),
+
+          _SettingsTile(
+            icon: Icons.language,
+            title: t.settings_language,
+            value: _locales.firstWhere(
+              (l) => l['code'] == _locale,
+              orElse: () => _locales[0],
+            )['name']!,
+            palette: palette,
+            onTap: () => _showOptions(
+              context: context,
+              palette: palette,
+              title: t.settings_chooseLanguage,
+              options: _locales.map((l) => '${l['flag']} ${l['name']}').toList(),
+              selected: _locales.firstWhere((l) => l['code'] == _locale)['name']!,
+              onSelect: (val) {
+                final l = _locales.firstWhere(
+                  (l) => '${l['flag']} ${l['name']}' == val);
+                setState(() => _locale = l['code']!);
+                _save('locale', l['code']);
+                ref.read(localeProvider.notifier).setLocale(l['code']!);
+              },
             ),
+          ),
 
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                children: [
+          _SettingsTile(
+            icon: Icons.mosque,
+            title: t.settings_madhab,
+            value: _madhabName(t, _madhab),
+            palette: palette,
+            onTap: () => _showOptions(
+              context: context,
+              palette: palette,
+              title: t.settings_chooseMadhab,
+              options: _madhabIds.map((id) => _madhabName(t, id)).toList(),
+              selected: _madhabName(t, _madhab),
+              onSelect: (val) {
+                final id = _madhabIds.firstWhere((id) => _madhabName(t, id) == val);
+                setState(() => _madhab = id);
+                _save('madhab', id);
+              },
+            ),
+          ),
 
-                  // ── الهوية ──────────────────────────────
-                  _SectionHeader(title: 'الهوية', palette: palette),
+          _SettingsTile(
+            icon: Icons.calculate,
+            title: t.settings_calcMethod,
+            value: _calcName(t, _calcMethod),
+            palette: palette,
+            onTap: () => _showOptions(
+              context: context,
+              palette: palette,
+              title: t.settings_chooseCalc,
+              options: _calcIds.map((id) => _calcName(t, id)).toList(),
+              selected: _calcName(t, _calcMethod),
+              onSelect: (val) {
+                final id = _calcIds.firstWhere((id) => _calcName(t, id) == val);
+                setState(() => _calcMethod = id);
+                _save('calc_method', id);
+              },
+            ),
+          ),
 
-                  _SettingsTile(
-                    icon:    Icons.language,
-                    title:   'اللغة',
-                    value:   _locales.firstWhere(
-                      (l) => l['code'] == _locale,
-                      orElse: () => _locales[0],
-                    )['name']!,
-                    palette: palette,
-                    onTap: () => _showOptions(
-                      context:  context,
-                      palette:  palette,
-                      title:    'اختر اللغة',
-                      options:  _locales.map((l) =>
-                        '${l['flag']} ${l['name']}').toList(),
-                      selected: _locales.firstWhere(
-                        (l) => l['code'] == _locale)['name']!,
-                      onSelect: (val) {
-                        final l = _locales.firstWhere(
-                          (l) => '${l['flag']} ${l['name']}' == val);
-                        setState(() => _locale = l['code']!);
-                        _save('locale', l['code']);
-    ref.read(localeProvider.notifier).setLocale(l['code']!);
-                      },
-                    ),
-                  ),
+          // ── الأذان ──
+          _SectionHeader(title: t.settings_secAdhan, palette: palette),
 
-                  _SettingsTile(
-                    icon:    Icons.mosque,
-                    title:   'المذهب',
-                    value:   _madhabs.firstWhere(
-                      (m) => m['id'] == _madhab)['name']!,
-                    palette: palette,
-                    onTap: () => _showOptions(
-                      context:  context,
-                      palette:  palette,
-                      title:    'اختر المذهب',
-                      options:  _madhabs.map((m) => m['name']!).toList(),
-                      selected: _madhabs.firstWhere(
-                        (m) => m['id'] == _madhab)['name']!,
-                      onSelect: (val) {
-                        final m = _madhabs.firstWhere(
-                          (m) => m['name'] == val);
-                        setState(() => _madhab = m['id']!);
-                        _save('madhab', m['id']);
-                      },
-                    ),
-                  ),
+          _SettingsSwitch(
+            icon: Icons.volume_up,
+            title: t.settings_enableAdhan,
+            value: _adhanEnabled,
+            palette: palette,
+            onChanged: (val) {
+              setState(() => _adhanEnabled = val);
+              _save('adhan_enabled', val);
+            },
+          ),
 
-                  _SettingsTile(
-                    icon:    Icons.calculate,
-                    title:   'طريقة حساب الصلاة',
-                    value:   _calcMethods.firstWhere(
-                      (m) => m['id'] == _calcMethod)['name']!,
-                    palette: palette,
-                    onTap: () => _showOptions(
-                      context:  context,
-                      palette:  palette,
-                      title:    'طريقة الحساب',
-                      options:  _calcMethods.map(
-                        (m) => m['name']!).toList(),
-                      selected: _calcMethods.firstWhere(
-                        (m) => m['id'] == _calcMethod)['name']!,
-                      onSelect: (val) {
-                        final m = _calcMethods.firstWhere(
-                          (m) => m['name'] == val);
-                        setState(() => _calcMethod = m['id']!);
-                        _save('calc_method', m['id']);
-                      },
-                    ),
-                  ),
-
-                  // ── الأذان ──────────────────────────────
-                  _SectionHeader(title: 'الأذان', palette: palette),
-
-                  _SettingsSwitch(
-                    icon:    Icons.volume_up,
-                    title:   'تفعيل الأذان',
-                    value:   _adhanEnabled,
-                    palette: palette,
-                    onChanged: (val) {
-                      setState(() => _adhanEnabled = val);
-                      _save('adhan_enabled', val);
+          // صوت المؤذن (أسماء المؤذنين تبقى عربية — محتوى)
+          Container(
+            margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
+            padding: const EdgeInsets.all(SirajSpacing.s4),
+            decoration: BoxDecoration(
+              color: palette.surface,
+              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.mic, color: palette.accentPrimary, size: 20),
+                    const SizedBox(width: SirajSpacing.s2),
+                    Text(t.settings_muezzinVoice, style: AppText.body.copyWith(
+                      color: palette.textPrimary)),
+                  ],
+                ),
+                const SizedBox(height: SirajSpacing.s3),
+                ...AdhanService.adhanSounds.keys.map((name) {
+                  final isSelected = _selectedAdhan == name;
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() => _selectedAdhan = name);
+                      _save('adhan_sound', name);
                     },
-                  ),
-
-                  // اختيار المؤذن مع معاينة
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 8),
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color:        palette.surface,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(Icons.mic,
-                              color: palette.accentPrimary, size: 20),
-                            Text(
-                              'صوت المؤذن',
-                              style: TextStyle(
-                                color:   palette.textPrimary,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        ...AdhanService.adhanSounds.keys.map((name) {
-                          final isSelected = _selectedAdhan == name;
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() => _selectedAdhan = name);
-                              _save('adhan_sound', name);
-                            },
+                    child: Container(
+                      margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: SirajSpacing.s3, vertical: SirajSpacing.s2),
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? palette.accentPrimary.withValues(alpha: 0.15)
+                            : palette.background,
+                        borderRadius: BorderRadius.circular(SirajRadiusFull.sm),
+                        border: Border.all(
+                          color: isSelected ? palette.accentPrimary : Colors.transparent),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () => _previewAdhan(name),
                             child: Container(
-                              margin: const EdgeInsets.only(bottom: 8),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 10),
+                              padding: const EdgeInsets.all(6),
                               decoration: BoxDecoration(
+                                color: palette.accentPrimary.withValues(alpha: 0.2),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(Icons.play_arrow,
+                                color: palette.accentPrimary, size: 16),
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(name, textAlign: TextAlign.end,
+                              style: AppText.bodySmall.copyWith(
                                 color: isSelected
-                                    ? palette.accentPrimary
-                                        .withOpacity(0.15)
-                                    : palette.background,
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                  color: isSelected
-                                      ? palette.accentPrimary
-                                      : Colors.transparent,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  // زر المعاينة
-                                  GestureDetector(
-                                    onTap: () => _previewAdhan(name),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(6),
-                                      decoration: BoxDecoration(
-                                        color: palette.accentPrimary
-                                            .withOpacity(0.2),
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Icon(
-                                        Icons.play_arrow,
-                                        color:  palette.accentPrimary,
-                                        size:   16,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    name,
-                                    style: TextStyle(
-                                      color: isSelected
-                                          ? palette.accentPrimary
-                                          : palette.textPrimary,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ],
-                    ),
-                  ),
-
-                  _SettingsSwitch(
-                    icon:    Icons.vibration,
-                    title:   'اهتزاز بدل صوت',
-                    value:   _vibrationEnabled,
-                    palette: palette,
-                    onChanged: (val) {
-                      setState(() => _vibrationEnabled = val);
-                      _save('vibration', val);
-                    },
-                  ),
-
-                  // تنبيه قبل الإقامة
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 8),
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color:        palette.surface,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          'تنبيه قبل الإقامة',
-                          style: TextStyle(
-                            color:    palette.textPrimary,
-                            fontSize: 15,
+                                    ? palette.accentPrimary : palette.textPrimary)),
                           ),
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                          children: [5, 10, 15, 20].map((min) {
-                            final isSelected = _iqamaAlert == min;
-                            return GestureDetector(
-                              onTap: () {
-                                setState(() => _iqamaAlert = min);
-                                _save('iqama_alert', min);
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 8),
-                                decoration: BoxDecoration(
-                                  color: isSelected
-                                      ? palette.accentPrimary
-                                      : palette.background,
-                                  borderRadius:
-                                      BorderRadius.circular(20),
-                                ),
-                                child: Text(
-                                  '$min د',
-                                  style: TextStyle(
-                                    color: isSelected
-                                        ? palette.background
-                                        : palette.textSecondary,
-                                    fontSize: 13,
-                                  ),
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  // ── التطبيق ─────────────────────────────
-                  _SectionHeader(title: 'التطبيق', palette: palette),
-
-                  // وضع التطبيق
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 8),
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color:        palette.surface,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Switch(
-                          value: mode == AppMode.full,
-                          onChanged: (_) => ref
-                              .read(appModeProvider.notifier)
-                              .toggle(),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              mode == AppMode.full
-                                  ? 'الوضع الكامل'
-                                  : 'الوضع الخفيف',
-                              style: TextStyle(
-                                color:      palette.textPrimary,
-                                fontSize:   15,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Text(
-                              mode == AppMode.full
-                                  ? 'كل الميزات متاحة'
-                                  : 'الأساسيات فقط — offline',
-                              style: TextStyle(
-                                color:    palette.textSecondary,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  _SettingsTile(
-                    icon:    Icons.menu_book,
-                    title:   'خط القرآن',
-                    value:   _quranFont == 'uthmani'
-                        ? 'عثماني' : 'حفص',
-                    palette: palette,
-                    onTap: () => _showOptions(
-                      context:  context,
-                      palette:  palette,
-                      title:    'خط القرآن',
-                      options:  ['عثماني', 'حفص'],
-                      selected: _quranFont == 'uthmani'
-                          ? 'عثماني' : 'حفص',
-                      onSelect: (val) {
-                        final f = val == 'عثماني'
-                            ? 'uthmani' : 'hafs';
-                        setState(() => _quranFont = f);
-                        _save('quran_font', f);
-                      },
-                    ),
-                  ),
-
-                  // حجم الخط
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 8),
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color:        palette.surface,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          'حجم خط القرآن',
-                          style: TextStyle(
-                            color:    palette.textPrimary,
-                            fontSize: 15,
-                          ),
-                        ),
-                        Slider(
-                          value:    _fontSize,
-                          min:      16,
-                          max:      32,
-                          divisions: 8,
-                          label:    _fontSize.round().toString(),
-                          activeColor: palette.accentPrimary,
-                          onChanged: (val) {
-                            setState(() => _fontSize = val);
-                            _save('font_size', val);
-                          },
-                        ),
-                        Center(
-                          child: Text(
-                            'بِسْمِ اللَّهِ',
-                            style: TextStyle(
-                              fontFamily: 'QuranFont',
-                              color:      palette.textPrimary,
-                              fontSize:   _fontSize,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  // ── الخصوصية ────────────────────────────
-                  _SectionHeader(
-                    title: 'الخصوصية', palette: palette),
-
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 8),
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color:        palette.surface,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(Icons.lock,
-                          color: palette.accentPrimary, size: 20),
-                        Text(
-                          'موقعك يبقى على جهازك فقط',
-                          style: TextStyle(
-                            color:    palette.textSecondary,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  _SettingsTile(
-                    icon:    Icons.delete_outline,
-                    title:   'حذف بيانات الكاش',
-                    value:   '',
-                    palette: palette,
-                    onTap: () => _confirmClearCache(
-                      context, palette),
-                  ),
-
-                  // ── عن التطبيق ───────────────────────────
-                  _SectionHeader(
-                    title: 'عن التطبيق', palette: palette),
-
-                  _SettingsTile(
-                    icon:    Icons.info_outline,
-                    title:   'الإصدار',
-                    value:   '1.0.0',
-                    palette: palette,
-                    onTap:   () {},
-                  ),
-
-                  _SettingsTile(
-                    icon:    Icons.share,
-                    title:   'مشاركة التطبيق',
-                    value:   '',
-                    palette: palette,
-                    onTap:   () {},
-                  ),
-
-                  const SizedBox(height: 32),
-
-                  Center(
-                    child: Text(
-                      'سراج — نور على نور',
-                      style: TextStyle(
-                        color:    palette.textSecondary,
-                        fontSize: 12,
+                        ],
                       ),
                     ),
-                  ),
-
-                  const SizedBox(height: 32),
-                ],
-              ),
+                  );
+                }),
+              ],
             ),
-          ],
-        ),
+          ),
+
+          _SettingsSwitch(
+            icon: Icons.vibration,
+            title: t.settings_vibration,
+            value: _vibrationEnabled,
+            palette: palette,
+            onChanged: (val) {
+              setState(() => _vibrationEnabled = val);
+              _save('vibration', val);
+            },
+          ),
+
+          // تنبيه قبل الإقامة
+          Container(
+            margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
+            padding: const EdgeInsets.all(SirajSpacing.s4),
+            decoration: BoxDecoration(
+              color: palette.surface,
+              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(t.settings_iqamaAlert, style: AppText.body.copyWith(
+                  color: palette.textPrimary)),
+                const SizedBox(height: SirajSpacing.s3),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [5, 10, 15, 20].map((min) {
+                    final isSelected = _iqamaAlert == min;
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() => _iqamaAlert = min);
+                        _save('iqama_alert', min);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: SirajSpacing.s4, vertical: SirajSpacing.s2),
+                        decoration: BoxDecoration(
+                          color: isSelected ? palette.accentPrimary : palette.background,
+                          borderRadius: BorderRadius.circular(SirajRadiusFull.xl),
+                        ),
+                        child: Text(t.settings_minutes(min), style: AppText.bodySmall.copyWith(
+                          color: isSelected ? palette.background : palette.textSecondary)),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
+          ),
+
+          // ── التطبيق ──
+          _SectionHeader(title: t.settings_secApp, palette: palette),
+
+          Container(
+            margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
+            padding: const EdgeInsets.all(SirajSpacing.s4),
+            decoration: BoxDecoration(
+              color: palette.surface,
+              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Switch(
+                  value: mode == AppMode.full,
+                  onChanged: (_) => ref.read(appModeProvider.notifier).toggle(),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        mode == AppMode.full ? t.settings_fullMode : t.settings_liteMode,
+                        style: AppText.body.copyWith(
+                          color: palette.textPrimary, fontWeight: FontWeight.w500)),
+                      Text(
+                        mode == AppMode.full
+                            ? t.settings_fullModeDesc : t.settings_liteModeDesc,
+                        style: AppText.caption.copyWith(color: palette.textSecondary)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          _SettingsTile(
+            icon: Icons.menu_book,
+            title: t.settings_quranFont,
+            value: _quranFont == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
+            palette: palette,
+            onTap: () => _showOptions(
+              context: context,
+              palette: palette,
+              title: t.settings_quranFont,
+              options: [t.settings_fontUthmani, t.settings_fontHafs],
+              selected: _quranFont == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
+              onSelect: (val) {
+                final f = val == t.settings_fontUthmani ? 'uthmani' : 'hafs';
+                setState(() => _quranFont = f);
+                _save('quran_font', f);
+              },
+            ),
+          ),
+
+          // حجم الخط
+          Container(
+            margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
+            padding: const EdgeInsets.all(SirajSpacing.s4),
+            decoration: BoxDecoration(
+              color: palette.surface,
+              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(t.settings_quranFontSize, style: AppText.body.copyWith(
+                  color: palette.textPrimary)),
+                Slider(
+                  value: _fontSize,
+                  min: 16, max: 32, divisions: 8,
+                  label: _fontSize.round().toString(),
+                  activeColor: palette.accentPrimary,
+                  onChanged: (val) {
+                    setState(() => _fontSize = val);
+                    _save('font_size', val);
+                  },
+                ),
+                Center(
+                  child: Text('بِسْمِ اللَّهِ',
+                    style: TextStyle(
+                      fontFamily: 'QuranFont',
+                      color: palette.textPrimary,
+                      fontSize: _fontSize)),
+                ),
+              ],
+            ),
+          ),
+
+          // ── الخصوصية ──
+          _SectionHeader(title: t.settings_secPrivacy, palette: palette),
+
+          Container(
+            margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
+            padding: const EdgeInsets.all(SirajSpacing.s4),
+            decoration: BoxDecoration(
+              color: palette.surface,
+              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+            ),
+            child: Row(
+              children: [
+                Icon(Icons.lock, color: palette.accentPrimary, size: 20),
+                const SizedBox(width: SirajSpacing.s2),
+                Expanded(
+                  child: Text(t.settings_privacyNote, style: AppText.caption.copyWith(
+                    color: palette.textSecondary)),
+                ),
+              ],
+            ),
+          ),
+
+          _SettingsTile(
+            icon: Icons.delete_outline,
+            title: t.settings_clearCache,
+            value: '',
+            palette: palette,
+            onTap: () => _confirmClearCache(context, palette, t),
+          ),
+
+          // ── عن التطبيق ──
+          _SectionHeader(title: t.settings_secAbout, palette: palette),
+
+          _SettingsTile(
+            icon: Icons.info_outline,
+            title: t.settings_version,
+            value: '1.0.0',
+            palette: palette,
+            onTap: () {},
+          ),
+
+          _SettingsTile(
+            icon: Icons.share,
+            title: t.settings_shareApp,
+            value: '',
+            palette: palette,
+            onTap: () {},
+          ),
+
+          const SizedBox(height: SirajSpacing.s8),
+          Center(
+            child: Text(t.settings_tagline, style: AppText.caption.copyWith(
+              color: palette.textSecondary)),
+          ),
+          const SizedBox(height: SirajSpacing.s8),
+        ],
       ),
     );
   }
 
   void _showOptions({
-    required BuildContext       context,
-    required dynamic            palette,
-    required String             title,
-    required List<String>       options,
-    required String             selected,
-    required Function(String)   onSelect,
+    required BuildContext context,
+    required dynamic palette,
+    required String title,
+    required List<String> options,
+    required String selected,
+    required Function(String) onSelect,
   }) {
     showModalBottomSheet(
-      context:            context,
-      backgroundColor:    palette.surface,
+      context: context,
+      backgroundColor: palette.surface,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20))),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(SirajRadiusFull.xl))),
       builder: (_) => SizedBox(
         height: MediaQuery.of(context).size.height * 0.5,
         child: Column(
           children: [
-            const SizedBox(height: 12),
+            const SizedBox(height: SirajSpacing.s3),
             Container(
               width: 40, height: 4,
               decoration: BoxDecoration(
-                color:        palette.textSecondary.withOpacity(0.3),
+                color: palette.textSecondary.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
-            const SizedBox(height: 16),
-            Text(
-              title,
-              style: TextStyle(
-                color:      palette.textPrimary,
-                fontSize:   16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            const SizedBox(height: 8),
+            const SizedBox(height: SirajSpacing.s4),
+            Text(title, style: AppText.headline.copyWith(color: palette.textPrimary)),
+            const SizedBox(height: SirajSpacing.s2),
             Expanded(
               child: ListView.builder(
                 itemCount: options.length,
                 itemBuilder: (_, i) {
                   final isSelected = options[i] == selected;
                   return ListTile(
-                    title: Text(
-                      options[i],
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color: isSelected
-                            ? palette.accentPrimary
-                            : palette.textPrimary,
-                      ),
-                    ),
+                    title: Text(options[i],
+                      style: AppText.body.copyWith(
+                        color: isSelected ? palette.accentPrimary : palette.textPrimary)),
                     trailing: isSelected
-                        ? Icon(Icons.check,
-                            color: palette.accentPrimary)
+                        ? Icon(Icons.check, color: palette.accentPrimary)
                         : null,
                     onTap: () {
                       onSelect(options[i]);
@@ -634,26 +512,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     );
   }
 
-  void _confirmClearCache(BuildContext context, dynamic palette) {
+  void _confirmClearCache(BuildContext context, dynamic palette, AppLocalizations t) {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
         backgroundColor: palette.surface,
-        title: Text(
-          'حذف الكاش',
-          textAlign: TextAlign.right,
-          style: TextStyle(color: palette.textPrimary),
-        ),
-        content: Text(
-          'سيتم حذف البيانات المحفوظة محلياً. هل أنت متأكد؟',
-          textAlign: TextAlign.right,
-          style: TextStyle(color: palette.textSecondary),
-        ),
+        title: Text(t.settings_clearCacheTitle, style: AppText.headline.copyWith(
+          color: palette.textPrimary)),
+        content: Text(t.settings_clearCacheMsg, style: AppText.body.copyWith(
+          color: palette.textSecondary)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('إلغاء',
-              style: TextStyle(color: palette.textSecondary)),
+            child: Text(t.settings_cancel, style: TextStyle(color: palette.textSecondary)),
           ),
           TextButton(
             onPressed: () {
@@ -661,8 +532,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               Hive.box('hadith_cache').clear();
               Navigator.pop(context);
             },
-            child: Text('حذف',
-              style: TextStyle(color: Colors.red)),
+            child: Text(t.settings_delete, style: const TextStyle(color: Color(0xFFE57373))),
           ),
         ],
       ),
@@ -670,34 +540,30 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 }
 
-// ─── Section Header ───────────────────────────────────────
+// ─── Section Header ───
 class _SectionHeader extends StatelessWidget {
-  final String  title;
+  final String title;
   final dynamic palette;
   const _SectionHeader({required this.title, required this.palette});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 8),
-      child: Text(
-        title,
-        textAlign: TextAlign.right,
-        style: TextStyle(
-          color:    palette.accentPrimary,
-          fontSize: 13,
-        ),
+      padding: const EdgeInsets.only(top: SirajSpacing.s5, bottom: SirajSpacing.s2),
+      child: Align(
+        alignment: AlignmentDirectional.centerStart,
+        child: Text(title, style: AppText.bodySmall.copyWith(color: palette.accentPrimary)),
       ),
     );
   }
 }
 
-// ─── Settings Tile ────────────────────────────────────────
+// ─── Settings Tile ───
 class _SettingsTile extends StatelessWidget {
   final IconData icon;
-  final String   title;
-  final String   value;
-  final dynamic  palette;
+  final String title;
+  final String value;
+  final dynamic palette;
   final VoidCallback onTap;
 
   const _SettingsTile({
@@ -713,45 +579,24 @@ class _SettingsTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
+        margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
         padding: const EdgeInsets.symmetric(
-          horizontal: 16, vertical: 14),
+          horizontal: SirajSpacing.s4, vertical: SirajSpacing.s4),
         decoration: BoxDecoration(
-          color:        palette.surface,
-          borderRadius: BorderRadius.circular(12),
+          color: palette.surface,
+          borderRadius: BorderRadius.circular(SirajRadiusFull.md),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                if (value.isNotEmpty)
-                  Text(
-                    value,
-                    style: TextStyle(
-                      color:    palette.textSecondary,
-                      fontSize: 13,
-                    ),
-                  ),
-                const SizedBox(width: 8),
-                Icon(Icons.chevron_left,
-                  color: palette.textSecondary, size: 18),
-              ],
+            Icon(icon, color: palette.accentPrimary, size: 20),
+            const SizedBox(width: SirajSpacing.s3),
+            Expanded(
+              child: Text(title, style: AppText.body.copyWith(color: palette.textPrimary)),
             ),
-            Row(
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color:    palette.textPrimary,
-                    fontSize: 15,
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Icon(icon,
-                  color: palette.accentPrimary, size: 20),
-              ],
-            ),
+            if (value.isNotEmpty)
+              Text(value, style: AppText.bodySmall.copyWith(color: palette.textSecondary)),
+            const SizedBox(width: SirajSpacing.s2),
+            Icon(Icons.chevron_right, color: palette.textSecondary, size: 18),
           ],
         ),
       ),
@@ -759,12 +604,12 @@ class _SettingsTile extends StatelessWidget {
   }
 }
 
-// ─── Settings Switch ──────────────────────────────────────
+// ─── Settings Switch ───
 class _SettingsSwitch extends StatelessWidget {
   final IconData icon;
-  final String   title;
-  final bool     value;
-  final dynamic  palette;
+  final String title;
+  final bool value;
+  final dynamic palette;
   final Function(bool) onChanged;
 
   const _SettingsSwitch({
@@ -778,36 +623,23 @@ class _SettingsSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 8),
+      margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
       padding: const EdgeInsets.symmetric(
-        horizontal: 16, vertical: 8),
+        horizontal: SirajSpacing.s4, vertical: SirajSpacing.s2),
       decoration: BoxDecoration(
-        color:        palette.surface,
-        borderRadius: BorderRadius.circular(12),
+        color: palette.surface,
+        borderRadius: BorderRadius.circular(SirajRadiusFull.md),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Switch(
-            value:     value,
-            onChanged: onChanged,
+          Icon(icon, color: palette.accentPrimary, size: 20),
+          const SizedBox(width: SirajSpacing.s3),
+          Expanded(
+            child: Text(title, style: AppText.body.copyWith(color: palette.textPrimary)),
           ),
-          Row(
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  color:    palette.textPrimary,
-                  fontSize: 15,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Icon(icon,
-                color: palette.accentPrimary, size: 20),
-            ],
-          ),
+          Switch(value: value, onChanged: onChanged),
         ],
       ),
     );
   }
-} 
+}
