@@ -1,23 +1,13 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 
 class SirajAudioService {
   static final SirajAudioService _instance = SirajAudioService._internal();
   factory SirajAudioService() => _instance;
-  SirajAudioService._internal() {
-    _player.onPlayerComplete.listen((_) => _onComplete?.call());
-  }
+  SirajAudioService._internal();
 
-  // مشغّلان: الحالي + التالي (للتحميل المسبق وإلغاء الفجوة)
   final AudioPlayer _player = AudioPlayer();
-  final AudioPlayer _preloader = AudioPlayer();
-
-  bool _isPlaying = false;
-  bool get isPlaying => _isPlaying;
-
-  String? _preloadedUrl; // الرابط المحمّل مسبقاً
-
-  void Function()? _onComplete;
-  void onComplete(void Function() callback) => _onComplete = callback;
+  AudioPlayer get player => _player;
 
   static const String _baseUrl = 'https://everyayah.com/data';
 
@@ -47,54 +37,55 @@ class SirajAudioService {
     'محمد جبريل (64)':           'Muhammad_Jibreel_64kbps',
   };
 
-  String _urlFor(int surahId, int ayahNumber, String reciter) {
-    final surah = surahId.toString().padLeft(3, '0');
-    final ayah  = ayahNumber.toString().padLeft(3, '0');
-    return '$_baseUrl/$reciter/$surah$ayah.mp3';
+  String _url(int surahId, int ayah, String reciter) {
+    final s = surahId.toString().padLeft(3, '0');
+    final a = ayah.toString().padLeft(3, '0');
+    return '$_baseUrl/$reciter/$s$a.mp3';
   }
 
-  Future<void> playAyah(int surahId, int ayahNumber,
-      {String reciter = 'Alafasy_128kbps'}) async {
-    final url = _urlFor(surahId, ayahNumber, reciter);
-    await _player.stop();
-    // تقليل الفجوة: وضع التوقف عند الانتهاء بدون تحرير الموارد
-    await _player.setReleaseMode(ReleaseMode.stop);
-    await _player.play(UrlSource(url));
-    _isPlaying = true;
-    _preloadedUrl = null;
-  }
+  // بناء قائمة تشغيل لكامل السورة (تلاوة متصلة بلا فجوات)
+  Future<void> playSurah({
+    required int surahId,
+    required int totalAyahs,
+    required String reciter,
+    required String surahName,
+    int startAyah = 1,
+    bool withBasmala = true,
+  }) async {
+    final children = <AudioSource>[];
 
-  // تحميل الآية التالية مسبقاً (تُستدعى أثناء قراءة الحالية)
-  Future<void> preloadAyah(int surahId, int ayahNumber,
-      {String reciter = 'Alafasy_128kbps'}) async {
-    final url = _urlFor(surahId, ayahNumber, reciter);
-    try {
-      await _preloader.setSourceUrl(url);
-      _preloadedUrl = url;
-    } catch (_) {
-      _preloadedUrl = null;
+    // البسملة كأول مقطع (عدا الفاتحة والتوبة)
+    if (withBasmala && surahId != 1 && surahId != 9 && startAyah == 1) {
+      children.add(_ayahSource(1, 1, reciter, surahName, 'بسملة', 0));
     }
+
+    for (int a = startAyah; a <= totalAyahs; a++) {
+      children.add(_ayahSource(surahId, a, reciter, surahName, 'آية $a', a));
+    }
+
+    final playlist = ConcatenatingAudioSource(children: children);
+    await _player.setAudioSource(playlist);
+    await _player.play();
   }
 
-  Future<void> pause() async {
-    await _player.pause();
-    _isPlaying = false;
+  AudioSource _ayahSource(
+      int surahId, int ayah, String reciter, String surahName, String label, int tagAyah) {
+    return AudioSource.uri(
+      Uri.parse(_url(surahId, ayah, reciter)),
+      tag: MediaItem(
+        id: '${surahId}_${ayah}_$reciter',
+        title: surahName,
+        artist: label,
+        // نخزّن رقم الآية في extras لتتبّع الآية الحالية
+        extras: {'ayah': tagAyah},
+      ),
+    );
   }
 
-  Future<void> resume() async {
-    await _player.resume();
-    _isPlaying = true;
-  }
+  Future<void> pause() => _player.pause();
+  Future<void> resume() => _player.play();
+  Future<void> stop() => _player.stop();
+  Future<void> seekToIndex(int index) => _player.seek(Duration.zero, index: index);
 
-  Future<void> stop() async {
-    await _player.stop();
-    await _preloader.stop();
-    _preloadedUrl = null;
-    _isPlaying = false;
-  }
-
-  void dispose() {
-    _player.dispose();
-    _preloader.dispose();
-  }
+  void dispose() => _player.dispose();
 }

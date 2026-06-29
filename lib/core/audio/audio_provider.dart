@@ -1,5 +1,6 @@
-import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'audio_service.dart';
 
 final audioServiceProvider = Provider<SirajAudioService>((ref) {
@@ -49,69 +50,78 @@ class AudioState {
 
 class AudioNotifier extends Notifier<AudioState> {
   @override
-  AudioState build() => const AudioState();
-
-  Future<void> playAyah(int surahId, int ayahId, {
-    int totalAyahs = 0,
-    String reciter = 'Alafasy_128kbps',
-  }) async {
+  AudioState build() {
     final service = ref.read(audioServiceProvider);
 
-    state = state.copyWith(
-      isPlaying:      true,
-      currentSurahId: surahId,
-      currentAyahId:  ayahId,
-      totalAyahs:     totalAyahs,
-    );
+    // متابعة تشغيل/إيقاف
+    final playSub = service.player.playingStream.listen((playing) {
+      state = state.copyWith(isPlaying: playing);
+    });
 
-    service.onComplete(() {
-      final next = (state.currentAyahId ?? 0) + 1;
-      if (next <= state.totalAyahs && state.isPlaying) {
-        playAyah(
-          surahId, next,
-          totalAyahs: state.totalAyahs,
-          reciter: reciter,
-        );
-      } else {
+    // متابعة الآية الحالية عبر الفهرس + وسم MediaItem
+    final idxSub = service.player.currentIndexStream.listen((index) {
+      if (index == null) return;
+      final seq = service.player.sequence;
+      if (seq == null || index >= seq.length) return;
+      final tag = seq[index].tag;
+      final ayah = (tag is MediaItem) ? (tag.extras?['ayah'] as int?) : null;
+      if (ayah != null && ayah > 0) {
+        state = state.copyWith(currentAyahId: ayah);
+      }
+    });
+
+    // عند انتهاء كامل السورة
+    final stateSub = service.player.playerStateStream.listen((ps) {
+      if (ps.processingState == ProcessingState.completed) {
         state = state.copyWith(isPlaying: false);
       }
     });
 
-    await service.playAyah(surahId, ayahId, reciter: reciter);
+    ref.onDispose(() {
+      playSub.cancel();
+      idxSub.cancel();
+      stateSub.cancel();
+    });
 
-    // تحميل الآية التالية مسبقاً لإلغاء الفجوة
-    final upcoming = ayahId + 1;
-    if (upcoming <= totalAyahs) {
-      service.preloadAyah(surahId, upcoming, reciter: reciter);
-    }
+    return const AudioState();
   }
 
-  Future<void> playFromStart(
-      int surahId, int totalAyahs, String reciter) async {
+  String _surahName = '';
+
+  Future<void> playFromStart(int surahId, int totalAyahs, String reciter,
+      {String surahName = ''}) async {
     final service = ref.read(audioServiceProvider);
-    await service.stop();
-    state = const AudioState();
-
-    // تشغيل البسملة أولاً (عدا الفاتحة والتوبة)
-    if (surahId != 1 && surahId != 9) {
-      final completer = Completer<void>();
-      service.onComplete(() => completer.complete());
-      await service.playAyah(1, 1, reciter: reciter);
-      await completer.future;
-    }
-
-    await playAyah(surahId, 1, totalAyahs: totalAyahs, reciter: reciter);
+    if (surahName.isNotEmpty) _surahName = surahName;
+    state = AudioState(
+      isPlaying: true,
+      currentSurahId: surahId,
+      currentAyahId: 1,
+      totalAyahs: totalAyahs,
+    );
+    await service.playSurah(
+      surahId: surahId,
+      totalAyahs: totalAyahs,
+      reciter: reciter,
+      surahName: _surahName.isEmpty ? 'سورة' : _surahName,
+    );
   }
 
   // تبديل القارئ مع المتابعة من الآية الحالية
   Future<void> changeReciter(String reciter) async {
-    final current = state.currentAyahId ?? 1;
     final surahId = state.currentSurahId;
     final total   = state.totalAyahs;
+    final current = state.currentAyahId ?? 1;
     if (surahId == null) return;
     final service = ref.read(audioServiceProvider);
-    await service.stop();
-    await playAyah(surahId, current, totalAyahs: total, reciter: reciter);
+    state = state.copyWith(isPlaying: true, currentAyahId: current);
+    await service.playSurah(
+      surahId: surahId,
+      totalAyahs: total,
+      reciter: reciter,
+      surahName: _surahName.isEmpty ? 'سورة' : _surahName,
+      startAyah: current,
+      withBasmala: false,
+    );
   }
 
   Future<void> stopAudio() async {
@@ -123,13 +133,11 @@ class AudioNotifier extends Notifier<AudioState> {
   Future<void> pause() async {
     final service = ref.read(audioServiceProvider);
     await service.pause();
-    state = state.copyWith(isPlaying: false);
   }
 
   Future<void> resume() async {
     final service = ref.read(audioServiceProvider);
     await service.resume();
-    state = state.copyWith(isPlaying: true);
   }
 }
 

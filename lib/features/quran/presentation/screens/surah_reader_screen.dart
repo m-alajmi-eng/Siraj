@@ -122,7 +122,8 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                             ref.read(audioProvider.notifier).resume();
                           } else {
                             ref.read(audioProvider.notifier).playFromStart(
-                              widget.surahId, ayahs.length, selectedReciter);
+                              widget.surahId, ayahs.length, selectedReciter,
+                              surahName: surah?.nameArabic ?? '');
                           }
                         },
                         child: Container(
