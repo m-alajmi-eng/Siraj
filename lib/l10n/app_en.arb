@@ -264,5 +264,19 @@
         "type": "int"
       }
     }
+  },
+  "search_hint": "Search Quran & tafsir...",
+  "search_empty": "Search the Holy Quran, tafsir, and word meanings",
+  "search_noResults": "No results for \"{query}\"",
+  "search_typeAyah": "Ayah",
+  "search_typeTafsir": "Tafsir",
+  "search_typeWord": "Word",
+  "search_typeHadith": "Hadith",
+  "@search_noResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
   }
 }

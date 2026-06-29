@@ -1323,6 +1323,48 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'دبي'**
   String get calc_Dubai;
+
+  /// No description provided for @search_hint.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث في القرآن والتفاسير...'**
+  String get search_hint;
+
+  /// No description provided for @search_empty.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث في القرآن الكريم والتفاسير ومعاني الكلمات'**
+  String get search_empty;
+
+  /// No description provided for @search_noResults.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا نتائج لـ \"{query}\"'**
+  String search_noResults(String query);
+
+  /// No description provided for @search_typeAyah.
+  ///
+  /// In ar, this message translates to:
+  /// **'آية'**
+  String get search_typeAyah;
+
+  /// No description provided for @search_typeTafsir.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفسير'**
+  String get search_typeTafsir;
+
+  /// No description provided for @search_typeWord.
+  ///
+  /// In ar, this message translates to:
+  /// **'كلمة'**
+  String get search_typeWord;
+
+  /// No description provided for @search_typeHadith.
+  ///
+  /// In ar, this message translates to:
+  /// **'حديث'**
+  String get search_typeHadith;
 }
 
 class _AppLocalizationsDelegate

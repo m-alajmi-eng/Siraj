@@ -613,4 +613,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get calc_Dubai => 'Dubai';
+
+  @override
+  String get search_hint => 'Search Quran & tafsir...';
+
+  @override
+  String get search_empty => 'Search the Holy Quran, tafsir, and word meanings';
+
+  @override
+  String search_noResults(String query) {
+    return 'No results for \"$query\"';
+  }
+
+  @override
+  String get search_typeAyah => 'Ayah';
+
+  @override
+  String get search_typeTafsir => 'Tafsir';
+
+  @override
+  String get search_typeWord => 'Word';
+
+  @override
+  String get search_typeHadith => 'Hadith';
 }

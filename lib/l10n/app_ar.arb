@@ -264,5 +264,19 @@
         "type": "int"
       }
     }
+  },
+  "search_hint": "ابحث في القرآن والتفاسير...",
+  "search_empty": "ابحث في القرآن الكريم والتفاسير ومعاني الكلمات",
+  "search_noResults": "لا نتائج لـ \"{query}\"",
+  "search_typeAyah": "آية",
+  "search_typeTafsir": "تفسير",
+  "search_typeWord": "كلمة",
+  "search_typeHadith": "حديث",
+  "@search_noResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
   }
 }
