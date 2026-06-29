@@ -135,3 +135,34 @@ Solo developer leading all architecture, decisions, and testing. Claude used as 
 The developer led every architectural decision, feature prioritization, debugging session,
 and quality review throughout Phase 1. Claude served as a coding assistant for implementation.
 All product decisions, Islamic content standards, and release criteria were defined by the developer.
+
+## آخر تحديث — جلسة 2 (29 يونيو 2026)
+
+### مكتمل ✅
+- Design Tokens من Figma (lib/core/theme/design_tokens.dart)
+  - SirajGold, SirajCanvas, SirajWhite, SirajSky, SirajFonts
+  - SirajSizes, SirajSpacing, SirajRadius, SirajMotion
+  - SkyPhase enum + gradients للـ 7 phases
+- Home Screen جديدة بتصميم Dark/Glass/Gold
+  - Glass morphism components
+  - Dynamic sky background
+  - Floating search bar
+  - Continue Reading card
+  - Daily Ayah card
+  - Quick Actions grid (8 أزرار)
+- Stories + Children Stories screens
+- Verse Portal: 7 صفحات (ميسّر + لغوي + عربي + لغات أخرى + أحاديث + قصص)
+- ترجمات القرآن (13 لغة) من alquran.cloud
+- Design Brief (DESIGN_BRIEF.md) للـ Figma
+- Figma React code في ~/projects/DesignSIRAJHomeScreen
+
+### معلّق ⚠️
+- Home Screen الجديدة تعطي شاشة حمراء — لم يُحل بعد
+- Audio Hub الموحّد (just_audio + audio_service) — لم يُبدأ
+
+### القواعد الثابتة
+- flutter clean يعلّق الجهاز — ممنوع
+- RAM 7.4GB، r للـ hot reload، R للـ restart
+- Supabase: https://pzcnkzsicyxlzqwjznvh.supabase.co
+- GitHub: git@github.com:m-alajmi-eng/Siraj.git
+- التعديلات عبر python3 أو Cursor مباشرة
