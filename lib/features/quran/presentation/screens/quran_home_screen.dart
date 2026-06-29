@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../core/theme/design_tokens.dart';
+import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../providers/quran_provider.dart';
 
@@ -9,138 +12,124 @@ class QuranHomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t           = AppLocalizations.of(context);
     final palette     = ref.watch(timeThemeProvider);
     final surahsAsync = ref.watch(surahsProvider);
 
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        backgroundColor: palette.background,
-        body: SafeArea(
-          child: Column(
-            children: [
-              // ─── Header ───
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'القرآن الكريم',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color:      palette.textPrimary,
-                        fontSize:   28,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ],
+    return Scaffold(
+      backgroundColor: palette.background,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: SirajLayout.pagePadding, vertical: SirajSpacing.s4),
+              child: Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(t.quran_title, style: AppText.title.copyWith(
+                  color: palette.textPrimary)),
+              ),
+            ),
+            Expanded(
+              child: surahsAsync.when(
+                loading: () => Center(
+                  child: CircularProgressIndicator(color: palette.accentPrimary),
+                ),
+                error: (e, _) => Center(
+                  child: Text(t.common_error, style: AppText.body.copyWith(
+                    color: palette.textPrimary)),
+                ),
+                data: (surahs) => ListView.builder(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: SirajLayout.pagePadding),
+                  itemCount: surahs.length,
+                  itemBuilder: (context, index) {
+                    final surah = surahs[index];
+                    return _SurahTile(
+                      surah:   surah,
+                      palette: palette,
+                      typeLabel: surah.revelationType == 'Meccan'
+                          ? t.quran_meccan : t.quran_medinan,
+                      ayahLabel: t.quran_ayahCount(surah.ayahCount),
+                      onTap: () => context.go('/quran/surah/${surah.id}'),
+                    );
+                  },
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
-              // ─── Surahs List ───
-              Expanded(
-                child: surahsAsync.when(
-                  loading: () => Center(
-                    child: CircularProgressIndicator(color: palette.accentPrimary),
-                  ),
-                  error: (e, _) => Center(
-                    child: Text('خطأ في التحميل',
-                      style: TextStyle(color: palette.textPrimary)),
-                  ),
-                  data: (surahs) => ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    itemCount: surahs.length,
-                    itemBuilder: (context, index) {
-                      final surah = surahs[index];
-                      return GestureDetector(
-                        onTap: () => context.go('/quran/surah/${surah.id}'),
-                        child: Container(
-                          margin: const EdgeInsets.only(bottom: 8),
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                          decoration: BoxDecoration(
-                            color:        palette.surface,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            children: [
-                              // اسم السورة بالعربي + عدد الآيات (يمين)
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      surah.nameArabic,
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color:      palette.textPrimary,
-                                        fontSize:   22,
-                                        fontFamily: 'UthmanTNB',
-                                      ),
-                                    ),
-                                    Text(
-                                      '${surah.ayahCount} آية',
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color:    palette.textSecondary,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(width: 14),
-                              // الاسم اللاتيني + النوع (وسط)
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    surah.nameTransliteration,
-                                    style: TextStyle(
-                                      color:      palette.textPrimary,
-                                      fontSize:   15,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  Text(
-                                    surah.revelationType == 'Meccan' ? 'مكية' : 'مدنية',
-                                    style: TextStyle(
-                                      color:    palette.textSecondary,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(width: 14),
-                              // رقم السورة (يسار)
-                              Container(
-                                width:  36,
-                                height: 36,
-                                decoration: BoxDecoration(
-                                  color: palette.accentPrimary.withOpacity(0.15),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    '${surah.id}',
-                                    style: TextStyle(
-                                      color:      palette.accentPrimary,
-                                      fontSize:   13,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+class _SurahTile extends StatelessWidget {
+  final dynamic surah;
+  final dynamic palette;
+  final String typeLabel;
+  final String ayahLabel;
+  final VoidCallback onTap;
+
+  const _SurahTile({
+    required this.surah,
+    required this.palette,
+    required this.typeLabel,
+    required this.ayahLabel,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
+        padding: const EdgeInsets.symmetric(
+          horizontal: SirajSpacing.s4, vertical: SirajSpacing.s4),
+        decoration: BoxDecoration(
+          color: palette.surface,
+          borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+        ),
+        child: Row(
+          children: [
+            // رقم السورة (البداية - يمين بالعربي / يسار بالإنجليزي)
+            Container(
+              width: 36, height: 36,
+              decoration: BoxDecoration(
+                color: palette.accentPrimary.withValues(alpha: 0.15),
+                shape: BoxShape.circle,
               ),
-            ],
-          ),
+              child: Center(
+                child: Text('${surah.id}', style: AppText.numeral.copyWith(
+                  color: palette.accentPrimary, fontSize: SirajSizes.sBase,
+                  fontWeight: FontWeight.w600)),
+              ),
+            ),
+            const SizedBox(width: SirajSpacing.s4),
+            // الاسم اللاتيني + النوع
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(surah.nameTransliteration, style: AppText.body.copyWith(
+                  color: palette.textPrimary, fontWeight: FontWeight.w500)),
+                Text(typeLabel, style: AppText.caption.copyWith(
+                  color: palette.textSecondary)),
+              ],
+            ),
+            const Spacer(),
+            // اسم السورة بالعربي + عدد الآيات (النهاية)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(surah.nameArabic, style: AppText.quran.copyWith(
+                  color: palette.textPrimary, fontSize: SirajSizes.sXl,
+                  height: 1.4)),
+                Text(ayahLabel, style: AppText.caption.copyWith(
+                  color: palette.textSecondary)),
+              ],
+            ),
+          ],
         ),
       ),
     );
