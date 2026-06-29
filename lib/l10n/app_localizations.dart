@@ -1401,6 +1401,108 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'{read} / {total} صفحة'**
   String stats_pagesOf(int read, int total);
+
+  /// No description provided for @reader_tapToListen.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضغط للاستماع'**
+  String get reader_tapToListen;
+
+  /// No description provided for @reader_ayahNum.
+  ///
+  /// In ar, this message translates to:
+  /// **'الآية {n}'**
+  String reader_ayahNum(int n);
+
+  /// No description provided for @reader_reciter.
+  ///
+  /// In ar, this message translates to:
+  /// **'القارئ'**
+  String get reader_reciter;
+
+  /// No description provided for @reader_chooseReciter.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر القارئ'**
+  String get reader_chooseReciter;
+
+  /// No description provided for @reader_searchReciter.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث عن قارئ...'**
+  String get reader_searchReciter;
+
+  /// No description provided for @reader_longPressHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضغط مطولاً على أي آية للبوابة والتفسير والمشاركة'**
+  String get reader_longPressHint;
+
+  /// No description provided for @reader_versePortal.
+  ///
+  /// In ar, this message translates to:
+  /// **'بوابة الآية'**
+  String get reader_versePortal;
+
+  /// No description provided for @reader_portalSub.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفسير · كلمات · سياق'**
+  String get reader_portalSub;
+
+  /// No description provided for @reader_showTafsir.
+  ///
+  /// In ar, this message translates to:
+  /// **'عرض التفسير'**
+  String get reader_showTafsir;
+
+  /// No description provided for @reader_shareAyah.
+  ///
+  /// In ar, this message translates to:
+  /// **'مشاركة الآية'**
+  String get reader_shareAyah;
+
+  /// No description provided for @reader_copyAyah.
+  ///
+  /// In ar, this message translates to:
+  /// **'نسخ الآية'**
+  String get reader_copyAyah;
+
+  /// No description provided for @reader_ayahCopied.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم نسخ الآية'**
+  String get reader_ayahCopied;
+
+  /// No description provided for @reader_tafsirOf.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفسير الآية {n}'**
+  String reader_tafsirOf(int n);
+
+  /// No description provided for @reader_muyassar.
+  ///
+  /// In ar, this message translates to:
+  /// **'الميسر'**
+  String get reader_muyassar;
+
+  /// No description provided for @reader_tafsirError.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذّر تحميل التفسير'**
+  String get reader_tafsirError;
+
+  /// No description provided for @reader_shareTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'آية كريمة'**
+  String get reader_shareTitle;
+
+  /// No description provided for @reader_shareSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'{surah} · آية {n}'**
+  String reader_shareSubtitle(String surah, int n);
 }
 
 class _AppLocalizationsDelegate

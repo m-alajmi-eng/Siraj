@@ -294,5 +294,46 @@
         "type": "int"
       }
     }
+  },
+  "reader_tapToListen": "اضغط للاستماع",
+  "reader_ayahNum": "الآية {n}",
+  "reader_reciter": "القارئ",
+  "reader_chooseReciter": "اختر القارئ",
+  "reader_searchReciter": "ابحث عن قارئ...",
+  "reader_longPressHint": "اضغط مطولاً على أي آية للبوابة والتفسير والمشاركة",
+  "reader_versePortal": "بوابة الآية",
+  "reader_portalSub": "تفسير · كلمات · سياق",
+  "reader_showTafsir": "عرض التفسير",
+  "reader_shareAyah": "مشاركة الآية",
+  "reader_copyAyah": "نسخ الآية",
+  "reader_ayahCopied": "تم نسخ الآية",
+  "reader_tafsirOf": "تفسير الآية {n}",
+  "reader_muyassar": "الميسر",
+  "reader_tafsirError": "تعذّر تحميل التفسير",
+  "reader_shareTitle": "آية كريمة",
+  "reader_shareSubtitle": "{surah} · آية {n}",
+  "@reader_ayahNum": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@reader_tafsirOf": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@reader_shareSubtitle": {
+    "placeholders": {
+      "surah": {
+        "type": "String"
+      },
+      "n": {
+        "type": "int"
+      }
+    }
   }
 }

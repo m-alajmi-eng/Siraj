@@ -656,4 +656,62 @@ class AppLocalizationsPt extends AppLocalizations {
   String stats_pagesOf(int read, int total) {
     return '$read / $total صفحة';
   }
+
+  @override
+  String get reader_tapToListen => 'اضغط للاستماع';
+
+  @override
+  String reader_ayahNum(int n) {
+    return 'الآية $n';
+  }
+
+  @override
+  String get reader_reciter => 'القارئ';
+
+  @override
+  String get reader_chooseReciter => 'اختر القارئ';
+
+  @override
+  String get reader_searchReciter => 'ابحث عن قارئ...';
+
+  @override
+  String get reader_longPressHint =>
+      'اضغط مطولاً على أي آية للبوابة والتفسير والمشاركة';
+
+  @override
+  String get reader_versePortal => 'بوابة الآية';
+
+  @override
+  String get reader_portalSub => 'تفسير · كلمات · سياق';
+
+  @override
+  String get reader_showTafsir => 'عرض التفسير';
+
+  @override
+  String get reader_shareAyah => 'مشاركة الآية';
+
+  @override
+  String get reader_copyAyah => 'نسخ الآية';
+
+  @override
+  String get reader_ayahCopied => 'تم نسخ الآية';
+
+  @override
+  String reader_tafsirOf(int n) {
+    return 'تفسير الآية $n';
+  }
+
+  @override
+  String get reader_muyassar => 'الميسر';
+
+  @override
+  String get reader_tafsirError => 'تعذّر تحميل التفسير';
+
+  @override
+  String get reader_shareTitle => 'آية كريمة';
+
+  @override
+  String reader_shareSubtitle(String surah, int n) {
+    return '$surah · آية $n';
+  }
 }

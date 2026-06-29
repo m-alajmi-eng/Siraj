@@ -294,5 +294,46 @@
         "type": "int"
       }
     }
+  },
+  "reader_tapToListen": "Tap to listen",
+  "reader_ayahNum": "Ayah {n}",
+  "reader_reciter": "Reciter",
+  "reader_chooseReciter": "Choose Reciter",
+  "reader_searchReciter": "Search reciter...",
+  "reader_longPressHint": "Long-press any ayah for portal, tafsir & sharing",
+  "reader_versePortal": "Verse Portal",
+  "reader_portalSub": "Tafsir · Words · Context",
+  "reader_showTafsir": "Show Tafsir",
+  "reader_shareAyah": "Share Ayah",
+  "reader_copyAyah": "Copy Ayah",
+  "reader_ayahCopied": "Ayah copied",
+  "reader_tafsirOf": "Tafsir of Ayah {n}",
+  "reader_muyassar": "Al-Muyassar",
+  "reader_tafsirError": "Failed to load tafsir",
+  "reader_shareTitle": "Noble Ayah",
+  "reader_shareSubtitle": "{surah} · Ayah {n}",
+  "@reader_ayahNum": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@reader_tafsirOf": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@reader_shareSubtitle": {
+    "placeholders": {
+      "surah": {
+        "type": "String"
+      },
+      "n": {
+        "type": "int"
+      }
+    }
   }
 }

@@ -9,9 +9,17 @@ import 'core/theme/time_theme_provider.dart';
 import 'core/storage/cache_service.dart';
 import 'core/locale/locale_provider.dart';
 import 'core/notifications/adhan_service.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // تهيئة التشغيل الخلفي للصوت (قرآن + راديو)
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.siraj.audio',
+    androidNotificationChannelName: 'سراج — الصوتيات',
+    androidNotificationOngoing: true,
+  );
 
   await Supabase.initialize(
     url: 'https://pzcnkzsicyxlzqwjznvh.supabase.co',

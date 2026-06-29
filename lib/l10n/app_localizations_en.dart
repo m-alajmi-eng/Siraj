@@ -656,4 +656,62 @@ class AppLocalizationsEn extends AppLocalizations {
   String stats_pagesOf(int read, int total) {
     return '$read / $total pages';
   }
+
+  @override
+  String get reader_tapToListen => 'Tap to listen';
+
+  @override
+  String reader_ayahNum(int n) {
+    return 'Ayah $n';
+  }
+
+  @override
+  String get reader_reciter => 'Reciter';
+
+  @override
+  String get reader_chooseReciter => 'Choose Reciter';
+
+  @override
+  String get reader_searchReciter => 'Search reciter...';
+
+  @override
+  String get reader_longPressHint =>
+      'Long-press any ayah for portal, tafsir & sharing';
+
+  @override
+  String get reader_versePortal => 'Verse Portal';
+
+  @override
+  String get reader_portalSub => 'Tafsir · Words · Context';
+
+  @override
+  String get reader_showTafsir => 'Show Tafsir';
+
+  @override
+  String get reader_shareAyah => 'Share Ayah';
+
+  @override
+  String get reader_copyAyah => 'Copy Ayah';
+
+  @override
+  String get reader_ayahCopied => 'Ayah copied';
+
+  @override
+  String reader_tafsirOf(int n) {
+    return 'Tafsir of Ayah $n';
+  }
+
+  @override
+  String get reader_muyassar => 'Al-Muyassar';
+
+  @override
+  String get reader_tafsirError => 'Failed to load tafsir';
+
+  @override
+  String get reader_shareTitle => 'Noble Ayah';
+
+  @override
+  String reader_shareSubtitle(String surah, int n) {
+    return '$surah · Ayah $n';
+  }
 }

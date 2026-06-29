@@ -78,6 +78,12 @@ class AudioNotifier extends Notifier<AudioState> {
     });
 
     await service.playAyah(surahId, ayahId, reciter: reciter);
+
+    // تحميل الآية التالية مسبقاً لإلغاء الفجوة
+    final upcoming = ayahId + 1;
+    if (upcoming <= totalAyahs) {
+      service.preloadAyah(surahId, upcoming, reciter: reciter);
+    }
   }
 
   Future<void> playFromStart(
@@ -95,6 +101,17 @@ class AudioNotifier extends Notifier<AudioState> {
     }
 
     await playAyah(surahId, 1, totalAyahs: totalAyahs, reciter: reciter);
+  }
+
+  // تبديل القارئ مع المتابعة من الآية الحالية
+  Future<void> changeReciter(String reciter) async {
+    final current = state.currentAyahId ?? 1;
+    final surahId = state.currentSurahId;
+    final total   = state.totalAyahs;
+    if (surahId == null) return;
+    final service = ref.read(audioServiceProvider);
+    await service.stop();
+    await playAyah(surahId, current, totalAyahs: total, reciter: reciter);
   }
 
   Future<void> stopAudio() async {
