@@ -264,559 +264,562 @@ class AppLocalizationsEs extends AppLocalizations {
   String get common_offline => 'Sin conexión a internet';
 
   @override
-  String get nav_home => 'الرئيسية';
+  String get nav_home => 'Inicio';
 
   @override
-  String get nav_quran => 'القرآن';
+  String get nav_quran => 'Corán';
 
   @override
-  String get nav_athkar => 'الأذكار';
+  String get nav_athkar => 'Adhkar';
 
   @override
-  String get nav_hadith => 'الحديث';
+  String get nav_hadith => 'Hadiz';
 
   @override
-  String get nav_more => 'المزيد';
+  String get nav_more => 'Más';
 
   @override
-  String get home_greetingNight => 'ليلة مباركة،';
+  String get home_greetingNight => 'Buenas noches';
 
   @override
-  String get home_greetingFajr => 'السلام على الفجر،';
+  String get home_greetingFajr => 'Hora del Fayr';
 
   @override
-  String get home_greetingMorning => 'صباح الخير،';
+  String get home_greetingMorning => 'Buenos días';
 
   @override
-  String get home_greetingNoon => 'مساء النور،';
+  String get home_greetingNoon => 'Buenas tardes';
 
   @override
-  String get home_greetingAsr => 'عصر مبارك،';
+  String get home_greetingAsr => 'Tarde';
 
   @override
-  String get home_greetingEvening => 'مساء الخير،';
+  String get home_greetingEvening => 'Buenas noches';
 
   @override
-  String get home_greetingLateNight => 'ليلة هادئة،';
+  String get home_greetingLateNight => 'Noche profunda';
 
   @override
-  String get home_welcome => 'أهلاً وسهلاً';
+  String get home_welcome => 'Bienvenido';
 
   @override
-  String get home_nextPrayer => 'الصلاة القادمة';
+  String get home_nextPrayer => 'Próxima oración';
 
   @override
-  String get home_qiblaDirection => 'اتجاه القبلة';
+  String get home_qiblaDirection => 'Dirección de la Quibla';
 
   @override
-  String get home_continueReading => 'متابعة القراءة';
+  String get home_continueReading => 'Continuar leyendo';
 
   @override
   String home_surah(int id) {
-    return 'سورة #$id';
+    return 'Sura #$id';
   }
 
   @override
   String home_ayah(int number) {
-    return 'آية $number';
+    return 'Versículo $number';
   }
 
   @override
-  String get home_dailyAyah => 'آية اليوم';
+  String get home_dailyAyah => 'Versículo del día';
 
   @override
-  String get home_quickAccess => 'وصول سريع';
+  String get home_quickAccess => 'Acceso rápido';
 
   @override
-  String get home_searchHint => 'ما الذي تبحث عنه...';
+  String get home_searchHint => 'Buscar...';
 
   @override
-  String get home_radio => 'الراديو';
+  String get home_radio => 'Radio';
 
   @override
-  String get home_calendar => 'التقويم';
+  String get home_calendar => 'Calendario';
 
   @override
-  String get home_stories => 'القصص';
+  String get home_stories => 'Historias';
 
   @override
-  String get home_children => 'الأطفال';
+  String get home_children => 'Niños';
 
   @override
-  String get settings_title => 'الإعدادات';
+  String get settings_title => 'Ajustes';
 
   @override
-  String get radio_title => 'إذاعات سراج';
+  String get radio_title => 'Radio Siraj';
 
   @override
-  String get radio_all => 'الكل';
+  String get radio_all => 'Todo';
 
   @override
-  String get radio_quran => 'قرآن';
+  String get radio_quran => 'Corán';
 
   @override
-  String get radio_translations => 'تراجم';
+  String get radio_translations => 'Traducciones';
 
   @override
-  String get radio_tafsir => 'تفسير وفتاوى';
+  String get radio_tafsir => 'Tafsir y Fatua';
 
   @override
-  String get radio_athkar => 'أذكار';
+  String get radio_athkar => 'Adhkar';
 
   @override
-  String get radio_international => 'إذاعات دولية';
+  String get radio_international => 'Internacional';
 
   @override
-  String get cal_title => 'التقويم الإسلامي';
+  String get cal_title => 'Calendario islámico';
 
   @override
-  String get cal_todayEvents => 'مناسبات اليوم';
+  String get cal_todayEvents => 'Eventos de hoy';
 
   @override
-  String get cal_nextEvent => 'المناسبة القادمة';
+  String get cal_nextEvent => 'Próximo evento';
 
   @override
-  String get cal_allEvents => 'المناسبات الإسلامية';
+  String get cal_allEvents => 'Eventos islámicos';
 
   @override
   String cal_daysUntil(int days) {
-    return '$days يوم';
+    return '$days días';
   }
 
   @override
-  String get cal_gregorian => 'ميلادي';
+  String get cal_gregorian => 'Gregoriano';
 
   @override
-  String get cal_hijri => 'هجري';
+  String get cal_hijri => 'Hégira';
 
   @override
-  String get hm_1 => 'محرم';
+  String get hm_1 => 'Muharram';
 
   @override
-  String get hm_2 => 'صفر';
+  String get hm_2 => 'Safar';
 
   @override
-  String get hm_3 => 'ربيع الأول';
+  String get hm_3 => 'Rabi al-Awwal';
 
   @override
-  String get hm_4 => 'ربيع الآخر';
+  String get hm_4 => 'Rabi al-Thani';
 
   @override
-  String get hm_5 => 'جمادى الأولى';
+  String get hm_5 => 'Yumada al-Ula';
 
   @override
-  String get hm_6 => 'جمادى الآخرة';
+  String get hm_6 => 'Yumada al-Ajira';
 
   @override
-  String get hm_7 => 'رجب';
+  String get hm_7 => 'Rayab';
 
   @override
-  String get hm_8 => 'شعبان';
+  String get hm_8 => 'Shaban';
 
   @override
-  String get hm_9 => 'رمضان';
+  String get hm_9 => 'Ramadán';
 
   @override
-  String get hm_10 => 'شوال';
+  String get hm_10 => 'Shawwal';
 
   @override
-  String get hm_11 => 'ذو القعدة';
+  String get hm_11 => 'Dhu al-Qida';
 
   @override
-  String get hm_12 => 'ذو الحجة';
+  String get hm_12 => 'Dhu al-Hiyya';
 
   @override
-  String get ev_new_year => 'رأس السنة الهجرية';
+  String get ev_new_year => 'Año Nuevo islámico';
 
   @override
-  String get ev_ashura => 'يوم عاشوراء';
+  String get ev_ashura => 'Día de Ashura';
 
   @override
-  String get ev_mawlid => 'المولد النبوي';
+  String get ev_mawlid => 'Mawlid an-Nabiﷺ';
 
   @override
-  String get ev_isra => 'ليلة الإسراء والمعراج';
+  String get ev_isra => 'Isra y Miraj';
 
   @override
-  String get ev_ramadan_start => 'أول رمضان';
+  String get ev_ramadan_start => 'Inicio del Ramadán';
 
   @override
-  String get ev_laylat_qadr => 'ليلة القدر';
+  String get ev_laylat_qadr => 'Laylat al-Qadr';
 
   @override
-  String get ev_eid_fitr => 'عيد الفطر';
+  String get ev_eid_fitr => 'Eid al-Fitr';
 
   @override
-  String get ev_arafah => 'يوم عرفة';
+  String get ev_arafah => 'Día de Arafat';
 
   @override
-  String get ev_eid_adha => 'عيد الأضحى';
+  String get ev_eid_adha => 'Eid al-Adha';
 
   @override
-  String get ev_tashreeq => 'أيام التشريق';
+  String get ev_tashreeq => 'Días de Tashriq';
 
   @override
-  String get stories_title => 'القصص والسير';
+  String get stories_title => 'Historias y Sira';
 
   @override
-  String get stories_prophets => 'الأنبياء';
+  String get stories_prophets => 'Profetas';
 
   @override
-  String get stories_companions => 'الصحابة';
+  String get stories_companions => 'Compañeros';
 
   @override
-  String get stories_scholars => 'العلماء';
+  String get stories_scholars => 'Sabios';
 
   @override
-  String get stories_comingSoon => 'قريباً';
+  String get stories_comingSoon => 'Pronto';
 
   @override
-  String get stories_comingSoonMsg => 'قريباً — نعمل على إضافة المحتوى';
+  String get stories_comingSoonMsg => 'Próximamente — contenido en preparación';
 
   @override
-  String get children_title => 'قصص الأطفال';
+  String get children_title => 'Historias para niños';
 
   @override
-  String get settings_secIdentity => 'الهوية';
+  String get settings_secIdentity => 'Identidad';
 
   @override
-  String get settings_secAdhan => 'الأذان';
+  String get settings_secAdhan => 'Adhan';
 
   @override
-  String get settings_secApp => 'التطبيق';
+  String get settings_secApp => 'Aplicación';
 
   @override
-  String get settings_secPrivacy => 'الخصوصية';
+  String get settings_secPrivacy => 'Privacidad';
 
   @override
-  String get settings_secAbout => 'عن التطبيق';
+  String get settings_secAbout => 'Acerca de';
 
   @override
-  String get settings_language => 'اللغة';
+  String get settings_language => 'Idioma';
 
   @override
-  String get settings_chooseLanguage => 'اختر اللغة';
+  String get settings_chooseLanguage => 'Elegir idioma';
 
   @override
-  String get settings_madhab => 'المذهب';
+  String get settings_madhab => 'Madhab';
 
   @override
-  String get settings_chooseMadhab => 'اختر المذهب';
+  String get settings_chooseMadhab => 'Elegir madhab';
 
   @override
-  String get settings_calcMethod => 'طريقة حساب الصلاة';
+  String get settings_calcMethod => 'Método de cálculo de oraciones';
 
   @override
-  String get settings_chooseCalc => 'طريقة الحساب';
+  String get settings_chooseCalc => 'Método de cálculo';
 
   @override
-  String get settings_enableAdhan => 'تفعيل الأذان';
+  String get settings_enableAdhan => 'Activar Adhan';
 
   @override
-  String get settings_muezzinVoice => 'صوت المؤذن';
+  String get settings_muezzinVoice => 'Voz del almuédano';
 
   @override
-  String get settings_vibration => 'اهتزاز بدل صوت';
+  String get settings_vibration => 'Vibrar en lugar de sonido';
 
   @override
-  String get settings_iqamaAlert => 'تنبيه قبل الإقامة';
+  String get settings_iqamaAlert => 'Aviso antes del Iqama';
 
   @override
   String settings_minutes(int n) {
-    return '$n د';
+    return '$n min';
   }
 
   @override
-  String get settings_appMode => 'وضع التطبيق';
+  String get settings_appMode => 'Modo de la aplicación';
 
   @override
-  String get settings_fullMode => 'الوضع الكامل';
+  String get settings_fullMode => 'Modo completo';
 
   @override
-  String get settings_liteMode => 'الوضع الخفيف';
+  String get settings_liteMode => 'Modo ligero';
 
   @override
-  String get settings_fullModeDesc => 'كل الميزات متاحة';
+  String get settings_fullModeDesc => 'Todas las funciones disponibles';
 
   @override
-  String get settings_liteModeDesc => 'الأساسيات فقط — بدون إنترنت';
+  String get settings_liteModeDesc => 'Solo lo esencial — sin conexión';
 
   @override
-  String get settings_quranFont => 'خط القرآن';
+  String get settings_quranFont => 'Fuente del Corán';
 
   @override
-  String get settings_fontUthmani => 'عثماني';
+  String get settings_fontUthmani => 'Uthmani';
 
   @override
-  String get settings_fontHafs => 'حفص';
+  String get settings_fontHafs => 'Hafs';
 
   @override
-  String get settings_quranFontSize => 'حجم خط القرآن';
+  String get settings_quranFontSize => 'Tamaño de fuente del Corán';
 
   @override
-  String get settings_privacyNote => 'موقعك يبقى على جهازك فقط';
+  String get settings_privacyNote =>
+      'Tu ubicación permanece solo en tu dispositivo';
 
   @override
-  String get settings_clearCache => 'حذف بيانات الكاش';
+  String get settings_clearCache => 'Borrar datos de caché';
 
   @override
-  String get settings_clearCacheTitle => 'حذف الكاش';
+  String get settings_clearCacheTitle => 'Borrar caché';
 
   @override
   String get settings_clearCacheMsg =>
-      'سيتم حذف البيانات المحفوظة محلياً. هل أنت متأكد؟';
+      'Los datos guardados localmente se eliminarán. ¿Estás seguro?';
 
   @override
-  String get settings_cancel => 'إلغاء';
+  String get settings_cancel => 'Cancelar';
 
   @override
-  String get settings_delete => 'حذف';
+  String get settings_delete => 'Eliminar';
 
   @override
-  String get settings_version => 'الإصدار';
+  String get settings_version => 'Versión';
 
   @override
-  String get settings_shareApp => 'مشاركة التطبيق';
+  String get settings_shareApp => 'Compartir aplicación';
 
   @override
-  String get settings_tagline => 'سراج — نور على نور';
+  String get settings_tagline => 'Siraj — Luz sobre Luz';
 
   @override
-  String get madhab_hanafi => 'الحنفي';
+  String get madhab_hanafi => 'Hanafí';
 
   @override
-  String get madhab_maliki => 'المالكي';
+  String get madhab_maliki => 'Malikí';
 
   @override
-  String get madhab_shafi => 'الشافعي';
+  String get madhab_shafi => 'Shafií';
 
   @override
-  String get madhab_hanbali => 'الحنبلي';
+  String get madhab_hanbali => 'Hanbalí';
 
   @override
-  String get calc_MWL => 'رابطة العالم الإسلامي';
+  String get calc_MWL => 'Liga Mundial Musulmana';
 
   @override
-  String get calc_ISNA => 'أمريكا الشمالية (ISNA)';
+  String get calc_ISNA => 'Norteamérica (ISNA)';
 
   @override
-  String get calc_Egypt => 'الهيئة المصرية';
+  String get calc_Egypt => 'Autoridad Egipcia';
 
   @override
-  String get calc_Makkah => 'أم القرى (مكة)';
+  String get calc_Makkah => 'Umm al-Qura (La Meca)';
 
   @override
-  String get calc_Kuwait => 'الكويت';
+  String get calc_Kuwait => 'Kuwait';
 
   @override
-  String get calc_Qatar => 'قطر';
+  String get calc_Qatar => 'Catar';
 
   @override
-  String get calc_Dubai => 'دبي';
+  String get calc_Dubai => 'Dubái';
 
   @override
-  String get search_hint => 'ابحث في القرآن والتفاسير...';
+  String get search_hint => 'Buscar en el Corán y tafsir...';
 
   @override
-  String get search_empty => 'ابحث في القرآن الكريم والتفاسير ومعاني الكلمات';
+  String get search_empty =>
+      'Busca en el Sagrado Corán, tafsir y significados de palabras';
 
   @override
   String search_noResults(String query) {
-    return 'لا نتائج لـ \"$query\"';
+    return 'Sin resultados para \"$query\"';
   }
 
   @override
-  String get search_typeAyah => 'آية';
+  String get search_typeAyah => 'Versículo';
 
   @override
-  String get search_typeTafsir => 'تفسير';
+  String get search_typeTafsir => 'Tafsir';
 
   @override
-  String get search_typeWord => 'كلمة';
+  String get search_typeWord => 'Palabra';
 
   @override
-  String get search_typeHadith => 'حديث';
+  String get search_typeHadith => 'Hadiz';
 
   @override
-  String get stats_daysStreak => 'يوم متتالي';
+  String get stats_daysStreak => 'días seguidos';
 
   @override
-  String get stats_prayersUnit => 'صلاة';
+  String get stats_prayersUnit => 'oraciones';
 
   @override
-  String get stats_pagesUnit => 'صفحة';
+  String get stats_pagesUnit => 'páginas';
 
   @override
-  String get stats_athkar => 'الأذكار';
+  String get stats_athkar => 'Adhkar';
 
   @override
-  String get stats_sessionsUnit => 'جلسة';
+  String get stats_sessionsUnit => 'sesiones';
 
   @override
   String stats_pagesOf(int read, int total) {
-    return '$read / $total صفحة';
+    return '$read / $total páginas';
   }
 
   @override
-  String get reader_tapToListen => 'اضغط للاستماع';
+  String get reader_tapToListen => 'Toca para escuchar';
 
   @override
   String reader_ayahNum(int n) {
-    return 'الآية $n';
+    return 'Versículo $n';
   }
 
   @override
-  String get reader_reciter => 'القارئ';
+  String get reader_reciter => 'Recitador';
 
   @override
-  String get reader_chooseReciter => 'اختر القارئ';
+  String get reader_chooseReciter => 'Elegir recitador';
 
   @override
-  String get reader_searchReciter => 'ابحث عن قارئ...';
+  String get reader_searchReciter => 'Buscar recitador...';
 
   @override
   String get reader_longPressHint =>
-      'اضغط مطولاً على أي آية للبوابة والتفسير والمشاركة';
+      'Mantén pulsado cualquier versículo para el portal, tafsir y compartir';
 
   @override
-  String get reader_versePortal => 'بوابة الآية';
+  String get reader_versePortal => 'Portal del versículo';
 
   @override
-  String get reader_portalSub => 'تفسير · كلمات · سياق';
+  String get reader_portalSub => 'Tafsir · Palabras · Contexto';
 
   @override
-  String get reader_showTafsir => 'عرض التفسير';
+  String get reader_showTafsir => 'Mostrar tafsir';
 
   @override
-  String get reader_shareAyah => 'مشاركة الآية';
+  String get reader_shareAyah => 'Compartir versículo';
 
   @override
-  String get reader_copyAyah => 'نسخ الآية';
+  String get reader_copyAyah => 'Copiar versículo';
 
   @override
-  String get reader_ayahCopied => 'تم نسخ الآية';
+  String get reader_ayahCopied => 'Versículo copiado';
 
   @override
   String reader_tafsirOf(int n) {
-    return 'تفسير الآية $n';
+    return 'Tafsir del versículo $n';
   }
 
   @override
-  String get reader_muyassar => 'الميسر';
+  String get reader_muyassar => 'Al-Muyassar';
 
   @override
-  String get reader_tafsirError => 'تعذّر تحميل التفسير';
+  String get reader_tafsirError => 'Error al cargar el tafsir';
 
   @override
-  String get reader_shareTitle => 'آية كريمة';
+  String get reader_shareTitle => 'Noble versículo';
 
   @override
   String reader_shareSubtitle(String surah, int n) {
-    return '$surah · آية $n';
+    return '$surah · Versículo $n';
   }
 
   @override
-  String get portal_muyassar => 'التفسير الميسّر';
+  String get portal_muyassar => 'Al-Muyassar';
 
   @override
-  String get portal_words => 'الشرح اللغوي';
+  String get portal_words => 'Análisis de palabras';
 
   @override
-  String get portal_hadiths => 'أحاديث';
+  String get portal_hadiths => 'Hadices';
 
   @override
-  String get portal_stories => 'قصص وسير';
+  String get portal_stories => 'Historias y Sira';
 
   @override
-  String get portal_arabicTafsir => 'التفاسير بالعربية';
+  String get portal_arabicTafsir => 'Tafsir árabe';
 
   @override
-  String get portal_foreignTafsir => 'التفاسير بلغات أجنبية';
+  String get portal_foreignTafsir => 'Tafsir en otros idiomas';
 
   @override
-  String get portal_asbab => 'سبب النزول';
+  String get portal_asbab => 'Causa de la revelación';
 
   @override
-  String get portal_searchLang => 'ابحث عن لغة...';
+  String get portal_searchLang => 'Buscar idioma...';
 
   @override
-  String get portal_error => 'تعذّر فتح البوابة';
+  String get portal_error => 'No se pudo abrir el portal';
 
   @override
-  String get portal_back => 'رجوع';
+  String get portal_back => 'Volver';
 
   @override
-  String get portal_noTafsir => 'لا يوجد تفسير';
+  String get portal_noTafsir => 'No hay tafsir disponible';
 
   @override
-  String get portal_loadError => 'تعذّر التحميل';
+  String get portal_loadError => 'Error al cargar';
 
   @override
-  String get portal_comingSoon => 'قريباً';
+  String get portal_comingSoon => 'Pronto';
 
   @override
-  String get portal_noHadiths => 'لا توجد أحاديث مرتبطة بهذه الآية حتى الآن';
+  String get portal_noHadiths =>
+      'Aún no hay hadices vinculados a este versículo';
 
   @override
-  String get portal_addingContent => 'نعمل على إضافة المحتوى تدريجياً';
+  String get portal_addingContent => 'El contenido se añade gradualmente';
 
   @override
-  String get more_search => 'البحث الموحد';
+  String get more_search => 'Búsqueda unificada';
 
   @override
-  String get more_settings => 'الإعدادات';
+  String get more_settings => 'Ajustes';
 
   @override
-  String get more_calendar => 'التقويم الإسلامي';
+  String get more_calendar => 'Calendario islámico';
 
   @override
-  String get more_shareCards => 'بطاقات المشاركة';
+  String get more_shareCards => 'Tarjetas para compartir';
 
   @override
-  String get more_fullMode => 'الوضع الكامل';
+  String get more_fullMode => 'Modo completo';
 
   @override
-  String get more_radio => 'راديو القرآن';
+  String get more_radio => 'Radio del Corán';
 
   @override
-  String get more_mosques => 'المساجد القريبة';
+  String get more_mosques => 'Mezquitas cercanas';
 
   @override
-  String get athkarcat_error => 'خطأ';
+  String get athkarcat_error => 'Error';
 
   @override
-  String get athkarcat_empty => 'لا توجد أذكار';
+  String get athkarcat_empty => 'No hay adhkar';
 
   @override
   String athkarcat_completed(String name) {
-    return 'اكتملت $name';
+    return '$name completado';
   }
 
   @override
-  String get athkarcat_back => 'رجوع';
+  String get athkarcat_back => 'Volver';
 
   @override
-  String get athkarcat_next => 'التالي';
+  String get athkarcat_next => 'Siguiente';
 
   @override
-  String get athkarcat_finish => 'إنهاء';
+  String get athkarcat_finish => 'Finalizar';
 
   @override
-  String get athkarcat_prev => 'السابق';
+  String get athkarcat_prev => 'Anterior';
 
   @override
   String athkarcat_repeat(int count, String source) {
-    return 'التكرار: $count · $source';
+    return 'Repetir: $count · $source';
   }
 
   @override
   String athkarcat_narrated(String source) {
-    return 'رواه $source';
+    return 'Narrado por $source';
   }
 
   @override
-  String get athkarcat_moving => 'جارٍ الانتقال...';
+  String get athkarcat_moving => 'Avanzando...';
 
   @override
-  String get athkarcat_tapCount => 'اضغط للعدّ';
+  String get athkarcat_tapCount => 'Toca para contar';
 }
