@@ -1503,6 +1503,138 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'{surah} · آية {n}'**
   String reader_shareSubtitle(String surah, int n);
+
+  /// No description provided for @portal_muyassar.
+  ///
+  /// In ar, this message translates to:
+  /// **'التفسير الميسّر'**
+  String get portal_muyassar;
+
+  /// No description provided for @portal_words.
+  ///
+  /// In ar, this message translates to:
+  /// **'الشرح اللغوي'**
+  String get portal_words;
+
+  /// No description provided for @portal_hadiths.
+  ///
+  /// In ar, this message translates to:
+  /// **'أحاديث'**
+  String get portal_hadiths;
+
+  /// No description provided for @portal_stories.
+  ///
+  /// In ar, this message translates to:
+  /// **'قصص وسير'**
+  String get portal_stories;
+
+  /// No description provided for @portal_arabicTafsir.
+  ///
+  /// In ar, this message translates to:
+  /// **'التفاسير بالعربية'**
+  String get portal_arabicTafsir;
+
+  /// No description provided for @portal_foreignTafsir.
+  ///
+  /// In ar, this message translates to:
+  /// **'التفاسير بلغات أجنبية'**
+  String get portal_foreignTafsir;
+
+  /// No description provided for @portal_asbab.
+  ///
+  /// In ar, this message translates to:
+  /// **'سبب النزول'**
+  String get portal_asbab;
+
+  /// No description provided for @portal_searchLang.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث عن لغة...'**
+  String get portal_searchLang;
+
+  /// No description provided for @portal_error.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذّر فتح البوابة'**
+  String get portal_error;
+
+  /// No description provided for @portal_back.
+  ///
+  /// In ar, this message translates to:
+  /// **'رجوع'**
+  String get portal_back;
+
+  /// No description provided for @portal_noTafsir.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يوجد تفسير'**
+  String get portal_noTafsir;
+
+  /// No description provided for @portal_loadError.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذّر التحميل'**
+  String get portal_loadError;
+
+  /// No description provided for @portal_comingSoon.
+  ///
+  /// In ar, this message translates to:
+  /// **'قريباً'**
+  String get portal_comingSoon;
+
+  /// No description provided for @portal_noHadiths.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد أحاديث مرتبطة بهذه الآية حتى الآن'**
+  String get portal_noHadiths;
+
+  /// No description provided for @portal_addingContent.
+  ///
+  /// In ar, this message translates to:
+  /// **'نعمل على إضافة المحتوى تدريجياً'**
+  String get portal_addingContent;
+
+  /// No description provided for @more_search.
+  ///
+  /// In ar, this message translates to:
+  /// **'البحث الموحد'**
+  String get more_search;
+
+  /// No description provided for @more_settings.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإعدادات'**
+  String get more_settings;
+
+  /// No description provided for @more_calendar.
+  ///
+  /// In ar, this message translates to:
+  /// **'التقويم الإسلامي'**
+  String get more_calendar;
+
+  /// No description provided for @more_shareCards.
+  ///
+  /// In ar, this message translates to:
+  /// **'بطاقات المشاركة'**
+  String get more_shareCards;
+
+  /// No description provided for @more_fullMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'الوضع الكامل'**
+  String get more_fullMode;
+
+  /// No description provided for @more_radio.
+  ///
+  /// In ar, this message translates to:
+  /// **'راديو القرآن'**
+  String get more_radio;
+
+  /// No description provided for @more_mosques.
+  ///
+  /// In ar, this message translates to:
+  /// **'المساجد القريبة'**
+  String get more_mosques;
 }
 
 class _AppLocalizationsDelegate

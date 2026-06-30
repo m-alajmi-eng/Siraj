@@ -335,5 +335,27 @@
         "type": "int"
       }
     }
-  }
+  },
+  "portal_muyassar": "التفسير الميسّر",
+  "portal_words": "الشرح اللغوي",
+  "portal_hadiths": "أحاديث",
+  "portal_stories": "قصص وسير",
+  "portal_arabicTafsir": "التفاسير بالعربية",
+  "portal_foreignTafsir": "التفاسير بلغات أجنبية",
+  "portal_asbab": "سبب النزول",
+  "portal_searchLang": "ابحث عن لغة...",
+  "portal_error": "تعذّر فتح البوابة",
+  "portal_back": "رجوع",
+  "portal_noTafsir": "لا يوجد تفسير",
+  "portal_loadError": "تعذّر التحميل",
+  "portal_comingSoon": "قريباً",
+  "portal_noHadiths": "لا توجد أحاديث مرتبطة بهذه الآية حتى الآن",
+  "portal_addingContent": "نعمل على إضافة المحتوى تدريجياً",
+  "more_search": "البحث الموحد",
+  "more_settings": "الإعدادات",
+  "more_calendar": "التقويم الإسلامي",
+  "more_shareCards": "بطاقات المشاركة",
+  "more_fullMode": "الوضع الكامل",
+  "more_radio": "راديو القرآن",
+  "more_mosques": "المساجد القريبة"
 }

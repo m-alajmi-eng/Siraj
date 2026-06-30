@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -67,11 +68,23 @@ class SirajApp extends ConsumerWidget {
 
       localizationsDelegates: const [
         AppLocalizations.delegate,
+        _FallbackMaterialDelegate(),
+        _FallbackCupertinoDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
+
+      // معالجة اللغات التي لا يدعمها Material أصلاً (مثل الهوسا)
+      // نستخدم ترجماتنا، وأدوات Material تقع على fallback آمن
+      localeResolutionCallback: (locale, supported) {
+        if (locale == null) return const Locale('ar');
+        for (final l in supported) {
+          if (l.languageCode == locale.languageCode) return locale;
+        }
+        return const Locale('ar');
+      },
 
       theme: ThemeData(
         brightness:              Brightness.dark,
@@ -109,4 +122,28 @@ class SirajApp extends ConsumerWidget {
       ),
     );
   }
+}
+
+class _FallbackMaterialDelegate
+    extends LocalizationsDelegate<MaterialLocalizations> {
+  const _FallbackMaterialDelegate();
+  @override
+  bool isSupported(Locale locale) => true;
+  @override
+  Future<MaterialLocalizations> load(Locale locale) =>
+      GlobalMaterialLocalizations.delegate.load(const Locale('en'));
+  @override
+  bool shouldReload(_FallbackMaterialDelegate old) => false;
+}
+
+class _FallbackCupertinoDelegate
+    extends LocalizationsDelegate<CupertinoLocalizations> {
+  const _FallbackCupertinoDelegate();
+  @override
+  bool isSupported(Locale locale) => true;
+  @override
+  Future<CupertinoLocalizations> load(Locale locale) =>
+      GlobalCupertinoLocalizations.delegate.load(const Locale('en'));
+  @override
+  bool shouldReload(_FallbackCupertinoDelegate old) => false;
 }

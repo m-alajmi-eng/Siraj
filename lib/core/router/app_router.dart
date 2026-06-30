@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -32,6 +33,7 @@ class MoreScreen extends ConsumerWidget {
 
  @override
  Widget build(BuildContext context, WidgetRef ref) {
+   final t     = AppLocalizations.of(context);
    final mode  = ref.watch(appModeProvider);
    final flags = FeatureFlags(mode);
 
@@ -53,32 +55,32 @@ class MoreScreen extends ConsumerWidget {
 
            _MoreTile(
              icon:  Icons.search,
-             label: 'البحث الموحد',
+             label: t.more_search,
              onTap: () => context.push('/more/search'),
            ),
            _MoreTile(
              icon:  Icons.settings,
-             label: 'الإعدادات',
+             label: t.more_settings,
              onTap: () => context.push('/more/settings'),
            ),
            _MoreTile(
              icon:  Icons.calendar_month,
-             label: 'التقويم الإسلامي',
+             label: t.more_calendar,
              onTap: () => context.push('/more/calendar'),
            ),
            _MoreTile(
              icon:  Icons.explore,
-             label: 'اتجاه القبلة',
+             label: t.more_qibla,
              onTap: () => context.push('/more/qibla'),
            ),
            _MoreTile(
              icon:  Icons.bar_chart,
-             label: 'إحصائياتي',
+             label: t.more_stats,
              onTap: () => context.push('/more/stats'),
            ),
            _MoreTile(
              icon:  Icons.card_giftcard,
-             label: 'بطاقات المشاركة',
+             label: t.more_shareCards,
              onTap: () => context.push('/more/share', extra: {
                'title':    'آية كريمة',
                'subtitle': 'سورة البقرة',
@@ -97,12 +99,12 @@ class MoreScreen extends ConsumerWidget {
              const SizedBox(height: 8),
              _MoreTile(
                icon:  Icons.radio,
-               label: 'راديو القرآن',
+               label: t.more_radio,
                onTap: () => context.push('/more/radio'),
              ),
              _MoreTile(
                icon:  Icons.mosque,
-               label: 'المساجد القريبة',
+               label: t.more_mosques,
                onTap: () => context.push('/more/mosques'),
              ),
            ],

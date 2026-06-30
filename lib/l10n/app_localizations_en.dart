@@ -714,4 +714,70 @@ class AppLocalizationsEn extends AppLocalizations {
   String reader_shareSubtitle(String surah, int n) {
     return '$surah · Ayah $n';
   }
+
+  @override
+  String get portal_muyassar => 'Al-Muyassar';
+
+  @override
+  String get portal_words => 'Word Analysis';
+
+  @override
+  String get portal_hadiths => 'Hadiths';
+
+  @override
+  String get portal_stories => 'Stories';
+
+  @override
+  String get portal_arabicTafsir => 'Arabic Tafsir';
+
+  @override
+  String get portal_foreignTafsir => 'Foreign Tafsir';
+
+  @override
+  String get portal_asbab => 'Reason for Revelation';
+
+  @override
+  String get portal_searchLang => 'Search language...';
+
+  @override
+  String get portal_error => 'Could not open portal';
+
+  @override
+  String get portal_back => 'Back';
+
+  @override
+  String get portal_noTafsir => 'No tafsir available';
+
+  @override
+  String get portal_loadError => 'Failed to load';
+
+  @override
+  String get portal_comingSoon => 'Soon';
+
+  @override
+  String get portal_noHadiths => 'No hadiths linked to this verse yet';
+
+  @override
+  String get portal_addingContent => 'Content being added gradually';
+
+  @override
+  String get more_search => 'Unified Search';
+
+  @override
+  String get more_settings => 'Settings';
+
+  @override
+  String get more_calendar => 'Islamic Calendar';
+
+  @override
+  String get more_shareCards => 'Share Cards';
+
+  @override
+  String get more_fullMode => 'Full Mode';
+
+  @override
+  String get more_radio => 'Quran Radio';
+
+  @override
+  String get more_mosques => 'Nearby Mosques';
 }

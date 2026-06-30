@@ -714,4 +714,70 @@ class AppLocalizationsAr extends AppLocalizations {
   String reader_shareSubtitle(String surah, int n) {
     return '$surah · آية $n';
   }
+
+  @override
+  String get portal_muyassar => 'التفسير الميسّر';
+
+  @override
+  String get portal_words => 'الشرح اللغوي';
+
+  @override
+  String get portal_hadiths => 'أحاديث';
+
+  @override
+  String get portal_stories => 'قصص وسير';
+
+  @override
+  String get portal_arabicTafsir => 'التفاسير بالعربية';
+
+  @override
+  String get portal_foreignTafsir => 'التفاسير بلغات أجنبية';
+
+  @override
+  String get portal_asbab => 'سبب النزول';
+
+  @override
+  String get portal_searchLang => 'ابحث عن لغة...';
+
+  @override
+  String get portal_error => 'تعذّر فتح البوابة';
+
+  @override
+  String get portal_back => 'رجوع';
+
+  @override
+  String get portal_noTafsir => 'لا يوجد تفسير';
+
+  @override
+  String get portal_loadError => 'تعذّر التحميل';
+
+  @override
+  String get portal_comingSoon => 'قريباً';
+
+  @override
+  String get portal_noHadiths => 'لا توجد أحاديث مرتبطة بهذه الآية حتى الآن';
+
+  @override
+  String get portal_addingContent => 'نعمل على إضافة المحتوى تدريجياً';
+
+  @override
+  String get more_search => 'البحث الموحد';
+
+  @override
+  String get more_settings => 'الإعدادات';
+
+  @override
+  String get more_calendar => 'التقويم الإسلامي';
+
+  @override
+  String get more_shareCards => 'بطاقات المشاركة';
+
+  @override
+  String get more_fullMode => 'الوضع الكامل';
+
+  @override
+  String get more_radio => 'راديو القرآن';
+
+  @override
+  String get more_mosques => 'المساجد القريبة';
 }

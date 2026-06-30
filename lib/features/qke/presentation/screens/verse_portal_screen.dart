@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../core/widgets/citation_badge.dart';
 import '../../data/qke_repository.dart';
@@ -26,70 +27,33 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
   int _currentPage = 0;
 
   // بناء قائمة الصفحات ديناميكياً
-  List<_PageItem> _buildPageItems(PortalData portal) {
+  List<_PageItem> _buildPageItems(PortalData portal, AppLocalizations t) {
     final pages = <_PageItem>[];
 
-    // الفهم السريع
-    final muyassar = portal.tafsirs
-        .where((t) => t.sourceId == 'muyassar-ar')
-        .firstOrNull;
-    pages.add(_PageItem(
-      id:    'quick',
-      icon:  Icons.lightbulb_outline,
-      label: 'الفهم السريع',
-    ));
+    // ١. التفسير الميسّر
+    pages.add(_PageItem(id: 'quick', icon: Icons.lightbulb_outline, label: t.portal_muyassar));
 
-    // كل مفسّر بصفحة مستقلة
-    for (final t in portal.tafsirs) {
-      if (t.sourceId == 'muyassar-ar') continue; // مدرج في الفهم السريع
-      final src = tafsirSourcesMap[t.sourceId];
-      pages.add(_PageItem(
-        id:    t.sourceId,
-        icon:  _iconForSource(t.sourceId),
-        label: src?['scholar'] ?? t.scholar,
-      ));
-    }
-
-    // الشرح اللغوي
+    // ٢. الشرح اللغوي
     if (portal.words.isNotEmpty) {
-      pages.add(_PageItem(
-        id:    'words',
-        icon:  Icons.translate,
-        label: 'الشرح اللغوي',
-      ));
+      pages.add(_PageItem(id: 'words', icon: Icons.abc, label: t.portal_words));
     }
 
-    // سبب النزول
+    // ٣. أحاديث
+    pages.add(_PageItem(id: 'hadiths', icon: Icons.format_quote, label: t.portal_hadiths, comingSoon: true));
+
+    // ٤. قصص وسير
+    pages.add(_PageItem(id: 'stories', icon: Icons.auto_stories, label: t.portal_stories, comingSoon: true));
+
+    // ٥. التفاسير بالعربية
+    pages.add(_PageItem(id: 'arabic_tafsir', icon: Icons.menu_book, label: t.portal_arabicTafsir));
+
+    // ٦. التفاسير بلغات أجنبية
+    pages.add(_PageItem(id: 'translations', icon: Icons.language, label: t.portal_foreignTafsir));
+
+    // ٧. سبب النزول
     if (portal.asbabAlNuzul != null) {
-      pages.add(_PageItem(
-        id:    'asbab',
-        icon:  Icons.history_edu,
-        label: 'سبب النزول',
-      ));
+      pages.add(_PageItem(id: 'asbab', icon: Icons.history_edu, label: t.portal_asbab));
     }
-
-    // الترجمات
-    pages.add(_PageItem(
-      id:    'translations',
-      icon:  Icons.translate,
-      label: 'ترجمات',
-    ));
-
-    // الأحاديث المتعلقة بالآية (قريباً)
-    pages.add(_PageItem(
-      id:    'hadiths',
-      icon:  Icons.format_quote,
-      label: 'أحاديث',
-      comingSoon: true,
-    ));
-
-    // القصص والسير (قريباً)
-    pages.add(_PageItem(
-      id:    'stories',
-      icon:  Icons.auto_stories,
-      label: 'قصص وسير',
-      comingSoon: true,
-    ));
 
     return pages;
   }
@@ -115,6 +79,7 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final t          = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
     final portalAsync = ref.watch(portalProvider((
       surahId:    widget.surahId,
@@ -132,18 +97,18 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
             children: [
               Icon(Icons.error_outline, color: palette.textSecondary, size: 48),
               const SizedBox(height: 16),
-              Text('تعذّر فتح البوابة',
+              Text(t.portal_error,
                 style: TextStyle(color: palette.textPrimary, fontSize: 16)),
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: Text('رجوع',
+                child: Text(t.portal_back,
                   style: TextStyle(color: palette.accentPrimary)),
               ),
             ],
           ),
         ),
         data: (portal) {
-          final pages = _buildPageItems(portal);
+          final pages = _buildPageItems(portal, t);
           return SafeArea(
             child: Column(
               children: [
@@ -320,7 +285,7 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                             .firstOrNull;
                         return _TafsirPage(
                           title:    'الفهم السريع',
-                          text:     muyassar?.text ?? 'لا يتوفر تفسير ميسّر.',
+                          text:     muyassar?.text ?? t.portal_noTafsir,
                           sourceId: 'muyassar-ar',
                           palette:  palette,
                         );
@@ -638,11 +603,11 @@ class _HadithsPage extends StatelessWidget {
           children: [
             Icon(Icons.format_quote, size: 64, color: palette.textSecondary),
             const SizedBox(height: 16),
-            Text('لا توجد أحاديث مرتبطة بهذه الآية حتى الآن',
+            Text(AppLocalizations.of(context).portal_noHadiths,
               textAlign: TextAlign.center,
               style: TextStyle(color: palette.textSecondary, fontSize: 14)),
             const SizedBox(height: 8),
-            Text('نعمل على إضافة المحتوى تدريجياً',
+            Text(AppLocalizations.of(context).portal_addingContent,
               style: TextStyle(color: palette.textSecondary, fontSize: 12)),
           ],
         ),
@@ -753,7 +718,7 @@ class _TranslationsPage extends ConsumerWidget {
                   child: SizedBox(height: 20, width: 20,
                     child: CircularProgressIndicator(
                       strokeWidth: 2, color: palette.accentPrimary))),
-                error: (e, _) => Text('تعذّر التحميل',
+                error: (e, _) => Text(AppLocalizations.of(context).portal_loadError,
                   style: TextStyle(color: palette.textSecondary, fontSize: 13)),
                 data: (text) => Text(text,
                   textAlign:     isRtl ? TextAlign.right : TextAlign.left,

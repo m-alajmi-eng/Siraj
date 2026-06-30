@@ -335,5 +335,27 @@
         "type": "int"
       }
     }
-  }
+  },
+  "portal_muyassar": "Al-Muyassar",
+  "portal_words": "Word Analysis",
+  "portal_hadiths": "Hadiths",
+  "portal_stories": "Stories",
+  "portal_arabicTafsir": "Arabic Tafsir",
+  "portal_foreignTafsir": "Foreign Tafsir",
+  "portal_asbab": "Reason for Revelation",
+  "portal_searchLang": "Search language...",
+  "portal_error": "Could not open portal",
+  "portal_back": "Back",
+  "portal_noTafsir": "No tafsir available",
+  "portal_loadError": "Failed to load",
+  "portal_comingSoon": "Soon",
+  "portal_noHadiths": "No hadiths linked to this verse yet",
+  "portal_addingContent": "Content being added gradually",
+  "more_search": "Unified Search",
+  "more_settings": "Settings",
+  "more_calendar": "Islamic Calendar",
+  "more_shareCards": "Share Cards",
+  "more_fullMode": "Full Mode",
+  "more_radio": "Quran Radio",
+  "more_mosques": "Nearby Mosques"
 }
