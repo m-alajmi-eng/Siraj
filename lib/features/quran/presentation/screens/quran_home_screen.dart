@@ -6,6 +6,8 @@ import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../providers/quran_provider.dart';
+import '../../../../core/locale/locale_provider.dart';
+import '../../data/datasources/surah_names_datasource.dart';
 
 class QuranHomeScreen extends ConsumerWidget {
   const QuranHomeScreen({super.key});
@@ -15,6 +17,8 @@ class QuranHomeScreen extends ConsumerWidget {
     final t           = AppLocalizations.of(context);
     final palette     = ref.watch(timeThemeProvider);
     final surahsAsync = ref.watch(surahsProvider);
+    final lang        = ref.watch(localeProvider).languageCode;
+    ref.watch(surahNamesLoadedProvider);
 
     return Scaffold(
       backgroundColor: palette.background,
@@ -48,6 +52,7 @@ class QuranHomeScreen extends ConsumerWidget {
                     return _SurahTile(
                       surah:   surah,
                       palette: palette,
+                      lang:    lang,
                       typeLabel: surah.revelationType == 'Meccan'
                           ? t.quran_meccan : t.quran_medinan,
                       ayahLabel: t.quran_ayahCount(surah.ayahCount),
@@ -69,6 +74,7 @@ class _SurahTile extends StatelessWidget {
   final dynamic palette;
   final String typeLabel;
   final String ayahLabel;
+  final String lang;
   final VoidCallback onTap;
 
   const _SurahTile({
@@ -76,11 +82,17 @@ class _SurahTile extends StatelessWidget {
     required this.palette,
     required this.typeLabel,
     required this.ayahLabel,
+    required this.lang,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    final arabicName = SurahNamesDataSource.arabicNameSync(surah.id);
+    final localName  = SurahNamesDataSource.localizedNameSync(surah.id, lang);
+    final displayArabic = arabicName.isNotEmpty ? arabicName : surah.nameArabic;
+    final displayLocal  = localName.isNotEmpty ? localName : surah.nameTransliteration;
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -91,45 +103,49 @@ class _SurahTile extends StatelessWidget {
           color: palette.surface,
           borderRadius: BorderRadius.circular(SirajRadiusFull.md),
         ),
-        child: Row(
-          children: [
-            // رقم السورة (البداية - يمين بالعربي / يسار بالإنجليزي)
-            Container(
-              width: 36, height: 36,
-              decoration: BoxDecoration(
-                color: palette.accentPrimary.withValues(alpha: 0.15),
-                shape: BoxShape.circle,
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Row(
+            children: [
+              // رقم السورة (يمين)
+              Container(
+                width: 36, height: 36,
+                decoration: BoxDecoration(
+                  color: palette.accentPrimary.withValues(alpha: 0.15),
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: Text('${surah.id}', style: AppText.numeral.copyWith(
+                    color: palette.accentPrimary, fontSize: SirajSizes.sBase,
+                    fontWeight: FontWeight.w600)),
+                ),
               ),
-              child: Center(
-                child: Text('${surah.id}', style: AppText.numeral.copyWith(
-                  color: palette.accentPrimary, fontSize: SirajSizes.sBase,
-                  fontWeight: FontWeight.w600)),
+              const SizedBox(width: SirajSpacing.s4),
+              // الاسم العربي + عدد الآيات (يمين، بعد الرقم)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(displayArabic, style: AppText.quran.copyWith(
+                    color: palette.textPrimary, fontSize: SirajSizes.sXl,
+                    height: 1.4)),
+                  Text(ayahLabel, style: AppText.caption.copyWith(
+                    color: palette.textSecondary)),
+                ],
               ),
-            ),
-            const SizedBox(width: SirajSpacing.s4),
-            // الاسم اللاتيني + النوع
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(surah.nameTransliteration, style: AppText.body.copyWith(
-                  color: palette.textPrimary, fontWeight: FontWeight.w500)),
-                Text(typeLabel, style: AppText.caption.copyWith(
-                  color: palette.textSecondary)),
-              ],
-            ),
-            const Spacer(),
-            // اسم السورة بالعربي + عدد الآيات (النهاية)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(surah.nameArabic, style: AppText.quran.copyWith(
-                  color: palette.textPrimary, fontSize: SirajSizes.sXl,
-                  height: 1.4)),
-                Text(ayahLabel, style: AppText.caption.copyWith(
-                  color: palette.textSecondary)),
-              ],
-            ),
-          ],
+              const Spacer(),
+              // الاسم المترجم + النوع (يسار) — يظهر فقط لغير العربية
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  if (lang != 'ar')
+                    Text(displayLocal, style: AppText.body.copyWith(
+                      color: palette.textPrimary, fontWeight: FontWeight.w500)),
+                  Text(typeLabel, style: AppText.caption.copyWith(
+                    color: palette.textSecondary)),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

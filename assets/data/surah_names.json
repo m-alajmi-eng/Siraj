@@ -1,0 +1,1712 @@
+{
+  "1": {
+    "ar": "الفاتحة",
+    "translit": "Al-Fatihah",
+    "names": {
+      "en": "The Opener",
+      "ur": "کھولنے والی",
+      "id": "Pembukaan",
+      "tr": "Fâtiha",
+      "fr": "L'ouverture",
+      "bn": "সূচনা",
+      "ru": "Открывающая Коран",
+      "zh": "开端章",
+      "es": "La Apertura"
+    }
+  },
+  "2": {
+    "ar": "البقرة",
+    "translit": "Al-Baqarah",
+    "names": {
+      "en": "The Cow",
+      "ur": "گائے",
+      "id": "Sapi Betina",
+      "tr": "Bakara",
+      "fr": "La vache",
+      "bn": "বকনা-বাছুর",
+      "ru": "Корова",
+      "zh": "黄牛",
+      "es": "La Vaca"
+    }
+  },
+  "3": {
+    "ar": "آل عمران",
+    "translit": "Ali 'Imran",
+    "names": {
+      "en": "Family of Imran",
+      "ur": "عمران کا خاندان",
+      "id": "Keluarga Imran",
+      "tr": "Âl-i İmrân",
+      "fr": "La famille de 'imran",
+      "bn": "ইমরানের পরিবার",
+      "ru": "Семейство Имрана",
+      "zh": "仪姆兰的家属",
+      "es": "La Familia de Imran"
+    }
+  },
+  "4": {
+    "ar": "النساء",
+    "translit": "An-Nisa",
+    "names": {
+      "en": "The Women",
+      "ur": "عورت",
+      "id": "Wanita",
+      "tr": "Nisâ",
+      "fr": "Les femmes",
+      "bn": "নারী",
+      "ru": "Женщины",
+      "zh": "妇女",
+      "es": "Las Mujeres"
+    }
+  },
+  "5": {
+    "ar": "المائدة",
+    "translit": "Al-Ma'idah",
+    "names": {
+      "en": "The Table Spread",
+      "ur": "دسترخوان",
+      "id": "Jamuan (Hidangan Makanan)",
+      "tr": "Mâide",
+      "fr": "La table servie",
+      "bn": "খাদ্য পরিবেশিত টেবিল",
+      "ru": "Трапеза",
+      "zh": "筵席",
+      "es": "La Mesa Servida"
+    }
+  },
+  "6": {
+    "ar": "الأنعام",
+    "translit": "Al-An'am",
+    "names": {
+      "en": "The Cattle",
+      "ur": "مویشی",
+      "id": "Binatang Ternak",
+      "tr": "En'âm",
+      "fr": "Les bestiaux",
+      "bn": "গৃহপালিত পশু",
+      "ru": "Скот",
+      "zh": "牲畜",
+      "es": "Los Rebaños"
+    }
+  },
+  "7": {
+    "ar": "الأعراف",
+    "translit": "Al-A'raf",
+    "names": {
+      "en": "The Heights",
+      "ur": "اونچی جگہ",
+      "id": "Tempat-tempat Tinggi",
+      "tr": "A'râf",
+      "fr": "Al-A'raf",
+      "bn": "উচু স্থান",
+      "ru": "Ограды",
+      "zh": "高处",
+      "es": "Los Lugares Elevados"
+    }
+  },
+  "8": {
+    "ar": "الأنفال",
+    "translit": "Al-Anfal",
+    "names": {
+      "en": "The Spoils of War",
+      "ur": "مال غنیمت",
+      "id": "Rampasan Perang",
+      "tr": "Enfâl",
+      "fr": "Le butin",
+      "bn": "যুদ্ধ-লব্ধ ধনসম্পদ",
+      "ru": "Трофеи",
+      "zh": "战利品",
+      "es": "Los Botines de Guerra"
+    }
+  },
+  "9": {
+    "ar": "التوبة",
+    "translit": "At-Tawbah",
+    "names": {
+      "en": "The Repentance",
+      "ur": "توبہ",
+      "id": "Pengampunan",
+      "tr": "Tevbe",
+      "fr": "Le repentir",
+      "bn": "অনুশোচনা",
+      "ru": "Покаяние",
+      "zh": "忏悔",
+      "es": "El Arrepentimiento"
+    }
+  },
+  "10": {
+    "ar": "يونس",
+    "translit": "Yunus",
+    "names": {
+      "en": "Jonah",
+      "ur": "یونس",
+      "id": "Yunus",
+      "tr": "Yûnus",
+      "fr": "Jonas",
+      "bn": "নবী ইউনুস",
+      "ru": "Йунус",
+      "zh": "优努斯",
+      "es": "Jonás"
+    }
+  },
+  "11": {
+    "ar": "هود",
+    "translit": "Hud",
+    "names": {
+      "en": "Hud",
+      "ur": "حود",
+      "id": "Hud",
+      "tr": "Hûd",
+      "fr": "Houd",
+      "bn": "নবী হুদ",
+      "ru": "Худ",
+      "zh": "呼德",
+      "es": "Hud"
+    }
+  },
+  "12": {
+    "ar": "يوسف",
+    "translit": "Yusuf",
+    "names": {
+      "en": "Joseph",
+      "ur": "یوسف",
+      "id": "Yusuf",
+      "tr": "Yûsuf",
+      "fr": "Joseph",
+      "bn": "নবী ইউসুফ",
+      "ru": "Йусуф",
+      "zh": "优素福",
+      "es": "José"
+    }
+  },
+  "13": {
+    "ar": "الرعد",
+    "translit": "Ar-Ra'd",
+    "names": {
+      "en": "The Thunder",
+      "ur": "گرج",
+      "id": "Guruh (Petir)",
+      "tr": "Ra'd",
+      "fr": "Le tonnerre",
+      "bn": "বজ্রপাত",
+      "ru": "Гром",
+      "zh": "雷霆",
+      "es": "El Trueno"
+    }
+  },
+  "14": {
+    "ar": "ابراهيم",
+    "translit": "Ibrahim",
+    "names": {
+      "en": "Abraham",
+      "ur": "ابراہیم",
+      "id": "Ibrahim",
+      "tr": "İbrâhîm",
+      "fr": "Abraham",
+      "bn": "নবী ইবরাহীম",
+      "ru": "Ибрахим",
+      "zh": "易卜拉欣",
+      "es": "Abraham"
+    }
+  },
+  "15": {
+    "ar": "الحجر",
+    "translit": "Al-Hijr",
+    "names": {
+      "en": "The Rocky Tract",
+      "ur": "پتھر",
+      "id": "Bukit",
+      "tr": "Hicr",
+      "fr": "Al-Hijr",
+      "bn": "পাথুরে পাহাড়",
+      "ru": "Хиджр ",
+      "zh": "石谷",
+      "es": "Al-Hiyr"
+    }
+  },
+  "16": {
+    "ar": "النحل",
+    "translit": "An-Nahl",
+    "names": {
+      "en": "The Bee",
+      "ur": "شہد کی مکھی",
+      "id": "Lebah Madu",
+      "tr": "Nahl",
+      "fr": "Les abeilles",
+      "bn": "মৌমাছি",
+      "ru": "Пчелы",
+      "zh": "蜜蜂",
+      "es": "Las Abejas"
+    }
+  },
+  "17": {
+    "ar": "الإسراء",
+    "translit": "Al-Isra",
+    "names": {
+      "en": "The Night Journey",
+      "ur": "رات کا صفر",
+      "id": "Perjalanan Malam",
+      "tr": "İsrâ",
+      "fr": "Le voyage nocturne",
+      "bn": "ইহুদি জাতি",
+      "ru": "Ночной перенос",
+      "zh": "夜行",
+      "es": "El Viaje Nocturno"
+    }
+  },
+  "18": {
+    "ar": "الكهف",
+    "translit": "Al-Kahf",
+    "names": {
+      "en": "The Cave",
+      "ur": "غار",
+      "id": "Para Penghuni Gua",
+      "tr": "Kehf",
+      "fr": "La caverne",
+      "bn": "গুহা",
+      "ru": "Пещера",
+      "zh": "山洞",
+      "es": "La Caverna"
+    }
+  },
+  "19": {
+    "ar": "مريم",
+    "translit": "Maryam",
+    "names": {
+      "en": "Mary",
+      "ur": "مریم",
+      "id": "Maryam",
+      "tr": "Meryem",
+      "fr": "Marie",
+      "bn": "মারইয়াম (ঈসা নবীর মা)",
+      "ru": "Марьям",
+      "zh": "麦尔彦",
+      "es": "María"
+    }
+  },
+  "20": {
+    "ar": "طه",
+    "translit": "Taha",
+    "names": {
+      "en": "Ta-Ha",
+      "ur": "طٰہٰ",
+      "id": "Tha-Ha",
+      "tr": "Tâhâ",
+      "fr": "Ta-Ha",
+      "bn": "ত়া হা",
+      "ru": "Та Ха ",
+      "zh": "塔哈",
+      "es": "Ta-Ha"
+    }
+  },
+  "21": {
+    "ar": "الأنبياء",
+    "translit": "Al-Anbya",
+    "names": {
+      "en": "The Prophets",
+      "ur": "پیغمبر",
+      "id": "Para Nabi",
+      "tr": "Enbiyâ",
+      "fr": "Les prophètes",
+      "bn": "নবীগণ",
+      "ru": "Пророки",
+      "zh": "众先知",
+      "es": "Los Profetas"
+    }
+  },
+  "22": {
+    "ar": "الحج",
+    "translit": "Al-Hajj",
+    "names": {
+      "en": "The Pilgrimage",
+      "ur": "حج",
+      "id": "Haji",
+      "tr": "Hac",
+      "fr": "Le pèlerinage",
+      "bn": "হ়াজ্জ",
+      "ru": "Паломничество",
+      "zh": "朝觐",
+      "es": "La Peregrinación"
+    }
+  },
+  "23": {
+    "ar": "المؤمنون",
+    "translit": "Al-Mu'minun",
+    "names": {
+      "en": "The Believers",
+      "ur": "مومنین",
+      "id": "Orang-orang Mukmin",
+      "tr": "Mü'minûn",
+      "fr": "Les croyants",
+      "bn": "বিশ্বাসী",
+      "ru": "Верующие",
+      "zh": "信士",
+      "es": "Los Creyentes"
+    }
+  },
+  "24": {
+    "ar": "النور",
+    "translit": "An-Nur",
+    "names": {
+      "en": "The Light",
+      "ur": "نور",
+      "id": "Cahaya",
+      "tr": "Nûr",
+      "fr": "La lumière",
+      "bn": "আলো",
+      "ru": "Свет",
+      "zh": "光明",
+      "es": "La Luz"
+    }
+  },
+  "25": {
+    "ar": "الفرقان",
+    "translit": "Al-Furqan",
+    "names": {
+      "en": "The Criterion",
+      "ur": "صحیح اور غلط میں فرق کرنے والی کتاب",
+      "id": "Pembeda",
+      "tr": "Furkân",
+      "fr": "Le discernement",
+      "bn": "মানদণ্ড",
+      "ru": "аль-Фуркан",
+      "zh": "准则",
+      "es": "El Discernimiento"
+    }
+  },
+  "26": {
+    "ar": "الشعراء",
+    "translit": "Ash-Shu'ara",
+    "names": {
+      "en": "The Poets",
+      "ur": "شعراٗ",
+      "id": "Penyair",
+      "tr": "Şuarâ",
+      "fr": "Les poètes",
+      "bn": "কবি",
+      "ru": "Поэты",
+      "zh": "众诗人",
+      "es": "Los Poetas"
+    }
+  },
+  "27": {
+    "ar": "النمل",
+    "translit": "An-Naml",
+    "names": {
+      "en": "The Ant",
+      "ur": "چیونٹی",
+      "id": "Semut",
+      "tr": "Neml",
+      "fr": "Les fourmis",
+      "bn": "পিঁপড়া",
+      "ru": "Муравьи",
+      "zh": "蚂蚁",
+      "es": "Las Hormigas"
+    }
+  },
+  "28": {
+    "ar": "القصص",
+    "translit": "Al-Qasas",
+    "names": {
+      "en": "The Stories",
+      "ur": "قصے",
+      "id": "Kisah-kisah",
+      "tr": "Kasas",
+      "fr": "Le récit",
+      "bn": "কাহিনি",
+      "ru": "Рассказ",
+      "zh": "故事",
+      "es": "Los Relatos"
+    }
+  },
+  "29": {
+    "ar": "العنكبوت",
+    "translit": "Al-'Ankabut",
+    "names": {
+      "en": "The Spider",
+      "ur": "مکڑی",
+      "id": "Laba-laba",
+      "tr": "Ankebût",
+      "fr": "L'araignée",
+      "bn": "মাকড়শা",
+      "ru": "Паук",
+      "zh": "蜘蛛",
+      "es": "La Araña"
+    }
+  },
+  "30": {
+    "ar": "الروم",
+    "translit": "Ar-Rum",
+    "names": {
+      "en": "The Romans",
+      "ur": "روم",
+      "id": "Bangsa Romawi",
+      "tr": "Rûm",
+      "fr": "Les romains",
+      "bn": "রোমান জাতি",
+      "ru": "Римляне",
+      "zh": "罗马人",
+      "es": "Los Romanos"
+    }
+  },
+  "31": {
+    "ar": "لقمان",
+    "translit": "Luqman",
+    "names": {
+      "en": "Luqman",
+      "ur": "لقمان",
+      "id": "Luqman",
+      "tr": "Lokmân",
+      "fr": "Louqman",
+      "bn": "এক জ্ঞানী ব্যাক্তি",
+      "ru": "Лукман",
+      "zh": "鲁格曼",
+      "es": "Luqmán"
+    }
+  },
+  "32": {
+    "ar": "السجدة",
+    "translit": "As-Sajdah",
+    "names": {
+      "en": "The Prostration",
+      "ur": "سجدہ",
+      "id": "Sujud",
+      "tr": "Secde",
+      "fr": "La prosternation",
+      "bn": "সিজদা",
+      "ru": "Земной поклон",
+      "zh": "叩头",
+      "es": "La Postración"
+    }
+  },
+  "33": {
+    "ar": "الأحزاب",
+    "translit": "Al-Ahzab",
+    "names": {
+      "en": "The Combined Forces",
+      "ur": "متحد گروہ",
+      "id": "Golongan yang Bersekutu",
+      "tr": "Ahzâb",
+      "fr": "Les coalisés",
+      "bn": "জোট",
+      "ru": "Союзники",
+      "zh": "同盟军",
+      "es": "Los Coligados"
+    }
+  },
+  "34": {
+    "ar": "سبإ",
+    "translit": "Saba",
+    "names": {
+      "en": "Sheba",
+      "ur": "سبا",
+      "id": "Saba\\'",
+      "tr": "Sebe'",
+      "fr": "Saba'",
+      "bn": "রানী সাবা/শেবা",
+      "ru": "Сава",
+      "zh": "赛伯邑",
+      "es": "Saba"
+    }
+  },
+  "35": {
+    "ar": "فاطر",
+    "translit": "Fatir",
+    "names": {
+      "en": "Originator",
+      "ur": "پیدا کرنے والا",
+      "id": "Pencipta",
+      "tr": "Fâtır",
+      "fr": "Le Créateur",
+      "bn": "আদি স্রষ্টা",
+      "ru": "Творец",
+      "zh": "创造者",
+      "es": "El Originador"
+    }
+  },
+  "36": {
+    "ar": "يس",
+    "translit": "Ya-Sin",
+    "names": {
+      "en": "Ya Sin",
+      "ur": "یٰسٓ",
+      "id": "Yas Sin",
+      "tr": "Yâsîn",
+      "fr": "Ya-Sin",
+      "bn": "ইয়াসীন",
+      "ru": "Йа Син",
+      "zh": "雅辛",
+      "es": "Ya Sin"
+    }
+  },
+  "37": {
+    "ar": "الصافات",
+    "translit": "As-Saffat",
+    "names": {
+      "en": "Those who set the Ranks",
+      "ur": "صف باندھنے والے",
+      "id": "Barisan-barisan",
+      "tr": "Sâffât",
+      "fr": "Les rangés",
+      "bn": "সারিবদ্ধভাবে দাঁড়ানো",
+      "ru": "Выстроившиеся в ряды",
+      "zh": "列班者",
+      "es": "Los Que se Ponen en Filas"
+    }
+  },
+  "38": {
+    "ar": "ص",
+    "translit": "Sad",
+    "names": {
+      "en": "The Letter \"Saad\"",
+      "ur": "صٓ",
+      "id": "Shad",
+      "tr": "Sâd",
+      "fr": "Sad",
+      "bn": "আরবি বর্ণ সাদ",
+      "ru": "Сод",
+      "zh": "萨德",
+      "es": "Sad"
+    }
+  },
+  "39": {
+    "ar": "الزمر",
+    "translit": "Az-Zumar",
+    "names": {
+      "en": "The Troops",
+      "ur": "گروہ",
+      "id": "Para Rombongan",
+      "tr": "Zümer",
+      "fr": "Les groupes",
+      "bn": "দলবদ্ধ জনতা",
+      "ru": "Толпы",
+      "zh": "队伍",
+      "es": "Los Grupos"
+    }
+  },
+  "40": {
+    "ar": "غافر",
+    "translit": "Ghafir",
+    "names": {
+      "en": "The Forgiver",
+      "ur": "بخشنے والا",
+      "id": "Sang Maha Pengampun",
+      "tr": "Mü'min",
+      "fr": "Le Pardonneur",
+      "bn": "ক্ষমাকারী",
+      "ru": "Прощающий",
+      "zh": "赦宥者",
+      "es": "El Perdonador"
+    }
+  },
+  "41": {
+    "ar": "فصلت",
+    "translit": "Fussilat",
+    "names": {
+      "en": "Explained in Detail",
+      "ur": "مفصل",
+      "id": "Yang Dijelaskan",
+      "tr": "Fussilet",
+      "fr": "Les versets explicites",
+      "bn": "সুস্পষ্ট বিবরণ",
+      "ru": "Разъяснены",
+      "zh": "奉绥来特",
+      "es": "Se Han Expresado Con Claridad"
+    }
+  },
+  "42": {
+    "ar": "الشورى",
+    "translit": "Ash-Shuraa",
+    "names": {
+      "en": "The Consultation",
+      "ur": "شورٰی",
+      "id": "Musyawarah",
+      "tr": "Şûrâ",
+      "fr": "La concertation",
+      "bn": "পরামর্শ",
+      "ru": "Совет",
+      "zh": "协商",
+      "es": "La Consulta"
+    }
+  },
+  "43": {
+    "ar": "الزخرف",
+    "translit": "Az-Zukhruf",
+    "names": {
+      "en": "The Ornaments of Gold",
+      "ur": "سونے کی چمک",
+      "id": "Perhiasan",
+      "tr": "Zuhruf",
+      "fr": "L'ornement",
+      "bn": "সোনাদানা",
+      "ru": "Украшения",
+      "zh": "金饰",
+      "es": "Los Dorados"
+    }
+  },
+  "44": {
+    "ar": "الدخان",
+    "translit": "Ad-Dukhan",
+    "names": {
+      "en": "The Smoke",
+      "ur": "دھواں",
+      "id": "Kabut",
+      "tr": "Duhân",
+      "fr": "La fumée",
+      "bn": "ধোঁয়া",
+      "ru": "Дым",
+      "zh": "烟雾",
+      "es": "El Humo"
+    }
+  },
+  "45": {
+    "ar": "الجاثية",
+    "translit": "Al-Jathiyah",
+    "names": {
+      "en": "The Crouching",
+      "ur": "زانوٗوں کے بل گری ہوئی",
+      "id": "Yang Bertekuk Lutut",
+      "tr": "Câsiye",
+      "fr": "L'agenouillée",
+      "bn": "নতজানু",
+      "ru": "Коленопреклоненные",
+      "zh": "屈膝",
+      "es": "La Arrodillada"
+    }
+  },
+  "46": {
+    "ar": "الأحقاف",
+    "translit": "Al-Ahqaf",
+    "names": {
+      "en": "The Wind-Curved Sandhills",
+      "ur": "ریگستان",
+      "id": "Bukit-bukir Pasir",
+      "tr": "Ahkâf",
+      "fr": "Al-Ahqaf",
+      "bn": "বালুর পাহাড়",
+      "ru": "Барханы",
+      "zh": "沙丘",
+      "es": "Las Dunas"
+    }
+  },
+  "47": {
+    "ar": "محمد",
+    "translit": "Muhammad",
+    "names": {
+      "en": "Muhammad",
+      "ur": "محمدﷺ",
+      "id": "Muhammad",
+      "tr": "Muhammed",
+      "fr": "Mouhammad",
+      "bn": "নবী মুহাম্মদ",
+      "ru": "Мухаммад",
+      "zh": "穆罕默德",
+      "es": "Muhammad"
+    }
+  },
+  "48": {
+    "ar": "الفتح",
+    "translit": "Al-Fath",
+    "names": {
+      "en": "The Victory",
+      "ur": "فتح",
+      "id": "Kemenangan",
+      "tr": "Fetih",
+      "fr": "La victoire éclatante",
+      "bn": "বিজয়",
+      "ru": "Победа",
+      "zh": "胜利",
+      "es": "La Victoria"
+    }
+  },
+  "49": {
+    "ar": "الحجرات",
+    "translit": "Al-Hujurat",
+    "names": {
+      "en": "The Rooms",
+      "ur": "حجرے",
+      "id": "Kamar-kamar",
+      "tr": "Hucurât",
+      "fr": "Les appartements",
+      "bn": "আবাস",
+      "ru": "Комнаты",
+      "zh": "寝室",
+      "es": "Los Aposentos Privados"
+    }
+  },
+  "50": {
+    "ar": "ق",
+    "translit": "Qaf",
+    "names": {
+      "en": "The Letter \"Qaf\"",
+      "ur": "قٓ",
+      "id": "Qaf",
+      "tr": "Kâf",
+      "fr": "Qaf",
+      "bn": "কাফ",
+      "ru": "Каф",
+      "zh": "戛弗",
+      "es": "Qaf"
+    }
+  },
+  "51": {
+    "ar": "الذاريات",
+    "translit": "Adh-Dhariyat",
+    "names": {
+      "en": "The Winnowing Winds",
+      "ur": "بکھیرنے والیاں",
+      "id": "Angin yang Menerbangkan",
+      "tr": "Zâriyât",
+      "fr": "Qui éparpillent",
+      "bn": "বিক্ষেপকারী বাতাস",
+      "ru": "Рассеивающие прах",
+      "zh": "播种者",
+      "es": "Los Que Levantan un Torbellino"
+    }
+  },
+  "52": {
+    "ar": "الطور",
+    "translit": "At-Tur",
+    "names": {
+      "en": "The Mount",
+      "ur": "طور پہاڑ",
+      "id": "Bukit",
+      "tr": "Tûr",
+      "fr": "Le mont At-Tour",
+      "bn": "পাহাড়",
+      "ru": "Гора",
+      "zh": "山岳",
+      "es": "El Monte"
+    }
+  },
+  "53": {
+    "ar": "النجم",
+    "translit": "An-Najm",
+    "names": {
+      "en": "The Star",
+      "ur": "ستارہ",
+      "id": "Bintang",
+      "tr": "Necm",
+      "fr": "L'étoile",
+      "bn": "তারা",
+      "ru": "Звезда",
+      "zh": "星宿",
+      "es": "El Astro"
+    }
+  },
+  "54": {
+    "ar": "القمر",
+    "translit": "Al-Qamar",
+    "names": {
+      "en": "The Moon",
+      "ur": "چاند",
+      "id": "Bulan",
+      "tr": "Kamer",
+      "fr": "La lune",
+      "bn": "চাঁদ",
+      "ru": "Месяц",
+      "zh": "月亮",
+      "es": "La Luna"
+    }
+  },
+  "55": {
+    "ar": "الرحمن",
+    "translit": "Ar-Rahman",
+    "names": {
+      "en": "The Beneficent",
+      "ur": "مہربان",
+      "id": "Yang Maha Pemurah",
+      "tr": "Rahmân",
+      "fr": "Le Tout Miséricordieux",
+      "bn": "পরম করুণাময়",
+      "ru": "Милостивый",
+      "zh": "至仁主",
+      "es": "El Misericordioso"
+    }
+  },
+  "56": {
+    "ar": "الواقعة",
+    "translit": "Al-Waqi'ah",
+    "names": {
+      "en": "The Inevitable",
+      "ur": "واقعہ ہونے والی قیامت",
+      "id": "Hari Kiamat",
+      "tr": "Vâkıa",
+      "fr": "L'inévitable",
+      "bn": "নিশ্চিত ঘটনা",
+      "ru": "Событие",
+      "zh": "大事",
+      "es": "Lo Que ha de Ocurrir"
+    }
+  },
+  "57": {
+    "ar": "الحديد",
+    "translit": "Al-Hadid",
+    "names": {
+      "en": "The Iron",
+      "ur": "فولاد",
+      "id": "Besi",
+      "tr": "Hadîd",
+      "fr": "Le fer",
+      "bn": "লোহা",
+      "ru": "Железо",
+      "zh": "铁",
+      "es": "El Hierro"
+    }
+  },
+  "58": {
+    "ar": "المجادلة",
+    "translit": "Al-Mujadila",
+    "names": {
+      "en": "The Pleading Woman",
+      "ur": "جھگڑنے والی",
+      "id": "Wanita yang Menggugat",
+      "tr": "Mücâdele",
+      "fr": "La discussion",
+      "bn": "অনুযোগকারিণী",
+      "ru": "Препирающаяся",
+      "zh": "辩诉者",
+      "es": "La Discusión"
+    }
+  },
+  "59": {
+    "ar": "الحشر",
+    "translit": "Al-Hashr",
+    "names": {
+      "en": "The Exile",
+      "ur": "حشر",
+      "id": "Pengusiran",
+      "tr": "Haşr",
+      "fr": "L'exode",
+      "bn": "সমাবেশ",
+      "ru": "Сбор",
+      "zh": "放逐",
+      "es": "La Concentración"
+    }
+  },
+  "60": {
+    "ar": "الممتحنة",
+    "translit": "Al-Mumtahanah",
+    "names": {
+      "en": "She that is to be examined",
+      "ur": "امتحان لی جانے والی",
+      "id": "Wanita yang Diuji",
+      "tr": "Mümtehine",
+      "fr": "L'éprouvée",
+      "bn": "নারী, যাকে পরীক্ষা করা হবে",
+      "ru": "Испытуемая",
+      "zh": "受考验的妇人",
+      "es": "La Examinada"
+    }
+  },
+  "61": {
+    "ar": "الصف",
+    "translit": "As-Saf",
+    "names": {
+      "en": "The Ranks",
+      "ur": "صف",
+      "id": "Barisan",
+      "tr": "Saf",
+      "fr": "Le rang",
+      "bn": "সারিবদ্ধ সৈন্যদল",
+      "ru": "Ряды",
+      "zh": "列阵",
+      "es": "La Fila"
+    }
+  },
+  "62": {
+    "ar": "الجمعة",
+    "translit": "Al-Jumu'ah",
+    "names": {
+      "en": "The Congregation, Friday",
+      "ur": "جمعہ",
+      "id": "Hari Jum\\'at",
+      "tr": "Cuma",
+      "fr": "Le vendredi",
+      "bn": "সম্মেলন/শুক্রবার",
+      "ru": "Собрание",
+      "zh": "聚礼",
+      "es": "El Viernes"
+    }
+  },
+  "63": {
+    "ar": "المنافقون",
+    "translit": "Al-Munafiqun",
+    "names": {
+      "en": "The Hypocrites",
+      "ur": "منافقین",
+      "id": "Kaum Munafik",
+      "tr": "Münâfikûn",
+      "fr": "Les hypocrites",
+      "bn": "ভণ্ড বিশ্বাসী",
+      "ru": "Лицемеры",
+      "zh": "伪信者",
+      "es": "Los Hipócritas"
+    }
+  },
+  "64": {
+    "ar": "التغابن",
+    "translit": "At-Taghabun",
+    "names": {
+      "en": "The Mutual Disillusion",
+      "ur": "ہار جیت",
+      "id": "Hari Dinampakkan Kesalahan",
+      "tr": "Tegâbün",
+      "fr": "La grande perte",
+      "bn": "মোহ অপসারণ",
+      "ru": "Взаимное обделение",
+      "zh": "相欺",
+      "es": "El Desengaño"
+    }
+  },
+  "65": {
+    "ar": "الطلاق",
+    "translit": "At-Talaq",
+    "names": {
+      "en": "The Divorce",
+      "ur": "طلاق",
+      "id": "Perceraian",
+      "tr": "Talâk",
+      "fr": "Le divorce",
+      "bn": "তালাক",
+      "ru": "Развод",
+      "zh": "离婚",
+      "es": "El Divorcio"
+    }
+  },
+  "66": {
+    "ar": "التحريم",
+    "translit": "At-Tahrim",
+    "names": {
+      "en": "The Prohibition",
+      "ur": "حرمت",
+      "id": "Mengharamkan",
+      "tr": "Tahrîm",
+      "fr": "L'interdiction",
+      "bn": "নিষিদ্ধকরণ",
+      "ru": "Запрещение",
+      "zh": "禁戒",
+      "es": "La Prohibición"
+    }
+  },
+  "67": {
+    "ar": "الملك",
+    "translit": "Al-Mulk",
+    "names": {
+      "en": "The Sovereignty",
+      "ur": "ملک",
+      "id": "Kerajaan",
+      "tr": "Mülk",
+      "fr": "La royauté",
+      "bn": "সার্বভৌম কর্তৃত্ব",
+      "ru": "Власть",
+      "zh": "国权",
+      "es": "La Soberanía"
+    }
+  },
+  "68": {
+    "ar": "القلم",
+    "translit": "Al-Qalam",
+    "names": {
+      "en": "The Pen",
+      "ur": "قلم",
+      "id": "Pena",
+      "tr": "Kalem",
+      "fr": "La plume",
+      "bn": "কলম",
+      "ru": "Письменная трость",
+      "zh": "笔",
+      "es": "El Cálamo"
+    }
+  },
+  "69": {
+    "ar": "الحاقة",
+    "translit": "Al-Haqqah",
+    "names": {
+      "en": "The Reality",
+      "ur": "حق ہونے والی",
+      "id": "Kenyataan (Hari Kiamat)",
+      "tr": "Hâkka",
+      "fr": "L'inéluctable",
+      "bn": "নিশ্চিত সত্য",
+      "ru": "Неминуемое",
+      "zh": "真灾",
+      "es": "La Verdad Indefectible"
+    }
+  },
+  "70": {
+    "ar": "المعارج",
+    "translit": "Al-Ma'arij",
+    "names": {
+      "en": "The Ascending Stairways",
+      "ur": "عروج",
+      "id": "Tempat yang Naik",
+      "tr": "Meâric",
+      "fr": "Les voies d'ascension",
+      "bn": "উন্নয়নের সোপান",
+      "ru": "Ступени",
+      "zh": "天梯",
+      "es": "Los Grados de Elevación"
+    }
+  },
+  "71": {
+    "ar": "نوح",
+    "translit": "Nuh",
+    "names": {
+      "en": "Noah",
+      "ur": "نوح",
+      "id": "Nuh",
+      "tr": "Nûh",
+      "fr": "Noé",
+      "bn": "নবী নূহ",
+      "ru": "Нух",
+      "zh": "努哈",
+      "es": "Noé"
+    }
+  },
+  "72": {
+    "ar": "الجن",
+    "translit": "Al-Jinn",
+    "names": {
+      "en": "The Jinn",
+      "ur": "جن",
+      "id": "Jin",
+      "tr": "Cin",
+      "fr": "Les djinns",
+      "bn": "জিন সম্প্রদায়",
+      "ru": "Джинны",
+      "zh": "精灵",
+      "es": "Los Genios"
+    }
+  },
+  "73": {
+    "ar": "المزمل",
+    "translit": "Al-Muzzammil",
+    "names": {
+      "en": "The Enshrouded One",
+      "ur": "کپڑا لپیٹنے والا",
+      "id": "Orang yang Berselimut",
+      "tr": "Müzzemmil",
+      "fr": "L'enveloppé",
+      "bn": "বস্ত্রাচ্ছাদনকারী",
+      "ru": "Закутавшийся",
+      "zh": "披衣的人",
+      "es": "El Envuelto en El Manto"
+    }
+  },
+  "74": {
+    "ar": "المدثر",
+    "translit": "Al-Muddaththir",
+    "names": {
+      "en": "The Cloaked One",
+      "ur": "کپڑا اوڑھنے والا",
+      "id": "Orang yang Berkemul",
+      "tr": "Müddessir",
+      "fr": "Celui qui se couvre",
+      "bn": "পোশাক পরিহিত",
+      "ru": "Завернувшийся",
+      "zh": "盖被的人",
+      "es": "El Arropado"
+    }
+  },
+  "75": {
+    "ar": "القيامة",
+    "translit": "Al-Qiyamah",
+    "names": {
+      "en": "The Resurrection",
+      "ur": "قیامۃ",
+      "id": "Hari Berbangkit",
+      "tr": "Kıyâmet",
+      "fr": "La résurrection",
+      "bn": "পুনরুত্থান",
+      "ru": "Воскресение",
+      "zh": "复活",
+      "es": "El Levantamiento"
+    }
+  },
+  "76": {
+    "ar": "الانسان",
+    "translit": "Al-Insan",
+    "names": {
+      "en": "The Man",
+      "ur": "انسان",
+      "id": "Manusia",
+      "tr": "İnsân",
+      "fr": "L'homme",
+      "bn": "মানবজাতি",
+      "ru": "Человек",
+      "zh": "人",
+      "es": "El Hombre"
+    }
+  },
+  "77": {
+    "ar": "المرسلات",
+    "translit": "Al-Mursalat",
+    "names": {
+      "en": "The Emissaries",
+      "ur": "بھیجی جانے والی ہوائیں",
+      "id": "Malaikat-malaikan yang Diutus",
+      "tr": "Mürselât",
+      "fr": "Les envoyés",
+      "bn": "প্রেরিত পুরুষ",
+      "ru": "Посылаемые",
+      "zh": "天使",
+      "es": "Los Que Son Enviados"
+    }
+  },
+  "78": {
+    "ar": "النبإ",
+    "translit": "An-Naba",
+    "names": {
+      "en": "The Tidings",
+      "ur": "خبر",
+      "id": "Berita Besar",
+      "tr": "Nebe",
+      "fr": "La nouvelle",
+      "bn": "মহাসংবাদ",
+      "ru": "Весть",
+      "zh": "消息",
+      "es": "La Noticia"
+    }
+  },
+  "79": {
+    "ar": "النازعات",
+    "translit": "An-Nazi'at",
+    "names": {
+      "en": "Those who drag forth",
+      "ur": "زور سے کھینچنے والے",
+      "id": "Malaikat yang Mencabut",
+      "tr": "Naziât",
+      "fr": "Ceux qui arrachent",
+      "bn": "প্রচেষ্টাকারী",
+      "ru": "Исторгающие",
+      "zh": "急掣的",
+      "es": "Los Que Arrancan"
+    }
+  },
+  "80": {
+    "ar": "عبس",
+    "translit": "'Abasa",
+    "names": {
+      "en": "He Frowned",
+      "ur": "تیوری چڑہائی",
+      "id": "Ia Bermuka Masam",
+      "tr": "Abese",
+      "fr": "Il s'est renfrogné",
+      "bn": "সে ভ্রু কুঁচকালো",
+      "ru": "Нахмурился",
+      "zh": "皱眉",
+      "es": "Frunció El Ceño"
+    }
+  },
+  "81": {
+    "ar": "التكوير",
+    "translit": "At-Takwir",
+    "names": {
+      "en": "The Overthrowing",
+      "ur": "لپیٹنا",
+      "id": "Menggulung",
+      "tr": "Tekvîr",
+      "fr": "L'obscurcissement",
+      "bn": "অন্ধকারাচ্ছন্ন",
+      "ru": "Скручивание",
+      "zh": "黯黮",
+      "es": "El Arrollamiento"
+    }
+  },
+  "82": {
+    "ar": "الإنفطار",
+    "translit": "Al-Infitar",
+    "names": {
+      "en": "The Cleaving",
+      "ur": "ٹکڑے ہونا",
+      "id": "Terbelah",
+      "tr": "İnfitâr",
+      "fr": "La rupture",
+      "bn": "বিদীর্ণ করা",
+      "ru": "Раскалывание",
+      "zh": "破裂",
+      "es": "La Hendidura"
+    }
+  },
+  "83": {
+    "ar": "المطففين",
+    "translit": "Al-Mutaffifin",
+    "names": {
+      "en": "The Defrauding",
+      "ur": "ناپ تول میں کمی کرنے والے",
+      "id": "Orang-orang Curang",
+      "tr": "Mutaffifîn",
+      "fr": "Les fraudeurs",
+      "bn": "প্রতারণা করা",
+      "ru": "Обвешивающие",
+      "zh": "称量不公",
+      "es": "Los Defraudadores"
+    }
+  },
+  "84": {
+    "ar": "الإنشقاق",
+    "translit": "Al-Inshiqaq",
+    "names": {
+      "en": "The Sundering",
+      "ur": "پھٹنا",
+      "id": "Terbelah",
+      "tr": "İnşikâk",
+      "fr": "La déchirure",
+      "bn": "খণ্ড-বিখণ্ডকরণ",
+      "ru": "Разверзнется",
+      "zh": "绽裂",
+      "es": "El Resquebrajamiento"
+    }
+  },
+  "85": {
+    "ar": "البروج",
+    "translit": "Al-Buruj",
+    "names": {
+      "en": "The Mansions of the Stars",
+      "ur": "برج",
+      "id": "Gugusan Bintang",
+      "tr": "Burûc",
+      "fr": "Les constellations",
+      "bn": "নক্ষত্রপুঞ্জ",
+      "ru": "Созвездия Зодиака",
+      "zh": "十二宫",
+      "es": "Las Constelaciones"
+    }
+  },
+  "86": {
+    "ar": "الطارق",
+    "translit": "At-Tariq",
+    "names": {
+      "en": "The Nightcommer",
+      "ur": "رات کو آنے والا",
+      "id": "Yang Datang di Malam Hari",
+      "tr": "Târık",
+      "fr": "L'astre nocturne",
+      "bn": "রাতের আগন্তুক",
+      "ru": "Ночной путник",
+      "zh": "启明星",
+      "es": "El Que Viene de Noche"
+    }
+  },
+  "87": {
+    "ar": "الأعلى",
+    "translit": "Al-A'la",
+    "names": {
+      "en": "The Most High",
+      "ur": "اعلی",
+      "id": "Yang Paling Tinggi",
+      "tr": "A'lâ",
+      "fr": "Le Très-Haut",
+      "bn": "সর্বোন্নত",
+      "ru": "Всевышний",
+      "zh": "至尊",
+      "es": "El Altísimo"
+    }
+  },
+  "88": {
+    "ar": "الغاشية",
+    "translit": "Al-Ghashiyah",
+    "names": {
+      "en": "The Overwhelming",
+      "ur": "چھا جانے والی",
+      "id": "Hari Pembalasan",
+      "tr": "Gâşiye",
+      "fr": "L'enveloppante",
+      "bn": "বিহ্বলকর ঘটনা",
+      "ru": "Покрывающее",
+      "zh": "大灾",
+      "es": "El Envolvente"
+    }
+  },
+  "89": {
+    "ar": "الفجر",
+    "translit": "Al-Fajr",
+    "names": {
+      "en": "The Dawn",
+      "ur": "فجر",
+      "id": "Fajar",
+      "tr": "Fecr",
+      "fr": "L'aube",
+      "bn": "ভোরবেলা",
+      "ru": "Заря",
+      "zh": "黎明",
+      "es": "La Aurora"
+    }
+  },
+  "90": {
+    "ar": "البلد",
+    "translit": "Al-Balad",
+    "names": {
+      "en": "The City",
+      "ur": "شہر",
+      "id": "Negeri",
+      "tr": "Beled",
+      "fr": "La cité",
+      "bn": "নগর",
+      "ru": "Город",
+      "zh": "地方",
+      "es": "El Territorio"
+    }
+  },
+  "91": {
+    "ar": "الشمس",
+    "translit": "Ash-Shams",
+    "names": {
+      "en": "The Sun",
+      "ur": "آفتاب",
+      "id": "Matahari",
+      "tr": "Şems",
+      "fr": "Le soleil",
+      "bn": "সূর্য",
+      "ru": "Солнце",
+      "zh": "太阳",
+      "es": "El Sol"
+    }
+  },
+  "92": {
+    "ar": "الليل",
+    "translit": "Al-Layl",
+    "names": {
+      "en": "The Night",
+      "ur": "رات",
+      "id": "Malam",
+      "tr": "Leyl",
+      "fr": "La nuit",
+      "bn": "রাত",
+      "ru": "Ночь",
+      "zh": "黑夜",
+      "es": "La Noche"
+    }
+  },
+  "93": {
+    "ar": "الضحى",
+    "translit": "Ad-Duhaa",
+    "names": {
+      "en": "The Morning Hours",
+      "ur": "دن کا چڑھنا",
+      "id": "Waktu Dhuha",
+      "tr": "Duhâ",
+      "fr": "Le jour montant",
+      "bn": "পূর্বাহ্নের সুর্যকিরণ",
+      "ru": "Утро",
+      "zh": "上午",
+      "es": "La Claridad de La Mañana"
+    }
+  },
+  "94": {
+    "ar": "الشرح",
+    "translit": "Ash-Sharh",
+    "names": {
+      "en": "The Relief",
+      "ur": "تسکین",
+      "id": "Melapangkan",
+      "tr": "İnşirâh",
+      "fr": "L'ouverture",
+      "bn": "বক্ষ প্রশস্তকরণ",
+      "ru": "Раскрытие",
+      "zh": "开拓",
+      "es": "No Te Hemos Abierto"
+    }
+  },
+  "95": {
+    "ar": "التين",
+    "translit": "At-Tin",
+    "names": {
+      "en": "The Fig",
+      "ur": "انجیر",
+      "id": "Buah Tin",
+      "tr": "Tîn",
+      "fr": "Les figues",
+      "bn": "ডুমুর",
+      "ru": "Смоковница",
+      "zh": "无花果",
+      "es": "Los Higos"
+    }
+  },
+  "96": {
+    "ar": "العلق",
+    "translit": "Al-'Alaq",
+    "names": {
+      "en": "The Clot",
+      "ur": "جما ہوا خون",
+      "id": "Segumpal Darah",
+      "tr": "Alak",
+      "fr": "L'adhérence",
+      "bn": "রক্তপিণ্ড",
+      "ru": "Сгусток крови",
+      "zh": "血块",
+      "es": "El Coágulo"
+    }
+  },
+  "97": {
+    "ar": "القدر",
+    "translit": "Al-Qadr",
+    "names": {
+      "en": "The Power",
+      "ur": "شب قدر",
+      "id": "Kemuliaan",
+      "tr": "Kadir",
+      "fr": "La destinée",
+      "bn": "মহিমান্বিত",
+      "ru": "Предопределение",
+      "zh": "高贵",
+      "es": "El Decreto"
+    }
+  },
+  "98": {
+    "ar": "البينة",
+    "translit": "Al-Bayyinah",
+    "names": {
+      "en": "The Clear Proof",
+      "ur": "ثبوت",
+      "id": "Pembuktian",
+      "tr": "Beyyine",
+      "fr": "La preuve",
+      "bn": "প্রমাণ",
+      "ru": "Ясное знамение",
+      "zh": "明证",
+      "es": "La Evidencia"
+    }
+  },
+  "99": {
+    "ar": "الزلزلة",
+    "translit": "Az-Zalzalah",
+    "names": {
+      "en": "The Earthquake",
+      "ur": "زلزلہ",
+      "id": "Kegoncangan",
+      "tr": "Zilzâl",
+      "fr": "Le séisme",
+      "bn": "ভূমিকম্প",
+      "ru": "Сотрясение",
+      "zh": "地震",
+      "es": "El Temblor"
+    }
+  },
+  "100": {
+    "ar": "العاديات",
+    "translit": "Al-'Adiyat",
+    "names": {
+      "en": "The Courser",
+      "ur": "دوڑنے والے گھوڑے",
+      "id": "Berlari Kencang",
+      "tr": "Âdiyât",
+      "fr": "Les coursiers",
+      "bn": "অভিযানকারী",
+      "ru": "Скачущие",
+      "zh": "奔驰的马队",
+      "es": "Los Que Galopan"
+    }
+  },
+  "101": {
+    "ar": "القارعة",
+    "translit": "Al-Qari'ah",
+    "names": {
+      "en": "The Calamity",
+      "ur": "کھڑکھڑاہٹ",
+      "id": "Hari Kiamat",
+      "tr": "Kâria",
+      "fr": "Le fracas",
+      "bn": "মহাসংকট",
+      "ru": "Великое бедствие",
+      "zh": "大难",
+      "es": "La Conmoción"
+    }
+  },
+  "102": {
+    "ar": "التكاثر",
+    "translit": "At-Takathur",
+    "names": {
+      "en": "The Rivalry in world increase",
+      "ur": "کثرت",
+      "id": "Bermegah-megahan",
+      "tr": "Tekâsür",
+      "fr": "La course aux richesses",
+      "bn": "প্রাচুর্যের প্রতিযোগিতা",
+      "ru": "Страсть к приумножению",
+      "zh": "竞赛富遮",
+      "es": "La Rivalidad"
+    }
+  },
+  "103": {
+    "ar": "العصر",
+    "translit": "Al-'Asr",
+    "names": {
+      "en": "The Declining Day",
+      "ur": "زمانہ",
+      "id": "Waktu Sore",
+      "tr": "Asr",
+      "fr": "Le temps",
+      "bn": "সময়",
+      "ru": "Предвечернее время",
+      "zh": "时光",
+      "es": "El Tiempo"
+    }
+  },
+  "104": {
+    "ar": "الهمزة",
+    "translit": "Al-Humazah",
+    "names": {
+      "en": "The Traducer",
+      "ur": "عیب لگانے والا",
+      "id": "Pengumpat",
+      "tr": "Hümeze",
+      "fr": "Les calomniateurs",
+      "bn": "পরনিন্দাকারী",
+      "ru": "Хулитель",
+      "zh": "诽谤者",
+      "es": "El Murmurador"
+    }
+  },
+  "105": {
+    "ar": "الفيل",
+    "translit": "Al-Fil",
+    "names": {
+      "en": "The Elephant",
+      "ur": "ہاتھی",
+      "id": "Gajah",
+      "tr": "Fîl",
+      "fr": "L'éléphant",
+      "bn": "হাতি",
+      "ru": "Слон",
+      "zh": "象",
+      "es": "El Elefante"
+    }
+  },
+  "106": {
+    "ar": "قريش",
+    "translit": "Quraysh",
+    "names": {
+      "en": "Quraysh",
+      "ur": "قریش",
+      "id": "Suku Quraisy",
+      "tr": "Kureyş",
+      "fr": "Les Quraysh",
+      "bn": "কুরাইশ গোত্র",
+      "ru": "Курейшиты",
+      "zh": "古来氏",
+      "es": "Los Quraysh"
+    }
+  },
+  "107": {
+    "ar": "الماعون",
+    "translit": "Al-Ma'un",
+    "names": {
+      "en": "The Small kindnesses",
+      "ur": "تھوڑی سی چیز",
+      "id": "Barang yang Berguna",
+      "tr": "Maûn",
+      "fr": "L'entraide",
+      "bn": "সাহায্য সহায়তা",
+      "ru": "Мелочь",
+      "zh": "什物",
+      "es": "La Ayuda Imprescindible"
+    }
+  },
+  "108": {
+    "ar": "الكوثر",
+    "translit": "Al-Kawthar",
+    "names": {
+      "en": "The Abundance",
+      "ur": "جنت کی نہر",
+      "id": "Nikmat Berlimpah",
+      "tr": "Kevser",
+      "fr": "L'abondance",
+      "bn": "কাউসার/প্রাচুর্য",
+      "ru": "Изобилие",
+      "zh": "多福",
+      "es": "La Abundancia"
+    }
+  },
+  "109": {
+    "ar": "الكافرون",
+    "translit": "Al-Kafirun",
+    "names": {
+      "en": "The Disbelievers",
+      "ur": "کافرین",
+      "id": "Orang-orang Kafir",
+      "tr": "Kâfirûn",
+      "fr": "Les mécréants",
+      "bn": "অবিশ্বাসী",
+      "ru": "Неверующие",
+      "zh": "不信道的人们",
+      "es": "Los Incrédulos"
+    }
+  },
+  "110": {
+    "ar": "النصر",
+    "translit": "An-Nasr",
+    "names": {
+      "en": "The Divine Support",
+      "ur": "نصرت",
+      "id": "Pertolongan",
+      "tr": "Nasr",
+      "fr": "Le secours",
+      "bn": "সাহায্য",
+      "ru": "Помощь",
+      "zh": "援助",
+      "es": "La Victoria"
+    }
+  },
+  "111": {
+    "ar": "المسد",
+    "translit": "Al-Masad",
+    "names": {
+      "en": "The Palm Fiber",
+      "ur": "خوب بٹی ہوئی",
+      "id": "Gejolak Api (Sabut)",
+      "tr": "Tebbet",
+      "fr": "Les fibres",
+      "bn": "খেজুরের পাকানো (রশি)",
+      "ru": "Пальмовые волокна",
+      "zh": "火焰",
+      "es": "La Fibra"
+    }
+  },
+  "112": {
+    "ar": "الإخلاص",
+    "translit": "Al-Ikhlas",
+    "names": {
+      "en": "The Sincerity",
+      "ur": "اخلاص",
+      "id": "Ikhlash",
+      "tr": "İhlâs",
+      "fr": "La sincérité",
+      "bn": "আন্তরিকতা",
+      "ru": "Очищение веры",
+      "zh": "忠诚",
+      "es": "La Adoración Pura"
+    }
+  },
+  "113": {
+    "ar": "الفلق",
+    "translit": "Al-Falaq",
+    "names": {
+      "en": "The Daybreak",
+      "ur": "صبح",
+      "id": "Waktu Shubuh",
+      "tr": "Felak",
+      "fr": "L'aube naissante",
+      "bn": "নিশিভোর",
+      "ru": "Рассвет",
+      "zh": "曙光",
+      "es": "El Rayar del Alba"
+    }
+  },
+  "114": {
+    "ar": "الناس",
+    "translit": "An-Nas",
+    "names": {
+      "en": "Mankind",
+      "ur": "انسان",
+      "id": "Umat Manusia",
+      "tr": "Nâs",
+      "fr": "Les humains",
+      "bn": "মানুষ জাতি",
+      "ru": "Люди",
+      "zh": "世人",
+      "es": "Los Hombres"
+    }
+  }
+}

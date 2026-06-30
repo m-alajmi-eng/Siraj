@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/datasources/quran_remote_datasource.dart';
+import '../../data/datasources/surah_names_datasource.dart';
 import '../../domain/entities/surah_entity.dart';
 import '../../domain/entities/ayah_entity.dart';
 import '../../../../core/locale/locale_provider.dart';
@@ -39,4 +40,10 @@ final dailyAyahTranslationProvider =
   final lang  = parts[2];
   final dataSource = ref.watch(quranDataSourceProvider);
   return dataSource.getAyahTranslation(surah, ayah, lang);
+});
+
+// يضمن تحميل أسماء السور المترجمة
+final surahNamesLoadedProvider = FutureProvider<bool>((ref) async {
+  await SurahNamesDataSource.ensureLoaded();
+  return true;
 });

@@ -30,8 +30,9 @@ class HomeScreen extends ConsumerWidget {
     final t           = AppLocalizations.of(context);
     final prayerAsync = ref.watch(prayerTimesProvider);
     final hijriDate   = ref.watch(hijriTodayProvider);
-    final lastSurahId = CacheService.getSetting('last_surah_id') as int?;
-    final lastAyahNum = CacheService.getSetting('last_ayah_number') as int?;
+    final readingPos  = CacheService.getReadingPosition();
+    final lastSurahId = readingPos?['surahId'];
+    final lastAyahNum = readingPos?['ayahNumber'];
     final now         = DateTime.now();
     final h           = now.hour;
     final skyColors   = SirajSky.gradientColors(SirajSky.fromHour(h));

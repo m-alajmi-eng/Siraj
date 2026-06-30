@@ -27,7 +27,8 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
   @override
   void initState() {
     super.initState();
-    CacheService.saveSetting("last_surah_id", widget.surahId);
+    CacheService.saveReadingPosition(widget.surahId, 1);
+    _mushafMode = CacheService.getSetting('mushaf_mode', defaultValue: true) as bool;
   }
 
   @override
@@ -100,7 +101,10 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
            icon: Icon(
              _mushafMode ? Icons.translate : Icons.menu_book,
              color: palette.accentPrimary, size: 22),
-           onPressed: () => setState(() => _mushafMode = !_mushafMode),
+           onPressed: () {
+             setState(() => _mushafMode = !_mushafMode);
+             CacheService.saveSetting('mushaf_mode', _mushafMode);
+           },
          ),
                   ],
                 ),
