@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -21,6 +22,7 @@ class SurahReaderScreen extends ConsumerStatefulWidget {
 
 class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
   static const int _basmalaLength = 39;
+  bool _mushafMode = true; // الافتراضي: مصحف متّصل
 
   @override
   void initState() {
@@ -94,7 +96,12 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 48),
+         IconButton(
+           icon: Icon(
+             _mushafMode ? Icons.translate : Icons.menu_book,
+             color: palette.accentPrimary, size: 22),
+           onPressed: () => setState(() => _mushafMode = !_mushafMode),
+         ),
                   ],
                 ),
               ),
@@ -198,6 +205,11 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                       data: (s) => s.firstWhere((su) => su.id == widget.surahId).nameArabic,
                       orElse: () => '',
                     );
+
+             if (_mushafMode) {
+               return _buildMushafView(ayahs, basmalaText, firstAyahText,
+                   separateBasmala, surahName, palette, t);
+             }
 
                     return Container(
                       margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -478,6 +490,73 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
             const SizedBox(height: 16),
           ],
         ),
+      ),
+    );
+  }
+
+
+  // ─── وضع المصحف المتّصل ──────────────────────────────────────
+  Widget _buildMushafView(
+    List ayahs, String basmalaText, String firstAyahText,
+    bool separateBasmala, String surahName, dynamic palette, dynamic t) {
+    final spans = <InlineSpan>[];
+
+    for (var i = 0; i < ayahs.length; i++) {
+      final ayah = ayahs[i];
+      final text = (i == 0 && separateBasmala)
+          ? firstAyahText : ayah.textUthmani;
+
+      // نص الآية — قابل للضغط المطول للخيارات
+      spans.add(TextSpan(
+        text: '$text ',
+        style: TextStyle(
+          fontFamily: 'QuranFont',
+          color: palette.textPrimary,
+          fontSize: 28, height: 2.4),
+        recognizer: LongPressGestureRecognizer()
+          ..onLongPress = () => _showAyahOptions(
+            context: context, palette: palette, t: t,
+            surahId: widget.surahId, surahName: surahName,
+            ayahNumber: ayah.ayahNumber, ayahText: text),
+      ));
+
+      // رمز نهاية الآية ﴿رقم﴾
+      spans.add(TextSpan(
+        text: ' ﴿${_toArabicNumeral(ayah.ayahNumber)}﴾ ',
+        style: TextStyle(
+          fontFamily: 'QuranFont',
+          color: palette.accentPrimary,
+          fontSize: 24, height: 2.4),
+      ));
+    }
+
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: palette.surface,
+        borderRadius: BorderRadius.circular(16)),
+      child: ListView(
+        padding: const EdgeInsets.all(24),
+        children: [
+          if (separateBasmala) ...[
+            Text(basmalaText,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'QuranFont',
+                color: palette.accentPrimary,
+                fontSize: 26, height: 2.0)),
+            Divider(
+              color: palette.accentPrimary.withValues(alpha: 0.2),
+              thickness: 0.5, height: 28),
+          ],
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: RichText(
+              textAlign: TextAlign.justify,
+              text: TextSpan(children: spans),
+            ),
+          ),
+        ],
       ),
     );
   }
