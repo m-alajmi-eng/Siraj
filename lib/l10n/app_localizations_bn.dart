@@ -780,4 +780,43 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get more_mosques => 'নিকটবর্তী মসজিদ';
+
+  @override
+  String get athkarcat_error => 'ত্রুটি';
+
+  @override
+  String get athkarcat_empty => 'কোনো যিকর নই';
+
+  @override
+  String athkarcat_completed(String name) {
+    return '$name সম্পন্ন';
+  }
+
+  @override
+  String get athkarcat_back => 'ফিরে যান';
+
+  @override
+  String get athkarcat_next => 'পরবর্তী';
+
+  @override
+  String get athkarcat_finish => 'শেষ';
+
+  @override
+  String get athkarcat_prev => 'পূর্ববর্তী';
+
+  @override
+  String athkarcat_repeat(int count, String source) {
+    return 'পনরাবৃত্তি: $count · $source';
+  }
+
+  @override
+  String athkarcat_narrated(String source) {
+    return 'বর্ণনায় $source';
+  }
+
+  @override
+  String get athkarcat_moving => 'সনান্তর হচ্ছে...';
+
+  @override
+  String get athkarcat_tapCount => 'গণনা করতে চাপুন';
 }

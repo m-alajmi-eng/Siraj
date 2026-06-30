@@ -1635,6 +1635,72 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'المساجد القريبة'**
   String get more_mosques;
+
+  /// No description provided for @athkarcat_error.
+  ///
+  /// In ar, this message translates to:
+  /// **'خطأ'**
+  String get athkarcat_error;
+
+  /// No description provided for @athkarcat_empty.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد أذكار'**
+  String get athkarcat_empty;
+
+  /// No description provided for @athkarcat_completed.
+  ///
+  /// In ar, this message translates to:
+  /// **'اكتملت {name}'**
+  String athkarcat_completed(String name);
+
+  /// No description provided for @athkarcat_back.
+  ///
+  /// In ar, this message translates to:
+  /// **'رجوع'**
+  String get athkarcat_back;
+
+  /// No description provided for @athkarcat_next.
+  ///
+  /// In ar, this message translates to:
+  /// **'التالي'**
+  String get athkarcat_next;
+
+  /// No description provided for @athkarcat_finish.
+  ///
+  /// In ar, this message translates to:
+  /// **'إنهاء'**
+  String get athkarcat_finish;
+
+  /// No description provided for @athkarcat_prev.
+  ///
+  /// In ar, this message translates to:
+  /// **'السابق'**
+  String get athkarcat_prev;
+
+  /// No description provided for @athkarcat_repeat.
+  ///
+  /// In ar, this message translates to:
+  /// **'التكرار: {count} · {source}'**
+  String athkarcat_repeat(int count, String source);
+
+  /// No description provided for @athkarcat_narrated.
+  ///
+  /// In ar, this message translates to:
+  /// **'رواه {source}'**
+  String athkarcat_narrated(String source);
+
+  /// No description provided for @athkarcat_moving.
+  ///
+  /// In ar, this message translates to:
+  /// **'جارٍ الانتقال...'**
+  String get athkarcat_moving;
+
+  /// No description provided for @athkarcat_tapCount.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضغط للعدّ'**
+  String get athkarcat_tapCount;
 }
 
 class _AppLocalizationsDelegate

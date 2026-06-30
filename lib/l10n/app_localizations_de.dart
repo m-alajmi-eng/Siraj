@@ -781,4 +781,43 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get more_mosques => 'Moscheen in der Nähe';
+
+  @override
+  String get athkarcat_error => 'Fehler';
+
+  @override
+  String get athkarcat_empty => 'Keine Adhkar';
+
+  @override
+  String athkarcat_completed(String name) {
+    return '$name abgeschlossen';
+  }
+
+  @override
+  String get athkarcat_back => 'Zurück';
+
+  @override
+  String get athkarcat_next => 'Weiter';
+
+  @override
+  String get athkarcat_finish => 'Beenden';
+
+  @override
+  String get athkarcat_prev => 'Zurück';
+
+  @override
+  String athkarcat_repeat(int count, String source) {
+    return 'Wiederholung: $count · $source';
+  }
+
+  @override
+  String athkarcat_narrated(String source) {
+    return 'Überliefert von $source';
+  }
+
+  @override
+  String get athkarcat_moving => 'Weiter...';
+
+  @override
+  String get athkarcat_tapCount => 'Zum Zählen tippen';
 }

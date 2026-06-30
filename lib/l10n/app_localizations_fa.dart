@@ -780,4 +780,43 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get more_mosques => 'مساجد نزدیک';
+
+  @override
+  String get athkarcat_error => 'خطا';
+
+  @override
+  String get athkarcat_empty => 'ذکری موجود نیست';
+
+  @override
+  String athkarcat_completed(String name) {
+    return '$name کامل شد';
+  }
+
+  @override
+  String get athkarcat_back => 'بازگشت';
+
+  @override
+  String get athkarcat_next => 'بعدی';
+
+  @override
+  String get athkarcat_finish => 'پایان';
+
+  @override
+  String get athkarcat_prev => 'قبلی';
+
+  @override
+  String athkarcat_repeat(int count, String source) {
+    return 'تکرار: $count · $source';
+  }
+
+  @override
+  String athkarcat_narrated(String source) {
+    return 'راوی: $source';
+  }
+
+  @override
+  String get athkarcat_moving => 'در حال انتقال...';
+
+  @override
+  String get athkarcat_tapCount => 'برای شمارش بزنید';
 }

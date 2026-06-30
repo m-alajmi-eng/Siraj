@@ -288,5 +288,40 @@
   "more_shareCards": "Карточки обмена",
   "more_fullMode": "Полный режим",
   "more_radio": "Радио Корана",
-  "more_mosques": "Мечети поблизости"
+  "more_mosques": "Мечети поблизости",
+  "athkarcat_error": "Ошибка",
+  "athkarcat_empty": "Нет азкаров",
+  "athkarcat_completed": "{name} завершено",
+  "athkarcat_back": "Назад",
+  "athkarcat_next": "Далее",
+  "athkarcat_finish": "Завершить",
+  "athkarcat_prev": "Назад",
+  "athkarcat_repeat": "Повтор: {count} · {source}",
+  "athkarcat_narrated": "Передал {source}",
+  "athkarcat_moving": "Переход...",
+  "athkarcat_tapCount": "Нажмите для счёта",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

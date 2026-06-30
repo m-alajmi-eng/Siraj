@@ -357,5 +357,40 @@
   "more_shareCards": "Share Cards",
   "more_fullMode": "Full Mode",
   "more_radio": "Quran Radio",
-  "more_mosques": "Nearby Mosques"
+  "more_mosques": "Nearby Mosques",
+  "athkarcat_error": "Error",
+  "athkarcat_empty": "No athkar",
+  "athkarcat_completed": "{name} completed",
+  "athkarcat_back": "Back",
+  "athkarcat_next": "Next",
+  "athkarcat_finish": "Finish",
+  "athkarcat_prev": "Previous",
+  "athkarcat_repeat": "Repeat: {count} · {source}",
+  "athkarcat_narrated": "Narrated by {source}",
+  "athkarcat_moving": "Moving on...",
+  "athkarcat_tapCount": "Tap to count",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

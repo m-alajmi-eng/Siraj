@@ -288,5 +288,40 @@
   "more_shareCards": "Paylaşım Kartları",
   "more_fullMode": "Tam Mod",
   "more_radio": "Kuran Radyo",
-  "more_mosques": "Yakındaki Camiler"
+  "more_mosques": "Yakındaki Camiler",
+  "athkarcat_error": "Hata",
+  "athkarcat_empty": "Zikir yok",
+  "athkarcat_completed": "{name} tamamlandı",
+  "athkarcat_back": "Geri",
+  "athkarcat_next": "İleri",
+  "athkarcat_finish": "Bitir",
+  "athkarcat_prev": "Önceki",
+  "athkarcat_repeat": "Tekrar: {count} · {source}",
+  "athkarcat_narrated": "{source} rivayet etti",
+  "athkarcat_moving": "Geçiliyor...",
+  "athkarcat_tapCount": "Saymak için dokunun",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -357,5 +357,40 @@
   "more_shareCards": "بطاقات المشاركة",
   "more_fullMode": "الوضع الكامل",
   "more_radio": "راديو القرآن",
-  "more_mosques": "المساجد القريبة"
+  "more_mosques": "المساجد القريبة",
+  "athkarcat_error": "خطأ",
+  "athkarcat_empty": "لا توجد أذكار",
+  "athkarcat_completed": "اكتملت {name}",
+  "athkarcat_back": "رجوع",
+  "athkarcat_next": "التالي",
+  "athkarcat_finish": "إنهاء",
+  "athkarcat_prev": "السابق",
+  "athkarcat_repeat": "التكرار: {count} · {source}",
+  "athkarcat_narrated": "رواه {source}",
+  "athkarcat_moving": "جارٍ الانتقال...",
+  "athkarcat_tapCount": "اضغط للعدّ",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

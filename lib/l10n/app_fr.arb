@@ -288,5 +288,40 @@
   "more_shareCards": "Cartes de partage",
   "more_fullMode": "Mode complet",
   "more_radio": "Radio Coran",
-  "more_mosques": "Mosquées à proximité"
+  "more_mosques": "Mosquées à proximité",
+  "athkarcat_error": "Erreur",
+  "athkarcat_empty": "Aucun dhikr",
+  "athkarcat_completed": "{name} terminé",
+  "athkarcat_back": "Retour",
+  "athkarcat_next": "Suivant",
+  "athkarcat_finish": "Terminer",
+  "athkarcat_prev": "Précédent",
+  "athkarcat_repeat": "Répéter : {count} · {source}",
+  "athkarcat_narrated": "Rapporté par {source}",
+  "athkarcat_moving": "Passage...",
+  "athkarcat_tapCount": "Appuyez pour compter",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

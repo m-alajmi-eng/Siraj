@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../providers/athkar_provider.dart';
 
@@ -26,6 +27,18 @@ class _AthkarCategoryScreenState
   bool _completed    = false;
   bool _allDone      = false;
   bool _showList     = false;
+
+  String _catName(AppLocalizations t) {
+    switch (widget.categoryId) {
+      case 'morning': return t.athkar_morning;
+      case 'evening': return t.athkar_evening;
+      case 'sleep':   return t.athkar_sleep;
+      case 'wake':    return t.athkar_wake;
+      case 'prayer':  return t.athkar_prayer;
+      case 'general': return t.athkar_general;
+      default:        return widget.categoryName;
+    }
+  }
 
   void _increment(int target, int total) {
     HapticFeedback.lightImpact();
@@ -74,6 +87,7 @@ class _AthkarCategoryScreenState
 
   @override
   Widget build(BuildContext context) {
+    final t           = AppLocalizations.of(context);
     final palette     = ref.watch(timeThemeProvider);
     final athkarAsync = ref.watch(
       athkarByCategoryProvider(widget.categoryId));
@@ -86,16 +100,15 @@ class _AthkarCategoryScreenState
             child: CircularProgressIndicator(
               color: palette.accentPrimary)),
           error: (e, _) => Center(
-            child: Text('خطأ',
+            child: Text(t.athkarcat_error,
               style: TextStyle(color: palette.textPrimary))),
           data: (athkar) {
             if (athkar.isEmpty) {
               return Center(
-                child: Text('لا توجد أذكار',
+                child: Text(t.athkarcat_empty,
                   style: TextStyle(color: palette.textPrimary)));
             }
 
-            // شاشة الاكتمال
             if (_allDone) {
               return Center(
                 child: Column(
@@ -105,7 +118,8 @@ class _AthkarCategoryScreenState
                       color: palette.accentPrimary, size: 80),
                     const SizedBox(height: 20),
                     Text(
-                      'اكتملت ${widget.categoryName}',
+                      t.athkarcat_completed(_catName(t)),
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color:      palette.textPrimary,
                         fontSize:   22,
@@ -123,7 +137,7 @@ class _AthkarCategoryScreenState
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
-                          'رجوع',
+                          t.athkarcat_back,
                           style: TextStyle(
                             color:    palette.surface,
                             fontSize: 16,
@@ -141,8 +155,6 @@ class _AthkarCategoryScreenState
 
             return Column(
               children: [
-
-                // ─── Header ───────────────────────────────────
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16, vertical: 12),
@@ -155,7 +167,7 @@ class _AthkarCategoryScreenState
                       ),
                       Expanded(
                         child: Text(
-                          widget.categoryName,
+                          _catName(t),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color:      palette.textPrimary,
@@ -164,7 +176,6 @@ class _AthkarCategoryScreenState
                           ),
                         ),
                       ),
-                      // زر القائمة
                       GestureDetector(
                         onTap: () =>
                             setState(() => _showList = !_showList),
@@ -174,7 +185,7 @@ class _AthkarCategoryScreenState
                           decoration: BoxDecoration(
                             color: _showList
                                 ? palette.accentPrimary
-                                : palette.accentPrimary.withOpacity(0.15),
+                                : palette.accentPrimary.withValues(alpha: 0.15),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Row(
@@ -205,7 +216,6 @@ class _AthkarCategoryScreenState
                   ),
                 ),
 
-                // Progress bar
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: ClipRRect(
@@ -222,14 +232,12 @@ class _AthkarCategoryScreenState
 
                 const SizedBox(height: 12),
 
-                // ─── القائمة أو الذكر ─────────────────────────
                 Expanded(
                   child: _showList
-                      ? _buildList(athkar, palette)
-                      : _buildDhikr(current, athkar.length, palette),
+                      ? _buildList(athkar, palette, t)
+                      : _buildDhikr(current, athkar.length, palette, t),
                 ),
 
-                // Navigation buttons
                 if (!_showList)
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -237,7 +245,6 @@ class _AthkarCategoryScreenState
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // التالي
                         GestureDetector(
                           onTap: () => _next(athkar.length),
                           child: Container(
@@ -249,8 +256,8 @@ class _AthkarCategoryScreenState
                             ),
                             child: Text(
                               _currentIndex < athkar.length - 1
-                                  ? 'التالي'
-                                  : 'إنهاء',
+                                  ? t.athkarcat_next
+                                  : t.athkarcat_finish,
                               style: TextStyle(
                                 color:    palette.surface,
                                 fontSize: 14,
@@ -258,8 +265,6 @@ class _AthkarCategoryScreenState
                             ),
                           ),
                         ),
-
-                        // السابق
                         GestureDetector(
                           onTap: _currentIndex > 0 ? _prev : null,
                           child: Container(
@@ -268,11 +273,11 @@ class _AthkarCategoryScreenState
                             decoration: BoxDecoration(
                               color: _currentIndex > 0
                                   ? palette.surface
-                                  : palette.surface.withOpacity(0.3),
+                                  : palette.surface.withValues(alpha: 0.3),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
-                              'السابق',
+                              t.athkarcat_prev,
                               style: TextStyle(
                                 color: _currentIndex > 0
                                     ? palette.textPrimary
@@ -293,8 +298,7 @@ class _AthkarCategoryScreenState
     );
   }
 
-  // ─── قائمة الأذكار ──────────────────────────────────────────
-  Widget _buildList(List athkar, dynamic palette) {
+  Widget _buildList(List athkar, dynamic palette, AppLocalizations t) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
@@ -319,11 +323,10 @@ class _AthkarCategoryScreenState
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16, vertical: 14),
                 color: isCurrent
-                    ? palette.accentPrimary.withOpacity(0.08)
+                    ? palette.accentPrimary.withValues(alpha: 0.08)
                     : Colors.transparent,
                 child: Row(
                   children: [
-                    // رقم
                     Container(
                       width:  32,
                       height: 32,
@@ -331,7 +334,7 @@ class _AthkarCategoryScreenState
                         shape: BoxShape.circle,
                         color: isCurrent
                             ? palette.accentPrimary
-                            : palette.accentPrimary.withOpacity(0.15),
+                            : palette.accentPrimary.withValues(alpha: 0.15),
                       ),
                       child: Center(
                         child: Text(
@@ -347,8 +350,6 @@ class _AthkarCategoryScreenState
                       ),
                     ),
                     const SizedBox(width: 12),
-
-                    // النص
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -370,7 +371,7 @@ class _AthkarCategoryScreenState
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            'التكرار: ${item.count} · ${item.source}',
+                            t.athkarcat_repeat(item.count, item.source),
                             style: TextStyle(
                               color:    palette.textSecondary,
                               fontSize: 11,
@@ -379,8 +380,6 @@ class _AthkarCategoryScreenState
                         ],
                       ),
                     ),
-
-                    // علامة الحالي
                     if (isCurrent) ...[
                       const SizedBox(width: 8),
                       Icon(Icons.play_arrow,
@@ -396,8 +395,7 @@ class _AthkarCategoryScreenState
     );
   }
 
-  // ─── شاشة الذكر ─────────────────────────────────────────────
-  Widget _buildDhikr(current, int total, dynamic palette) {
+  Widget _buildDhikr(current, int total, dynamic palette, AppLocalizations t) {
     return GestureDetector(
       onTap: _completed
           ? null
@@ -430,7 +428,7 @@ class _AthkarCategoryScreenState
               ),
               const SizedBox(height: 16),
               Text(
-                'رواه ${current.source}',
+                t.athkarcat_narrated(current.source),
                 style: TextStyle(
                   color:    palette.textSecondary,
                   fontSize: 12,
@@ -444,7 +442,7 @@ class _AthkarCategoryScreenState
                   shape: BoxShape.circle,
                   color: _completed
                       ? palette.accentPrimary
-                      : palette.accentPrimary.withOpacity(0.15),
+                      : palette.accentPrimary.withValues(alpha: 0.15),
                 ),
                 child: Center(
                   child: _completed
@@ -474,7 +472,7 @@ class _AthkarCategoryScreenState
               ),
               const SizedBox(height: 16),
               Text(
-                _completed ? 'جارٍ الانتقال...' : 'اضغط للعدّ',
+                _completed ? t.athkarcat_moving : t.athkarcat_tapCount,
                 style: TextStyle(
                   color:    palette.textSecondary,
                   fontSize: 13,

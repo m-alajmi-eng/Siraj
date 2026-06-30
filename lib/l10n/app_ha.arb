@@ -288,5 +288,40 @@
   "more_shareCards": "Katunan Rabawa",
   "more_fullMode": "Cikakken Yanayi",
   "more_radio": "Rediyon Alkur'ani",
-  "more_mosques": "Masallatai Kusa"
+  "more_mosques": "Masallatai Kusa",
+  "athkarcat_error": "Kuskure",
+  "athkarcat_empty": "Babu azkari",
+  "athkarcat_completed": "An kammala {name}",
+  "athkarcat_back": "Koma baya",
+  "athkarcat_next": "Na gaba",
+  "athkarcat_finish": "Gama",
+  "athkarcat_prev": "Da ya gabata",
+  "athkarcat_repeat": "Maimaitawa: {count} · {source}",
+  "athkarcat_narrated": "{source} ya rawaito",
+  "athkarcat_moving": "Ana matsawa...",
+  "athkarcat_tapCount": "Danna don ƙidaya",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

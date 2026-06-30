@@ -778,4 +778,43 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get more_mosques => '附近的清真寺';
+
+  @override
+  String get athkarcat_error => '错误';
+
+  @override
+  String get athkarcat_empty => '暂无记主词';
+
+  @override
+  String athkarcat_completed(String name) {
+    return '$name 已完成';
+  }
+
+  @override
+  String get athkarcat_back => '返回';
+
+  @override
+  String get athkarcat_next => '下一个';
+
+  @override
+  String get athkarcat_finish => '完成';
+
+  @override
+  String get athkarcat_prev => '上一个';
+
+  @override
+  String athkarcat_repeat(int count, String source) {
+    return '重复：$count · $source';
+  }
+
+  @override
+  String athkarcat_narrated(String source) {
+    return '$source 传述';
+  }
+
+  @override
+  String get athkarcat_moving => '正在切换...';
+
+  @override
+  String get athkarcat_tapCount => '点击计数';
 }

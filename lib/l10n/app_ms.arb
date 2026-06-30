@@ -288,5 +288,40 @@
   "more_shareCards": "Kad Perkongsian",
   "more_fullMode": "Mod Penuh",
   "more_radio": "Radio Quran",
-  "more_mosques": "Masjid Berdekatan"
+  "more_mosques": "Masjid Berdekatan",
+  "athkarcat_error": "Ralat",
+  "athkarcat_empty": "Tiada zikir",
+  "athkarcat_completed": "{name} selesai",
+  "athkarcat_back": "Kembali",
+  "athkarcat_next": "Seterusnya",
+  "athkarcat_finish": "Selesai",
+  "athkarcat_prev": "Sebelumnya",
+  "athkarcat_repeat": "Ulang: {count} · {source}",
+  "athkarcat_narrated": "Diriwayatkan oleh {source}",
+  "athkarcat_moving": "Berpindah...",
+  "athkarcat_tapCount": "Ketik untuk mengira",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

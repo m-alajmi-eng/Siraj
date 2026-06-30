@@ -288,5 +288,40 @@
   "more_shareCards": "کارت‌های اشتراک",
   "more_fullMode": "حالت کامل",
   "more_radio": "رادیو قرآن",
-  "more_mosques": "مساجد نزدیک"
+  "more_mosques": "مساجد نزدیک",
+  "athkarcat_error": "خطا",
+  "athkarcat_empty": "ذکری موجود نیست",
+  "athkarcat_completed": "{name} کامل شد",
+  "athkarcat_back": "بازگشت",
+  "athkarcat_next": "بعدی",
+  "athkarcat_finish": "پایان",
+  "athkarcat_prev": "قبلی",
+  "athkarcat_repeat": "تکرار: {count} · {source}",
+  "athkarcat_narrated": "راوی: {source}",
+  "athkarcat_moving": "در حال انتقال...",
+  "athkarcat_tapCount": "برای شمارش بزنید",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

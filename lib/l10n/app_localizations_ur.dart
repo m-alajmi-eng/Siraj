@@ -780,4 +780,43 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get more_mosques => 'قریبی مساجد';
+
+  @override
+  String get athkarcat_error => 'خرابی';
+
+  @override
+  String get athkarcat_empty => 'کوئی اذکار نہیں';
+
+  @override
+  String athkarcat_completed(String name) {
+    return '$name مکمل';
+  }
+
+  @override
+  String get athkarcat_back => 'واپس';
+
+  @override
+  String get athkarcat_next => 'اگلا';
+
+  @override
+  String get athkarcat_finish => 'ختم';
+
+  @override
+  String get athkarcat_prev => 'پچھلا';
+
+  @override
+  String athkarcat_repeat(int count, String source) {
+    return 'تکرار: $count · $source';
+  }
+
+  @override
+  String athkarcat_narrated(String source) {
+    return 'راوی: $source';
+  }
+
+  @override
+  String get athkarcat_moving => 'منتقل ہو رہا ہے...';
+
+  @override
+  String get athkarcat_tapCount => 'گننے کے لیے دبائیں';
 }

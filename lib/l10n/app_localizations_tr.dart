@@ -780,4 +780,43 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get more_mosques => 'Yakındaki Camiler';
+
+  @override
+  String get athkarcat_error => 'Hata';
+
+  @override
+  String get athkarcat_empty => 'Zikir yok';
+
+  @override
+  String athkarcat_completed(String name) {
+    return '$name tamamlandı';
+  }
+
+  @override
+  String get athkarcat_back => 'Geri';
+
+  @override
+  String get athkarcat_next => 'İleri';
+
+  @override
+  String get athkarcat_finish => 'Bitir';
+
+  @override
+  String get athkarcat_prev => 'Önceki';
+
+  @override
+  String athkarcat_repeat(int count, String source) {
+    return 'Tekrar: $count · $source';
+  }
+
+  @override
+  String athkarcat_narrated(String source) {
+    return '$source rivayet etti';
+  }
+
+  @override
+  String get athkarcat_moving => 'Geçiliyor...';
+
+  @override
+  String get athkarcat_tapCount => 'Saymak için dokunun';
 }

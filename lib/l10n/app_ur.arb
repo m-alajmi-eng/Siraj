@@ -288,5 +288,40 @@
   "more_shareCards": "شیئرنگ کارڈز",
   "more_fullMode": "مکمل موڈ",
   "more_radio": "قرآن ریڈیو",
-  "more_mosques": "قریبی مساجد"
+  "more_mosques": "قریبی مساجد",
+  "athkarcat_error": "خرابی",
+  "athkarcat_empty": "کوئی اذکار نہیں",
+  "athkarcat_completed": "{name} مکمل",
+  "athkarcat_back": "واپس",
+  "athkarcat_next": "اگلا",
+  "athkarcat_finish": "ختم",
+  "athkarcat_prev": "پچھلا",
+  "athkarcat_repeat": "تکرار: {count} · {source}",
+  "athkarcat_narrated": "راوی: {source}",
+  "athkarcat_moving": "منتقل ہو رہا ہے...",
+  "athkarcat_tapCount": "گننے کے لیے دبائیں",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

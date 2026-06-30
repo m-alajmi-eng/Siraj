@@ -782,4 +782,43 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get more_mosques => 'Masallatai Kusa';
+
+  @override
+  String get athkarcat_error => 'Kuskure';
+
+  @override
+  String get athkarcat_empty => 'Babu azkari';
+
+  @override
+  String athkarcat_completed(String name) {
+    return 'An kammala $name';
+  }
+
+  @override
+  String get athkarcat_back => 'Koma baya';
+
+  @override
+  String get athkarcat_next => 'Na gaba';
+
+  @override
+  String get athkarcat_finish => 'Gama';
+
+  @override
+  String get athkarcat_prev => 'Da ya gabata';
+
+  @override
+  String athkarcat_repeat(int count, String source) {
+    return 'Maimaitawa: $count · $source';
+  }
+
+  @override
+  String athkarcat_narrated(String source) {
+    return '$source ya rawaito';
+  }
+
+  @override
+  String get athkarcat_moving => 'Ana matsawa...';
+
+  @override
+  String get athkarcat_tapCount => 'Danna don ƙidaya';
 }

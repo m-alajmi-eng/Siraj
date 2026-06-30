@@ -780,4 +780,43 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get more_mosques => 'Masjid Terdekat';
+
+  @override
+  String get athkarcat_error => 'Kesalahan';
+
+  @override
+  String get athkarcat_empty => 'Tidak ada zikir';
+
+  @override
+  String athkarcat_completed(String name) {
+    return '$name selesai';
+  }
+
+  @override
+  String get athkarcat_back => 'Kembali';
+
+  @override
+  String get athkarcat_next => 'Berikutnya';
+
+  @override
+  String get athkarcat_finish => 'Selesai';
+
+  @override
+  String get athkarcat_prev => 'Sebelumnya';
+
+  @override
+  String athkarcat_repeat(int count, String source) {
+    return 'Ulangi: $count · $source';
+  }
+
+  @override
+  String athkarcat_narrated(String source) {
+    return 'Diriwayatkan oleh $source';
+  }
+
+  @override
+  String get athkarcat_moving => 'Berpindah...';
+
+  @override
+  String get athkarcat_tapCount => 'Ketuk untuk menghitung';
 }

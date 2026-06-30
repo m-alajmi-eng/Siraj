@@ -288,5 +288,40 @@
   "more_shareCards": "শেয়ার কার্ড",
   "more_fullMode": "পূর্ণ মোড",
   "more_radio": "কুরআন রেডিও",
-  "more_mosques": "নিকটবর্তী মসজিদ"
+  "more_mosques": "নিকটবর্তী মসজিদ",
+  "athkarcat_error": "ত্রুটি",
+  "athkarcat_empty": "কোনো যিকর নই",
+  "athkarcat_completed": "{name} সম্পন্ন",
+  "athkarcat_back": "ফিরে যান",
+  "athkarcat_next": "পরবর্তী",
+  "athkarcat_finish": "শেষ",
+  "athkarcat_prev": "পূর্ববর্তী",
+  "athkarcat_repeat": "পনরাবৃত্তি: {count} · {source}",
+  "athkarcat_narrated": "বর্ণনায় {source}",
+  "athkarcat_moving": "সনান্তর হচ্ছে...",
+  "athkarcat_tapCount": "গণনা করতে চাপুন",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

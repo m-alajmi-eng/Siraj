@@ -288,5 +288,40 @@
   "more_shareCards": "分享卡片",
   "more_fullMode": "完整模式",
   "more_radio": "古兰经电台",
-  "more_mosques": "附近的清真寺"
+  "more_mosques": "附近的清真寺",
+  "athkarcat_error": "错误",
+  "athkarcat_empty": "暂无记主词",
+  "athkarcat_completed": "{name} 已完成",
+  "athkarcat_back": "返回",
+  "athkarcat_next": "下一个",
+  "athkarcat_finish": "完成",
+  "athkarcat_prev": "上一个",
+  "athkarcat_repeat": "重复：{count} · {source}",
+  "athkarcat_narrated": "{source} 传述",
+  "athkarcat_moving": "正在切换...",
+  "athkarcat_tapCount": "点击计数",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

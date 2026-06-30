@@ -281,5 +281,40 @@
   "more_shareCards": "Teilen-Karten",
   "more_fullMode": "Vollmodus",
   "more_radio": "Koran-Radio",
-  "more_mosques": "Moscheen in der Nähe"
+  "more_mosques": "Moscheen in der Nähe",
+  "athkarcat_error": "Fehler",
+  "athkarcat_empty": "Keine Adhkar",
+  "athkarcat_completed": "{name} abgeschlossen",
+  "athkarcat_back": "Zurück",
+  "athkarcat_next": "Weiter",
+  "athkarcat_finish": "Beenden",
+  "athkarcat_prev": "Zurück",
+  "athkarcat_repeat": "Wiederholung: {count} · {source}",
+  "athkarcat_narrated": "Überliefert von {source}",
+  "athkarcat_moving": "Weiter...",
+  "athkarcat_tapCount": "Zum Zählen tippen",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

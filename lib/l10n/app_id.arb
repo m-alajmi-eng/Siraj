@@ -288,5 +288,40 @@
   "more_shareCards": "Kartu Berbagi",
   "more_fullMode": "Mode Penuh",
   "more_radio": "Radio Quran",
-  "more_mosques": "Masjid Terdekat"
+  "more_mosques": "Masjid Terdekat",
+  "athkarcat_error": "Kesalahan",
+  "athkarcat_empty": "Tidak ada zikir",
+  "athkarcat_completed": "{name} selesai",
+  "athkarcat_back": "Kembali",
+  "athkarcat_next": "Berikutnya",
+  "athkarcat_finish": "Selesai",
+  "athkarcat_prev": "Sebelumnya",
+  "athkarcat_repeat": "Ulangi: {count} · {source}",
+  "athkarcat_narrated": "Diriwayatkan oleh {source}",
+  "athkarcat_moving": "Berpindah...",
+  "athkarcat_tapCount": "Ketuk untuk menghitung",
+  "@athkarcat_completed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_repeat": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "@athkarcat_narrated": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -782,4 +782,43 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get more_mosques => 'Masjid Berdekatan';
+
+  @override
+  String get athkarcat_error => 'Ralat';
+
+  @override
+  String get athkarcat_empty => 'Tiada zikir';
+
+  @override
+  String athkarcat_completed(String name) {
+    return '$name selesai';
+  }
+
+  @override
+  String get athkarcat_back => 'Kembali';
+
+  @override
+  String get athkarcat_next => 'Seterusnya';
+
+  @override
+  String get athkarcat_finish => 'Selesai';
+
+  @override
+  String get athkarcat_prev => 'Sebelumnya';
+
+  @override
+  String athkarcat_repeat(int count, String source) {
+    return 'Ulang: $count · $source';
+  }
+
+  @override
+  String athkarcat_narrated(String source) {
+    return 'Diriwayatkan oleh $source';
+  }
+
+  @override
+  String get athkarcat_moving => 'Berpindah...';
+
+  @override
+  String get athkarcat_tapCount => 'Ketik untuk mengira';
 }

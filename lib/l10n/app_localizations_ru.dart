@@ -782,4 +782,43 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get more_mosques => 'Мечети поблизости';
+
+  @override
+  String get athkarcat_error => 'Ошибка';
+
+  @override
+  String get athkarcat_empty => 'Нет азкаров';
+
+  @override
+  String athkarcat_completed(String name) {
+    return '$name завершено';
+  }
+
+  @override
+  String get athkarcat_back => 'Назад';
+
+  @override
+  String get athkarcat_next => 'Далее';
+
+  @override
+  String get athkarcat_finish => 'Завершить';
+
+  @override
+  String get athkarcat_prev => 'Назад';
+
+  @override
+  String athkarcat_repeat(int count, String source) {
+    return 'Повтор: $count · $source';
+  }
+
+  @override
+  String athkarcat_narrated(String source) {
+    return 'Передал $source';
+  }
+
+  @override
+  String get athkarcat_moving => 'Переход...';
+
+  @override
+  String get athkarcat_tapCount => 'Нажмите для счёта';
 }

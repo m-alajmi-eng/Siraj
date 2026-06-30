@@ -783,4 +783,43 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get more_mosques => 'Misikiti ya Karibu';
+
+  @override
+  String get athkarcat_error => 'Hitilafu';
+
+  @override
+  String get athkarcat_empty => 'Hakuna adhkari';
+
+  @override
+  String athkarcat_completed(String name) {
+    return '$name imekamilika';
+  }
+
+  @override
+  String get athkarcat_back => 'Rudi';
+
+  @override
+  String get athkarcat_next => 'Inayofuata';
+
+  @override
+  String get athkarcat_finish => 'Maliza';
+
+  @override
+  String get athkarcat_prev => 'Iliyotangulia';
+
+  @override
+  String athkarcat_repeat(int count, String source) {
+    return 'Rudia: $count · $source';
+  }
+
+  @override
+  String athkarcat_narrated(String source) {
+    return 'Imepokewa na $source';
+  }
+
+  @override
+  String get athkarcat_moving => 'Inahamia...';
+
+  @override
+  String get athkarcat_tapCount => 'Gusa kuhesabu';
 }
