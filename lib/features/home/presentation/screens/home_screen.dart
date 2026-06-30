@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../core/locale/locale_provider.dart';
+import '../../../quran/presentation/providers/quran_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -287,24 +289,32 @@ class _ContinueReading extends StatelessWidget {
   }
 }
 
-class _DailyAyah extends StatelessWidget {
+class _DailyAyah extends ConsumerWidget {
   const _DailyAyah();
 
   @override
-  Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t    = AppLocalizations.of(context);
+    final lang = ref.watch(localeProvider).languageCode;
+
+    // (عربي، مرجع نصّي، سورة، آية، fallback إنجليزي)
     const ayahs = [
-      ('أَلَا بِذِكْرِ اللَّهِ تَطمَئِنُّ القُلُوب',
-       'Verily, in the remembrance of Allah do hearts find rest.',
-       'الرعد ١٣:٢٨'),
-      ('إِنَّ مَعَ العُسْرِ يُسْرًا',
-       'Indeed, with hardship comes ease.',
-       'الشرح ٩٤:٦'),
-      ('وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخرَجًا',
-       'And whoever fears Allah, He will make for him a way out.',
-       'الطلاق ٦٥:٢'),
+      ('أَلَا بِذِكْرِ اللَّهِ تطمَئِنُّ القُلُوب',
+       'الرعد ١٣:٢٨', 13, 28,
+       'Verily, in the remembrance of Allah do hearts find rest.'),
+      ('إِنَّ مَعَ العسْرِ يُسْرًا',
+       'الشرح ٩٤:٦', 94, 6,
+       'Indeed, with hardship comes ease.'),
+      ('وَمن يَتَّقِ اللَّهَ يَجْعل لَّهُ مَخرَجًا',
+       'الطلاق ٦٥:٢', 65, 2,
+       'And whoever fears Allah, He will make for him a way out.'),
     ];
     final ayah = ayahs[DateTime.now().day % ayahs.length];
+
+    // العربية: لا ترجمة. غيرها: نجلب من alquran.cloud
+    final transAsync = lang == 'ar'
+        ? null
+        : ref.watch(dailyAyahTranslationProvider('${ayah.$3}:${ayah.$4}:$lang'));
 
     return GlassCard(
       radius: SirajRadiusFull.xl,
@@ -314,20 +324,33 @@ class _DailyAyah extends StatelessWidget {
           SectionLabel(label: t.home_dailyAyah),
           const SizedBox(height: SirajSpacing.s4),
           Text(ayah.$1, textAlign: TextAlign.center,
-            textDirection: TextDirection.rtl, style: AppText.quran),
-          const SizedBox(height: SirajSpacing.s3),
-          Text('"${ayah.$2}"', textAlign: TextAlign.center,
-            style: AppText.bodySmall.copyWith(
-              fontStyle: FontStyle.italic, height: SirajLineHeights.normal)),
+ textDirection: TextDirection.rtl, style: AppText.quran),
+          if (lang != 'ar') ...[
+            const SizedBox(height: SirajSpacing.s3),
+            transAsync!.when(
+              data: (text) => text == null
+                  ? const SizedBox.shrink()
+                  : Text('"$text"', textAlign: TextAlign.center,
+                      style: AppText.bodySmall.copyWith(
+                        fontStyle: FontStyle.italic,
+                        height: SirajLineHeights.normal)),
+              loading: () => const SizedBox(
+                height: 16, width: 16,
+                child: Center(
+                  child: SizedBox(height: 12, width: 12,
+                    child: CircularProgressIndicator(strokeWidth: 1.5)))),
+              error: (_, __) => const SizedBox.shrink(),
+            ),
+          ],
           const SizedBox(height: SirajSpacing.s4),
           Row(children: [
-            Expanded(child: Container(height: 0.5, color: SirajWhite.w7)),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s3),
-              child: Text(ayah.$3, style: AppText.label.copyWith(
-                fontSize: SirajSizes.sXs, letterSpacing: 2.2)),
-            ),
-            Expanded(child: Container(height: 0.5, color: SirajWhite.w7)),
+ Expanded(child: Container(height: 0.5, color: SirajWhite.w7)),
+ Padding(
+   padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s3),
+   child: Text(ayah.$2, style: AppText.label.copyWith(
+     fontSize: SirajSizes.sXs, letterSpacing: 2.2)),
+ ),
+ Expanded(child: Container(height: 0.5, color: SirajWhite.w7)),
           ]),
         ],
       ),

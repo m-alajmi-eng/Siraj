@@ -23,14 +23,15 @@ class CacheService {
     return box.get('surahs');
   }
 
-  static Future<void> cacheAyahs(int surahId, List data) async {
+  static Future<void> cacheAyahs(int surahId, List data,
+      {String lang = 'ar'}) async {
     final box = Hive.box(_quranBox);
-    await box.put('ayahs_$surahId', data);
+    await box.put('ayahs_${surahId}_$lang', data);
   }
 
-  static List? getCachedAyahs(int surahId) {
+  static List? getCachedAyahs(int surahId, {String lang = 'ar'}) {
     final box = Hive.box(_quranBox);
-    return box.get('ayahs_$surahId');
+    return box.get('ayahs_${surahId}_$lang');
   }
 
   // ─── Reading Position ─────────────────────────────────────

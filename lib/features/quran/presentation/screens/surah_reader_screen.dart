@@ -245,7 +245,10 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                                     ? palette.accentPrimary.withValues(alpha: 0.08)
                                     : Colors.transparent,
                                 borderRadius: BorderRadius.circular(isCurrentAyah ? 10 : 0)),
-                              child: Directionality(
+                              child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                              Directionality(
                                 textDirection: TextDirection.rtl,
                                 child: RichText(
                                   textAlign: TextAlign.justify,
@@ -283,6 +286,14 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                                   ),
                                 ),
                               ),
+                              if (ayah.translation != null) ...[
+                                const SizedBox(height: 10),
+                                Text(ayah.translation!,
+                                  style: TextStyle(
+                                    color: palette.textSecondary,
+                                    fontSize: 15, height: 1.6)),
+                              ],
+                              ]),
                             ),
                           );
                         },
