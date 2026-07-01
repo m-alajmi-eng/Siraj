@@ -1671,6 +1671,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'اضغط للعدّ'**
   String get athkarcat_tapCount;
+
+  /// No description provided for @athkar_allSections.
+  ///
+  /// In ar, this message translates to:
+  /// **'جميع الأقسام'**
+  String get athkar_allSections;
 }
 
 class _AppLocalizationsDelegate

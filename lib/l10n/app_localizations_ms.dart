@@ -821,4 +821,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get athkarcat_tapCount => 'Ketik untuk mengira';
+
+  @override
+  String get athkar_allSections => 'Semua Bahagian';
 }

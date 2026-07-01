@@ -821,4 +821,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get athkarcat_tapCount => 'Нажмите для счёта';
+
+  @override
+  String get athkar_allSections => 'Все разделы';
 }

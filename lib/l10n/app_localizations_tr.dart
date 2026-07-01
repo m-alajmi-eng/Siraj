@@ -819,4 +819,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get athkarcat_tapCount => 'Saymak için dokunun';
+
+  @override
+  String get athkar_allSections => 'Tüm Bölümler';
 }

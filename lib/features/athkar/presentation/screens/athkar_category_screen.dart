@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../providers/athkar_provider.dart';
+import '../../../../core/locale/locale_provider.dart';
 
 class AthkarCategoryScreen extends ConsumerStatefulWidget {
   final String categoryId;
@@ -88,6 +89,7 @@ class _AthkarCategoryScreenState
   @override
   Widget build(BuildContext context) {
     final t           = AppLocalizations.of(context);
+    final lang        = ref.watch(localeProvider).languageCode;
     final palette     = ref.watch(timeThemeProvider);
     final athkarAsync = ref.watch(
       athkarByCategoryProvider(widget.categoryId));
@@ -235,7 +237,7 @@ class _AthkarCategoryScreenState
                 Expanded(
                   child: _showList
                       ? _buildList(athkar, palette, t)
-                      : _buildDhikr(current, athkar.length, palette, t),
+                      : _buildDhikr(current, athkar.length, palette, t, lang),
                 ),
 
                 if (!_showList)
@@ -395,7 +397,7 @@ class _AthkarCategoryScreenState
     );
   }
 
-  Widget _buildDhikr(current, int total, dynamic palette, AppLocalizations t) {
+  Widget _buildDhikr(current, int total, dynamic palette, AppLocalizations t, String lang) {
     return GestureDetector(
       onTap: _completed
           ? null
@@ -426,6 +428,12 @@ class _AthkarCategoryScreenState
                   fontFamily: 'QuranFont',
                 ),
               ),
+   if (lang != 'ar' && current.translationFor(lang).isNotEmpty) ...[
+     const SizedBox(height: 14),
+     Text(current.translationFor(lang),
+       textAlign: TextAlign.center,
+       style: TextStyle(color: palette.textSecondary, fontSize: 15, height: 1.6)),
+   ],
               const SizedBox(height: 16),
               Text(
                 t.athkarcat_narrated(current.source),

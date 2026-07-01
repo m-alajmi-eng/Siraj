@@ -821,4 +821,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get athkarcat_tapCount => 'Appuyez pour compter';
+
+  @override
+  String get athkar_allSections => 'Toutes les sections';
 }

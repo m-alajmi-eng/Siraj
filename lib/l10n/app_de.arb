@@ -316,5 +316,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "athkar_allSections": "Alle Abschnitte"
 }

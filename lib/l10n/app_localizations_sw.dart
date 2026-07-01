@@ -822,4 +822,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get athkarcat_tapCount => 'Gusa kuhesabu';
+
+  @override
+  String get athkar_allSections => 'Sehemu Zote';
 }

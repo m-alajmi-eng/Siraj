@@ -819,4 +819,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get athkarcat_tapCount => 'Tap to count';
+
+  @override
+  String get athkar_allSections => 'All Sections';
 }

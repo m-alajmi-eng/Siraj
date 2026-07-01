@@ -17,6 +17,7 @@ import '../../features/quran/presentation/screens/surah_reader_screen.dart';
 import '../../features/quran/presentation/screens/quran_search_screen.dart';
 import '../../features/athkar/presentation/screens/athkar_home_screen.dart';
 import '../../features/athkar/presentation/screens/athkar_category_screen.dart';
+import '../../features/athkar/presentation/screens/athkar_categories_screen.dart';
 import '../../features/hadith/presentation/screens/hadith_home_screen.dart';
 import '../../features/qibla/presentation/screens/qibla_screen.dart';
 import '../../features/stats/presentation/screens/stats_screen.dart';
@@ -210,17 +211,31 @@ final appRouterProvider = Provider<GoRouter>((ref) {
              path:    '/athkar',
              builder: (_, __) => const AthkarHomeScreen(),
              routes: [
-               GoRoute(
-                 path: ':category',
-                 builder: (_, state) {
-                   final cat  = state.pathParameters['category']!;
-                   final name = _categoryNames[cat] ?? cat;
-                   return AthkarCategoryScreen(
-                     categoryId:   cat,
-                     categoryName: name,
-                   );
-                 },
-               ),
+    GoRoute(
+      path: 'group/:id',
+      builder: (_, state) => AthkarCategoriesScreen(
+        groupId: state.pathParameters['id']!,
+        title:   state.uri.queryParameters['name'] ?? '',
+      ),
+    ),
+    GoRoute(
+      path: 'all',
+      builder: (_, state) => AthkarCategoriesScreen(
+        groupId: null,
+        title:   state.uri.queryParameters['name'] ?? 'جميع الأقسام',
+      ),
+    ),
+    GoRoute(
+      path: 'category/:category',
+      builder: (_, state) {
+        final cat  = state.pathParameters['category']!;
+        final name = state.uri.queryParameters['name'] ?? cat;
+        return AthkarCategoryScreen(
+          categoryId:   cat,
+          categoryName: name,
+        );
+      },
+    ),
              ],
            ),
          ]),

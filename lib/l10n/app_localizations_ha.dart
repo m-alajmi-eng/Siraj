@@ -821,4 +821,7 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get athkarcat_tapCount => 'Danna don ƙidaya';
+
+  @override
+  String get athkar_allSections => 'Duk Sassa';
 }

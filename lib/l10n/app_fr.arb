@@ -323,5 +323,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "athkar_allSections": "Toutes les sections"
 }

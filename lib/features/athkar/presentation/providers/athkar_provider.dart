@@ -15,6 +15,17 @@ final athkarByCategoryProvider =
   return ref.watch(athkarDataSourceProvider).getByCategory(categoryId);
 });
 
+// المجموعات الكبرى
+final athkarGroupsProvider = FutureProvider<List<AthkarGroup>>((ref) {
+  return ref.watch(athkarDataSourceProvider).getGroups();
+});
+
+// فئات (أبواب) مجموعة معيّنة
+final athkarCategoriesInGroupProvider =
+    FutureProvider.family<List<AthkarCategory>, String>((ref, groupId) {
+  return ref.watch(athkarDataSourceProvider).getCategoriesInGroup(groupId);
+});
+
 class DhikrCounterNotifier extends Notifier<int> {
   @override
   int build() => 0;

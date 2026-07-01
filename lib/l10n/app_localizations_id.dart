@@ -819,4 +819,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get athkarcat_tapCount => 'Ketuk untuk menghitung';
+
+  @override
+  String get athkar_allSections => 'Semua Bagian';
 }

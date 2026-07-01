@@ -819,4 +819,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get athkarcat_tapCount => 'گننے کے لیے دبائیں';
+
+  @override
+  String get athkar_allSections => 'تمام اقسام';
 }

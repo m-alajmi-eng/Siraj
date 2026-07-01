@@ -817,4 +817,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get athkarcat_tapCount => '点击计数';
+
+  @override
+  String get athkar_allSections => '所有分类';
 }

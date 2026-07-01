@@ -819,4 +819,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get athkarcat_tapCount => 'গণনা করতে চাপুন';
+
+  @override
+  String get athkar_allSections => 'সব বিভাগ';
 }

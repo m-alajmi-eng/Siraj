@@ -299,5 +299,6 @@
   "athkarcat_repeat": "Repetir: {count} · {source}",
   "athkarcat_narrated": "Narrado por {source}",
   "athkarcat_moving": "Avanzando...",
-  "athkarcat_tapCount": "Toca para contar"
+  "athkarcat_tapCount": "Toca para contar",
+  "athkar_allSections": "Todas las secciones"
 }

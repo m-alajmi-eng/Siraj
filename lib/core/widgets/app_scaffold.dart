@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../theme/design_tokens.dart';
 import '../theme/app_text.dart';
@@ -40,7 +41,7 @@ class AppScaffold extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final palette = ref.watch(timeThemeProvider);
-    final canPop  = Navigator.of(context).canPop();
+    final canPop  = context.canPop();
 
     final pad = padding ??
         const EdgeInsets.symmetric(horizontal: SirajLayout.pagePadding);
@@ -102,7 +103,7 @@ class _BackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).maybePop(),
+      onTap: () => context.pop(),
       child: Container(
         width: 40, height: 40,
         decoration: BoxDecoration(
