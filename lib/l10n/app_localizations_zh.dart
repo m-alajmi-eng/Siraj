@@ -850,4 +850,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get app_brand_name => '希拉吉';
+
+  @override
+  String get gateway_shahada_cta => '现在宣读你的信仰';
 }

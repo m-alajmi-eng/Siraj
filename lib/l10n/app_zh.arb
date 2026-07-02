@@ -334,5 +334,6 @@
   "gateway_next": "下一个",
   "gateway_prev": "返回",
   "app_tagline": "您的伊斯兰指南",
-  "app_brand_name": "希拉吉"
+  "app_brand_name": "希拉吉",
+  "gateway_shahada_cta": "现在宣读你的信仰"
 }

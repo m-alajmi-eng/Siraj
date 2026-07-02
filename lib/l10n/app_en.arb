@@ -403,5 +403,6 @@
   "gateway_next": "Next",
   "gateway_prev": "Back",
   "app_tagline": "Your Islamic Guide",
-  "app_brand_name": "SIRAJ"
+  "app_brand_name": "SIRAJ",
+  "gateway_shahada_cta": "Declare Your Faith Now"
 }

@@ -334,5 +334,6 @@
   "gateway_next": "Далее",
   "gateway_prev": "Назад",
   "app_tagline": "Ваш исламский путеводитель",
-  "app_brand_name": "СИРАДЖ"
+  "app_brand_name": "СИРАДЖ",
+  "gateway_shahada_cta": "Произнеси Свидетельство Сейчас"
 }

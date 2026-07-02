@@ -1737,6 +1737,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'SIRAJ'**
   String get app_brand_name;
+
+  /// No description provided for @gateway_shahada_cta.
+  ///
+  /// In ar, this message translates to:
+  /// **'أعلن شهادتك الآن'**
+  String get gateway_shahada_cta;
 }
 
 class _AppLocalizationsDelegate

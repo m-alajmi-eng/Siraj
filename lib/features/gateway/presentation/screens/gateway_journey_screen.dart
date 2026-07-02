@@ -102,6 +102,7 @@ class _GatewayJourneyScreenState extends ConsumerState<GatewayJourneyScreen> {
                         '/gateway/library/$catId',
                       ),
                       onEnterLayer2: () => context.push('/gateway/principles'),
+                      onGoToShahada: () => context.push('/gateway/principles/shahada'),
                     );
                   },
                 ),
@@ -171,6 +172,7 @@ class _StationPage extends StatelessWidget {
   final bool isLast;
   final void Function(String catId) onDeepLink;
   final VoidCallback onEnterLayer2;
+  final VoidCallback onGoToShahada;
 
   const _StationPage({
     required this.station,
@@ -181,6 +183,7 @@ class _StationPage extends StatelessWidget {
     required this.isLast,
     required this.onDeepLink,
     required this.onEnterLayer2,
+    required this.onGoToShahada,
   });
 
   @override
@@ -257,6 +260,14 @@ class _StationPage extends StatelessWidget {
                 palette: palette,
                 isAr: isAr,
                 onTap: onEnterLayer2,
+              ),
+              const SizedBox(height: SirajSpacing.s5),
+              Center(
+                child: _ShahadaCallToAction(
+                  isAr: isAr,
+                  palette: palette,
+                  onTap: onGoToShahada,
+                ),
               ),
             ],
             const SizedBox(height: SirajSpacing.s6),
@@ -365,6 +376,68 @@ class _Layer2Invite extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// دعوة بارزة للفعل: أيقونة دائرية تقود مباشرة لصفحة الشهادتين.
+/// تظهر فقط في محطة "الباب مفتوح"، لجذب من هو مستعد فعلاً.
+class _ShahadaCallToAction extends StatelessWidget {
+  final bool isAr;
+  final dynamic palette;
+  final VoidCallback onTap;
+
+  const _ShahadaCallToAction({
+    required this.isAr,
+    required this.palette,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 76,
+            height: 76,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  palette.accentPrimary,
+                  palette.accentPrimary.withValues(alpha: 0.6),
+                ],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: palette.accentPrimary.withValues(alpha: 0.4),
+                  blurRadius: 20,
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            child: Icon(
+              Icons.favorite,
+              color: palette.surface,
+              size: 32,
+            ),
+          ),
+          const SizedBox(height: SirajSpacing.s2),
+          Text(
+            AppLocalizations.of(context).gateway_shahada_cta,
+            textAlign: TextAlign.center,
+            style: AppText.bodySmall.copyWith(
+              color: palette.accentPrimary,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -327,5 +327,6 @@
   "gateway_next": "Weiter",
   "gateway_prev": "Zurück",
   "app_tagline": "Dein Islamischer Führer",
-  "app_brand_name": "SIRAJ"
+  "app_brand_name": "SIRAJ",
+  "gateway_shahada_cta": "Erkläre Jetzt Deinen Glauben"
 }

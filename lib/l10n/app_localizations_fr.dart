@@ -854,4 +854,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_brand_name => 'SIRAJ';
+
+  @override
+  String get gateway_shahada_cta => 'Déclare Ta Foi Maintenant';
 }

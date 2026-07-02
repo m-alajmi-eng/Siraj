@@ -852,4 +852,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get app_brand_name => 'সিরাজ';
+
+  @override
+  String get gateway_shahada_cta => 'এখনই আপনার ঈমান ঘোষণা করুন';
 }

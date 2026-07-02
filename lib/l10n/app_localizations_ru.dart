@@ -854,4 +854,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get app_brand_name => 'СИРАДЖ';
+
+  @override
+  String get gateway_shahada_cta => 'Произнеси Свидетельство Сейчас';
 }
