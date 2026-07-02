@@ -822,4 +822,34 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get athkar_allSections => 'همه بخش‌ها';
+
+  @override
+  String get gateway_entry_title => 'با اسلام آشنا شوید';
+
+  @override
+  String get gateway_intro_title => 'سفر آگاهی معنوی';
+
+  @override
+  String get gateway_journey_title => 'سفر';
+
+  @override
+  String get gateway_principles_title => 'اصول اسلام';
+
+  @override
+  String get gateway_library_title => 'کتابخانه';
+
+  @override
+  String get gateway_begin => 'آغاز سفر';
+
+  @override
+  String get gateway_next => 'بعدی';
+
+  @override
+  String get gateway_prev => 'قبلی';
+
+  @override
+  String get app_tagline => 'راهنمای اسلامی شما';
+
+  @override
+  String get app_brand_name => 'SIRAJ';
 }

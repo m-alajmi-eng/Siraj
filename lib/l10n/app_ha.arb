@@ -324,5 +324,15 @@
       }
     }
   },
-  "athkar_allSections": "Duk Sassa"
+  "athkar_allSections": "Duk Sassa",
+  "gateway_entry_title": "Gano Musulunci",
+  "gateway_intro_title": "Tafiyar Wayar da Kai ta Ruhi",
+  "gateway_journey_title": "Tafiya",
+  "gateway_principles_title": "Ka'idojin Musulunci",
+  "gateway_library_title": "Laburare",
+  "gateway_begin": "Fara Tafiya",
+  "gateway_next": "Na Gaba",
+  "gateway_prev": "Baya",
+  "app_tagline": "Jagorar Musulunci Naka",
+  "app_brand_name": "SIRAJ"
 }

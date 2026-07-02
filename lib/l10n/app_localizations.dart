@@ -1677,6 +1677,66 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'جميع الأقسام'**
   String get athkar_allSections;
+
+  /// No description provided for @gateway_entry_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعرّف على الإسلام'**
+  String get gateway_entry_title;
+
+  /// No description provided for @gateway_intro_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'رحلة الوعي الروحي'**
+  String get gateway_intro_title;
+
+  /// No description provided for @gateway_journey_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'رحلة الوعي'**
+  String get gateway_journey_title;
+
+  /// No description provided for @gateway_principles_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'مبادئ الإسلام'**
+  String get gateway_principles_title;
+
+  /// No description provided for @gateway_library_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'مكتبة التعمّق'**
+  String get gateway_library_title;
+
+  /// No description provided for @gateway_begin.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابدأ الرحلة'**
+  String get gateway_begin;
+
+  /// No description provided for @gateway_next.
+  ///
+  /// In ar, this message translates to:
+  /// **'التالي'**
+  String get gateway_next;
+
+  /// No description provided for @gateway_prev.
+  ///
+  /// In ar, this message translates to:
+  /// **'السابق'**
+  String get gateway_prev;
+
+  /// No description provided for @app_tagline.
+  ///
+  /// In ar, this message translates to:
+  /// **'دليلك الإسلامي'**
+  String get app_tagline;
+
+  /// No description provided for @app_brand_name.
+  ///
+  /// In ar, this message translates to:
+  /// **'SIRAJ'**
+  String get app_brand_name;
 }
 
 class _AppLocalizationsDelegate

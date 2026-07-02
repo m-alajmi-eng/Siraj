@@ -820,4 +820,34 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get athkar_allSections => '所有分类';
+
+  @override
+  String get gateway_entry_title => '认识伊斯兰';
+
+  @override
+  String get gateway_intro_title => '心灵觉悟之旅';
+
+  @override
+  String get gateway_journey_title => '旅程';
+
+  @override
+  String get gateway_principles_title => '伊斯兰的原则';
+
+  @override
+  String get gateway_library_title => '图书馆';
+
+  @override
+  String get gateway_begin => '开始旅程';
+
+  @override
+  String get gateway_next => '下一个';
+
+  @override
+  String get gateway_prev => '返回';
+
+  @override
+  String get app_tagline => '您的伊斯兰指南';
+
+  @override
+  String get app_brand_name => '希拉吉';
 }

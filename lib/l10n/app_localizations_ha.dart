@@ -824,4 +824,34 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get athkar_allSections => 'Duk Sassa';
+
+  @override
+  String get gateway_entry_title => 'Gano Musulunci';
+
+  @override
+  String get gateway_intro_title => 'Tafiyar Wayar da Kai ta Ruhi';
+
+  @override
+  String get gateway_journey_title => 'Tafiya';
+
+  @override
+  String get gateway_principles_title => 'Ka\'idojin Musulunci';
+
+  @override
+  String get gateway_library_title => 'Laburare';
+
+  @override
+  String get gateway_begin => 'Fara Tafiya';
+
+  @override
+  String get gateway_next => 'Na Gaba';
+
+  @override
+  String get gateway_prev => 'Baya';
+
+  @override
+  String get app_tagline => 'Jagorar Musulunci Naka';
+
+  @override
+  String get app_brand_name => 'SIRAJ';
 }

@@ -103,6 +103,7 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -134,11 +135,19 @@ class _Header extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text('SIRAJ', style: AppText.headline.copyWith(
-              fontWeight: FontWeight.w300, letterSpacing: 6.0,
-              fontSize: SirajSizes.sXl)),
-            Text('سراج · Islamic Guidance', style: AppText.label.copyWith(
-              letterSpacing: 1.6)),
+            Text(t.app_brand_name, style: AppText.headline.copyWith(
+                  fontWeight: FontWeight.w300, letterSpacing: 6.0,
+                  fontSize: SirajSizes.sXl)),
+                Text(t.app_tagline, style: AppText.label.copyWith(
+                  letterSpacing: 1.6)),
+                const SizedBox(height: 2),
+                Text('سـراج', style: TextStyle(
+                  fontFamily: SirajFonts.brand,
+                  fontWeight: FontWeight.w700,
+                  fontSize: SirajSizes.sXl,
+                  letterSpacing: 0.5,
+                  color: AppText.headline.color,
+                )),
           ],
         ),
       ],
@@ -374,6 +383,7 @@ class _QuickActions extends StatelessWidget {
       (Icons.calendar_month,       t.home_calendar,       '/more/calendar',         true),
       (Icons.auto_stories,         t.home_stories,        '/more/stories',          true),
       (Icons.child_care,           t.home_children,       '/more/children_stories', true),
+    (Icons.mosque_outlined,  t.gateway_entry_title,       '/gateway', true),
     ];
 
     return GridView.builder(

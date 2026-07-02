@@ -75,6 +75,8 @@ class SirajFonts {
   static const latin   = 'NotoSans';
   // خط القرآن الكريم فقط
   static const quran   = 'UthmanTNB';
+  // خط فخم للعلامة التجارية (شعار "سراج")
+  static const brand   = 'Amiri';
 }
 
 class SirajSizes {

@@ -324,5 +324,15 @@
       }
     }
   },
-  "athkar_allSections": "تمام اقسام"
+  "athkar_allSections": "تمام اقسام",
+  "gateway_entry_title": "اسلام کو جانیں",
+  "gateway_intro_title": "روحانی بیداری کا سفر",
+  "gateway_journey_title": "سفر",
+  "gateway_principles_title": "اسلام کے بنیادی اصول",
+  "gateway_library_title": "کتب خانہ",
+  "gateway_begin": "سفر شروع کریں",
+  "gateway_next": "اگلا",
+  "gateway_prev": "پچھلا",
+  "app_tagline": "آپ کا اسلامی رہنما",
+  "app_brand_name": "SIRAJ"
 }

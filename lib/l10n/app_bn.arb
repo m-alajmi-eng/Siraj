@@ -324,5 +324,15 @@
       }
     }
   },
-  "athkar_allSections": "সব বিভাগ"
+  "athkar_allSections": "সব বিভাগ",
+  "gateway_entry_title": "ইসলামকে জানুন",
+  "gateway_intro_title": "আধ্যাত্মিক সচতনতার যাত্রা",
+  "gateway_journey_title": "যাত্রা",
+  "gateway_principles_title": "ইসলামের মূলনীতি",
+  "gateway_library_title": "গ্রন্থাগার",
+  "gateway_begin": "যাত্রা শুরু করুন",
+  "gateway_next": "পরবর্তী",
+  "gateway_prev": "পূর্ববর্তী",
+  "app_tagline": "আপনার ইসলামিক গাইড",
+  "app_brand_name": "সিরাজ"
 }

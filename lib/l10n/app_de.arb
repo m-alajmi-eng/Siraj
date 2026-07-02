@@ -317,5 +317,15 @@
       }
     }
   },
-  "athkar_allSections": "Alle Abschnitte"
+  "athkar_allSections": "Alle Abschnitte",
+  "gateway_entry_title": "Den Islam entdecken",
+  "gateway_intro_title": "Eine Reise des spirituellen Bewusstseins",
+  "gateway_journey_title": "Die Reise",
+  "gateway_principles_title": "Grundsätze des Islam",
+  "gateway_library_title": "Bibliothek",
+  "gateway_begin": "Die Reise beginnen",
+  "gateway_next": "Weiter",
+  "gateway_prev": "Zurück",
+  "app_tagline": "Dein Islamischer Führer",
+  "app_brand_name": "SIRAJ"
 }

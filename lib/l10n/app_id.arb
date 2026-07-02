@@ -324,5 +324,15 @@
       }
     }
   },
-  "athkar_allSections": "Semua Bagian"
+  "athkar_allSections": "Semua Bagian",
+  "gateway_entry_title": "Mengenal Islam",
+  "gateway_intro_title": "Perjalanan Kesadaran Spiritual",
+  "gateway_journey_title": "Perjalanan",
+  "gateway_principles_title": "Prinsip-Prinsip Islam",
+  "gateway_library_title": "Perpustakaan",
+  "gateway_begin": "Mulai Perjalanan",
+  "gateway_next": "Berikutnya",
+  "gateway_prev": "Kembali",
+  "app_tagline": "Panduan Islam Anda",
+  "app_brand_name": "SIRAJ"
 }

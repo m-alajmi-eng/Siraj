@@ -300,5 +300,15 @@
   "athkarcat_narrated": "Narrado por {source}",
   "athkarcat_moving": "Avanzando...",
   "athkarcat_tapCount": "Toca para contar",
-  "athkar_allSections": "Todas las secciones"
+  "athkar_allSections": "Todas las secciones",
+  "gateway_entry_title": "Descubre el Islam",
+  "gateway_intro_title": "Un viaje de conciencia espiritual",
+  "gateway_journey_title": "El viaje",
+  "gateway_principles_title": "Principios del Islam",
+  "gateway_library_title": "Biblioteca",
+  "gateway_begin": "Comenzar el viaje",
+  "gateway_next": "Siguiente",
+  "gateway_prev": "Atrás",
+  "app_tagline": "Tu Guía Islámica",
+  "app_brand_name": "SIRAJ"
 }

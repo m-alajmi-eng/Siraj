@@ -822,4 +822,34 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get athkar_allSections => 'সব বিভাগ';
+
+  @override
+  String get gateway_entry_title => 'ইসলামকে জানুন';
+
+  @override
+  String get gateway_intro_title => 'আধ্যাত্মিক সচতনতার যাত্রা';
+
+  @override
+  String get gateway_journey_title => 'যাত্রা';
+
+  @override
+  String get gateway_principles_title => 'ইসলামের মূলনীতি';
+
+  @override
+  String get gateway_library_title => 'গ্রন্থাগার';
+
+  @override
+  String get gateway_begin => 'যাত্রা শুরু করুন';
+
+  @override
+  String get gateway_next => 'পরবর্তী';
+
+  @override
+  String get gateway_prev => 'পূর্ববর্তী';
+
+  @override
+  String get app_tagline => 'আপনার ইসলামিক গাইড';
+
+  @override
+  String get app_brand_name => 'সিরাজ';
 }

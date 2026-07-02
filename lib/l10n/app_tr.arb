@@ -324,5 +324,15 @@
       }
     }
   },
-  "athkar_allSections": "Tüm Bölümler"
+  "athkar_allSections": "Tüm Bölümler",
+  "gateway_entry_title": "İslam'ı Keşfet",
+  "gateway_intro_title": "Manevi Farkındalık Yolculuğu",
+  "gateway_journey_title": "Yolculuk",
+  "gateway_principles_title": "İslam'ın İlkeleri",
+  "gateway_library_title": "Kütüphane",
+  "gateway_begin": "Yolculuğa Başla",
+  "gateway_next": "İleri",
+  "gateway_prev": "Geri",
+  "app_tagline": "İslami Rehberin",
+  "app_brand_name": "SIRAJ"
 }

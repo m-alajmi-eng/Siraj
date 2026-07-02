@@ -393,5 +393,15 @@
       }
     }
   },
-  "athkar_allSections": "All Sections"
+  "athkar_allSections": "All Sections",
+  "gateway_entry_title": "Discover Islam",
+  "gateway_intro_title": "A Journey of Spiritual Awareness",
+  "gateway_journey_title": "The Journey",
+  "gateway_principles_title": "Principles of Islam",
+  "gateway_library_title": "Library",
+  "gateway_begin": "Begin the Journey",
+  "gateway_next": "Next",
+  "gateway_prev": "Back",
+  "app_tagline": "Your Islamic Guide",
+  "app_brand_name": "SIRAJ"
 }

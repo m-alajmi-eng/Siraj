@@ -27,6 +27,11 @@ import '../../features/sharing/presentation/screens/share_card_screen.dart';
 import '../../features/radio/presentation/screens/radio_screen.dart';
 import '../../features/mosques/presentation/screens/mosques_screen.dart';
 import '../../features/search/presentation/screens/search_screen.dart';
+import '../../features/gateway/presentation/screens/gateway_intro_screen.dart';
+import '../../features/gateway/presentation/screens/gateway_journey_screen.dart';
+import '../../features/gateway/presentation/screens/gateway_principles_screen.dart';
+import '../../features/gateway/presentation/screens/gateway_topic_screen.dart';
+import '../../features/gateway/presentation/screens/gateway_library_screen.dart';
 
 // ─── More Screen ──────────────────────────────────────────
 class MoreScreen extends ConsumerWidget {
@@ -305,6 +310,36 @@ final appRouterProvider = Provider<GoRouter>((ref) {
              ],
            ),
          ]),
+       ],
+     ),
+
+     // ── بوابة غير المسلمين (خارج الـ shell: شاشات كاملة بزر رجوع) ──
+     GoRoute(
+       path: '/gateway',
+       builder: (_, __) => const GatewayIntroScreen(),
+       routes: [
+         GoRoute(
+           path: 'journey',
+           builder: (_, __) => const GatewayJourneyScreen(),
+         ),
+         GoRoute(
+           path: 'principles',
+           builder: (_, __) => const GatewayPrinciplesScreen(),
+           routes: [
+             GoRoute(
+               path: ':topicId',
+               builder: (_, state) => GatewayTopicScreen(
+                 topicId: state.pathParameters['topicId'] ?? '',
+               ),
+             ),
+           ],
+         ),
+         GoRoute(
+           path: 'library/:categoryId',
+           builder: (_, state) => GatewayLibraryScreen(
+             categoryId: state.pathParameters['categoryId'] ?? '',
+           ),
+         ),
        ],
      ),
    ],

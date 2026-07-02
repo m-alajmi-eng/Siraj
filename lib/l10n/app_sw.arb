@@ -324,5 +324,15 @@
       }
     }
   },
-  "athkar_allSections": "Sehemu Zote"
+  "athkar_allSections": "Sehemu Zote",
+  "gateway_entry_title": "Fahamu Uislamu",
+  "gateway_intro_title": "Safari ya Ufahamu wa Kiroho",
+  "gateway_journey_title": "Safari",
+  "gateway_principles_title": "Misingi ya Uislamu",
+  "gateway_library_title": "Maktaba",
+  "gateway_begin": "Anza Safari",
+  "gateway_next": "Ifuatayo",
+  "gateway_prev": "Nyuma",
+  "app_tagline": "Mwongozo Wako wa Kiislamu",
+  "app_brand_name": "SIRAJ"
 }

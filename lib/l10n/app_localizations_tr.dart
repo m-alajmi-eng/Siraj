@@ -822,4 +822,34 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get athkar_allSections => 'Tüm Bölümler';
+
+  @override
+  String get gateway_entry_title => 'İslam\'ı Keşfet';
+
+  @override
+  String get gateway_intro_title => 'Manevi Farkındalık Yolculuğu';
+
+  @override
+  String get gateway_journey_title => 'Yolculuk';
+
+  @override
+  String get gateway_principles_title => 'İslam\'ın İlkeleri';
+
+  @override
+  String get gateway_library_title => 'Kütüphane';
+
+  @override
+  String get gateway_begin => 'Yolculuğa Başla';
+
+  @override
+  String get gateway_next => 'İleri';
+
+  @override
+  String get gateway_prev => 'Geri';
+
+  @override
+  String get app_tagline => 'İslami Rehberin';
+
+  @override
+  String get app_brand_name => 'SIRAJ';
 }

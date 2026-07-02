@@ -324,5 +324,15 @@
       }
     }
   },
-  "athkar_allSections": "Все разделы"
+  "athkar_allSections": "Все разделы",
+  "gateway_entry_title": "Познать ислам",
+  "gateway_intro_title": "Путь духовного осознания",
+  "gateway_journey_title": "Путешествие",
+  "gateway_principles_title": "Основы ислама",
+  "gateway_library_title": "Библиотека",
+  "gateway_begin": "Начать путь",
+  "gateway_next": "Далее",
+  "gateway_prev": "Назад",
+  "app_tagline": "Ваш исламский путеводитель",
+  "app_brand_name": "СИРАДЖ"
 }

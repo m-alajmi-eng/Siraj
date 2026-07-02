@@ -822,4 +822,34 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get athkar_allSections => 'Semua Bagian';
+
+  @override
+  String get gateway_entry_title => 'Mengenal Islam';
+
+  @override
+  String get gateway_intro_title => 'Perjalanan Kesadaran Spiritual';
+
+  @override
+  String get gateway_journey_title => 'Perjalanan';
+
+  @override
+  String get gateway_principles_title => 'Prinsip-Prinsip Islam';
+
+  @override
+  String get gateway_library_title => 'Perpustakaan';
+
+  @override
+  String get gateway_begin => 'Mulai Perjalanan';
+
+  @override
+  String get gateway_next => 'Berikutnya';
+
+  @override
+  String get gateway_prev => 'Kembali';
+
+  @override
+  String get app_tagline => 'Panduan Islam Anda';
+
+  @override
+  String get app_brand_name => 'SIRAJ';
 }

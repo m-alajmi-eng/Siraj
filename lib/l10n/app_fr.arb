@@ -324,5 +324,15 @@
       }
     }
   },
-  "athkar_allSections": "Toutes les sections"
+  "athkar_allSections": "Toutes les sections",
+  "gateway_entry_title": "Découvrir l'Islam",
+  "gateway_intro_title": "Un voyage de conscience spirituelle",
+  "gateway_journey_title": "Le voyage",
+  "gateway_principles_title": "Principes de l'Islam",
+  "gateway_library_title": "Bibliothèque",
+  "gateway_begin": "Commencer le voyage",
+  "gateway_next": "Suivant",
+  "gateway_prev": "Retour",
+  "app_tagline": "Votre Guide Islamique",
+  "app_brand_name": "SIRAJ"
 }

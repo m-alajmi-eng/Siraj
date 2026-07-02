@@ -825,4 +825,34 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get athkar_allSections => 'Sehemu Zote';
+
+  @override
+  String get gateway_entry_title => 'Fahamu Uislamu';
+
+  @override
+  String get gateway_intro_title => 'Safari ya Ufahamu wa Kiroho';
+
+  @override
+  String get gateway_journey_title => 'Safari';
+
+  @override
+  String get gateway_principles_title => 'Misingi ya Uislamu';
+
+  @override
+  String get gateway_library_title => 'Maktaba';
+
+  @override
+  String get gateway_begin => 'Anza Safari';
+
+  @override
+  String get gateway_next => 'Ifuatayo';
+
+  @override
+  String get gateway_prev => 'Nyuma';
+
+  @override
+  String get app_tagline => 'Mwongozo Wako wa Kiislamu';
+
+  @override
+  String get app_brand_name => 'SIRAJ';
 }

@@ -324,5 +324,15 @@
       }
     }
   },
-  "athkar_allSections": "所有分类"
+  "athkar_allSections": "所有分类",
+  "gateway_entry_title": "认识伊斯兰",
+  "gateway_intro_title": "心灵觉悟之旅",
+  "gateway_journey_title": "旅程",
+  "gateway_principles_title": "伊斯兰的原则",
+  "gateway_library_title": "图书馆",
+  "gateway_begin": "开始旅程",
+  "gateway_next": "下一个",
+  "gateway_prev": "返回",
+  "app_tagline": "您的伊斯兰指南",
+  "app_brand_name": "希拉吉"
 }

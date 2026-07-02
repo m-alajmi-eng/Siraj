@@ -324,5 +324,15 @@
       }
     }
   },
-  "athkar_allSections": "Semua Bahagian"
+  "athkar_allSections": "Semua Bahagian",
+  "gateway_entry_title": "Mengenali Islam",
+  "gateway_intro_title": "Perjalanan Kesedaran Rohani",
+  "gateway_journey_title": "Perjalanan",
+  "gateway_principles_title": "Prinsip-Prinsip Islam",
+  "gateway_library_title": "Perpustakaan",
+  "gateway_begin": "Mulakan Perjalanan",
+  "gateway_next": "Seterusnya",
+  "gateway_prev": "Kembali",
+  "app_tagline": "Panduan Islam Anda",
+  "app_brand_name": "SIRAJ"
 }

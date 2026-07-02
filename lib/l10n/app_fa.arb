@@ -324,5 +324,15 @@
       }
     }
   },
-  "athkar_allSections": "همه بخش‌ها"
+  "athkar_allSections": "همه بخش‌ها",
+  "gateway_entry_title": "با اسلام آشنا شوید",
+  "gateway_intro_title": "سفر آگاهی معنوی",
+  "gateway_journey_title": "سفر",
+  "gateway_principles_title": "اصول اسلام",
+  "gateway_library_title": "کتابخانه",
+  "gateway_begin": "آغاز سفر",
+  "gateway_next": "بعدی",
+  "gateway_prev": "قبلی",
+  "app_tagline": "راهنمای اسلامی شما",
+  "app_brand_name": "SIRAJ"
 }

@@ -824,4 +824,34 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get athkar_allSections => 'Все разделы';
+
+  @override
+  String get gateway_entry_title => 'Познать ислам';
+
+  @override
+  String get gateway_intro_title => 'Путь духовного осознания';
+
+  @override
+  String get gateway_journey_title => 'Путешествие';
+
+  @override
+  String get gateway_principles_title => 'Основы ислама';
+
+  @override
+  String get gateway_library_title => 'Библиотека';
+
+  @override
+  String get gateway_begin => 'Начать путь';
+
+  @override
+  String get gateway_next => 'Далее';
+
+  @override
+  String get gateway_prev => 'Назад';
+
+  @override
+  String get app_tagline => 'Ваш исламский путеводитель';
+
+  @override
+  String get app_brand_name => 'СИРАДЖ';
 }

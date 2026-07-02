@@ -825,4 +825,34 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get athkar_allSections => 'Todas las secciones';
+
+  @override
+  String get gateway_entry_title => 'Descubre el Islam';
+
+  @override
+  String get gateway_intro_title => 'Un viaje de conciencia espiritual';
+
+  @override
+  String get gateway_journey_title => 'El viaje';
+
+  @override
+  String get gateway_principles_title => 'Principios del Islam';
+
+  @override
+  String get gateway_library_title => 'Biblioteca';
+
+  @override
+  String get gateway_begin => 'Comenzar el viaje';
+
+  @override
+  String get gateway_next => 'Siguiente';
+
+  @override
+  String get gateway_prev => 'Atrás';
+
+  @override
+  String get app_tagline => 'Tu Guía Islámica';
+
+  @override
+  String get app_brand_name => 'SIRAJ';
 }

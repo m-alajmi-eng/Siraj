@@ -393,5 +393,15 @@
       }
     }
   },
-  "athkar_allSections": "جميع الأقسام"
+  "athkar_allSections": "جميع الأقسام",
+  "gateway_entry_title": "تعرّف على الإسلام",
+  "gateway_intro_title": "رحلة الوعي الروحي",
+  "gateway_journey_title": "رحلة الوعي",
+  "gateway_principles_title": "مبادئ الإسلام",
+  "gateway_library_title": "مكتبة التعمّق",
+  "gateway_begin": "ابدأ الرحلة",
+  "gateway_next": "التالي",
+  "gateway_prev": "السابق",
+  "app_tagline": "دليلك الإسلامي",
+  "app_brand_name": "SIRAJ"
 }
