@@ -857,4 +857,60 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'Ka Bayyana Imaninka Yanzu';
+
+  @override
+  String get nav_library => 'Laburare';
+
+  @override
+  String get library_could_not_load => 'An kasa loda';
+
+  @override
+  String get library_section_not_found => 'Ba a sami sashin ba';
+
+  @override
+  String get library_content_title => 'Abun ciki';
+
+  @override
+  String get library_search_in_category => 'Nema a wannan rukunin...';
+
+  @override
+  String get library_no_matching_results => 'Babu sakamako da ya dace';
+
+  @override
+  String get library_no_materials_lang =>
+      'Babu kayan da ake da su a wannan yaren tukuna';
+
+  @override
+  String get library_connection_failed =>
+      'Haɗi ya kasa. Duba intanet ɗinka sannan ka sake gwadawa';
+
+  @override
+  String get library_search_content_type => 'Nema irin abun ciki...';
+
+  @override
+  String get library_choose_content_type => 'Zaɓi irin abun ciki';
+
+  @override
+  String get library_no_content_lang => 'Babu abun ciki a wannan yaren tukuna';
+
+  @override
+  String get library_not_found => 'Ba a samu ba';
+
+  @override
+  String get library_search_in_section => 'Nema a wannan sashin...';
+
+  @override
+  String get library_no_categories => 'Babu rukuni tukuna';
+
+  @override
+  String get library_type_books => 'Littattafai';
+
+  @override
+  String get library_type_audios => 'Sauti';
+
+  @override
+  String get library_type_videos => 'Bidiyo';
+
+  @override
+  String get library_type_articles => 'Kasidu';
 }

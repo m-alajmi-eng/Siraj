@@ -377,7 +377,7 @@ class _QuickActions extends StatelessWidget {
     final actions = [
       (Icons.menu_book_rounded,    t.nav_quran,           '/quran',                 false),
       (Icons.self_improvement,     t.nav_athkar,          '/athkar',                false),
-      (Icons.format_quote_rounded, t.nav_hadith,          '/hadith',                false),
+      (Icons.local_library_outlined, t.nav_library,       '/library',               false),
       (Icons.explore_outlined,     t.home_qiblaDirection, '/more/qibla',            true),
       (Icons.radio,                t.home_radio,          '/more/radio',            true),
       (Icons.calendar_month,       t.home_calendar,       '/more/calendar',         true),

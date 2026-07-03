@@ -858,4 +858,60 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'Tangaza Imani Yako Sasa';
+
+  @override
+  String get nav_library => 'Maktaba';
+
+  @override
+  String get library_could_not_load => 'Imeshindwa kupakia';
+
+  @override
+  String get library_section_not_found => 'Sehemu haikupatikana';
+
+  @override
+  String get library_content_title => 'Maudhui';
+
+  @override
+  String get library_search_in_category => 'Tafuta katika jamii hii...';
+
+  @override
+  String get library_no_matching_results => 'Hakuna matokeo yanayolingana';
+
+  @override
+  String get library_no_materials_lang =>
+      'Bado hakuna maudhui katika lugha hii';
+
+  @override
+  String get library_connection_failed =>
+      'Muunganisho umeshindwa. Angalia intaneti yako na ujaribu tena';
+
+  @override
+  String get library_search_content_type => 'Tafuta aina ya maudhui...';
+
+  @override
+  String get library_choose_content_type => 'Chagua aina ya maudhui';
+
+  @override
+  String get library_no_content_lang => 'Bado hakuna maudhui katika lugha hii';
+
+  @override
+  String get library_not_found => 'Haikupatikana';
+
+  @override
+  String get library_search_in_section => 'Tafuta katika sehemu hii...';
+
+  @override
+  String get library_no_categories => 'Bado hakuna jamii';
+
+  @override
+  String get library_type_books => 'Vitabu';
+
+  @override
+  String get library_type_audios => 'Sauti';
+
+  @override
+  String get library_type_videos => 'Video';
+
+  @override
+  String get library_type_articles => 'Makala';
 }

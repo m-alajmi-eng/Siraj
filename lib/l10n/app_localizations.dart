@@ -1743,6 +1743,114 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'أعلن شهادتك الآن'**
   String get gateway_shahada_cta;
+
+  /// No description provided for @nav_library.
+  ///
+  /// In ar, this message translates to:
+  /// **'المكتبة'**
+  String get nav_library;
+
+  /// No description provided for @library_could_not_load.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذّر التحميل'**
+  String get library_could_not_load;
+
+  /// No description provided for @library_section_not_found.
+  ///
+  /// In ar, this message translates to:
+  /// **'القسم غير موجود'**
+  String get library_section_not_found;
+
+  /// No description provided for @library_content_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'المحتوى'**
+  String get library_content_title;
+
+  /// No description provided for @library_search_in_category.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث في هذا التصنيف...'**
+  String get library_search_in_category;
+
+  /// No description provided for @library_no_matching_results.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد نتائج مطابقة'**
+  String get library_no_matching_results;
+
+  /// No description provided for @library_no_materials_lang.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد مواد متاحة حالياً بهذه اللغة'**
+  String get library_no_materials_lang;
+
+  /// No description provided for @library_connection_failed.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذّر الاتصال. تحقّق من الإنترنت وحاول مجدداً'**
+  String get library_connection_failed;
+
+  /// No description provided for @library_search_content_type.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث عن نوع المحتوى...'**
+  String get library_search_content_type;
+
+  /// No description provided for @library_choose_content_type.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر نوع المحتوى'**
+  String get library_choose_content_type;
+
+  /// No description provided for @library_no_content_lang.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يوجد محتوى متاح حالياً بهذه اللغة'**
+  String get library_no_content_lang;
+
+  /// No description provided for @library_not_found.
+  ///
+  /// In ar, this message translates to:
+  /// **'غير موجود'**
+  String get library_not_found;
+
+  /// No description provided for @library_search_in_section.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث في هذا القسم...'**
+  String get library_search_in_section;
+
+  /// No description provided for @library_no_categories.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد تصنيفات متاحة حالياً'**
+  String get library_no_categories;
+
+  /// No description provided for @library_type_books.
+  ///
+  /// In ar, this message translates to:
+  /// **'كتب'**
+  String get library_type_books;
+
+  /// No description provided for @library_type_audios.
+  ///
+  /// In ar, this message translates to:
+  /// **'صوتيات'**
+  String get library_type_audios;
+
+  /// No description provided for @library_type_videos.
+  ///
+  /// In ar, this message translates to:
+  /// **'مرئيات'**
+  String get library_type_videos;
+
+  /// No description provided for @library_type_articles.
+  ///
+  /// In ar, this message translates to:
+  /// **'مقالات'**
+  String get library_type_articles;
 }
 
 class _AppLocalizationsDelegate

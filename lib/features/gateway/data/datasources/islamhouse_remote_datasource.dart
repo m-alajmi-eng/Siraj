@@ -72,10 +72,11 @@ class IslamHouseRemoteDataSource {
     String lang = 'ar',
     int page = 1,
     int limit = 25,
+    String type = 'showall',
   }) async {
-    final items = await _fetch(categoryId, lang, page, limit);
+    final items = await _fetch(categoryId, lang, page, limit, type);
     if (items.isEmpty && lang != 'ar') {
-      return _fetch(categoryId, 'ar', page, limit);
+      return _fetch(categoryId, 'ar', page, limit, type);
     }
     return items;
   }
@@ -85,9 +86,10 @@ class IslamHouseRemoteDataSource {
     String lang,
     int page,
     int limit,
+    String type,
   ) async {
     final url = Uri.parse(
-      '$_base/$_key/main/get-category-items/$categoryId/showall/$lang/$lang/$page/$limit/json',
+      '$_base/$_key/main/get-category-items/$categoryId/$type/$lang/$lang/$page/$limit/json',
     );
     try {
       final res = await _client.get(url).timeout(const Duration(seconds: 20));

@@ -855,4 +855,59 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'Şimdi İmanını İlan Et';
+
+  @override
+  String get nav_library => 'Kütüphane';
+
+  @override
+  String get library_could_not_load => 'Yüklenemedi';
+
+  @override
+  String get library_section_not_found => 'Bölüm bulunamadı';
+
+  @override
+  String get library_content_title => 'İçerik';
+
+  @override
+  String get library_search_in_category => 'Bu kategoride ara...';
+
+  @override
+  String get library_no_matching_results => 'Eşleşen sonuç yok';
+
+  @override
+  String get library_no_materials_lang => 'Bu dilde henüz içerik yok';
+
+  @override
+  String get library_connection_failed =>
+      'Bağlantı başarısız. İnternetinizi kontrol edip tekrar deneyin';
+
+  @override
+  String get library_search_content_type => 'İçerik türü ara...';
+
+  @override
+  String get library_choose_content_type => 'İçerik türünü seçin';
+
+  @override
+  String get library_no_content_lang => 'Bu dilde henüz içerik yok';
+
+  @override
+  String get library_not_found => 'Bulunamadı';
+
+  @override
+  String get library_search_in_section => 'Bu bölümde ara...';
+
+  @override
+  String get library_no_categories => 'Henüz kategori yok';
+
+  @override
+  String get library_type_books => 'Kitaplar';
+
+  @override
+  String get library_type_audios => 'Sesli İçerik';
+
+  @override
+  String get library_type_videos => 'Video';
+
+  @override
+  String get library_type_articles => 'Makaleler';
 }

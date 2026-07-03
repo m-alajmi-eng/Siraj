@@ -855,4 +855,61 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'Declare Your Faith Now';
+
+  @override
+  String get nav_library => 'Library';
+
+  @override
+  String get library_could_not_load => 'Could not load';
+
+  @override
+  String get library_section_not_found => 'Section not found';
+
+  @override
+  String get library_content_title => 'Content';
+
+  @override
+  String get library_search_in_category => 'Search in this category...';
+
+  @override
+  String get library_no_matching_results => 'No matching results';
+
+  @override
+  String get library_no_materials_lang =>
+      'No materials available in this language yet';
+
+  @override
+  String get library_connection_failed =>
+      'Connection failed. Check your internet and try again';
+
+  @override
+  String get library_search_content_type => 'Search content type...';
+
+  @override
+  String get library_choose_content_type => 'Choose content type';
+
+  @override
+  String get library_no_content_lang =>
+      'No content available in this language yet';
+
+  @override
+  String get library_not_found => 'Not found';
+
+  @override
+  String get library_search_in_section => 'Search in this section...';
+
+  @override
+  String get library_no_categories => 'No categories available yet';
+
+  @override
+  String get library_type_books => 'Books';
+
+  @override
+  String get library_type_audios => 'Audio';
+
+  @override
+  String get library_type_videos => 'Video';
+
+  @override
+  String get library_type_articles => 'Articles';
 }

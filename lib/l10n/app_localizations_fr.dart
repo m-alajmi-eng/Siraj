@@ -857,4 +857,62 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'Déclare Ta Foi Maintenant';
+
+  @override
+  String get nav_library => 'Bibliothèque';
+
+  @override
+  String get library_could_not_load => 'Impossible de charger';
+
+  @override
+  String get library_section_not_found => 'Section introuvable';
+
+  @override
+  String get library_content_title => 'Contenu';
+
+  @override
+  String get library_search_in_category => 'Rechercher dans cette catégorie...';
+
+  @override
+  String get library_no_matching_results => 'Aucun résultat correspondant';
+
+  @override
+  String get library_no_materials_lang =>
+      'Aucun contenu disponible dans cette langue pour l\'instant';
+
+  @override
+  String get library_connection_failed =>
+      'Échec de la connexion. Vérifiez votre internet et réessayez';
+
+  @override
+  String get library_search_content_type => 'Rechercher un type de contenu...';
+
+  @override
+  String get library_choose_content_type => 'Choisissez un type de contenu';
+
+  @override
+  String get library_no_content_lang =>
+      'Aucun contenu disponible dans cette langue pour l\'instant';
+
+  @override
+  String get library_not_found => 'Introuvable';
+
+  @override
+  String get library_search_in_section => 'Rechercher dans cette section...';
+
+  @override
+  String get library_no_categories =>
+      'Aucune catégorie disponible pour l\'instant';
+
+  @override
+  String get library_type_books => 'Livres';
+
+  @override
+  String get library_type_audios => 'Audio';
+
+  @override
+  String get library_type_videos => 'Vidéo';
+
+  @override
+  String get library_type_articles => 'Articles';
 }

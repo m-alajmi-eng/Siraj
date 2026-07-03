@@ -17,7 +17,7 @@ class MainShell extends ConsumerWidget {
       _TabItem(icon: Icons.home_outlined,         activeIcon: Icons.home,          label: t.nav_home),
       _TabItem(icon: Icons.menu_book_outlined,    activeIcon: Icons.menu_book,     label: t.nav_quran),
       _TabItem(icon: Icons.spa_outlined,          activeIcon: Icons.spa,           label: t.nav_athkar),
-      _TabItem(icon: Icons.library_books_outlined,activeIcon: Icons.library_books, label: t.nav_hadith),
+      _TabItem(icon: Icons.local_library_outlined, activeIcon: Icons.local_library, label: t.nav_library),
       _TabItem(icon: Icons.more_horiz,            activeIcon: Icons.more_horiz,    label: t.nav_more),
     ];
 

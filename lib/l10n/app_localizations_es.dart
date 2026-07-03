@@ -858,4 +858,61 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'Declara Tu Fe Ahora';
+
+  @override
+  String get nav_library => 'Biblioteca';
+
+  @override
+  String get library_could_not_load => 'No se pudo cargar';
+
+  @override
+  String get library_section_not_found => 'Sección no encontrada';
+
+  @override
+  String get library_content_title => 'Contenido';
+
+  @override
+  String get library_search_in_category => 'Buscar en esta categoría...';
+
+  @override
+  String get library_no_matching_results => 'No hay resultados coincidentes';
+
+  @override
+  String get library_no_materials_lang =>
+      'Aún no hay materiales disponibles en este idioma';
+
+  @override
+  String get library_connection_failed =>
+      'Falló la conexión. Verifica tu internet e inténtalo de nuevo';
+
+  @override
+  String get library_search_content_type => 'Buscar tipo de contenido...';
+
+  @override
+  String get library_choose_content_type => 'Elige el tipo de contenido';
+
+  @override
+  String get library_no_content_lang =>
+      'Aún no hay contenido disponible en este idioma';
+
+  @override
+  String get library_not_found => 'No encontrado';
+
+  @override
+  String get library_search_in_section => 'Buscar en esta sección...';
+
+  @override
+  String get library_no_categories => 'Aún no hay categorías disponibles';
+
+  @override
+  String get library_type_books => 'Libros';
+
+  @override
+  String get library_type_audios => 'Audio';
+
+  @override
+  String get library_type_videos => 'Vídeo';
+
+  @override
+  String get library_type_articles => 'Artículos';
 }

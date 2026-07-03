@@ -857,4 +857,61 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'Ikrarkan Imanmu Sekarang';
+
+  @override
+  String get nav_library => 'Perpustakaan';
+
+  @override
+  String get library_could_not_load => 'Gagal memuatkan';
+
+  @override
+  String get library_section_not_found => 'Bahagian tidak dijumpai';
+
+  @override
+  String get library_content_title => 'Kandungan';
+
+  @override
+  String get library_search_in_category => 'Cari dalam kategori ini...';
+
+  @override
+  String get library_no_matching_results => 'Tiada hasil yang sepadan';
+
+  @override
+  String get library_no_materials_lang =>
+      'Belum ada bahan tersedia dalam bahasa ini';
+
+  @override
+  String get library_connection_failed =>
+      'Sambungan gagal. Semak internet anda dan cuba lagi';
+
+  @override
+  String get library_search_content_type => 'Cari jenis kandungan...';
+
+  @override
+  String get library_choose_content_type => 'Pilih jenis kandungan';
+
+  @override
+  String get library_no_content_lang =>
+      'Belum ada kandungan tersedia dalam bahasa ini';
+
+  @override
+  String get library_not_found => 'Tidak dijumpai';
+
+  @override
+  String get library_search_in_section => 'Cari dalam bahagian ini...';
+
+  @override
+  String get library_no_categories => 'Belum ada kategori tersedia';
+
+  @override
+  String get library_type_books => 'Buku';
+
+  @override
+  String get library_type_audios => 'Audio';
+
+  @override
+  String get library_type_videos => 'Video';
+
+  @override
+  String get library_type_articles => 'Artikel';
 }

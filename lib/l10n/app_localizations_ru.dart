@@ -857,4 +857,60 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'Произнеси Свидетельство Сейчас';
+
+  @override
+  String get nav_library => 'Библиотека';
+
+  @override
+  String get library_could_not_load => 'Не удалось загрузить';
+
+  @override
+  String get library_section_not_found => 'Раздел не найден';
+
+  @override
+  String get library_content_title => 'Содержимое';
+
+  @override
+  String get library_search_in_category => 'Поиск в этой категории...';
+
+  @override
+  String get library_no_matching_results => 'Нет совпадений';
+
+  @override
+  String get library_no_materials_lang =>
+      'Материалы на этом языке пока недоступны';
+
+  @override
+  String get library_connection_failed =>
+      'Не удалось подключиться. Проверьте интернет и попробуйте снова';
+
+  @override
+  String get library_search_content_type => 'Поиск типа контента...';
+
+  @override
+  String get library_choose_content_type => 'Выберите тип контента';
+
+  @override
+  String get library_no_content_lang => 'Контент на этом языке пока недоступен';
+
+  @override
+  String get library_not_found => 'Не найдено';
+
+  @override
+  String get library_search_in_section => 'Поиск в этом разделе...';
+
+  @override
+  String get library_no_categories => 'Категории пока недоступны';
+
+  @override
+  String get library_type_books => 'Книги';
+
+  @override
+  String get library_type_audios => 'Аудио';
+
+  @override
+  String get library_type_videos => 'Видео';
+
+  @override
+  String get library_type_articles => 'Статьи';
 }

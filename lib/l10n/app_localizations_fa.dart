@@ -855,4 +855,61 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'اکنون شهادت خود را اعلام کن';
+
+  @override
+  String get nav_library => 'کتابخانه';
+
+  @override
+  String get library_could_not_load => 'بارگذاری ناموفق بود';
+
+  @override
+  String get library_section_not_found => 'بخش یافت نشد';
+
+  @override
+  String get library_content_title => 'محتوا';
+
+  @override
+  String get library_search_in_category => 'جستجو در این دسته...';
+
+  @override
+  String get library_no_matching_results => 'نتیجه‌ای یافت نشد';
+
+  @override
+  String get library_no_materials_lang =>
+      'در حال حاضر موادی به این زبان موجود نیست';
+
+  @override
+  String get library_connection_failed =>
+      'اتصال ناموفق بود. اینترنت را بررسی کرده و دوباره تلاش کنید';
+
+  @override
+  String get library_search_content_type => 'جستجوی نوع محتوا...';
+
+  @override
+  String get library_choose_content_type => 'نوع محتوا را انتخاب کنید';
+
+  @override
+  String get library_no_content_lang =>
+      'در حال حاضر محتوایی به این زبان موجود نیست';
+
+  @override
+  String get library_not_found => 'یافت نشد';
+
+  @override
+  String get library_search_in_section => 'جستجو در این بخش...';
+
+  @override
+  String get library_no_categories => 'در حال حاضر دسته‌ای موجود نیست';
+
+  @override
+  String get library_type_books => 'کتاب‌ها';
+
+  @override
+  String get library_type_audios => 'صوتی';
+
+  @override
+  String get library_type_videos => 'ویدیو';
+
+  @override
+  String get library_type_articles => 'مقالات';
 }

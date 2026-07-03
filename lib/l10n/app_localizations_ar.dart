@@ -855,4 +855,60 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'أعلن شهادتك الآن';
+
+  @override
+  String get nav_library => 'المكتبة';
+
+  @override
+  String get library_could_not_load => 'تعذّر التحميل';
+
+  @override
+  String get library_section_not_found => 'القسم غير موجود';
+
+  @override
+  String get library_content_title => 'المحتوى';
+
+  @override
+  String get library_search_in_category => 'ابحث في هذا التصنيف...';
+
+  @override
+  String get library_no_matching_results => 'لا توجد نتائج مطابقة';
+
+  @override
+  String get library_no_materials_lang =>
+      'لا توجد مواد متاحة حالياً بهذه اللغة';
+
+  @override
+  String get library_connection_failed =>
+      'تعذّر الاتصال. تحقّق من الإنترنت وحاول مجدداً';
+
+  @override
+  String get library_search_content_type => 'ابحث عن نوع المحتوى...';
+
+  @override
+  String get library_choose_content_type => 'اختر نوع المحتوى';
+
+  @override
+  String get library_no_content_lang => 'لا يوجد محتوى متاح حالياً بهذه اللغة';
+
+  @override
+  String get library_not_found => 'غير موجود';
+
+  @override
+  String get library_search_in_section => 'ابحث في هذا القسم...';
+
+  @override
+  String get library_no_categories => 'لا توجد تصنيفات متاحة حالياً';
+
+  @override
+  String get library_type_books => 'كتب';
+
+  @override
+  String get library_type_audios => 'صوتيات';
+
+  @override
+  String get library_type_videos => 'مرئيات';
+
+  @override
+  String get library_type_articles => 'مقالات';
 }

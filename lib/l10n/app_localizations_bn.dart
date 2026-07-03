@@ -855,4 +855,59 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'এখনই আপনার ঈমান ঘোষণা করুন';
+
+  @override
+  String get nav_library => 'গ্রন্থাগার';
+
+  @override
+  String get library_could_not_load => 'লোড করা যায়নি';
+
+  @override
+  String get library_section_not_found => 'বিভাগ পাওয়া যায়নি';
+
+  @override
+  String get library_content_title => 'বিষয়বস্তু';
+
+  @override
+  String get library_search_in_category => 'এই বিভাগে অনুসন্ধান করুন...';
+
+  @override
+  String get library_no_matching_results => 'কোনো মিল ফলাফল নেই';
+
+  @override
+  String get library_no_materials_lang => 'এই ভাষায় এখনও কোনো উপকরণ নেই';
+
+  @override
+  String get library_connection_failed =>
+      'সংযোগ ব্যর্থ হয়েছে। আপনার ইন্টারনেট পরীক্ষা করুন এবং আবার চেষ্টা করুন';
+
+  @override
+  String get library_search_content_type => 'বিষয়বস্তুর ধরন খুঁজুন...';
+
+  @override
+  String get library_choose_content_type => 'বিষয়বস্তুর ধরন নির্বাচন করুন';
+
+  @override
+  String get library_no_content_lang => 'এই ভাষায় এখনও কোনো বিষয়বস্তু নেই';
+
+  @override
+  String get library_not_found => 'পাওয়া যায়নি';
+
+  @override
+  String get library_search_in_section => 'এই বিভাগে অনুসন্ধান করুন...';
+
+  @override
+  String get library_no_categories => 'এখনও কোনো বিভাগ নেই';
+
+  @override
+  String get library_type_books => 'বই';
+
+  @override
+  String get library_type_audios => 'অডিও';
+
+  @override
+  String get library_type_videos => 'ভিডিও';
+
+  @override
+  String get library_type_articles => 'নবন্ধ';
 }

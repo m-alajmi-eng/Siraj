@@ -856,4 +856,61 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => 'Erkläre Jetzt Deinen Glauben';
+
+  @override
+  String get nav_library => 'Bibliothek';
+
+  @override
+  String get library_could_not_load => 'Laden fehlgeschlagen';
+
+  @override
+  String get library_section_not_found => 'Abschnitt nicht gefunden';
+
+  @override
+  String get library_content_title => 'Inhalt';
+
+  @override
+  String get library_search_in_category => 'In dieser Kategorie suchen...';
+
+  @override
+  String get library_no_matching_results => 'Keine passenden Ergebnisse';
+
+  @override
+  String get library_no_materials_lang =>
+      'In dieser Sprache noch keine Materialien verfügbar';
+
+  @override
+  String get library_connection_failed =>
+      'Verbindung fehlgeschlagen. Überprüfe deine Internetverbindung und versuche es erneut';
+
+  @override
+  String get library_search_content_type => 'Inhaltstyp suchen...';
+
+  @override
+  String get library_choose_content_type => 'Inhaltstyp auswählen';
+
+  @override
+  String get library_no_content_lang =>
+      'In dieser Sprache noch kein Inhalt verfügbar';
+
+  @override
+  String get library_not_found => 'Nicht gefunden';
+
+  @override
+  String get library_search_in_section => 'In diesem Abschnitt suchen...';
+
+  @override
+  String get library_no_categories => 'Noch keine Kategorien verfügbar';
+
+  @override
+  String get library_type_books => 'Bücher';
+
+  @override
+  String get library_type_audios => 'Audio';
+
+  @override
+  String get library_type_videos => 'Video';
+
+  @override
+  String get library_type_articles => 'Artikel';
 }

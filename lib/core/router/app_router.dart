@@ -18,7 +18,6 @@ import '../../features/quran/presentation/screens/quran_search_screen.dart';
 import '../../features/athkar/presentation/screens/athkar_home_screen.dart';
 import '../../features/athkar/presentation/screens/athkar_category_screen.dart';
 import '../../features/athkar/presentation/screens/athkar_categories_screen.dart';
-import '../../features/hadith/presentation/screens/hadith_home_screen.dart';
 import '../../features/qibla/presentation/screens/qibla_screen.dart';
 import '../../features/stats/presentation/screens/stats_screen.dart';
 import '../../features/settings/presentation/screens/settings_screen.dart';
@@ -32,6 +31,10 @@ import '../../features/gateway/presentation/screens/gateway_journey_screen.dart'
 import '../../features/gateway/presentation/screens/gateway_principles_screen.dart';
 import '../../features/gateway/presentation/screens/gateway_topic_screen.dart';
 import '../../features/gateway/presentation/screens/gateway_library_screen.dart';
+import '../../features/library/presentation/screens/library_home_screen.dart';
+import '../../features/library/presentation/screens/library_section_screen.dart';
+import '../../features/library/presentation/screens/library_items_screen.dart';
+import '../../features/library/presentation/screens/library_type_categories_screen.dart';
 
 // ─── More Screen ──────────────────────────────────────────
 class MoreScreen extends ConsumerWidget {
@@ -245,11 +248,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
            ),
          ]),
 
-         // ── Hadith ──
+         // ── Library (formerly Hadith) ──
          StatefulShellBranch(routes: [
            GoRoute(
-             path:    '/hadith',
-             builder: (_, __) => const HadithHomeScreen(),
+             path:    '/library',
+             builder: (_, __) => const LibraryHomeScreen(),
            ),
          ]),
 
@@ -341,6 +344,28 @@ final appRouterProvider = Provider<GoRouter>((ref) {
            ),
          ),
        ],
+     ),
+
+     // ── المكتبة الشاملة: قسم وتصنيفات فرعية وعناصر ──
+     GoRoute(
+       path: '/library/items/:categoryId',
+       builder: (_, state) => LibraryItemsScreen(
+         categoryId: state.pathParameters['categoryId'] ?? '',
+         type: state.uri.queryParameters['type'] ?? 'showall',
+       ),
+     ),
+     GoRoute(
+       path: '/library/:sectionId/:blockType',
+       builder: (_, state) => LibraryTypeCategoriesScreen(
+         sectionId: state.pathParameters['sectionId'] ?? '',
+         blockType: state.pathParameters['blockType'] ?? 'books',
+       ),
+     ),
+     GoRoute(
+       path: '/library/:sectionId',
+       builder: (_, state) => LibrarySectionScreen(
+         sectionId: state.pathParameters['sectionId'] ?? '',
+       ),
      ),
    ],
  );

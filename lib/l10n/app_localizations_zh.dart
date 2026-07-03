@@ -853,4 +853,58 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get gateway_shahada_cta => '现在宣读你的信仰';
+
+  @override
+  String get nav_library => '图书馆';
+
+  @override
+  String get library_could_not_load => '加载失败';
+
+  @override
+  String get library_section_not_found => '未找到该栏目';
+
+  @override
+  String get library_content_title => '内容';
+
+  @override
+  String get library_search_in_category => '在此分类中搜索...';
+
+  @override
+  String get library_no_matching_results => '没有匹配的结果';
+
+  @override
+  String get library_no_materials_lang => '该语言暂无相关资料';
+
+  @override
+  String get library_connection_failed => '连接失败，请检查网络后重试';
+
+  @override
+  String get library_search_content_type => '搜索内容类型...';
+
+  @override
+  String get library_choose_content_type => '选择内容类型';
+
+  @override
+  String get library_no_content_lang => '该语言暂无内容';
+
+  @override
+  String get library_not_found => '未找到';
+
+  @override
+  String get library_search_in_section => '在此栏目中搜索...';
+
+  @override
+  String get library_no_categories => '暂无可用分类';
+
+  @override
+  String get library_type_books => '书籍';
+
+  @override
+  String get library_type_audios => '音频';
+
+  @override
+  String get library_type_videos => '视频';
+
+  @override
+  String get library_type_articles => '文章';
 }
