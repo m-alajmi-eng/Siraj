@@ -9,6 +9,7 @@ import '../../../../core/audio/audio_provider.dart';
 import '../../../../core/audio/audio_service.dart';
 import '../../../../core/storage/cache_service.dart';
 import '../providers/quran_provider.dart';
+import '../../domain/entities/tajweed_entity.dart';
 import '../../../qke/presentation/screens/verse_portal_screen.dart';
 import '../../data/datasources/quran_remote_datasource.dart';
 
@@ -23,12 +24,75 @@ class SurahReaderScreen extends ConsumerStatefulWidget {
 class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
   static const int _basmalaLength = 39;
   bool _mushafMode = true; // الافتراضي: مصحف متّصل
+  bool _tajweedEnabled = false; // التجويد الملوّن (اختياري، افتراضياً معطّل)
 
   @override
   void initState() {
     super.initState();
     CacheService.saveReadingPosition(widget.surahId, 1);
     _mushafMode = CacheService.getSetting('mushaf_mode', defaultValue: true) as bool;
+    _tajweedEnabled = CacheService.getSetting('tajweed_enabled', defaultValue: false) as bool;
+  }
+
+  /// يبني قائمة TextSpan ملوّنة من بيانات التجويد لآية واحدة،
+  /// متعاملا بأمان مع تراكب/تجاور مواضع القواعد.
+  List<InlineSpan> _tajweedSpans(
+      TajweedAyah ayah, Map<String, Color> colors, TextStyle baseStyle) {
+    final text = ayah.plain;
+    if (ayah.annotations.isEmpty) {
+      return [TextSpan(text: text, style: baseStyle)];
+    }
+
+    final breakpoints = <int>{0, text.length};
+    for (final a in ayah.annotations) {
+      breakpoints.add(a.start.clamp(0, text.length));
+      breakpoints.add(a.end.clamp(0, text.length));
+    }
+    final sorted = breakpoints.toList()..sort();
+
+    final spans = <InlineSpan>[];
+    for (int i = 0; i < sorted.length - 1; i++) {
+      final start = sorted[i];
+      final end = sorted[i + 1];
+      if (start >= end) continue;
+
+      Color? color;
+      for (final a in ayah.annotations) {
+        if (a.start <= start && a.end >= end) {
+          color = colors[a.rule];
+        }
+      }
+
+      spans.add(TextSpan(
+        text: text.substring(start, end),
+        style: color != null ? baseStyle.copyWith(color: color) : baseStyle,
+      ));
+    }
+    return spans;
+  }
+
+  /// دائرة رقم الآية كـ WidgetSpan، بنفس تصميم العرض العادي (بلا تجويد).
+  WidgetSpan _ayahNumberSpan(dynamic ayah, bool isCurrentAyah, dynamic palette) {
+    return WidgetSpan(
+      alignment: PlaceholderAlignment.middle,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        width: 28, height: 28,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: isCurrentAyah
+              ? palette.accentPrimary
+              : palette.accentPrimary.withValues(alpha: 0.15)),
+        child: Center(
+          child: Text(_toArabicNumeral(ayah.ayahNumber),
+            style: TextStyle(
+              color: isCurrentAyah
+                  ? palette.surface
+                  : palette.accentPrimary,
+              fontSize: 10, fontWeight: FontWeight.bold)),
+        ),
+      ),
+    );
   }
 
   @override
@@ -36,6 +100,12 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
     final t               = AppLocalizations.of(context);
     final palette         = ref.watch(timeThemeProvider);
     final ayahsAsync      = ref.watch(ayahsProvider(widget.surahId));
+    final tajweedAsync    = _tajweedEnabled
+        ? ref.watch(tajweedSurahProvider(widget.surahId))
+        : const AsyncValue.data(<TajweedAyah>[]);
+    final tajweedColorsAsync = _tajweedEnabled
+        ? ref.watch(tajweedColorsProvider)
+        : const AsyncValue.data(<String, Color>{});
     final surahsAsync     = ref.watch(surahsProvider);
     final audioState      = ref.watch(audioProvider);
     final selectedReciter = ref.watch(selectedReciterProvider);
@@ -104,6 +174,18 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
            onPressed: () {
              setState(() => _mushafMode = !_mushafMode);
              CacheService.saveSetting('mushaf_mode', _mushafMode);
+           },
+         ),
+         IconButton(
+           icon: Icon(
+             Icons.format_color_text,
+             color: _tajweedEnabled
+                 ? palette.accentPrimary
+                 : palette.accentPrimary.withValues(alpha: 0.4),
+             size: 22),
+           onPressed: () {
+             setState(() => _tajweedEnabled = !_tajweedEnabled);
+             CacheService.saveSetting('tajweed_enabled', _tajweedEnabled);
            },
          ),
                   ],
@@ -266,19 +348,53 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                               children: [
                               Directionality(
                                 textDirection: TextDirection.rtl,
-                                child: RichText(
-                                  textAlign: TextAlign.justify,
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: text,
-                                        style: TextStyle(
-                                          fontFamily: 'QuranFont',
-                                          color: isCurrentAyah
-                                              ? palette.accentPrimary
-                                              : palette.textPrimary,
-                                          fontSize: 26, height: 2.2)),
-                                      WidgetSpan(
+            child: Builder(builder: (context) {
+              final baseStyle = TextStyle(
+                fontFamily: 'QuranFont',
+                color: isCurrentAyah
+                    ? palette.accentPrimary
+                    : palette.textPrimary,
+                fontSize: 26, height: 2.2);
+
+              TajweedAyah? tajweedAyah;
+              if (_tajweedEnabled) {
+                tajweedAsync.whenData((list) {
+                  for (final ta in list) {
+                    if (ta.number == ayah.ayahNumber) {
+                      tajweedAyah = ta;
+                      break;
+                    }
+                  }
+                });
+              }
+
+              final colors = tajweedColorsAsync.maybeWhen(
+                data: (c) => c,
+                orElse: () => <String, Color>{},
+              );
+
+              if (tajweedAyah != null) {
+                return RichText(
+                  textAlign: TextAlign.justify,
+                  textDirection: TextDirection.rtl,
+                  text: TextSpan(
+                    style: baseStyle,
+                    children: [
+                      ..._tajweedSpans(tajweedAyah!, colors, baseStyle),
+                      _ayahNumberSpan(ayah, isCurrentAyah, palette),
+                    ],
+                  ),
+                );
+              }
+
+              return RichText(
+              textAlign: TextAlign.justify,
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: text,
+                    style: baseStyle),
+                  WidgetSpan(
                                         alignment: PlaceholderAlignment.middle,
                                         child: Container(
                                           margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -299,10 +415,11 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                                         ),
                                       ),
                                     ],
-                                  ),
-                                ),
-                              ),
-                              if (ayah.translation != null) ...[
+              ),
+            );
+            }),
+          ),
+          if (ayah.translation != null) ...[
                                 const SizedBox(height: 10),
                                 Text(ayah.translation!,
                                   style: TextStyle(

@@ -1,8 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/datasources/quran_remote_datasource.dart';
 import '../../data/datasources/surah_names_datasource.dart';
 import '../../domain/entities/surah_entity.dart';
 import '../../domain/entities/ayah_entity.dart';
+import '../../domain/entities/tajweed_entity.dart';
+import '../../data/datasources/tajweed_local_datasource.dart';
 import '../../../../core/locale/locale_provider.dart';
 
 final quranDataSourceProvider = Provider<QuranRemoteDataSource>((ref) {
@@ -46,4 +49,22 @@ final dailyAyahTranslationProvider =
 final surahNamesLoadedProvider = FutureProvider<bool>((ref) async {
   await SurahNamesDataSource.ensureLoaded();
   return true;
+});
+
+// ═══════════════════════════════════════════════════════
+// التجويد الملوّن — محلي بالكامل (ADR-006)
+// ═══════════════════════════════════════════════════════
+final tajweedDataSourceProvider = Provider<TajweedLocalDataSource>((ref) {
+  return TajweedLocalDataSource();
+});
+
+/// آيات سورة معيّنة بصيغة التجويد (نص نظيف + annotations).
+final tajweedSurahProvider =
+    FutureProvider.family<List<TajweedAyah>, int>((ref, surahId) {
+  return ref.watch(tajweedDataSourceProvider).getSurahTajweed(surahId);
+});
+
+/// كل ألوان قواعد التجويد دفعة واحدة.
+final tajweedColorsProvider = FutureProvider<Map<String, Color>>((ref) {
+  return ref.watch(tajweedDataSourceProvider).getAllColors();
 });
