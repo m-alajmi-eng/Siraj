@@ -294,7 +294,11 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
 
              if (_mushafMode) {
                return _buildMushafView(ayahs, basmalaText, firstAyahText,
-                   separateBasmala, surahName, palette, t);
+                   separateBasmala, surahName, palette, t,
+                   tajweedAyahs: tajweedAsync.maybeWhen(
+                     data: (list) => list, orElse: () => const []),
+                   tajweedColors: tajweedColorsAsync.maybeWhen(
+                     data: (c) => c, orElse: () => const {}));
              }
 
                     return Container(
@@ -619,8 +623,13 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
   // ─── وضع المصحف المتّصل ──────────────────────────────────────
   Widget _buildMushafView(
     List ayahs, String basmalaText, String firstAyahText,
-    bool separateBasmala, String surahName, dynamic palette, dynamic t) {
+    bool separateBasmala, String surahName, dynamic palette, dynamic t,
+    {List<TajweedAyah> tajweedAyahs = const [],
+     Map<String, Color> tajweedColors = const {}}) {
     final spans = <InlineSpan>[];
+
+    // خريطة سريعة: رقم الآية -> بيانات تجويدها (لتفادي البحث الخطي المتكرر)
+    final tajweedByNumber = {for (final ta in tajweedAyahs) ta.number: ta};
 
     for (var i = 0; i < ayahs.length; i++) {
       final ayah = ayahs[i];
@@ -628,18 +637,37 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
           ? firstAyahText : ayah.textUthmani;
 
       // نص الآية — قابل للضغط المطول للخيارات
-      spans.add(TextSpan(
-        text: '$text ',
-        style: TextStyle(
-          fontFamily: 'QuranFont',
-          color: palette.textPrimary,
-          fontSize: 28, height: 2.4),
-        recognizer: LongPressGestureRecognizer()
-          ..onLongPress = () => _showAyahOptions(
-            context: context, palette: palette, t: t,
-            surahId: widget.surahId, surahName: surahName,
-            ayahNumber: ayah.ayahNumber, ayahText: text),
-      ));
+      final baseStyle = TextStyle(
+        fontFamily: 'QuranFont',
+        color: palette.textPrimary,
+        fontSize: 28, height: 2.4);
+      final recognizer = LongPressGestureRecognizer()
+        ..onLongPress = () => _showAyahOptions(
+          context: context, palette: palette, t: t,
+          surahId: widget.surahId, surahName: surahName,
+          ayahNumber: ayah.ayahNumber, ayahText: text);
+
+      final tajweedAyah = tajweedByNumber[ayah.ayahNumber];
+      if (_tajweedEnabled && tajweedAyah != null && tajweedColors.isNotEmpty) {
+        // نص ملوّن بالتجويد: نبني spans لكل مقطع، كلها بنفس recognizer
+        final colored = _tajweedSpans(tajweedAyah, tajweedColors, baseStyle);
+        for (final span in colored) {
+          if (span is TextSpan) {
+            spans.add(TextSpan(
+              text: span.text,
+              style: span.style,
+              recognizer: recognizer,
+            ));
+          }
+        }
+        spans.add(TextSpan(text: ' ', style: baseStyle));
+      } else {
+        spans.add(TextSpan(
+          text: '$text ',
+          style: baseStyle,
+          recognizer: recognizer,
+        ));
+      }
 
       // رمز نهاية الآية ﴿رقم﴾
       spans.add(TextSpan(
