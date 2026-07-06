@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../domain/entities/surah_entity.dart';
 import '../../domain/entities/ayah_entity.dart';
@@ -7,6 +8,26 @@ import '../../../../core/storage/cache_service.dart';
 
 class QuranRemoteDataSource {
  static const String _baseUrl = 'https://api.alquran.cloud/v1';
+
+ // ذاكرة تخزين مؤقت في العملية نفسها لملفي القرآن المحليين (يُحمَّلان مرة واحدة)
+ static Map<String, dynamic>? _localUthmaniCache;
+ static Map<String, dynamic>? _localTranslationsCache;
+
+ static Future<Map<String, dynamic>> _loadLocalUthmani() async {
+   if (_localUthmaniCache != null) return _localUthmaniCache!;
+   final raw = await rootBundle.loadString('assets/data/quran_uthmani.json');
+   final data = jsonDecode(raw) as Map<String, dynamic>;
+   _localUthmaniCache = data['surahs'] as Map<String, dynamic>;
+   return _localUthmaniCache!;
+ }
+
+ static Future<Map<String, dynamic>> _loadLocalTranslations() async {
+   if (_localTranslationsCache != null) return _localTranslationsCache!;
+   final raw = await rootBundle.loadString('assets/data/quran_translations.json');
+   final data = jsonDecode(raw) as Map<String, dynamic>;
+   _localTranslationsCache = data['translations'] as Map<String, dynamic>;
+   return _localTranslationsCache!;
+ }
 
  static const Map<String, String> _translationEditions = {
    'en': 'en.sahih',
@@ -65,7 +86,62 @@ class QuranRemoteDataSource {
    throw Exception('Failed to load surahs');
  }
 
+ /// يحاول بناء آيات سورة من الأصول المحلية (نص عربي + ترجمة إن وُجدت).
+ /// يرجع null بأمان عند أي غياب/خلل في البيانات المحلية، ليسقط النداء
+ /// للمسار القديم (cache ثم شبكة) دون أي كسر.
+ Future<List<AyahEntity>?> _getAyahsFromLocalAssets(
+     int surahId, {String lang = 'ar'}) async {
+   try {
+     final uthmaniSurahs = await _loadLocalUthmani();
+     final arabicList = uthmaniSurahs[surahId.toString()] as List?;
+     if (arabicList == null || arabicList.isEmpty) return null;
+
+     // خريطة رقم الآية -> بيانات النص العربي (juz/page/text)
+     final arabicByNumber = <int, Map<String, dynamic>>{};
+     for (final a in arabicList) {
+       final m = Map<String, dynamic>.from(a as Map);
+       arabicByNumber[m['n'] as int] = m;
+     }
+
+     Map<int, String>? translationByNumber;
+     if (lang != 'ar' && _translationEditions.containsKey(lang)) {
+       final translations = await _loadLocalTranslations();
+       final langData = translations[lang] as Map<String, dynamic>?;
+       final transList = langData?[surahId.toString()] as List?;
+       if (transList != null) {
+         translationByNumber = {
+           for (final t in transList)
+             (t['n'] as int): (t['text'] as String)
+         };
+       }
+     }
+
+     final result = arabicByNumber.entries.map((entry) {
+       final n = entry.key;
+       final a = entry.value;
+       return AyahEntity(
+         id: n, // لا يوجد رقم إجمالي في الملف المحلي، رقم السورة كافٍ للاستخدام الحالي
+         surahId: surahId,
+         ayahNumber: n,
+         textUthmani: a['text'] as String,
+         juz: a['juz'] as int,
+         page: a['page'] as int,
+         translation: translationByNumber?[n],
+       );
+     }).toList()
+       ..sort((a, b) => a.ayahNumber.compareTo(b.ayahNumber));
+
+     return result;
+   } catch (_) {
+     return null;
+   }
+ }
+
  Future<List<AyahEntity>> getAyahs(int surahId, {String lang = 'ar'}) async {
+   // المسار المحلي أولاً (ADR-006): لا اعتماد على الشبكة لعرض القرآن
+   final local = await _getAyahsFromLocalAssets(surahId, lang: lang);
+   if (local != null) return local;
+
    final cached = CacheService.getCachedAyahs(surahId, lang: lang);
    if (cached != null) {
      return cached.map((a) => AyahEntity(
