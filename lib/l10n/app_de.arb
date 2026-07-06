@@ -8,7 +8,7 @@
   "prayer_dhuhr": "Dhuhr",
   "prayer_asr": "Asr",
   "prayer_maghrib": "Maghrib",
-  "prayer_isha": "Isha",
+  "prayer_isha": "Ischa",
   "prayer_locationGPS": "Ihr aktueller Standort",
   "prayer_locationDefault": "Riad (Standard)",
   "quran_title": "Der Heilige Koran",
@@ -346,5 +346,15 @@
   "library_type_books": "Bücher",
   "library_type_audios": "Audio",
   "library_type_videos": "Video",
-  "library_type_articles": "Artikel"
+  "library_type_articles": "Artikel",
+  "adhan_makkah": "Mekka (Große Moschee)",
+  "adhan_madinah": "Medina (Prophetenmoschee)",
+  "adhan_mustafa_ismail": "Mustafa Ismail",
+  "adhan_iraqi": "Irakisch",
+  "adhan_turkish": "Türkisch",
+  "adhan_moroccan": "Marokkanisch",
+  "adhan_indonesian": "Indonesisch",
+  "adhan_classic": "Klassisch",
+  "prayer_notification_title": "Es ist Zeit für {prayer}",
+  "prayer_notification_body": "Allahu Akbar, kommt zum Gebet"
 }

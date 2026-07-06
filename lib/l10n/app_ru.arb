@@ -353,5 +353,15 @@
   "library_type_books": "Книги",
   "library_type_audios": "Аудио",
   "library_type_videos": "Видео",
-  "library_type_articles": "Статьи"
+  "library_type_articles": "Статьи",
+  "adhan_makkah": "Мекка (Заповедная мечеть)",
+  "adhan_madinah": "Медина (мечеть Пророка)",
+  "adhan_mustafa_ismail": "Мустафа Исмаил",
+  "adhan_iraqi": "Иракский",
+  "adhan_turkish": "Турецкий",
+  "adhan_moroccan": "Марокканский",
+  "adhan_indonesian": "Индонезийский",
+  "adhan_classic": "Классический",
+  "prayer_notification_title": "Время молитвы {prayer}",
+  "prayer_notification_body": "Аллаху Акбар, спешите на молитву"
 }

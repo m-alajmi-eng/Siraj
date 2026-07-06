@@ -353,5 +353,15 @@
   "library_type_books": "Buku",
   "library_type_audios": "Audio",
   "library_type_videos": "Video",
-  "library_type_articles": "Artikel"
+  "library_type_articles": "Artikel",
+  "adhan_makkah": "Makkah (Masjidil Haram)",
+  "adhan_madinah": "Madinah (Masjid Nabawi)",
+  "adhan_mustafa_ismail": "Mustafa Ismail",
+  "adhan_iraqi": "Iraq",
+  "adhan_turkish": "Turki",
+  "adhan_moroccan": "Maghribi",
+  "adhan_indonesian": "Indonesia",
+  "adhan_classic": "Klasik",
+  "prayer_notification_title": "Sudah masuk waktu {prayer}",
+  "prayer_notification_body": "Allahu Akbar, marilah bersolat"
 }

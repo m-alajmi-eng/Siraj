@@ -422,5 +422,15 @@
   "library_type_books": "كتب",
   "library_type_audios": "صوتيات",
   "library_type_videos": "مرئيات",
-  "library_type_articles": "مقالات"
+  "library_type_articles": "مقالات",
+  "adhan_makkah": "مكي (الحرم المكي)",
+  "adhan_madinah": "مديني (الحرم النبوي)",
+  "adhan_mustafa_ismail": "مصطفى إسماعيل",
+  "adhan_iraqi": "عراقي",
+  "adhan_turkish": "تركي",
+  "adhan_moroccan": "مغربي",
+  "adhan_indonesian": "أندونيسي",
+  "adhan_classic": "كلاسيكي",
+  "prayer_notification_title": "حان وقت {prayer}",
+  "prayer_notification_body": "الله أكبر، حي على الصلاة"
 }

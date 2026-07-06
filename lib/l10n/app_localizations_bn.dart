@@ -910,4 +910,36 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get library_type_articles => 'নবন্ধ';
+
+  @override
+  String get adhan_makkah => 'মক্কী (হারাম শরীফ)';
+
+  @override
+  String get adhan_madinah => 'মাদানী (মসজিদে নববী)';
+
+  @override
+  String get adhan_mustafa_ismail => 'মুস্তফা ইসমাইল';
+
+  @override
+  String get adhan_iraqi => 'ইরাকি';
+
+  @override
+  String get adhan_turkish => 'তুর্কি';
+
+  @override
+  String get adhan_moroccan => 'মরক্কোর';
+
+  @override
+  String get adhan_indonesian => 'ইন্দোনেশিয়ান';
+
+  @override
+  String get adhan_classic => 'ক্লাসিক';
+
+  @override
+  String prayer_notification_title(Object prayer) {
+    return '$prayer-এর সময় হয়েছে';
+  }
+
+  @override
+  String get prayer_notification_body => 'আল্লাহু আকবার, নামাজর দিকে এসো';
 }

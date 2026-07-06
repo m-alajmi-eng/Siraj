@@ -353,5 +353,15 @@
   "library_type_books": "书籍",
   "library_type_audios": "音频",
   "library_type_videos": "视频",
-  "library_type_articles": "文章"
+  "library_type_articles": "文章",
+  "adhan_makkah": "麦加（禁寺）",
+  "adhan_madinah": "麦地那（先知清真寺）",
+  "adhan_mustafa_ismail": "穆斯塔法·伊斯梅尔",
+  "adhan_iraqi": "伊拉克风格",
+  "adhan_turkish": "土耳其风格",
+  "adhan_moroccan": "摩洛哥风格",
+  "adhan_indonesian": "印度尼西亚风格",
+  "adhan_classic": "经典风格",
+  "prayer_notification_title": "{prayer}时间到了",
+  "prayer_notification_body": "真主至大，快来礼拜"
 }

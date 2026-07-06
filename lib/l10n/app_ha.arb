@@ -353,5 +353,15 @@
   "library_type_books": "Littattafai",
   "library_type_audios": "Sauti",
   "library_type_videos": "Bidiyo",
-  "library_type_articles": "Kasidu"
+  "library_type_articles": "Kasidu",
+  "adhan_makkah": "Makka (Babban Masallaci)",
+  "adhan_madinah": "Madina (Masallacin Annabi)",
+  "adhan_mustafa_ismail": "Mustafa Isma'il",
+  "adhan_iraqi": "Iraqi",
+  "adhan_turkish": "Turkiyya",
+  "adhan_moroccan": "Moroko",
+  "adhan_indonesian": "Indonesiya",
+  "adhan_classic": "Gargajiya",
+  "prayer_notification_title": "Lokacin {prayer} ya yi",
+  "prayer_notification_body": "Allahu Akbar, ku zo ga sallah"
 }

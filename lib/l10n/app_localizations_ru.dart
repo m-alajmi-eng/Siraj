@@ -913,4 +913,36 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get library_type_articles => 'Статьи';
+
+  @override
+  String get adhan_makkah => 'Мекка (Заповедная мечеть)';
+
+  @override
+  String get adhan_madinah => 'Медина (мечеть Пророка)';
+
+  @override
+  String get adhan_mustafa_ismail => 'Мустафа Исмаил';
+
+  @override
+  String get adhan_iraqi => 'Иракский';
+
+  @override
+  String get adhan_turkish => 'Турецкий';
+
+  @override
+  String get adhan_moroccan => 'Марокканский';
+
+  @override
+  String get adhan_indonesian => 'Индонезийский';
+
+  @override
+  String get adhan_classic => 'Классический';
+
+  @override
+  String prayer_notification_title(Object prayer) {
+    return 'Время молитвы $prayer';
+  }
+
+  @override
+  String get prayer_notification_body => 'Аллаху Акбар, спешите на молитву';
 }

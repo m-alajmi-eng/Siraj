@@ -914,4 +914,36 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get library_type_articles => 'Makala';
+
+  @override
+  String get adhan_makkah => 'Makka (Msikiti Mkuu)';
+
+  @override
+  String get adhan_madinah => 'Madina (Msikiti wa Mtume)';
+
+  @override
+  String get adhan_mustafa_ismail => 'Mustafa Ismail';
+
+  @override
+  String get adhan_iraqi => 'Kiiraki';
+
+  @override
+  String get adhan_turkish => 'Kituruki';
+
+  @override
+  String get adhan_moroccan => 'Kimorocco';
+
+  @override
+  String get adhan_indonesian => 'Kiindonesia';
+
+  @override
+  String get adhan_classic => 'Kawaida';
+
+  @override
+  String prayer_notification_title(Object prayer) {
+    return 'Ni wakati wa $prayer';
+  }
+
+  @override
+  String get prayer_notification_body => 'Allahu Akbar, njooni kusali';
 }

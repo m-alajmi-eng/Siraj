@@ -93,8 +93,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   void _save(String key, dynamic value) => _box.put(key, value);
 
   Future<void> _previewAdhan(String name) async {
-    final url = AdhanService.adhanSounds[name];
-    if (url != null) await AdhanService.playAdhan(url);
+    await AdhanService.playAdhan(name);
   }
 
   @override
@@ -243,7 +242,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                             ),
                           ),
                           Expanded(
-                            child: Text(name, textAlign: TextAlign.end,
+                            child: Text(AdhanService.labelFor(name, t), textAlign: TextAlign.end,
                               style: AppText.bodySmall.copyWith(
                                 color: isSelected
                                     ? palette.accentPrimary : palette.textPrimary)),

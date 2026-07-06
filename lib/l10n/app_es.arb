@@ -7,7 +7,7 @@
   "prayer_sunrise": "Amanecer",
   "prayer_dhuhr": "Dhuhr",
   "prayer_asr": "Asr",
-  "prayer_maghrib": "Maghrib",
+  "prayer_maghrib": "Magrib",
   "prayer_isha": "Isha",
   "prayer_locationGPS": "Tu ubicación actual",
   "prayer_locationDefault": "Riad (predeterminado)",
@@ -329,5 +329,15 @@
   "library_type_books": "Libros",
   "library_type_audios": "Audio",
   "library_type_videos": "Vídeo",
-  "library_type_articles": "Artículos"
+  "library_type_articles": "Artículos",
+  "adhan_makkah": "La Meca (Gran Mezquita)",
+  "adhan_madinah": "Medina (Mezquita del Profeta)",
+  "adhan_mustafa_ismail": "Mustafa Ismail",
+  "adhan_iraqi": "Iraquí",
+  "adhan_turkish": "Turco",
+  "adhan_moroccan": "Marroquí",
+  "adhan_indonesian": "Indonesio",
+  "adhan_classic": "Clásico",
+  "prayer_notification_title": "Es hora de {prayer}",
+  "prayer_notification_body": "Allahu Akbar, venid a la oración"
 }

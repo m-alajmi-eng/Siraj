@@ -353,5 +353,15 @@
   "library_type_books": "Kitaplar",
   "library_type_audios": "Sesli İçerik",
   "library_type_videos": "Video",
-  "library_type_articles": "Makaleler"
+  "library_type_articles": "Makaleler",
+  "adhan_makkah": "Mekke (Mescid-i Haram)",
+  "adhan_madinah": "Medine (Mescid-i Nebevi)",
+  "adhan_mustafa_ismail": "Mustafa İsmail",
+  "adhan_iraqi": "Irak",
+  "adhan_turkish": "Türk",
+  "adhan_moroccan": "Fas",
+  "adhan_indonesian": "Endonezya",
+  "adhan_classic": "Klasik",
+  "prayer_notification_title": "{prayer} vakti geldi",
+  "prayer_notification_body": "Allahu Ekber, haydi namaza"
 }

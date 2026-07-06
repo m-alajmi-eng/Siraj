@@ -353,5 +353,15 @@
   "library_type_books": "বই",
   "library_type_audios": "অডিও",
   "library_type_videos": "ভিডিও",
-  "library_type_articles": "নবন্ধ"
+  "library_type_articles": "নবন্ধ",
+  "adhan_makkah": "মক্কী (হারাম শরীফ)",
+  "adhan_madinah": "মাদানী (মসজিদে নববী)",
+  "adhan_mustafa_ismail": "মুস্তফা ইসমাইল",
+  "adhan_iraqi": "ইরাকি",
+  "adhan_turkish": "তুর্কি",
+  "adhan_moroccan": "মরক্কোর",
+  "adhan_indonesian": "ইন্দোনেশিয়ান",
+  "adhan_classic": "ক্লাসিক",
+  "prayer_notification_title": "{prayer}-এর সময় হয়েছে",
+  "prayer_notification_body": "আল্লাহু আকবার, নামাজর দিকে এসো"
 }

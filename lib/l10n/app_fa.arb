@@ -3,7 +3,7 @@
   "appName": "سراج",
   "prayer_title": "اوقات نماز",
   "prayer_nextPrayer": "نماز بعدی",
-  "prayer_fajr": "صبح",
+  "prayer_fajr": "فجر",
   "prayer_sunrise": "طلوع آفتاب",
   "prayer_dhuhr": "ظهر",
   "prayer_asr": "عصر",
@@ -353,5 +353,15 @@
   "library_type_books": "کتاب‌ها",
   "library_type_audios": "صوتی",
   "library_type_videos": "ویدیو",
-  "library_type_articles": "مقالات"
+  "library_type_articles": "مقالات",
+  "adhan_makkah": "مکی (حرم مکی)",
+  "adhan_madinah": "مدنی (مسجد نبوی)",
+  "adhan_mustafa_ismail": "مصطفی اسماعیل",
+  "adhan_iraqi": "عراقی",
+  "adhan_turkish": "ترکی",
+  "adhan_moroccan": "مراکشی",
+  "adhan_indonesian": "اندونزیایی",
+  "adhan_classic": "کلاسیک",
+  "prayer_notification_title": "وقت {prayer} فرا رسید",
+  "prayer_notification_body": "الله اکبر، به سوی نماز بشتاب"
 }

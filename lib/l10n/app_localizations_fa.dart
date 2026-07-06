@@ -18,7 +18,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get prayer_nextPrayer => 'نماز بعدی';
 
   @override
-  String get prayer_fajr => 'صبح';
+  String get prayer_fajr => 'فجر';
 
   @override
   String get prayer_sunrise => 'طلوع آفتاب';
@@ -912,4 +912,36 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get library_type_articles => 'مقالات';
+
+  @override
+  String get adhan_makkah => 'مکی (حرم مکی)';
+
+  @override
+  String get adhan_madinah => 'مدنی (مسجد نبوی)';
+
+  @override
+  String get adhan_mustafa_ismail => 'مصطفی اسماعیل';
+
+  @override
+  String get adhan_iraqi => 'عراقی';
+
+  @override
+  String get adhan_turkish => 'ترکی';
+
+  @override
+  String get adhan_moroccan => 'مراکشی';
+
+  @override
+  String get adhan_indonesian => 'اندونزیایی';
+
+  @override
+  String get adhan_classic => 'کلاسیک';
+
+  @override
+  String prayer_notification_title(Object prayer) {
+    return 'وقت $prayer فرا رسید';
+  }
+
+  @override
+  String get prayer_notification_body => 'الله اکبر، به سوی نماز بشتاب';
 }

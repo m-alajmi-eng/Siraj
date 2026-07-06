@@ -24,7 +24,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get prayer_sunrise => 'Syuruq';
 
   @override
-  String get prayer_dhuhr => 'Dzuhur';
+  String get prayer_dhuhr => 'Zuhur';
 
   @override
   String get prayer_asr => 'Ashar';
@@ -912,4 +912,36 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get library_type_articles => 'Artikel';
+
+  @override
+  String get adhan_makkah => 'Makkah (Masjidil Haram)';
+
+  @override
+  String get adhan_madinah => 'Madinah (Masjid Nabawi)';
+
+  @override
+  String get adhan_mustafa_ismail => 'Mustafa Ismail';
+
+  @override
+  String get adhan_iraqi => 'Irak';
+
+  @override
+  String get adhan_turkish => 'Turki';
+
+  @override
+  String get adhan_moroccan => 'Maroko';
+
+  @override
+  String get adhan_indonesian => 'Indonesia';
+
+  @override
+  String get adhan_classic => 'Klasik';
+
+  @override
+  String prayer_notification_title(Object prayer) {
+    return 'Waktu $prayer telah tiba';
+  }
+
+  @override
+  String get prayer_notification_body => 'Allahu Akbar, mari mendirikan shalat';
 }

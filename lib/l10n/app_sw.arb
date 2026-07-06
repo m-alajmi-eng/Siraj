@@ -353,5 +353,15 @@
   "library_type_books": "Vitabu",
   "library_type_audios": "Sauti",
   "library_type_videos": "Video",
-  "library_type_articles": "Makala"
+  "library_type_articles": "Makala",
+  "adhan_makkah": "Makka (Msikiti Mkuu)",
+  "adhan_madinah": "Madina (Msikiti wa Mtume)",
+  "adhan_mustafa_ismail": "Mustafa Ismail",
+  "adhan_iraqi": "Kiiraki",
+  "adhan_turkish": "Kituruki",
+  "adhan_moroccan": "Kimorocco",
+  "adhan_indonesian": "Kiindonesia",
+  "adhan_classic": "Kawaida",
+  "prayer_notification_title": "Ni wakati wa {prayer}",
+  "prayer_notification_body": "Allahu Akbar, njooni kusali"
 }

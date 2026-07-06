@@ -907,4 +907,36 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get library_type_articles => '文章';
+
+  @override
+  String get adhan_makkah => '麦加（禁寺）';
+
+  @override
+  String get adhan_madinah => '麦地那（先知清真寺）';
+
+  @override
+  String get adhan_mustafa_ismail => '穆斯塔法·伊斯梅尔';
+
+  @override
+  String get adhan_iraqi => '伊拉克风格';
+
+  @override
+  String get adhan_turkish => '土耳其风格';
+
+  @override
+  String get adhan_moroccan => '摩洛哥风格';
+
+  @override
+  String get adhan_indonesian => '印度尼西亚风格';
+
+  @override
+  String get adhan_classic => '经典风格';
+
+  @override
+  String prayer_notification_title(Object prayer) {
+    return '$prayer时间到了';
+  }
+
+  @override
+  String get prayer_notification_body => '真主至大，快来礼拜';
 }

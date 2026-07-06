@@ -353,5 +353,15 @@
   "library_type_books": "Livres",
   "library_type_audios": "Audio",
   "library_type_videos": "Vidéo",
-  "library_type_articles": "Articles"
+  "library_type_articles": "Articles",
+  "adhan_makkah": "La Mecque (Grande Mosquée)",
+  "adhan_madinah": "Médine (Mosquée du Prophète)",
+  "adhan_mustafa_ismail": "Mustafa Ismail",
+  "adhan_iraqi": "Irakien",
+  "adhan_turkish": "Turc",
+  "adhan_moroccan": "Marocain",
+  "adhan_indonesian": "Indonésien",
+  "adhan_classic": "Classique",
+  "prayer_notification_title": "C'est l'heure de {prayer}",
+  "prayer_notification_body": "Allahu Akbar, venez à la prière"
 }

@@ -1851,6 +1851,66 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'مقالات'**
   String get library_type_articles;
+
+  /// No description provided for @adhan_makkah.
+  ///
+  /// In ar, this message translates to:
+  /// **'مكي (الحرم المكي)'**
+  String get adhan_makkah;
+
+  /// No description provided for @adhan_madinah.
+  ///
+  /// In ar, this message translates to:
+  /// **'مديني (الحرم النبوي)'**
+  String get adhan_madinah;
+
+  /// No description provided for @adhan_mustafa_ismail.
+  ///
+  /// In ar, this message translates to:
+  /// **'مصطفى إسماعيل'**
+  String get adhan_mustafa_ismail;
+
+  /// No description provided for @adhan_iraqi.
+  ///
+  /// In ar, this message translates to:
+  /// **'عراقي'**
+  String get adhan_iraqi;
+
+  /// No description provided for @adhan_turkish.
+  ///
+  /// In ar, this message translates to:
+  /// **'تركي'**
+  String get adhan_turkish;
+
+  /// No description provided for @adhan_moroccan.
+  ///
+  /// In ar, this message translates to:
+  /// **'مغربي'**
+  String get adhan_moroccan;
+
+  /// No description provided for @adhan_indonesian.
+  ///
+  /// In ar, this message translates to:
+  /// **'أندونيسي'**
+  String get adhan_indonesian;
+
+  /// No description provided for @adhan_classic.
+  ///
+  /// In ar, this message translates to:
+  /// **'كلاسيكي'**
+  String get adhan_classic;
+
+  /// No description provided for @prayer_notification_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'حان وقت {prayer}'**
+  String prayer_notification_title(Object prayer);
+
+  /// No description provided for @prayer_notification_body.
+  ///
+  /// In ar, this message translates to:
+  /// **'الله أكبر، حي على الصلاة'**
+  String get prayer_notification_body;
 }
 
 class _AppLocalizationsDelegate

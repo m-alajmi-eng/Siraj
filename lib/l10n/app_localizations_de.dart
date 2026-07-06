@@ -33,7 +33,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get prayer_maghrib => 'Maghrib';
 
   @override
-  String get prayer_isha => 'Isha';
+  String get prayer_isha => 'Ischa';
 
   @override
   String prayer_countdown(String time) {
@@ -913,4 +913,36 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get library_type_articles => 'Artikel';
+
+  @override
+  String get adhan_makkah => 'Mekka (Große Moschee)';
+
+  @override
+  String get adhan_madinah => 'Medina (Prophetenmoschee)';
+
+  @override
+  String get adhan_mustafa_ismail => 'Mustafa Ismail';
+
+  @override
+  String get adhan_iraqi => 'Irakisch';
+
+  @override
+  String get adhan_turkish => 'Türkisch';
+
+  @override
+  String get adhan_moroccan => 'Marokkanisch';
+
+  @override
+  String get adhan_indonesian => 'Indonesisch';
+
+  @override
+  String get adhan_classic => 'Klassisch';
+
+  @override
+  String prayer_notification_title(Object prayer) {
+    return 'Es ist Zeit für $prayer';
+  }
+
+  @override
+  String get prayer_notification_body => 'Allahu Akbar, kommt zum Gebet';
 }

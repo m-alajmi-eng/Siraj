@@ -48,6 +48,7 @@ flutter:
     - assets/fonts/
     - assets/data/
     - assets/images/
+    - assets/audio/adhan/
 
   fonts:
     - family: NotoSans

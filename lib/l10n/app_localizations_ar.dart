@@ -911,4 +911,36 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get library_type_articles => 'مقالات';
+
+  @override
+  String get adhan_makkah => 'مكي (الحرم المكي)';
+
+  @override
+  String get adhan_madinah => 'مديني (الحرم النبوي)';
+
+  @override
+  String get adhan_mustafa_ismail => 'مصطفى إسماعيل';
+
+  @override
+  String get adhan_iraqi => 'عراقي';
+
+  @override
+  String get adhan_turkish => 'تركي';
+
+  @override
+  String get adhan_moroccan => 'مغربي';
+
+  @override
+  String get adhan_indonesian => 'أندونيسي';
+
+  @override
+  String get adhan_classic => 'كلاسيكي';
+
+  @override
+  String prayer_notification_title(Object prayer) {
+    return 'حان وقت $prayer';
+  }
+
+  @override
+  String get prayer_notification_body => 'الله أكبر، حي على الصلاة';
 }

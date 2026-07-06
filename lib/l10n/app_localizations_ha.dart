@@ -913,4 +913,36 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get library_type_articles => 'Kasidu';
+
+  @override
+  String get adhan_makkah => 'Makka (Babban Masallaci)';
+
+  @override
+  String get adhan_madinah => 'Madina (Masallacin Annabi)';
+
+  @override
+  String get adhan_mustafa_ismail => 'Mustafa Isma\'il';
+
+  @override
+  String get adhan_iraqi => 'Iraqi';
+
+  @override
+  String get adhan_turkish => 'Turkiyya';
+
+  @override
+  String get adhan_moroccan => 'Moroko';
+
+  @override
+  String get adhan_indonesian => 'Indonesiya';
+
+  @override
+  String get adhan_classic => 'Gargajiya';
+
+  @override
+  String prayer_notification_title(Object prayer) {
+    return 'Lokacin $prayer ya yi';
+  }
+
+  @override
+  String get prayer_notification_body => 'Allahu Akbar, ku zo ga sallah';
 }
