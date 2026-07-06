@@ -29,6 +29,33 @@ class QuranRemoteDataSource {
    return _localTranslationsCache!;
  }
 
+ static Map<String, dynamic>? _localTafsirCache;
+
+ static Future<Map<String, dynamic>> _loadLocalTafsir() async {
+   if (_localTafsirCache != null) return _localTafsirCache!;
+   final raw = await rootBundle.loadString('assets/data/quran_tafsir.json');
+   final data = jsonDecode(raw) as Map<String, dynamic>;
+   _localTafsirCache = data['tafsir'] as Map<String, dynamic>;
+   return _localTafsirCache!;
+ }
+
+ /// يحاول جلب تفسير آية من الأصول المحلية. يرجع null بأمان عند أي
+ /// غياب/خلل، ليسقط النداء للمسار القديم (cache ثم Supabase) دون كسر.
+ Future<String?> _getTafsirFromLocalAssets(int surahId, int ayahNumber) async {
+   try {
+     final tafsirSurahs = await _loadLocalTafsir();
+     final ayahsList = tafsirSurahs[surahId.toString()] as List?;
+     if (ayahsList == null) return null;
+     for (final a in ayahsList) {
+       final m = Map<String, dynamic>.from(a as Map);
+       if (m['n'] == ayahNumber) return m['text'] as String;
+     }
+     return null;
+   } catch (_) {
+     return null;
+   }
+ }
+
  static const Map<String, String> _translationEditions = {
    'en': 'en.sahih',
    'ur': 'ur.jalandhry',
@@ -218,6 +245,10 @@ class QuranRemoteDataSource {
 
  // جلب التفسير الميسّر من Supabase
  Future<String> getTafsir(int surahId, int ayahNumber) async {
+   // المسار المحلي أولاً (ADR-006): لا اعتماد على Supabase لعرض التفسير
+   final local = await _getTafsirFromLocalAssets(surahId, ayahNumber);
+   if (local != null) return local;
+
    final cacheKey = 'tafsir_muyassar_${surahId}_$ayahNumber';
    final cached   = CacheService.getSetting(cacheKey);
    if (cached != null) return cached;
