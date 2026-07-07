@@ -60,4 +60,22 @@ class CacheService {
     final box = Hive.box(_settingsBox);
     return box.get(key, defaultValue: defaultValue);
   }
+
+  // ─── Khatmah Plans ────────────────────────────────────────
+  // تُخزَّن كل الخطط كقائمة JSON تحت مفتاح واحد (يدعم خطط متعددة).
+  static const String _khatmahKey = 'khatmah_plans';
+
+  static Future<void> saveKhatmahPlans(List<Map<String, dynamic>> plans) async {
+    final box = Hive.box(_settingsBox);
+    await box.put(_khatmahKey, plans);
+  }
+
+  static List<Map<String, dynamic>> getKhatmahPlans() {
+    final box = Hive.box(_settingsBox);
+    final raw = box.get(_khatmahKey);
+    if (raw == null) return [];
+    return (raw as List)
+        .map((e) => Map<String, dynamic>.from(e as Map))
+        .toList();
+  }
 }
