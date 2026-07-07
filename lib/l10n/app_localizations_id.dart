@@ -944,4 +944,69 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get prayer_notification_body => 'Allahu Akbar, mari mendirikan shalat';
+
+  @override
+  String get khatmah_title => 'Khatam';
+
+  @override
+  String get khatmah_new => 'Khatam Baru';
+
+  @override
+  String get khatmah_empty => 'Belum ada khatam. Mulai yang pertama!';
+
+  @override
+  String get khatmah_name => 'Nama khatam';
+
+  @override
+  String get khatmah_duration_days => 'Durasi (hari)';
+
+  @override
+  String get khatmah_daily_pages => 'Bagian harian (halaman)';
+
+  @override
+  String get khatmah_reminder_time => 'Waktu pengingat';
+
+  @override
+  String get khatmah_create => 'Buat khatam';
+
+  @override
+  String get khatmah_preset_ramadan => 'Ramadan (30 hari)';
+
+  @override
+  String get khatmah_preset_weekly => 'Mingguan (7 hari)';
+
+  @override
+  String get khatmah_preset_monthly => 'Bulanan (30 hari)';
+
+  @override
+  String get khatmah_status_ontrack => 'Sesuai jadwal';
+
+  @override
+  String get khatmah_status_behind => 'Tertinggal';
+
+  @override
+  String get khatmah_status_ahead => 'Lebih maju';
+
+  @override
+  String get khatmah_status_completed => 'Selesai';
+
+  @override
+  String get khatmah_today_portion => 'Bagian hari ini';
+
+  @override
+  String get khatmah_read_now => 'Baca sekarang';
+
+  @override
+  String get khatmah_page => 'Halaman';
+
+  @override
+  String khatmah_day_of(Object current, Object total) {
+    return 'Hari $current dari $total';
+  }
+
+  @override
+  String get khatmah_delete_confirm => 'Hapus khatam ini?';
+
+  @override
+  String get khatmah_progress => 'Kemajuan';
 }

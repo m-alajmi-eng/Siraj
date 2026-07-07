@@ -1911,6 +1911,132 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الله أكبر، حي على الصلاة'**
   String get prayer_notification_body;
+
+  /// No description provided for @khatmah_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'الختمات'**
+  String get khatmah_title;
+
+  /// No description provided for @khatmah_new.
+  ///
+  /// In ar, this message translates to:
+  /// **'ختمة جديدة'**
+  String get khatmah_new;
+
+  /// No description provided for @khatmah_empty.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد ختمات بعد. ابدأ ختمتك الأولى!'**
+  String get khatmah_empty;
+
+  /// No description provided for @khatmah_name.
+  ///
+  /// In ar, this message translates to:
+  /// **'اسم الختمة'**
+  String get khatmah_name;
+
+  /// No description provided for @khatmah_duration_days.
+  ///
+  /// In ar, this message translates to:
+  /// **'المدة (أيام)'**
+  String get khatmah_duration_days;
+
+  /// No description provided for @khatmah_daily_pages.
+  ///
+  /// In ar, this message translates to:
+  /// **'الوِرد اليومي (صفحات)'**
+  String get khatmah_daily_pages;
+
+  /// No description provided for @khatmah_reminder_time.
+  ///
+  /// In ar, this message translates to:
+  /// **'وقت التذكير'**
+  String get khatmah_reminder_time;
+
+  /// No description provided for @khatmah_create.
+  ///
+  /// In ar, this message translates to:
+  /// **'إنشاء الختمة'**
+  String get khatmah_create;
+
+  /// No description provided for @khatmah_preset_ramadan.
+  ///
+  /// In ar, this message translates to:
+  /// **'رمضان (30 يوما)'**
+  String get khatmah_preset_ramadan;
+
+  /// No description provided for @khatmah_preset_weekly.
+  ///
+  /// In ar, this message translates to:
+  /// **'أسبوعية (7 أيام)'**
+  String get khatmah_preset_weekly;
+
+  /// No description provided for @khatmah_preset_monthly.
+  ///
+  /// In ar, this message translates to:
+  /// **'شهرية (30 يوماً)'**
+  String get khatmah_preset_monthly;
+
+  /// No description provided for @khatmah_status_ontrack.
+  ///
+  /// In ar, this message translates to:
+  /// **'على المسار'**
+  String get khatmah_status_ontrack;
+
+  /// No description provided for @khatmah_status_behind.
+  ///
+  /// In ar, this message translates to:
+  /// **'متأخر'**
+  String get khatmah_status_behind;
+
+  /// No description provided for @khatmah_status_ahead.
+  ///
+  /// In ar, this message translates to:
+  /// **'متقدّم'**
+  String get khatmah_status_ahead;
+
+  /// No description provided for @khatmah_status_completed.
+  ///
+  /// In ar, this message translates to:
+  /// **'مكتملة'**
+  String get khatmah_status_completed;
+
+  /// No description provided for @khatmah_today_portion.
+  ///
+  /// In ar, this message translates to:
+  /// **'وردك اليوم'**
+  String get khatmah_today_portion;
+
+  /// No description provided for @khatmah_read_now.
+  ///
+  /// In ar, this message translates to:
+  /// **'اقرأ الآن'**
+  String get khatmah_read_now;
+
+  /// No description provided for @khatmah_page.
+  ///
+  /// In ar, this message translates to:
+  /// **'صفحة'**
+  String get khatmah_page;
+
+  /// No description provided for @khatmah_day_of.
+  ///
+  /// In ar, this message translates to:
+  /// **'اليوم {current} من {total}'**
+  String khatmah_day_of(Object current, Object total);
+
+  /// No description provided for @khatmah_delete_confirm.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل تريد حذف هذه الختمة؟'**
+  String get khatmah_delete_confirm;
+
+  /// No description provided for @khatmah_progress.
+  ///
+  /// In ar, this message translates to:
+  /// **'التقدّم'**
+  String get khatmah_progress;
 }
 
 class _AppLocalizationsDelegate

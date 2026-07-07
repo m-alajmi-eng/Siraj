@@ -939,4 +939,69 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get prayer_notification_body => '真主至大，快来礼拜';
+
+  @override
+  String get khatmah_title => '诵读计划';
+
+  @override
+  String get khatmah_new => '新诵读计划';
+
+  @override
+  String get khatmah_empty => '还没有诵读计划。开始第一个吧！';
+
+  @override
+  String get khatmah_name => '计划名称';
+
+  @override
+  String get khatmah_duration_days => '天数';
+
+  @override
+  String get khatmah_daily_pages => '每日页数';
+
+  @override
+  String get khatmah_reminder_time => '提醒时间';
+
+  @override
+  String get khatmah_create => '创建计划';
+
+  @override
+  String get khatmah_preset_ramadan => '斋月（30天）';
+
+  @override
+  String get khatmah_preset_weekly => '每周（7天）';
+
+  @override
+  String get khatmah_preset_monthly => '每月（30天）';
+
+  @override
+  String get khatmah_status_ontrack => '进度正常';
+
+  @override
+  String get khatmah_status_behind => '落后';
+
+  @override
+  String get khatmah_status_ahead => '超前';
+
+  @override
+  String get khatmah_status_completed => '已完成';
+
+  @override
+  String get khatmah_today_portion => '今日诵读';
+
+  @override
+  String get khatmah_read_now => '现在阅读';
+
+  @override
+  String get khatmah_page => '页';
+
+  @override
+  String khatmah_day_of(Object current, Object total) {
+    return '第 $current 天，共 $total 天';
+  }
+
+  @override
+  String get khatmah_delete_confirm => '删除此计划？';
+
+  @override
+  String get khatmah_progress => '进度';
 }

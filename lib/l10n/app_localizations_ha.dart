@@ -945,4 +945,69 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get prayer_notification_body => 'Allahu Akbar, ku zo ga sallah';
+
+  @override
+  String get khatmah_title => 'Khatmomi';
+
+  @override
+  String get khatmah_new => 'Sabon Khatma';
+
+  @override
+  String get khatmah_empty => 'Babu khatma tukuna. Fara na farko!';
+
+  @override
+  String get khatmah_name => 'Sunan khatma';
+
+  @override
+  String get khatmah_duration_days => 'Tsawon lokaci (kwanaki)';
+
+  @override
+  String get khatmah_daily_pages => 'Rabon yau (shafuka)';
+
+  @override
+  String get khatmah_reminder_time => 'Lokacin tunatarwa';
+
+  @override
+  String get khatmah_create => 'Ƙirƙiri khatma';
+
+  @override
+  String get khatmah_preset_ramadan => 'Ramadan (kwanaki 30)';
+
+  @override
+  String get khatmah_preset_weekly => 'Mako-mako (kwanaki 7)';
+
+  @override
+  String get khatmah_preset_monthly => 'Wata-wata (kwanaki 30)';
+
+  @override
+  String get khatmah_status_ontrack => 'Kan hanya';
+
+  @override
+  String get khatmah_status_behind => 'A baya';
+
+  @override
+  String get khatmah_status_ahead => 'A gaba';
+
+  @override
+  String get khatmah_status_completed => 'An kammala';
+
+  @override
+  String get khatmah_today_portion => 'Rabon yau';
+
+  @override
+  String get khatmah_read_now => 'Karanta yanzu';
+
+  @override
+  String get khatmah_page => 'Shafi';
+
+  @override
+  String khatmah_day_of(Object current, Object total) {
+    return 'Rana $current daga $total';
+  }
+
+  @override
+  String get khatmah_delete_confirm => 'A goge wannan khatma?';
+
+  @override
+  String get khatmah_progress => 'Ci gaba';
 }

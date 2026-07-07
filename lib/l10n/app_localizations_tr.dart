@@ -942,4 +942,69 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get prayer_notification_body => 'Allahu Ekber, haydi namaza';
+
+  @override
+  String get khatmah_title => 'Hatimler';
+
+  @override
+  String get khatmah_new => 'Yeni Hatim';
+
+  @override
+  String get khatmah_empty => 'Henüz hatim yok. İlkini başlatın!';
+
+  @override
+  String get khatmah_name => 'Hatim adı';
+
+  @override
+  String get khatmah_duration_days => 'Süre (gün)';
+
+  @override
+  String get khatmah_daily_pages => 'Günlük vird (sayfa)';
+
+  @override
+  String get khatmah_reminder_time => 'Hatırlatma zamanı';
+
+  @override
+  String get khatmah_create => 'Hatim oluştur';
+
+  @override
+  String get khatmah_preset_ramadan => 'Ramazan (30 gün)';
+
+  @override
+  String get khatmah_preset_weekly => 'Haftalık (7 gün)';
+
+  @override
+  String get khatmah_preset_monthly => 'Aylık (30 gün)';
+
+  @override
+  String get khatmah_status_ontrack => 'Yolunda';
+
+  @override
+  String get khatmah_status_behind => 'Geride';
+
+  @override
+  String get khatmah_status_ahead => 'İleride';
+
+  @override
+  String get khatmah_status_completed => 'Tamamlandı';
+
+  @override
+  String get khatmah_today_portion => 'Bugünkü vird';
+
+  @override
+  String get khatmah_read_now => 'Şimdi oku';
+
+  @override
+  String get khatmah_page => 'Sayfa';
+
+  @override
+  String khatmah_day_of(Object current, Object total) {
+    return '$total günden $current. gün';
+  }
+
+  @override
+  String get khatmah_delete_confirm => 'Bu hatim silinsin mi?';
+
+  @override
+  String get khatmah_progress => 'İlerleme';
 }

@@ -945,4 +945,69 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get prayer_notification_body => 'Аллаху Акбар, спешите на молитву';
+
+  @override
+  String get khatmah_title => 'Хатмы';
+
+  @override
+  String get khatmah_new => 'Новая хатма';
+
+  @override
+  String get khatmah_empty => 'Пока нет хатм. Начните первую!';
+
+  @override
+  String get khatmah_name => 'Название хатмы';
+
+  @override
+  String get khatmah_duration_days => 'Длительность (дни)';
+
+  @override
+  String get khatmah_daily_pages => 'Дневная норма (страницы)';
+
+  @override
+  String get khatmah_reminder_time => 'Время напоминания';
+
+  @override
+  String get khatmah_create => 'Создать хатму';
+
+  @override
+  String get khatmah_preset_ramadan => 'Рамадан (30 дней)';
+
+  @override
+  String get khatmah_preset_weekly => 'Еженедельно (7 дней)';
+
+  @override
+  String get khatmah_preset_monthly => 'Ежемесячно (30 дней)';
+
+  @override
+  String get khatmah_status_ontrack => 'По плану';
+
+  @override
+  String get khatmah_status_behind => 'Отставание';
+
+  @override
+  String get khatmah_status_ahead => 'Опережение';
+
+  @override
+  String get khatmah_status_completed => 'Завершено';
+
+  @override
+  String get khatmah_today_portion => 'Норма на сегодня';
+
+  @override
+  String get khatmah_read_now => 'Читать сейчас';
+
+  @override
+  String get khatmah_page => 'Страница';
+
+  @override
+  String khatmah_day_of(Object current, Object total) {
+    return 'День $current из $total';
+  }
+
+  @override
+  String get khatmah_delete_confirm => 'Удалить эту хатму?';
+
+  @override
+  String get khatmah_progress => 'Прогресс';
 }

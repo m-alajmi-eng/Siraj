@@ -943,4 +943,69 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get prayer_notification_body => 'الله أكبر، حي على الصلاة';
+
+  @override
+  String get khatmah_title => 'الختمات';
+
+  @override
+  String get khatmah_new => 'ختمة جديدة';
+
+  @override
+  String get khatmah_empty => 'لا توجد ختمات بعد. ابدأ ختمتك الأولى!';
+
+  @override
+  String get khatmah_name => 'اسم الختمة';
+
+  @override
+  String get khatmah_duration_days => 'المدة (أيام)';
+
+  @override
+  String get khatmah_daily_pages => 'الوِرد اليومي (صفحات)';
+
+  @override
+  String get khatmah_reminder_time => 'وقت التذكير';
+
+  @override
+  String get khatmah_create => 'إنشاء الختمة';
+
+  @override
+  String get khatmah_preset_ramadan => 'رمضان (30 يوما)';
+
+  @override
+  String get khatmah_preset_weekly => 'أسبوعية (7 أيام)';
+
+  @override
+  String get khatmah_preset_monthly => 'شهرية (30 يوماً)';
+
+  @override
+  String get khatmah_status_ontrack => 'على المسار';
+
+  @override
+  String get khatmah_status_behind => 'متأخر';
+
+  @override
+  String get khatmah_status_ahead => 'متقدّم';
+
+  @override
+  String get khatmah_status_completed => 'مكتملة';
+
+  @override
+  String get khatmah_today_portion => 'وردك اليوم';
+
+  @override
+  String get khatmah_read_now => 'اقرأ الآن';
+
+  @override
+  String get khatmah_page => 'صفحة';
+
+  @override
+  String khatmah_day_of(Object current, Object total) {
+    return 'اليوم $current من $total';
+  }
+
+  @override
+  String get khatmah_delete_confirm => 'هل تريد حذف هذه الختمة؟';
+
+  @override
+  String get khatmah_progress => 'التقدّم';
 }

@@ -33,6 +33,8 @@ import '../../features/gateway/presentation/screens/gateway_topic_screen.dart';
 import '../../features/gateway/presentation/screens/gateway_library_screen.dart';
 import '../../features/library/presentation/screens/library_home_screen.dart';
 import '../../features/library/presentation/screens/library_section_screen.dart';
+import '../../features/khatmah/presentation/screens/khatmah_list_screen.dart';
+import '../../features/khatmah/presentation/screens/khatmah_create_screen.dart';
 import '../../features/library/presentation/screens/library_items_screen.dart';
 import '../../features/library/presentation/screens/library_type_categories_screen.dart';
 
@@ -86,6 +88,11 @@ class MoreScreen extends ConsumerWidget {
              icon:  Icons.bar_chart,
              label: t.more_stats,
              onTap: () => context.push('/more/stats'),
+           ),
+           _MoreTile(
+             icon:  Icons.menu_book,
+             label: t.khatmah_title,
+             onTap: () => context.push('/khatmah'),
            ),
            _MoreTile(
              icon:  Icons.card_giftcard,
@@ -366,6 +373,18 @@ final appRouterProvider = Provider<GoRouter>((ref) {
        builder: (_, state) => LibrarySectionScreen(
          sectionId: state.pathParameters['sectionId'] ?? '',
        ),
+     ),
+
+     // ── الختمة (خارج الـ shell: شاشات كاملة بزر رجوع) ──
+     GoRoute(
+       path: '/khatmah',
+       builder: (_, __) => const KhatmahListScreen(),
+       routes: [
+         GoRoute(
+           path: 'create',
+           builder: (_, __) => const KhatmahCreateScreen(),
+         ),
+       ],
      ),
    ],
  );

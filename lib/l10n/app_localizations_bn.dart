@@ -942,4 +942,69 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get prayer_notification_body => 'আল্লাহু আকবার, নামাজর দিকে এসো';
+
+  @override
+  String get khatmah_title => 'খতম';
+
+  @override
+  String get khatmah_new => 'নতুন খতম';
+
+  @override
+  String get khatmah_empty => 'এখনও কোনো খতম নেই। প্রথমটি শুরু করন!';
+
+  @override
+  String get khatmah_name => 'খতমের নাম';
+
+  @override
+  String get khatmah_duration_days => 'সময়কাল (দিন)';
+
+  @override
+  String get khatmah_daily_pages => 'দৈনিক অশ (পৃষ্ঠা)';
+
+  @override
+  String get khatmah_reminder_time => 'অনুস্মারকের সময়';
+
+  @override
+  String get khatmah_create => 'খতম তৈরি করুন';
+
+  @override
+  String get khatmah_preset_ramadan => 'রমজান (৩০ দিন)';
+
+  @override
+  String get khatmah_preset_weekly => 'সাপ্তাহিক (৭ দিন)';
+
+  @override
+  String get khatmah_preset_monthly => 'মাসিক (৩০ দিন)';
+
+  @override
+  String get khatmah_status_ontrack => 'সঠক পথে';
+
+  @override
+  String get khatmah_status_behind => 'পিছিয়ে';
+
+  @override
+  String get khatmah_status_ahead => 'এগিয়ে';
+
+  @override
+  String get khatmah_status_completed => 'সম্পন্ন';
+
+  @override
+  String get khatmah_today_portion => 'আজকের অংশ';
+
+  @override
+  String get khatmah_read_now => 'এখন পড়ুন';
+
+  @override
+  String get khatmah_page => 'পৃষ্ঠা';
+
+  @override
+  String khatmah_day_of(Object current, Object total) {
+    return '$total দিনের $current তম';
+  }
+
+  @override
+  String get khatmah_delete_confirm => 'এই খতম মছবেন?';
+
+  @override
+  String get khatmah_progress => 'অগ্রগতি';
 }
