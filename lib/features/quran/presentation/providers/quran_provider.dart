@@ -12,6 +12,12 @@ final quranDataSourceProvider = Provider<QuranRemoteDataSource>((ref) {
   return QuranRemoteDataSource();
 });
 
+final pageAyahsProvider =
+    FutureProvider.family<List<Map<String, dynamic>>, int>((ref, page) async {
+  final dataSource = ref.watch(quranDataSourceProvider);
+  return dataSource.getPageAyahs(page);
+});
+
 final surahsProvider = FutureProvider<List<SurahEntity>>((ref) async {
   final dataSource = ref.watch(quranDataSourceProvider);
   return dataSource.getSurahs();

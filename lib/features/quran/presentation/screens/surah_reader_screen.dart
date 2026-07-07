@@ -188,6 +188,18 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
              CacheService.saveSetting('tajweed_enabled', _tajweedEnabled);
            },
          ),
+         IconButton(
+           icon: Icon(Icons.auto_stories,
+             color: palette.accentPrimary, size: 22),
+           tooltip: 'وضع الصفحات',
+           onPressed: () {
+             // نفتح صفحة المصحف التي تبدأ فيها هذه السورة
+             final ayahs = ref.read(ayahsProvider(widget.surahId)).value;
+             final startPage = (ayahs != null && ayahs.isNotEmpty)
+                 ? ayahs.first.page : 1;
+             context.push('/page-reader?page=$startPage');
+           },
+         ),
                   ],
                 ),
               ),

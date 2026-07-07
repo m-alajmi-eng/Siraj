@@ -35,6 +35,7 @@ import '../../features/library/presentation/screens/library_home_screen.dart';
 import '../../features/library/presentation/screens/library_section_screen.dart';
 import '../../features/khatmah/presentation/screens/khatmah_list_screen.dart';
 import '../../features/khatmah/presentation/screens/khatmah_create_screen.dart';
+import '../../features/quran/presentation/screens/page_reader_screen.dart';
 import '../../features/library/presentation/screens/library_items_screen.dart';
 import '../../features/library/presentation/screens/library_type_categories_screen.dart';
 
@@ -385,6 +386,17 @@ final appRouterProvider = Provider<GoRouter>((ref) {
            builder: (_, __) => const KhatmahCreateScreen(),
          ),
        ],
+     ),
+
+     // ── وضع قراءة الصفحات (المصحف بالصفحات) ──
+     GoRoute(
+       path: '/page-reader',
+       builder: (_, state) => PageReaderScreen(
+         initialPage: int.tryParse(
+                 state.uri.queryParameters['page'] ?? '1') ??
+             1,
+         khatmahId: state.uri.queryParameters['khatmah'],
+       ),
      ),
    ],
  );

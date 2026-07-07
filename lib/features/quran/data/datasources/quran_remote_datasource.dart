@@ -244,6 +244,32 @@ class QuranRemoteDataSource {
  }
 
  // جلب التفسير الميسّر من Supabase
+ /// يُرجع كل آيات صفحة مصحف معيّنة (1..604) مرتبة، عبر كل السور.
+ /// كل عنصر: {surahId, ayahNumber, text, surahName?}. محلي بالكامل.
+ Future<List<Map<String, dynamic>>> getPageAyahs(int pageNumber) async {
+   final uthmaniSurahs = await _loadLocalUthmani();
+   final result = <Map<String, dynamic>>[];
+   uthmaniSurahs.forEach((surahIdStr, ayahList) {
+     final surahId = int.parse(surahIdStr);
+     for (final a in (ayahList as List)) {
+       final m = Map<String, dynamic>.from(a as Map);
+       if (m['page'] == pageNumber) {
+         result.add({
+           'surahId': surahId,
+           'ayahNumber': m['n'],
+           'text': m['text'],
+         });
+       }
+     }
+   });
+   result.sort((x, y) {
+     final s = (x['surahId'] as int).compareTo(y['surahId'] as int);
+     if (s != 0) return s;
+     return (x['ayahNumber'] as int).compareTo(y['ayahNumber'] as int);
+   });
+   return result;
+ }
+
  Future<String> getTafsir(int surahId, int ayahNumber) async {
    // المسار المحلي أولاً (ADR-006): لا اعتماد على Supabase لعرض التفسير
    final local = await _getTafsirFromLocalAssets(surahId, ayahNumber);
