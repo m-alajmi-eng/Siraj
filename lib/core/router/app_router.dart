@@ -35,6 +35,7 @@ import '../../features/library/presentation/screens/library_home_screen.dart';
 import '../../features/library/presentation/screens/library_section_screen.dart';
 import '../../features/khatmah/presentation/screens/khatmah_list_screen.dart';
 import '../../features/khatmah/presentation/screens/khatmah_create_screen.dart';
+import '../../features/khatmah/presentation/screens/khatmah_detail_screen.dart';
 import '../../features/quran/presentation/screens/page_reader_screen.dart';
 import '../../features/library/presentation/screens/library_items_screen.dart';
 import '../../features/library/presentation/screens/library_type_categories_screen.dart';
@@ -384,6 +385,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
          GoRoute(
            path: 'create',
            builder: (_, __) => const KhatmahCreateScreen(),
+         ),
+         GoRoute(
+           path: 'detail/:id',
+           builder: (_, state) => KhatmahDetailScreen(
+             khatmahId: state.pathParameters['id']!,
+           ),
          ),
        ],
      ),

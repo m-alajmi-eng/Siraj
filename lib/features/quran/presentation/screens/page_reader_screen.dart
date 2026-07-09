@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quran_library/quran_library.dart';
+import '../../../khatmah/presentation/providers/khatmah_provider.dart';
 
 /// وضع "المصحف المطبوع": تطابق حرفي لمصحف المدينة (604 صفحة) عبر
 /// حزمة quran_library. شريط تنقّل مؤقت وبسيط (سيُستبدل بتصميم كامل
@@ -27,7 +28,17 @@ class _PageReaderScreenState extends ConsumerState<PageReaderScreen> {
   }
 
   void _goToPage(int page) {
-    setState(() => _currentPage = page.clamp(1, _totalPages));
+    final target = page.clamp(1, _totalPages);
+    setState(() => _currentPage = target);
+    _recordKhatmahProgressIfNeeded(target);
+  }
+
+  /// إن كانت الشاشة مفتوحة ضمن سياق ختمة، نسجّل الصفحة الحالية
+  /// كتقدّم فعلي (المرحلة 4 من KHATMAH_DESIGN.md).
+  void _recordKhatmahProgressIfNeeded(int page) {
+    final khatmahId = widget.khatmahId;
+    if (khatmahId == null) return;
+    ref.read(khatmahProvider.notifier).recordProgress(khatmahId, page);
   }
 
   @override
@@ -59,7 +70,10 @@ class _PageReaderScreenState extends ConsumerState<PageReaderScreen> {
                 page: _currentPage,
                 withPageView: false, // نتحكم نحن بالتنقّل مؤقتاً
                 useDefaultAppBar: false,
-                onPageChanged: (page) => setState(() => _currentPage = page),
+                onPageChanged: (page) {
+                  setState(() => _currentPage = page);
+                  _recordKhatmahProgressIfNeeded(page);
+                },
               ),
             ),
             // شريط تنقّل مؤقت وبسيط: أزرار يمين/يسار
