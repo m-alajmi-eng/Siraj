@@ -34,6 +34,8 @@ dependencies:
   just_audio_media_kit: ^2.1.0
   media_kit_libs_linux: ^1.2.1
   url_launcher: ^6.3.2
+  qcf_quran: ^0.0.5
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,9 @@ flutter:
     - family: UthmanTNB
       fonts:
         - asset: assets/fonts/UthmanTNB_v2-0.ttf
+    - family: HafsSmart
+      fonts:
+        - asset: assets/fonts/HafsSmart_08.ttf
     - family: QuranFont
       fonts:
         - asset: assets/fonts/QuranFont.ttf

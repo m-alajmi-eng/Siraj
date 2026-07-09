@@ -6,6 +6,7 @@ import '../../domain/entities/surah_entity.dart';
 import '../../domain/entities/ayah_entity.dart';
 import '../../domain/entities/tajweed_entity.dart';
 import '../../data/datasources/tajweed_local_datasource.dart';
+import '../../data/datasources/mushaf_page_datasource.dart';
 import '../../../../core/locale/locale_provider.dart';
 
 final quranDataSourceProvider = Provider<QuranRemoteDataSource>((ref) {
@@ -73,4 +74,15 @@ final tajweedSurahProvider =
 /// كل ألوان قواعد التجويد دفعة واحدة.
 final tajweedColorsProvider = FutureProvider<Map<String, Color>>((ref) {
   return ref.watch(tajweedDataSourceProvider).getAllColors();
+});
+
+// ─── المصحف الرسمي (KFGQPC Hafs Smart) ───
+final mushafPageDataSourceProvider = Provider<MushafPageDataSource>((ref) {
+  return MushafPageDataSource();
+});
+
+final mushafPageProvider =
+    FutureProvider.family<List<MushafAyah>, int>((ref, page) async {
+  final ds = ref.watch(mushafPageDataSourceProvider);
+  return ds.getPage(page);
 });

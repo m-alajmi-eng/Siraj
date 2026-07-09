@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
+import 'package:qcf_quran/qcf_quran.dart';
 import '../../../../core/theme/design_tokens.dart';
-import '../../../../core/theme/app_text.dart';
-import '../../../../core/theme/time_theme_provider.dart';
-import '../providers/quran_provider.dart';
-import '../../data/datasources/surah_names_datasource.dart';
-import '../../../khatmah/presentation/providers/khatmah_provider.dart';
 
-/// وضع قراءة الصفحات: يعرض صفحات المصحف الحقيقية (1..604).
-/// يدعم اختيارياً ربطاً بختمة (khatmahId) لتسجيل التقدّم عند القراءة.
+/// ألوان دافئة تحاكي ورق المصحف المطبوع (لا ألوان التطبيق الليلية/الزرقاء).
+class _MushafColors {
+  static const paper = Color(0xFFFBF6EC);
+  static const ink = Color(0xFF1B1B1B);
+  static const gold = Color(0xFF9C7A2D);
+}
+
+/// وضع "المصحف المطبوع": تطابق حرفي لمصحف المدينة (604 صفحة) عبر
+/// حزمة qcf_quran (خطوط QCF الرسمية مضمّنة محلياً بالكامل - offline).
 class PageReaderScreen extends ConsumerStatefulWidget {
   final int initialPage;
   final String? khatmahId;
@@ -22,6 +25,10 @@ class PageReaderScreen extends ConsumerStatefulWidget {
 
 class _PageReaderScreenState extends ConsumerState<PageReaderScreen> {
   static const int _totalPages = 604;
+  // قيمة ثابتة معقولة (لا حساب تلقائي من عرض الشاشة، تفادياً لتضخم
+  // المسافات على الشاشات الكبيرة/التابلت). تُضبط يدوياً حسب الحاجة.
+  static const double _scale = 1.0;
+
   late final PageController _controller;
   late int _currentPage;
 
@@ -29,7 +36,6 @@ class _PageReaderScreenState extends ConsumerState<PageReaderScreen> {
   void initState() {
     super.initState();
     _currentPage = widget.initialPage.clamp(1, _totalPages);
-    // PageView index 0 = صفحة 1
     _controller = PageController(initialPage: _currentPage - 1);
   }
 
@@ -39,137 +45,93 @@ class _PageReaderScreenState extends ConsumerState<PageReaderScreen> {
     super.dispose();
   }
 
-  void _onPageChanged(int index) {
-    final page = index + 1;
-    setState(() => _currentPage = page);
-    // تسجيل التقدّم في الختمة إن كانت مرتبطة (وصل لهذه الصفحة)
-    if (widget.khatmahId != null) {
-      ref.read(khatmahProvider.notifier).recordProgress(widget.khatmahId!, page);
-    }
+  void _goToPage(int page) {
+    final target = page.clamp(1, _totalPages);
+    _controller.animateToPage(
+      target - 1,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
-    final palette = ref.watch(timeThemeProvider);
-
     return Scaffold(
-      backgroundColor: palette.background,
-      appBar: AppBar(
-        backgroundColor: palette.background,
-        elevation: 0,
-        iconTheme: IconThemeData(color: palette.textPrimary),
-        title: Text(
-          '${t.khatmah_page} $_currentPage / $_totalPages',
-          style: AppText.body.copyWith(
-              color: palette.textPrimary, fontWeight: FontWeight.w600),
-        ),
-        centerTitle: true,
-      ),
+      backgroundColor: _MushafColors.paper,
       body: SafeArea(
-        child: PageView.builder(
-          controller: _controller,
-          // اتجاه المصحف: التمرير لليمين ينتقل للصفحة التالية (RTL)
-          reverse: true,
-          itemCount: _totalPages,
-          onPageChanged: _onPageChanged,
-          itemBuilder: (context, index) {
-            final pageNumber = index + 1;
-            return _PageContent(pageNumber: pageNumber, palette: palette);
-          },
+        child: Column(
+          children: [
+            _buildTopBar(context),
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.all(SirajSpacing.s3),
+                decoration: BoxDecoration(
+                  border: Border.all(color: _MushafColors.gold, width: 2.5),
+                  borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: PageviewQuran(
+                  controller: _controller,
+                initialPageNumber: _currentPage,
+                sp: _scale,
+                h: _scale,
+                onPageChanged: (page) => setState(() => _currentPage = page),
+                theme: QcfThemeData(
+                  pageBackgroundColor: _MushafColors.paper,
+                  verseTextColor: _MushafColors.ink,
+                  verseNumberColor: _MushafColors.gold,
+                  basmalaColor: _MushafColors.gold,
+                  headerTextColor: _MushafColors.gold,
+                    headerBackgroundColor: _MushafColors.paper,
+                  ),
+                ),
+              ),
+            ),
+            _buildNavBar(),
+          ],
         ),
       ),
     );
   }
-}
 
-/// محتوى صفحة مصحف واحدة: يجلب آياتها ويعرضها كنص متدفّق بصيغة ﴿رقم﴾.
-class _PageContent extends ConsumerWidget {
-  final int pageNumber;
-  final dynamic palette;
-
-  const _PageContent({required this.pageNumber, required this.palette});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final ayahsAsync = ref.watch(pageAyahsProvider(pageNumber));
-
-    return ayahsAsync.when(
-      loading: () => Center(
-        child: CircularProgressIndicator(color: palette.accentPrimary),
-      ),
-      error: (e, _) => Center(
-        child: Text('—', style: TextStyle(color: palette.textSecondary)),
-      ),
-      data: (ayahs) {
-        // نجمّع الآيات، ونُظهر اسم السورة عند بدايتها داخل الصفحة
-        final spans = <InlineSpan>[];
-        int? lastSurah;
-        for (final a in ayahs) {
-          final surahId = a['surahId'] as int;
-          final ayahNumber = a['ayahNumber'] as int;
-          final text = a['text'] as String;
-
-          // عنوان السورة عند أول ظهور لها في الصفحة
-          if (surahId != lastSurah) {
-            lastSurah = surahId;
-            final surahName = SurahNamesDataSource.arabicNameSync(surahId);
-            spans.add(TextSpan(
-              text: '\n${surahName.isNotEmpty ? surahName : 'سورة $surahId'}\n\n',
-              style: TextStyle(
-                fontFamily: 'QuranFont',
-                color: palette.accentPrimary,
-                fontSize: 22,
-                height: 2.2,
-                fontWeight: FontWeight.w600,
-              ),
-            ));
-          }
-
-          spans.add(TextSpan(
-            text: '$text ',
-            style: TextStyle(
-              fontFamily: 'QuranFont',
-              color: palette.textPrimary,
-              fontSize: 26,
-              height: 2.4,
-            ),
-          ));
-          spans.add(TextSpan(
-            text: ' ﴿${_toArabicNumeral(ayahNumber)}﴾ ',
-            style: TextStyle(
-              fontFamily: 'QuranFont',
-              color: palette.accentPrimary,
-              fontSize: 22,
-              height: 2.4,
-            ),
-          ));
-        }
-
-        return Container(
-          margin: const EdgeInsets.symmetric(
-              horizontal: SirajSpacing.s4, vertical: SirajSpacing.s2),
-          padding: const EdgeInsets.all(SirajSpacing.s5),
-          decoration: BoxDecoration(
-            color: palette.surface,
-            borderRadius: BorderRadius.circular(SirajRadiusFull.lg),
+  Widget _buildTopBar(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+          horizontal: SirajSpacing.s2, vertical: SirajSpacing.s2),
+      child: Row(
+        children: [
+          IconButton(
+            icon: const Icon(Icons.arrow_back, color: _MushafColors.ink),
+            onPressed: () => context.pop(),
           ),
-          child: SingleChildScrollView(
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: RichText(
-                textAlign: TextAlign.justify,
-                text: TextSpan(children: spans),
-              ),
-            ),
-          ),
-        );
-      },
+        ],
+      ),
     );
   }
 
-  String _toArabicNumeral(int number) {
-    const arabic = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-    return number.toString().split('').map((d) => arabic[int.parse(d)]).join();
+  Widget _buildNavBar() {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+          horizontal: SirajSpacing.s4, vertical: SirajSpacing.s3),
+      decoration: BoxDecoration(
+        color: _MushafColors.paper,
+        border: Border(top: BorderSide(color: _MushafColors.gold.withValues(alpha: 0.3))),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.chevron_right, color: _MushafColors.gold),
+            onPressed: _currentPage > 1 ? () => _goToPage(_currentPage - 1) : null,
+          ),
+          Text('$_currentPage / $_totalPages',
+              style: const TextStyle(color: _MushafColors.ink, fontSize: 14)),
+          IconButton(
+            icon: const Icon(Icons.chevron_left, color: _MushafColors.gold),
+            onPressed: _currentPage < _totalPages ? () => _goToPage(_currentPage + 1) : null,
+          ),
+        ],
+      ),
+    );
   }
 }
