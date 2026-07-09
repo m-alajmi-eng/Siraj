@@ -228,7 +228,7 @@
         "sw": "Shahada mbili ni mlango wa kuingia Uislamu na msingi wa kila kitu kinachofuata. Sentensi mbili rahisi zenye maana kubwa."
       },
       "devotional_text": {
-        "needs_verification": true,
+        "needs_verification": false,
         "arabic": "أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ",
         "transliteration_en": "Ash-hadu an la ilaha illa Allah, wa ash-hadu anna Muhammadan rasul Allah",
         "meaning": {
@@ -247,7 +247,9 @@
           "zh": "我作证，万物非主，唯有真主：我确认除真主外，没有任何值得真正崇拜的对象。\n我又作证，穆罕默德是真主的使者：我确认穆罕默德是他的仆人和使者，被真主派遣给全人类。",
           "ha": "Na shaida babu abin bautawa da gaskiya sai Allah: na tabbatar cewa babu wanda ya cancanci a bauta masa da gaskiya sai Allah kadai.\nKuma na shaida Muhammadu Manzon Allah ne: na tabbatar cewa Muhammadu bawansa ne kuma manzonsa, wanda Allah ya aiko wa dukkan bil'adama.",
           "sw": "Nashuhudia hakuna mola apasaye kuabudiwa isipokuwa Mwenyezi Mungu: nathibitisha kwamba hakuna astahiliye kuabudiwa kwa haki isipokuwa Mungu peke yake.\nNa nashuhudia Muhammad ni Mtume wa Mwenyezi Mungu: nathibitisha kwamba Muhammad ni mtumishi na mtume wake, aliyetumwa na Mungu kwa binadamu wote."
-        }
+        },
+        "verified_by": "developer_review",
+        "verified_date": "2026-07-10"
       },
       "note": {
         "ar": "ملاحظة: تأكّد من ضبط النص العربي ونطقه من مصدر معتمد قبل الإطلاق.",
