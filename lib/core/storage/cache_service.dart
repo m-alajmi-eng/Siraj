@@ -52,6 +52,23 @@ class CacheService {
     return {'surahId': surah, 'ayahNumber': ayah ?? 1};
   }
 
+  /// آخر موقع جغرافي معروف (لحساب الصلاة/القبلة بسرعة بلا انتظار
+  /// GPS جديد في كل فتح للتطبيق). يُحدَّث بهدوء بالخلفية عند توفر
+  /// موقع أحدث، ويُستخدم فوراً كعرض أولي سريع. لا يُشارك خارجياً.
+  static Future<void> saveLastLocation(double lat, double lng) async {
+    final box = Hive.box(_settingsBox);
+    await box.put('last_lat', lat);
+    await box.put('last_lng', lng);
+  }
+
+  static Map<String, double>? getLastLocation() {
+    final box = Hive.box(_settingsBox);
+    final lat = box.get('last_lat') as double?;
+    final lng = box.get('last_lng') as double?;
+    if (lat == null || lng == null) return null;
+    return {'lat': lat, 'lng': lng};
+  }
+
   /// موضع القراءة الموحّد (المرحلة 6 من KHATMAH_DESIGN.md): يسجّل
   /// آخر سياق نشط بغضّ النظر عن نوعه (سورة/صفحة/صفحة ضمن ختمة)،
   /// لتوجيه "متابعة القراءة" من أي نقطة دخول للمكان الصحيح تماماً.
