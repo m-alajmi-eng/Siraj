@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/storage/cache_service.dart';
 import '../../domain/entities/khatmah_plan.dart';
+import '../../data/services/khatmah_reminder_service.dart';
 
 /// يدير قائمة خطط الختمة (تحميل، إضافة، تحديث، حذف) مع التخزين المحلي.
 class KhatmahNotifier extends Notifier<List<KhatmahPlan>> {
@@ -22,6 +23,7 @@ class KhatmahNotifier extends Notifier<List<KhatmahPlan>> {
   Future<void> addPlan(KhatmahPlan plan) async {
     state = [...state, plan];
     await _persist();
+    await _syncReminder(plan);
   }
 
   Future<void> updatePlan(KhatmahPlan updated) async {
@@ -29,11 +31,25 @@ class KhatmahNotifier extends Notifier<List<KhatmahPlan>> {
       for (final p in state) p.id == updated.id ? updated : p,
     ];
     await _persist();
+    await _syncReminder(updated);
   }
 
   Future<void> deletePlan(String id) async {
     state = state.where((p) => p.id != id).toList();
     await _persist();
+    await KhatmahReminderService.cancelForPlan(id);
+  }
+
+  /// يزامن تذكير الإشعار المحلي مع حالة الخطة الحالية (يُلغى تلقائياً
+  /// إن كانت غير نشطة/مكتملة/بلا وقت تذكير - منطق ذلك داخل الخدمة).
+  /// ملاحظة: النصوص ثابتة بالعربية مؤقتاً (Notifier لا يملك
+  /// BuildContext) - تحسين مستقبلي: تمرير اللغة الحالية عند الاستدعاء.
+  Future<void> _syncReminder(KhatmahPlan plan) async {
+    await KhatmahReminderService.scheduleForPlan(
+      plan,
+      titlePrefix: 'وِردك اليوم من',
+      bodyTemplate: 'حان وقت قراءة {pages} صفحة من ختمتك اليوم',
+    );
   }
 
   /// يسجّل وصول المستخدم لصفحة معيّنة (يحدّث currentPage + dailyLog).
