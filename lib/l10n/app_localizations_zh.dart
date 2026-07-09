@@ -1004,4 +1004,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get khatmah_progress => '进度';
+
+  @override
+  String khatmah_share_text(Object day, Object name, Object percent) {
+    return '我正在进行$name的第$day天，已完成$percent%。愿真主使我们成为古兰经的人 🤲';
+  }
 }

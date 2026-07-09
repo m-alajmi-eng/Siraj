@@ -384,5 +384,6 @@
   "khatmah_page": "Halaman",
   "khatmah_day_of": "Hari {current} daripada {total}",
   "khatmah_delete_confirm": "Padam khatam ini?",
-  "khatmah_progress": "Kemajuan"
+  "khatmah_progress": "Kemajuan",
+  "khatmah_share_text": "Saya pada hari ke-{day} Khatmah {name}, {percent}% selesai. Semoga Allah menjadikan kita ahli Al-Quran 🤲"
 }

@@ -1010,4 +1010,9 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get khatmah_progress => 'Ci gaba';
+
+  @override
+  String khatmah_share_text(Object day, Object name, Object percent) {
+    return 'Ina kwana $day na Khatmah $name, an kammala $percent%. Allah Ya sanya mu daga cikin mutanen Alqur\'ani 🤲';
+  }
 }

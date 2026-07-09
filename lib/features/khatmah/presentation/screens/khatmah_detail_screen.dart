@@ -6,6 +6,7 @@ import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/khatmah_plan.dart';
 import '../providers/khatmah_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 /// شاشة تفاصيل ختمة واحدة: شريط تقدّم + ورد اليوم + حالة + زر متابعة.
 /// المرحلة 4 من KHATMAH_DESIGN.md.
@@ -41,6 +42,12 @@ class KhatmahDetailScreen extends ConsumerWidget {
           onPressed: () => context.pop(),
         ),
         title: Text(plan.name, style: TextStyle(color: palette.textPrimary)),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.share_outlined, color: palette.textPrimary),
+            onPressed: () => _shareProgress(plan, t),
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -59,6 +66,16 @@ class KhatmahDetailScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// يشارك نص تقدّم الختمة الحالي عبر مشاركة النظام (المرحلة 7).
+void _shareProgress(KhatmahPlan plan, AppLocalizations t) {
+  final text = t.khatmah_share_text(
+    plan.currentDayNumber.clamp(1, plan.totalDays),
+    plan.name,
+    (plan.progress * 100).round(),
+  );
+  SharePlus.instance.share(ShareParams(text: text));
 }
 
 /// بطاقة شريط التقدّم الكبير: نسبة مئوية + صفحات مكتملة/إجمالي.

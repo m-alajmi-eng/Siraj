@@ -384,5 +384,6 @@
   "khatmah_page": "Страница",
   "khatmah_day_of": "День {current} из {total}",
   "khatmah_delete_confirm": "Удалить эту хатму?",
-  "khatmah_progress": "Прогресс"
+  "khatmah_progress": "Прогресс",
+  "khatmah_share_text": "Я на {day} дне моей Хатмы {name}, завершено {percent}%. Пусть Аллах сделает нас людьми Корана 🤲"
 }

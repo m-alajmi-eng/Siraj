@@ -384,5 +384,6 @@
   "khatmah_page": "صفحه",
   "khatmah_day_of": "روز {current} از {total}",
   "khatmah_delete_confirm": "این ختم حذف شود؟",
-  "khatmah_progress": "پیشرفت"
+  "khatmah_progress": "پیشرفت",
+  "khatmah_share_text": "من در روز {day} از ختمه {name} هستم، {percent}% کامل شده. خداوند ما را از اهل قرآن قرار دهد 🤲"
 }

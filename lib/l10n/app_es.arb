@@ -360,5 +360,6 @@
   "khatmah_page": "Página",
   "khatmah_day_of": "Día {current} de {total}",
   "khatmah_delete_confirm": "¿Eliminar esta jatma?",
-  "khatmah_progress": "Progreso"
+  "khatmah_progress": "Progreso",
+  "khatmah_share_text": "Estoy en el día {day} de mi Khatmah {name}, {percent}% completado. Que Alá nos haga de la gente del Corán 🤲"
 }

@@ -384,5 +384,6 @@
   "khatmah_page": "Shafi",
   "khatmah_day_of": "Rana {current} daga {total}",
   "khatmah_delete_confirm": "A goge wannan khatma?",
-  "khatmah_progress": "Ci gaba"
+  "khatmah_progress": "Ci gaba",
+  "khatmah_share_text": "Ina kwana {day} na Khatmah {name}, an kammala {percent}%. Allah Ya sanya mu daga cikin mutanen Alqur'ani 🤲"
 }

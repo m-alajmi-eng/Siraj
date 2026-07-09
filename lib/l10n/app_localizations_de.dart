@@ -1010,4 +1010,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get khatmah_progress => 'Fortschritt';
+
+  @override
+  String khatmah_share_text(Object day, Object name, Object percent) {
+    return 'Ich bin an Tag $day meiner $name Khatmah, $percent% abgeschlossen. Möge Allah uns zu den Leuten des Korans machen 🤲';
+  }
 }

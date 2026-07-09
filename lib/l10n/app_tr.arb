@@ -384,5 +384,6 @@
   "khatmah_page": "Sayfa",
   "khatmah_day_of": "{total} günden {current}. gün",
   "khatmah_delete_confirm": "Bu hatim silinsin mi?",
-  "khatmah_progress": "İlerleme"
+  "khatmah_progress": "İlerleme",
+  "khatmah_share_text": "{name} Hatmimin {day}. gündeyim, %{percent} tamamlandı. Allah bizi Kuran ehlinden eylesin 🤲"
 }

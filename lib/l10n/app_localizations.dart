@@ -2037,6 +2037,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'التقدّم'**
   String get khatmah_progress;
+
+  /// No description provided for @khatmah_share_text.
+  ///
+  /// In ar, this message translates to:
+  /// **'أنا في يومي {day} من ختمة {name}، أكملت {percent}% حتى الآن. اللهم اجعلنا من أهل القرآن 🤲'**
+  String khatmah_share_text(Object day, Object name, Object percent);
 }
 
 class _AppLocalizationsDelegate

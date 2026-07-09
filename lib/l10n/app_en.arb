@@ -453,5 +453,6 @@
   "khatmah_page": "Page",
   "khatmah_day_of": "Day {current} of {total}",
   "khatmah_delete_confirm": "Delete this khatmah?",
-  "khatmah_progress": "Progress"
+  "khatmah_progress": "Progress",
+  "khatmah_share_text": "I'm on day {day} of my {name} Khatmah, {percent}% complete. May Allah make us among the people of the Quran 🤲"
 }
