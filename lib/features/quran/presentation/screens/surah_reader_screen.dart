@@ -29,7 +29,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
   @override
   void initState() {
     super.initState();
-    CacheService.saveReadingPosition(widget.surahId, 1);
+    CacheService.saveLastReadingContext(type: 'surah', surahId: widget.surahId, ayahNumber: 1);
     _mushafMode = CacheService.getSetting('mushaf_mode', defaultValue: true) as bool;
     _tajweedEnabled = CacheService.getSetting('tajweed_enabled', defaultValue: false) as bool;
   }
@@ -127,7 +127,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
         if (didPop) {
           ref.read(audioProvider.notifier).stopAudio();
           if (audioState.currentAyahId != null) {
-            CacheService.saveReadingPosition(widget.surahId, audioState.currentAyahId!);
+            CacheService.saveLastReadingContext(type: 'surah', surahId: widget.surahId, ayahNumber: audioState.currentAyahId!);
           }
         }
       },
@@ -145,8 +145,10 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                       onPressed: () {
                         ref.read(audioProvider.notifier).stopAudio();
                         if (audioState.currentAyahId != null) {
-                          CacheService.saveReadingPosition(
-                            widget.surahId, audioState.currentAyahId!);
+                          CacheService.saveLastReadingContext(
+                              type: 'surah',
+                              surahId: widget.surahId,
+                              ayahNumber: audioState.currentAyahId!);
                         }
                         Navigator.pop(context);
                       },

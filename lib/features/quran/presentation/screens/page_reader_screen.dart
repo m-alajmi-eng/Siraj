@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quran_library/quran_library.dart';
 import '../../../khatmah/presentation/providers/khatmah_provider.dart';
+import '../../../../core/storage/cache_service.dart';
 
 /// وضع "المصحف المطبوع": تطابق حرفي لمصحف المدينة (604 صفحة) عبر
 /// حزمة quran_library. شريط تنقّل مؤقت وبسيط (سيُستبدل بتصميم كامل
@@ -31,6 +32,7 @@ class _PageReaderScreenState extends ConsumerState<PageReaderScreen> {
     final target = page.clamp(1, _totalPages);
     setState(() => _currentPage = target);
     _recordKhatmahProgressIfNeeded(target);
+    _saveUnifiedPosition(target);
   }
 
   /// إن كانت الشاشة مفتوحة ضمن سياق ختمة، نسجّل الصفحة الحالية
@@ -39,6 +41,17 @@ class _PageReaderScreenState extends ConsumerState<PageReaderScreen> {
     final khatmahId = widget.khatmahId;
     if (khatmahId == null) return;
     ref.read(khatmahProvider.notifier).recordProgress(khatmahId, page);
+  }
+
+  /// يسجّل هذه الصفحة كموضع القراءة الموحّد الحالي (المرحلة 6):
+  /// نوع السياق يعكس هل نحن ضمن ختمة أم تصفّح صفحات حر.
+  void _saveUnifiedPosition(int page) {
+    final khatmahId = widget.khatmahId;
+    CacheService.saveLastReadingContext(
+      type: khatmahId != null ? 'khatmah_page' : 'page',
+      page: page,
+      khatmahId: khatmahId,
+    );
   }
 
   @override
@@ -73,6 +86,7 @@ class _PageReaderScreenState extends ConsumerState<PageReaderScreen> {
                 onPageChanged: (page) {
                   setState(() => _currentPage = page);
                   _recordKhatmahProgressIfNeeded(page);
+                  _saveUnifiedPosition(page);
                 },
               ),
             ),

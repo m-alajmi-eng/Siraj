@@ -30,9 +30,7 @@ class HomeScreen extends ConsumerWidget {
     final t           = AppLocalizations.of(context);
     final prayerAsync = ref.watch(prayerTimesProvider);
     final hijriDate   = ref.watch(hijriTodayProvider);
-    final readingPos  = CacheService.getReadingPosition();
-    final lastSurahId = readingPos?['surahId'];
-    final lastAyahNum = readingPos?['ayahNumber'];
+    final lastContext = CacheService.getLastReadingContext();
     final now         = DateTime.now();
     final h           = now.hour;
     final skyColors   = SirajSky.gradientColors(SirajSky.fromHour(h));
@@ -70,12 +68,8 @@ class HomeScreen extends ConsumerWidget {
                     data:    (times) => _NextPrayerCard(times: times),
                   ),
                   const SizedBox(height: SirajSpacing.s3),
-                  if (lastSurahId != null) ...[
-                    _ContinueReading(
-                      surahId:    lastSurahId,
-                      ayahNumber: lastAyahNum ?? 1,
-                      onTap: () => context.push('/quran/surah/$lastSurahId'),
-                    ),
+                  if (lastContext != null) ...[
+                    _buildContinueReadingCard(context, t, lastContext),
                     const SizedBox(height: SirajSpacing.s3),
                   ],
                   const _DailyAyah(),
@@ -247,13 +241,56 @@ class _NextPrayerCard extends StatelessWidget {
   }
 }
 
+/// يبني بطاقة "متابعة القراءة" المناسبة حسب نوع آخر سياق قراءة
+/// (المرحلة 6 من KHATMAH_DESIGN.md): سورة عادية، صفحة مصحف حرة،
+/// أو صفحة ضمن ختمة - كل نوع نص ووجهة مختلفة.
+Widget _buildContinueReadingCard(
+  BuildContext context,
+  AppLocalizations t,
+  Map<String, dynamic> ctx,
+) {
+  final type = ctx['type'] as String?;
+
+  switch (type) {
+    case 'khatmah_page':
+      final page = ctx['page'] as int?;
+      final khatmahId = ctx['khatmahId'] as String?;
+      if (page == null || khatmahId == null) return const SizedBox();
+      return _ContinueReading(
+        primaryLine: t.khatmah_page + ' $page',
+        secondaryLine: t.khatmah_title,
+        onTap: () => context.push('/khatmah/detail/$khatmahId'),
+      );
+
+    case 'page':
+      final page = ctx['page'] as int?;
+      if (page == null) return const SizedBox();
+      return _ContinueReading(
+        primaryLine: t.khatmah_page + ' $page',
+        secondaryLine: '',
+        onTap: () => context.push('/page-reader?page=$page'),
+      );
+
+    case 'surah':
+    default:
+      final surahId = ctx['surahId'] as int?;
+      final ayahNumber = ctx['ayahNumber'] as int? ?? 1;
+      if (surahId == null) return const SizedBox();
+      return _ContinueReading(
+        primaryLine: t.home_surah(surahId),
+        secondaryLine: t.home_ayah(ayahNumber),
+        onTap: () => context.push('/quran/surah/$surahId'),
+      );
+  }
+}
+
 class _ContinueReading extends StatelessWidget {
-  final int surahId;
-  final int ayahNumber;
+  final String primaryLine;
+  final String secondaryLine;
   final VoidCallback onTap;
   const _ContinueReading({
-    required this.surahId,
-    required this.ayahNumber,
+    required this.primaryLine,
+    required this.secondaryLine,
     required this.onTap,
   });
 
@@ -286,9 +323,9 @@ class _ContinueReading extends StatelessWidget {
                   Text(t.home_continueReading, style: AppText.label.copyWith(
                     fontSize: SirajSizes.s2xs, letterSpacing: 2.8)),
                   const SizedBox(height: 3),
-                  Text(t.home_surah(surahId), style: AppText.body),
+                  Text(primaryLine, style: AppText.body),
                   const SizedBox(height: 2),
-                  Text(t.home_ayah(ayahNumber), style: AppText.caption),
+                  Text(secondaryLine, style: AppText.caption),
                 ],          ),
             ),
             const Icon(Icons.chevron_left, color: SirajWhite.w40, size: 18),
