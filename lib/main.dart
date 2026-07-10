@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -46,7 +47,16 @@ Future<void> main() async {
     await AdhanService.init();
   }
 
-  runApp(const ProviderScope(child: SirajApp()));
+  // مراقبة الأعطال عبر Sentry (مجاني، مستقل عن Firebase تماماً)
+  await SentryFlutter.init(
+    (options) {
+      options.dsn =
+          'https://795e91c7bb4515d11239d0c5e3f4b0e6@o4511711586615296.ingest.de.sentry.io/4511711604310096';
+      // نسبة تتبع الأداء منخفضة عمداً لمشروع خيري (توفير الحصة المجانية)
+      options.tracesSampleRate = 0.1;
+    },
+    appRunner: () => runApp(const ProviderScope(child: SirajApp())),
+  );
 }
 
 class SirajApp extends ConsumerWidget {

@@ -36,6 +36,7 @@ dependencies:
   quran_library: ^4.2.1
   timezone: ^0.10.1
   share_plus: ^13.2.0
+  sentry_flutter: ^8.14.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
