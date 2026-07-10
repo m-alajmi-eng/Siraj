@@ -11,6 +11,7 @@ import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/stories/presentation/screens/stories_screen.dart';
 import '../../features/stories/presentation/screens/children_stories_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
+import '../../features/auth/presentation/screens/auth_screen.dart';
 import '../../features/prayer/presentation/screens/prayer_screen.dart';
 import '../../features/quran/presentation/screens/quran_home_screen.dart';
 import '../../features/quran/presentation/screens/surah_reader_screen.dart';
@@ -181,6 +182,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
      GoRoute(
        path:    '/onboarding',
        builder: (_, __) => const OnboardingScreen(),
+     ),
+
+     // ── Auth ──
+     GoRoute(
+       path: '/auth',
+       builder: (_, __) => const AuthScreen(),
      ),
 
      // ── Main Shell ──

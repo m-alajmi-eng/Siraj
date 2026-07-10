@@ -1013,4 +1013,64 @@ class AppLocalizationsAr extends AppLocalizations {
   String khatmah_share_text(Object day, Object name, Object percent) {
     return 'أنا في يومي $day من ختمة $name، أكملت $percent% حتى الآن. اللهم اجعلنا من أهل القرآن 🤲';
   }
+
+  @override
+  String get auth_welcome_title => 'أهلاً بك في سراج';
+
+  @override
+  String get auth_welcome_subtitle =>
+      'سجّل الدخول لمزامنة تقدمك عبر أجهزتك، أو تابع كضيف';
+
+  @override
+  String get auth_email_hint => 'بريدك الإلكتروني';
+
+  @override
+  String get auth_send_magic_link => 'أرسل رابط الدخول';
+
+  @override
+  String get auth_magic_link_sent =>
+      'أرسلنا رابط الدخول إلى بريدك. تحقق منه لإكمال الدخول';
+
+  @override
+  String get auth_or => 'أو';
+
+  @override
+  String get auth_continue_google => 'المتابعة عبر Google';
+
+  @override
+  String get auth_continue_apple => 'المتابعة عبر Apple';
+
+  @override
+  String get auth_continue_guest => 'المتابعة كضيف';
+
+  @override
+  String get auth_guest_note => 'يمكنك استخدام كل ميزات سراج فوراً بلا تسجيل';
+
+  @override
+  String get auth_invalid_email => 'يرجى إدخال بريد إلكتروني صحيح';
+
+  @override
+  String get auth_error_generic => 'حدث خطأ ما. حاول مرة أخرى';
+
+  @override
+  String get auth_sign_out => 'تسجيل الخروج';
+
+  @override
+  String get auth_delete_account => 'حذف الحساب';
+
+  @override
+  String get auth_delete_account_confirm =>
+      'سيُحذف حسابك وكل بياناته نهائياً. هذا الإجراء لا يمكن التراجع عنه.';
+
+  @override
+  String get auth_delete_account_success => 'تم حذف حسابك بنجاح';
+
+  @override
+  String get auth_account_settings => 'الحساب';
+
+  @override
+  String get auth_signed_in_as => 'مسجَّل الدخول باسم';
+
+  @override
+  String get auth_guest_account => 'حساب ضيف';
 }

@@ -2043,6 +2043,120 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'أنا في يومي {day} من ختمة {name}، أكملت {percent}% حتى الآن. اللهم اجعلنا من أهل القرآن 🤲'**
   String khatmah_share_text(Object day, Object name, Object percent);
+
+  /// No description provided for @auth_welcome_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'أهلاً بك في سراج'**
+  String get auth_welcome_title;
+
+  /// No description provided for @auth_welcome_subtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'سجّل الدخول لمزامنة تقدمك عبر أجهزتك، أو تابع كضيف'**
+  String get auth_welcome_subtitle;
+
+  /// No description provided for @auth_email_hint.
+  ///
+  /// In ar, this message translates to:
+  /// **'بريدك الإلكتروني'**
+  String get auth_email_hint;
+
+  /// No description provided for @auth_send_magic_link.
+  ///
+  /// In ar, this message translates to:
+  /// **'أرسل رابط الدخول'**
+  String get auth_send_magic_link;
+
+  /// No description provided for @auth_magic_link_sent.
+  ///
+  /// In ar, this message translates to:
+  /// **'أرسلنا رابط الدخول إلى بريدك. تحقق منه لإكمال الدخول'**
+  String get auth_magic_link_sent;
+
+  /// No description provided for @auth_or.
+  ///
+  /// In ar, this message translates to:
+  /// **'أو'**
+  String get auth_or;
+
+  /// No description provided for @auth_continue_google.
+  ///
+  /// In ar, this message translates to:
+  /// **'المتابعة عبر Google'**
+  String get auth_continue_google;
+
+  /// No description provided for @auth_continue_apple.
+  ///
+  /// In ar, this message translates to:
+  /// **'المتابعة عبر Apple'**
+  String get auth_continue_apple;
+
+  /// No description provided for @auth_continue_guest.
+  ///
+  /// In ar, this message translates to:
+  /// **'المتابعة كضيف'**
+  String get auth_continue_guest;
+
+  /// No description provided for @auth_guest_note.
+  ///
+  /// In ar, this message translates to:
+  /// **'يمكنك استخدام كل ميزات سراج فوراً بلا تسجيل'**
+  String get auth_guest_note;
+
+  /// No description provided for @auth_invalid_email.
+  ///
+  /// In ar, this message translates to:
+  /// **'يرجى إدخال بريد إلكتروني صحيح'**
+  String get auth_invalid_email;
+
+  /// No description provided for @auth_error_generic.
+  ///
+  /// In ar, this message translates to:
+  /// **'حدث خطأ ما. حاول مرة أخرى'**
+  String get auth_error_generic;
+
+  /// No description provided for @auth_sign_out.
+  ///
+  /// In ar, this message translates to:
+  /// **'تسجيل الخروج'**
+  String get auth_sign_out;
+
+  /// No description provided for @auth_delete_account.
+  ///
+  /// In ar, this message translates to:
+  /// **'حذف الحساب'**
+  String get auth_delete_account;
+
+  /// No description provided for @auth_delete_account_confirm.
+  ///
+  /// In ar, this message translates to:
+  /// **'سيُحذف حسابك وكل بياناته نهائياً. هذا الإجراء لا يمكن التراجع عنه.'**
+  String get auth_delete_account_confirm;
+
+  /// No description provided for @auth_delete_account_success.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم حذف حسابك بنجاح'**
+  String get auth_delete_account_success;
+
+  /// No description provided for @auth_account_settings.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحساب'**
+  String get auth_account_settings;
+
+  /// No description provided for @auth_signed_in_as.
+  ///
+  /// In ar, this message translates to:
+  /// **'مسجَّل الدخول باسم'**
+  String get auth_signed_in_as;
+
+  /// No description provided for @auth_guest_account.
+  ///
+  /// In ar, this message translates to:
+  /// **'حساب ضيف'**
+  String get auth_guest_account;
 }
 
 class _AppLocalizationsDelegate

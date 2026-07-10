@@ -1014,4 +1014,66 @@ class AppLocalizationsEn extends AppLocalizations {
   String khatmah_share_text(Object day, Object name, Object percent) {
     return 'I\'m on day $day of my $name Khatmah, $percent% complete. May Allah make us among the people of the Quran 🤲';
   }
+
+  @override
+  String get auth_welcome_title => 'Welcome to Siraj';
+
+  @override
+  String get auth_welcome_subtitle =>
+      'Sign in to sync your progress across devices, or continue as guest';
+
+  @override
+  String get auth_email_hint => 'Your email address';
+
+  @override
+  String get auth_send_magic_link => 'Send sign-in link';
+
+  @override
+  String get auth_magic_link_sent =>
+      'We sent a sign-in link to your email. Check it to complete sign-in';
+
+  @override
+  String get auth_or => 'or';
+
+  @override
+  String get auth_continue_google => 'Continue with Google';
+
+  @override
+  String get auth_continue_apple => 'Continue with Apple';
+
+  @override
+  String get auth_continue_guest => 'Continue as guest';
+
+  @override
+  String get auth_guest_note =>
+      'You can use all Siraj features instantly without signing in';
+
+  @override
+  String get auth_invalid_email => 'Please enter a valid email address';
+
+  @override
+  String get auth_error_generic => 'Something went wrong. Please try again';
+
+  @override
+  String get auth_sign_out => 'Sign out';
+
+  @override
+  String get auth_delete_account => 'Delete account';
+
+  @override
+  String get auth_delete_account_confirm =>
+      'Your account and all its data will be permanently deleted. This cannot be undone.';
+
+  @override
+  String get auth_delete_account_success =>
+      'Your account has been deleted successfully';
+
+  @override
+  String get auth_account_settings => 'Account';
+
+  @override
+  String get auth_signed_in_as => 'Signed in as';
+
+  @override
+  String get auth_guest_account => 'Guest account';
 }
