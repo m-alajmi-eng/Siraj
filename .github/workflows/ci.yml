@@ -26,16 +26,17 @@ jobs:
       - name: Generate localizations
         run: flutter gen-l10n
 
-      - name: Analyze code
+      - name: Analyze code (fail only on real errors)
         run: |
-          flutter analyze --no-fatal-infos --no-fatal-warnings || true
-          # نتحقق فقط من عدم وجود 'error' حقيقي، بنفس منهجنا المحلي طوال المشروع
-          if flutter analyze 2>&1 | grep -q "error •"; then
-            echo "توجد أخطاء حقيقية (error) - إيقاف"
-            flutter analyze 2>&1 | grep "error •"
+          set +e
+          OUTPUT=$(flutter analyze 2>&1)
+          echo "$OUTPUT"
+          if echo "$OUTPUT" | grep -q "error •"; then
+            echo "Real errors found - failing build"
             exit 1
           fi
-          echo "لا توجد أخطاء حقيقية - نجاح (تحذيرات/معلومات مقبولة)
+          echo "No real errors - success (warnings/info are acceptable)"
+          exit 0
 
       - name: Run tests
         run: flutter test
