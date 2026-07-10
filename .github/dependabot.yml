@@ -1,0 +1,14 @@
+version: 2
+updates:
+  # فحص تبعيات Flutter/Dart (pubspec.yaml) أسبوعياً
+  - package-ecosystem: "pub"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  # فحص إجراءات GitHub Actions نفسها (عند إضافتها لاحقاً) أسبوعياً
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
