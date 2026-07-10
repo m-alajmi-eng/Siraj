@@ -12,6 +12,8 @@ import '../../features/stories/presentation/screens/stories_screen.dart';
 import '../../features/stories/presentation/screens/children_stories_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/auth/presentation/screens/auth_screen.dart';
+import '../../features/language/presentation/screens/language_select_screen.dart';
+import '../../features/auth/presentation/screens/account_screen.dart';
 import '../../features/prayer/presentation/screens/prayer_screen.dart';
 import '../../features/quran/presentation/screens/quran_home_screen.dart';
 import '../../features/quran/presentation/screens/surah_reader_screen.dart';
@@ -170,13 +172,22 @@ const _categoryNames = {
 
 // ─── Router ───────────────────────────────────────────────
 final appRouterProvider = Provider<GoRouter>((ref) {
- final box        = Hive.box('settings');
- final isDone     = box.get('onboarding_done', defaultValue: false);
- final initialLoc = isDone ? '/home' : '/onboarding';
+ final box          = Hive.box('settings');
+ final isDone       = box.get('onboarding_done', defaultValue: false);
+ final localeChosen = box.get('locale_chosen', defaultValue: false);
+ final initialLoc = !localeChosen
+     ? '/language'
+     : (isDone ? '/home' : '/onboarding');
 
  return GoRouter(
    initialLocation: initialLoc,
    routes: [
+
+     // ── Language Selection ──
+     GoRoute(
+       path: '/language',
+       builder: (_, __) => const LanguageSelectScreen(),
+     ),
 
      // ── Onboarding ──
      GoRoute(
@@ -188,6 +199,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
      GoRoute(
        path: '/auth',
        builder: (_, __) => const AuthScreen(),
+     ),
+     GoRoute(
+       path: '/account',
+       builder: (_, __) => const AccountScreen(),
      ),
 
      // ── Main Shell ──
