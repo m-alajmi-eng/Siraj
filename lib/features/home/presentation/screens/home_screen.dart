@@ -13,6 +13,8 @@ import '../../../prayer/presentation/providers/prayer_provider.dart';
 import '../../../calendar/presentation/providers/calendar_provider.dart';
 import '../../../../core/mode/app_mode.dart';
 import '../../../../core/mode/app_mode_provider.dart';
+import '../../../../core/mode/feature_flags.dart';
+import '../../../../core/mode/enabled_sections_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -443,23 +445,27 @@ class _DailyAyah extends ConsumerWidget {
   }
 }
 
-class _QuickActions extends StatelessWidget {
+class _QuickActions extends ConsumerWidget {
   const _QuickActions();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = AppLocalizations.of(context);
-    final actions = [
-      (Icons.menu_book_rounded,    t.nav_quran,           '/quran',                 false),
-      (Icons.self_improvement,     t.nav_athkar,          '/athkar',                false),
-      (Icons.local_library_outlined, t.nav_library,       '/library',               false),
-      (Icons.explore_outlined,     t.home_qiblaDirection, '/more/qibla',            true),
-      (Icons.radio,                t.home_radio,          '/more/radio',            true),
-      (Icons.calendar_month,       t.home_calendar,       '/more/calendar',         true),
-      (Icons.auto_stories,         t.home_stories,        '/more/stories',          true),
-      (Icons.child_care,           t.home_children,       '/more/children_stories', true),
-    (Icons.mosque_outlined,  t.gateway_entry_title,       '/gateway', true),
+    final mode = ref.watch(appModeProvider);
+    final enabled = ref.watch(enabledSectionsProvider);
+    final flags = FeatureFlags(mode, enabledSections: enabled);
+    final allActions = [
+      (Icons.menu_book_rounded,    t.nav_quran,           '/quran',                 false, flags.showQuranReader),
+      (Icons.self_improvement,     t.nav_athkar,          '/athkar',                false, flags.showAthkar),
+      (Icons.local_library_outlined, t.nav_library,       '/library',               false, flags.showLibrary),
+      (Icons.explore_outlined,     t.home_qiblaDirection, '/more/qibla',            true,  flags.showQibla),
+      (Icons.radio,                t.home_radio,          '/more/radio',            true,  flags.showRadio),
+      (Icons.calendar_month,       t.home_calendar,       '/more/calendar',         true,  flags.showCalendar),
+      (Icons.auto_stories,         t.home_stories,        '/more/stories',          true,  flags.showStories),
+      (Icons.child_care,           t.home_children,       '/more/children_stories', true,  flags.showChildrenStories),
+      (Icons.mosque_outlined,  t.gateway_entry_title,     '/gateway', true, flags.showGateway),
     ];
+    final actions = allActions.where((a) => a.$5).toList();
 
     return GridView.builder(
       shrinkWrap: true,
@@ -472,7 +478,7 @@ class _QuickActions extends StatelessWidget {
       ),
       itemCount: actions.length,
       itemBuilder: (_, i) {
-        final (icon, label, route, isPush) = actions[i];
+        final (icon, label, route, isPush, _) = actions[i];
         return GestureDetector(
           onTap: () => isPush ? context.push(route) : context.go(route),
           child: GlassCard(

@@ -2295,6 +2295,24 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'بطاقات المشاركة'**
   String get section_share_cards;
+
+  /// No description provided for @section_gateway.
+  ///
+  /// In ar, this message translates to:
+  /// **'بوابة التعرف على الإسلام'**
+  String get section_gateway;
+
+  /// No description provided for @section_stories.
+  ///
+  /// In ar, this message translates to:
+  /// **'القصص'**
+  String get section_stories;
+
+  /// No description provided for @section_children_stories.
+  ///
+  /// In ar, this message translates to:
+  /// **'قصص الأطفال'**
+  String get section_children_stories;
 }
 
 class _AppLocalizationsDelegate

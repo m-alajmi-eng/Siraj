@@ -1150,4 +1150,13 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get section_share_cards => 'Share Cards';
+
+  @override
+  String get section_gateway => 'Introduction to Islam';
+
+  @override
+  String get section_stories => 'Stories';
+
+  @override
+  String get section_children_stories => 'Children\'s Stories';
 }

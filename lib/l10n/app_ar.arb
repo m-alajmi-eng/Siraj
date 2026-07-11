@@ -496,5 +496,8 @@
   "section_timeline": "الخط الزمني",
   "section_new_muslim": "حديث الإسلام",
   "section_calendar": "التقويم الهجري",
-  "section_share_cards": "بطاقات المشاركة"
+  "section_share_cards": "بطاقات المشاركة",
+  "section_gateway": "بوابة التعرف على الإسلام",
+  "section_stories": "القصص",
+  "section_children_stories": "قصص الأطفال"
 }

@@ -1145,4 +1145,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get section_share_cards => 'بطاقات المشاركة';
+
+  @override
+  String get section_gateway => 'بوابة التعرف على الإسلام';
+
+  @override
+  String get section_stories => 'القصص';
+
+  @override
+  String get section_children_stories => 'قصص الأطفال';
 }

@@ -55,6 +55,9 @@ class FeatureFlags {
   bool get showNewMuslim   => _section('new_muslim');
   bool get showCalendar    => _section('calendar');
   bool get showShareCards  => _section('share_cards');
+  bool get showGateway     => _section('gateway');
+  bool get showStories     => _section('stories');
+  bool get showChildrenStories => _section('children_stories');
 
   /// كل الأقسام القابلة للتخصيص (لبناء شاشة الإعدادات) — تُعرض في
   /// الوضع الخفيف فقط، فالوضع الكامل لا يحتاج قائمة إطلاقاً.
@@ -78,5 +81,8 @@ class FeatureFlags {
     ('new_muslim', 'section_new_muslim'),
     ('calendar', 'section_calendar'),
     ('share_cards', 'section_share_cards'),
+    ('gateway', 'section_gateway'),
+    ('stories', 'section_stories'),
+    ('children_stories', 'section_children_stories'),
   ];
 }
