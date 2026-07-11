@@ -397,5 +397,22 @@
   "auth_delete_account_success": "Your account has been deleted successfully",
   "auth_account_settings": "Account",
   "auth_signed_in_as": "Signed in as",
-  "auth_guest_account": "Guest account"
+  "auth_guest_account": "Guest account",
+  "sections_customize_title": "Customize Sections",
+  "sections_customize_subtitle": "Choose which sections to show. Local data stays saved when disabled",
+  "sections_full_mode_required": "Enable Full Mode in settings to customize sections",
+  "section_hadith": "Hadith",
+  "section_radio": "Radio",
+  "section_hifz": "Memorization",
+  "section_khatmah": "Khatmah",
+  "section_library": "Library",
+  "section_mosques": "Nearby Mosques",
+  "section_ruqyah": "Ruqyah",
+  "section_dua_journal": "Dua Journal",
+  "section_mihrab": "Mihrab",
+  "section_qke": "Verse Portal",
+  "section_timeline": "Timeline",
+  "section_new_muslim": "New to Islam",
+  "section_calendar": "Hijri Calendar",
+  "section_share_cards": "Share Cards"
 }

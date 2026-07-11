@@ -1073,4 +1073,57 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get auth_guest_account => 'حساب ضيف';
+
+  @override
+  String get sections_customize_title => 'تخصيص الأقسام';
+
+  @override
+  String get sections_customize_subtitle =>
+      'اختر الأقسام التي تريد إظهارها. البيانات المحلية تبقى محفوظة عند الإيقاف';
+
+  @override
+  String get sections_full_mode_required =>
+      'فعّل الوضع الكامل من الإعدادات لتخصيص الأقسام';
+
+  @override
+  String get section_hadith => 'الأحاديث';
+
+  @override
+  String get section_radio => 'الراديو';
+
+  @override
+  String get section_hifz => 'الحفظ';
+
+  @override
+  String get section_khatmah => 'الختمة';
+
+  @override
+  String get section_library => 'المكتبة';
+
+  @override
+  String get section_mosques => 'المساجد القريبة';
+
+  @override
+  String get section_ruqyah => 'الرقية';
+
+  @override
+  String get section_dua_journal => 'سجل الأدعية';
+
+  @override
+  String get section_mihrab => 'المحراب';
+
+  @override
+  String get section_qke => 'بوابة الآيات';
+
+  @override
+  String get section_timeline => 'الخط الزمني';
+
+  @override
+  String get section_new_muslim => 'حديث الإسلام';
+
+  @override
+  String get section_calendar => 'التقويم الهجري';
+
+  @override
+  String get section_share_cards => 'بطاقات المشاركة';
 }

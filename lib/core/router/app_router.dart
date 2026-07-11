@@ -7,6 +7,7 @@ import '../widgets/main_shell.dart';
 import '../mode/app_mode.dart';
 import '../mode/app_mode_provider.dart';
 import '../mode/feature_flags.dart';
+import '../mode/disabled_sections_provider.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/stories/presentation/screens/stories_screen.dart';
 import '../../features/stories/presentation/screens/children_stories_screen.dart';
@@ -14,6 +15,7 @@ import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/auth/presentation/screens/auth_screen.dart';
 import '../../features/language/presentation/screens/language_select_screen.dart';
 import '../../features/auth/presentation/screens/account_screen.dart';
+import '../../features/settings/presentation/screens/customize_sections_screen.dart';
 import '../../features/prayer/presentation/screens/prayer_screen.dart';
 import '../../features/quran/presentation/screens/quran_home_screen.dart';
 import '../../features/quran/presentation/screens/surah_reader_screen.dart';
@@ -51,7 +53,8 @@ class MoreScreen extends ConsumerWidget {
  Widget build(BuildContext context, WidgetRef ref) {
    final t     = AppLocalizations.of(context);
    final mode  = ref.watch(appModeProvider);
-   final flags = FeatureFlags(mode);
+   final disabled = ref.watch(disabledSectionsProvider);
+   final flags = FeatureFlags(mode, disabledSections: disabled);
 
    return Scaffold(
      body: SafeArea(
@@ -203,6 +206,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
      GoRoute(
        path: '/account',
        builder: (_, __) => const AccountScreen(),
+     ),
+     GoRoute(
+       path: '/customize-sections',
+       builder: (_, __) => const CustomizeSectionsScreen(),
      ),
 
      // ── Main Shell ──

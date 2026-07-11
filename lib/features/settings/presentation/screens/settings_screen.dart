@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/locale/locale_provider.dart';
@@ -342,6 +343,29 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               ],
             ),
           ),
+          if (mode == AppMode.full) ...[
+            const SizedBox(height: SirajSpacing.s3),
+            GestureDetector(
+              onTap: () => context.push('/customize-sections'),
+              child: Container(
+                padding: const EdgeInsets.all(SirajSpacing.s4),
+                decoration: BoxDecoration(
+                  color: palette.surface,
+                  borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.chevron_left, color: palette.textSecondary),
+                    Text(t.sections_customize_title,
+                        style: AppText.body.copyWith(
+                            color: palette.textPrimary,
+                            fontWeight: FontWeight.w500)),
+                  ],
+                ),
+              ),
+            ),
+          ],
 
           _SettingsTile(
             icon: Icons.menu_book,

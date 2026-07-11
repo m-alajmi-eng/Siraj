@@ -2157,6 +2157,108 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'حساب ضيف'**
   String get auth_guest_account;
+
+  /// No description provided for @sections_customize_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'تخصيص الأقسام'**
+  String get sections_customize_title;
+
+  /// No description provided for @sections_customize_subtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر الأقسام التي تريد إظهارها. البيانات المحلية تبقى محفوظة عند الإيقاف'**
+  String get sections_customize_subtitle;
+
+  /// No description provided for @sections_full_mode_required.
+  ///
+  /// In ar, this message translates to:
+  /// **'فعّل الوضع الكامل من الإعدادات لتخصيص الأقسام'**
+  String get sections_full_mode_required;
+
+  /// No description provided for @section_hadith.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأحاديث'**
+  String get section_hadith;
+
+  /// No description provided for @section_radio.
+  ///
+  /// In ar, this message translates to:
+  /// **'الراديو'**
+  String get section_radio;
+
+  /// No description provided for @section_hifz.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحفظ'**
+  String get section_hifz;
+
+  /// No description provided for @section_khatmah.
+  ///
+  /// In ar, this message translates to:
+  /// **'الختمة'**
+  String get section_khatmah;
+
+  /// No description provided for @section_library.
+  ///
+  /// In ar, this message translates to:
+  /// **'المكتبة'**
+  String get section_library;
+
+  /// No description provided for @section_mosques.
+  ///
+  /// In ar, this message translates to:
+  /// **'المساجد القريبة'**
+  String get section_mosques;
+
+  /// No description provided for @section_ruqyah.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرقية'**
+  String get section_ruqyah;
+
+  /// No description provided for @section_dua_journal.
+  ///
+  /// In ar, this message translates to:
+  /// **'سجل الأدعية'**
+  String get section_dua_journal;
+
+  /// No description provided for @section_mihrab.
+  ///
+  /// In ar, this message translates to:
+  /// **'المحراب'**
+  String get section_mihrab;
+
+  /// No description provided for @section_qke.
+  ///
+  /// In ar, this message translates to:
+  /// **'بوابة الآيات'**
+  String get section_qke;
+
+  /// No description provided for @section_timeline.
+  ///
+  /// In ar, this message translates to:
+  /// **'الخط الزمني'**
+  String get section_timeline;
+
+  /// No description provided for @section_new_muslim.
+  ///
+  /// In ar, this message translates to:
+  /// **'حديث الإسلام'**
+  String get section_new_muslim;
+
+  /// No description provided for @section_calendar.
+  ///
+  /// In ar, this message translates to:
+  /// **'التقويم الهجري'**
+  String get section_calendar;
+
+  /// No description provided for @section_share_cards.
+  ///
+  /// In ar, this message translates to:
+  /// **'بطاقات المشاركة'**
+  String get section_share_cards;
 }
 
 class _AppLocalizationsDelegate

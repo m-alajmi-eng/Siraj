@@ -1077,4 +1077,57 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get auth_guest_account => 'Guest account';
+
+  @override
+  String get sections_customize_title => 'Customize Sections';
+
+  @override
+  String get sections_customize_subtitle =>
+      'Choose which sections to show. Local data stays saved when disabled';
+
+  @override
+  String get sections_full_mode_required =>
+      'Enable Full Mode in settings to customize sections';
+
+  @override
+  String get section_hadith => 'Hadith';
+
+  @override
+  String get section_radio => 'Radio';
+
+  @override
+  String get section_hifz => 'Memorization';
+
+  @override
+  String get section_khatmah => 'Khatmah';
+
+  @override
+  String get section_library => 'Library';
+
+  @override
+  String get section_mosques => 'Nearby Mosques';
+
+  @override
+  String get section_ruqyah => 'Ruqyah';
+
+  @override
+  String get section_dua_journal => 'Dua Journal';
+
+  @override
+  String get section_mihrab => 'Mihrab';
+
+  @override
+  String get section_qke => 'Verse Portal';
+
+  @override
+  String get section_timeline => 'Timeline';
+
+  @override
+  String get section_new_muslim => 'New to Islam';
+
+  @override
+  String get section_calendar => 'Hijri Calendar';
+
+  @override
+  String get section_share_cards => 'Share Cards';
 }
