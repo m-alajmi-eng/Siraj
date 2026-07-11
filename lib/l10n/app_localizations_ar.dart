@@ -1086,6 +1086,25 @@ class AppLocalizationsAr extends AppLocalizations {
       'فعّل الوضع الكامل من الإعدادات لتخصيص الأقسام';
 
   @override
+  String get sections_full_mode_notice =>
+      'أنت في الوضع الكامل، وكل أقسام التطبيق مفعَّلة تلقائياً. التخصيص متاح فقط في الوضع الخفيف';
+
+  @override
+  String get section_quran_reader => 'القرآن الكريم';
+
+  @override
+  String get section_adhan => 'الأذان';
+
+  @override
+  String get section_prayer => 'أوقات الصلاة';
+
+  @override
+  String get section_qibla => 'القبلة';
+
+  @override
+  String get section_athkar => 'الأذكار';
+
+  @override
   String get section_hadith => 'الأحاديث';
 
   @override

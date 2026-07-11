@@ -7,7 +7,7 @@ import '../widgets/main_shell.dart';
 import '../mode/app_mode.dart';
 import '../mode/app_mode_provider.dart';
 import '../mode/feature_flags.dart';
-import '../mode/disabled_sections_provider.dart';
+import '../mode/enabled_sections_provider.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/stories/presentation/screens/stories_screen.dart';
 import '../../features/stories/presentation/screens/children_stories_screen.dart';
@@ -53,8 +53,8 @@ class MoreScreen extends ConsumerWidget {
  Widget build(BuildContext context, WidgetRef ref) {
    final t     = AppLocalizations.of(context);
    final mode  = ref.watch(appModeProvider);
-   final disabled = ref.watch(disabledSectionsProvider);
-   final flags = FeatureFlags(mode, disabledSections: disabled);
+   final enabled = ref.watch(enabledSectionsProvider);
+   final flags = FeatureFlags(mode, enabledSections: enabled);
 
    return Scaffold(
      body: SafeArea(
@@ -82,11 +82,13 @@ class MoreScreen extends ConsumerWidget {
              label: t.more_settings,
              onTap: () => context.push('/more/settings'),
            ),
+           if (flags.showCalendar)
            _MoreTile(
              icon:  Icons.calendar_month,
              label: t.more_calendar,
              onTap: () => context.push('/more/calendar'),
            ),
+           if (flags.showQibla)
            _MoreTile(
              icon:  Icons.explore,
              label: t.more_qibla,
@@ -97,11 +99,13 @@ class MoreScreen extends ConsumerWidget {
              label: t.more_stats,
              onTap: () => context.push('/more/stats'),
            ),
+           if (flags.showKhatmah)
            _MoreTile(
              icon:  Icons.menu_book,
              label: t.khatmah_title,
              onTap: () => context.push('/khatmah'),
            ),
+           if (flags.showShareCards)
            _MoreTile(
              icon:  Icons.card_giftcard,
              label: t.more_shareCards,
@@ -112,26 +116,18 @@ class MoreScreen extends ConsumerWidget {
                'type':     'quran',
              }),
            ),
-
-           if (flags.isFull) ...[
-             const Divider(height: 32),
-             const Text(
-               'الوضع الكامل',
-               textAlign: TextAlign.right,
-               style: TextStyle(fontSize: 13, color: Colors.grey),
-             ),
-             const SizedBox(height: 8),
-             _MoreTile(
-               icon:  Icons.radio,
-               label: t.more_radio,
-               onTap: () => context.push('/more/radio'),
-             ),
-             _MoreTile(
-               icon:  Icons.mosque,
-               label: t.more_mosques,
-               onTap: () => context.push('/more/mosques'),
-             ),
-           ],
+           if (flags.showRadio)
+           _MoreTile(
+             icon:  Icons.radio,
+             label: t.more_radio,
+             onTap: () => context.push('/more/radio'),
+           ),
+           if (flags.showMosques)
+           _MoreTile(
+             icon:  Icons.mosque,
+             label: t.more_mosques,
+             onTap: () => context.push('/more/mosques'),
+           ),
          ],
        ),
      ),

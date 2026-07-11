@@ -1,47 +1,69 @@
 import 'app_mode.dart';
 
-/// أعلام الميزات: تجمع بين الوضع العام (خفيف/كامل) وتخصيص المستخدم
-/// الفردي (أقسام عطّلها يدوياً من الإعدادات، حتى في الوضع الكامل).
+/// أعلام الميزات — منطق الوضعين المُصحَّح (يوليو 2026):
 ///
-/// منطق كل قسم من "الوضع الكامل": يظهر فقط إن كان الوضع Full
-/// ولم يُعطّله المستخدم صراحة (disabledSections لا تحويه).
+/// - **الوضع الكامل (Full):** كل الأقسام مفعَّلة دائماً وتلقائياً،
+///   بلا أي قائمة أو قرار من المستخدم.
+/// - **الوضع الخفيف (Lite):** المستخدم يبني قائمته الخاصة يدوياً من
+///   بين *كل* الأقسام الموجودة في التطبيق (بما فيها القرآن والأذان
+///   وأوقات الصلاة أنفسها) — لا نواة مفروضة من المطوّر. الافتراضي
+///   عند أول تفعيل للوضع الخفيف: القرآن + الأذان + أوقات الصلاة فقط
+///   (enabledSections الفارغة تعني هذا الافتراضي، لا "لا شيء").
 class FeatureFlags {
   final AppMode mode;
-  final Set<String> disabledSections;
 
-  const FeatureFlags(this.mode, {this.disabledSections = const {}});
+  /// في الوضع الخفيف فقط: الأقسام التي فعّلها المستخدم صراحة.
+  /// فارغة = لم يخصّص بعد، يُطبَّق الافتراضي (قرآن+أذان+صلاة).
+  final Set<String> enabledSections;
+
+  const FeatureFlags(this.mode, {this.enabledSections = const {}});
 
   bool get isLite => mode == AppMode.lite;
   bool get isFull => mode == AppMode.full;
 
-  bool _fullSection(String id) => isFull && !disabledSections.contains(id);
+  /// الأقسام الافتراضية عند أول دخول للوضع الخفيف (قبل أي تخصيص).
+  static const Set<String> defaultLiteSections = {
+    'quran_reader',
+    'adhan',
+    'prayer',
+  };
 
-  // ─── النواة (تظهر دائماً في كلا الوضعين، لا تعطَّل) ─────
-  bool get showPrayer      => true;
-  bool get showQibla       => true;
-  bool get showAthkar      => true;
-  bool get showQuranReader => true;
-  bool get showAdhan       => true;
+  bool _section(String id) {
+    if (isFull) return true;
+    final effective =
+        enabledSections.isEmpty ? defaultLiteSections : enabledSections;
+    return effective.contains(id);
+  }
 
-  // ─── أقسام الوضع الكامل (قابلة للتخصيص فردياً) ───────────
-  bool get showHadith      => _fullSection('hadith');
-  bool get showRadio       => _fullSection('radio');
-  bool get showHifz        => _fullSection('hifz');
-  bool get showKhatmah     => _fullSection('khatmah');
-  bool get showLibrary     => _fullSection('library');
-  bool get showMosques     => _fullSection('mosques');
-  bool get showRuqyah      => _fullSection('ruqyah');
-  bool get showDuaJournal  => _fullSection('dua_journal');
-  bool get showMihrab      => _fullSection('mihrab');
-  bool get showQKE         => _fullSection('qke');
-  bool get showTimeline    => _fullSection('timeline');
-  bool get showNewMuslim   => _fullSection('new_muslim');
-  bool get showCalendar    => _fullSection('calendar');
-  bool get showShareCards  => _fullSection('share_cards');
+  // ─── كل الأقسام قابلة للتخصيص في الوضع الخفيف الآن ───────
+  bool get showPrayer      => _section('prayer');
+  bool get showQibla       => _section('qibla');
+  bool get showAthkar      => _section('athkar');
+  bool get showQuranReader => _section('quran_reader');
+  bool get showAdhan       => _section('adhan');
+  bool get showHadith      => _section('hadith');
+  bool get showRadio       => _section('radio');
+  bool get showHifz        => _section('hifz');
+  bool get showKhatmah     => _section('khatmah');
+  bool get showLibrary     => _section('library');
+  bool get showMosques     => _section('mosques');
+  bool get showRuqyah      => _section('ruqyah');
+  bool get showDuaJournal  => _section('dua_journal');
+  bool get showMihrab      => _section('mihrab');
+  bool get showQKE         => _section('qke');
+  bool get showTimeline    => _section('timeline');
+  bool get showNewMuslim   => _section('new_muslim');
+  bool get showCalendar    => _section('calendar');
+  bool get showShareCards  => _section('share_cards');
 
-  /// كل الأقسام القابلة للتخصيص (لبناء شاشة الإعدادات) مع تسمية
-  /// معرّف كل قسم + دالة القراءة المطابقة لها.
-  static const List<(String id, String labelKey)> customizableSections = [
+  /// كل الأقسام القابلة للتخصيص (لبناء شاشة الإعدادات) — تُعرض في
+  /// الوضع الخفيف فقط، فالوضع الكامل لا يحتاج قائمة إطلاقاً.
+  static const List<(String id, String labelKey)> allSections = [
+    ('quran_reader', 'section_quran_reader'),
+    ('adhan', 'section_adhan'),
+    ('prayer', 'section_prayer'),
+    ('qibla', 'section_qibla'),
+    ('athkar', 'section_athkar'),
     ('hadith', 'section_hadith'),
     ('radio', 'section_radio'),
     ('hifz', 'section_hifz'),

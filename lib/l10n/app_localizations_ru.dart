@@ -1090,6 +1090,25 @@ class AppLocalizationsRu extends AppLocalizations {
       'Enable Full Mode in settings to customize sections';
 
   @override
+  String get sections_full_mode_notice =>
+      'You\'re in Full Mode, all app sections are enabled automatically. Customization is only available in Lite Mode';
+
+  @override
+  String get section_quran_reader => 'Quran';
+
+  @override
+  String get section_adhan => 'Adhan';
+
+  @override
+  String get section_prayer => 'Prayer Times';
+
+  @override
+  String get section_qibla => 'Qibla';
+
+  @override
+  String get section_athkar => 'Athkar';
+
+  @override
   String get section_hadith => 'Hadith';
 
   @override

@@ -2176,6 +2176,42 @@ abstract class AppLocalizations {
   /// **'فعّل الوضع الكامل من الإعدادات لتخصيص الأقسام'**
   String get sections_full_mode_required;
 
+  /// No description provided for @sections_full_mode_notice.
+  ///
+  /// In ar, this message translates to:
+  /// **'أنت في الوضع الكامل، وكل أقسام التطبيق مفعَّلة تلقائياً. التخصيص متاح فقط في الوضع الخفيف'**
+  String get sections_full_mode_notice;
+
+  /// No description provided for @section_quran_reader.
+  ///
+  /// In ar, this message translates to:
+  /// **'القرآن الكريم'**
+  String get section_quran_reader;
+
+  /// No description provided for @section_adhan.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأذان'**
+  String get section_adhan;
+
+  /// No description provided for @section_prayer.
+  ///
+  /// In ar, this message translates to:
+  /// **'أوقات الصلاة'**
+  String get section_prayer;
+
+  /// No description provided for @section_qibla.
+  ///
+  /// In ar, this message translates to:
+  /// **'القبلة'**
+  String get section_qibla;
+
+  /// No description provided for @section_athkar.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأذكار'**
+  String get section_athkar;
+
   /// No description provided for @section_hadith.
   ///
   /// In ar, this message translates to:

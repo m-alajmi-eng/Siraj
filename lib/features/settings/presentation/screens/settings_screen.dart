@@ -343,7 +343,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               ],
             ),
           ),
-          if (mode == AppMode.full) ...[
+          if (mode == AppMode.lite) ...[
             const SizedBox(height: SirajSpacing.s3),
             GestureDetector(
               onTap: () => context.push('/customize-sections'),

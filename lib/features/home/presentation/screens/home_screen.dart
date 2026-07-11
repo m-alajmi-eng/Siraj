@@ -11,6 +11,8 @@ import '../../../../core/widgets/section_label.dart';
 import '../../../../core/storage/cache_service.dart';
 import '../../../prayer/presentation/providers/prayer_provider.dart';
 import '../../../calendar/presentation/providers/calendar_provider.dart';
+import '../../../../core/mode/app_mode.dart';
+import '../../../../core/mode/app_mode_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -92,6 +94,36 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
+/// أيقونة تبديل الوضع (خفيف/كامل) - ضغطة واحدة بسيطة، بلا نص أو
+/// قائمة (كما في Kindle: التخصيص التفصيلي منفصل في الإعدادات، هنا
+/// فقط تبديل سريع وفوري).
+class _ModeToggleIcon extends ConsumerWidget {
+  const _ModeToggleIcon();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mode = ref.watch(appModeProvider);
+    final isLite = mode == AppMode.lite;
+
+    return GestureDetector(
+      onTap: () => ref.read(appModeProvider.notifier).toggle(),
+      child: Container(
+        width: 40, height: 40,
+        decoration: BoxDecoration(
+          color: SirajWhite.w7,
+          shape: BoxShape.circle,
+          border: Border.all(color: SirajWhite.w10),
+        ),
+        child: Icon(
+          isLite ? Icons.bolt_outlined : Icons.apps_rounded,
+          color: SirajGold.strong,
+          size: 18,
+        ),
+      ),
+    );
+  }
+}
+
 class _Header extends StatelessWidget {
   const _Header();
 
@@ -101,8 +133,12 @@ class _Header extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Stack(
+        Row(
           children: [
+            const _ModeToggleIcon(),
+            const SizedBox(width: SirajSpacing.s2),
+            Stack(
+              children: [
             Container(
               width: 40, height: 40,
               decoration: BoxDecoration(
@@ -123,6 +159,8 @@ class _Header extends StatelessWidget {
                   boxShadow: [BoxShadow(color: SirajGold.muted, blurRadius: 5)],
                 ),
               ),
+            ),
+              ],
             ),
           ],
         ),
