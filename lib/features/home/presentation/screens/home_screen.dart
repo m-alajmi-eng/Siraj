@@ -99,6 +99,28 @@ class HomeScreen extends ConsumerWidget {
 /// أيقونة تبديل الوضع (خفيف/كامل) - ضغطة واحدة بسيطة، بلا نص أو
 /// قائمة (كما في Kindle: التخصيص التفصيلي منفصل في الإعدادات، هنا
 /// فقط تبديل سريع وفوري).
+/// أيقونة بحث بسيطة في الرأس العلوي - بديل عن الزر العائم السابق
+/// الذي بدا غير متناسق. نفس التصميم البصري لـ_ModeToggleIcon.
+class _SearchIcon extends StatelessWidget {
+  const _SearchIcon();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.push('/more/search'),
+      child: Container(
+        width: 40, height: 40,
+        decoration: BoxDecoration(
+          color: SirajWhite.w7,
+          shape: BoxShape.circle,
+          border: Border.all(color: SirajWhite.w10),
+        ),
+        child: const Icon(Icons.search, color: SirajGold.strong, size: 18),
+      ),
+    );
+  }
+}
+
 class _ModeToggleIcon extends ConsumerWidget {
   const _ModeToggleIcon();
 
@@ -138,6 +160,8 @@ class _Header extends StatelessWidget {
         Row(
           children: [
             const _ModeToggleIcon(),
+            const SizedBox(width: SirajSpacing.s2),
+            const _SearchIcon(),
             const SizedBox(width: SirajSpacing.s2),
             Stack(
               children: [
@@ -467,41 +491,53 @@ class _QuickActions extends ConsumerWidget {
     ];
     final actions = allActions.where((a) => a.$5).toList();
 
-    return GridView.builder(
-      shrinkWrap: true,
-      physics:    const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount:   4,
-        crossAxisSpacing: SirajLayout.colGutter,
-        mainAxisSpacing:  SirajLayout.colGutter,
-        childAspectRatio: 0.85,
-      ),
-      itemCount: actions.length,
-      itemBuilder: (_, i) {
-        final (icon, label, route, isPush, _) = actions[i];
-        return GestureDetector(
-          onTap: () => isPush ? context.push(route) : context.go(route),
-          child: GlassCard(
-            radius: SirajRadiusFull.lg,
-            padding: const EdgeInsets.symmetric(vertical: SirajSpacing.s4),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 36, height: 36,
-                  decoration: BoxDecoration(
-                    color: SirajWhite.w7,
-                    borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-                    border: Border.all(color: SirajWhite.w7),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        const crossAxisCount = 4;
+        final spacing = SirajLayout.colGutter;
+        final itemWidth =
+            (constraints.maxWidth - spacing * (crossAxisCount - 1)) /
+                crossAxisCount;
+
+        return Wrap(
+          spacing: spacing,
+          runSpacing: spacing,
+          children: actions.map((action) {
+            final (icon, label, route, isPush, _) = action;
+            return SizedBox(
+              width: itemWidth,
+              height: itemWidth / 0.85,
+              child: GestureDetector(
+                onTap: () =>
+                    isPush ? context.push(route) : context.go(route),
+                child: GlassCard(
+                  radius: SirajRadiusFull.lg,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: SirajSpacing.s4),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 36, height: 36,
+                        decoration: BoxDecoration(
+                          color: SirajWhite.w7,
+                          borderRadius:
+                              BorderRadius.circular(SirajRadiusFull.md),
+                          border: Border.all(color: SirajWhite.w7),
+                        ),
+                        child:
+                            Icon(icon, color: SirajWhite.w75, size: 17),
+                      ),
+                      const SizedBox(height: SirajSpacing.s2),
+                      Text(label, textAlign: TextAlign.center,
+                          style: AppText.caption
+                              .copyWith(fontSize: SirajSizes.sXs)),
+                    ],
                   ),
-                  child: Icon(icon, color: SirajWhite.w75, size: 17),
                 ),
-                const SizedBox(height: SirajSpacing.s2),
-                Text(label, textAlign: TextAlign.center,
-                  style: AppText.caption.copyWith(fontSize: SirajSizes.sXs)),
-              ],
-            ),
-          ),
+              ),
+            );
+          }).toList(),
         );
       },
     );
