@@ -86,10 +86,6 @@ class HomeScreen extends ConsumerWidget {
               ),
             ),
           ),
-          Positioned(
-            bottom: SirajSpacing.s4, left: SirajSpacing.s5, right: SirajSpacing.s5,
-            child: _FloatingSearch(onTap: () => context.push('/more/search')),
-          ),
         ],
       ),
     );
@@ -557,33 +553,3 @@ class _Skeleton extends StatelessWidget {
   }
 }
 
-class _FloatingSearch extends StatelessWidget {
-  final VoidCallback onTap;
-  const _FloatingSearch({required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: SirajSpacing.s4, vertical: SirajSpacing.s3),
-        decoration: BoxDecoration(
-          color: const Color(0xBD08090A),
-          borderRadius: BorderRadius.circular(SirajRadiusFull.lg),
-          border: Border.all(color: SirajWhite.w10),
-          boxShadow: SirajElevation.e3,
-        ),
-        child: Row(
-          children: [
-            const Icon(Icons.search, color: SirajWhite.w30, size: 14),
-            const SizedBox(width: SirajSpacing.s3),
-            Expanded(child: Text(t.home_searchHint, style: AppText.bodySmall.copyWith(
-              color: SirajWhite.w20))),
-          ],
-        ),
-      ),
-    );
-  }
-}
