@@ -15,7 +15,6 @@ import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/auth/presentation/screens/auth_screen.dart';
 import '../../features/language/presentation/screens/language_select_screen.dart';
 import '../../features/auth/presentation/screens/account_screen.dart';
-import '../../features/settings/presentation/screens/customize_sections_screen.dart';
 import '../../features/prayer/presentation/screens/prayer_screen.dart';
 import '../../features/quran/presentation/screens/quran_home_screen.dart';
 import '../../features/quran/presentation/screens/surah_reader_screen.dart';
@@ -203,11 +202,6 @@ final appRouterProvider = Provider<GoRouter>((ref) {
        path: '/account',
        builder: (_, __) => const AccountScreen(),
      ),
-     GoRoute(
-       path: '/customize-sections',
-       builder: (_, __) => const CustomizeSectionsScreen(),
-     ),
-
      // ── Main Shell ──
      StatefulShellRoute.indexedStack(
        builder: (context, state, shell) =>

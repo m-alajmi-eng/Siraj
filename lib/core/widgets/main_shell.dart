@@ -4,6 +4,12 @@ import 'package:go_router/go_router.dart';
 import '../../l10n/app_localizations.dart';
 import '../theme/time_theme_provider.dart';
 
+/// الشريط السفلي: 3 وجهات فقط (رئيسية، قرآن، مزيد) - القيد التقني
+/// المؤكَّد (يوليو 2026): StatefulShellRoute.indexedStack لا يدعم
+/// تغيير عدد الفروع ديناميكياً، فتبقى الفروع الخمسة كما هي في
+/// الراوتر (لتفادي كسر أي مسار فرعي عميق يعتمد عليها)، لكن الشريط
+/// المرئي يعرض فقط 3 منها، مع فهرس الفرع الفعلي محفوظاً لكل زر.
+/// الأذكار والمكتبة يبقى الوصول لهما عبر شبكة الرئيسية و"المزيد".
 class MainShell extends ConsumerWidget {
   final StatefulNavigationShell navigationShell;
   const MainShell({super.key, required this.navigationShell});
@@ -13,21 +19,19 @@ class MainShell extends ConsumerWidget {
     final t       = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
 
-    final tabs = [
-      _TabItem(icon: Icons.home_outlined,         activeIcon: Icons.home,          label: t.nav_home),
-      _TabItem(icon: Icons.menu_book_outlined,    activeIcon: Icons.menu_book,     label: t.nav_quran),
-      _TabItem(icon: Icons.spa_outlined,          activeIcon: Icons.spa,           label: t.nav_athkar),
-      _TabItem(icon: Icons.local_library_outlined, activeIcon: Icons.local_library, label: t.nav_library),
-      _TabItem(icon: Icons.more_horiz,            activeIcon: Icons.more_horiz,    label: t.nav_more),
+    final visibleTabs = [
+      _TabItem(branchIndex: 0, icon: Icons.home_outlined,      activeIcon: Icons.home,      label: t.nav_home),
+      _TabItem(branchIndex: 1, icon: Icons.menu_book_outlined, activeIcon: Icons.menu_book, label: t.nav_quran),
+      _TabItem(branchIndex: 4, icon: Icons.more_horiz,         activeIcon: Icons.more_horiz, label: t.nav_more),
     ];
 
     return Scaffold(
       backgroundColor: palette.background,
       body: navigationShell,
       floatingActionButton: FloatingActionButton(
-        mini:            true,
+        mini:     true,
         backgroundColor: palette.accentPrimary,
-        onPressed:       () => context.push('/more/search'),
+        onPressed:     () => context.push('/more/search'),
         child: const Icon(Icons.search, color: Colors.white, size: 20),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
@@ -46,20 +50,18 @@ class MainShell extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: tabs.asMap().entries.map((entry) {
-                final index    = entry.key;
-                final tab      = entry.value;
-                final isActive = navigationShell.currentIndex == index;
+              children: visibleTabs.map((tab) {
+                final isActive = navigationShell.currentIndex == tab.branchIndex;
 
                 return GestureDetector(
                   onTap: () => navigationShell.goBranch(
-                    index,
-                    initialLocation: index == navigationShell.currentIndex,
+                    tab.branchIndex,
+                    initialLocation: tab.branchIndex == navigationShell.currentIndex,
                   ),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 6),
+                        horizontal: 16, vertical: 6),
                     decoration: BoxDecoration(
                       color: isActive
                           ? palette.accentPrimary.withValues(alpha: 0.15)
@@ -100,10 +102,12 @@ class MainShell extends ConsumerWidget {
 }
 
 class _TabItem {
+  final int      branchIndex;
   final IconData icon;
   final IconData activeIcon;
   final String   label;
   const _TabItem({
+    required this.branchIndex,
     required this.icon,
     required this.activeIcon,
     required this.label,

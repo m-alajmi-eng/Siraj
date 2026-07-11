@@ -1,7 +1,5 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/locale/locale_provider.dart';
@@ -10,6 +8,8 @@ import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../core/mode/app_mode.dart';
 import '../../../../core/mode/app_mode_provider.dart';
+import '../../../../core/mode/feature_flags.dart';
+import '../../../../core/mode/enabled_sections_provider.dart';
 import '../../../../core/notifications/adhan_service.dart';
 import '../../../../core/widgets/app_scaffold.dart';
 
@@ -101,8 +101,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   Widget build(BuildContext context) {
     final t       = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
-    final mode    = ref.watch(appModeProvider);
-
     return AppScaffold(
       title: t.settings_title,
       padding: EdgeInsets.zero,
@@ -311,61 +309,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           // ── التطبيق ──
           _SectionHeader(title: t.settings_secApp, palette: palette),
 
-          Container(
-            margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
-            padding: const EdgeInsets.all(SirajSpacing.s4),
-            decoration: BoxDecoration(
-              color: palette.surface,
-              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Switch(
-                  value: mode == AppMode.full,
-                  onChanged: (_) => ref.read(appModeProvider.notifier).toggle(),
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        mode == AppMode.full ? t.settings_fullMode : t.settings_liteMode,
-                        style: AppText.body.copyWith(
-                          color: palette.textPrimary, fontWeight: FontWeight.w500)),
-                      Text(
-                        mode == AppMode.full
-                            ? t.settings_fullModeDesc : t.settings_liteModeDesc,
-                        style: AppText.caption.copyWith(color: palette.textSecondary)),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          if (mode == AppMode.lite) ...[
-            const SizedBox(height: SirajSpacing.s3),
-            GestureDetector(
-              onTap: () => context.push('/customize-sections'),
-              child: Container(
-                padding: const EdgeInsets.all(SirajSpacing.s4),
-                decoration: BoxDecoration(
-                  color: palette.surface,
-                  borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(Icons.chevron_left, color: palette.textSecondary),
-                    Text(t.sections_customize_title,
-                        style: AppText.body.copyWith(
-                            color: palette.textPrimary,
-                            fontWeight: FontWeight.w500)),
-                  ],
-                ),
-              ),
-            ),
-          ],
+          const _ModeAndSectionsCard(),
 
           _SettingsTile(
             icon: Icons.menu_book,
@@ -664,5 +608,116 @@ class _SettingsSwitch extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+/// بطاقة موحّدة: مفتاح الوضع (خفيف/كامل) + قائمة تخصيص الأقسام
+/// مدمجة مباشرة بداخلها عند اختيار الوضع الخفيف - بدل بطاقتين
+/// منفصلتين تتطلبان انتقالاً لصفحة أخرى.
+class _ModeAndSectionsCard extends ConsumerWidget {
+  const _ModeAndSectionsCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = AppLocalizations.of(context);
+    final palette = ref.watch(timeThemeProvider);
+    final mode = ref.watch(appModeProvider);
+    final enabled = ref.watch(enabledSectionsProvider);
+    final effective =
+        enabled.isEmpty ? FeatureFlags.defaultLiteSections : enabled;
+    final isLite = mode == AppMode.lite;
+
+    return Container(
+      padding: const EdgeInsets.all(SirajSpacing.s4),
+      decoration: BoxDecoration(
+        color: palette.surface,
+        borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Switch(
+                value: mode == AppMode.full,
+                onChanged: (_) => ref.read(appModeProvider.notifier).toggle(),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      isLite ? t.settings_liteMode : t.settings_fullMode,
+                      style: AppText.body.copyWith(
+                          color: palette.textPrimary,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      isLite ? t.settings_liteModeDesc : t.settings_fullModeDesc,
+                      style: AppText.caption
+                          .copyWith(color: palette.textSecondary),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          if (isLite) ...[
+            const Divider(height: SirajSpacing.s6),
+            Text(t.sections_customize_title,
+                textAlign: TextAlign.right,
+                style: AppText.body.copyWith(
+                    color: palette.textPrimary, fontWeight: FontWeight.w600)),
+            const SizedBox(height: SirajSpacing.s2),
+            Text(t.sections_customize_subtitle,
+                textAlign: TextAlign.right,
+                style:
+                    AppText.caption.copyWith(color: palette.textSecondary)),
+            const SizedBox(height: SirajSpacing.s3),
+            ...FeatureFlags.allSections.map((section) {
+              final (id, labelKey) = section;
+              return SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                dense: true,
+                title: Text(_sectionLabel(t, labelKey),
+                    style: TextStyle(color: palette.textPrimary, fontSize: 14)),
+                value: effective.contains(id),
+                activeThumbColor: palette.accentPrimary,
+                onChanged: (_) =>
+                    ref.read(enabledSectionsProvider.notifier).toggle(id),
+              );
+            }),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+String _sectionLabel(AppLocalizations t, String labelKey) {
+  switch (labelKey) {
+    case 'section_quran_reader': return t.section_quran_reader;
+    case 'section_adhan': return t.section_adhan;
+    case 'section_prayer': return t.section_prayer;
+    case 'section_qibla': return t.section_qibla;
+    case 'section_athkar': return t.section_athkar;
+    case 'section_hadith': return t.section_hadith;
+    case 'section_radio': return t.section_radio;
+    case 'section_hifz': return t.section_hifz;
+    case 'section_khatmah': return t.section_khatmah;
+    case 'section_library': return t.section_library;
+    case 'section_mosques': return t.section_mosques;
+    case 'section_ruqyah': return t.section_ruqyah;
+    case 'section_dua_journal': return t.section_dua_journal;
+    case 'section_mihrab': return t.section_mihrab;
+    case 'section_qke': return t.section_qke;
+    case 'section_timeline': return t.section_timeline;
+    case 'section_new_muslim': return t.section_new_muslim;
+    case 'section_calendar': return t.section_calendar;
+    case 'section_share_cards': return t.section_share_cards;
+    case 'section_gateway': return t.section_gateway;
+    case 'section_stories': return t.section_stories;
+    case 'section_children_stories': return t.section_children_stories;
+    default: return labelKey;
   }
 }
