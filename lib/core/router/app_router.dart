@@ -9,6 +9,8 @@ import '../mode/app_mode_provider.dart';
 import '../mode/feature_flags.dart';
 import '../mode/enabled_sections_provider.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/hadith/presentation/screens/hadith_categories_screen.dart';
+import '../../features/hadith/presentation/screens/hadith_list_screen.dart';
 import '../../features/stories/presentation/screens/stories_screen.dart';
 import '../../features/stories/presentation/screens/children_stories_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -120,6 +122,12 @@ class MoreScreen extends ConsumerWidget {
              icon:  Icons.radio,
              label: t.more_radio,
              onTap: () => context.push('/more/radio'),
+           ),
+           if (flags.showHadith)
+           _MoreTile(
+             icon:  Icons.format_quote,
+             label: 'الأحاديث',
+             onTap: () => context.push('/more/hadith-categories'),
            ),
            if (flags.showMosques)
            _MoreTile(
@@ -325,6 +333,22 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                GoRoute(
                  path:    'radio',
                  builder: (_, __) => const RadioScreen(),
+               ),
+               GoRoute(
+                 path:    'hadith-categories',
+                 builder: (_, __) => const HadithCategoriesScreen(),
+               ),
+               GoRoute(
+                 path:    'hadith/:categoryId',
+                 builder: (context, state) {
+                   final categoryId =
+                       int.parse(state.pathParameters['categoryId']!);
+                   final categoryTitle = state.extra as String? ?? 'الأحاديث';
+                   return HadithListScreen(
+                     categoryId: categoryId,
+                     categoryTitle: categoryTitle,
+                   );
+                 },
                ),
                GoRoute(
                  path:    'mosques',

@@ -1,0 +1,84 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/theme/design_tokens.dart';
+import '../../../../core/theme/app_text.dart';
+import '../../../../core/theme/time_theme_provider.dart';
+import '../providers/hadith_provider.dart';
+
+/// شاشة فئات الأحاديث - المدخل الرئيسي لقسم الأحاديث.
+/// يعرض الفئات الموضوعية السبع (القرآن وعلومه، العقيدة، الفقه...)
+/// من مصدر HadeethEnc.com (islamhouse-dev)، موثّق ومُراجَع علمياً.
+class HadithCategoriesScreen extends ConsumerWidget {
+  const HadithCategoriesScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final palette = ref.watch(timeThemeProvider);
+    final categoriesAsync = ref.watch(hadithCategoriesProvider);
+
+    return Scaffold(
+      backgroundColor: palette.background,
+      appBar: AppBar(
+        backgroundColor: palette.background,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: palette.textPrimary),
+          onPressed: () => context.pop(),
+        ),
+        title: Text('الأحاديث',
+            style: AppText.headline.copyWith(color: palette.textPrimary)),
+      ),
+      body: categoriesAsync.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (e, _) => Center(
+          child: Text('حدث خطأ في تحميل الفئات',
+              style: TextStyle(color: palette.textSecondary)),
+        ),
+        data: (categories) => ListView.builder(
+          padding: const EdgeInsets.all(SirajSpacing.s4),
+          itemCount: categories.length,
+          itemBuilder: (context, i) {
+            final cat = categories[i];
+            return GestureDetector(
+              onTap: () => context.push('/more/hadith/${cat.id}',
+                  extra: cat.titleAr),
+              child: Container(
+                margin: const EdgeInsets.only(bottom: SirajSpacing.s3),
+                padding: const EdgeInsets.all(SirajSpacing.s4),
+                decoration: BoxDecoration(
+                  color: palette.surface,
+                  borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.chevron_left, color: palette.textSecondary),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(cat.titleAr,
+                              textAlign: TextAlign.right,
+                              textDirection: TextDirection.rtl,
+                              style: AppText.body.copyWith(
+                                  color: palette.textPrimary,
+                                  fontWeight: FontWeight.w600)),
+                          const SizedBox(height: 4),
+                          Text('${cat.hadeethsCount} حديث',
+                              textAlign: TextAlign.right,
+                              textDirection: TextDirection.rtl,
+                              style: AppText.caption
+                                  .copyWith(color: palette.textSecondary)),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
