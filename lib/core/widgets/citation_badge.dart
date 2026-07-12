@@ -40,8 +40,10 @@ class CitationBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (compact) return _buildCompact();
-    return _buildFull();
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: compact ? _buildCompact() : _buildFull(),
+    );
   }
 
   Widget _buildCompact() {
@@ -89,6 +91,14 @@ class CitationBadge extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                scholar,
+                style: TextStyle(
+                  color:      palette.textPrimary,
+                  fontSize:   14,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
               Row(
                 children: [
                   Icon(Icons.verified,
@@ -103,14 +113,6 @@ class CitationBadge extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-              Text(
-                scholar,
-                style: TextStyle(
-                  color:      palette.textPrimary,
-                  fontSize:   14,
-                  fontWeight: FontWeight.w600,
-                ),
               ),
             ],
           ),

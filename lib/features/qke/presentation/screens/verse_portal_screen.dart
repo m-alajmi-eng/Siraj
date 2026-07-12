@@ -305,6 +305,20 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                         );
                       }
 
+                      if (page.id == 'arabic_tafsir') {
+                        const arabicIds = [
+                          'tabari-ar', 'ibn-kathir-ar', 'baghawi-ar',
+                          'saadi-ar', 'muyassar-ar', 'mukhtasar-ar',
+                        ];
+                        final arabicTafsirs = portal.tafsirs
+                            .where((t) => arabicIds.contains(t.sourceId))
+                            .toList();
+                        return _ArabicTafsirsPage(
+                          tafsirs: arabicTafsirs,
+                          palette: palette,
+                        );
+                      }
+
                       // صفحة مفسّر
                       final tafsir = portal.tafsirs
                           .where((t) => t.sourceId == page.id)
@@ -435,7 +449,7 @@ class _WordsPage extends StatelessWidget {
                 color: palette.accentPrimary.withOpacity(0.15)),
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // الكلمة بخط قرآني ولون مميز
                 if (w.wordText.isNotEmpty) ...[
@@ -500,6 +514,71 @@ class _WordsPage extends StatelessWidget {
 // ═══════════════════════════════════════════════════════════
 // صفحة سبب النزول
 // ═══════════════════════════════════════════════════════════
+/// صفحة تجميع كل التفاسير العربية الستة (الطبري، ابن كثير، البغوي،
+/// السعدي، الميسّر، المختصر) في قائمة واحدة قابلة للتوسيع - بدل
+/// البحث الفاشل عن مصدر واحد بمعرّف 'arabic_tafsir' غير موجود فعلياً.
+class _ArabicTafsirsPage extends StatelessWidget {
+  final List<dynamic> tafsirs;
+  final dynamic palette;
+
+  const _ArabicTafsirsPage({required this.tafsirs, required this.palette});
+
+  String _nameFor(String sourceId) {
+    const names = {
+      'tabari-ar': 'الطبري',
+      'ibn-kathir-ar': 'ابن كثير',
+      'baghawi-ar': 'البغوي',
+      'saadi-ar': 'السعدي',
+      'muyassar-ar': 'التفسير الميسّر',
+      'mukhtasar-ar': 'المختصر في التفسير',
+    };
+    return names[sourceId] ?? sourceId;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (tafsirs.isEmpty) {
+      return Center(
+        child: Text('لا تتوفر تفاسير عربية لهذه الآية',
+            style: TextStyle(color: palette.textSecondary)),
+      );
+    }
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: tafsirs.length,
+      itemBuilder: (context, i) {
+        final tafsir = tafsirs[i];
+        return Container(
+          margin: const EdgeInsets.only(bottom: 12),
+          decoration: BoxDecoration(
+            color: palette.surface,
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Theme(
+            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+            child: ExpansionTile(
+              title: Text(_nameFor(tafsir.sourceId),
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                      color: palette.textPrimary,
+                      fontWeight: FontWeight.w600)),
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  child: Text(tafsir.text,
+                      textAlign: TextAlign.right,
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(color: palette.textPrimary, fontSize: 15, height: 1.8)),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
 class _AsbabPage extends StatelessWidget {
   final String  text;
   final dynamic palette;
