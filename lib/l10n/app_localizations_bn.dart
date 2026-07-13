@@ -737,6 +737,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get portal_hadiths => 'হাদিস';
 
   @override
+  String get portal_adwaaHadiths => 'আদওয়াউল বায়ান';
+
+  @override
   String get portal_stories => 'কাহিনি ও সিরাত';
 
   @override

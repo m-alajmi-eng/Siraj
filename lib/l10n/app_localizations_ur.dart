@@ -737,6 +737,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get portal_hadiths => 'احادیث';
 
   @override
+  String get portal_adwaaHadiths => 'اضواء البیان';
+
+  @override
   String get portal_stories => 'قصص و سیرت';
 
   @override

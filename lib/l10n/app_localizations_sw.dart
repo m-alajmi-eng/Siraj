@@ -740,6 +740,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get portal_hadiths => 'Hadithi';
 
   @override
+  String get portal_adwaaHadiths => 'Adhwa\'ul Bayan';
+
+  @override
   String get portal_stories => 'Hadithi na Sira';
 
   @override

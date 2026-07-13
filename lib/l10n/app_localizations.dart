@@ -1516,6 +1516,12 @@ abstract class AppLocalizations {
   /// **'أحاديث'**
   String get portal_hadiths;
 
+  /// No description provided for @portal_adwaaHadiths.
+  ///
+  /// In ar, this message translates to:
+  /// **'أضواء البيان'**
+  String get portal_adwaaHadiths;
+
   /// No description provided for @portal_stories.
   ///
   /// In ar, this message translates to:

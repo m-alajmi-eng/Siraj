@@ -51,6 +51,46 @@ class RelatedHadith {
   }
 }
 
+class AdwaaCitation {
+  final int    id;
+  final String citationType; // 'authentic_hadith' | 'israiliyyat'
+  final String quotedText;
+  final String fullParagraph;
+  final String sourceReference;
+  final String sourceBook;
+  final String sourceAuthor;
+  final String shamelaUrl;
+  final int    shamelaPage;
+
+  AdwaaCitation({
+    required this.id,
+    required this.citationType,
+    required this.quotedText,
+    required this.fullParagraph,
+    required this.sourceReference,
+    required this.sourceBook,
+    required this.sourceAuthor,
+    required this.shamelaUrl,
+    required this.shamelaPage,
+  });
+
+  bool get isAuthenticHadith => citationType == 'authentic_hadith';
+
+  factory AdwaaCitation.fromJson(Map<String, dynamic> j) {
+    return AdwaaCitation(
+      id:              j['id'] ?? 0,
+      citationType:    j['citation_type'] ?? 'authentic_hadith',
+      quotedText:      j['quoted_text'] ?? '',
+      fullParagraph:   j['full_paragraph'] ?? '',
+      sourceReference: j['source_reference'] ?? '',
+      sourceBook:      j['source_book'] ?? '',
+      sourceAuthor:    j['source_author'] ?? '',
+      shamelaUrl:      j['shamela_url'] ?? '',
+      shamelaPage:     j['shamela_page'] ?? 0,
+    );
+  }
+}
+
 class TafsirEntry {
   final String sourceId;
   final String scholar;
@@ -75,6 +115,7 @@ class PortalData {
   final int    ayahCount;
   final List<TafsirEntry>    tafsirs;
   final List<RelatedHadith>  relatedHadiths;
+  final List<AdwaaCitation>  adwaaCitations;
   final List<WordMeaning> words;
   final String? asbabAlNuzul;
 
@@ -88,6 +129,7 @@ class PortalData {
     required this.ayahCount,
     required this.tafsirs,
     required this.relatedHadiths,
+    required this.adwaaCitations,
     required this.words,
     this.asbabAlNuzul,
   });
@@ -176,6 +218,72 @@ class QkeRepository {
             .toList();
       } catch (_) {}
 
+      // جلب استشهادات أضواء البيان (مُراجَعة فقط - reviewed = true)
+      List<AdwaaCitation> adwaaCitations = [];
+      try {
+        final adwaaRes = await _client
+            .from('verse_hadith_relations')
+            .select()
+            .eq('ayah_id', ayahId)
+            .eq('reviewed', true)
+            .order('id');
+        adwaaCitations = adwaaRes
+            .map((j) => AdwaaCitation.fromJson(j))
+            .toList();
+      } catch (_) {}
+
+      // جلب تفسير أضواء البيان الكامل لهذه الآية (نطاق صفحات من فهرس
+      // الكتاب: من بداية تفسير هذه الآية حتى بداية الآية التالية
+      // المفهرَسة، أياً كانت سورتها - سقف أمان 40 صفحة لتفادي نطاقات
+      // شاذة نادرة قرب نهاية الكتاب).
+      try {
+        final tocRes = await _client
+            .from('adwaa_al_bayan_toc')
+            .select('start_page')
+            .eq('surah_id', surahId)
+            .eq('ayah_number', ayahNumber)
+            .maybeSingle();
+
+        if (tocRes != null) {
+          final startPage = tocRes['start_page'] as int;
+
+          final nextRes = await _client
+              .from('adwaa_al_bayan_toc')
+              .select('start_page')
+              .gt('start_page', startPage)
+              .order('start_page')
+              .limit(1)
+              .maybeSingle();
+
+          final rawEndPage = nextRes != null
+              ? nextRes['start_page'] as int
+              : startPage + 1;
+          final endPage = (rawEndPage - startPage > 40)
+              ? startPage + 40
+              : rawEndPage;
+
+          final pagesRes = await _client
+              .from('adwaa_al_bayan_pages')
+              .select('page_text')
+              .gte('page_number', startPage)
+              .lt('page_number', endPage)
+              .order('page_number');
+
+          final combinedText = (pagesRes as List)
+              .map((p) => p['page_text'] as String)
+              .join('\n\n');
+
+          if (combinedText.isNotEmpty) {
+            tafsirs.add(TafsirEntry(
+              sourceId:  'adwaa-al-bayan-ar',
+              scholar:   'محمد الأمين الشنقيطي',
+              bookTitle: 'أضواء البيان في إيضاح القرآن بالقرآن',
+              text:      combinedText,
+            ));
+          }
+        }
+      } catch (_) {}
+
     return PortalData(
       ayahId:         ayahId,
       surahId:        surahId,
@@ -188,6 +296,7 @@ class QkeRepository {
       words:          words,
       asbabAlNuzul:   asbab,
       relatedHadiths: relatedHadiths,
+      adwaaCitations: adwaaCitations,
     );
   }
 }

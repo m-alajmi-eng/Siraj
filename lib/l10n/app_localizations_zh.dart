@@ -735,6 +735,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get portal_hadiths => '圣训';
 
   @override
+  String get portal_adwaaHadiths => '光明经注';
+
+  @override
   String get portal_stories => '故事与圣传';
 
   @override

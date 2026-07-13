@@ -52,3 +52,6 @@ adwaa_*.json
 adwaa_*.jsonl
 checkpoint.txt
 shamela_raw_response.html
+adwaa_*.sql
+adwaa_*.csv
+shamela_*.html

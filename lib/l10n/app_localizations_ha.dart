@@ -739,6 +739,9 @@ class AppLocalizationsHa extends AppLocalizations {
   String get portal_hadiths => 'Hadisai';
 
   @override
+  String get portal_adwaaHadiths => 'Adwa\'ul Bayan';
+
+  @override
   String get portal_stories => 'Labarai da Sira';
 
   @override

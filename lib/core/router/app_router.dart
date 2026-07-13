@@ -11,6 +11,7 @@ import '../mode/enabled_sections_provider.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/hadith/presentation/screens/hadith_categories_screen.dart';
 import '../../features/hadith/presentation/screens/hadith_list_screen.dart';
+import '../../features/qke/presentation/screens/adwaa_bayan_reader_screen.dart';
 import '../../features/stories/presentation/screens/stories_screen.dart';
 import '../../features/stories/presentation/screens/children_stories_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -337,6 +338,14 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                GoRoute(
                  path:    'hadith-categories',
                  builder: (_, __) => const HadithCategoriesScreen(),
+               ),
+               GoRoute(
+                 path:    'adwaa-bayan/:pageNumber',
+                 builder: (context, state) {
+                   final pageNumber =
+                       int.parse(state.pathParameters['pageNumber']!);
+                   return AdwaaBayanReaderScreen(pageNumber: pageNumber);
+                 },
                ),
                GoRoute(
                  path:    'hadith/:categoryId',

@@ -41,6 +41,9 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
     // ٣. أحاديث
     pages.add(_PageItem(id: 'hadiths', icon: Icons.format_quote, label: t.portal_hadiths, comingSoon: true));
 
+    // ٣ب. تفسير بالسنة (استشهادات أضواء البيان)
+    pages.add(_PageItem(id: 'adwaa_hadiths', icon: Icons.history_edu, label: t.portal_adwaaHadiths));
+
     // ٤. قصص وسير
     pages.add(_PageItem(id: 'stories', icon: Icons.auto_stories, label: t.portal_stories, comingSoon: true));
 
@@ -266,6 +269,12 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                     ayahNumber: widget.ayahNumber,
                   );
                 }
+                if (page.id == 'adwaa_hadiths') {
+                  return _AdwaaHadithsPage(
+                    palette:   palette,
+                    citations: portal.adwaaCitations,
+                  );
+                }
                       if (page.comingSoon) {
                         if (page.id == 'hadiths') {
                           return _HadithsPage(
@@ -309,6 +318,7 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                         const arabicIds = [
                           'tabari-ar', 'ibn-kathir-ar', 'baghawi-ar',
                           'saadi-ar', 'muyassar-ar', 'mukhtasar-ar',
+                          'adwaa-al-bayan-ar',
                         ];
                         final arabicTafsirs = portal.tafsirs
                             .where((t) => arabicIds.contains(t.sourceId))
@@ -531,6 +541,7 @@ class _ArabicTafsirsPage extends StatelessWidget {
       'saadi-ar': 'السعدي',
       'muyassar-ar': 'التفسير الميسّر',
       'mukhtasar-ar': 'المختصر في التفسير',
+      'adwaa-al-bayan-ar': 'أضواء البيان',
     };
     return names[sourceId] ?? sourceId;
   }
@@ -663,6 +674,122 @@ class _EmptyPage extends StatelessWidget {
     return Center(
       child: Text(message,
         style: TextStyle(color: palette.textSecondary, fontSize: 15)),
+    );
+  }
+}
+
+
+// ─── Adwaa al-Bayan Citations Page ─────────────────────────
+class _AdwaaHadithsPage extends StatelessWidget {
+  final dynamic              palette;
+  final List<AdwaaCitation>  citations;
+  const _AdwaaHadithsPage({required this.palette, required this.citations});
+
+  @override
+  Widget build(BuildContext context) {
+    if (citations.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.history_edu, size: 64, color: palette.textSecondary),
+            const SizedBox(height: 16),
+            Text(AppLocalizations.of(context).portal_noHadiths,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: palette.textSecondary, fontSize: 14)),
+            const SizedBox(height: 8),
+            Text(AppLocalizations.of(context).portal_addingContent,
+              style: TextStyle(color: palette.textSecondary, fontSize: 12)),
+          ],
+        ),
+      );
+    }
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: citations.length,
+      itemBuilder: (_, i) {
+        final c = citations[i];
+        final isAuthentic = c.isAuthenticHadith;
+        return Container(
+          margin:  const EdgeInsets.only(bottom: 12),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color:        palette.surface,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: palette.accentPrimary.withOpacity(0.15)),
+          ),
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // شارة النوع - تمييز صريح بين حديث نبوي ونقل تاريخي
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: isAuthentic
+                      ? palette.accentPrimary.withOpacity(0.12)
+                      : Colors.orange.withOpacity(0.12),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: isAuthentic
+                        ? palette.accentPrimary.withOpacity(0.3)
+                        : Colors.orange.withOpacity(0.4)),
+                ),
+                child: Text(
+                  isAuthentic ? 'حديث نبوي' : 'منقول تاريخي (غير حديث نبوي)',
+                  style: TextStyle(
+                    color: isAuthentic ? palette.accentPrimary : Colors.orange[800],
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(c.quotedText,
+                textAlign:     TextAlign.right,
+                textDirection: TextDirection.rtl,
+                style: TextStyle(
+                  color:    palette.textPrimary,
+                  fontSize: 15,
+                  height:   1.8,
+                  fontWeight: FontWeight.w500,
+                )),
+              const SizedBox(height: 8),
+              Text(c.sourceReference,
+                textAlign:     TextAlign.right,
+                textDirection: TextDirection.rtl,
+                style: TextStyle(
+                  color:    palette.textSecondary,
+                  fontSize: 12,
+                  height:   1.6,
+                )),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      context.push('/more/adwaa-bayan/${c.shamelaPage}');
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.menu_book_outlined, size: 12, color: palette.accentPrimary),
+                        const SizedBox(width: 4),
+                        Text('عرض الصفحة كاملة',
+                          style: TextStyle(color: palette.accentPrimary, fontSize: 11)),
+                      ],
+                    ),
+                  ),
+                  Text('${c.sourceBook} - ${c.sourceAuthor}',
+                    style: TextStyle(color: palette.textSecondary, fontSize: 10)),
+                ],
+              ),
+            ],
+          ),
+          ),
+        );
+      },
     );
   }
 }
