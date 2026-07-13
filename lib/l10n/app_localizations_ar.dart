@@ -615,6 +615,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get calc_Dubai => 'دبي';
 
   @override
+  String get calc_Karachi => 'جامعة كراتشي';
+
+  @override
+  String get calc_Singapore => 'سنغافورة';
+
+  @override
+  String get calc_Turkey => 'تركيا (ديانت)';
+
+  @override
+  String get calc_MoonSighting => 'لجنة رؤية الهلال';
+
+  @override
   String get search_hint => 'ابحث في القرآن والتفاسير...';
 
   @override

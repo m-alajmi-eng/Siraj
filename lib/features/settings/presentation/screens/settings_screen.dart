@@ -12,6 +12,7 @@ import '../../../../core/mode/feature_flags.dart';
 import '../../../../core/mode/enabled_sections_provider.dart';
 import '../../../../core/notifications/adhan_service.dart';
 import '../../../../core/widgets/app_scaffold.dart';
+import '../../../prayer/presentation/providers/prayer_provider.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -35,7 +36,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
   // البيانات: id فقط (تُترجم وقت العرض)
   final _madhabIds   = ['hanafi', 'maliki', 'shafi', 'hanbali'];
-  final _calcIds     = ['MWL', 'ISNA', 'Egypt', 'Makkah', 'Kuwait', 'Qatar', 'Dubai'];
+  final _calcIds  = ['MWL', 'ISNA', 'Egypt', 'Makkah', 'Kuwait', 'Qatar', 'Dubai', 'Karachi', 'Singapore', 'Turkey', 'MoonSighting'];
 
   final _locales = [
     {'code': 'ar', 'name': 'العربية',   'flag': '🇸🇦'},
@@ -72,7 +73,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       case 'Makkah': return t.calc_Makkah;
       case 'Kuwait': return t.calc_Kuwait;
       case 'Qatar':  return t.calc_Qatar;
-      default:       return t.calc_Dubai;
+      case 'Dubai': return t.calc_Dubai;
+      case 'Karachi': return t.calc_Karachi;
+      case 'Singapore': return t.calc_Singapore;
+      case 'Turkey': return t.calc_Turkey;
+      default: return t.calc_MoonSighting;
     }
   }
 
@@ -168,6 +173,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 final id = _calcIds.firstWhere((id) => _calcName(t, id) == val);
                 setState(() => _calcMethod = id);
                 _save('calc_method', id);
+                // ننشر التغيير فوراً لحساب الصلاة الفعلي عبر Riverpod
+                // (بدل انتظار إعادة فتح التطبيق ليقرأ القيمة الجديدة من Hive)
+                ref.read(calcMethodProvider.notifier).setMethod(id);
               },
             ),
           ),

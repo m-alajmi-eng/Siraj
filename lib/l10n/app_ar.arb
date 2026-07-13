@@ -258,6 +258,10 @@
   "calc_Kuwait": "الكويت",
   "calc_Qatar": "قطر",
   "calc_Dubai": "دبي",
+  "calc_Karachi": "جامعة كراتشي",
+  "calc_Singapore": "سنغافورة",
+  "calc_Turkey": "تركيا (ديانت)",
+  "calc_MoonSighting": "لجنة رؤية الهلال",
   "@settings_minutes": {
     "placeholders": {
       "n": {

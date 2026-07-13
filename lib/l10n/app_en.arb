@@ -258,6 +258,10 @@
   "calc_Kuwait": "Kuwait",
   "calc_Qatar": "Qatar",
   "calc_Dubai": "Dubai",
+  "calc_Karachi": "Karachi",
+  "calc_Singapore": "Singapore",
+  "calc_Turkey": "Turkey (Diyanet)",
+  "calc_MoonSighting": "Moon Sighting Committee",
   "@settings_minutes": {
     "placeholders": {
       "n": {

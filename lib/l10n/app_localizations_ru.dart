@@ -616,6 +616,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get calc_Dubai => 'Дубай';
 
   @override
+  String get calc_Karachi => 'Карачи';
+
+  @override
+  String get calc_Singapore => 'Сингапур';
+
+  @override
+  String get calc_Turkey => 'Турция (Диянет)';
+
+  @override
+  String get calc_MoonSighting => 'Комитет по наблюдению за луной';
+
+  @override
   String get search_hint => 'Поиск в Коране и тафсире...';
 
   @override

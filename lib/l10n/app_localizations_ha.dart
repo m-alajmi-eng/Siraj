@@ -616,6 +616,18 @@ class AppLocalizationsHa extends AppLocalizations {
   String get calc_Dubai => 'Dubai';
 
   @override
+  String get calc_Karachi => 'Karachi';
+
+  @override
+  String get calc_Singapore => 'Singapore';
+
+  @override
+  String get calc_Turkey => 'Turkiyya (Diyanet)';
+
+  @override
+  String get calc_MoonSighting => 'Kwamitin Ganin Wata';
+
+  @override
   String get search_hint => 'Bincika a Alkur\'ani da tafsiri...';
 
   @override

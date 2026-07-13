@@ -614,6 +614,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get calc_Dubai => '迪拜';
 
   @override
+  String get calc_Karachi => '卡拉奇';
+
+  @override
+  String get calc_Singapore => '新加坡';
+
+  @override
+  String get calc_Turkey => '土耳其（宗教事务局）';
+
+  @override
+  String get calc_MoonSighting => '月亮观测委员会';
+
+  @override
   String get search_hint => '搜索古兰经与经注...';
 
   @override

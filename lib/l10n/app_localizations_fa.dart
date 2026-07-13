@@ -615,6 +615,18 @@ class AppLocalizationsFa extends AppLocalizations {
   String get calc_Dubai => 'دبی';
 
   @override
+  String get calc_Karachi => 'کراچی';
+
+  @override
+  String get calc_Singapore => 'سنگاپور';
+
+  @override
+  String get calc_Turkey => 'ترکیه (دیانت)';
+
+  @override
+  String get calc_MoonSighting => 'کمیته رؤیت هلال';
+
+  @override
   String get search_hint => 'جستجو در قرآن و تفسیر...';
 
   @override

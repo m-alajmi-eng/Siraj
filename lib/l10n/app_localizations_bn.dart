@@ -615,6 +615,18 @@ class AppLocalizationsBn extends AppLocalizations {
   String get calc_Dubai => 'দুবাই';
 
   @override
+  String get calc_Karachi => 'করাচি';
+
+  @override
+  String get calc_Singapore => 'সিঙ্গাপুর';
+
+  @override
+  String get calc_Turkey => 'তুরস্ (দিয়ানেত)';
+
+  @override
+  String get calc_MoonSighting => 'চাঁদ দর্শন কমিটি';
+
+  @override
   String get search_hint => 'কুরআন ও তাফসিরে খুঁজুন...';
 
   @override

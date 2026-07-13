@@ -478,6 +478,7 @@ class _QuickActions extends ConsumerWidget {
       (Icons.menu_book_rounded,    t.nav_quran,           '/quran',                 false, flags.showQuranReader),
       (Icons.self_improvement,     t.nav_athkar,          '/athkar',                false, flags.showAthkar),
       (Icons.local_library_outlined, t.nav_library,       '/library',               false, flags.showLibrary),
+      (Icons.format_quote_rounded, t.nav_hadith,          '/more/hadith-categories', true, flags.showHadith),
       (Icons.explore_outlined,     t.home_qiblaDirection, '/more/qibla',            true,  flags.showQibla),
       (Icons.radio,                t.home_radio,          '/more/radio',            true,  flags.showRadio),
       (Icons.calendar_month,       t.home_calendar,       '/more/calendar',         true,  flags.showCalendar),

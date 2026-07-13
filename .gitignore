@@ -46,3 +46,9 @@ app.*.map.json
 android/.kotlin/
 android/build/
 .sentry-native/
+
+# مخرجات بحثية مؤقتة (استخراج أضواء البيان من شاملة) - ليست جزءاً من التطبيق
+adwaa_*.json
+adwaa_*.jsonl
+checkpoint.txt
+shamela_raw_response.html

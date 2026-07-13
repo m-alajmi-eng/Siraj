@@ -64,17 +64,39 @@ Future<Position?> _fetchFreshLocation() async {
   }
 }
 
+/// طريقة حساب أوقات الصلاة (نفس المفتاح والقيم المستخدمة في
+/// settings_screen.dart: MWL, ISNA, Egypt, Makkah, Kuwait, Qatar, Dubai).
+/// مصدر حقيقة واحد موحّد بين شاشة الإعدادات وحساب الصلاة الفعلي -
+/// أي تغيير من الإعدادات ينعكس هنا فوراً عبر هذا الـ provider.
+class CalcMethodNotifier extends Notifier<String> {
+  @override
+  String build() {
+    return CacheService.getSetting('calc_method', defaultValue: 'MWL') as String;
+  }
+
+  Future<void> setMethod(String id) async {
+    state = id;
+    await CacheService.saveSetting('calc_method', id);
+  }
+}
+
+final calcMethodProvider = NotifierProvider<CalcMethodNotifier, String>(
+  CalcMethodNotifier.new,
+);
+
 final prayerTimesProvider = FutureProvider<PrayerTimesEntity>((ref) async {
   final position   = await ref.watch(locationProvider.future);
+  final calcMethod = ref.watch(calcMethodProvider);
   final dataSource = PrayerLocalDataSource();
 
   final lat = position?.latitude  ?? 24.7136;
   final lng = position?.longitude ?? 46.6753;
 
   return dataSource.getPrayerTimes(
-    latitude:  lat,
-    longitude: lng,
-    date:      DateTime.now(),
+    latitude:      lat,
+    longitude:     lng,
+    date:          DateTime.now(),
+    calcMethodId:  calcMethod,
   );
 });
 

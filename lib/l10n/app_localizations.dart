@@ -1294,6 +1294,30 @@ abstract class AppLocalizations {
   /// **'دبي'**
   String get calc_Dubai;
 
+  /// No description provided for @calc_Karachi.
+  ///
+  /// In ar, this message translates to:
+  /// **'جامعة كراتشي'**
+  String get calc_Karachi;
+
+  /// No description provided for @calc_Singapore.
+  ///
+  /// In ar, this message translates to:
+  /// **'سنغافورة'**
+  String get calc_Singapore;
+
+  /// No description provided for @calc_Turkey.
+  ///
+  /// In ar, this message translates to:
+  /// **'تركيا (ديانت)'**
+  String get calc_Turkey;
+
+  /// No description provided for @calc_MoonSighting.
+  ///
+  /// In ar, this message translates to:
+  /// **'لجنة رؤية الهلال'**
+  String get calc_MoonSighting;
+
   /// No description provided for @search_hint.
   ///
   /// In ar, this message translates to:

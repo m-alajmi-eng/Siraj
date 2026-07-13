@@ -616,6 +616,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get calc_Dubai => 'Dubaï';
 
   @override
+  String get calc_Karachi => 'Karachi';
+
+  @override
+  String get calc_Singapore => 'Singapour';
+
+  @override
+  String get calc_Turkey => 'Turquie (Diyanet)';
+
+  @override
+  String get calc_MoonSighting => 'Comité d\'observation de la lune';
+
+  @override
   String get search_hint => 'Rechercher dans le Coran et le tafsir...';
 
   @override
