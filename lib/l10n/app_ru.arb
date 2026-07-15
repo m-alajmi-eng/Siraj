@@ -225,6 +225,8 @@
   "settings_delete": "Удалить",
   "settings_version": "Версия",
   "settings_shareApp": "Поделиться приложением",
+  "settings_licenses": "Лицензии",
+  "settings_openSourcePackages": "Лицензии открытых пакетов",
   "settings_tagline": "Сирадж — Свет над светом",
   "madhab_hanafi": "Ханафитский",
   "madhab_maliki": "Маликитский",

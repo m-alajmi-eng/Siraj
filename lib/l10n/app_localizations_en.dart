@@ -579,6 +579,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_shareApp => 'Share App';
 
   @override
+  String get settings_licenses => 'Licenses';
+
+  @override
+  String get settings_openSourcePackages => 'Open-Source Package Licenses';
+
+  @override
   String get settings_tagline => 'Siraj — Light upon Light';
 
   @override

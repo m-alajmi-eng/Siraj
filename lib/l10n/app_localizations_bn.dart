@@ -579,6 +579,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settings_shareApp => 'অ্যাপ শেয়ার করুন';
 
   @override
+  String get settings_licenses => 'লাইসেন্স';
+
+  @override
+  String get settings_openSourcePackages => 'ওপেন-সোর্স প্যাকেজ লাইসেন্স';
+
+  @override
   String get settings_tagline => 'সিরাজ — নূরের উপর নূর';
 
   @override

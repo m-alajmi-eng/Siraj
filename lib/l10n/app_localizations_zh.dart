@@ -578,6 +578,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_shareApp => '分享应用';
 
   @override
+  String get settings_licenses => '许可证';
+
+  @override
+  String get settings_openSourcePackages => '开源软件包许可证';
+
+  @override
   String get settings_tagline => '希拉吉 — 光上加光';
 
   @override

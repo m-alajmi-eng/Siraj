@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/locale/locale_provider.dart';
@@ -419,6 +420,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             value: '',
             palette: palette,
             onTap: () {},
+          ),
+
+          _SettingsTile(
+            icon: Icons.description_outlined,
+            title: t.settings_licenses,
+            value: '',
+            palette: palette,
+            onTap: () => context.push('/more/settings/licenses'),
           ),
 
           const SizedBox(height: SirajSpacing.s8),

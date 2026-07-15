@@ -579,6 +579,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_shareApp => 'Uygulamayı Paylaş';
 
   @override
+  String get settings_licenses => 'Lisanslar';
+
+  @override
+  String get settings_openSourcePackages => 'Açık Kaynak Paket Lisansları';
+
+  @override
   String get settings_tagline => 'Siraj — Nur üstüne Nur';
 
   @override

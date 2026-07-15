@@ -579,6 +579,12 @@ class AppLocalizationsFa extends AppLocalizations {
   String get settings_shareApp => 'اشتراک برنامه';
 
   @override
+  String get settings_licenses => 'مجوزها';
+
+  @override
+  String get settings_openSourcePackages => 'مجوزهای بسته‌های متن‌باز';
+
+  @override
   String get settings_tagline => 'سراج — نور علی نور';
 
   @override

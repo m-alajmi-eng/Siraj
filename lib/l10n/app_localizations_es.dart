@@ -580,6 +580,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_shareApp => 'Compartir aplicación';
 
   @override
+  String get settings_licenses => 'Licencias';
+
+  @override
+  String get settings_openSourcePackages =>
+      'Licencias de paquetes de código abierto';
+
+  @override
   String get settings_tagline => 'Siraj — Luz sobre Luz';
 
   @override

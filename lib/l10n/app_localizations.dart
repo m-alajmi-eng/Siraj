@@ -1222,6 +1222,18 @@ abstract class AppLocalizations {
   /// **'مشاركة التطبيق'**
   String get settings_shareApp;
 
+  /// No description provided for @settings_licenses.
+  ///
+  /// In ar, this message translates to:
+  /// **'التراخيص'**
+  String get settings_licenses;
+
+  /// No description provided for @settings_openSourcePackages.
+  ///
+  /// In ar, this message translates to:
+  /// **'تراخيص الحزم مفتوحة المصدر'**
+  String get settings_openSourcePackages;
+
   /// No description provided for @settings_tagline.
   ///
   /// In ar, this message translates to:

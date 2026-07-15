@@ -580,6 +580,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_shareApp => 'Поделиться приложением';
 
   @override
+  String get settings_licenses => 'Лицензии';
+
+  @override
+  String get settings_openSourcePackages => 'Лицензии открытых пакетов';
+
+  @override
   String get settings_tagline => 'Сирадж — Свет над светом';
 
   @override

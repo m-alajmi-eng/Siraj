@@ -579,6 +579,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get settings_shareApp => 'Bagikan Aplikasi';
 
   @override
+  String get settings_licenses => 'Lisensi';
+
+  @override
+  String get settings_openSourcePackages => 'Lisensi Paket Sumber Terbuka';
+
+  @override
   String get settings_tagline => 'Siraj — Cahaya di atas Cahaya';
 
   @override

@@ -225,6 +225,8 @@
   "settings_delete": "Sil",
   "settings_version": "Sürüm",
   "settings_shareApp": "Uygulamayı Paylaş",
+  "settings_licenses": "Lisanslar",
+  "settings_openSourcePackages": "Açık Kaynak Paket Lisansları",
   "settings_tagline": "Siraj — Nur üstüne Nur",
   "madhab_hanafi": "Hanefi",
   "madhab_maliki": "Maliki",
