@@ -1,13 +1,8 @@
-import 'package:flutter/material.dart';
-import '../../l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../widgets/main_shell.dart';
 import '../mode/app_mode.dart';
-import '../mode/app_mode_provider.dart';
-import '../mode/feature_flags.dart';
-import '../mode/enabled_sections_provider.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/hadith/presentation/screens/hadith_categories_screen.dart';
 import '../../features/hadith/presentation/screens/hadith_list_screen.dart';
@@ -46,126 +41,7 @@ import '../../features/khatmah/presentation/screens/khatmah_detail_screen.dart';
 import '../../features/quran/presentation/screens/page_reader_screen.dart';
 import '../../features/library/presentation/screens/library_items_screen.dart';
 import '../../features/library/presentation/screens/library_type_categories_screen.dart';
-
-// ─── More Screen ──────────────────────────────────────────
-class MoreScreen extends ConsumerWidget {
- const MoreScreen({super.key});
-
- @override
- Widget build(BuildContext context, WidgetRef ref) {
-   final t     = AppLocalizations.of(context);
-   final mode  = ref.watch(appModeProvider);
-   final enabled = ref.watch(enabledSectionsProvider);
-   final flags = FeatureFlags(mode, enabledSections: enabled);
-
-   return Scaffold(
-     body: SafeArea(
-       child: ListView(
-         padding: const EdgeInsets.all(16),
-         children: [
-           const SizedBox(height: 16),
-           const Text(
-             'المزيد',
-             textAlign: TextAlign.right,
-             style: TextStyle(
-               fontSize:   28,
-               fontWeight: FontWeight.w300,
-             ),
-           ),
-           const SizedBox(height: 24),
-
-           _MoreTile(
-             icon:  Icons.search,
-             label: t.more_search,
-             onTap: () => context.push('/more/search'),
-           ),
-           _MoreTile(
-             icon:  Icons.settings,
-             label: t.more_settings,
-             onTap: () => context.push('/more/settings'),
-           ),
-           if (flags.showCalendar)
-           _MoreTile(
-             icon:  Icons.calendar_month,
-             label: t.more_calendar,
-             onTap: () => context.push('/more/calendar'),
-           ),
-           if (flags.showQibla)
-           _MoreTile(
-             icon:  Icons.explore,
-             label: t.more_qibla,
-             onTap: () => context.push('/more/qibla'),
-           ),
-           _MoreTile(
-             icon:  Icons.bar_chart,
-             label: t.more_stats,
-             onTap: () => context.push('/more/stats'),
-           ),
-           if (flags.showKhatmah)
-           _MoreTile(
-             icon:  Icons.menu_book,
-             label: t.khatmah_title,
-             onTap: () => context.push('/khatmah'),
-           ),
-           if (flags.showShareCards)
-           _MoreTile(
-             icon:  Icons.card_giftcard,
-             label: t.more_shareCards,
-             onTap: () => context.push('/more/share', extra: {
-               'title':    'آية كريمة',
-               'subtitle': 'سورة البقرة',
-               'content':  'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-               'type':     'quran',
-             }),
-           ),
-           if (flags.showRadio)
-           _MoreTile(
-             icon:  Icons.radio,
-             label: t.more_radio,
-             onTap: () => context.push('/more/radio'),
-           ),
-           if (flags.showHadith)
-           _MoreTile(
-             icon:  Icons.format_quote,
-             label: 'الأحاديث',
-             onTap: () => context.push('/more/hadith-categories'),
-           ),
-           if (flags.showMosques)
-           _MoreTile(
-             icon:  Icons.mosque,
-             label: t.more_mosques,
-             onTap: () => context.push('/more/mosques'),
-           ),
-         ],
-       ),
-     ),
-   );
- }
-}
-
-// ─── More Tile ────────────────────────────────────────────
-class _MoreTile extends StatelessWidget {
- final IconData     icon;
- final String       label;
- final VoidCallback onTap;
-
- const _MoreTile({
-   required this.icon,
-   required this.label,
-   required this.onTap,
- });
-
- @override
- Widget build(BuildContext context) {
-   return ListTile(
-     contentPadding: EdgeInsets.zero,
-     leading:        Icon(icon),
-     title:          Text(label, textAlign: TextAlign.right),
-     trailing:       const Icon(Icons.chevron_left),
-     onTap:          onTap,
-   );
- }
-}
+import '../../features/more/presentation/screens/more_screen.dart';
 
 // ─── Category Names ───────────────────────────────────────
 const _categoryNames = {
