@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
@@ -198,7 +199,7 @@ class _KhatmahCreateScreenState extends ConsumerState<KhatmahCreateScreen> {
     );
   }
 
-  Widget _presetChip(String label, int days, dynamic palette) {
+  Widget _presetChip(String label, int days, SirajPalette palette) {
     final selected = _totalDays == days;
     return GestureDetector(
       onTap: () => _applyPreset(label, days),

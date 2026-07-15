@@ -29,9 +29,9 @@
 | flutter analyze صفر أخطاء | ✅ | — | منضبط عبر الجلسات (قاعدة عمل) — لكن يدوياً؛ يجب نقله لـ CI |
 | صفر تحذيرات/lints | 🟡 | P2 | print()→debugPrint، withOpacity→withValues (49 موقعاً)، unnecessary_underscores، unused imports مُنظَّفة فعلياً (تحقق: `flutter analyze` 91→16، و`flutter test` 20/20 بعدها). الباقي (16): تصنيفات lint مختلفة (deprecated_member_use، use_build_context_synchronously، إلخ) لم تُطلب في هذه الجلسة |
 | إزالة الكود الميت | 🟡 | P2 | UthmanHafs.ttf صفري الحجم مُحذوف، + `_categoryNames` و`_iconForSource` غير المُستخدَمين في app_router.dart/verse_portal_screen.dart (تأكيد بصفر مراجع). البقية ⚠️غ تحتاج جرداً منهجياً أوسع |
-| لا `dynamic` بلا مبرر | 🟡 | P2 | palette في widgets الختمة dynamic — يعمل لكن يفقد type safety. خطوة: نوع ThemePalette صريح |
+| لا `dynamic` بلا مبرر | ✅ | P2 | تم: كل حقول/معاملات `palette` في widgets الختمة (`khatmah_list_screen.dart`، `khatmah_detail_screen.dart`، `khatmah_create_screen.dart` — 5 مواقع) أصبحت `SirajPalette` صريحة (النوع الفعلي الذي يرجعه `timeThemeProvider`، لا `ThemePalette` كما ورد سابقاً بالخطأ). تحقق: `flutter analyze` نظيف على `lib/features/khatmah/` و`flutter test` 20/20 نجاح |
 | توثيق الكود (dartdoc للعناصر العامة) | 🟡 | P3 | موجود بالعربية في الملفات الجديدة؛ غير منتظم في الأقدم |
-| صفر TODO بلا تذكرة | ⚠️غ | P2 | جرد `grep -rn "TODO"` مطلوب |
+| صفر TODO بلا تذكرة | ✅ | P2 | جرد فعلي منفَّذ (`grep -rnE "//\s*TODO\|#\s*TODO\|TODO\(\|FIXME\|XXX:"` عبر كامل المستودع ما عدا build/‏.dart_tool/‏assets الترجمات). **النتيجة: صفر TODO/FIXME في `lib/` أو `test/`** (كود التطبيق نفسه نظيف تماماً). 3 نتائج فقط خارج كود التطبيق، كلها موثّقة كتذاكر هنا: (1) `android/app/build.gradle.kts:19` تعليق قالب `flutter create` عن applicationId — **باطل فعلياً**؛ الـapplicationId مخصَّص أصلاً لـ`app.siraj.siraj`، فالتعليق نفسه متروك خطأً (P3 تنظيف تعليق فقط، لا قرار مطلوب). (2) `android/app/build.gradle.kts:31` عن توقيع الإصدار — **يكرّر تذكرة موجودة فعلاً**: "توقيع release مؤمَّن ⚠️غ P0" في قسم ك (CI/CD)، لا تذكرة جديدة. (3) `linux/flutter/CMakeLists.txt:9` تعليق داخل قالب Flutter SDK نفسه (يُنشئه/يُحدّثه `flutter create`)، ليس كوداً نملكه أو نعدّله — لا تذكرة |
 
 ## ج) الأداء (Performance)
 
@@ -52,7 +52,7 @@
 | الأسرار خارج الكود / gitignore سليم | ⚠️غ | P0 | مراجعة فعلية للمستودع + تاريخ git (لو تسرّب مفتاح: تدويره) |
 | flutter_secure_storage لرموز Auth | ⬜ | P1 | مخطط موثّق غير منفّذ |
 | تحقق من المدخلات (نماذج الإنشاء) | 🟡 | P2 | الختمة تتحقق أساسياً؛ جرد بقية النماذج ⚠️غ |
-| فحص ثغرات التبعيات | ⬜ | P2 | dart pub outdated + مراجعة دورية، تُؤتمت في CI |
+| فحص ثغرات التبعيات | 🟡 | P2 | `dart pub outdated` نُفِّذ فعلياً (2026-07-15، على `main`) — **تقرير فقط، صفر تحديث تبعيات تلقائي** بقرار: بعد حادثتي ترقية `sentry_flutter` و`flutter_local_notifications` السابقتين، أي ترقية تبعية تحتاج مراجعة علاء المباشرة تحديداً، لا قراراً آلياً. **تبعيات مباشرة متأخرة**: `firebase_auth` 6.5.4→6.5.6، `firebase_core` 4.11.0→4.12.1 (ترقيات patch بسيطة) · `intl` 0.20.2→0.20.3، `timezone` 0.10.1→0.11.1 (Resolvable فقط، ليست Upgradable ضمن القيد الحالي) · **`flutter_local_notifications` 19.5.0 على `main` الآن (قبل دمج #14/#4)، وأحدث إصدار متاح 22.0.1 — أي أحدث حتى من الـ20.1.0 التي تُعالَج حالياً في PR منفصل. يحتاج قرار علاء المباشر: هل نكتفي بـ20.1.0 الحالية أم نقفز مباشرة لـ22.0.1؟ (احتمال كسر API إضافي شبيه بما عولج في fix/flutter-local-notifications-named-params)**. تبعيات عابرة (transitive) متعددة متأخرة أيضاً (`analyzer`، `_fe_analyzer_shared`، `firebase_core_platform_interface` وغيرها) لكنها تُدار تلقائياً عبر SDK/الحزم المباشرة، لا تحتاج تدخلاً مباشراً. الأتمتة في CI لم تُفعَّل بعد (تبقى ⬜ فرعياً) |
 | تعتيم الكود عند release | ⬜ | P1 | مخطط موثّق (--obfuscate) — بعد إصلاح البناء |
 
 ## هـ) الاختبارات (Testing)
@@ -61,7 +61,7 @@
 |---|---|---|---|
 | Unit: KhatmahPlan (كل الحسابات المشتقّة) | ✅ | **P0** | `test/khatmah_plan_test.dart` يغطي dailyPortion/pagesAheadOrBehind/todayPortionRange بحالات حدّية (اليوم الأول بلا قراءة، منتصف الخطة على/فوق/تحت المخطط، اليوم الأخير، تجاوز المدة، سجل فارغ، اكتمال ورد اليوم، قرب نهاية المصحف). `flutter test` ← 13/13 نجاح |
 | Unit: ثوابت البيانات الدينية | ✅ | **P0** | `test/mushaf_data_test.dart` يفتح `assets/data/quran_uthmani.json` و`quran_translations.json` و`surah_names.json` فعلياً ويؤكد: 6236 آية، 604 صفحة (1→604 بلا فجوات)، 114 سورة، 14 لغة ترجمة، صفر نصوص فارغة. `flutter test` ← 7/7 نجاح |
-| Unit: CacheService + datasources fallback | ⬜ | P1 | يضمن ألا يكسر تعديل مسار السقوط الآمن |
+| Unit: CacheService + datasources fallback | ✅ | **P1** | `test/cache_service_fallback_test.dart`: (أ) CacheService — round-trip فعلي عبر Hive حقيقي لـsettings/موضع القراءة/سياق القراءة الموحّد (بما فيه مسح khatmahId عند التبديل لسورة)/خطط الختمة. (ب) `QuranRemoteDataSource` — يتحقق أن `getAyahs` يعتمد الأصول المحلية أولاً (مطابقة فعلية لملف quran_uthmani.json الخام) دون شبكة، وأن `getAyahs`/`getTafsir` يسقطان فعلياً لذاكرة Hive المخزَّنة مسبقاً عند غياب سورة/آية من الأصول المحلية (سورة وهمية 999) — بلا أي محاولة اتصال شبكة/Supabase فعلية. `flutter test` ← 7/7 نجاح (27/27 إجمالاً على هذا الفرع) |
 | Widget: شاشتا الختمة | ⬜ | P1 | إنشاء خطة → ظهور بطاقة بالحسابات الصحيحة |
 | Golden: صفحة مصحف مرجعية | ⬜ | P1 | لقطة ذهبية لصفحة 1 و604 — أي تغيير بصري غير مقصود يفشل الاختبار |
 | Integration: تدفق قراءة كامل | ⬜ | P2 | بعد استقرار وضع الصفحات |
