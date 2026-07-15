@@ -29,7 +29,7 @@
 | flutter analyze صفر أخطاء | ✅ | — | منضبط عبر الجلسات (قاعدة عمل) — لكن يدوياً؛ يجب نقله لـ CI |
 | صفر تحذيرات/lints | ⬜ | P2 | متراكم معروف: print()، withOpacity، unnecessary_underscores، unused imports. خطوة: جلسة تنظيف واحدة + تشديد lints |
 | إزالة الكود الميت | ⬜ | P2 | متحقق واحد: UthmanHafs.ttf صفري الحجم يُحذف. البقية ⚠️غ تحتاج جرداً |
-| لا `dynamic` بلا مبرر | 🟡 | P2 | palette في widgets الختمة dynamic — يعمل لكن يفقد type safety. خطوة: نوع ThemePalette صريح |
+| لا `dynamic` بلا مبرر | ✅ | P2 | تم: كل حقول/معاملات `palette` في widgets الختمة (`khatmah_list_screen.dart`، `khatmah_detail_screen.dart`، `khatmah_create_screen.dart` — 5 مواقع) أصبحت `SirajPalette` صريحة (النوع الفعلي الذي يرجعه `timeThemeProvider`، لا `ThemePalette` كما ورد سابقاً بالخطأ). تحقق: `flutter analyze` نظيف على `lib/features/khatmah/` و`flutter test` 20/20 نجاح |
 | توثيق الكود (dartdoc للعناصر العامة) | 🟡 | P3 | موجود بالعربية في الملفات الجديدة؛ غير منتظم في الأقدم |
 | صفر TODO بلا تذكرة | ⚠️غ | P2 | جرد `grep -rn "TODO"` مطلوب |
 

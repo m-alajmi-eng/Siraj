@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
@@ -77,7 +78,7 @@ class KhatmahListScreen extends ConsumerWidget {
 
 class _KhatmahCard extends StatelessWidget {
   final KhatmahPlan plan;
-  final dynamic palette;
+  final SirajPalette palette;
   final AppLocalizations t;
 
   const _KhatmahCard({required this.plan, required this.palette, required this.t});
