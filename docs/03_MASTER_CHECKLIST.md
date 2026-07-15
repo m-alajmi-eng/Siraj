@@ -128,8 +128,10 @@ migration list` يؤكد تطابق local/remote بالضبط — `0000000000000
 
 ## ك) CI/CD
 
-GitHub Actions (analyze+test+build APK) ⬜ **P0 بعد إصلاح البناء** ·
-توقيع release مؤمَّن ⚠️غ P0 · إصدارات semver + changelog ⬜ P1 ·
+GitHub Actions (analyze+test+build APK) ✅ (تحقق: خطوة `flutter build apk
+--release` مضافة بعد analyze+test في `.github/workflows/ci.yml`، واختُبرت
+محلياً بنجاح: `✓ Built build/app/outputs/flutter-apk/app-release.apk
+(167.8MB)`) · توقيع release مؤمَّن ⚠️غ P0 · إصدارات semver + changelog ⬜ P1 ·
 بناء iOS سحابي (يتطلب macOS runner) ⬜ P1 · lint gate ⬜ P1.
 
 ## ل) المراقبة (Monitoring)
