@@ -1,0 +1,97 @@
+{
+  "_meta": {
+    "description": "خرائط الترجمات المرجعية المستقلة من Quran.com (Quran Foundation API) المستخدَمة لمقارنة ترجمات سراج المحلية (assets/data/quran_translations.json، مصدرها الأصلي alquran.cloud). لكل لغة اختير مترجم مختلف عن مترجم سراج الحالي عمداً، لضمان أن المقارنة مستقلة فعلاً لا مقارنة مصدر بنفسه.",
+    "source_api": "https://api.quran.com/api/v4/quran/translations/{resource_id}?chapter_number={n}",
+    "resources_catalog": "https://api.quran.com/api/v4/resources/translations",
+    "fetched_on": "2026-07-15"
+  },
+  "languages": {
+    "en": {
+      "siraj_source": "alquran.cloud en.sahih (Saheeh International)",
+      "reference_resource_id": 22,
+      "reference_name": "A. Yusuf Ali",
+      "independent": true
+    },
+    "ur": {
+      "siraj_source": "alquran.cloud ur.jalandhry (Fatah Muhammad Jalandhari)",
+      "reference_resource_id": 819,
+      "reference_name": "Maulana Wahiduddin Khan",
+      "independent": true
+    },
+    "fa": {
+      "siraj_source": "alquran.cloud fa.makarem (Makarem Shirazi)",
+      "reference_resource_id": 135,
+      "reference_name": "IslamHouse.com",
+      "independent": true
+    },
+    "id": {
+      "siraj_source": "alquran.cloud id.indonesian (Indonesian Ministry of Religious Affairs)",
+      "reference_resource_id": 134,
+      "reference_name": "King Fahad Quran Complex",
+      "independent": true,
+      "note": "مترجم مختلف اسمياً، لكن نتيجة المقارنة الفعلية كشفت متوسط تشابه مرتفع جداً (≈0.90) - أعلى بكثير من بقية اللغات (0.29-0.50 عادة). هذا يرجّح أن ترجمة 'King Fahad Quran Complex' الإندونيسية مبنية على نفس أساس ترجمة وزارة الأوقاف الإندونيسية (شائع أن تعتمد الطبعات المموَّلة سعودياً على الترجمة الحكومية الرسمية كقاعدة)، فالاستقلالية هنا أضعف مما خُطِّط له ابتداءً - النتائج لهذه اللغة تحديداً تحتاج تفسيراً أكثر حذراً"
+    },
+    "tr": {
+      "siraj_source": "alquran.cloud tr.diyanet (Diyanet Isleri)",
+      "reference_resource_id": 52,
+      "reference_name": "Elmalili Hamdi Yazir",
+      "independent": true
+    },
+    "fr": {
+      "siraj_source": "alquran.cloud fr.hamidullah (Muhammad Hamidullah)",
+      "reference_resource_id": 136,
+      "reference_name": "Montada Islamic Foundation",
+      "independent": true
+    },
+    "bn": {
+      "siraj_source": "alquran.cloud bn.bengali",
+      "reference_resource_id": 213,
+      "reference_name": "Dr. Abu Bakr Muhammad Zakaria",
+      "independent": true
+    },
+    "ms": {
+      "siraj_source": "alquran.cloud ms.basmeih (Abdullah Muhammad Basmeih)",
+      "reference_resource_id": 39,
+      "reference_name": "Abdullah Muhammad Basmeih",
+      "independent": false,
+      "note": "Quran.com لا يوفر إلا مترجماً واحداً للملايوية (Basmeih)، وهو نفس مترجم سراج بالضبط. لا يوجد مصدر مستقل بديل متاح عبر هذا الـAPI - المقارنة هنا ستكون بلا معنى (نفس النص أساساً)، لذا استُبعدت لغة الملايو من هذه المقارنة صراحة (انظر تقريرها لملاحظة الاستبعاد بدل تقرير مزيّف)"
+    },
+    "ha": {
+      "siraj_source": "alquran.cloud ha.gumi (Abubakar Mahmoud Gumi)",
+      "reference_resource_id": 115,
+      "reference_name": "Abubakar Mahmood Jummi",
+      "independent": false,
+      "note": "الخيار الثاني الوحيد للهوسا على Quran.com بنفس اسم مترجم سراج تقريباً (فرق تهجئة Gumi/Jummi فقط) - يُرجَّح أنه نفس الشخص/الترجمة. المقارنة نُفِّذت للتوثيق لكن نتائجها منخفضة الموثوقية كمرجع مستقل - عُومِلت كتحذير في التقرير لا كنتيجة موثوقة"
+    },
+    "sw": {
+      "siraj_source": "alquran.cloud sw.barwani (Ali Muhsin Al-Barwani)",
+      "reference_resource_id": 231,
+      "reference_name": "Dr. Abdullah Muhammad Abu Bakr and Sheikh Nasir Khamis",
+      "independent": true
+    },
+    "de": {
+      "siraj_source": "alquran.cloud de.bubenheim (Frank Bubenheim and Nadeem Elyas)",
+      "reference_resource_id": 208,
+      "reference_name": "Abu Reda Muhammad ibn Ahmad",
+      "independent": true
+    },
+    "ru": {
+      "siraj_source": "alquran.cloud ru.kuliev (Elmir Kuliev)",
+      "reference_resource_id": 79,
+      "reference_name": "Abu Adel",
+      "independent": true
+    },
+    "zh": {
+      "siraj_source": "alquran.cloud zh.jian (Ma Jian)",
+      "reference_resource_id": 109,
+      "reference_name": "Muhammad Makin",
+      "independent": true
+    },
+    "es": {
+      "siraj_source": "alquran.cloud es.garcia (Sheikh Isa Garcia)",
+      "reference_resource_id": 199,
+      "reference_name": "Noor International Center",
+      "independent": true
+    }
+  }
+}
