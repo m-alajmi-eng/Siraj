@@ -15,7 +15,7 @@
 | البند | الحالة | أولوية | لماذا/الخطوات/الخطر |
 |---|---|---|---|
 | Feature-first + فصل data/domain/presentation | ✅ | — | قائم في quran/khatmah/prayer. الخطر عند الكسر: تشابك يصعّب الصيانة |
-| اتجاه التبعية (presentation→domain→data) | 🟡 | P2 | سليم عموماً؛ استثناء موثّق: MoreScreen داخل الراوتر. خطوة: نقلها لملفها (دين M1) |
+| اتجاه التبعية (presentation→domain→data) | ✅ | P2 | تم حل الاستثناء الموثّق (دين M1): `MoreScreen`/`_MoreTile` نُقلا من `core/router/app_router.dart` إلى `features/more/presentation/screens/more_screen.dart` (بنية feature-first قياسية مطابقة لبقية الميزات)، والراوتر أصبح يستوردها فقط. تحقق: `flutter analyze`/`flutter test` 20/20 نجاح، لا تغيير سلوكي |
 | ADRs محدّثة | 🟡 | P1 | ADR-007 يحتاج تحديثاً بالمصدر النهائي المختار للمصحف بعد حسمه. الخطر: وثيقة مضللة لعلاء |
 | معالجة أخطاء موحّدة عبر الطبقات | 🟡 | P2 | حالياً try/catch متفرقة + fallbacks جيدة في البيانات. خطوة: نمط Result/استثناءات موحّد عند أول ألم فعلي |
 | التنقّل: مسارات موثّقة ومنطقية | 🟡 | P2 | Shell + مستقلة يعمل. مشكلة UX موثّقة: زر العودة (قسم UX) |
