@@ -44,8 +44,8 @@ class ShareCardWidget extends StatelessWidget {
           end:    Alignment.bottomLeft,
           colors: [
             backgroundColor,
-            backgroundColor.withOpacity(0.9),
-            accentColor.withOpacity(0.25),
+            backgroundColor.withValues(alpha: 0.9),
+            accentColor.withValues(alpha: 0.25),
           ],
         ),
       ),
@@ -59,7 +59,7 @@ class ShareCardWidget extends StatelessWidget {
                 width: 100, height: 100,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: accentColor.withOpacity(0.07),
+                  color: accentColor.withValues(alpha: 0.07),
                 ),
               ),
             ),
@@ -69,7 +69,7 @@ class ShareCardWidget extends StatelessWidget {
                 width: 80, height: 80,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: accentColor.withOpacity(0.05),
+                  color: accentColor.withValues(alpha: 0.05),
                 ),
               ),
             ),
@@ -110,19 +110,19 @@ class ShareCardWidget extends StatelessWidget {
                             if (subtitle.isNotEmpty) ...[
                               Text(subtitle,
                                 style: TextStyle(
-                                  color:    Colors.white.withOpacity(0.5),
+                                  color:    Colors.white.withValues(alpha: 0.5),
                                   fontSize: 9,
                                 )),
                               const SizedBox(width: 5),
                               Container(
                                 width: 1, height: 9,
-                                color: Colors.white.withOpacity(0.3)),
+                                color: Colors.white.withValues(alpha: 0.3)),
                               const SizedBox(width: 5),
                             ],
                             Text(
                               title,
                               style: TextStyle(
-                                color:      accentColor.withOpacity(0.9),
+                                color:      accentColor.withValues(alpha: 0.9),
                                 fontSize:   10,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -139,10 +139,10 @@ class ShareCardWidget extends StatelessWidget {
                   width:  double.infinity,
                   height: 28,
                   decoration: BoxDecoration(
-                    color: accentColor.withOpacity(0.12),
+                    color: accentColor.withValues(alpha: 0.12),
                     border: Border(
                       top: BorderSide(
-                        color: accentColor.withOpacity(0.2),
+                        color: accentColor.withValues(alpha: 0.2),
                         width: 0.5,
                       ),
                     ),
@@ -154,7 +154,7 @@ class ShareCardWidget extends StatelessWidget {
                         width: 4, height: 4,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white.withValues(alpha: 0.5),
                         ),
                       ),
                       const SizedBox(width: 6),
@@ -172,7 +172,7 @@ class ShareCardWidget extends StatelessWidget {
                         width: 4, height: 4,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white.withValues(alpha: 0.5),
                         ),
                       ),
                     ],

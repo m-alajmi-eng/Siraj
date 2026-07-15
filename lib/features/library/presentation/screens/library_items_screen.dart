@@ -109,7 +109,7 @@ class _LibraryItemsScreenState extends ConsumerState<LibraryItemsScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s4)
                           .copyWith(bottom: SirajSpacing.s4),
                       itemCount: filtered.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: SirajSpacing.s2),
+                      separatorBuilder: (_, _) => const SizedBox(height: SirajSpacing.s2),
                       itemBuilder: (context, index) {
                         return _ContentCard(
                           item: filtered[index],

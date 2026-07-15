@@ -510,9 +510,9 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                 Navigator.of(context).push(
                   PageRouteBuilder(
                     transitionDuration: const Duration(milliseconds: 400),
-                    pageBuilder: (_, __, ___) => VersePortalScreen(
+                    pageBuilder: (_, _, _) => VersePortalScreen(
                       surahId: surahId, ayahNumber: ayahNumber),
-                    transitionsBuilder: (_, animation, __, child) =>
+                    transitionsBuilder: (_, animation, _, child) =>
                         FadeTransition(
                           opacity: CurvedAnimation(
                             parent: animation, curve: Curves.easeInOut),

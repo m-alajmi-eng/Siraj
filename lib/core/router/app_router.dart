@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../widgets/main_shell.dart';
-import '../mode/app_mode.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/hadith/presentation/screens/hadith_categories_screen.dart';
 import '../../features/hadith/presentation/screens/hadith_list_screen.dart';
@@ -43,16 +42,6 @@ import '../../features/library/presentation/screens/library_items_screen.dart';
 import '../../features/library/presentation/screens/library_type_categories_screen.dart';
 import '../../features/more/presentation/screens/more_screen.dart';
 
-// ─── Category Names ───────────────────────────────────────
-const _categoryNames = {
- 'morning': 'أذكار الصباح',
- 'evening': 'أذكار المساء',
- 'sleep':   'أذكار النوم',
- 'wake':    'أذكار الاستيقاظ',
- 'prayer':  'أذكار بعد الصلاة',
- 'general': 'أذكار متنوعة',
-};
-
 // ─── Router ───────────────────────────────────────────────
 final appRouterProvider = Provider<GoRouter>((ref) {
  final box          = Hive.box('settings');
@@ -69,23 +58,23 @@ final appRouterProvider = Provider<GoRouter>((ref) {
      // ── Language Selection ──
      GoRoute(
        path: '/language',
-       builder: (_, __) => const LanguageSelectScreen(),
+       builder: (_, _) => const LanguageSelectScreen(),
      ),
 
      // ── Onboarding ──
      GoRoute(
        path:    '/onboarding',
-       builder: (_, __) => const OnboardingScreen(),
+       builder: (_, _) => const OnboardingScreen(),
      ),
 
      // ── Auth ──
      GoRoute(
        path: '/auth',
-       builder: (_, __) => const AuthScreen(),
+       builder: (_, _) => const AuthScreen(),
      ),
      GoRoute(
        path: '/account',
-       builder: (_, __) => const AccountScreen(),
+       builder: (_, _) => const AccountScreen(),
      ),
      // ── Main Shell ──
      StatefulShellRoute.indexedStack(
@@ -97,11 +86,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
          StatefulShellBranch(routes: [
            GoRoute(
              path:    '/home',
-             builder: (_, __) => const HomeScreen(),
+             builder: (_, _) => const HomeScreen(),
            ),
            GoRoute(
              path:    '/prayer',
-             builder: (_, __) => const PrayerScreen(),
+             builder: (_, _) => const PrayerScreen(),
            ),
          ]),
 
@@ -109,7 +98,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
          StatefulShellBranch(routes: [
            GoRoute(
              path:    '/quran',
-             builder: (_, __) => const QuranHomeScreen(),
+             builder: (_, _) => const QuranHomeScreen(),
              routes: [
                GoRoute(
                  path: 'surah/:id',
@@ -120,7 +109,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                ),
                GoRoute(
                  path:    'search',
-                 builder: (_, __) => const QuranSearchScreen(),
+                 builder: (_, _) => const QuranSearchScreen(),
                ),
              ],
            ),
@@ -130,7 +119,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
          StatefulShellBranch(routes: [
            GoRoute(
              path:    '/athkar',
-             builder: (_, __) => const AthkarHomeScreen(),
+             builder: (_, _) => const AthkarHomeScreen(),
              routes: [
     GoRoute(
       path: 'group/:id',
@@ -165,7 +154,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
          StatefulShellBranch(routes: [
            GoRoute(
              path:    '/library',
-             builder: (_, __) => const LibraryHomeScreen(),
+             builder: (_, _) => const LibraryHomeScreen(),
            ),
          ]),
 
@@ -173,27 +162,27 @@ final appRouterProvider = Provider<GoRouter>((ref) {
          StatefulShellBranch(routes: [
            GoRoute(
              path:    '/more',
-             builder: (_, __) => const MoreScreen(),
+             builder: (_, _) => const MoreScreen(),
              routes: [
                GoRoute(
                  path:    'search',
-                 builder: (_, __) => const SearchScreen(),
+                 builder: (_, _) => const SearchScreen(),
                ),
                GoRoute(
                  path:    'settings',
-                 builder: (_, __) => const SettingsScreen(),
+                 builder: (_, _) => const SettingsScreen(),
                ),
                GoRoute(
                  path:    'calendar',
-                 builder: (_, __) => const CalendarScreen(),
+                 builder: (_, _) => const CalendarScreen(),
                ),
                GoRoute(
                  path:    'qibla',
-                 builder: (_, __) => const QiblaScreen(),
+                 builder: (_, _) => const QiblaScreen(),
                ),
                GoRoute(
                  path:    'stats',
-                 builder: (_, __) => const StatsScreen(),
+                 builder: (_, _) => const StatsScreen(),
                ),
                GoRoute(
                  path: 'share',
@@ -209,11 +198,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                ),
                GoRoute(
                  path:    'radio',
-                 builder: (_, __) => const RadioScreen(),
+                 builder: (_, _) => const RadioScreen(),
                ),
                GoRoute(
                  path:    'hadith-categories',
-                 builder: (_, __) => const HadithCategoriesScreen(),
+                 builder: (_, _) => const HadithCategoriesScreen(),
                ),
                GoRoute(
                  path:    'adwaa-bayan/:pageNumber',
@@ -237,15 +226,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                ),
                GoRoute(
                  path:    'mosques',
-                 builder: (_, __) => const MosquesScreen(),
+                 builder: (_, _) => const MosquesScreen(),
                ),
     GoRoute(
       path:    'stories',
-      builder: (_, __) => const StoriesScreen(),
+      builder: (_, _) => const StoriesScreen(),
     ),
     GoRoute(
       path:    'children_stories',
-      builder: (_, __) => const ChildrenStoriesScreen(),
+      builder: (_, _) => const ChildrenStoriesScreen(),
     ),
              ],
            ),
@@ -256,15 +245,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
      // ── بوابة غير المسلمين (خارج الـ shell: شاشات كاملة بزر رجوع) ──
      GoRoute(
        path: '/gateway',
-       builder: (_, __) => const GatewayIntroScreen(),
+       builder: (_, _) => const GatewayIntroScreen(),
        routes: [
          GoRoute(
            path: 'journey',
-           builder: (_, __) => const GatewayJourneyScreen(),
+           builder: (_, _) => const GatewayJourneyScreen(),
          ),
          GoRoute(
            path: 'principles',
-           builder: (_, __) => const GatewayPrinciplesScreen(),
+           builder: (_, _) => const GatewayPrinciplesScreen(),
            routes: [
              GoRoute(
                path: ':topicId',
@@ -308,11 +297,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
      // ── الختمة (خارج الـ shell: شاشات كاملة بزر رجوع) ──
      GoRoute(
        path: '/khatmah',
-       builder: (_, __) => const KhatmahListScreen(),
+       builder: (_, _) => const KhatmahListScreen(),
        routes: [
          GoRoute(
            path: 'create',
-           builder: (_, __) => const KhatmahCreateScreen(),
+           builder: (_, _) => const KhatmahCreateScreen(),
          ),
          GoRoute(
            path: 'detail/:id',

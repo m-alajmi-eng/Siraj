@@ -50,10 +50,10 @@ class CitationBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color:        palette.accentPrimary.withOpacity(0.08),
+        color:        palette.accentPrimary.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(6),
         border: Border.all(
-          color: palette.accentPrimary.withOpacity(0.2)),
+          color: palette.accentPrimary.withValues(alpha: 0.2)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -79,10 +79,10 @@ class CitationBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color:        palette.accentPrimary.withOpacity(0.05),
+        color:        palette.accentPrimary.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: palette.accentPrimary.withOpacity(0.15)),
+          color: palette.accentPrimary.withValues(alpha: 0.15)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,

@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -87,7 +86,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     decoration: BoxDecoration(
                       color: i <= _currentPage
                           ? palette.accentPrimary
-                          : palette.accentPrimary.withOpacity(0.2),
+                          : palette.accentPrimary.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(2),
                     ),
                   ),
@@ -225,7 +224,7 @@ class _LanguagePage extends StatelessWidget {
                       border: Border.all(
                         color: isSelected
                             ? palette.accentPrimary
-                            : palette.accentPrimary.withOpacity(0.1),
+                            : palette.accentPrimary.withValues(alpha: 0.1),
                       ),
                     ),
                     child: Row(
@@ -352,13 +351,13 @@ class _ModeCard extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: isSelected
-              ? palette.accentPrimary.withOpacity(0.15)
+              ? palette.accentPrimary.withValues(alpha: 0.15)
               : palette.surface,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: isSelected
                 ? palette.accentPrimary
-                : palette.accentPrimary.withOpacity(0.1),
+                : palette.accentPrimary.withValues(alpha: 0.1),
             width: isSelected ? 2 : 1,
           ),
         ),
@@ -465,13 +464,13 @@ class _MadhabPage extends StatelessWidget {
                 padding: const EdgeInsets.all(18),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? palette.accentPrimary.withOpacity(0.15)
+                      ? palette.accentPrimary.withValues(alpha: 0.15)
                       : palette.surface,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     color: isSelected
                         ? palette.accentPrimary
-                        : palette.accentPrimary.withOpacity(0.1),
+                        : palette.accentPrimary.withValues(alpha: 0.1),
                     width: isSelected ? 2 : 1,
                   ),
                 ),

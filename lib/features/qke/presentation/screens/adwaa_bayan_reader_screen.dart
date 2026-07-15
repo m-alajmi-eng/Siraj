@@ -64,7 +64,7 @@ class AdwaaBayanReaderScreen extends ConsumerWidget {
               decoration: BoxDecoration(
                 color: palette.surface,
                 border: Border(top: BorderSide(
-                    color: palette.textSecondary.withOpacity(0.1))),
+                    color: palette.textSecondary.withValues(alpha: 0.1))),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +73,7 @@ class AdwaaBayanReaderScreen extends ConsumerWidget {
                     icon: Icon(Icons.chevron_right,
                         color: canGoPrev
                             ? palette.accentPrimary
-                            : palette.textSecondary.withOpacity(0.3)),
+                            : palette.textSecondary.withValues(alpha: 0.3)),
                     onPressed: canGoPrev
                         ? () => context.pushReplacement(
                             '/more/adwaa-bayan/${pageNumber - 1}')
@@ -86,7 +86,7 @@ class AdwaaBayanReaderScreen extends ConsumerWidget {
                     icon: Icon(Icons.chevron_left,
                         color: canGoNext
                             ? palette.accentPrimary
-                            : palette.textSecondary.withOpacity(0.3)),
+                            : palette.textSecondary.withValues(alpha: 0.3)),
                     onPressed: canGoNext
                         ? () => context.pushReplacement(
                             '/more/adwaa-bayan/${pageNumber + 1}')
