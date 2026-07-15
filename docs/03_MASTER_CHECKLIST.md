@@ -61,7 +61,7 @@
 |---|---|---|---|
 | Unit: KhatmahPlan (كل الحسابات المشتقّة) | ✅ | **P0** | `test/khatmah_plan_test.dart` يغطي dailyPortion/pagesAheadOrBehind/todayPortionRange بحالات حدّية (اليوم الأول بلا قراءة، منتصف الخطة على/فوق/تحت المخطط، اليوم الأخير، تجاوز المدة، سجل فارغ، اكتمال ورد اليوم، قرب نهاية المصحف). `flutter test` ← 13/13 نجاح |
 | Unit: ثوابت البيانات الدينية | ✅ | **P0** | `test/mushaf_data_test.dart` يفتح `assets/data/quran_uthmani.json` و`quran_translations.json` و`surah_names.json` فعلياً ويؤكد: 6236 آية، 604 صفحة (1→604 بلا فجوات)، 114 سورة، 14 لغة ترجمة، صفر نصوص فارغة. `flutter test` ← 7/7 نجاح |
-| Unit: CacheService + datasources fallback | ⬜ | P1 | يضمن ألا يكسر تعديل مسار السقوط الآمن |
+| Unit: CacheService + datasources fallback | ✅ | **P1** | `test/cache_service_fallback_test.dart`: (أ) CacheService — round-trip فعلي عبر Hive حقيقي لـsettings/موضع القراءة/سياق القراءة الموحّد (بما فيه مسح khatmahId عند التبديل لسورة)/خطط الختمة. (ب) `QuranRemoteDataSource` — يتحقق أن `getAyahs` يعتمد الأصول المحلية أولاً (مطابقة فعلية لملف quran_uthmani.json الخام) دون شبكة، وأن `getAyahs`/`getTafsir` يسقطان فعلياً لذاكرة Hive المخزَّنة مسبقاً عند غياب سورة/آية من الأصول المحلية (سورة وهمية 999) — بلا أي محاولة اتصال شبكة/Supabase فعلية. `flutter test` ← 7/7 نجاح (27/27 إجمالاً على هذا الفرع) |
 | Widget: شاشتا الختمة | ⬜ | P1 | إنشاء خطة → ظهور بطاقة بالحسابات الصحيحة |
 | Golden: صفحة مصحف مرجعية | ⬜ | P1 | لقطة ذهبية لصفحة 1 و604 — أي تغيير بصري غير مقصود يفشل الاختبار |
 | Integration: تدفق قراءة كامل | ⬜ | P2 | بعد استقرار وضع الصفحات |
