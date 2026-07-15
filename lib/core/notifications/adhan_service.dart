@@ -42,7 +42,7 @@ class AdhanService {
 
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
     const settings = InitializationSettings(android: android);
-    await _notifications.initialize(settings);
+    await _notifications.initialize(settings: settings);
   }
 
   /// يشغّل صوت أذان محلي بمفتاحه (لا رابط خارجي).
@@ -106,10 +106,10 @@ class AdhanService {
     required DateTime time,
   }) async {
     await _notifications.show(
-      id,
-      title,
-      body,
-      const NotificationDetails(
+      id: id,
+      title: title,
+      body: body,
+      notificationDetails: const NotificationDetails(
         android: AndroidNotificationDetails(
           'prayer_channel',
           'أوقات الصلاة',

@@ -22,7 +22,7 @@ class KhatmahReminderService {
     }
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
     const settings = InitializationSettings(android: android);
-    await _notifications.initialize(settings);
+    await _notifications.initialize(settings: settings);
   }
 
   /// معرّف إشعار ثابت ومميّز لكل خطة (يعتمد على hashCode للـid النصي
@@ -41,7 +41,7 @@ class KhatmahReminderService {
     await _ensureInit();
 
     final id = _notificationIdFor(plan.id);
-    await _notifications.cancel(id);
+    await _notifications.cancel(id: id);
 
     if (!plan.isActive || plan.reminderTime == null || plan.isCompleted) {
       return;
@@ -56,11 +56,11 @@ class KhatmahReminderService {
     final scheduled = _nextInstanceOf(hour, minute);
 
     await _notifications.zonedSchedule(
-      id,
-      '$titlePrefix ${plan.name}',
-      bodyTemplate.replaceAll('{pages}', '${plan.dailyPortion}'),
-      scheduled,
-      const NotificationDetails(
+      id: id,
+      title: '$titlePrefix ${plan.name}',
+      body: bodyTemplate.replaceAll('{pages}', '${plan.dailyPortion}'),
+      scheduledDate: scheduled,
+      notificationDetails: const NotificationDetails(
         android: AndroidNotificationDetails(
           'khatmah_reminder_channel',
           'تذكيرات الختمة',
@@ -78,7 +78,7 @@ class KhatmahReminderService {
   static Future<void> cancelForPlan(String planId) async {
     if (!Platform.isAndroid && !Platform.isIOS) return;
     await _ensureInit();
-    await _notifications.cancel(_notificationIdFor(planId));
+    await _notifications.cancel(id: _notificationIdFor(planId));
   }
 
   static tz.TZDateTime _nextInstanceOf(int hour, int minute) {
