@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:adhan/adhan.dart';
 import 'app_colors.dart';
 
 final timeThemeProvider = Provider<SirajPalette>((ref) {

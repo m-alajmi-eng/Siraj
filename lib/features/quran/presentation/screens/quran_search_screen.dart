@@ -178,7 +178,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
                                                 horizontal: 10, vertical: 4),
                                               decoration: BoxDecoration(
                                                 color: palette.accentPrimary
-                                                    .withOpacity(0.15),
+                                                    .withValues(alpha: 0.15),
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                               ),
@@ -248,7 +248,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
             fontSize:        18,
             height:          1.8,
             fontWeight:      FontWeight.bold,
-            backgroundColor: palette.accentPrimary.withOpacity(0.15),
+            backgroundColor: palette.accentPrimary.withValues(alpha: 0.15),
           ),
         ));
       }

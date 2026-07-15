@@ -446,7 +446,7 @@ class _DailyAyah extends ConsumerWidget {
                 child: Center(
                   child: SizedBox(height: 12, width: 12,
                     child: CircularProgressIndicator(strokeWidth: 1.5)))),
-              error: (_, __) => const SizedBox.shrink(),
+              error: (_, _) => const SizedBox.shrink(),
             ),
           ],
           const SizedBox(height: SirajSpacing.s4),

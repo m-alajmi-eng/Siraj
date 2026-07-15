@@ -49,7 +49,7 @@ class GatewayPrinciplesScreen extends ConsumerWidget {
           child: ListView.separated(
             padding: const EdgeInsets.only(bottom: SirajSpacing.s6),
             itemCount: topics.length + 1,
-            separatorBuilder: (_, __) =>
+            separatorBuilder: (_, _) =>
                 const SizedBox(height: SirajSpacing.s3),
             itemBuilder: (context, index) {
               if (index == 0) {

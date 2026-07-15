@@ -27,8 +27,8 @@
 | البند | الحالة | أولوية | ملاحظات |
 |---|---|---|---|
 | flutter analyze صفر أخطاء | ✅ | — | منضبط عبر الجلسات (قاعدة عمل) — لكن يدوياً؛ يجب نقله لـ CI |
-| صفر تحذيرات/lints | ⬜ | P2 | متراكم معروف: print()، withOpacity، unnecessary_underscores، unused imports. خطوة: جلسة تنظيف واحدة + تشديد lints |
-| إزالة الكود الميت | ⬜ | P2 | متحقق واحد: UthmanHafs.ttf صفري الحجم يُحذف. البقية ⚠️غ تحتاج جرداً |
+| صفر تحذيرات/lints | 🟡 | P2 | print()→debugPrint، withOpacity→withValues (49 موقعاً)، unnecessary_underscores، unused imports مُنظَّفة فعلياً (تحقق: `flutter analyze` 91→16، و`flutter test` 20/20 بعدها). الباقي (16): تصنيفات lint مختلفة (deprecated_member_use، use_build_context_synchronously، إلخ) لم تُطلب في هذه الجلسة |
+| إزالة الكود الميت | 🟡 | P2 | UthmanHafs.ttf صفري الحجم مُحذوف، + `_categoryNames` و`_iconForSource` غير المُستخدَمين في app_router.dart/verse_portal_screen.dart (تأكيد بصفر مراجع). البقية ⚠️غ تحتاج جرداً منهجياً أوسع |
 | لا `dynamic` بلا مبرر | 🟡 | P2 | palette في widgets الختمة dynamic — يعمل لكن يفقد type safety. خطوة: نوع ThemePalette صريح |
 | توثيق الكود (dartdoc للعناصر العامة) | 🟡 | P3 | موجود بالعربية في الملفات الجديدة؛ غير منتظم في الأقدم |
 | صفر TODO بلا تذكرة | ⚠️غ | P2 | جرد `grep -rn "TODO"` مطلوب |
