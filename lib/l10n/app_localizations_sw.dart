@@ -101,6 +101,13 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode =>
+      'Badilisha hali ya uonyeshaji (Msahafu/tafsiri)';
+
+  @override
+  String get quran_toggleTajweed => 'Badilisha rangi za tajwid';
+
+  @override
   String get athkar_title => 'Adhkari';
 
   @override
@@ -264,6 +271,24 @@ class AppLocalizationsSw extends AppLocalizations {
   String get common_offline => 'Hakuna muunganisho wa intaneti';
 
   @override
+  String get common_close => 'Funga';
+
+  @override
+  String get common_share => 'Shiriki';
+
+  @override
+  String get common_refresh => 'Onyesha upya';
+
+  @override
+  String get common_prevPage => 'Ukurasa uliopita';
+
+  @override
+  String get common_nextPage => 'Ukurasa unaofuata';
+
+  @override
+  String get common_clearSearch => 'Futa utafutaji';
+
+  @override
   String get nav_home => 'Nyumbani';
 
   @override
@@ -365,6 +390,12 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get radio_international => 'Kimataifa';
+
+  @override
+  String get radio_play => 'Cheza';
+
+  @override
+  String get radio_pause => 'Simamisha';
 
   @override
   String get cal_title => 'Kalenda ya Kiislamu';
@@ -515,6 +546,9 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Sauti ya Muadhini';
+
+  @override
+  String get settings_previewAdhan => 'Hakiki sauti ya adhana';
 
   @override
   String get settings_vibration => 'Mtetemo badala ya sauti';

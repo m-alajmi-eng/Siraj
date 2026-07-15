@@ -66,6 +66,7 @@ class AccountScreen extends ConsumerWidget {
         backgroundColor: palette.background,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: palette.textPrimary),
+          tooltip: t.common_back,
           onPressed: () => context.pop(),
         ),
         title: Text(t.auth_account_settings,

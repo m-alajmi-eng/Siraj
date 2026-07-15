@@ -101,6 +101,12 @@ class AppLocalizationsMs extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode => 'Tukar mod paparan (Mushaf/terjemahan)';
+
+  @override
+  String get quran_toggleTajweed => 'Tukar pewarnaan tajwid';
+
+  @override
   String get athkar_title => 'Zikir';
 
   @override
@@ -264,6 +270,24 @@ class AppLocalizationsMs extends AppLocalizations {
   String get common_offline => 'Tiada sambungan internet';
 
   @override
+  String get common_close => 'Tutup';
+
+  @override
+  String get common_share => 'Kongsi';
+
+  @override
+  String get common_refresh => 'Segar semula';
+
+  @override
+  String get common_prevPage => 'Halaman sebelumnya';
+
+  @override
+  String get common_nextPage => 'Halaman seterusnya';
+
+  @override
+  String get common_clearSearch => 'Kosongkan carian';
+
+  @override
   String get nav_home => 'Utama';
 
   @override
@@ -365,6 +389,12 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get radio_international => 'Antarabangsa';
+
+  @override
+  String get radio_play => 'Main';
+
+  @override
+  String get radio_pause => 'Jeda';
 
   @override
   String get cal_title => 'Kalendar Islam';
@@ -515,6 +545,9 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Suara Muazin';
+
+  @override
+  String get settings_previewAdhan => 'Pratonton suara azan';
 
   @override
   String get settings_vibration => 'Getar dan bukan bunyi';

@@ -75,6 +75,12 @@
   "common_search": "Buscar",
   "common_noData": "Sin datos",
   "common_offline": "Sin conexión a internet",
+  "common_close": "Cerrar",
+  "common_share": "Compartir",
+  "common_refresh": "Actualizar",
+  "common_prevPage": "Página anterior",
+  "common_nextPage": "Página siguiente",
+  "common_clearSearch": "Borrar búsqueda",
   "prayer_countdown": "En {time}",
   "@prayer_countdown": {
     "placeholders": {
@@ -100,6 +106,8 @@
     }
   },
   "quran_ayahNumber": "Versículo {number}",
+  "quran_toggleDisplayMode": "Cambiar modo de visualización (Mushaf/traducción)",
+  "quran_toggleTajweed": "Cambiar coloreado de tajwid",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -156,6 +164,8 @@
   "radio_tafsir": "Tafsir y Fatua",
   "radio_athkar": "Adhkar",
   "radio_international": "Internacional",
+  "radio_play": "Reproducir",
+  "radio_pause": "Pausar",
   "cal_title": "Calendario islámico",
   "cal_todayEvents": "Eventos de hoy",
   "cal_nextEvent": "Próximo evento",
@@ -205,6 +215,7 @@
   "settings_chooseCalc": "Método de cálculo",
   "settings_enableAdhan": "Activar Adhan",
   "settings_muezzinVoice": "Voz del almuédano",
+  "settings_previewAdhan": "Escuchar voz del adhan",
   "settings_vibration": "Vibrar en lugar de sonido",
   "settings_iqamaAlert": "Aviso antes del Iqama",
   "settings_minutes": "{n} min",

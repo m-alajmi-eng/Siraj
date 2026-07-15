@@ -49,6 +49,8 @@
   "quran_searchReciter": "Rechercher un récitant...",
   "quran_playPrompt": "Appuyer pour écouter",
   "quran_ayahNumber": "Verset {number}",
+  "quran_toggleDisplayMode": "Changer le mode d'affichage (Mushaf/traduction)",
+  "quran_toggleTajweed": "Changer la coloration du tajwid",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -123,6 +125,12 @@
   "common_search": "Rechercher",
   "common_noData": "Aucune donnée",
   "common_offline": "Pas de connexion internet",
+  "common_close": "Fermer",
+  "common_share": "Partager",
+  "common_refresh": "Actualiser",
+  "common_prevPage": "Page précédente",
+  "common_nextPage": "Page suivante",
+  "common_clearSearch": "Effacer la recherche",
   "nav_home": "Accueil",
   "nav_quran": "Coran",
   "nav_athkar": "Athkar",
@@ -156,6 +164,8 @@
   "radio_tafsir": "Tafsir et Fatwa",
   "radio_athkar": "Adhkar",
   "radio_international": "International",
+  "radio_play": "Lire",
+  "radio_pause": "Pause",
   "cal_title": "Calendrier islamique",
   "cal_todayEvents": "Événements du jour",
   "cal_nextEvent": "Prochain événement",
@@ -205,6 +215,7 @@
   "settings_chooseCalc": "Méthode de calcul",
   "settings_enableAdhan": "Activer l'Adhan",
   "settings_muezzinVoice": "Voix du muezzin",
+  "settings_previewAdhan": "Aperçu de la voix de l'appel à la prière",
   "settings_vibration": "Vibrer au lieu du son",
   "settings_iqamaAlert": "Alerte avant l'Iqama",
   "settings_minutes": "{n} min",

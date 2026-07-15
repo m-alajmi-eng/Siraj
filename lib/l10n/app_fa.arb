@@ -75,6 +75,12 @@
   "common_search": "جستجو",
   "common_noData": "داده‌ای موجود نیست",
   "common_offline": "اتصال به اینترنت وجود ندارد",
+  "common_close": "بستن",
+  "common_share": "اشتراک‌گذاری",
+  "common_refresh": "به‌روزرسانی",
+  "common_prevPage": "صفحه قبل",
+  "common_nextPage": "صفحه بعد",
+  "common_clearSearch": "پاک کردن جستجو",
   "prayer_countdown": "در {time}",
   "@prayer_countdown": {
     "placeholders": {
@@ -100,6 +106,8 @@
     }
   },
   "quran_ayahNumber": "آیه {number}",
+  "quran_toggleDisplayMode": "تغییر حالت نمایش (مصحف/ترجمه)",
+  "quran_toggleTajweed": "تغییر رنگ‌آمیزی احکام تجوید",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -156,6 +164,8 @@
   "radio_tafsir": "تفسیر و فتوا",
   "radio_athkar": "اذکار",
   "radio_international": "بینالمللی",
+  "radio_play": "پخش",
+  "radio_pause": "توقف",
   "cal_title": "تقویم اسلامی",
   "cal_todayEvents": "رویدادهای امروز",
   "cal_nextEvent": "رویداد بعدی",
@@ -205,6 +215,7 @@
   "settings_chooseCalc": "روش محاسبه",
   "settings_enableAdhan": "فعال‌سازی اذان",
   "settings_muezzinVoice": "صدای مؤذن",
+  "settings_previewAdhan": "پیش‌نمایش صدای اذان",
   "settings_vibration": "لرزش به‌جای صدا",
   "settings_iqamaAlert": "هشدار پیش از اقامه",
   "settings_minutes": "{n} دقیقه",

@@ -101,6 +101,12 @@ class AppLocalizationsHa extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode => 'Canza yanayin nuni (Mushaf/fassara)';
+
+  @override
+  String get quran_toggleTajweed => 'Canza launin tajwid';
+
+  @override
   String get athkar_title => 'Azkar';
 
   @override
@@ -264,6 +270,24 @@ class AppLocalizationsHa extends AppLocalizations {
   String get common_offline => 'Babu haɗin intanet';
 
   @override
+  String get common_close => 'Rufe';
+
+  @override
+  String get common_share => 'Raba';
+
+  @override
+  String get common_refresh => 'Sabunta';
+
+  @override
+  String get common_prevPage => 'Shafi na baya';
+
+  @override
+  String get common_nextPage => 'Shafi na gaba';
+
+  @override
+  String get common_clearSearch => 'Share bincike';
+
+  @override
   String get nav_home => 'Gida';
 
   @override
@@ -365,6 +389,12 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get radio_international => 'Na Duniya';
+
+  @override
+  String get radio_play => 'Kunna';
+
+  @override
+  String get radio_pause => 'Dakata';
 
   @override
   String get cal_title => 'Kalandar Musulunci';
@@ -515,6 +545,9 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Muryar Ladani';
+
+  @override
+  String get settings_previewAdhan => 'Gwada sautin kiran sallah';
 
   @override
   String get settings_vibration => 'Girgiza maimakon sauti';

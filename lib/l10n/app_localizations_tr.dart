@@ -101,6 +101,13 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode =>
+      'Görüntüleme modunu değiştir (Mushaf/çeviri)';
+
+  @override
+  String get quran_toggleTajweed => 'Tecvid renklendirmesini değiştir';
+
+  @override
   String get athkar_title => 'Zikirler';
 
   @override
@@ -264,6 +271,24 @@ class AppLocalizationsTr extends AppLocalizations {
   String get common_offline => 'İnternet bağlantısı yok';
 
   @override
+  String get common_close => 'Kapat';
+
+  @override
+  String get common_share => 'Paylaş';
+
+  @override
+  String get common_refresh => 'Yenile';
+
+  @override
+  String get common_prevPage => 'Önceki sayfa';
+
+  @override
+  String get common_nextPage => 'Sonraki sayfa';
+
+  @override
+  String get common_clearSearch => 'Aramayı temizle';
+
+  @override
   String get nav_home => 'Ana Sayfa';
 
   @override
@@ -365,6 +390,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get radio_international => 'Uluslararası';
+
+  @override
+  String get radio_play => 'Oynat';
+
+  @override
+  String get radio_pause => 'Duraklat';
 
   @override
   String get cal_title => 'İslami Takvim';
@@ -514,6 +545,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Müezzin Sesi';
+
+  @override
+  String get settings_previewAdhan => 'Ezan sesini önizle';
 
   @override
   String get settings_vibration => 'Ses yerine titreşim';

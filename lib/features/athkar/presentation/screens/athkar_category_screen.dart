@@ -165,6 +165,7 @@ class _AthkarCategoryScreenState
                       IconButton(
                         icon: Icon(Icons.arrow_back,
                           color: palette.textPrimary),
+                        tooltip: t.common_back,
                         onPressed: () => Navigator.pop(context),
                       ),
                       Expanded(

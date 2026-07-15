@@ -49,6 +49,8 @@
   "quran_searchReciter": "Cari qari...",
   "quran_playPrompt": "Ketuk untuk mendengarkan",
   "quran_ayahNumber": "Ayat {number}",
+  "quran_toggleDisplayMode": "Alihkan mode tampilan (Mushaf/terjemahan)",
+  "quran_toggleTajweed": "Alihkan pewarnaan tajwid",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -123,6 +125,12 @@
   "common_search": "Cari",
   "common_noData": "Tidak ada data",
   "common_offline": "Tidak ada koneksi internet",
+  "common_close": "Tutup",
+  "common_share": "Bagikan",
+  "common_refresh": "Segarkan",
+  "common_prevPage": "Halaman sebelumnya",
+  "common_nextPage": "Halaman berikutnya",
+  "common_clearSearch": "Hapus pencarian",
   "nav_home": "Beranda",
   "nav_quran": "Quran",
   "nav_athkar": "Zikir",
@@ -156,6 +164,8 @@
   "radio_tafsir": "Tafsir & Fatwa",
   "radio_athkar": "Zikir",
   "radio_international": "Internasional",
+  "radio_play": "Putar",
+  "radio_pause": "Jeda",
   "cal_title": "Kalender Islam",
   "cal_todayEvents": "Peristiwa Hari Ini",
   "cal_nextEvent": "Peristiwa Berikutnya",
@@ -205,6 +215,7 @@
   "settings_chooseCalc": "Metode Perhitungan",
   "settings_enableAdhan": "Aktifkan Azan",
   "settings_muezzinVoice": "Suara Muazin",
+  "settings_previewAdhan": "Pratinjau suara azan",
   "settings_vibration": "Getar alih-alih suara",
   "settings_iqamaAlert": "Peringatan sebelum Ikamah",
   "settings_minutes": "{n} mnt",

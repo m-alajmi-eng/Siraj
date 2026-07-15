@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../providers/quran_provider.dart';
 import '../../domain/entities/ayah_entity.dart';
 
@@ -57,6 +58,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
   @override
   Widget build(BuildContext context) {
     final palette = ref.watch(timeThemeProvider);
+    final t       = AppLocalizations.of(context);
     final query   = ref.watch(searchQueryProvider);
     final results = ref.watch(searchResultsProvider);
     final surahs  = ref.watch(surahsProvider);
@@ -75,6 +77,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
                   IconButton(
                     icon: Icon(Icons.arrow_back,
                       color: palette.textPrimary),
+                    tooltip: t.common_back,
                     onPressed: () => Navigator.pop(context),
                   ),
                   Expanded(

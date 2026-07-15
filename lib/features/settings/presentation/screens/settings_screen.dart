@@ -236,16 +236,20 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          GestureDetector(
-                            onTap: () => _previewAdhan(name),
-                            child: Container(
-                              padding: const EdgeInsets.all(6),
-                              decoration: BoxDecoration(
-                                color: palette.accentPrimary.withValues(alpha: 0.2),
-                                shape: BoxShape.circle,
+                          Semantics(
+                            button: true,
+                            label: t.settings_previewAdhan,
+                            child: GestureDetector(
+                              onTap: () => _previewAdhan(name),
+                              child: Container(
+                                padding: const EdgeInsets.all(6),
+                                decoration: BoxDecoration(
+                                  color: palette.accentPrimary.withValues(alpha: 0.2),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(Icons.play_arrow,
+                                  color: palette.accentPrimary, size: 16),
                               ),
-                              child: Icon(Icons.play_arrow,
-                                color: palette.accentPrimary, size: 16),
                             ),
                           ),
                           Expanded(

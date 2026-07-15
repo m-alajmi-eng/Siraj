@@ -75,6 +75,12 @@
   "common_search": "搜索",
   "common_noData": "暂无数据",
   "common_offline": "无网络连接",
+  "common_close": "关闭",
+  "common_share": "分享",
+  "common_refresh": "刷新",
+  "common_prevPage": "上一页",
+  "common_nextPage": "下一页",
+  "common_clearSearch": "清除搜索",
   "prayer_countdown": "{time}后",
   "@prayer_countdown": {
     "placeholders": {
@@ -100,6 +106,8 @@
     }
   },
   "quran_ayahNumber": "第{number}节",
+  "quran_toggleDisplayMode": "切换显示模式（古兰经页面/翻译）",
+  "quran_toggleTajweed": "切换塔吉维德颜色标注",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -156,6 +164,8 @@
   "radio_tafsir": "经注与教法",
   "radio_athkar": "记主词",
   "radio_international": "国际",
+  "radio_play": "播放",
+  "radio_pause": "暂停",
   "cal_title": "伊斯兰历",
   "cal_todayEvents": "今日事件",
   "cal_nextEvent": "下一个事件",
@@ -205,6 +215,7 @@
   "settings_chooseCalc": "计算方法",
   "settings_enableAdhan": "启用宣礼",
   "settings_muezzinVoice": "宣礼员声音",
+  "settings_previewAdhan": "预览宣礼声音",
   "settings_vibration": "震动代替声音",
   "settings_iqamaAlert": "成拜前提醒",
   "settings_minutes": "{n} 分钟",
