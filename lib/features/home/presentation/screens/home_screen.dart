@@ -102,16 +102,21 @@ class _SearchIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => context.push('/more/search'),
-      child: Container(
-        width: 40, height: 40,
-        decoration: BoxDecoration(
-          color: SirajWhite.w7,
-          shape: BoxShape.circle,
-          border: Border.all(color: SirajWhite.w10),
+    final t = AppLocalizations.of(context);
+    return Semantics(
+      button: true,
+      label: t.more_search,
+      child: GestureDetector(
+        onTap: () => context.push('/more/search'),
+        child: Container(
+          width: 40, height: 40,
+          decoration: BoxDecoration(
+            color: SirajWhite.w7,
+            shape: BoxShape.circle,
+            border: Border.all(color: SirajWhite.w10),
+          ),
+          child: const Icon(Icons.search, color: SirajGold.strong, size: 18),
         ),
-        child: const Icon(Icons.search, color: SirajGold.strong, size: 18),
       ),
     );
   }
@@ -122,22 +127,27 @@ class _ModeToggleIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t = AppLocalizations.of(context);
     final mode = ref.watch(appModeProvider);
     final isLite = mode == AppMode.lite;
 
-    return GestureDetector(
-      onTap: () => ref.read(appModeProvider.notifier).toggle(),
-      child: Container(
-        width: 40, height: 40,
-        decoration: BoxDecoration(
-          color: SirajWhite.w7,
-          shape: BoxShape.circle,
-          border: Border.all(color: SirajWhite.w10),
-        ),
-        child: Icon(
-          isLite ? Icons.bolt_outlined : Icons.apps_rounded,
-          color: SirajGold.strong,
-          size: 18,
+    return Semantics(
+      button: true,
+      label: t.settings_appMode,
+      child: GestureDetector(
+        onTap: () => ref.read(appModeProvider.notifier).toggle(),
+        child: Container(
+          width: 40, height: 40,
+          decoration: BoxDecoration(
+            color: SirajWhite.w7,
+            shape: BoxShape.circle,
+            border: Border.all(color: SirajWhite.w10),
+          ),
+          child: Icon(
+            isLite ? Icons.bolt_outlined : Icons.apps_rounded,
+            color: SirajGold.strong,
+            size: 18,
+          ),
         ),
       ),
     );
