@@ -118,7 +118,7 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                       decoration: BoxDecoration(
                         color: isSelected
-                            ? (f['color'] as Color).withOpacity(0.15)
+                            ? (f['color'] as Color).withValues(alpha: 0.15)
                             : palette.surface,
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
@@ -178,7 +178,7 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
                         border: Border.all(
                           color: isSelected
                               ? (t['accent'] as Color)
-                              : palette.accentPrimary.withOpacity(0.2),
+                              : palette.accentPrimary.withValues(alpha: 0.2),
                         ),
                       ),
                       child: Text(

@@ -77,10 +77,10 @@ class _MosquesScreenState extends ConsumerState<MosquesScreen> {
                   horizontal: 16, vertical: 8),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color:        palette.accentPrimary.withOpacity(0.1),
+                  color:        palette.accentPrimary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: palette.accentPrimary.withOpacity(0.3)),
+                    color: palette.accentPrimary.withValues(alpha: 0.3)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -179,7 +179,7 @@ class _MosquesScreenState extends ConsumerState<MosquesScreen> {
                             height: 44,
                             decoration: BoxDecoration(
                               color: palette.accentPrimary
-                                  .withOpacity(0.1),
+                                  .withValues(alpha: 0.1),
                               shape: BoxShape.circle,
                             ),
                             child: Icon(

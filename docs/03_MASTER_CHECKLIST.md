@@ -27,8 +27,8 @@
 | البند | الحالة | أولوية | ملاحظات |
 |---|---|---|---|
 | flutter analyze صفر أخطاء | ✅ | — | منضبط عبر الجلسات (قاعدة عمل) — لكن يدوياً؛ يجب نقله لـ CI |
-| صفر تحذيرات/lints | ⬜ | P2 | متراكم معروف: print()، withOpacity، unnecessary_underscores، unused imports. خطوة: جلسة تنظيف واحدة + تشديد lints |
-| إزالة الكود الميت | ⬜ | P2 | متحقق واحد: UthmanHafs.ttf صفري الحجم يُحذف. البقية ⚠️غ تحتاج جرداً |
+| صفر تحذيرات/lints | 🟡 | P2 | print()→debugPrint، withOpacity→withValues (49 موقعاً)، unnecessary_underscores، unused imports مُنظَّفة فعلياً (تحقق: `flutter analyze` 91→16، و`flutter test` 20/20 بعدها). الباقي (16): تصنيفات lint مختلفة (deprecated_member_use، use_build_context_synchronously، إلخ) لم تُطلب في هذه الجلسة |
+| إزالة الكود الميت | 🟡 | P2 | UthmanHafs.ttf صفري الحجم مُحذوف، + `_categoryNames` و`_iconForSource` غير المُستخدَمين في app_router.dart/verse_portal_screen.dart (تأكيد بصفر مراجع). البقية ⚠️غ تحتاج جرداً منهجياً أوسع |
 | لا `dynamic` بلا مبرر | ✅ | P2 | تم: كل حقول/معاملات `palette` في widgets الختمة (`khatmah_list_screen.dart`، `khatmah_detail_screen.dart`، `khatmah_create_screen.dart` — 5 مواقع) أصبحت `SirajPalette` صريحة (النوع الفعلي الذي يرجعه `timeThemeProvider`، لا `ThemePalette` كما ورد سابقاً بالخطأ). تحقق: `flutter analyze` نظيف على `lib/features/khatmah/` و`flutter test` 20/20 نجاح |
 | توثيق الكود (dartdoc للعناصر العامة) | 🟡 | P3 | موجود بالعربية في الملفات الجديدة؛ غير منتظم في الأقدم |
 | صفر TODO بلا تذكرة | ✅ | P2 | جرد فعلي منفَّذ (`grep -rnE "//\s*TODO\|#\s*TODO\|TODO\(\|FIXME\|XXX:"` عبر كامل المستودع ما عدا build/‏.dart_tool/‏assets الترجمات). **النتيجة: صفر TODO/FIXME في `lib/` أو `test/`** (كود التطبيق نفسه نظيف تماماً). 3 نتائج فقط خارج كود التطبيق، كلها موثّقة كتذاكر هنا: (1) `android/app/build.gradle.kts:19` تعليق قالب `flutter create` عن applicationId — **باطل فعلياً**؛ الـapplicationId مخصَّص أصلاً لـ`app.siraj.siraj`، فالتعليق نفسه متروك خطأً (P3 تنظيف تعليق فقط، لا قرار مطلوب). (2) `android/app/build.gradle.kts:31` عن توقيع الإصدار — **يكرّر تذكرة موجودة فعلاً**: "توقيع release مؤمَّن ⚠️غ P0" في قسم ك (CI/CD)، لا تذكرة جديدة. (3) `linux/flutter/CMakeLists.txt:9` تعليق داخل قالب Flutter SDK نفسه (يُنشئه/يُحدّثه `flutter create`)، ليس كوداً نملكه أو نعدّله — لا تذكرة |
@@ -84,7 +84,7 @@
 |---|---|---|
 | Onboarding يعمل | ✅ (قائم) | — |
 | توحيد متابعة القراءة عبر نقاط الدخول + تمرير دقيق للآية | ⬜ (مرحلة 6 ختمة، مؤجَّل بقرار) | P1 |
-| إمكانية الوصول: TalkBack/VoiceOver/تباين/خط كبير | ⬜ غير مختبر إطلاقاً | P1 قبل إنتاج |
+| إمكانية الوصول: TalkBack/VoiceOver/تباين/خط كبير | 🟡 غير مختبر إطلاقاً على جهاز حقيقي (يبقى الحكم النهائي) | P1 قبل إنتاج | تحسين كود جزئي: أُضيفت `Semantics(button: true, label: ...)`/`tooltip` لثلاثة أزرار كانت بأيقونة فقط بلا أي اسم accessible: زر البحث وزر تبديل الوضع (خفيف/كامل) في `home_screen.dart`، وزر الرجوع في `qibla_screen.dart`. **هذا تحسين كود فقط، لا اختبار فعلي بقارئ شاشة حقيقي** — الاختبار الشامل (TalkBack/VoiceOver على جهاز حقيقي) يبقى بنداً منفصلاً مستقبلياً كما هو |
 | اكتشاف الميزات (وضع الصفحات/الختمة ظاهران) | 🟡 | P2 |
 
 ## ح) تحقق المحتوى القرآني (Quran Validation) — **قسم لا تهاون فيه**

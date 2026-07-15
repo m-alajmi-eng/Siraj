@@ -12,7 +12,6 @@ import 'core/storage/cache_service.dart';
 import 'core/locale/locale_provider.dart';
 import 'core/notifications/adhan_service.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:just_audio_media_kit/just_audio_media_kit.dart';
 import 'package:quran_library/quran_library.dart';
 
 Future<void> main() async {
@@ -112,7 +111,7 @@ class SirajApp extends ConsumerWidget {
           titleMedium: TextStyle(color: palette.textPrimary),
         ),
         iconTheme: IconThemeData(color: palette.textPrimary),
-        dividerColor: palette.accentPrimary.withOpacity(0.2),
+        dividerColor: palette.accentPrimary.withValues(alpha: 0.2),
         listTileTheme: ListTileThemeData(
           textColor: palette.textPrimary,
           iconColor: palette.textPrimary,
@@ -124,7 +123,7 @@ class SirajApp extends ConsumerWidget {
                   : palette.textSecondary),
           trackColor: WidgetStateProperty.resolveWith((states) =>
               states.contains(WidgetState.selected)
-                  ? palette.accentPrimary.withOpacity(0.4)
+                  ? palette.accentPrimary.withValues(alpha: 0.4)
                   : palette.surface),
         ),
       ),

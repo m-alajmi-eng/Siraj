@@ -76,7 +76,7 @@ class GatewayLibraryScreen extends ConsumerWidget {
                   child: ListView.separated(
                     padding: const EdgeInsets.only(bottom: SirajSpacing.s6),
                     itemCount: items.length,
-                    separatorBuilder: (_, __) =>
+                    separatorBuilder: (_, _) =>
                         const SizedBox(height: SirajSpacing.s2),
                     itemBuilder: (context, index) {
                       return _LibraryCard(

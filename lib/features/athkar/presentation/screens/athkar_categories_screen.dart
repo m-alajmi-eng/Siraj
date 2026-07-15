@@ -42,7 +42,7 @@ class AthkarCategoriesScreen extends ConsumerWidget {
             color: palette.textPrimary))),
         data: (cats) => ListView.separated(
           itemCount: cats.length,
-          separatorBuilder: (_, __) => const SizedBox(height: SirajSpacing.s2),
+          separatorBuilder: (_, _) => const SizedBox(height: SirajSpacing.s2),
           itemBuilder: (context, index) {
             final cat = cats[index];
             return GestureDetector(

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -304,7 +305,7 @@ class QuranRemoteDataSource {
      await CacheService.saveSetting(cacheKey, tafsir);
      return tafsir;
    } catch (e) {
-     print('getTafsir error: $e');
+     debugPrint('getTafsir error: $e');
      throw Exception('تعذّر تحميل التفسير: $e');
    }
  }
