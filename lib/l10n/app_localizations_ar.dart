@@ -767,6 +767,39 @@ class AppLocalizationsAr extends AppLocalizations {
   String get portal_loadError => 'تعذّر التحميل';
 
   @override
+  String get portal_reportTranslation => 'أبلغ عن خطأ ترجمة';
+
+  @override
+  String get portal_reportDialogTitle => 'الإبلاغ عن خطأ في الترجمة';
+
+  @override
+  String get portal_reportIssueLabel => 'صف المشكلة';
+
+  @override
+  String get portal_reportIssueHint => 'مثال: كلمة مفقودة، معنى غير دقيق...';
+
+  @override
+  String get portal_reportNoteLabel => 'ملاحظة إضافية (اختياري)';
+
+  @override
+  String get portal_reportCancel => 'إلغاء';
+
+  @override
+  String get portal_reportSubmit => 'إرسال';
+
+  @override
+  String get portal_reportSuccess => 'شكراً، وصل بلاغك وسيُراجَع';
+
+  @override
+  String get portal_reportError => 'تعذّر إرسال البلاغ، حاول لاحقاً';
+
+  @override
+  String get portal_reportIssueRequired => 'يرجى وصف المشكلة';
+
+  @override
+  String get portal_translationPendingReview => 'بانتظار مراجعة المجتمع';
+
+  @override
   String get portal_comingSoon => 'قريباً';
 
   @override

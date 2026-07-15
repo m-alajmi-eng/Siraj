@@ -768,6 +768,43 @@ class AppLocalizationsDe extends AppLocalizations {
   String get portal_loadError => 'Laden fehlgeschlagen';
 
   @override
+  String get portal_reportTranslation => 'Übersetzungsfehler melden';
+
+  @override
+  String get portal_reportDialogTitle => 'Übersetzungsfehler melden';
+
+  @override
+  String get portal_reportIssueLabel => 'Problem beschreiben';
+
+  @override
+  String get portal_reportIssueHint =>
+      'z. B. fehlendes Wort, ungenaue Bedeutung...';
+
+  @override
+  String get portal_reportNoteLabel => 'Zusätzliche Anmerkung (optional)';
+
+  @override
+  String get portal_reportCancel => 'Abbrechen';
+
+  @override
+  String get portal_reportSubmit => 'Senden';
+
+  @override
+  String get portal_reportSuccess =>
+      'Danke, Ihre Meldung ist eingegangen und wird geprüft';
+
+  @override
+  String get portal_reportError =>
+      'Meldung konnte nicht gesendet werden, bitte später erneut versuchen';
+
+  @override
+  String get portal_reportIssueRequired => 'Bitte beschreiben Sie das Problem';
+
+  @override
+  String get portal_translationPendingReview =>
+      'Wartet auf Überprüfung durch die Community';
+
+  @override
   String get portal_comingSoon => 'Bald';
 
   @override

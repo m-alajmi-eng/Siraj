@@ -767,6 +767,42 @@ class AppLocalizationsTr extends AppLocalizations {
   String get portal_loadError => 'Yüklenemedi';
 
   @override
+  String get portal_reportTranslation => 'Çeviri hatası bildir';
+
+  @override
+  String get portal_reportDialogTitle => 'Çeviri hatası bildir';
+
+  @override
+  String get portal_reportIssueLabel => 'Sorunu açıklayın';
+
+  @override
+  String get portal_reportIssueHint => 'örn. eksik kelime, hatalı anlam...';
+
+  @override
+  String get portal_reportNoteLabel => 'Ek not (isteğe bağlı)';
+
+  @override
+  String get portal_reportCancel => 'İptal';
+
+  @override
+  String get portal_reportSubmit => 'Gönder';
+
+  @override
+  String get portal_reportSuccess =>
+      'Teşekkürler, bildiriminiz alındı ve incelenecek';
+
+  @override
+  String get portal_reportError =>
+      'Bildirim gönderilemedi, daha sonra tekrar deneyin';
+
+  @override
+  String get portal_reportIssueRequired => 'Lütfen sorunu açıklayın';
+
+  @override
+  String get portal_translationPendingReview =>
+      'Topluluk incelemesi bekleniyor';
+
+  @override
   String get portal_comingSoon => 'Yakında';
 
   @override

@@ -767,6 +767,42 @@ class AppLocalizationsFa extends AppLocalizations {
   String get portal_loadError => 'بارگذاری ناموفق بود';
 
   @override
+  String get portal_reportTranslation => 'گزارش خطای ترجمه';
+
+  @override
+  String get portal_reportDialogTitle => 'گزارش خطای ترجمه';
+
+  @override
+  String get portal_reportIssueLabel => 'مشکل را شرح دهید';
+
+  @override
+  String get portal_reportIssueHint =>
+      'مثال: کلمه‌ای جا افتاده، معنی نادرست...';
+
+  @override
+  String get portal_reportNoteLabel => 'یادداشت اضافی (اختیاری)';
+
+  @override
+  String get portal_reportCancel => 'لغو';
+
+  @override
+  String get portal_reportSubmit => 'ارسال';
+
+  @override
+  String get portal_reportSuccess =>
+      'متشکریم، گزارش شما دریافت شد و بررسی خواهد شد';
+
+  @override
+  String get portal_reportError =>
+      'ارسال گزارش ممکن نشد، بعداً دوباره امتحان کنید';
+
+  @override
+  String get portal_reportIssueRequired => 'لطفاً مشکل را شرح دهید';
+
+  @override
+  String get portal_translationPendingReview => 'در انتظار بررسی جامعه';
+
+  @override
   String get portal_comingSoon => 'به‌زودی';
 
   @override

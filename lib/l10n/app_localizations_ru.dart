@@ -769,6 +769,43 @@ class AppLocalizationsRu extends AppLocalizations {
   String get portal_loadError => 'Не удалось загрузить';
 
   @override
+  String get portal_reportTranslation => 'Сообщить об ошибке перевода';
+
+  @override
+  String get portal_reportDialogTitle => 'Сообщить об ошибке перевода';
+
+  @override
+  String get portal_reportIssueLabel => 'Опишите проблему';
+
+  @override
+  String get portal_reportIssueHint =>
+      'напр. пропущено слово, неточный смысл...';
+
+  @override
+  String get portal_reportNoteLabel =>
+      'Дополнительное примечание (необязательно)';
+
+  @override
+  String get portal_reportCancel => 'Отмена';
+
+  @override
+  String get portal_reportSubmit => 'Отправить';
+
+  @override
+  String get portal_reportSuccess =>
+      'Спасибо, ваше сообщение получено и будет рассмотрено';
+
+  @override
+  String get portal_reportError =>
+      'Не удалось отправить сообщение, попробуйте позже';
+
+  @override
+  String get portal_reportIssueRequired => 'Пожалуйста, опишите проблему';
+
+  @override
+  String get portal_translationPendingReview => 'Ожидает проверки сообществом';
+
+  @override
   String get portal_comingSoon => 'Скоро';
 
   @override

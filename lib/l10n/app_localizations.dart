@@ -1576,6 +1576,72 @@ abstract class AppLocalizations {
   /// **'تعذّر التحميل'**
   String get portal_loadError;
 
+  /// No description provided for @portal_reportTranslation.
+  ///
+  /// In ar, this message translates to:
+  /// **'أبلغ عن خطأ ترجمة'**
+  String get portal_reportTranslation;
+
+  /// No description provided for @portal_reportDialogTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإبلاغ عن خطأ في الترجمة'**
+  String get portal_reportDialogTitle;
+
+  /// No description provided for @portal_reportIssueLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'صف المشكلة'**
+  String get portal_reportIssueLabel;
+
+  /// No description provided for @portal_reportIssueHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'مثال: كلمة مفقودة، معنى غير دقيق...'**
+  String get portal_reportIssueHint;
+
+  /// No description provided for @portal_reportNoteLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملاحظة إضافية (اختياري)'**
+  String get portal_reportNoteLabel;
+
+  /// No description provided for @portal_reportCancel.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء'**
+  String get portal_reportCancel;
+
+  /// No description provided for @portal_reportSubmit.
+  ///
+  /// In ar, this message translates to:
+  /// **'إرسال'**
+  String get portal_reportSubmit;
+
+  /// No description provided for @portal_reportSuccess.
+  ///
+  /// In ar, this message translates to:
+  /// **'شكراً، وصل بلاغك وسيُراجَع'**
+  String get portal_reportSuccess;
+
+  /// No description provided for @portal_reportError.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذّر إرسال البلاغ، حاول لاحقاً'**
+  String get portal_reportError;
+
+  /// No description provided for @portal_reportIssueRequired.
+  ///
+  /// In ar, this message translates to:
+  /// **'يرجى وصف المشكلة'**
+  String get portal_reportIssueRequired;
+
+  /// No description provided for @portal_translationPendingReview.
+  ///
+  /// In ar, this message translates to:
+  /// **'بانتظار مراجعة المجتمع'**
+  String get portal_translationPendingReview;
+
   /// No description provided for @portal_comingSoon.
   ///
   /// In ar, this message translates to:

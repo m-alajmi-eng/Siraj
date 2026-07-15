@@ -769,6 +769,42 @@ class AppLocalizationsFr extends AppLocalizations {
   String get portal_loadError => 'Échec du chargement';
 
   @override
+  String get portal_reportTranslation => 'Signaler une erreur de traduction';
+
+  @override
+  String get portal_reportDialogTitle => 'Signaler une erreur de traduction';
+
+  @override
+  String get portal_reportIssueLabel => 'Décrivez le problème';
+
+  @override
+  String get portal_reportIssueHint => 'ex. mot manquant, sens imprécis...';
+
+  @override
+  String get portal_reportNoteLabel => 'Remarque supplémentaire (facultatif)';
+
+  @override
+  String get portal_reportCancel => 'Annuler';
+
+  @override
+  String get portal_reportSubmit => 'Envoyer';
+
+  @override
+  String get portal_reportSuccess =>
+      'Merci, votre signalement a été reçu et sera examiné';
+
+  @override
+  String get portal_reportError =>
+      'Impossible d\'envoyer le signalement, réessayez plus tard';
+
+  @override
+  String get portal_reportIssueRequired => 'Veuillez décrire le problème';
+
+  @override
+  String get portal_translationPendingReview =>
+      'En attente de révision par la communauté';
+
+  @override
   String get portal_comingSoon => 'Bientôt';
 
   @override

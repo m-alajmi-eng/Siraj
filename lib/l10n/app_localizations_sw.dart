@@ -770,6 +770,42 @@ class AppLocalizationsSw extends AppLocalizations {
   String get portal_loadError => 'Imeshindwa kupakia';
 
   @override
+  String get portal_reportTranslation => 'Ripoti kosa la tafsiri';
+
+  @override
+  String get portal_reportDialogTitle => 'Ripoti kosa la tafsiri';
+
+  @override
+  String get portal_reportIssueLabel => 'Eleza tatizo';
+
+  @override
+  String get portal_reportIssueHint =>
+      'mfano: neno lililokosekana, maana isiyo sahihi...';
+
+  @override
+  String get portal_reportNoteLabel => 'Maelezo ya ziada (hiari)';
+
+  @override
+  String get portal_reportCancel => 'Ghairi';
+
+  @override
+  String get portal_reportSubmit => 'Tuma';
+
+  @override
+  String get portal_reportSuccess =>
+      'Asante, ripoti yako imepokelewa na itakaguliwa';
+
+  @override
+  String get portal_reportError =>
+      'Imeshindwa kutuma ripoti, jaribu tena baadaye';
+
+  @override
+  String get portal_reportIssueRequired => 'Tafadhali eleza tatizo';
+
+  @override
+  String get portal_translationPendingReview => 'Inasubiri ukaguzi wa jamii';
+
+  @override
   String get portal_comingSoon => 'Hivi karibuni';
 
   @override

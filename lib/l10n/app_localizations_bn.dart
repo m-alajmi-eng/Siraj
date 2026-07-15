@@ -767,6 +767,41 @@ class AppLocalizationsBn extends AppLocalizations {
   String get portal_loadError => 'লোড করা যায়নি';
 
   @override
+  String get portal_reportTranslation => 'অনুবাদে ত্রুটির অভিযোগ করুন';
+
+  @override
+  String get portal_reportDialogTitle => 'অনুবাদে ত্রুটির অভিযোগ করুন';
+
+  @override
+  String get portal_reportIssueLabel => 'সমস্যাটি বর্ণনা করুন';
+
+  @override
+  String get portal_reportIssueHint => 'যেমন: শব্দ অনুপস্থিত, অর্থ ভুল...';
+
+  @override
+  String get portal_reportNoteLabel => 'অতিরিক্ত নোট (ঐচ্ছিক)';
+
+  @override
+  String get portal_reportCancel => 'বাতিল';
+
+  @override
+  String get portal_reportSubmit => 'জমা দিন';
+
+  @override
+  String get portal_reportSuccess =>
+      'ধন্যবাদ, আপনার অভিযোগ পৌঁছেছে এবং পর্যালোচনা করা হবে';
+
+  @override
+  String get portal_reportError => 'অভিযোগ পাঠানো যায়নি, পরে আবার চেষ্টা করুন';
+
+  @override
+  String get portal_reportIssueRequired => 'অনুগ্রহ করে সমস্যাটি বর্ণনা করুন';
+
+  @override
+  String get portal_translationPendingReview =>
+      'সম্প্রদায়ের পর্যালোচনার অপেক্ষায়';
+
+  @override
   String get portal_comingSoon => 'শীঘ্রই';
 
   @override

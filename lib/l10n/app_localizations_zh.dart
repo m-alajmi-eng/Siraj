@@ -765,6 +765,39 @@ class AppLocalizationsZh extends AppLocalizations {
   String get portal_loadError => '加载失败';
 
   @override
+  String get portal_reportTranslation => '举报翻译错误';
+
+  @override
+  String get portal_reportDialogTitle => '举报翻译错误';
+
+  @override
+  String get portal_reportIssueLabel => '描述问题';
+
+  @override
+  String get portal_reportIssueHint => '例如：词语缺失、含义不准确...';
+
+  @override
+  String get portal_reportNoteLabel => '附加说明（可选）';
+
+  @override
+  String get portal_reportCancel => '取消';
+
+  @override
+  String get portal_reportSubmit => '提交';
+
+  @override
+  String get portal_reportSuccess => '谢谢，您的举报已收到，将会被审核';
+
+  @override
+  String get portal_reportError => '无法提交举报，请稍后再试';
+
+  @override
+  String get portal_reportIssueRequired => '请描述问题';
+
+  @override
+  String get portal_translationPendingReview => '等待社区审核';
+
+  @override
   String get portal_comingSoon => '即将推出';
 
   @override
