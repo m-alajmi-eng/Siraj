@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../l10n/app_localizations.dart';
 
 /// شاشة القبلة - معطّلة مؤقتاً (يوليو 2026).
 ///
@@ -19,6 +20,7 @@ class QiblaScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
+          tooltip: AppLocalizations.of(context).common_back,
           onPressed: () => context.pop(),
         ),
         title: const Text('اتجاه القبلة'),
