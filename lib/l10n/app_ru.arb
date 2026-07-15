@@ -284,6 +284,7 @@
   "portal_back": "Назад",
   "portal_noTafsir": "Тафсир недоступен",
   "portal_loadError": "Не удалось загрузить",
+  "portal_translationPendingReview": "Ожидает проверки сообществом",
   "portal_comingSoon": "Скоро",
   "portal_noHadiths": "С этим аятом пока не связаны хадисы",
   "portal_addingContent": "Контент добавляется постепенно",

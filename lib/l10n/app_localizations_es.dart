@@ -769,6 +769,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get portal_loadError => 'Error al cargar';
 
   @override
+  String get portal_translationPendingReview =>
+      'Pendiente de revisión comunitaria';
+
+  @override
   String get portal_comingSoon => 'Pronto';
 
   @override

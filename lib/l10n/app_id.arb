@@ -284,6 +284,7 @@
   "portal_back": "Kembali",
   "portal_noTafsir": "Tafsir tidak tersedia",
   "portal_loadError": "Gagal memuat",
+  "portal_translationPendingReview": "Menunggu peninjauan komunitas",
   "portal_comingSoon": "Segera",
   "portal_noHadiths": "Belum ada hadis terkait ayat ini",
   "portal_addingContent": "Konten ditambahkan secara bertahap",

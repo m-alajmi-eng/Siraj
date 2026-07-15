@@ -767,6 +767,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get portal_loadError => 'تعذّر التحميل';
 
   @override
+  String get portal_translationPendingReview => 'بانتظار مراجعة المجتمع';
+
+  @override
   String get portal_comingSoon => 'قريباً';
 
   @override

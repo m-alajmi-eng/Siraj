@@ -769,6 +769,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get portal_loadError => 'Не удалось загрузить';
 
   @override
+  String get portal_translationPendingReview => 'Ожидает проверки сообществом';
+
+  @override
   String get portal_comingSoon => 'Скоро';
 
   @override

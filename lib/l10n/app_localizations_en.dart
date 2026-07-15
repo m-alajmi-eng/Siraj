@@ -767,6 +767,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get portal_loadError => 'Failed to load';
 
   @override
+  String get portal_translationPendingReview => 'Pending community review';
+
+  @override
   String get portal_comingSoon => 'Soon';
 
   @override

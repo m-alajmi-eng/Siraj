@@ -284,6 +284,7 @@
   "portal_back": "返回",
   "portal_noTafsir": "暂无经注",
   "portal_loadError": "加载失败",
+  "portal_translationPendingReview": "等待社区审核",
   "portal_comingSoon": "即将推出",
   "portal_noHadiths": "暂无与此节经文相关的圣训",
   "portal_addingContent": "内容正在逐步添加",

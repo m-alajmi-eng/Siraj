@@ -284,6 +284,7 @@
   "portal_back": "Geri",
   "portal_noTafsir": "Tefsir mevcut değil",
   "portal_loadError": "Yüklenemedi",
+  "portal_translationPendingReview": "Topluluk incelemesi bekleniyor",
   "portal_comingSoon": "Yakında",
   "portal_noHadiths": "Bu ayetle ilişkili henüz hadis yok",
   "portal_addingContent": "İçerik kademeli olarak ekleniyor",

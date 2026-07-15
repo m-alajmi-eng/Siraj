@@ -769,6 +769,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get portal_loadError => 'Échec du chargement';
 
   @override
+  String get portal_translationPendingReview =>
+      'En attente de révision par la communauté';
+
+  @override
   String get portal_comingSoon => 'Bientôt';
 
   @override

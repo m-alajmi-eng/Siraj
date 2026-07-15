@@ -769,6 +769,9 @@ class AppLocalizationsHa extends AppLocalizations {
   String get portal_loadError => 'An kasa loda';
 
   @override
+  String get portal_translationPendingReview => 'Ana jiran dubawar al\'umma';
+
+  @override
   String get portal_comingSoon => 'Nan ba da jimawa ba';
 
   @override

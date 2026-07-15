@@ -284,6 +284,7 @@
   "portal_back": "بازگشت",
   "portal_noTafsir": "تفسیری موجود نیست",
   "portal_loadError": "بارگذاری ناموفق بود",
+  "portal_translationPendingReview": "در انتظار بررسی جامعه",
   "portal_comingSoon": "به‌زودی",
   "portal_noHadiths": "هنوز حدیثی به این آیه پیوند نخورده است",
   "portal_addingContent": "محتوا به‌تدریج افزوده می‌شود",

@@ -353,6 +353,7 @@
   "portal_back": "رجوع",
   "portal_noTafsir": "لا يوجد تفسير",
   "portal_loadError": "تعذّر التحميل",
+  "portal_translationPendingReview": "بانتظار مراجعة المجتمع",
   "portal_comingSoon": "قريباً",
   "portal_noHadiths": "لا توجد أحاديث مرتبطة بهذه الآية حتى الآن",
   "portal_addingContent": "نعمل على إضافة المحتوى تدريجياً",

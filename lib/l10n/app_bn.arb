@@ -284,6 +284,7 @@
   "portal_back": "ফিরে যান",
   "portal_noTafsir": "কনো তাফসির নেই",
   "portal_loadError": "লোড করা যায়নি",
+  "portal_translationPendingReview": "সম্প্রদায়ের পর্যালোচনার অপেক্ষায়",
   "portal_comingSoon": "শীঘ্রই",
   "portal_noHadiths": "এই আয়াতের সাথে এখনো কোনো হাদিস যক্ত নেই",
   "portal_addingContent": "ধীরে ধীরে কনটেন্ট যোগ করা হচ্ছে",

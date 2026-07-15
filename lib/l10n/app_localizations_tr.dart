@@ -767,6 +767,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get portal_loadError => 'Yüklenemedi';
 
   @override
+  String get portal_translationPendingReview =>
+      'Topluluk incelemesi bekleniyor';
+
+  @override
   String get portal_comingSoon => 'Yakında';
 
   @override

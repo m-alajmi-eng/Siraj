@@ -277,6 +277,7 @@
   "portal_back": "Zurück",
   "portal_noTafsir": "Kein Tafsir verfügbar",
   "portal_loadError": "Laden fehlgeschlagen",
+  "portal_translationPendingReview": "Wartet auf Überprüfung durch die Community",
   "portal_comingSoon": "Bald",
   "portal_noHadiths": "Noch keine Hadithe mit diesem Vers verknüpft",
   "portal_addingContent": "Inhalt wird schrittweise hinzugefügt",

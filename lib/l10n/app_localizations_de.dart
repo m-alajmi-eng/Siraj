@@ -768,6 +768,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get portal_loadError => 'Laden fehlgeschlagen';
 
   @override
+  String get portal_translationPendingReview =>
+      'Wartet auf Überprüfung durch die Community';
+
+  @override
   String get portal_comingSoon => 'Bald';
 
   @override

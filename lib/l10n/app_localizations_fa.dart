@@ -767,6 +767,9 @@ class AppLocalizationsFa extends AppLocalizations {
   String get portal_loadError => 'بارگذاری ناموفق بود';
 
   @override
+  String get portal_translationPendingReview => 'در انتظار بررسی جامعه';
+
+  @override
   String get portal_comingSoon => 'به‌زودی';
 
   @override
