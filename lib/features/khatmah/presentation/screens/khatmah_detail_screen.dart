@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -81,7 +82,7 @@ void _shareProgress(KhatmahPlan plan, AppLocalizations t) {
 /// بطاقة شريط التقدّم الكبير: نسبة مئوية + صفحات مكتملة/إجمالي.
 class _ProgressCard extends StatelessWidget {
   final KhatmahPlan plan;
-  final dynamic palette;
+  final SirajPalette palette;
   final AppLocalizations t;
 
   const _ProgressCard({required this.plan, required this.palette, required this.t});
@@ -133,7 +134,7 @@ class _ProgressCard extends StatelessWidget {
 /// بطاقة "وِردك اليوم": نطاق الصفحات + حالة الإنجاز + زر متابعة القراءة.
 class _TodayPortionCard extends StatelessWidget {
   final KhatmahPlan plan;
-  final dynamic palette;
+  final SirajPalette palette;
   final AppLocalizations t;
 
   const _TodayPortionCard({required this.plan, required this.palette, required this.t});
@@ -204,7 +205,7 @@ class _TodayPortionCard extends StatelessWidget {
 /// صف الحالة: على المسار / متأخر / متقدّم / مكتملة - مع عدد الأيام/الصفحات.
 class _StatusRow extends StatelessWidget {
   final KhatmahPlan plan;
-  final dynamic palette;
+  final SirajPalette palette;
   final AppLocalizations t;
 
   const _StatusRow({required this.plan, required this.palette, required this.t});
