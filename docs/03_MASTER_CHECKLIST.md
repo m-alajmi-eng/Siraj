@@ -31,7 +31,7 @@
 | إزالة الكود الميت | ⬜ | P2 | متحقق واحد: UthmanHafs.ttf صفري الحجم يُحذف. البقية ⚠️غ تحتاج جرداً |
 | لا `dynamic` بلا مبرر | 🟡 | P2 | palette في widgets الختمة dynamic — يعمل لكن يفقد type safety. خطوة: نوع ThemePalette صريح |
 | توثيق الكود (dartdoc للعناصر العامة) | 🟡 | P3 | موجود بالعربية في الملفات الجديدة؛ غير منتظم في الأقدم |
-| صفر TODO بلا تذكرة | ⚠️غ | P2 | جرد `grep -rn "TODO"` مطلوب |
+| صفر TODO بلا تذكرة | ✅ | P2 | جرد فعلي منفَّذ (`grep -rnE "//\s*TODO\|#\s*TODO\|TODO\(\|FIXME\|XXX:"` عبر كامل المستودع ما عدا build/‏.dart_tool/‏assets الترجمات). **النتيجة: صفر TODO/FIXME في `lib/` أو `test/`** (كود التطبيق نفسه نظيف تماماً). 3 نتائج فقط خارج كود التطبيق، كلها موثّقة كتذاكر هنا: (1) `android/app/build.gradle.kts:19` تعليق قالب `flutter create` عن applicationId — **باطل فعلياً**؛ الـapplicationId مخصَّص أصلاً لـ`app.siraj.siraj`، فالتعليق نفسه متروك خطأً (P3 تنظيف تعليق فقط، لا قرار مطلوب). (2) `android/app/build.gradle.kts:31` عن توقيع الإصدار — **يكرّر تذكرة موجودة فعلاً**: "توقيع release مؤمَّن ⚠️غ P0" في قسم ك (CI/CD)، لا تذكرة جديدة. (3) `linux/flutter/CMakeLists.txt:9` تعليق داخل قالب Flutter SDK نفسه (يُنشئه/يُحدّثه `flutter create`)، ليس كوداً نملكه أو نعدّله — لا تذكرة |
 
 ## ج) الأداء (Performance)
 
