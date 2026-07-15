@@ -15,7 +15,7 @@
 | البند | الحالة | أولوية | لماذا/الخطوات/الخطر |
 |---|---|---|---|
 | Feature-first + فصل data/domain/presentation | ✅ | — | قائم في quran/khatmah/prayer. الخطر عند الكسر: تشابك يصعّب الصيانة |
-| اتجاه التبعية (presentation→domain→data) | 🟡 | P2 | سليم عموماً؛ استثناء موثّق: MoreScreen داخل الراوتر. خطوة: نقلها لملفها (دين M1) |
+| اتجاه التبعية (presentation→domain→data) | ✅ | P2 | تم حل الاستثناء الموثّق (دين M1): `MoreScreen`/`_MoreTile` نُقلا من `core/router/app_router.dart` إلى `features/more/presentation/screens/more_screen.dart` (بنية feature-first قياسية مطابقة لبقية الميزات)، والراوتر أصبح يستوردها فقط. تحقق: `flutter analyze`/`flutter test` 20/20 نجاح، لا تغيير سلوكي |
 | ADRs محدّثة | 🟡 | P1 | ADR-007 يحتاج تحديثاً بالمصدر النهائي المختار للمصحف بعد حسمه. الخطر: وثيقة مضللة لعلاء |
 | معالجة أخطاء موحّدة عبر الطبقات | 🟡 | P2 | حالياً try/catch متفرقة + fallbacks جيدة في البيانات. خطوة: نمط Result/استثناءات موحّد عند أول ألم فعلي |
 | التنقّل: مسارات موثّقة ومنطقية | 🟡 | P2 | Shell + مستقلة يعمل. مشكلة UX موثّقة: زر العودة (قسم UX) |
@@ -62,7 +62,7 @@
 | Unit: KhatmahPlan (كل الحسابات المشتقّة) | ✅ | **P0** | `test/khatmah_plan_test.dart` يغطي dailyPortion/pagesAheadOrBehind/todayPortionRange بحالات حدّية (اليوم الأول بلا قراءة، منتصف الخطة على/فوق/تحت المخطط، اليوم الأخير، تجاوز المدة، سجل فارغ، اكتمال ورد اليوم، قرب نهاية المصحف). `flutter test` ← 13/13 نجاح |
 | Unit: ثوابت البيانات الدينية | ✅ | **P0** | `test/mushaf_data_test.dart` يفتح `assets/data/quran_uthmani.json` و`quran_translations.json` و`surah_names.json` فعلياً ويؤكد: 6236 آية، 604 صفحة (1→604 بلا فجوات)، 114 سورة، 14 لغة ترجمة، صفر نصوص فارغة. `flutter test` ← 7/7 نجاح |
 | Unit: CacheService + datasources fallback | ✅ | **P1** | `test/cache_service_fallback_test.dart`: (أ) CacheService — round-trip فعلي عبر Hive حقيقي لـsettings/موضع القراءة/سياق القراءة الموحّد (بما فيه مسح khatmahId عند التبديل لسورة)/خطط الختمة. (ب) `QuranRemoteDataSource` — يتحقق أن `getAyahs` يعتمد الأصول المحلية أولاً (مطابقة فعلية لملف quran_uthmani.json الخام) دون شبكة، وأن `getAyahs`/`getTafsir` يسقطان فعلياً لذاكرة Hive المخزَّنة مسبقاً عند غياب سورة/آية من الأصول المحلية (سورة وهمية 999) — بلا أي محاولة اتصال شبكة/Supabase فعلية. `flutter test` ← 7/7 نجاح (27/27 إجمالاً على هذا الفرع) |
-| Widget: شاشتا الختمة | ⬜ | P1 | إنشاء خطة → ظهور بطاقة بالحسابات الصحيحة |
+| Widget: شاشتا الختمة | ✅ | **P1** | `test/khatmah_widget_test.dart`: تدفق فعلي كامل عبر `KhatmahCreateScreen`→`KhatmahListScreen` (GoRouter حقيقي + `khatmahProvider` حقيقي بلا mocks): فتح شاشة الإنشاء، اختيار مدة عبر preset chip (تحقّق حساب الوِرد اليومي فوراً 604/7=87)، اسم مخصص، ضغط الإنشاء، والتأكد من البطاقة الناتجة بحساباتها الصحيحة (0%، اليوم 1 من 7، حالة "متأخر"). ملاحظة تقنية موثّقة في الاختبار: حفظ Hive الحقيقي يتطلب `tester.runAsync()` مع الـtap معاً لتفادي تجمّد الزمن المُصطنع في `flutter test`. `flutter test` ← 1/1 نجاح (21/21 إجمالاً) |
 | Golden: صفحة مصحف مرجعية | ⬜ | P1 | لقطة ذهبية لصفحة 1 و604 — أي تغيير بصري غير مقصود يفشل الاختبار |
 | Integration: تدفق قراءة كامل | ⬜ | P2 | بعد استقرار وضع الصفحات |
 | اختبار يدوي موثّق على جهاز ضعيف + RTL/LTR | ⬜ | P1 | قائمة سيناريوهات مكتوبة تُنفَّذ قبل كل إصدار |
