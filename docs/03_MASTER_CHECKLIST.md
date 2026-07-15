@@ -62,7 +62,7 @@
 | Unit: KhatmahPlan (كل الحسابات المشتقّة) | ✅ | **P0** | `test/khatmah_plan_test.dart` يغطي dailyPortion/pagesAheadOrBehind/todayPortionRange بحالات حدّية (اليوم الأول بلا قراءة، منتصف الخطة على/فوق/تحت المخطط، اليوم الأخير، تجاوز المدة، سجل فارغ، اكتمال ورد اليوم، قرب نهاية المصحف). `flutter test` ← 13/13 نجاح |
 | Unit: ثوابت البيانات الدينية | ✅ | **P0** | `test/mushaf_data_test.dart` يفتح `assets/data/quran_uthmani.json` و`quran_translations.json` و`surah_names.json` فعلياً ويؤكد: 6236 آية، 604 صفحة (1→604 بلا فجوات)، 114 سورة، 14 لغة ترجمة، صفر نصوص فارغة. `flutter test` ← 7/7 نجاح |
 | Unit: CacheService + datasources fallback | ⬜ | P1 | يضمن ألا يكسر تعديل مسار السقوط الآمن |
-| Widget: شاشتا الختمة | ⬜ | P1 | إنشاء خطة → ظهور بطاقة بالحسابات الصحيحة |
+| Widget: شاشتا الختمة | ✅ | **P1** | `test/khatmah_widget_test.dart`: تدفق فعلي كامل عبر `KhatmahCreateScreen`→`KhatmahListScreen` (GoRouter حقيقي + `khatmahProvider` حقيقي بلا mocks): فتح شاشة الإنشاء، اختيار مدة عبر preset chip (تحقّق حساب الوِرد اليومي فوراً 604/7=87)، اسم مخصص، ضغط الإنشاء، والتأكد من البطاقة الناتجة بحساباتها الصحيحة (0%، اليوم 1 من 7، حالة "متأخر"). ملاحظة تقنية موثّقة في الاختبار: حفظ Hive الحقيقي يتطلب `tester.runAsync()` مع الـtap معاً لتفادي تجمّد الزمن المُصطنع في `flutter test`. `flutter test` ← 1/1 نجاح (21/21 إجمالاً) |
 | Golden: صفحة مصحف مرجعية | ⬜ | P1 | لقطة ذهبية لصفحة 1 و604 — أي تغيير بصري غير مقصود يفشل الاختبار |
 | Integration: تدفق قراءة كامل | ⬜ | P2 | بعد استقرار وضع الصفحات |
 | اختبار يدوي موثّق على جهاز ضعيف + RTL/LTR | ⬜ | P1 | قائمة سيناريوهات مكتوبة تُنفَّذ قبل كل إصدار |
