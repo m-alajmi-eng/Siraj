@@ -138,6 +138,9 @@
   "home_welcome": "أهلاً وسهلاً",
   "home_nextPrayer": "الصلاة القادمة",
   "home_qiblaDirection": "اتجاه القبلة",
+  "time_hr": "ساعة",
+  "time_min": "دقيقة",
+  "time_sec": "ثانية",
   "home_continueReading": "متابعة القراءة",
   "home_surah": "سورة #{id}",
   "@home_surah": {

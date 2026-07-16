@@ -309,6 +309,15 @@ class AppLocalizationsMs extends AppLocalizations {
   String get home_qiblaDirection => 'Arah Kiblat';
 
   @override
+  String get time_hr => 'jam';
+
+  @override
+  String get time_min => 'min';
+
+  @override
+  String get time_sec => 'saat';
+
+  @override
   String get home_continueReading => 'TERUSKAN MEMBACA';
 
   @override

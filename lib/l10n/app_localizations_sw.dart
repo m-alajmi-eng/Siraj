@@ -309,6 +309,15 @@ class AppLocalizationsSw extends AppLocalizations {
   String get home_qiblaDirection => 'Mwelekeo wa Kibla';
 
   @override
+  String get time_hr => 'saa';
+
+  @override
+  String get time_min => 'dak';
+
+  @override
+  String get time_sec => 'sek';
+
+  @override
   String get home_continueReading => 'ENDELEA KUSOMA';
 
   @override

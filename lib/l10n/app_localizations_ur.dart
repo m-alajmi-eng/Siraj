@@ -309,6 +309,15 @@ class AppLocalizationsUr extends AppLocalizations {
   String get home_qiblaDirection => 'قبلہ کی سمت';
 
   @override
+  String get time_hr => 'گھنٹہ';
+
+  @override
+  String get time_min => 'منٹ';
+
+  @override
+  String get time_sec => 'سیکنڈ';
+
+  @override
   String get home_continueReading => 'پڑھنا جاری رکھیں';
 
   @override

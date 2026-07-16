@@ -309,6 +309,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get home_qiblaDirection => '朝向方位';
 
   @override
+  String get time_hr => '时';
+
+  @override
+  String get time_min => '分';
+
+  @override
+  String get time_sec => '秒';
+
+  @override
   String get home_continueReading => '继续阅读';
 
   @override

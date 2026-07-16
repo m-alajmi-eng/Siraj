@@ -309,6 +309,15 @@ class AppLocalizationsHa extends AppLocalizations {
   String get home_qiblaDirection => 'Hanyar Alƙibla';
 
   @override
+  String get time_hr => 'awa';
+
+  @override
+  String get time_min => 'min';
+
+  @override
+  String get time_sec => 'sec';
+
+  @override
   String get home_continueReading => 'CI GABA DA KARANTAWA';
 
   @override

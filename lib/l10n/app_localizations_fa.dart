@@ -309,6 +309,15 @@ class AppLocalizationsFa extends AppLocalizations {
   String get home_qiblaDirection => 'جهت قبله';
 
   @override
+  String get time_hr => 'ساعت';
+
+  @override
+  String get time_min => 'دقیقه';
+
+  @override
+  String get time_sec => 'ثانیه';
+
+  @override
   String get home_continueReading => 'ادامه خواندن';
 
   @override

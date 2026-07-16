@@ -700,6 +700,24 @@ abstract class AppLocalizations {
   /// **'اتجاه القبلة'**
   String get home_qiblaDirection;
 
+  /// No description provided for @time_hr.
+  ///
+  /// In ar, this message translates to:
+  /// **'ساعة'**
+  String get time_hr;
+
+  /// No description provided for @time_min.
+  ///
+  /// In ar, this message translates to:
+  /// **'دقيقة'**
+  String get time_min;
+
+  /// No description provided for @time_sec.
+  ///
+  /// In ar, this message translates to:
+  /// **'ثانية'**
+  String get time_sec;
+
   /// No description provided for @home_continueReading.
   ///
   /// In ar, this message translates to:
