@@ -390,6 +390,25 @@ class AppLocalizationsTr extends AppLocalizations {
   String get cal_hijri => 'Hicri';
 
   @override
+  String get cal_prevMonth => 'Önceki ay';
+
+  @override
+  String get cal_nextMonth => 'Sonraki ay';
+
+  @override
+  String get cal_legendEid => 'Bayram';
+
+  @override
+  String get cal_legendFast => 'Oruç';
+
+  @override
+  String get cal_legendBlessed => 'Mübarek';
+
+  @override
+  String get cal_detailPending =>
+      'Bu vesile için henüz ek ayrıntı (ayet/hadis/açıklama) mevcut değil - dini incelemeyi bekliyor.';
+
+  @override
   String get hm_1 => 'Muharrem';
 
   @override

@@ -390,6 +390,25 @@ class AppLocalizationsMs extends AppLocalizations {
   String get cal_hijri => 'Hijrah';
 
   @override
+  String get cal_prevMonth => 'Bulan sebelumnya';
+
+  @override
+  String get cal_nextMonth => 'Bulan seterusnya';
+
+  @override
+  String get cal_legendEid => 'Eid';
+
+  @override
+  String get cal_legendFast => 'Puasa';
+
+  @override
+  String get cal_legendBlessed => 'Diberkati';
+
+  @override
+  String get cal_detailPending =>
+      'Belum ada butiran tambahan (ayat/hadis/penerangan) untuk peristiwa ini - menunggu semakan agama.';
+
+  @override
   String get hm_1 => 'Muharram';
 
   @override

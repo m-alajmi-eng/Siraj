@@ -390,6 +390,25 @@ class AppLocalizationsBn extends AppLocalizations {
   String get cal_hijri => 'হিজরি';
 
   @override
+  String get cal_prevMonth => 'আগের মাস';
+
+  @override
+  String get cal_nextMonth => 'পরের মাস';
+
+  @override
+  String get cal_legendEid => 'ঈদ';
+
+  @override
+  String get cal_legendFast => 'রোজা';
+
+  @override
+  String get cal_legendBlessed => 'বরকতময়';
+
+  @override
+  String get cal_detailPending =>
+      'এই উপলক্ষের জন্য এখনো কোনো অতিরিক্ত বিবরণ (আয়াত/হাদিস/বর্ণনা) উপলব্ধ নেই - ধর্মীয় পর্যালোচনার অপেক্ষায়।';
+
+  @override
   String get hm_1 => 'মুহাররম';
 
   @override

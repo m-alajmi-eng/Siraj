@@ -390,6 +390,25 @@ class AppLocalizationsFa extends AppLocalizations {
   String get cal_hijri => 'هجری';
 
   @override
+  String get cal_prevMonth => 'ماه قبل';
+
+  @override
+  String get cal_nextMonth => 'ماه بعد';
+
+  @override
+  String get cal_legendEid => 'عید';
+
+  @override
+  String get cal_legendFast => 'روزه';
+
+  @override
+  String get cal_legendBlessed => 'مبارک';
+
+  @override
+  String get cal_detailPending =>
+      'هنوز جزئیات بیشتری (آیه/حدیث/توضیح) برای این مناسبت موجود نیست - در انتظار بررسی دینی.';
+
+  @override
   String get hm_1 => 'محرم';
 
   @override

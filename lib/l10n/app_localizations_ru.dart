@@ -390,6 +390,25 @@ class AppLocalizationsRu extends AppLocalizations {
   String get cal_hijri => 'Хиджра';
 
   @override
+  String get cal_prevMonth => 'Предыдущий месяц';
+
+  @override
+  String get cal_nextMonth => 'Следующий месяц';
+
+  @override
+  String get cal_legendEid => 'Ид';
+
+  @override
+  String get cal_legendFast => 'Пост';
+
+  @override
+  String get cal_legendBlessed => 'Благословенный';
+
+  @override
+  String get cal_detailPending =>
+      'Дополнительные сведения (аят/хадис/описание) для этого события пока недоступны - ожидает религиозной проверки.';
+
+  @override
   String get hm_1 => 'Мухаррам';
 
   @override
