@@ -14,6 +14,9 @@ import '../../../../core/notifications/adhan_service.dart';
 import '../../../../core/widgets/app_scaffold.dart';
 import '../../../prayer/presentation/providers/prayer_provider.dart';
 
+// اللغات ذات الاتجاه من اليمين لليسار المدعومة حالياً في التطبيق.
+const _rtlLocaleCodes = {'ar', 'ur', 'fa'};
+
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
 
@@ -106,6 +109,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   Widget build(BuildContext context) {
     final t       = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
+    final currentLocale = _locales.firstWhere(
+      (l) => l['code'] == _locale,
+      orElse: () => _locales[0],
+    );
+    final isRtl = _rtlLocaleCodes.contains(_locale);
+
     return AppScaffold(
       title: t.settings_title,
       padding: EdgeInsets.zero,
@@ -113,315 +122,305 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s4),
         children: [
           // ── الهوية ──
-          _SectionHeader(title: t.settings_secIdentity, palette: palette),
-
-          _SettingsTile(
-            icon: Icons.language,
-            title: t.settings_language,
-            value: _locales.firstWhere(
-              (l) => l['code'] == _locale,
-              orElse: () => _locales[0],
-            )['name']!,
+          _SettingsGroup(
+            title: t.settings_secIdentity,
             palette: palette,
-            onTap: () => _showOptions(
-              context: context,
-              palette: palette,
-              title: t.settings_chooseLanguage,
-              options: _locales.map((l) => '${l['flag']} ${l['name']}').toList(),
-              selected: _locales.firstWhere((l) => l['code'] == _locale)['name']!,
-              onSelect: (val) {
-                final l = _locales.firstWhere(
-                  (l) => '${l['flag']} ${l['name']}' == val);
-                setState(() => _locale = l['code']!);
-                _save('locale', l['code']);
-                ref.read(localeProvider.notifier).setLocale(l['code']!);
-              },
-            ),
-          ),
-
-          _SettingsTile(
-            icon: Icons.mosque,
-            title: t.settings_madhab,
-            value: _madhabName(t, _madhab),
-            palette: palette,
-            onTap: () => _showOptions(
-              context: context,
-              palette: palette,
-              title: t.settings_chooseMadhab,
-              options: _madhabIds.map((id) => _madhabName(t, id)).toList(),
-              selected: _madhabName(t, _madhab),
-              onSelect: (val) {
-                final id = _madhabIds.firstWhere((id) => _madhabName(t, id) == val);
-                setState(() => _madhab = id);
-                _save('madhab', id);
-              },
-            ),
-          ),
-
-          _SettingsTile(
-            icon: Icons.calculate,
-            title: t.settings_calcMethod,
-            value: _calcName(t, _calcMethod),
-            palette: palette,
-            onTap: () => _showOptions(
-              context: context,
-              palette: palette,
-              title: t.settings_chooseCalc,
-              options: _calcIds.map((id) => _calcName(t, id)).toList(),
-              selected: _calcName(t, _calcMethod),
-              onSelect: (val) {
-                final id = _calcIds.firstWhere((id) => _calcName(t, id) == val);
-                setState(() => _calcMethod = id);
-                _save('calc_method', id);
-                // ننشر التغيير فوراً لحساب الصلاة الفعلي عبر Riverpod
-                // (بدل انتظار إعادة فتح التطبيق ليقرأ القيمة الجديدة من Hive)
-                ref.read(calcMethodProvider.notifier).setMethod(id);
-              },
-            ),
+            children: [
+              _LanguageTile(
+                icon: Icons.language,
+                title: t.settings_language,
+                flag: currentLocale['flag']!,
+                name: currentLocale['name']!,
+                directionBadge: isRtl ? t.settings_dirRtl : t.settings_dirLtr,
+                palette: palette,
+                onTap: () => _showOptions(
+                  context: context,
+                  palette: palette,
+                  title: t.settings_chooseLanguage,
+                  options: _locales.map((l) => '${l['flag']} ${l['name']}').toList(),
+                  selected: '${currentLocale['flag']} ${currentLocale['name']}',
+                  onSelect: (val) {
+                    final l = _locales.firstWhere(
+                      (l) => '${l['flag']} ${l['name']}' == val);
+                    setState(() => _locale = l['code']!);
+                    _save('locale', l['code']);
+                    ref.read(localeProvider.notifier).setLocale(l['code']!);
+                  },
+                ),
+              ),
+              _SettingsTile(
+                icon: Icons.mosque,
+                title: t.settings_madhab,
+                value: _madhabName(t, _madhab),
+                palette: palette,
+                onTap: () => _showOptions(
+                  context: context,
+                  palette: palette,
+                  title: t.settings_chooseMadhab,
+                  options: _madhabIds.map((id) => _madhabName(t, id)).toList(),
+                  selected: _madhabName(t, _madhab),
+                  onSelect: (val) {
+                    final id = _madhabIds.firstWhere((id) => _madhabName(t, id) == val);
+                    setState(() => _madhab = id);
+                    _save('madhab', id);
+                  },
+                ),
+              ),
+              _SettingsTile(
+                icon: Icons.calculate,
+                title: t.settings_calcMethod,
+                value: _calcName(t, _calcMethod),
+                palette: palette,
+                onTap: () => _showOptions(
+                  context: context,
+                  palette: palette,
+                  title: t.settings_chooseCalc,
+                  options: _calcIds.map((id) => _calcName(t, id)).toList(),
+                  selected: _calcName(t, _calcMethod),
+                  onSelect: (val) {
+                    final id = _calcIds.firstWhere((id) => _calcName(t, id) == val);
+                    setState(() => _calcMethod = id);
+                    _save('calc_method', id);
+                    // ننشر التغيير فوراً لحساب الصلاة الفعلي عبر Riverpod
+                    // (بدل انتظار إعادة فتح التطبيق ليقرأ القيمة الجديدة من Hive)
+                    ref.read(calcMethodProvider.notifier).setMethod(id);
+                  },
+                ),
+              ),
+            ],
           ),
 
           // ── الأذان ──
-          _SectionHeader(title: t.settings_secAdhan, palette: palette),
-
-          _SettingsSwitch(
-            icon: Icons.volume_up,
-            title: t.settings_enableAdhan,
-            value: _adhanEnabled,
+          _SettingsGroup(
+            title: t.settings_secAdhan,
             palette: palette,
-            onChanged: (val) {
-              setState(() => _adhanEnabled = val);
-              _save('adhan_enabled', val);
-            },
-          ),
-
-          // صوت المؤذن (أسماء المؤذنين تبقى عربية — محتوى)
-          Container(
-            margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
-            padding: const EdgeInsets.all(SirajSpacing.s4),
-            decoration: BoxDecoration(
-              color: palette.surface,
-              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+            children: [
+              _SettingsSwitch(
+                icon: Icons.volume_up,
+                title: t.settings_enableAdhan,
+                value: _adhanEnabled,
+                palette: palette,
+                onChanged: (val) {
+                  setState(() => _adhanEnabled = val);
+                  _save('adhan_enabled', val);
+                },
+              ),
+              // صوت المؤذن (أسماء المؤذنين تبقى عربية — محتوى)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: SirajSpacing.s3),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.mic, color: palette.accentPrimary, size: 20),
-                    const SizedBox(width: SirajSpacing.s2),
-                    Text(t.settings_muezzinVoice, style: AppText.body.copyWith(
-                      color: palette.textPrimary)),
+                    Row(
+                      children: [
+                        Icon(Icons.mic, color: palette.accentPrimary, size: 20),
+                        const SizedBox(width: SirajSpacing.s2),
+                        Text(t.settings_muezzinVoice, style: AppText.body.copyWith(
+                          color: palette.textPrimary)),
+                      ],
+                    ),
+                    const SizedBox(height: SirajSpacing.s3),
+                    ...AdhanService.adhanSounds.keys.map((name) {
+                      final isSelected = _selectedAdhan == name;
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() => _selectedAdhan = name);
+                          _save('adhan_sound', name);
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: SirajSpacing.s3, vertical: SirajSpacing.s2),
+                          decoration: BoxDecoration(
+                            color: isSelected
+                                ? palette.accentPrimary.withValues(alpha: 0.15)
+                                : palette.background,
+                            borderRadius: BorderRadius.circular(SirajRadiusFull.sm),
+                            border: Border.all(
+                              color: isSelected ? palette.accentPrimary : Colors.transparent),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () => _previewAdhan(name),
+                                child: Container(
+                                  padding: const EdgeInsets.all(6),
+                                  decoration: BoxDecoration(
+                                    color: palette.accentPrimary.withValues(alpha: 0.2),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(Icons.play_arrow,
+                                    color: palette.accentPrimary, size: 16),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(AdhanService.labelFor(name, t), textAlign: TextAlign.end,
+                                  style: AppText.bodySmall.copyWith(
+                                    color: isSelected
+                                        ? palette.accentPrimary : palette.textPrimary)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
                   ],
                 ),
-                const SizedBox(height: SirajSpacing.s3),
-                ...AdhanService.adhanSounds.keys.map((name) {
-                  final isSelected = _selectedAdhan == name;
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() => _selectedAdhan = name);
-                      _save('adhan_sound', name);
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: SirajSpacing.s3, vertical: SirajSpacing.s2),
-                      decoration: BoxDecoration(
-                        color: isSelected
-                            ? palette.accentPrimary.withValues(alpha: 0.15)
-                            : palette.background,
-                        borderRadius: BorderRadius.circular(SirajRadiusFull.sm),
-                        border: Border.all(
-                          color: isSelected ? palette.accentPrimary : Colors.transparent),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () => _previewAdhan(name),
-                            child: Container(
-                              padding: const EdgeInsets.all(6),
-                              decoration: BoxDecoration(
-                                color: palette.accentPrimary.withValues(alpha: 0.2),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(Icons.play_arrow,
-                                color: palette.accentPrimary, size: 16),
+              ),
+              _SettingsSwitch(
+                icon: Icons.vibration,
+                title: t.settings_vibration,
+                value: _vibrationEnabled,
+                palette: palette,
+                onChanged: (val) {
+                  setState(() => _vibrationEnabled = val);
+                  _save('vibration', val);
+                },
+              ),
+              // تنبيه قبل الإقامة
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: SirajSpacing.s3),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(t.settings_iqamaAlert, style: AppText.body.copyWith(
+                      color: palette.textPrimary)),
+                    const SizedBox(height: SirajSpacing.s3),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [5, 10, 15, 20].map((min) {
+                        final isSelected = _iqamaAlert == min;
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() => _iqamaAlert = min);
+                            _save('iqama_alert', min);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: SirajSpacing.s4, vertical: SirajSpacing.s2),
+                            decoration: BoxDecoration(
+                              color: isSelected ? palette.accentPrimary : palette.background,
+                              borderRadius: BorderRadius.circular(SirajRadiusFull.xl),
                             ),
+                            child: Text(t.settings_minutes(min), style: AppText.bodySmall.copyWith(
+                              color: isSelected ? palette.background : palette.textSecondary)),
                           ),
-                          Expanded(
-                            child: Text(AdhanService.labelFor(name, t), textAlign: TextAlign.end,
-                              style: AppText.bodySmall.copyWith(
-                                color: isSelected
-                                    ? palette.accentPrimary : palette.textPrimary)),
-                          ),
-                        ],
-                      ),
+                        );
+                      }).toList(),
                     ),
-                  );
-                }),
-              ],
-            ),
-          ),
-
-          _SettingsSwitch(
-            icon: Icons.vibration,
-            title: t.settings_vibration,
-            value: _vibrationEnabled,
-            palette: palette,
-            onChanged: (val) {
-              setState(() => _vibrationEnabled = val);
-              _save('vibration', val);
-            },
-          ),
-
-          // تنبيه قبل الإقامة
-          Container(
-            margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
-            padding: const EdgeInsets.all(SirajSpacing.s4),
-            decoration: BoxDecoration(
-              color: palette.surface,
-              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(t.settings_iqamaAlert, style: AppText.body.copyWith(
-                  color: palette.textPrimary)),
-                const SizedBox(height: SirajSpacing.s3),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [5, 10, 15, 20].map((min) {
-                    final isSelected = _iqamaAlert == min;
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() => _iqamaAlert = min);
-                        _save('iqama_alert', min);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: SirajSpacing.s4, vertical: SirajSpacing.s2),
-                        decoration: BoxDecoration(
-                          color: isSelected ? palette.accentPrimary : palette.background,
-                          borderRadius: BorderRadius.circular(SirajRadiusFull.xl),
-                        ),
-                        child: Text(t.settings_minutes(min), style: AppText.bodySmall.copyWith(
-                          color: isSelected ? palette.background : palette.textSecondary)),
-                      ),
-                    );
-                  }).toList(),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
 
           // ── التطبيق ──
-          _SectionHeader(title: t.settings_secApp, palette: palette),
-
-          const _ModeAndSectionsCard(),
-
-          _SettingsTile(
-            icon: Icons.menu_book,
-            title: t.settings_quranFont,
-            value: _quranFont == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
+          _SettingsGroup(
+            title: t.settings_secApp,
             palette: palette,
-            onTap: () => _showOptions(
-              context: context,
-              palette: palette,
-              title: t.settings_quranFont,
-              options: [t.settings_fontUthmani, t.settings_fontHafs],
-              selected: _quranFont == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
-              onSelect: (val) {
-                final f = val == t.settings_fontUthmani ? 'uthmani' : 'hafs';
-                setState(() => _quranFont = f);
-                _save('quran_font', f);
-              },
-            ),
-          ),
-
-          // حجم الخط
-          Container(
-            margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
-            padding: const EdgeInsets.all(SirajSpacing.s4),
-            decoration: BoxDecoration(
-              color: palette.surface,
-              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(t.settings_quranFontSize, style: AppText.body.copyWith(
-                  color: palette.textPrimary)),
-                Slider(
-                  value: _fontSize,
-                  min: 16, max: 32, divisions: 8,
-                  label: _fontSize.round().toString(),
-                  activeColor: palette.accentPrimary,
-                  onChanged: (val) {
-                    setState(() => _fontSize = val);
-                    _save('font_size', val);
+            children: [
+              const _ModeAndSectionsCard(),
+              _SettingsTile(
+                icon: Icons.menu_book,
+                title: t.settings_quranFont,
+                value: _quranFont == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
+                palette: palette,
+                onTap: () => _showOptions(
+                  context: context,
+                  palette: palette,
+                  title: t.settings_quranFont,
+                  options: [t.settings_fontUthmani, t.settings_fontHafs],
+                  selected: _quranFont == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
+                  onSelect: (val) {
+                    final f = val == t.settings_fontUthmani ? 'uthmani' : 'hafs';
+                    setState(() => _quranFont = f);
+                    _save('quran_font', f);
                   },
                 ),
-                Center(
-                  child: Text('بِسْمِ اللَّهِ',
-                    style: TextStyle(
-                      fontFamily: 'QuranFont',
-                      color: palette.textPrimary,
-                      fontSize: _fontSize)),
+              ),
+              // حجم الخط
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: SirajSpacing.s3),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(t.settings_quranFontSize, style: AppText.body.copyWith(
+                      color: palette.textPrimary)),
+                    Slider(
+                      value: _fontSize,
+                      min: 16, max: 32, divisions: 8,
+                      label: _fontSize.round().toString(),
+                      activeColor: palette.accentPrimary,
+                      onChanged: (val) {
+                        setState(() => _fontSize = val);
+                        _save('font_size', val);
+                      },
+                    ),
+                    Center(
+                      child: Text('بِسْمِ اللَّهِ',
+                        style: TextStyle(
+                          fontFamily: 'QuranFont',
+                          color: palette.textPrimary,
+                          fontSize: _fontSize)),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
 
           // ── الخصوصية ──
-          _SectionHeader(title: t.settings_secPrivacy, palette: palette),
-
-          Container(
-            margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
-            padding: const EdgeInsets.all(SirajSpacing.s4),
-            decoration: BoxDecoration(
-              color: palette.surface,
-              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-            ),
-            child: Row(
-              children: [
-                Icon(Icons.lock, color: palette.accentPrimary, size: 20),
-                const SizedBox(width: SirajSpacing.s2),
-                Expanded(
-                  child: Text(t.settings_privacyNote, style: AppText.caption.copyWith(
-                    color: palette.textSecondary)),
-                ),
-              ],
-            ),
-          ),
-
-          _SettingsTile(
-            icon: Icons.delete_outline,
-            title: t.settings_clearCache,
-            value: '',
+          _SettingsGroup(
+            title: t.settings_secPrivacy,
             palette: palette,
-            onTap: () => _confirmClearCache(context, palette, t),
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: SirajSpacing.s3),
+                child: Row(
+                  children: [
+                    Icon(Icons.lock, color: palette.accentPrimary, size: 20),
+                    const SizedBox(width: SirajSpacing.s2),
+                    Expanded(
+                      child: Text(t.settings_privacyNote, style: AppText.caption.copyWith(
+                        color: palette.textSecondary)),
+                    ),
+                  ],
+                ),
+              ),
+              _SettingsTile(
+                icon: Icons.delete_outline,
+                title: t.settings_clearCache,
+                value: '',
+                palette: palette,
+                onTap: () => _confirmClearCache(context, palette, t),
+              ),
+            ],
           ),
 
           // ── عن التطبيق ──
-          _SectionHeader(title: t.settings_secAbout, palette: palette),
-
-          _SettingsTile(
-            icon: Icons.info_outline,
-            title: t.settings_version,
-            value: '1.0.0',
+          _SettingsGroup(
+            title: t.settings_secAbout,
             palette: palette,
-            onTap: () {},
+            children: [
+              _SettingsTile(
+                icon: Icons.info_outline,
+                title: t.settings_version,
+                value: '1.0.0',
+                palette: palette,
+                onTap: () {},
+              ),
+              _SettingsTile(
+                icon: Icons.share,
+                title: t.settings_shareApp,
+                value: '',
+                palette: palette,
+                onTap: () {},
+              ),
+            ],
           ),
 
-          _SettingsTile(
-            icon: Icons.share,
-            title: t.settings_shareApp,
-            value: '',
-            palette: palette,
-            onTap: () {},
-          ),
-
-          const SizedBox(height: SirajSpacing.s8),
+          const SizedBox(height: SirajSpacing.s4),
           Center(
             child: Text(t.settings_tagline, style: AppText.caption.copyWith(
               color: palette.textSecondary)),
@@ -515,19 +514,67 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 }
 
-// ─── Section Header ───
-class _SectionHeader extends StatelessWidget {
+// ─── Settings Group ───
+// بطاقة زجاجية واحدة تجمّع كل صفوف قسم معيّن، بدل بطاقة منفصلة لكل صف.
+// تستخدم palette.surface (لا GlassCard ذات الشفافية البيضاء الثابتة) لأن
+// خلفية هذه الشاشة تتغيّر فعلياً حسب وقت اليوم (فاتحة في الصباح/الظهر/العصر)
+// عبر AppScaffold، خلافاً للرئيسية/التقويم اللتين تُرسمان دائماً فوق خلفية
+// داكنة ثابتة — استخدام GlassCard هنا كان سيصبح غير مرئي تقريباً في الأوضاع
+// الفاتحة.
+class _SettingsGroup extends StatelessWidget {
   final String title;
   final dynamic palette;
-  const _SectionHeader({required this.title, required this.palette});
+  final List<Widget> children;
+
+  const _SettingsGroup({
+    required this.title,
+    required this.palette,
+    required this.children,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: SirajSpacing.s5, bottom: SirajSpacing.s2),
-      child: Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Text(title, style: AppText.bodySmall.copyWith(color: palette.accentPrimary)),
+      padding: const EdgeInsets.only(bottom: SirajSpacing.s5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsetsDirectional.only(
+              start: SirajSpacing.s1, bottom: SirajSpacing.s2),
+            child: Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Text(title, style: AppText.bodySmall.copyWith(
+                color: palette.accentPrimary,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.2,
+              )),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: palette.surface,
+              borderRadius: BorderRadius.circular(SirajRadiusFull.lg),
+              border: Border.all(
+                color: palette.accentPrimary.withValues(alpha: 0.10), width: 1),
+              boxShadow: SirajElevation.e2,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s4),
+              child: Column(
+                children: [
+                  for (var i = 0; i < children.length; i++) ...[
+                    children[i],
+                    if (i != children.length - 1)
+                      Divider(
+                        height: 1,
+                        color: palette.textSecondary.withValues(alpha: 0.10)),
+                  ],
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -551,16 +598,11 @@ class _SettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
-        padding: const EdgeInsets.symmetric(
-          horizontal: SirajSpacing.s4, vertical: SirajSpacing.s4),
-        decoration: BoxDecoration(
-          color: palette.surface,
-          borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-        ),
+      borderRadius: BorderRadius.circular(SirajRadiusFull.sm),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: SirajSpacing.s3),
         child: Row(
           children: [
             Icon(icon, color: palette.accentPrimary, size: 20),
@@ -570,6 +612,64 @@ class _SettingsTile extends StatelessWidget {
             ),
             if (value.isNotEmpty)
               Text(value, style: AppText.bodySmall.copyWith(color: palette.textSecondary)),
+            const SizedBox(width: SirajSpacing.s2),
+            Icon(Icons.chevron_right, color: palette.textSecondary, size: 18),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Language Tile ───
+// نفس صف الإعداد العادي، لكن مع علم الدولة + شارة اتجاه الكتابة (RTL/LTR)
+// بجانب اسم اللغة الحالية.
+class _LanguageTile extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String flag;
+  final String name;
+  final String directionBadge;
+  final dynamic palette;
+  final VoidCallback onTap;
+
+  const _LanguageTile({
+    required this.icon,
+    required this.title,
+    required this.flag,
+    required this.name,
+    required this.directionBadge,
+    required this.palette,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(SirajRadiusFull.sm),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: SirajSpacing.s3),
+        child: Row(
+          children: [
+            Icon(icon, color: palette.accentPrimary, size: 20),
+            const SizedBox(width: SirajSpacing.s3),
+            Expanded(
+              child: Text(title, style: AppText.body.copyWith(color: palette.textPrimary)),
+            ),
+            Text(flag, style: const TextStyle(fontSize: 16)),
+            const SizedBox(width: SirajSpacing.s2),
+            Text(name, style: AppText.bodySmall.copyWith(color: palette.textSecondary)),
+            const SizedBox(width: SirajSpacing.s2),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              decoration: BoxDecoration(
+                color: palette.accentPrimary.withValues(alpha: 0.14),
+                borderRadius: BorderRadius.circular(SirajRadiusFull.sm),
+              ),
+              child: Text(directionBadge, style: AppText.caption.copyWith(
+                color: palette.accentPrimary, fontWeight: FontWeight.w600)),
+            ),
             const SizedBox(width: SirajSpacing.s2),
             Icon(Icons.chevron_right, color: palette.textSecondary, size: 18),
           ],
@@ -597,14 +697,8 @@ class _SettingsSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
-      padding: const EdgeInsets.symmetric(
-        horizontal: SirajSpacing.s4, vertical: SirajSpacing.s2),
-      decoration: BoxDecoration(
-        color: palette.surface,
-        borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-      ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: SirajSpacing.s2),
       child: Row(
         children: [
           Icon(icon, color: palette.accentPrimary, size: 20),
@@ -618,6 +712,7 @@ class _SettingsSwitch extends StatelessWidget {
     );
   }
 }
+
 /// بطاقة موحّدة: مفتاح الوضع (خفيف/كامل) + قائمة تخصيص الأقسام
 /// مدمجة مباشرة بداخلها عند اختيار الوضع الخفيف - بدل بطاقتين
 /// منفصلتين تتطلبان انتقالاً لصفحة أخرى.
@@ -634,12 +729,8 @@ class _ModeAndSectionsCard extends ConsumerWidget {
         enabled.isEmpty ? FeatureFlags.defaultLiteSections : enabled;
     final isLite = mode == AppMode.lite;
 
-    return Container(
-      padding: const EdgeInsets.all(SirajSpacing.s4),
-      decoration: BoxDecoration(
-        color: palette.surface,
-        borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-      ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: SirajSpacing.s3),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

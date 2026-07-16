@@ -1030,6 +1030,18 @@ abstract class AppLocalizations {
   /// **'الهوية'**
   String get settings_secIdentity;
 
+  /// No description provided for @settings_dirRtl.
+  ///
+  /// In ar, this message translates to:
+  /// **'RTL'**
+  String get settings_dirRtl;
+
+  /// No description provided for @settings_dirLtr.
+  ///
+  /// In ar, this message translates to:
+  /// **'LTR'**
+  String get settings_dirLtr;
+
   /// No description provided for @settings_secAdhan.
   ///
   /// In ar, this message translates to:

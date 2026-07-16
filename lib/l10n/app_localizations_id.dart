@@ -480,6 +480,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get settings_secIdentity => 'Identitas';
 
   @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'Azan';
 
   @override

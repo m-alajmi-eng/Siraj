@@ -480,6 +480,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_secIdentity => 'Identidad';
 
   @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'Adhan';
 
   @override

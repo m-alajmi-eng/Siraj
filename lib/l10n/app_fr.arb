@@ -193,6 +193,8 @@
   "stories_comingSoonMsg": "Bientôt disponible — contenu en cours",
   "children_title": "Histoires pour enfants",
   "settings_secIdentity": "Identité",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "Adhan",
   "settings_secApp": "Application",
   "settings_secPrivacy": "Confidentialité",

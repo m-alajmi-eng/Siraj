@@ -193,6 +193,8 @@
   "stories_comingSoonMsg": "به‌زودی — محتوا در حال آماده‌سازی است",
   "children_title": "داستان‌های کودکان",
   "settings_secIdentity": "هویت",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "اذان",
   "settings_secApp": "برنامه",
   "settings_secPrivacy": "حریم خصوصی",

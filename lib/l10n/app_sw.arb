@@ -193,6 +193,8 @@
   "stories_comingSoonMsg": "Inakuja hivi karibuni — maudhui yanaandaliwa",
   "children_title": "Hadithi za Watoto",
   "settings_secIdentity": "Utambulisho",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "Adhana",
   "settings_secApp": "Programu",
   "settings_secPrivacy": "Faragha",

@@ -193,6 +193,8 @@
   "stories_comingSoonMsg": "Segera hadir — konten dalam proses",
   "children_title": "Kisah Anak",
   "settings_secIdentity": "Identitas",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "Azan",
   "settings_secApp": "Aplikasi",
   "settings_secPrivacy": "Privasi",
