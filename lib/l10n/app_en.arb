@@ -97,6 +97,13 @@
   "qibla_errorHint": "Make sure compass and location are enabled",
   "qibla_kaaba": "Kaaba",
   "qibla_fromNorth": "Degrees from North toward Qibla",
+  "qibla_distanceKm": "{km} km to {kaaba}",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "My Stats",
   "stats_prayerStreak": "Prayer Streak",
   "stats_totalPrayers": "Total Prayers",

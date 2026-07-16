@@ -97,6 +97,13 @@
   "qibla_errorHint": "تأكد من تفعيل البوصلة والموقع",
   "qibla_kaaba": "الكعبة",
   "qibla_fromNorth": "من الشمال باتجاه القبلة",
+  "qibla_distanceKm": "{km} كم إلى {kaaba}",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "إحصائياتي",
   "stats_prayerStreak": "سلسلة الصلوات",
   "stats_totalPrayers": "إجمالي الصلوات",

@@ -49,6 +49,13 @@
   "qibla_errorHint": "请开启指南针和位置服务",
   "qibla_kaaba": "天房",
   "qibla_fromNorth": "从北方到朝拜方向的度数",
+  "qibla_distanceKm": "距{kaaba} {km} 公里",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "我的统计",
   "stats_prayerStreak": "礼拜连续天数",
   "stats_totalPrayers": "礼拜总数",

@@ -97,6 +97,13 @@
   "qibla_errorHint": "Activez la boussole et la localisation",
   "qibla_kaaba": "Kaaba",
   "qibla_fromNorth": "Degrés du Nord vers la Qibla",
+  "qibla_distanceKm": "{km} km jusqu'à {kaaba}",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "Mes Statistiques",
   "stats_prayerStreak": "Série de Prières",
   "stats_totalPrayers": "Total des Prières",

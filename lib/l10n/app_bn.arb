@@ -97,6 +97,13 @@
   "qibla_errorHint": "কম্পাস এবং অবস্থান সক্রিয় করুন",
   "qibla_kaaba": "কাবা",
   "qibla_fromNorth": "উত্তর থেকে কিবলার দিক ডিগ্রি",
+  "qibla_distanceKm": "{kaaba} পর্যন্ত {km} কিমি",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "আমার পরিসখ্যান",
   "stats_prayerStreak": "নামাজের ধারাবাহিকতা",
   "stats_totalPrayers": "মোট নামাজ",

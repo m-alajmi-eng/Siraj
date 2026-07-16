@@ -186,6 +186,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get qibla_fromNorth => 'Grad vom Norden zur Qibla';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km km bis $kaaba';
+  }
+
+  @override
   String get stats_title => 'Meine Statistiken';
 
   @override

@@ -49,6 +49,13 @@
   "qibla_errorHint": "Activa la brújula y la ubicación",
   "qibla_kaaba": "Kaaba",
   "qibla_fromNorth": "Grados desde el Norte hacia la Qibla",
+  "qibla_distanceKm": "{km} km hasta {kaaba}",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "Mis Estadísticas",
   "stats_prayerStreak": "Racha de Oraciones",
   "stats_totalPrayers": "Total de Oraciones",
