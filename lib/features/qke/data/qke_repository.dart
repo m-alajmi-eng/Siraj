@@ -39,11 +39,14 @@ class RelatedHadith {
     required this.hadithNumber,
   });
 
+  // ملاحظة: يُبنى من صفوف جدول kg_edges الموحَّد (dst_id يشير لـhadiths.id
+  // فعلياً عند edge_type='ayah_hadith') - راجع
+  // supabase/migrations/20260716102020_kg_edges_unify_hadith_relations.sql
   factory RelatedHadith.fromJson(Map<String, dynamic> j) {
     final hadith = j['hadiths'] as Map?;
     final book   = hadith?['hadith_books'] as Map?;
     return RelatedHadith(
-      id:           j['hadith_id'] ?? 0,
+      id:           j['dst_id'] ?? 0,
       text:         hadith?['text_ar'] ?? '',
       bookName:     book?['name_ar'] ?? '',
       hadithNumber: hadith?['hadith_number'] ?? 0,
@@ -76,17 +79,22 @@ class AdwaaCitation {
 
   bool get isAuthenticHadith => citationType == 'authentic_hadith';
 
+  // ملاحظة: يُبنى من صفوف جدول kg_edges الموحَّد (edge_type
+  // 'authentic_hadith_citation'/'israiliyyat_citation' بدل citation_type
+  // الأصلي، وأعمدة citation_* بدل الأسماء القديمة) - راجع
+  // supabase/migrations/20260716102020_kg_edges_unify_hadith_relations.sql
   factory AdwaaCitation.fromJson(Map<String, dynamic> j) {
+    final edgeType = j['edge_type'] ?? 'authentic_hadith_citation';
     return AdwaaCitation(
       id:              j['id'] ?? 0,
-      citationType:    j['citation_type'] ?? 'authentic_hadith',
-      quotedText:      j['quoted_text'] ?? '',
-      fullParagraph:   j['full_paragraph'] ?? '',
+      citationType:    edgeType == 'israiliyyat_citation' ? 'israiliyyat' : 'authentic_hadith',
+      quotedText:      j['citation_text'] ?? '',
+      fullParagraph:   j['citation_context'] ?? '',
       sourceReference: j['source_reference'] ?? '',
-      sourceBook:      j['source_book'] ?? '',
-      sourceAuthor:    j['source_author'] ?? '',
-      shamelaUrl:      j['shamela_url'] ?? '',
-      shamelaPage:     j['shamela_page'] ?? 0,
+      sourceBook:      j['citation_book'] ?? '',
+      sourceAuthor:    j['citation_author'] ?? '',
+      shamelaUrl:      j['citation_url'] ?? '',
+      shamelaPage:     j['citation_page'] ?? 0,
     );
   }
 }
@@ -205,31 +213,38 @@ class QkeRepository {
 
     final surah = ayahRes['surahs'] ?? {};
 
-      // جلب الأحاديث المرتبطة
+      // جلب الأحاديث المرتبطة + استشهادات أضواء البيان معاً من جدول
+      // kg_edges الموحَّد (بدل ayah_hadiths وverse_hadith_relations
+      // مباشرة) - راجع
+      // supabase/migrations/20260716102020_kg_edges_unify_hadith_relations.sql
+      // سياسة RLS على kg_edges نفسها تكفل عرض ayah_hadith دوماً
+      // واستشهادات أضواء البيان فقط عند reviewed=true (لا حاجة لتكرار
+      // شرط reviewed هنا - الاستعلام .eq('reviewed', true) القديم على
+      // verse_hadith_relations كان تكراراً دفاعياً لنفس قيد RLS أصلاً).
       List<RelatedHadith> relatedHadiths = [];
-      try {
-        final hadithsRes = await _client
-            .from('ayah_hadiths')
-            .select('hadith_id, hadiths(text_ar, hadith_number, hadith_books(name_ar))')
-            .eq('ayah_id', ayahId)
-            .limit(5);
-        relatedHadiths = hadithsRes
-            .map((j) => RelatedHadith.fromJson(j))
-            .toList();
-      } catch (_) {}
-
-      // جلب استشهادات أضواء البيان (مُراجَعة فقط - reviewed = true)
       List<AdwaaCitation> adwaaCitations = [];
       try {
-        final adwaaRes = await _client
-            .from('verse_hadith_relations')
-            .select()
-            .eq('ayah_id', ayahId)
-            .eq('reviewed', true)
+        final edgesRes = await _client
+            .from('kg_edges')
+            .select(
+              'id, edge_type, dst_id, source_reference, citation_text, '
+              'citation_context, citation_book, citation_author, '
+              'citation_url, citation_page, '
+              'hadiths(text_ar, hadith_number, hadith_books(name_ar))',
+            )
+            .eq('src_id', ayahId)
+            .eq('src_type', 'ayah')
             .order('id');
-        adwaaCitations = adwaaRes
-            .map((j) => AdwaaCitation.fromJson(j))
-            .toList();
+
+        for (final j in (edgesRes as List)) {
+          if (j['edge_type'] == 'ayah_hadith') {
+            if (relatedHadiths.length < 5) {
+              relatedHadiths.add(RelatedHadith.fromJson(j));
+            }
+          } else {
+            adwaaCitations.add(AdwaaCitation.fromJson(j));
+          }
+        }
       } catch (_) {}
 
       // جلب تفسير أضواء البيان الكامل لهذه الآية (نطاق صفحات من فهرس
