@@ -85,11 +85,15 @@
 **الحالة: البنود الثلاثة منجزة، كل واحد في فرع+PR منفصل، لا شيء دُمج
 على main، لا شيء طُبِّق على قاعدة الإنتاج.**
 
-| # | البند | الفرع | PR |
-|---|-------|-------|-----|
-| 1 | بحث نصي عربي كامل (tsvector+GIN) | `qke/arabic-fulltext-search` | [#32](https://github.com/m-alajmi-eng/Siraj/pull/32) |
-| 2 | توحيد ayah_hadiths+verse_hadith_relations → kg_edges | `qke/kg-edges-unify-relations` | [#33](https://github.com/m-alajmi-eng/Siraj/pull/33) |
-| 3 | واجهة "المحتوى ذو الصلة" من kg_edges | `qke/related-content-ui` | (يُفتَح الآن) |
+| # | البند | الفرع | PR | CI |
+|---|-------|-------|-----|-----|
+| 1 | بحث نصي عربي كامل (tsvector+GIN) | `qke/arabic-fulltext-search` | [#32](https://github.com/m-alajmi-eng/Siraj/pull/32) | ✅ نجح (analyze+test+build، 15م50ث) |
+| 2 | توحيد ayah_hadiths+verse_hadith_relations → kg_edges | `qke/kg-edges-unify-relations` | [#33](https://github.com/m-alajmi-eng/Siraj/pull/33) | ✅ نجح (15م44ث) |
+| 3 | واجهة "المحتوى ذو الصلة" من kg_edges | `qke/related-content-ui` | [#34](https://github.com/m-alajmi-eng/Siraj/pull/34) | ✅ نجح (16م6ث) |
+
+**تحديث نهائي**: CI (GitHub Actions: analyze + test + build APK) نجح
+بالكامل على الفروع الثلاثة، بلا استثناء. البنود الثلاثة جاهزة فعلياً
+لمراجعتك ودمجك بنفسك، بالترتيب (٣ يعتمد على ٢).
 
 ## قرارات معمارية مؤجَّلة (سُجِّلت في ROADMAP.md، لم تُخترَع حلولاً الآن)
 - مطابقة تقريبية (fuzzy/pg_trgm) لكلمات ناقصة حرفاً كاملاً عن الرسم الرسمي.
