@@ -480,6 +480,46 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_secIdentity => 'Идентификация';
 
   @override
+  String get onboarding_modeTitle => 'Выберите режим приложения';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Вы можете изменить это позже в настройках';
+
+  @override
+  String get onboarding_liteSubtitle => 'Основное · Быстро · Полностью офлайн';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'Все функции · Полный набор · Углублённо';
+
+  @override
+  String get onboarding_andMore => '+ ещё';
+
+  @override
+  String get onboarding_madhabTitle => 'Мазхаб (правовая школа)';
+
+  @override
+  String get onboarding_madhabSubtitle => 'Для точного расчёта времени намаза';
+
+  @override
+  String get onboarding_locationTitle => 'Укажите своё местоположение';
+
+  @override
+  String get onboarding_locationSubtitle => 'Для точного времени намаза';
+
+  @override
+  String get onboarding_locationBody =>
+      'Приложение запросит доступ к местоположению,\nчтобы автоматически определять время намаза';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Ваши данные остаются только на вашем устройстве';
+
+  @override
+  String get onboarding_start => 'Начать';
+
+  @override
   String get settings_secAdhan => 'Азан';
 
   @override

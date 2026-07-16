@@ -481,6 +481,47 @@ class AppLocalizationsSw extends AppLocalizations {
   String get settings_secIdentity => 'Utambulisho';
 
   @override
+  String get onboarding_modeTitle => 'Chagua hali ya programu';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Unaweza kubadilisha hii baadaye kwenye mipangilio';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Mambo ya msingi · Haraka · Nje ya mtandao kikamilifu';
+
+  @override
+  String get onboarding_fullSubtitle => 'Vipengele vyote · Kamili · Kina';
+
+  @override
+  String get onboarding_andMore => '+ zaidi';
+
+  @override
+  String get onboarding_madhabTitle => 'Madhehebu ya Kifiqhi';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Kwa kukokotoa nyakati za sala kwa usahihi';
+
+  @override
+  String get onboarding_locationTitle => 'Weka mahali ulipo';
+
+  @override
+  String get onboarding_locationSubtitle => 'Kwa nyakati sahihi za sala';
+
+  @override
+  String get onboarding_locationBody =>
+      'Programu itaomba ruhusa ya mahali\nili kubaini nyakati za sala kiotomatiki';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Data yako inabaki kwenye kifaa chako pekee';
+
+  @override
+  String get onboarding_start => 'Anza';
+
+  @override
   String get settings_secAdhan => 'Adhana';
 
   @override

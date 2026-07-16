@@ -480,6 +480,43 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settings_secIdentity => 'الهوية';
 
   @override
+  String get onboarding_modeTitle => 'اختر وضع التطبيق';
+
+  @override
+  String get onboarding_modeSubtitle => 'يمكنك تغييره لاحقاً من الإعدادات';
+
+  @override
+  String get onboarding_liteSubtitle => 'الأساسيات · سريع · offline كامل';
+
+  @override
+  String get onboarding_fullSubtitle => 'كل الميزات · شامل · عميق';
+
+  @override
+  String get onboarding_andMore => '+ المزيد';
+
+  @override
+  String get onboarding_madhabTitle => 'المذهب الفقهي';
+
+  @override
+  String get onboarding_madhabSubtitle => 'لحساب أوقات الصلاة بدقة';
+
+  @override
+  String get onboarding_locationTitle => 'تحديد موقعك';
+
+  @override
+  String get onboarding_locationSubtitle => 'لأوقات صلاة دقيقة';
+
+  @override
+  String get onboarding_locationBody =>
+      'التطبيق سيطلب إذن الموقع\nلتحديد أوقات الصلاة تلقائياً';
+
+  @override
+  String get onboarding_locationPrivacy => 'بياناتك تبقى على جهازك فقط';
+
+  @override
+  String get onboarding_start => 'ابدأ';
+
+  @override
   String get settings_secAdhan => 'الأذان';
 
   @override

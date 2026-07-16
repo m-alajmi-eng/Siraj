@@ -480,6 +480,49 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_secIdentity => 'Identité';
 
   @override
+  String get onboarding_modeTitle => 'Choisissez le mode de l\'application';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Vous pourrez le modifier plus tard dans les paramètres';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'L\'essentiel · Rapide · Entièrement hors ligne';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'Toutes les fonctionnalités · Complet · Approfondi';
+
+  @override
+  String get onboarding_andMore => '+ plus';
+
+  @override
+  String get onboarding_madhabTitle => 'École juridique (madhhab)';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Pour calculer les horaires de prière avec précision';
+
+  @override
+  String get onboarding_locationTitle => 'Définir votre position';
+
+  @override
+  String get onboarding_locationSubtitle =>
+      'Pour des horaires de prière précis';
+
+  @override
+  String get onboarding_locationBody =>
+      'L\'application demandera l\'autorisation de localisation\npour déterminer automatiquement les horaires de prière';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Vos données restent uniquement sur votre appareil';
+
+  @override
+  String get onboarding_start => 'Commencer';
+
+  @override
   String get settings_secAdhan => 'Adhan';
 
   @override

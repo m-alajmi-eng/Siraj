@@ -480,6 +480,42 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_secIdentity => '身份';
 
   @override
+  String get onboarding_modeTitle => '选择应用模式';
+
+  @override
+  String get onboarding_modeSubtitle => '您可以稍后在设置中更改';
+
+  @override
+  String get onboarding_liteSubtitle => '核心功能 · 快速 · 完全离线';
+
+  @override
+  String get onboarding_fullSubtitle => '全部功能 · 全面 · 深入';
+
+  @override
+  String get onboarding_andMore => '+ 更多';
+
+  @override
+  String get onboarding_madhabTitle => '教法学派';
+
+  @override
+  String get onboarding_madhabSubtitle => '用于精确计算礼拜时间';
+
+  @override
+  String get onboarding_locationTitle => '设置您的位置';
+
+  @override
+  String get onboarding_locationSubtitle => '获取精确的礼拜时间';
+
+  @override
+  String get onboarding_locationBody => '应用将请求位置权限\n以自动确定礼拜时间';
+
+  @override
+  String get onboarding_locationPrivacy => '您的数据仅保留在您的设备上';
+
+  @override
+  String get onboarding_start => '开始';
+
+  @override
   String get settings_secAdhan => '宣礼';
 
   @override
