@@ -14,7 +14,12 @@
 ## هوية المشروع
 
 - **الاسم:** سراج (Siraj) — منصة معرفة إسلامية شاملة، خيرية بالكامل (لا أرباح، لا إعلانات، لا تتبّع).
-- **التقنيات:** Flutter 3.44.x + Riverpod 3 (Notifier) + GoRouter + Supabase + Firebase Auth + Hive.
+- **التقنيات:** Flutter 3.44.x + Riverpod 3 (Notifier) + GoRouter + Supabase (Auth + DB) + Hive.
+  **تصحيح 2026-07-16**: `firebase_auth` تبعية مُدرَجة في pubspec.yaml
+  لكن **غير مستخدَمة إطلاقاً** في `lib/` (تحقق: صفر استيراد لها) —
+  المصادقة الفعلية بالكامل عبر Supabase Auth (`AuthRepository` يستخدم
+  `Supabase.instance.client.auth` حصراً). تبعية يتيمة تستحق إزالة أو
+  توثيق سبب إبقائها (بند صغير مستقل، ليس عاجلاً).
 - **الفلسفة الحاكمة:** `SIRAJ_PRINCIPLES.md` — "Product with Platform Boundaries" + Offline-first.
 - **اللغات:** 15 لغة كاملة (ar, en, ur, fa, id, tr, fr, bn, ms, ha, sw, de, ru, zh, es) مع RTL/LTR.
 - **المستودع:** github.com/m-alajmi-eng/Siraj (خاص). متعاون: علاء (Write).
