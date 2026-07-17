@@ -65,7 +65,7 @@ class LanguageSelectScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.separated(
                   itemCount: _languages.length,
-                  separatorBuilder: (_, __) =>
+                  separatorBuilder: (_, _) =>
                       const SizedBox(height: SirajSpacing.s2),
                   itemBuilder: (context, i) {
                     final (code, name, isRtl) = _languages[i];

@@ -101,6 +101,13 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode =>
+      'Toggle display mode (Mushaf/translation)';
+
+  @override
+  String get quran_toggleTajweed => 'Toggle tajweed color coding';
+
+  @override
   String get athkar_title => 'Athkar';
 
   @override
@@ -186,6 +193,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get qibla_fromNorth => 'Degrees from North toward Qibla';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km km to $kaaba';
+  }
+
+  @override
   String get stats_title => 'My Stats';
 
   @override
@@ -264,6 +276,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common_offline => 'No internet connection';
 
   @override
+  String get common_close => 'Close';
+
+  @override
+  String get common_share => 'Share';
+
+  @override
+  String get common_refresh => 'Refresh';
+
+  @override
+  String get common_prevPage => 'Previous page';
+
+  @override
+  String get common_nextPage => 'Next page';
+
+  @override
+  String get common_clearSearch => 'Clear search';
+
+  @override
   String get nav_home => 'Home';
 
   @override
@@ -307,6 +337,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get home_qiblaDirection => 'Qibla Direction';
+
+  @override
+  String get time_hr => 'hr';
+
+  @override
+  String get time_min => 'min';
+
+  @override
+  String get time_sec => 'sec';
 
   @override
   String get home_continueReading => 'CONTINUE READING';
@@ -367,6 +406,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get radio_international => 'International';
 
   @override
+  String get radio_play => 'Play';
+
+  @override
+  String get radio_pause => 'Pause';
+
+  @override
   String get cal_title => 'Islamic Calendar';
 
   @override
@@ -388,6 +433,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Hijri';
+
+  @override
+  String get cal_prevMonth => 'Previous month';
+
+  @override
+  String get cal_nextMonth => 'Next month';
+
+  @override
+  String get cal_legendEid => 'Eid';
+
+  @override
+  String get cal_legendFast => 'Fast';
+
+  @override
+  String get cal_legendBlessed => 'Blessed';
+
+  @override
+  String get cal_detailPending =>
+      'No additional details (verse/hadith/description) available yet for this occasion - pending religious review.';
 
   @override
   String get hm_1 => 'Muharram';
@@ -480,6 +544,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_secIdentity => 'Identity';
 
   @override
+  String get onboarding_modeTitle => 'Choose app mode';
+
+  @override
+  String get onboarding_modeSubtitle => 'You can change this later in settings';
+
+  @override
+  String get onboarding_liteSubtitle => 'Essentials · Fast · Fully offline';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'All features · Comprehensive · In-depth';
+
+  @override
+  String get onboarding_andMore => '+ more';
+
+  @override
+  String get onboarding_madhabTitle => 'Fiqh School';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'To calculate prayer times accurately';
+
+  @override
+  String get onboarding_locationTitle => 'Set your location';
+
+  @override
+  String get onboarding_locationSubtitle => 'For accurate prayer times';
+
+  @override
+  String get onboarding_locationBody =>
+      'The app will request location permission\nto determine prayer times automatically';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Your data stays on your device only';
+
+  @override
+  String get onboarding_start => 'Start';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'Adhan';
 
   @override
@@ -514,6 +624,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Muezzin Voice';
+
+  @override
+  String get settings_previewAdhan => 'Preview adhan voice';
 
   @override
   String get settings_vibration => 'Vibrate instead of sound';
@@ -577,6 +690,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_shareApp => 'Share App';
+
+  @override
+  String get settings_licenses => 'Licenses';
+
+  @override
+  String get settings_openSourcePackages => 'Open-Source Package Licenses';
 
   @override
   String get settings_tagline => 'Siraj — Light upon Light';

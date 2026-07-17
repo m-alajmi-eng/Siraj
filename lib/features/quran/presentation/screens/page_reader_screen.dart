@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quran_library/quran_library.dart';
 import '../../../khatmah/presentation/providers/khatmah_provider.dart';
 import '../../../../core/storage/cache_service.dart';
+import '../../../../l10n/app_localizations.dart';
 
 /// وضع "المصحف المطبوع": تطابق حرفي لمصحف المدينة (604 صفحة) عبر
 /// حزمة quran_library. شريط تنقّل مؤقت وبسيط (سيُستبدل بتصميم كامل
@@ -56,6 +57,7 @@ class _PageReaderScreenState extends ConsumerState<PageReaderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -67,6 +69,7 @@ class _PageReaderScreenState extends ConsumerState<PageReaderScreen> {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.arrow_back),
+                    tooltip: t.common_back,
                     onPressed: () => context.pop(),
                   ),
                   Expanded(
@@ -98,11 +101,13 @@ class _PageReaderScreenState extends ConsumerState<PageReaderScreen> {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.chevron_right),
+                    tooltip: t.common_prevPage,
                     onPressed:
                         _currentPage > 1 ? () => _goToPage(_currentPage - 1) : null,
                   ),
                   IconButton(
                     icon: const Icon(Icons.chevron_left),
+                    tooltip: t.common_nextPage,
                     onPressed: _currentPage < _totalPages
                         ? () => _goToPage(_currentPage + 1)
                         : null,

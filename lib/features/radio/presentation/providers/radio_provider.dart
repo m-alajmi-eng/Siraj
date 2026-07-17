@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:audioplayers/audioplayers.dart';
 
@@ -164,7 +165,7 @@ class RadioNotifier extends Notifier<RadioState> {
       await _player.play(UrlSource(station.streamUrl));
       state = state.copyWith(isLoading: false, isPlaying: true);
     } catch (e) {
-      print('Exception during playback: $e');
+      debugPrint('Exception during playback: $e');
       state = state.copyWith(
         isLoading: false,
         isPlaying: false,

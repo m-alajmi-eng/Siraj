@@ -142,6 +142,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                   children: [
                     IconButton(
                       icon: Icon(Icons.arrow_back, color: palette.textPrimary),
+                      tooltip: t.common_back,
                       onPressed: () {
                         ref.read(audioProvider.notifier).stopAudio();
                         if (audioState.currentAyahId != null) {
@@ -173,6 +174,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
            icon: Icon(
              _mushafMode ? Icons.translate : Icons.menu_book,
              color: palette.accentPrimary, size: 22),
+           tooltip: t.quran_toggleDisplayMode,
            onPressed: () {
              setState(() => _mushafMode = !_mushafMode);
              CacheService.saveSetting('mushaf_mode', _mushafMode);
@@ -185,6 +187,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                  ? palette.accentPrimary
                  : palette.accentPrimary.withValues(alpha: 0.4),
              size: 22),
+           tooltip: t.quran_toggleTajweed,
            onPressed: () {
              setState(() => _tajweedEnabled = !_tajweedEnabled);
              CacheService.saveSetting('tajweed_enabled', _tajweedEnabled);
@@ -510,9 +513,9 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                 Navigator.of(context).push(
                   PageRouteBuilder(
                     transitionDuration: const Duration(milliseconds: 400),
-                    pageBuilder: (_, __, ___) => VersePortalScreen(
+                    pageBuilder: (_, _, _) => VersePortalScreen(
                       surahId: surahId, ayahNumber: ayahNumber),
-                    transitionsBuilder: (_, animation, __, child) =>
+                    transitionsBuilder: (_, animation, _, child) =>
                         FadeTransition(
                           opacity: CurvedAnimation(
                             parent: animation, curve: Curves.easeInOut),

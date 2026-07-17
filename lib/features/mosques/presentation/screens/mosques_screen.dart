@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../providers/mosques_provider.dart';
 
 class MosquesScreen extends ConsumerStatefulWidget {
@@ -31,6 +32,7 @@ class _MosquesScreenState extends ConsumerState<MosquesScreen> {
   @override
   Widget build(BuildContext context) {
     final palette = ref.watch(timeThemeProvider);
+    final t = AppLocalizations.of(context);
     final mosques = ref.watch(mosquesProvider);
 
     return Scaffold(
@@ -48,6 +50,7 @@ class _MosquesScreenState extends ConsumerState<MosquesScreen> {
                   IconButton(
                     icon: Icon(Icons.arrow_back,
                       color: palette.textPrimary),
+                    tooltip: t.common_back,
                     onPressed: () => Navigator.pop(context),
                   ),
                   Expanded(
@@ -64,6 +67,7 @@ class _MosquesScreenState extends ConsumerState<MosquesScreen> {
                   IconButton(
                     icon: Icon(Icons.refresh,
                       color: palette.accentPrimary),
+                    tooltip: t.common_refresh,
                     onPressed: _isLoading ? null : _load,
                   ),
                 ],
@@ -77,10 +81,10 @@ class _MosquesScreenState extends ConsumerState<MosquesScreen> {
                   horizontal: 16, vertical: 8),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color:        palette.accentPrimary.withOpacity(0.1),
+                  color:        palette.accentPrimary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: palette.accentPrimary.withOpacity(0.3)),
+                    color: palette.accentPrimary.withValues(alpha: 0.3)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -179,7 +183,7 @@ class _MosquesScreenState extends ConsumerState<MosquesScreen> {
                             height: 44,
                             decoration: BoxDecoration(
                               color: palette.accentPrimary
-                                  .withOpacity(0.1),
+                                  .withValues(alpha: 0.1),
                               shape: BoxShape.circle,
                             ),
                             child: Icon(

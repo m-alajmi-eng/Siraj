@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:ui' as ui;
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../widgets/share_card_widget.dart';
 
 class ShareCardScreen extends ConsumerStatefulWidget {
@@ -50,6 +51,7 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
   @override
   Widget build(BuildContext context) {
     final palette = ref.watch(timeThemeProvider);
+    final t       = AppLocalizations.of(context);
     final theme   = _themes[_selectedTheme];
     final format  = _formats[_selectedFormat];
 
@@ -65,6 +67,7 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
                 children: [
                   IconButton(
                     icon: Icon(Icons.close, color: palette.textPrimary),
+                    tooltip: t.common_close,
                     onPressed: () => Navigator.pop(context),
                   ),
                   Expanded(
@@ -118,7 +121,7 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                       decoration: BoxDecoration(
                         color: isSelected
-                            ? (f['color'] as Color).withOpacity(0.15)
+                            ? (f['color'] as Color).withValues(alpha: 0.15)
                             : palette.surface,
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
@@ -178,7 +181,7 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
                         border: Border.all(
                           color: isSelected
                               ? (t['accent'] as Color)
-                              : palette.accentPrimary.withOpacity(0.2),
+                              : palette.accentPrimary.withValues(alpha: 0.2),
                         ),
                       ),
                       child: Text(

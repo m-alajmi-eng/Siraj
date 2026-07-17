@@ -101,6 +101,12 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode => '切换显示模式（古兰经页面/翻译）';
+
+  @override
+  String get quran_toggleTajweed => '切换塔吉维德颜色标注';
+
+  @override
   String get athkar_title => '记念词';
 
   @override
@@ -186,6 +192,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get qibla_fromNorth => '从北方到朝拜方向的度数';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '距$kaaba $km 公里';
+  }
+
+  @override
   String get stats_title => '我的统计';
 
   @override
@@ -264,6 +275,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get common_offline => '无网络连接';
 
   @override
+  String get common_close => '关闭';
+
+  @override
+  String get common_share => '分享';
+
+  @override
+  String get common_refresh => '刷新';
+
+  @override
+  String get common_prevPage => '上一页';
+
+  @override
+  String get common_nextPage => '下一页';
+
+  @override
+  String get common_clearSearch => '清除搜索';
+
+  @override
   String get nav_home => '主页';
 
   @override
@@ -307,6 +336,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get home_qiblaDirection => '朝向方位';
+
+  @override
+  String get time_hr => '时';
+
+  @override
+  String get time_min => '分';
+
+  @override
+  String get time_sec => '秒';
 
   @override
   String get home_continueReading => '继续阅读';
@@ -367,6 +405,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get radio_international => '国际';
 
   @override
+  String get radio_play => '播放';
+
+  @override
+  String get radio_pause => '暂停';
+
+  @override
   String get cal_title => '伊斯兰历';
 
   @override
@@ -388,6 +432,24 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get cal_hijri => '希吉来历';
+
+  @override
+  String get cal_prevMonth => '上个月';
+
+  @override
+  String get cal_nextMonth => '下个月';
+
+  @override
+  String get cal_legendEid => '开斋节/宰牲节';
+
+  @override
+  String get cal_legendFast => '斋戒';
+
+  @override
+  String get cal_legendBlessed => '吉庆';
+
+  @override
+  String get cal_detailPending => '此纪念日暂无更多详情（经文/圣训/说明）- 待宗教审核。';
 
   @override
   String get hm_1 => '穆哈兰姆月';
@@ -480,6 +542,48 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_secIdentity => '身份';
 
   @override
+  String get onboarding_modeTitle => '选择应用模式';
+
+  @override
+  String get onboarding_modeSubtitle => '您可以稍后在设置中更改';
+
+  @override
+  String get onboarding_liteSubtitle => '核心功能 · 快速 · 完全离线';
+
+  @override
+  String get onboarding_fullSubtitle => '全部功能 · 全面 · 深入';
+
+  @override
+  String get onboarding_andMore => '+ 更多';
+
+  @override
+  String get onboarding_madhabTitle => '教法学派';
+
+  @override
+  String get onboarding_madhabSubtitle => '用于精确计算礼拜时间';
+
+  @override
+  String get onboarding_locationTitle => '设置您的位置';
+
+  @override
+  String get onboarding_locationSubtitle => '获取精确的礼拜时间';
+
+  @override
+  String get onboarding_locationBody => '应用将请求位置权限\n以自动确定礼拜时间';
+
+  @override
+  String get onboarding_locationPrivacy => '您的数据仅保留在您的设备上';
+
+  @override
+  String get onboarding_start => '开始';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => '宣礼';
 
   @override
@@ -514,6 +618,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => '宣礼员声音';
+
+  @override
+  String get settings_previewAdhan => '预览宣礼声音';
 
   @override
   String get settings_vibration => '震动代替声音';
@@ -576,6 +683,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_shareApp => '分享应用';
+
+  @override
+  String get settings_licenses => '许可证';
+
+  @override
+  String get settings_openSourcePackages => '开源软件包许可证';
 
   @override
   String get settings_tagline => '希拉吉 — 光上加光';

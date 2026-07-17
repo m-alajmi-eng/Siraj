@@ -101,6 +101,13 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode =>
+      'Görüntüleme modunu değiştir (Mushaf/çeviri)';
+
+  @override
+  String get quran_toggleTajweed => 'Tecvid renklendirmesini değiştir';
+
+  @override
   String get athkar_title => 'Zikirler';
 
   @override
@@ -186,6 +193,11 @@ class AppLocalizationsTr extends AppLocalizations {
   String get qibla_fromNorth => 'Kuzeyden Kıbleye derece';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$kaaba\'ye $km km';
+  }
+
+  @override
   String get stats_title => 'İstatistiklerim';
 
   @override
@@ -264,6 +276,24 @@ class AppLocalizationsTr extends AppLocalizations {
   String get common_offline => 'İnternet bağlantısı yok';
 
   @override
+  String get common_close => 'Kapat';
+
+  @override
+  String get common_share => 'Paylaş';
+
+  @override
+  String get common_refresh => 'Yenile';
+
+  @override
+  String get common_prevPage => 'Önceki sayfa';
+
+  @override
+  String get common_nextPage => 'Sonraki sayfa';
+
+  @override
+  String get common_clearSearch => 'Aramayı temizle';
+
+  @override
   String get nav_home => 'Ana Sayfa';
 
   @override
@@ -307,6 +337,15 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get home_qiblaDirection => 'Kıble Yönü';
+
+  @override
+  String get time_hr => 'sa';
+
+  @override
+  String get time_min => 'dk';
+
+  @override
+  String get time_sec => 'sn';
 
   @override
   String get home_continueReading => 'OKUMAYA DEVAM ET';
@@ -367,6 +406,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get radio_international => 'Uluslararası';
 
   @override
+  String get radio_play => 'Oynat';
+
+  @override
+  String get radio_pause => 'Duraklat';
+
+  @override
   String get cal_title => 'İslami Takvim';
 
   @override
@@ -388,6 +433,25 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Hicri';
+
+  @override
+  String get cal_prevMonth => 'Önceki ay';
+
+  @override
+  String get cal_nextMonth => 'Sonraki ay';
+
+  @override
+  String get cal_legendEid => 'Bayram';
+
+  @override
+  String get cal_legendFast => 'Oruç';
+
+  @override
+  String get cal_legendBlessed => 'Mübarek';
+
+  @override
+  String get cal_detailPending =>
+      'Bu vesile için henüz ek ayrıntı (ayet/hadis/açıklama) mevcut değil - dini incelemeyi bekliyor.';
 
   @override
   String get hm_1 => 'Muharrem';
@@ -480,6 +544,54 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_secIdentity => 'Kimlik';
 
   @override
+  String get onboarding_modeTitle => 'Uygulama modunu seçin';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Bunu daha sonra ayarlardan değiştirebilirsiniz';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Temel özellikler · Hızlı · Tamamen çevrimdışı';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'Tüm özellikler · Kapsamlı · Derinlemesine';
+
+  @override
+  String get onboarding_andMore => '+ daha fazla';
+
+  @override
+  String get onboarding_madhabTitle => 'Fıkıh Mezhebi';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Namaz vakitlerini doğru hesaplamak için';
+
+  @override
+  String get onboarding_locationTitle => 'Konumunuzu belirleyin';
+
+  @override
+  String get onboarding_locationSubtitle => 'Doğru namaz vakitleri için';
+
+  @override
+  String get onboarding_locationBody =>
+      'Uygulama, namaz vakitlerini otomatik\nbelirlemek için konum izni isteyecek';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Verileriniz yalnızca cihazınızda kalır';
+
+  @override
+  String get onboarding_start => 'Başla';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'Ezan';
 
   @override
@@ -514,6 +626,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Müezzin Sesi';
+
+  @override
+  String get settings_previewAdhan => 'Ezan sesini önizle';
 
   @override
   String get settings_vibration => 'Ses yerine titreşim';
@@ -577,6 +692,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_shareApp => 'Uygulamayı Paylaş';
+
+  @override
+  String get settings_licenses => 'Lisanslar';
+
+  @override
+  String get settings_openSourcePackages => 'Açık Kaynak Paket Lisansları';
 
   @override
   String get settings_tagline => 'Siraj — Nur üstüne Nur';

@@ -101,6 +101,12 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode => 'ڈسپلے موڈ تبدیل کریں (مصحف/ترجمہ)';
+
+  @override
+  String get quran_toggleTajweed => 'تجوید کی رنگین علامات تبدیل کریں';
+
+  @override
   String get athkar_title => 'اذکار';
 
   @override
@@ -186,6 +192,11 @@ class AppLocalizationsUr extends AppLocalizations {
   String get qibla_fromNorth => 'شمال سے قبلہ کی طرف ڈگری';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km کلومیٹر - $kaaba تک';
+  }
+
+  @override
   String get stats_title => 'میری اعداد و شمار';
 
   @override
@@ -264,6 +275,24 @@ class AppLocalizationsUr extends AppLocalizations {
   String get common_offline => 'انٹرنیٹ کنکشن نہیں';
 
   @override
+  String get common_close => 'بند کریں';
+
+  @override
+  String get common_share => 'شیئر کریں';
+
+  @override
+  String get common_refresh => 'تازہ کریں';
+
+  @override
+  String get common_prevPage => 'پچھلا صفحہ';
+
+  @override
+  String get common_nextPage => 'اگلا صفحہ';
+
+  @override
+  String get common_clearSearch => 'تلاش صاف کریں';
+
+  @override
   String get nav_home => 'ہوم';
 
   @override
@@ -307,6 +336,15 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get home_qiblaDirection => 'قبلہ کی سمت';
+
+  @override
+  String get time_hr => 'گھنٹہ';
+
+  @override
+  String get time_min => 'منٹ';
+
+  @override
+  String get time_sec => 'سیکنڈ';
 
   @override
   String get home_continueReading => 'پڑھنا جاری رکھیں';
@@ -367,6 +405,12 @@ class AppLocalizationsUr extends AppLocalizations {
   String get radio_international => 'بین الاقوامی';
 
   @override
+  String get radio_play => 'چلائیں';
+
+  @override
+  String get radio_pause => 'روکیں';
+
+  @override
   String get cal_title => 'اسلامی کیلنڈر';
 
   @override
@@ -388,6 +432,25 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get cal_hijri => 'ہجری';
+
+  @override
+  String get cal_prevMonth => 'پچھلا مہینہ';
+
+  @override
+  String get cal_nextMonth => 'اگلا مہینہ';
+
+  @override
+  String get cal_legendEid => 'عید';
+
+  @override
+  String get cal_legendFast => 'روزہ';
+
+  @override
+  String get cal_legendBlessed => 'مبارک';
+
+  @override
+  String get cal_detailPending =>
+      'اس موقع کے لیے ابھی کوئی اضافی تفصیل (آیت/حدیث/تفصیل) دستیاب نہیں - دینی جائزے کا انتظار ہے۔';
 
   @override
   String get hm_1 => 'محرم';
@@ -480,6 +543,51 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settings_secIdentity => 'شناخت';
 
   @override
+  String get onboarding_modeTitle => 'ایپ کا موڈ منتخب کریں';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'آپ بعد میں اسے ترتیبات سے تبدیل کر سکتے ہیں';
+
+  @override
+  String get onboarding_liteSubtitle => 'بنیادی باتیں · تیز · مکمل آف لائن';
+
+  @override
+  String get onboarding_fullSubtitle => 'تمام خصوصیات · جامع · تفصیلی';
+
+  @override
+  String get onboarding_andMore => '+ مزید';
+
+  @override
+  String get onboarding_madhabTitle => 'فقہی مذہب';
+
+  @override
+  String get onboarding_madhabSubtitle => 'نماز کے اوقات کی درست گنتی کے لیے';
+
+  @override
+  String get onboarding_locationTitle => 'اپنا محل وقوع متعین کریں';
+
+  @override
+  String get onboarding_locationSubtitle => 'درست نماز کے اوقات کے لیے';
+
+  @override
+  String get onboarding_locationBody =>
+      'ایپ محل وقوع کی اجازت مانگے گی\nتاکہ نماز کے اوقات خودکار طور پر متعین ہوں';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'آپ کا ڈیٹا صرف آپ کے آلے پر رہتا ہے';
+
+  @override
+  String get onboarding_start => 'شروع کریں';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'اذان';
 
   @override
@@ -514,6 +622,9 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'مؤذن کی آواز';
+
+  @override
+  String get settings_previewAdhan => 'اذان کی آواز کا پیش نظارہ';
 
   @override
   String get settings_vibration => 'آواز کے بجائے ارتعاش';
@@ -577,6 +688,12 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get settings_shareApp => 'ایپ شیئر کریں';
+
+  @override
+  String get settings_licenses => 'لائسنس';
+
+  @override
+  String get settings_openSourcePackages => 'اوپن سورس پیکجز کے لائسنس';
 
   @override
   String get settings_tagline => 'سراج — نور علیٰ نور';

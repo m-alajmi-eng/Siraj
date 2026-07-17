@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../../../core/locale/locale_provider.dart';
 import '../../../quran/presentation/providers/quran_provider.dart';
@@ -37,8 +39,12 @@ class HomeScreen extends ConsumerWidget {
     final lastContext = CacheService.getLastReadingContext();
     final now         = DateTime.now();
     final h           = now.hour;
-    final skyColors   = SirajSky.gradientColors(SirajSky.fromHour(h));
+    final skyPhase    = SirajSky.fromHour(h);
+    final skyColors   = SirajSky.gradientColors(skyPhase);
     final hijriStr    = '${hijriDate.day} / ${hijriDate.month} / ${hijriDate.year}';
+    // النجوم تظهر فقط في سماء الفجر/العشاء (الأكثر عتمة)، أسوة بمرجع
+    // التصميم الذي يربط كثافة النجوم بمرحلة السماء الحالية.
+    final showStars   = skyPhase == SkyPhase.fajr || skyPhase == SkyPhase.isha;
 
     return Scaffold(
       backgroundColor: SirajCanvas.base,
@@ -55,6 +61,7 @@ class HomeScreen extends ConsumerWidget {
               ),
             ),
           ),
+          if (showStars) const Positioned.fill(child: _StarField()),
           SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: SirajLayout.pagePadding),
@@ -102,16 +109,21 @@ class _SearchIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => context.push('/more/search'),
-      child: Container(
-        width: 40, height: 40,
-        decoration: BoxDecoration(
-          color: SirajWhite.w7,
-          shape: BoxShape.circle,
-          border: Border.all(color: SirajWhite.w10),
+    final t = AppLocalizations.of(context);
+    return Semantics(
+      button: true,
+      label: t.more_search,
+      child: GestureDetector(
+        onTap: () => context.push('/more/search'),
+        child: Container(
+          width: 40, height: 40,
+          decoration: BoxDecoration(
+            color: SirajWhite.w7,
+            shape: BoxShape.circle,
+            border: Border.all(color: SirajWhite.w10),
+          ),
+          child: const Icon(Icons.search, color: SirajGold.strong, size: 18),
         ),
-        child: const Icon(Icons.search, color: SirajGold.strong, size: 18),
       ),
     );
   }
@@ -122,22 +134,27 @@ class _ModeToggleIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t = AppLocalizations.of(context);
     final mode = ref.watch(appModeProvider);
     final isLite = mode == AppMode.lite;
 
-    return GestureDetector(
-      onTap: () => ref.read(appModeProvider.notifier).toggle(),
-      child: Container(
-        width: 40, height: 40,
-        decoration: BoxDecoration(
-          color: SirajWhite.w7,
-          shape: BoxShape.circle,
-          border: Border.all(color: SirajWhite.w10),
-        ),
-        child: Icon(
-          isLite ? Icons.bolt_outlined : Icons.apps_rounded,
-          color: SirajGold.strong,
-          size: 18,
+    return Semantics(
+      button: true,
+      label: t.settings_appMode,
+      child: GestureDetector(
+        onTap: () => ref.read(appModeProvider.notifier).toggle(),
+        child: Container(
+          width: 40, height: 40,
+          decoration: BoxDecoration(
+            color: SirajWhite.w7,
+            shape: BoxShape.circle,
+            border: Border.all(color: SirajWhite.w10),
+          ),
+          child: Icon(
+            isLite ? Icons.bolt_outlined : Icons.apps_rounded,
+            color: SirajGold.strong,
+            size: 18,
+          ),
         ),
       ),
     );
@@ -242,9 +259,38 @@ class _Greeting extends StatelessWidget {
   }
 }
 
-class _NextPrayerCard extends StatelessWidget {
+class _NextPrayerCard extends StatefulWidget {
   final dynamic times;
   const _NextPrayerCard({required this.times});
+
+  @override
+  State<_NextPrayerCard> createState() => _NextPrayerCardState();
+}
+
+class _NextPrayerCardState extends State<_NextPrayerCard>
+    with SingleTickerProviderStateMixin {
+  Timer? _tickTimer;
+  late final AnimationController _pulseController;
+
+  @override
+  void initState() {
+    super.initState();
+    // عدّاد تنازلي حي: نعيد بناء هذا الودجت فقط (لا الشاشة كاملة) كل ثانية
+    _tickTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) setState(() {});
+    });
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1400),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _tickTimer?.cancel();
+    _pulseController.dispose();
+    super.dispose();
+  }
 
   String _prayerName(AppLocalizations t, dynamic times) {
     final now = DateTime.now();
@@ -256,12 +302,44 @@ class _NextPrayerCard extends StatelessWidget {
     return t.prayer_fajr;
   }
 
+  /// يحسب بداية ونهاية الفترة الحالية بين صلاتين لأجل شريط التقدّم.
+  (DateTime start, DateTime end) _prayerWindow(dynamic times) {
+    final ordered = <DateTime>[
+      times.fajr, times.dhuhr, times.asr, times.maghrib, times.isha,
+    ];
+    final now = DateTime.now();
+    for (var i = 0; i < ordered.length; i++) {
+      if (now.isBefore(ordered[i])) {
+        final start = i == 0
+            ? times.isha.subtract(const Duration(days: 1)) as DateTime
+            : ordered[i - 1];
+        return (start, ordered[i]);
+      }
+    }
+    return (times.isha, times.fajr.add(const Duration(days: 1)) as DateTime);
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
+    final times = widget.times;
     final tm = times.nextPrayerTime;
     final timeStr = tm.hour.toString().padLeft(2, '0') +
         ':' + tm.minute.toString().padLeft(2, '0');
+
+    final remaining = times.timeUntilNextPrayer as Duration;
+    final hh = remaining.inHours.clamp(0, 99);
+    final mm = remaining.inMinutes.remainder(60);
+    final ss = remaining.inSeconds.remainder(60);
+    String pad2(int n) => n.toString().padLeft(2, '0');
+
+    final (start, end) = _prayerWindow(times);
+    final total = end.difference(start).inSeconds;
+    final elapsed = DateTime.now().difference(start).inSeconds;
+    final progress = total > 0
+        ? (elapsed / total).clamp(0.0, 1.0)
+        : 0.0;
+    final progressFlex = (progress * 1000).round().clamp(1, 999);
 
     return GlassCard(
       radius: SirajRadiusFull.x2l,
@@ -276,11 +354,68 @@ class _NextPrayerCard extends StatelessWidget {
           const SizedBox(height: SirajSpacing.s1),
           Text(timeStr, style: AppText.numeral),
           const SizedBox(height: SirajSpacing.s4),
-          Container(
-            height: 1.5,
-            decoration: BoxDecoration(
-              color: SirajWhite.w7,
-              borderRadius: BorderRadius.circular(SirajRadiusFull.pill),
+          // عدّاد تنازلي حي (ساعة:دقيقة:ثانية)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _CountdownUnit(value: pad2(hh), unit: t.time_hr),
+              _CountdownColon(),
+              _CountdownUnit(value: pad2(mm), unit: t.time_min),
+              _CountdownColon(),
+              _CountdownUnit(value: pad2(ss), unit: t.time_sec),
+            ],
+          ),
+          const SizedBox(height: SirajSpacing.s4),
+          // شريط تقدّم متحرك بين الصلاة الحالية والقادمة، بنقطة نابضة
+          // عند حد التقدّم - يتكيّف مع RTL/LTR تلقائياً عبر Row (flex)
+          SizedBox(
+            height: 10,
+            child: Row(
+              children: [
+                Expanded(
+                  flex: progressFlex,
+                  child: Container(
+                    height: 3,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(SirajRadiusFull.pill),
+                      gradient: LinearGradient(
+                        colors: [SirajGold.soft, SirajGold.strong],
+                      ),
+                    ),
+                  ),
+                ),
+                AnimatedBuilder(
+                  animation: _pulseController,
+                  builder: (context, _) {
+                    final scale = 1.0 + (_pulseController.value * 0.35);
+                    return Container(
+                      width: 8 * scale,
+                      height: 8 * scale,
+                      margin: const EdgeInsets.symmetric(horizontal: 3),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: SirajGold.pure,
+                        boxShadow: [
+                          BoxShadow(
+                            color: SirajGold.muted,
+                            blurRadius: 6 * scale,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                Expanded(
+                  flex: (1000 - progressFlex).clamp(1, 999),
+                  child: Container(
+                    height: 1.5,
+                    decoration: BoxDecoration(
+                      color: SirajWhite.w7,
+                      borderRadius: BorderRadius.circular(SirajRadiusFull.pill),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: SirajSpacing.s4),
@@ -297,6 +432,35 @@ class _NextPrayerCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _CountdownUnit extends StatelessWidget {
+  final String value;
+  final String unit;
+  const _CountdownUnit({required this.value, required this.unit});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(value, style: AppText.numeral.copyWith(fontSize: SirajSizes.sXl)),
+        const SizedBox(height: 2),
+        Text(unit, style: AppText.label.copyWith(
+          fontSize: SirajSizes.s2xs, letterSpacing: 1.8, color: SirajWhite.w20)),
+      ],
+    );
+  }
+}
+
+class _CountdownColon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 14),
+      child: Text(':', style: AppText.numeral.copyWith(
+        fontSize: SirajSizes.sXl, color: SirajWhite.w18)),
     );
   }
 }
@@ -446,7 +610,7 @@ class _DailyAyah extends ConsumerWidget {
                 child: Center(
                   child: SizedBox(height: 12, width: 12,
                     child: CircularProgressIndicator(strokeWidth: 1.5)))),
-              error: (_, __) => const SizedBox.shrink(),
+              error: (_, _) => const SizedBox.shrink(),
             ),
           ],
           const SizedBox(height: SirajSpacing.s4),
@@ -552,5 +716,110 @@ class _Skeleton extends StatelessWidget {
       child: SizedBox(height: height, width: double.infinity),
     );
   }
+}
+
+/// حقل نجوم متحرك خفيف لسماء الفجر/العشاء - مواضع ثابتة (لا عشوائية
+/// حقيقية، بل صيغة مُولَّدة deterministic) تتناسب مع أي حجم شاشة عبر
+/// إحداثيات كسرية (0..1)، مع وميض دوري لكل نجمة خامسة فقط (أسوة
+/// بمرجع التصميم). رسم بـCustomPainter واحد بدل عشرات الودجتس
+/// المنفصلة لأداء أفضل.
+class _StarField extends StatefulWidget {
+  const _StarField();
+
+  @override
+  State<_StarField> createState() => _StarFieldState();
+}
+
+class _StarFieldState extends State<_StarField>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final List<_Star> _stars;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 6),
+    )..repeat();
+    _stars = List.generate(70, (i) {
+      return _Star(
+        dx: (i * 0.1776) % 1.0,
+        dy: (i * 0.0991) % 1.0,
+        radius: i % 7 == 0 ? 1.3 : (i % 3 == 0 ? 0.9 : 0.55),
+        baseOpacity: 0.08 + (i % 9) * 0.09,
+        twinkles: i % 5 == 0,
+        phase: (i % 7) / 7.0,
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // RepaintBoundary يعزل إعادة الرسم المستمرة (60fps طوال ظهور
+    // النجوم) في طبقة Compositor خاصة بها، فلا تُجبر بقية عناصر
+    // الـStack (الخلفية المتدرجة، محتوى الشاشة القابل للتمرير) على
+    // إعادة الرسم كل frame معها.
+    return RepaintBoundary(
+      child: IgnorePointer(
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, _) {
+            return CustomPaint(
+              painter: _StarFieldPainter(stars: _stars, t: _controller.value),
+              size: Size.infinite,
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _Star {
+  final double dx, dy, radius, baseOpacity, phase;
+  final bool twinkles;
+  const _Star({
+    required this.dx,
+    required this.dy,
+    required this.radius,
+    required this.baseOpacity,
+    required this.twinkles,
+    required this.phase,
+  });
+}
+
+class _StarFieldPainter extends CustomPainter {
+  final List<_Star> stars;
+  final double t;
+  const _StarFieldPainter({required this.stars, required this.t});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = Colors.white;
+    for (final star in stars) {
+      double opacity = star.baseOpacity;
+      if (star.twinkles) {
+        final wave = math.sin((t + star.phase) * 2 * math.pi);
+        opacity = star.baseOpacity * (0.55 + 0.45 * wave).clamp(0.1, 1.0);
+      }
+      paint.color = Colors.white.withValues(alpha: opacity.clamp(0.0, 1.0));
+      canvas.drawCircle(
+        Offset(star.dx * size.width, star.dy * size.height),
+        star.radius,
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _StarFieldPainter oldDelegate) =>
+      oldDelegate.t != t;
 }
 

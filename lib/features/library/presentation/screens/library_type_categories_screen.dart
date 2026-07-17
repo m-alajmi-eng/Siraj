@@ -125,7 +125,7 @@ class _LibraryTypeCategoriesScreenState
                   padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s4)
                       .copyWith(bottom: SirajSpacing.s4),
                   itemCount: filtered.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: SirajSpacing.s2),
+                  separatorBuilder: (_, _) => const SizedBox(height: SirajSpacing.s2),
                   itemBuilder: (context, index) {
                     final sub = filtered[index];
                     return GestureDetector(

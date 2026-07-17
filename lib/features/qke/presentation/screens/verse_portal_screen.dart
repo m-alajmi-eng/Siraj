@@ -8,6 +8,7 @@ import '../../data/qke_repository.dart';
 import '../../../../core/constants/translations.dart';
 import '../../data/translation_service.dart';
 import '../widgets/translation_report_dialog.dart';
+import '../../data/translation_review_status_service.dart';
 
 class VersePortalScreen extends ConsumerStatefulWidget {
   final int surahId;
@@ -62,19 +63,6 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
     return pages;
   }
 
-  IconData _iconForSource(String sourceId) {
-    switch (sourceId) {
-      case 'tabari-ar':     return Icons.menu_book;
-      case 'ibn-kathir-ar': return Icons.book;
-      case 'baghawi-ar':    return Icons.library_books;
-      case 'saadi-ar':      return Icons.bookmark;
-      case 'mukhtasar-ar':  return Icons.article;
-      case 'mukhtasar-en':  return Icons.language;
-      case 'mukhtasar-bn':  return Icons.translate;
-      default:              return Icons.menu_book;
-    }
-  }
-
   @override
   void dispose() {
     _pageController.dispose();
@@ -125,11 +113,13 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                     children: [
                       IconButton(
                         icon: Icon(Icons.close, color: palette.textPrimary),
+                        tooltip: t.common_close,
                         onPressed: () => Navigator.pop(context),
                       ),
                       IconButton(
                         icon: Icon(Icons.share_outlined,
                           color: palette.accentPrimary),
+                        tooltip: t.common_share,
                         onPressed: () => context.push('/more/share', extra: {
                           'title':    'آية كريمة',
                           'subtitle': '${portal.surahName} · آية ${portal.ayahNumber}',
@@ -167,10 +157,10 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                   margin: const EdgeInsets.symmetric(horizontal: 16),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: palette.accentPrimary.withOpacity(0.08),
+                    color: palette.accentPrimary.withValues(alpha: 0.08),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                      color: palette.accentPrimary.withOpacity(0.2)),
+                      color: palette.accentPrimary.withValues(alpha: 0.2)),
                   ),
                   child: SingleChildScrollView(
                     child: Text(
@@ -219,7 +209,7 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                             border: Border.all(
                               color: active
                                   ? palette.accentPrimary
-                                  : palette.accentPrimary.withOpacity(0.2)),
+                                  : palette.accentPrimary.withValues(alpha: 0.2)),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -457,7 +447,7 @@ class _WordsPage extends StatelessWidget {
               color:        palette.surface,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: palette.accentPrimary.withOpacity(0.15)),
+                color: palette.accentPrimary.withValues(alpha: 0.15)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -469,7 +459,7 @@ class _WordsPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                       vertical: 8, horizontal: 12),
                     decoration: BoxDecoration(
-                      color: palette.accentPrimary.withOpacity(0.08),
+                      color: palette.accentPrimary.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -501,7 +491,7 @@ class _WordsPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                       horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: palette.accentPrimary.withOpacity(0.06),
+                      color: palette.accentPrimary.withValues(alpha: 0.06),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(w.morphology,
@@ -641,7 +631,7 @@ class _ComingSoonPage extends StatelessWidget {
         children: [
           Icon(Icons.auto_stories,
             size:  64,
-            color: palette.textSecondary.withOpacity(0.3)),
+            color: palette.textSecondary.withValues(alpha: 0.3)),
           const SizedBox(height: 16),
           Text(title,
             style: TextStyle(
@@ -717,7 +707,7 @@ class _AdwaaHadithsPage extends StatelessWidget {
           decoration: BoxDecoration(
             color:        palette.surface,
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: palette.accentPrimary.withOpacity(0.15)),
+            border: Border.all(color: palette.accentPrimary.withValues(alpha: 0.15)),
           ),
           child: Directionality(
             textDirection: TextDirection.rtl,
@@ -729,13 +719,13 @@ class _AdwaaHadithsPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
                   color: isAuthentic
-                      ? palette.accentPrimary.withOpacity(0.12)
-                      : Colors.orange.withOpacity(0.12),
+                      ? palette.accentPrimary.withValues(alpha: 0.12)
+                      : Colors.orange.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
                     color: isAuthentic
-                        ? palette.accentPrimary.withOpacity(0.3)
-                        : Colors.orange.withOpacity(0.4)),
+                        ? palette.accentPrimary.withValues(alpha: 0.3)
+                        : Colors.orange.withValues(alpha: 0.4)),
                 ),
                 child: Text(
                   isAuthentic ? 'حديث نبوي' : 'منقول تاريخي (غير حديث نبوي)',
@@ -831,7 +821,7 @@ class _HadithsPage extends StatelessWidget {
           decoration: BoxDecoration(
             color:        palette.surface,
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: palette.accentPrimary.withOpacity(0.15)),
+            border: Border.all(color: palette.accentPrimary.withValues(alpha: 0.15)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -844,7 +834,7 @@ class _HadithsPage extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                     decoration: BoxDecoration(
-                      color:        palette.accentPrimary.withOpacity(0.1),
+                      color:        palette.accentPrimary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(h.bookName,
@@ -882,6 +872,7 @@ class _TranslationsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final reviewStatus = ref.watch(translationReviewStatusProvider).value ?? const {};
     return ListView(
       padding: const EdgeInsets.all(16),
       children: quranTranslations.map((t) {
@@ -892,13 +883,16 @@ class _TranslationsPage extends ConsumerWidget {
         )));
         final isRtl = t['direction'] == 'rtl';
         final langCode = (t['edition'] ?? '').split('.').first;
+        // الافتراض الآمن عند غياب بيانات الحالة (لا اتصال/لغة غير
+        // مسجَّلة بعد): "غير مراجَعة" - لا نُخفي الشارة أبداً.
+        final isReviewed = reviewStatus[langCode] ?? false;
         return Container(
           margin:  const EdgeInsets.only(bottom: 12),
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color:        palette.surface,
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: palette.accentPrimary.withOpacity(0.1)),
+            border: Border.all(color: palette.accentPrimary.withValues(alpha: 0.1)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -932,7 +926,7 @@ class _TranslationsPage extends ConsumerWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                         decoration: BoxDecoration(
-                          color:        palette.accentPrimary.withOpacity(0.1),
+                          color:        palette.accentPrimary.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(t['language'] ?? '',
@@ -943,6 +937,17 @@ class _TranslationsPage extends ConsumerWidget {
                   ),
                 ],
               ),
+              if (!isReviewed) ...[
+                const SizedBox(height: 6),
+                Text(
+                  AppLocalizations.of(context).portal_translationPendingReview,
+                  style: TextStyle(
+                    color: palette.textSecondary,
+                    fontSize: 11,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
               const SizedBox(height: 10),
               async.when(
                 loading: () => Center(

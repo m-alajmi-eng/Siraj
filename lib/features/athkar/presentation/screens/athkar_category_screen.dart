@@ -165,6 +165,7 @@ class _AthkarCategoryScreenState
                       IconButton(
                         icon: Icon(Icons.arrow_back,
                           color: palette.textPrimary),
+                        tooltip: t.common_back,
                         onPressed: () => Navigator.pop(context),
                       ),
                       Expanded(
@@ -311,7 +312,7 @@ class _AthkarCategoryScreenState
         child: ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: 8),
           itemCount: athkar.length,
-          separatorBuilder: (_, __) => Divider(
+          separatorBuilder: (_, _) => Divider(
             color:  palette.background,
             height: 1,
           ),

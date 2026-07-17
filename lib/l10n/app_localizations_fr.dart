@@ -101,6 +101,13 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode =>
+      'Changer le mode d\'affichage (Mushaf/traduction)';
+
+  @override
+  String get quran_toggleTajweed => 'Changer la coloration du tajwid';
+
+  @override
   String get athkar_title => 'Athkar';
 
   @override
@@ -186,6 +193,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get qibla_fromNorth => 'Degrés du Nord vers la Qibla';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km km jusqu\'à $kaaba';
+  }
+
+  @override
   String get stats_title => 'Mes Statistiques';
 
   @override
@@ -264,6 +276,24 @@ class AppLocalizationsFr extends AppLocalizations {
   String get common_offline => 'Pas de connexion internet';
 
   @override
+  String get common_close => 'Fermer';
+
+  @override
+  String get common_share => 'Partager';
+
+  @override
+  String get common_refresh => 'Actualiser';
+
+  @override
+  String get common_prevPage => 'Page précédente';
+
+  @override
+  String get common_nextPage => 'Page suivante';
+
+  @override
+  String get common_clearSearch => 'Effacer la recherche';
+
+  @override
   String get nav_home => 'Accueil';
 
   @override
@@ -307,6 +337,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get home_qiblaDirection => 'Direction de la Qibla';
+
+  @override
+  String get time_hr => 'h';
+
+  @override
+  String get time_min => 'min';
+
+  @override
+  String get time_sec => 'sec';
 
   @override
   String get home_continueReading => 'CONTINUER LA LECTURE';
@@ -367,6 +406,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get radio_international => 'International';
 
   @override
+  String get radio_play => 'Lire';
+
+  @override
+  String get radio_pause => 'Pause';
+
+  @override
   String get cal_title => 'Calendrier islamique';
 
   @override
@@ -388,6 +433,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Hégirien';
+
+  @override
+  String get cal_prevMonth => 'Mois précédent';
+
+  @override
+  String get cal_nextMonth => 'Mois suivant';
+
+  @override
+  String get cal_legendEid => 'Aïd';
+
+  @override
+  String get cal_legendFast => 'Jeûne';
+
+  @override
+  String get cal_legendBlessed => 'Béni';
+
+  @override
+  String get cal_detailPending =>
+      'Aucun détail supplémentaire (verset/hadith/description) n\'est encore disponible pour cette occasion - en attente de révision religieuse.';
 
   @override
   String get hm_1 => 'Mouharram';
@@ -480,6 +544,55 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_secIdentity => 'Identité';
 
   @override
+  String get onboarding_modeTitle => 'Choisissez le mode de l\'application';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Vous pourrez le modifier plus tard dans les paramètres';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'L\'essentiel · Rapide · Entièrement hors ligne';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'Toutes les fonctionnalités · Complet · Approfondi';
+
+  @override
+  String get onboarding_andMore => '+ plus';
+
+  @override
+  String get onboarding_madhabTitle => 'École juridique (madhhab)';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Pour calculer les horaires de prière avec précision';
+
+  @override
+  String get onboarding_locationTitle => 'Définir votre position';
+
+  @override
+  String get onboarding_locationSubtitle =>
+      'Pour des horaires de prière précis';
+
+  @override
+  String get onboarding_locationBody =>
+      'L\'application demandera l\'autorisation de localisation\npour déterminer automatiquement les horaires de prière';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Vos données restent uniquement sur votre appareil';
+
+  @override
+  String get onboarding_start => 'Commencer';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'Adhan';
 
   @override
@@ -514,6 +627,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Voix du muezzin';
+
+  @override
+  String get settings_previewAdhan =>
+      'Aperçu de la voix de l\'appel à la prière';
 
   @override
   String get settings_vibration => 'Vibrer au lieu du son';
@@ -578,6 +695,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_shareApp => 'Partager l\'application';
+
+  @override
+  String get settings_licenses => 'Licences';
+
+  @override
+  String get settings_openSourcePackages => 'Licences des paquets open source';
 
   @override
   String get settings_tagline => 'Siraj — Lumière sur Lumière';

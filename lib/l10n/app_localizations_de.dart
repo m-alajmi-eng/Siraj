@@ -101,6 +101,13 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode =>
+      'Anzeigemodus wechseln (Mushaf/Übersetzung)';
+
+  @override
+  String get quran_toggleTajweed => 'Tajwid-Farbmarkierung umschalten';
+
+  @override
   String get athkar_title => 'Athkar';
 
   @override
@@ -186,6 +193,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get qibla_fromNorth => 'Grad vom Norden zur Qibla';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km km bis $kaaba';
+  }
+
+  @override
   String get stats_title => 'Meine Statistiken';
 
   @override
@@ -264,6 +276,24 @@ class AppLocalizationsDe extends AppLocalizations {
   String get common_offline => 'Keine Internetverbindung';
 
   @override
+  String get common_close => 'Schließen';
+
+  @override
+  String get common_share => 'Teilen';
+
+  @override
+  String get common_refresh => 'Aktualisieren';
+
+  @override
+  String get common_prevPage => 'Vorherige Seite';
+
+  @override
+  String get common_nextPage => 'Nächste Seite';
+
+  @override
+  String get common_clearSearch => 'Suche löschen';
+
+  @override
   String get nav_home => 'Start';
 
   @override
@@ -309,6 +339,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get home_qiblaDirection => 'اتجاه القبلة';
 
   @override
+  String get time_hr => 'Std';
+
+  @override
+  String get time_min => 'Min';
+
+  @override
+  String get time_sec => 'Sek';
+
+  @override
   String get home_continueReading => 'متابعة القراءة';
 
   @override
@@ -322,28 +361,28 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get home_dailyAyah => 'آية اليوم';
+  String get home_dailyAyah => 'Vers des Tages';
 
   @override
-  String get home_quickAccess => 'Acceso Rápido';
+  String get home_quickAccess => 'Schnellzugriff';
 
   @override
-  String get home_searchHint => 'Qué estás buscando...';
+  String get home_searchHint => 'Wonach suchst du...';
 
   @override
   String get home_radio => 'Radio';
 
   @override
-  String get home_calendar => 'Calendario';
+  String get home_calendar => 'Kalender';
 
   @override
-  String get home_stories => 'Historias';
+  String get home_stories => 'Geschichten';
 
   @override
-  String get home_children => 'Niños';
+  String get home_children => 'Kinder';
 
   @override
-  String get settings_title => 'Ajustes';
+  String get settings_title => 'Einstellungen';
 
   @override
   String get radio_title => 'Siraj Radio';
@@ -367,6 +406,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get radio_international => 'International';
 
   @override
+  String get radio_play => 'Abspielen';
+
+  @override
+  String get radio_pause => 'Pause';
+
+  @override
   String get cal_title => 'Islamischer Kalender';
 
   @override
@@ -388,6 +433,25 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Hidschri';
+
+  @override
+  String get cal_prevMonth => 'Vorheriger Monat';
+
+  @override
+  String get cal_nextMonth => 'Nächster Monat';
+
+  @override
+  String get cal_legendEid => 'Eid';
+
+  @override
+  String get cal_legendFast => 'Fasten';
+
+  @override
+  String get cal_legendBlessed => 'Gesegnet';
+
+  @override
+  String get cal_detailPending =>
+      'Für diesen Anlass sind noch keine weiteren Details (Vers/Hadith/Beschreibung) verfügbar - religiöse Prüfung steht aus.';
 
   @override
   String get hm_1 => 'Muharram';
@@ -480,6 +544,54 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settings_secIdentity => 'Identität';
 
   @override
+  String get onboarding_modeTitle => 'App-Modus wählen';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Du kannst dies später in den Einstellungen ändern';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Das Wesentliche · Schnell · Vollständig offline';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'Alle Funktionen · Umfassend · Ausführlich';
+
+  @override
+  String get onboarding_andMore => '+ mehr';
+
+  @override
+  String get onboarding_madhabTitle => 'Rechtsschule (Madhhab)';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Für eine genaue Berechnung der Gebetszeiten';
+
+  @override
+  String get onboarding_locationTitle => 'Standort festlegen';
+
+  @override
+  String get onboarding_locationSubtitle => 'Für genaue Gebetszeiten';
+
+  @override
+  String get onboarding_locationBody =>
+      'Die App fragt nach dem Standortzugriff,\num die Gebetszeiten automatisch zu bestimmen';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Deine Daten verbleiben nur auf deinem Gerät';
+
+  @override
+  String get onboarding_start => 'Starten';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'Adhan';
 
   @override
@@ -514,6 +626,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Stimme des Muezzins';
+
+  @override
+  String get settings_previewAdhan => 'Adhan-Stimme anhören';
 
   @override
   String get settings_vibration => 'Vibration statt Ton';
@@ -577,6 +692,12 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settings_shareApp => 'App teilen';
+
+  @override
+  String get settings_licenses => 'Lizenzen';
+
+  @override
+  String get settings_openSourcePackages => 'Lizenzen der Open-Source-Pakete';
 
   @override
   String get settings_tagline => 'Siraj — Licht über Licht';
