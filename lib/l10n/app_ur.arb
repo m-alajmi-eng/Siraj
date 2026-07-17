@@ -97,6 +97,13 @@
   "qibla_errorHint": "کمپاس اور مقام کو فعال کریں",
   "qibla_kaaba": "کعبہ",
   "qibla_fromNorth": "شمال سے قبلہ کی طرف ڈگری",
+  "qibla_distanceKm": "{km} کلومیٹر - {kaaba} تک",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "میری اعداد و شمار",
   "stats_prayerStreak": "نماز کا سلسلہ",
   "stats_totalPrayers": "کل نمازیں",

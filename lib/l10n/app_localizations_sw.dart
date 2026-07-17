@@ -186,6 +186,11 @@ class AppLocalizationsSw extends AppLocalizations {
   String get qibla_fromNorth => 'Digrii kutoka Kaskazini kwenda Qibla';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km km hadi $kaaba';
+  }
+
+  @override
   String get stats_title => 'Takwimu Zangu';
 
   @override

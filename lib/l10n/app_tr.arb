@@ -97,6 +97,13 @@
   "qibla_errorHint": "Pusulayı ve konumu etkinleştirin",
   "qibla_kaaba": "Kabe",
   "qibla_fromNorth": "Kuzeyden Kıbleye derece",
+  "qibla_distanceKm": "{kaaba}'ye {km} km",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "İstatistiklerim",
   "stats_prayerStreak": "Namaz Serisi",
   "stats_totalPrayers": "Toplam Namaz",

@@ -49,6 +49,13 @@
   "qibla_errorHint": "Kompass und Standort aktivieren",
   "qibla_kaaba": "Kaaba",
   "qibla_fromNorth": "Grad vom Norden zur Qibla",
+  "qibla_distanceKm": "{km} km bis {kaaba}",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "Meine Statistiken",
   "stats_prayerStreak": "Gebets-Streak",
   "stats_totalPrayers": "Gebete gesamt",

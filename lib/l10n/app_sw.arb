@@ -49,6 +49,13 @@
   "qibla_errorHint": "Washa dira na eneo",
   "qibla_kaaba": "Kaaba",
   "qibla_fromNorth": "Digrii kutoka Kaskazini kwenda Qibla",
+  "qibla_distanceKm": "{km} km hadi {kaaba}",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "Takwimu Zangu",
   "stats_prayerStreak": "Mfululizo wa Sala",
   "stats_totalPrayers": "Jumla ya Sala",

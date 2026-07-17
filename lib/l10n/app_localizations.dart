@@ -454,6 +454,12 @@ abstract class AppLocalizations {
   /// **'من الشمال باتجاه القبلة'**
   String get qibla_fromNorth;
 
+  /// No description provided for @qibla_distanceKm.
+  ///
+  /// In ar, this message translates to:
+  /// **'{km} كم إلى {kaaba}'**
+  String qibla_distanceKm(int km, String kaaba);
+
   /// No description provided for @stats_title.
   ///
   /// In ar, this message translates to:

@@ -186,6 +186,11 @@ class AppLocalizationsHa extends AppLocalizations {
   String get qibla_fromNorth => 'Digiri daga Arewa zuwa Alkibla';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km km zuwa $kaaba';
+  }
+
+  @override
   String get stats_title => 'Ƙididdiga Na';
 
   @override

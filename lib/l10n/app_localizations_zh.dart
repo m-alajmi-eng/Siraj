@@ -186,6 +186,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get qibla_fromNorth => '从北方到朝拜方向的度数';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '距$kaaba $km 公里';
+  }
+
+  @override
   String get stats_title => '我的统计';
 
   @override

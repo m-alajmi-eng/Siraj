@@ -49,6 +49,13 @@
   "qibla_errorHint": "Включите компас и геолокацию",
   "qibla_kaaba": "Кааба",
   "qibla_fromNorth": "Градусов от севера к Кибле",
+  "qibla_distanceKm": "{km} км до {kaaba}",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "Моя статистика",
   "stats_prayerStreak": "Серия намазов",
   "stats_totalPrayers": "Всего намазов",

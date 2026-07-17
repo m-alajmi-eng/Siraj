@@ -49,6 +49,13 @@
   "qibla_errorHint": "Pastikan kompas dan lokasi diaktifkan",
   "qibla_kaaba": "Kaabah",
   "qibla_fromNorth": "Darjah dari Utara ke Kiblat",
+  "qibla_distanceKm": "{km} km ke {kaaba}",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "Statistik Saya",
   "stats_prayerStreak": "Streak Solat",
   "stats_totalPrayers": "Jumlah Solat",

@@ -49,6 +49,13 @@
   "qibla_errorHint": "Kunna compass da wuri",
   "qibla_kaaba": "Ka'aba",
   "qibla_fromNorth": "Digiri daga Arewa zuwa Alkibla",
+  "qibla_distanceKm": "{km} km zuwa {kaaba}",
+  "@qibla_distanceKm": {
+    "placeholders": {
+      "km": {"type": "int"},
+      "kaaba": {"type": "String"}
+    }
+  },
   "stats_title": "Ƙididdiga Na",
   "stats_prayerStreak": "Jerin Sallah",
   "stats_totalPrayers": "Wadarta Sallah",
