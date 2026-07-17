@@ -309,6 +309,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get home_qiblaDirection => '朝向方位';
 
   @override
+  String get time_hr => '时';
+
+  @override
+  String get time_min => '分';
+
+  @override
+  String get time_sec => '秒';
+
+  @override
   String get home_continueReading => '继续阅读';
 
   @override
@@ -388,6 +397,24 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get cal_hijri => '希吉来历';
+
+  @override
+  String get cal_prevMonth => '上个月';
+
+  @override
+  String get cal_nextMonth => '下个月';
+
+  @override
+  String get cal_legendEid => '开斋节/宰牲节';
+
+  @override
+  String get cal_legendFast => '斋戒';
+
+  @override
+  String get cal_legendBlessed => '吉庆';
+
+  @override
+  String get cal_detailPending => '此纪念日暂无更多详情（经文/圣训/说明）- 待宗教审核。';
 
   @override
   String get hm_1 => '穆哈兰姆月';
@@ -478,6 +505,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_secIdentity => '身份';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
 
   @override
   String get settings_secAdhan => '宣礼';
