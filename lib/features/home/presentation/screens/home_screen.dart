@@ -762,15 +762,21 @@ class _StarFieldState extends State<_StarField>
 
   @override
   Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, _) {
-          return CustomPaint(
-            painter: _StarFieldPainter(stars: _stars, t: _controller.value),
-            size: Size.infinite,
-          );
-        },
+    // RepaintBoundary يعزل إعادة الرسم المستمرة (60fps طوال ظهور
+    // النجوم) في طبقة Compositor خاصة بها، فلا تُجبر بقية عناصر
+    // الـStack (الخلفية المتدرجة، محتوى الشاشة القابل للتمرير) على
+    // إعادة الرسم كل frame معها.
+    return RepaintBoundary(
+      child: IgnorePointer(
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, _) {
+            return CustomPaint(
+              painter: _StarFieldPainter(stars: _stars, t: _controller.value),
+              size: Size.infinite,
+            );
+          },
+        ),
       ),
     );
   }
