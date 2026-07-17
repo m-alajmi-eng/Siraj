@@ -309,6 +309,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get home_qiblaDirection => 'Dirección de la Quibla';
 
   @override
+  String get time_hr => 'h';
+
+  @override
+  String get time_min => 'min';
+
+  @override
+  String get time_sec => 'seg';
+
+  @override
   String get home_continueReading => 'Continuar leyendo';
 
   @override

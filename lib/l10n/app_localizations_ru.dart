@@ -309,6 +309,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get home_qiblaDirection => 'Направление Киблы';
 
   @override
+  String get time_hr => 'ч';
+
+  @override
+  String get time_min => 'мин';
+
+  @override
+  String get time_sec => 'сек';
+
+  @override
   String get home_continueReading => 'ПРОДОЛЖИТЬ ЧТЕНИЕ';
 
   @override

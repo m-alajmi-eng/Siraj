@@ -309,6 +309,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get home_qiblaDirection => 'Kıble Yönü';
 
   @override
+  String get time_hr => 'sa';
+
+  @override
+  String get time_min => 'dk';
+
+  @override
+  String get time_sec => 'sn';
+
+  @override
   String get home_continueReading => 'OKUMAYA DEVAM ET';
 
   @override

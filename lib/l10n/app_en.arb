@@ -138,6 +138,9 @@
   "home_welcome": "Welcome",
   "home_nextPrayer": "Next Prayer",
   "home_qiblaDirection": "Qibla Direction",
+  "time_hr": "hr",
+  "time_min": "min",
+  "time_sec": "sec",
   "home_continueReading": "CONTINUE READING",
   "home_surah": "Surah #{id}",
   "@home_surah": {

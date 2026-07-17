@@ -309,6 +309,15 @@ class AppLocalizationsBn extends AppLocalizations {
   String get home_qiblaDirection => 'কিবলর দিক';
 
   @override
+  String get time_hr => 'ঘণ্টা';
+
+  @override
+  String get time_min => 'মিনিট';
+
+  @override
+  String get time_sec => 'সেকেন্ড';
+
+  @override
   String get home_continueReading => 'পড়া চালিয়ে যান';
 
   @override
