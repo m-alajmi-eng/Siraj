@@ -266,6 +266,8 @@
   "settings_delete": "删除",
   "settings_version": "版本",
   "settings_shareApp": "分享应用",
+  "settings_licenses": "许可证",
+  "settings_openSourcePackages": "开源软件包许可证",
   "settings_tagline": "希拉吉 — 光上加光",
   "madhab_hanafi": "哈乃斐派",
   "madhab_maliki": "马立克派",

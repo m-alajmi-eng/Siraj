@@ -695,6 +695,12 @@ class AppLocalizationsSw extends AppLocalizations {
   String get settings_shareApp => 'Shiriki Programu';
 
   @override
+  String get settings_licenses => 'Leseni';
+
+  @override
+  String get settings_openSourcePackages => 'Leseni za Vifurushi Huria';
+
+  @override
   String get settings_tagline => 'Siraj — Nuru juu ya Nuru';
 
   @override

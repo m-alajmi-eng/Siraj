@@ -694,6 +694,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settings_shareApp => 'App teilen';
 
   @override
+  String get settings_licenses => 'Lizenzen';
+
+  @override
+  String get settings_openSourcePackages => 'Lizenzen der Open-Source-Pakete';
+
+  @override
   String get settings_tagline => 'Siraj — Licht über Licht';
 
   @override

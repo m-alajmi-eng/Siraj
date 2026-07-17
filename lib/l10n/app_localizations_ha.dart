@@ -692,6 +692,12 @@ class AppLocalizationsHa extends AppLocalizations {
   String get settings_shareApp => 'Raba Manhaja';
 
   @override
+  String get settings_licenses => 'Lasisi';
+
+  @override
+  String get settings_openSourcePackages => 'Lasisin Kunshin Buɗaɗɗen Tushen';
+
+  @override
   String get settings_tagline => 'Siraj — Haske bisa Haske';
 
   @override

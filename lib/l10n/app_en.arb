@@ -287,6 +287,8 @@
   "settings_delete": "Delete",
   "settings_version": "Version",
   "settings_shareApp": "Share App",
+  "settings_licenses": "Licenses",
+  "settings_openSourcePackages": "Open-Source Package Licenses",
   "settings_tagline": "Siraj — Light upon Light",
   "madhab_hanafi": "Hanafi",
   "madhab_maliki": "Maliki",

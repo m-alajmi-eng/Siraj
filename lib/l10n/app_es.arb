@@ -266,6 +266,8 @@
   "settings_delete": "Eliminar",
   "settings_version": "Versión",
   "settings_shareApp": "Compartir aplicación",
+  "settings_licenses": "Licencias",
+  "settings_openSourcePackages": "Licencias de paquetes de código abierto",
   "settings_tagline": "Siraj — Luz sobre Luz",
   "madhab_hanafi": "Hanafí",
   "madhab_maliki": "Malikí",

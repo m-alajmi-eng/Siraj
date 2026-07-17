@@ -694,6 +694,12 @@ class AppLocalizationsMs extends AppLocalizations {
   String get settings_shareApp => 'Kongsi Aplikasi';
 
   @override
+  String get settings_licenses => 'Lesen';
+
+  @override
+  String get settings_openSourcePackages => 'Lesen Pakej Sumber Terbuka';
+
+  @override
   String get settings_tagline => 'Siraj — Cahaya di atas Cahaya';
 
   @override

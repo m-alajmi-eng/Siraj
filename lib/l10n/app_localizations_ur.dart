@@ -690,6 +690,12 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settings_shareApp => 'ایپ شیئر کریں';
 
   @override
+  String get settings_licenses => 'لائسنس';
+
+  @override
+  String get settings_openSourcePackages => 'اوپن سورس پیکجز کے لائسنس';
+
+  @override
   String get settings_tagline => 'سراج — نور علیٰ نور';
 
   @override

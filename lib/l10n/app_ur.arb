@@ -266,6 +266,8 @@
   "settings_delete": "حذف",
   "settings_version": "ورژن",
   "settings_shareApp": "ایپ شیئر کریں",
+  "settings_licenses": "لائسنس",
+  "settings_openSourcePackages": "اوپن سورس پیکجز کے لائسنس",
   "settings_tagline": "سراج — نور علیٰ نور",
   "madhab_hanafi": "حنفی",
   "madhab_maliki": "مالکی",

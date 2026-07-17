@@ -287,6 +287,8 @@
   "settings_delete": "حذف",
   "settings_version": "الإصدار",
   "settings_shareApp": "مشاركة التطبيق",
+  "settings_licenses": "التراخيص",
+  "settings_openSourcePackages": "تراخيص الحزم مفتوحة المصدر",
   "settings_tagline": "سراج — نور على نور",
   "madhab_hanafi": "الحنفي",
   "madhab_maliki": "المالكي",

@@ -688,6 +688,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settings_shareApp => 'مشاركة التطبيق';
 
   @override
+  String get settings_licenses => 'التراخيص';
+
+  @override
+  String get settings_openSourcePackages => 'تراخيص الحزم مفتوحة المصدر';
+
+  @override
   String get settings_tagline => 'سراج — نور على نور';
 
   @override
