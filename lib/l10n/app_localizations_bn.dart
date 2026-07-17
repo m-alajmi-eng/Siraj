@@ -309,6 +309,15 @@ class AppLocalizationsBn extends AppLocalizations {
   String get home_qiblaDirection => 'কিবলর দিক';
 
   @override
+  String get time_hr => 'ঘণ্টা';
+
+  @override
+  String get time_min => 'মিনিট';
+
+  @override
+  String get time_sec => 'সেকেন্ড';
+
+  @override
   String get home_continueReading => 'পড়া চালিয়ে যান';
 
   @override
@@ -388,6 +397,25 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get cal_hijri => 'হিজরি';
+
+  @override
+  String get cal_prevMonth => 'আগের মাস';
+
+  @override
+  String get cal_nextMonth => 'পরের মাস';
+
+  @override
+  String get cal_legendEid => 'ঈদ';
+
+  @override
+  String get cal_legendFast => 'রোজা';
+
+  @override
+  String get cal_legendBlessed => 'বরকতময়';
+
+  @override
+  String get cal_detailPending =>
+      'এই উপলক্ষের জন্য এখনো কোনো অতিরিক্ত বিবরণ (আয়াত/হাদিস/বর্ণনা) উপলব্ধ নেই - ধর্মীয় পর্যালোচনার অপেক্ষায়।';
 
   @override
   String get hm_1 => 'মুহাররম';
@@ -519,6 +547,12 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get onboarding_start => 'শুরু করুন';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
 
   @override
   String get settings_secAdhan => 'আজান';
