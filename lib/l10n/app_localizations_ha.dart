@@ -309,6 +309,15 @@ class AppLocalizationsHa extends AppLocalizations {
   String get home_qiblaDirection => 'Hanyar Alƙibla';
 
   @override
+  String get time_hr => 'awa';
+
+  @override
+  String get time_min => 'min';
+
+  @override
+  String get time_sec => 'sec';
+
+  @override
   String get home_continueReading => 'CI GABA DA KARANTAWA';
 
   @override
@@ -388,6 +397,25 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Hijira';
+
+  @override
+  String get cal_prevMonth => 'Watan da ya gabata';
+
+  @override
+  String get cal_nextMonth => 'Watan mai zuwa';
+
+  @override
+  String get cal_legendEid => 'Sallah';
+
+  @override
+  String get cal_legendFast => 'Azumi';
+
+  @override
+  String get cal_legendBlessed => 'Mai albarka';
+
+  @override
+  String get cal_detailPending =>
+      'Babu ƙarin bayani (aya/hadisi/bayani) da ake da su tukuna kan wannan biki - ana jiran nazarin addini.';
 
   @override
   String get hm_1 => 'Muharram';
@@ -479,6 +507,12 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get settings_secIdentity => 'Shaida';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
 
   @override
   String get settings_secAdhan => 'Kira';

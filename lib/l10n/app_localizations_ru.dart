@@ -309,6 +309,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get home_qiblaDirection => 'Направление Киблы';
 
   @override
+  String get time_hr => 'ч';
+
+  @override
+  String get time_min => 'мин';
+
+  @override
+  String get time_sec => 'сек';
+
+  @override
   String get home_continueReading => 'ПРОДОЛЖИТЬ ЧТЕНИЕ';
 
   @override
@@ -388,6 +397,25 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Хиджра';
+
+  @override
+  String get cal_prevMonth => 'Предыдущий месяц';
+
+  @override
+  String get cal_nextMonth => 'Следующий месяц';
+
+  @override
+  String get cal_legendEid => 'Ид';
+
+  @override
+  String get cal_legendFast => 'Пост';
+
+  @override
+  String get cal_legendBlessed => 'Благословенный';
+
+  @override
+  String get cal_detailPending =>
+      'Дополнительные сведения (аят/хадис/описание) для этого события пока недоступны - ожидает религиозной проверки.';
 
   @override
   String get hm_1 => 'Мухаррам';
@@ -478,6 +506,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_secIdentity => 'Идентификация';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
 
   @override
   String get settings_secAdhan => 'Азан';
