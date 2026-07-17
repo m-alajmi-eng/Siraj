@@ -888,6 +888,39 @@ class AppLocalizationsMs extends AppLocalizations {
   String get portal_loadError => 'Gagal memuatkan';
 
   @override
+  String get portal_reportTranslation => 'Laporkan ralat terjemahan';
+
+  @override
+  String get portal_reportDialogTitle => 'Laporkan ralat terjemahan';
+
+  @override
+  String get portal_reportIssueLabel => 'Terangkan masalah';
+
+  @override
+  String get portal_reportIssueHint =>
+      'cth: perkataan hilang, makna tidak tepat...';
+
+  @override
+  String get portal_reportNoteLabel => 'Nota tambahan (pilihan)';
+
+  @override
+  String get portal_reportCancel => 'Batal';
+
+  @override
+  String get portal_reportSubmit => 'Hantar';
+
+  @override
+  String get portal_reportSuccess =>
+      'Terima kasih, laporan anda telah diterima dan akan disemak';
+
+  @override
+  String get portal_reportError =>
+      'Gagal menghantar laporan, cuba lagi kemudian';
+
+  @override
+  String get portal_reportIssueRequired => 'Sila terangkan masalah';
+
+  @override
   String get portal_translationPendingReview => 'Menunggu semakan komuniti';
 
   @override

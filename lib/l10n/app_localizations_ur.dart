@@ -884,6 +884,38 @@ class AppLocalizationsUr extends AppLocalizations {
   String get portal_loadError => 'لوڈ نہیں ہو سکا';
 
   @override
+  String get portal_reportTranslation => 'ترجمے کی غلطی کی اطلاع دیں';
+
+  @override
+  String get portal_reportDialogTitle => 'ترجمے کی غلطی کی اطلاع دیں';
+
+  @override
+  String get portal_reportIssueLabel => 'مسئلہ بیان کریں';
+
+  @override
+  String get portal_reportIssueHint => 'مثال: لفظ غائب، غلط معنی...';
+
+  @override
+  String get portal_reportNoteLabel => 'اضافی نوٹ (اختیاری)';
+
+  @override
+  String get portal_reportCancel => 'منسوخ کریں';
+
+  @override
+  String get portal_reportSubmit => 'جمع کروائیں';
+
+  @override
+  String get portal_reportSuccess =>
+      'شکریہ، آپ کی رپورٹ موصول ہوگئی ہے اور اس کا جائزہ لیا جائے گا';
+
+  @override
+  String get portal_reportError =>
+      'رپورٹ بھیجی نہیں جا سکی، بعد میں دوبارہ کوشش کریں';
+
+  @override
+  String get portal_reportIssueRequired => 'براہ کرم مسئلہ بیان کریں';
+
+  @override
   String get portal_translationPendingReview => 'کمیونٹی جائزے کا انتظار ہے';
 
   @override

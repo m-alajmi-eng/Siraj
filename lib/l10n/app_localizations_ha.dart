@@ -887,6 +887,39 @@ class AppLocalizationsHa extends AppLocalizations {
   String get portal_loadError => 'An kasa loda';
 
   @override
+  String get portal_reportTranslation => 'Kai rahoton kuskuren fassara';
+
+  @override
+  String get portal_reportDialogTitle => 'Kai rahoton kuskuren fassara';
+
+  @override
+  String get portal_reportIssueLabel => 'Bayyana matsalar';
+
+  @override
+  String get portal_reportIssueHint =>
+      'misali: kalma da ta ɓace, ma\'ana da ba daidai ba...';
+
+  @override
+  String get portal_reportNoteLabel => 'Ƙarin bayani (na zaɓi)';
+
+  @override
+  String get portal_reportCancel => 'Soke';
+
+  @override
+  String get portal_reportSubmit => 'Aika';
+
+  @override
+  String get portal_reportSuccess =>
+      'Na gode, an karɓi rahotonka kuma za a duba shi';
+
+  @override
+  String get portal_reportError =>
+      'An kasa aika rahoto, sake gwadawa daga baya';
+
+  @override
+  String get portal_reportIssueRequired => 'Da fatan za a bayyana matsalar';
+
+  @override
   String get portal_translationPendingReview => 'Ana jiran dubawar al\'umma';
 
   @override

@@ -7,6 +7,7 @@ import '../../../../core/widgets/citation_badge.dart';
 import '../../data/qke_repository.dart';
 import '../../../../core/constants/translations.dart';
 import '../../data/translation_service.dart';
+import '../widgets/translation_report_dialog.dart';
 import '../../data/translation_review_status_service.dart';
 
 class VersePortalScreen extends ConsumerStatefulWidget {
@@ -901,15 +902,38 @@ class _TranslationsPage extends ConsumerWidget {
                 children: [
                   Text(t['author'] ?? '',
                     style: TextStyle(color: palette.textSecondary, fontSize: 11)),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                    decoration: BoxDecoration(
-                      color:        palette.accentPrimary.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(t['language'] ?? '',
-                      style: TextStyle(color: palette.accentPrimary, fontSize: 13,
-                        fontWeight: FontWeight.bold)),
+                  Row(
+                    children: [
+                      Semantics(
+                        button: true,
+                        label: AppLocalizations.of(context).portal_reportTranslation,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(20),
+                          onTap: () => showTranslationReportDialog(
+                            context,
+                            languageCode: langCode,
+                            surahId: surahId,
+                            ayahNumber: ayahNumber,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4),
+                            child: Icon(Icons.flag_outlined,
+                              size: 16, color: palette.textSecondary),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          color:        palette.accentPrimary.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(t['language'] ?? '',
+                          style: TextStyle(color: palette.accentPrimary, fontSize: 13,
+                            fontWeight: FontWeight.bold)),
+                      ),
+                    ],
                   ),
                 ],
               ),

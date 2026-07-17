@@ -891,6 +891,39 @@ class AppLocalizationsEs extends AppLocalizations {
   String get portal_loadError => 'Error al cargar';
 
   @override
+  String get portal_reportTranslation => 'Reportar un error de traducción';
+
+  @override
+  String get portal_reportDialogTitle => 'Reportar un error de traducción';
+
+  @override
+  String get portal_reportIssueLabel => 'Describe el problema';
+
+  @override
+  String get portal_reportIssueHint =>
+      'ej. palabra faltante, significado impreciso...';
+
+  @override
+  String get portal_reportNoteLabel => 'Nota adicional (opcional)';
+
+  @override
+  String get portal_reportCancel => 'Cancelar';
+
+  @override
+  String get portal_reportSubmit => 'Enviar';
+
+  @override
+  String get portal_reportSuccess =>
+      'Gracias, tu reporte fue recibido y será revisado';
+
+  @override
+  String get portal_reportError =>
+      'No se pudo enviar el reporte, inténtalo más tarde';
+
+  @override
+  String get portal_reportIssueRequired => 'Por favor describe el problema';
+
+  @override
   String get portal_translationPendingReview =>
       'Pendiente de revisión comunitaria';
 
