@@ -801,6 +801,10 @@ class AppLocalizationsBn extends AppLocalizations {
   String get portal_loadError => 'লোড করা যায়নি';
 
   @override
+  String get portal_translationPendingReview =>
+      'সম্প্রদায়ের পর্যালোচনার অপেক্ষায়';
+
+  @override
   String get portal_comingSoon => 'শীঘ্রই';
 
   @override

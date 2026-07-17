@@ -803,6 +803,9 @@ class AppLocalizationsMs extends AppLocalizations {
   String get portal_loadError => 'Gagal memuatkan';
 
   @override
+  String get portal_translationPendingReview => 'Menunggu semakan komuniti';
+
+  @override
   String get portal_comingSoon => 'Tidak lama lagi';
 
   @override

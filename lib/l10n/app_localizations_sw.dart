@@ -804,6 +804,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get portal_loadError => 'Imeshindwa kupakia';
 
   @override
+  String get portal_translationPendingReview => 'Inasubiri ukaguzi wa jamii';
+
+  @override
   String get portal_comingSoon => 'Hivi karibuni';
 
   @override

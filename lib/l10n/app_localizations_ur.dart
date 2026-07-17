@@ -801,6 +801,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get portal_loadError => 'لوڈ نہیں ہو سکا';
 
   @override
+  String get portal_translationPendingReview => 'کمیونٹی جائزے کا انتظار ہے';
+
+  @override
   String get portal_comingSoon => 'جلد';
 
   @override

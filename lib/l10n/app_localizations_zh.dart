@@ -798,6 +798,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get portal_loadError => '加载失败';
 
   @override
+  String get portal_translationPendingReview => '等待社区审核';
+
+  @override
   String get portal_comingSoon => '即将推出';
 
   @override

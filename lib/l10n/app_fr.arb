@@ -295,6 +295,7 @@
   "portal_back": "Retour",
   "portal_noTafsir": "Aucun tafsir disponible",
   "portal_loadError": "Échec du chargement",
+  "portal_translationPendingReview": "En attente de révision par la communauté",
   "portal_comingSoon": "Bientôt",
   "portal_noHadiths": "Aucun hadith lié à ce verset pour le moment",
   "portal_addingContent": "Contenu ajouté progressivement",

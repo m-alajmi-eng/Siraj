@@ -364,6 +364,7 @@
   "portal_back": "Back",
   "portal_noTafsir": "No tafsir available",
   "portal_loadError": "Failed to load",
+  "portal_translationPendingReview": "Pending community review",
   "portal_comingSoon": "Soon",
   "portal_noHadiths": "No hadiths linked to this verse yet",
   "portal_addingContent": "Content being added gradually",

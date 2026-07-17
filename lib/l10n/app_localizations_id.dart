@@ -801,6 +801,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get portal_loadError => 'Gagal memuat';
 
   @override
+  String get portal_translationPendingReview => 'Menunggu peninjauan komunitas';
+
+  @override
   String get portal_comingSoon => 'Segera';
 
   @override

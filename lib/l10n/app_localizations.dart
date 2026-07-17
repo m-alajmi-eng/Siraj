@@ -1642,6 +1642,12 @@ abstract class AppLocalizations {
   /// **'تعذّر التحميل'**
   String get portal_loadError;
 
+  /// No description provided for @portal_translationPendingReview.
+  ///
+  /// In ar, this message translates to:
+  /// **'بانتظار مراجعة المجتمع'**
+  String get portal_translationPendingReview;
+
   /// No description provided for @portal_comingSoon.
   ///
   /// In ar, this message translates to:
