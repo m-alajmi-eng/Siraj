@@ -40,7 +40,7 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
     }
 
     // ٣. أحاديث
-    pages.add(_PageItem(id: 'hadiths', icon: Icons.format_quote, label: t.portal_hadiths, comingSoon: true));
+    pages.add(_PageItem(id: 'hadiths', icon: Icons.format_quote, label: t.portal_hadiths));
 
     // ٣ب. تفسير بالسنة (استشهادات أضواء البيان)
     pages.add(_PageItem(id: 'adwaa_hadiths', icon: Icons.history_edu, label: t.portal_adwaaHadiths));
@@ -265,13 +265,13 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                     citations: portal.adwaaCitations,
                   );
                 }
+                if (page.id == 'hadiths') {
+                  return _HadithsPage(
+                    palette: palette,
+                    hadiths: portal.relatedHadiths,
+                  );
+                }
                       if (page.comingSoon) {
-                        if (page.id == 'hadiths') {
-                          return _HadithsPage(
-                            palette: palette,
-                            hadiths: portal.relatedHadiths,
-                          );
-                        }
                         return _ComingSoonPage(
                           palette: palette,
                           title:   page.label,
