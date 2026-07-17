@@ -26,7 +26,35 @@
   `ROADMAP.md` كقرار معماري منفصل مستقبلي.
 - **لم يُطبَّق على الإنتاج** — migration جاهز لمراجعة بشرية وتطبيق لاحق.
 
-## البند 2: توحيد ayah_hadiths + verse_hadith_relations في kg_edges — قيد التنفيذ
+## البند 2: توحيد ayah_hadiths + verse_hadith_relations في kg_edges — ✅ مكتمل
+
+- **الفرع/PR**: `qke/kg-edges-unify-relations`
+- **الملف**: `supabase/migrations/20260716102020_kg_edges_unify_hadith_relations.sql`
+- **ما تم**: جدول `kg_edges` موحَّد جديد (src_type/src_id/dst_type/dst_id/
+  edge_type/source_reference/reviewed + أعمدة citation_* إضافية ضرورية
+  لحفظ محتوى استشهادات أضواء البيان كاملاً بلا فقدان بيانات). **الجدولان
+  القديمان لم يُحذَفا** — نسخة احتياطية كاملة حتى مراجعة بشرية.
+  - `ayah_hadiths` → `edge_type='ayah_hadith'`، `dst_id`=hadith_id حقيقي
+    (مفتاح خارجي فعلي)، `reviewed=false` (الجدول المصدر لم يملك عمود
+    مراجعة أصلاً)، لكن سياسة RLS تُبقيه مرئياً دون قيد (كما كان بالضبط).
+  - `verse_hadith_relations` → `edge_type` حسب citation_type
+    (authentic_hadith_citation/israiliyyat_citation)، `dst_id=NULL`
+    (لا كيان مطابَق)، والمحتوى الكامل محفوظ في أعمدة citation_*.
+    **قيمة reviewed تُنسَخ كما هي من المصدر** (قرار بشري ماضٍ حقيقي، لا
+    قرار جديد من الذكاء الاصطناعي) — موثَّق بالتفصيل في تعليقات الملف.
+- **RLS**: سياسة واحدة تحاكي دمج القيدين القديمين معاً:
+  `edge_type = 'ayah_hadith' OR reviewed = true`.
+- **التحقق**: اختبار محلي كامل (`supabase start` + `supabase db reset`
+  من الصفر) ببيانات مصطنعة تحاكي الجدولين المصدر: تأكّد نسخ البيانات
+  بدقة، تأكّد عمل قيود CHECK (رفض قيم edge_type/dst_type غير صالحة)،
+  وتأكّد فعلياً عبر `SET ROLE anon` أن سلوك العرض مطابق تماماً للجدولين
+  القديمين مجتمعين (رابط حديث ظاهر دوماً، استشهاد مراجَع ظاهر، استشهاد
+  غير مراجَع مخفي). تأكّد أيضاً أن PostgREST يحلّ الـembed
+  `kg_edges → hadiths → hadith_books` عبر الـFK الجديد بشكل صحيح
+  (لازم للبند 3 القادم).
+- **لم يُطبَّق على الإنتاج** — migration جاهز لمراجعة بشرية وتطبيق لاحق.
+
+## البند 3: واجهة "المحتوى ذو الصلة" تحت الآية — لم يبدأ بعد
 
 سيُحدَّث هذا القسم عند اكتماله.
 
