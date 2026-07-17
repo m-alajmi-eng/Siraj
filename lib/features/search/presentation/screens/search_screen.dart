@@ -41,6 +41,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 children: [
                   IconButton(
                     icon: Icon(Icons.arrow_back, color: palette.textPrimary),
+                    tooltip: t.common_back,
                     onPressed: () {
                       ref.read(searchProvider.notifier).clear();
                       Navigator.pop(context);
@@ -68,6 +69,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                               ? IconButton(
                                   icon: Icon(Icons.clear,
                                     color: palette.textSecondary, size: 18),
+                                  tooltip: t.common_clearSearch,
                                   onPressed: () {
                                     _controller.clear();
                                     ref.read(searchProvider.notifier).clear();

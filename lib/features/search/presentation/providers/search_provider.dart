@@ -67,81 +67,76 @@ class SearchNotifier extends Notifier<SearchState> {
    try {
      final results = <SearchResult>[];
 
-     // ── بحث في الآيات ────────────────────────────
-     final ayahRes = await _client
-         .from('ayahs')
-         .select('id, surah_id, ayah_number, text_uthmani, surahs(name_arabic)')
-         .ilike('text_uthmani', '%$query%')
-         .limit(10);
+     // ── بحث نصي كامل عبر PostgreSQL (tsvector + GIN + تطبيع عربي) ──
+     // يستبدل ILIKE '%...%' السابق: يتجاهل التشكيل، ويوحّد صور الألف/
+     // الهمزة/الياء/التاء المربوطة، ويدعم كلمات جزئية (بادئة) أثناء
+     // الكتابة. راجع migration: 20260716101040_arabic_fulltext_search.sql
 
-     for (final r in ayahRes) {
+     // ── بحث في الآيات ────────────────────────────
+     final ayahRes = await _client.rpc('search_ayahs', params: {
+       'search_query': query,
+       'match_limit':  10,
+     });
+
+     for (final r in (ayahRes as List)) {
        results.add(SearchResult(
          type:       'ayah',
          surahId:    r['surah_id'],
          ayahNumber: r['ayah_number'],
-         surahName:  (r['surahs'] as Map?)?['name_arabic'] ?? '',
+         surahName:  r['surah_name'] ?? '',
          text:       r['text_uthmani'] ?? '',
        ));
      }
 
      // ── بحث في التفاسير ──────────────────────────
-     final tafsirRes = await _client
-         .from('tafsir')
-         .select('ayah_id, text, source_id, ayahs(surah_id, ayah_number, surahs(name_arabic))')
-         .ilike('text', '%$query%')
-         .eq('source_id', 'muyassar-ar')
-         .limit(5);
+     final tafsirRes = await _client.rpc('search_tafsir', params: {
+       'search_query':  query,
+       'match_limit':   5,
+       'source_filter': 'muyassar-ar',
+     });
 
-     for (final r in tafsirRes) {
-       final ayah  = r['ayahs'] as Map?;
-       final surah = ayah?['surahs'] as Map?;
+     for (final r in (tafsirRes as List)) {
        results.add(SearchResult(
          type:       'tafsir',
-         surahId:    ayah?['surah_id']    ?? 0,
-         ayahNumber: ayah?['ayah_number'] ?? 0,
-         surahName:  surah?['name_arabic'] ?? '',
-         text:       r['text'] ?? '',
+         surahId:    r['surah_id']    ?? 0,
+         ayahNumber: r['ayah_number'] ?? 0,
+         surahName:  r['surah_name'] ?? '',
+         text:       r['tafsir_text'] ?? '',
          source:     'التفسير الميسّر',
        ));
      }
 
      // ── بحث في معاني الكلمات ─────────────────────
-     final wordRes = await _client
-         .from('word_meanings')
-         .select('ayah_id, meaning_ar, ayahs(surah_id, ayah_number, surahs(name_arabic))')
-         .ilike('meaning_ar', '%$query%')
-         .limit(5);
+     final wordRes = await _client.rpc('search_word_meanings', params: {
+       'search_query': query,
+       'match_limit':  5,
+     });
 
-     for (final r in wordRes) {
-       final ayah  = r['ayahs'] as Map?;
-       final surah = ayah?['surahs'] as Map?;
+     for (final r in (wordRes as List)) {
        results.add(SearchResult(
          type:       'word',
-         surahId:    ayah?['surah_id']    ?? 0,
-         ayahNumber: ayah?['ayah_number'] ?? 0,
-         surahName:  surah?['name_arabic'] ?? '',
+         surahId:    r['surah_id']    ?? 0,
+         ayahNumber: r['ayah_number'] ?? 0,
+         surahName:  r['surah_name'] ?? '',
          text:       r['meaning_ar'] ?? '',
          source:     'معاني الكلمات',
        ));
      }
 
-
      // ── بحث في الأحاديث ──────────────────────
-     final hadithRes = await _client
-         .from('hadiths')
-         .select('hadith_number, text_ar, book_id, hadith_books(name_ar)')
-         .ilike('text_ar', '%$query%')
-         .limit(5);
+     final hadithRes = await _client.rpc('search_hadiths', params: {
+       'search_query': query,
+       'match_limit':  5,
+     });
 
-     for (final r in hadithRes) {
-       final book = r['hadith_books'] as Map?;
+     for (final r in (hadithRes as List)) {
        results.add(SearchResult(
          type:       'hadith',
          surahId:    0,
          ayahNumber: r['hadith_number'] ?? 0,
-         surahName:  book?['name_ar'] ?? '',
+         surahName:  r['book_name'] ?? '',
          text:       r['text_ar'] ?? '',
-         source:     book?['name_ar'] ?? '',
+         source:     r['book_name'] ?? '',
        ));
      }
 

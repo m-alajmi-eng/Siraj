@@ -101,6 +101,13 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode =>
+      'Badilisha hali ya uonyeshaji (Msahafu/tafsiri)';
+
+  @override
+  String get quran_toggleTajweed => 'Badilisha rangi za tajwid';
+
+  @override
   String get athkar_title => 'Adhkari';
 
   @override
@@ -186,6 +193,11 @@ class AppLocalizationsSw extends AppLocalizations {
   String get qibla_fromNorth => 'Digrii kutoka Kaskazini kwenda Qibla';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km km hadi $kaaba';
+  }
+
+  @override
   String get stats_title => 'Takwimu Zangu';
 
   @override
@@ -264,6 +276,24 @@ class AppLocalizationsSw extends AppLocalizations {
   String get common_offline => 'Hakuna muunganisho wa intaneti';
 
   @override
+  String get common_close => 'Funga';
+
+  @override
+  String get common_share => 'Shiriki';
+
+  @override
+  String get common_refresh => 'Onyesha upya';
+
+  @override
+  String get common_prevPage => 'Ukurasa uliopita';
+
+  @override
+  String get common_nextPage => 'Ukurasa unaofuata';
+
+  @override
+  String get common_clearSearch => 'Futa utafutaji';
+
+  @override
   String get nav_home => 'Nyumbani';
 
   @override
@@ -307,6 +337,15 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get home_qiblaDirection => 'Mwelekeo wa Kibla';
+
+  @override
+  String get time_hr => 'saa';
+
+  @override
+  String get time_min => 'dak';
+
+  @override
+  String get time_sec => 'sek';
 
   @override
   String get home_continueReading => 'ENDELEA KUSOMA';
@@ -367,6 +406,12 @@ class AppLocalizationsSw extends AppLocalizations {
   String get radio_international => 'Kimataifa';
 
   @override
+  String get radio_play => 'Cheza';
+
+  @override
+  String get radio_pause => 'Simamisha';
+
+  @override
   String get cal_title => 'Kalenda ya Kiislamu';
 
   @override
@@ -388,6 +433,25 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Hijiria';
+
+  @override
+  String get cal_prevMonth => 'Mwezi uliopita';
+
+  @override
+  String get cal_nextMonth => 'Mwezi ujao';
+
+  @override
+  String get cal_legendEid => 'Eid';
+
+  @override
+  String get cal_legendFast => 'Funga';
+
+  @override
+  String get cal_legendBlessed => 'Baraka';
+
+  @override
+  String get cal_detailPending =>
+      'Hakuna maelezo zaidi (aya/hadithi/maelezo) yaliyopo bado kwa tukio hili - yanasubiri mapitio ya kidini.';
 
   @override
   String get hm_1 => 'Muharram';
@@ -481,6 +545,53 @@ class AppLocalizationsSw extends AppLocalizations {
   String get settings_secIdentity => 'Utambulisho';
 
   @override
+  String get onboarding_modeTitle => 'Chagua hali ya programu';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Unaweza kubadilisha hii baadaye kwenye mipangilio';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Mambo ya msingi · Haraka · Nje ya mtandao kikamilifu';
+
+  @override
+  String get onboarding_fullSubtitle => 'Vipengele vyote · Kamili · Kina';
+
+  @override
+  String get onboarding_andMore => '+ zaidi';
+
+  @override
+  String get onboarding_madhabTitle => 'Madhehebu ya Kifiqhi';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Kwa kukokotoa nyakati za sala kwa usahihi';
+
+  @override
+  String get onboarding_locationTitle => 'Weka mahali ulipo';
+
+  @override
+  String get onboarding_locationSubtitle => 'Kwa nyakati sahihi za sala';
+
+  @override
+  String get onboarding_locationBody =>
+      'Programu itaomba ruhusa ya mahali\nili kubaini nyakati za sala kiotomatiki';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Data yako inabaki kwenye kifaa chako pekee';
+
+  @override
+  String get onboarding_start => 'Anza';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'Adhana';
 
   @override
@@ -515,6 +626,9 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Sauti ya Muadhini';
+
+  @override
+  String get settings_previewAdhan => 'Hakiki sauti ya adhana';
 
   @override
   String get settings_vibration => 'Mtetemo badala ya sauti';
@@ -579,6 +693,12 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get settings_shareApp => 'Shiriki Programu';
+
+  @override
+  String get settings_licenses => 'Leseni';
+
+  @override
+  String get settings_openSourcePackages => 'Leseni za Vifurushi Huria';
 
   @override
   String get settings_tagline => 'Siraj — Nuru juu ya Nuru';
@@ -768,6 +888,9 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get portal_loadError => 'Imeshindwa kupakia';
+
+  @override
+  String get portal_translationPendingReview => 'Inasubiri ukaguzi wa jamii';
 
   @override
   String get portal_comingSoon => 'Hivi karibuni';
