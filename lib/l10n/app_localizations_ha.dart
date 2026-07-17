@@ -399,6 +399,25 @@ class AppLocalizationsHa extends AppLocalizations {
   String get cal_hijri => 'Hijira';
 
   @override
+  String get cal_prevMonth => 'Watan da ya gabata';
+
+  @override
+  String get cal_nextMonth => 'Watan mai zuwa';
+
+  @override
+  String get cal_legendEid => 'Sallah';
+
+  @override
+  String get cal_legendFast => 'Azumi';
+
+  @override
+  String get cal_legendBlessed => 'Mai albarka';
+
+  @override
+  String get cal_detailPending =>
+      'Babu ƙarin bayani (aya/hadisi/bayani) da ake da su tukuna kan wannan biki - ana jiran nazarin addini.';
+
+  @override
   String get hm_1 => 'Muharram';
 
   @override

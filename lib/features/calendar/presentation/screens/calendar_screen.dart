@@ -42,17 +42,126 @@ String eventName(AppLocalizations t, IslamicEvent e) {
   }
 }
 
-class CalendarScreen extends ConsumerWidget {
+Color eventColor(String type) {
+  switch (type) {
+    case 'eid':     return const Color(0xFF50B478);
+    case 'fast':    return const Color(0xFF6EB4D0);
+    case 'blessed': return SirajGold.pure;
+    default:        return SirajWhite.w40;
+  }
+}
+
+String eventIcon(String type) {
+  switch (type) {
+    case 'eid':     return '🎉';
+    case 'fast':    return '🌙';
+    case 'blessed': return '✨';
+    default:        return '📅';
+  }
+}
+
+/// تقدير أيام حتى مناسبة معيّنة، بنفس منطق التقريب المستخدَم أصلاً في
+/// nextEventProvider (شهر هجري ≈ 29 يوماً) - لا نخترع حساباً أدق مما
+/// هو معتمَد فعلياً في بقية التطبيق.
+int daysUntilEvent(HijriDate today, IslamicEvent e) {
+  var monthDiff = e.hijriMonth - today.month;
+  var dayDiff   = e.hijriDay   - today.day;
+  if (monthDiff < 0 || (monthDiff == 0 && dayDiff < 0)) {
+    monthDiff += 12; // العام القادم
+  }
+  return monthDiff * 29 + dayDiff;
+}
+
+class CalendarScreen extends ConsumerStatefulWidget {
   const CalendarScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CalendarScreen> createState() => _CalendarScreenState();
+}
+
+class _CalendarScreenState extends ConsumerState<CalendarScreen> {
+  late DateTime _viewedMonth;
+
+  @override
+  void initState() {
+    super.initState();
+    final now = DateTime.now();
+    _viewedMonth = DateTime(now.year, now.month, 1);
+  }
+
+  void _prevMonth() => setState(() =>
+      _viewedMonth = DateTime(_viewedMonth.year, _viewedMonth.month - 1, 1));
+  void _nextMonth() => setState(() =>
+      _viewedMonth = DateTime(_viewedMonth.year, _viewedMonth.month + 1, 1));
+
+  void _showEventDetail(BuildContext context, IslamicEvent event, dynamic palette, AppLocalizations t) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: palette.surface,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(SirajRadiusFull.xl)),
+      ),
+      builder: (ctx) => Padding(
+        padding: const EdgeInsets.all(SirajSpacing.s5),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(eventIcon(event.type), style: const TextStyle(fontSize: 28)),
+                const SizedBox(width: SirajSpacing.s3),
+                Expanded(
+                  child: Text(eventName(t, event), style: AppText.title.copyWith(
+                    color: palette.textPrimary)),
+                ),
+              ],
+            ),
+            const SizedBox(height: SirajSpacing.s2),
+            Text(
+              '${event.hijriDay} ${hijriMonthName(t, event.hijriMonth)}',
+              style: AppText.body.copyWith(color: palette.textSecondary),
+            ),
+            const SizedBox(height: SirajSpacing.s4),
+            // ملاحظة صادقة: لا محتوى ديني إضافي (آية/حديث/وصف) مُدرَج هنا
+            // بعد - أي إضافة كهذه تحتاج مراجعة دينية معتمَدة (ADR-008)
+            // قبل عرضها، فلا تُخترَع الآن. راجع docs/DESIGN_MIGRATION_PLAN.md.
+            Container(
+              padding: const EdgeInsets.all(SirajSpacing.s3),
+              decoration: BoxDecoration(
+                color: palette.background,
+                borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.info_outline, size: 16, color: palette.textSecondary),
+                  const SizedBox(width: SirajSpacing.s2),
+                  Expanded(
+                    child: Text(t.cal_detailPending, style: AppText.caption.copyWith(
+                      color: palette.textSecondary)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final t           = AppLocalizations.of(context);
     final palette     = ref.watch(timeThemeProvider);
     final hijriToday  = ref.watch(hijriTodayProvider);
     final todayEvents = ref.watch(todayEventsProvider);
-    final nextEvent   = ref.watch(nextEventProvider);
     final now         = DateTime.now();
+
+    final sortedEvents = [...islamicEvents]
+      ..sort((a, b) => daysUntilEvent(hijriToday, a).compareTo(daysUntilEvent(hijriToday, b)));
+    final nextEvent = sortedEvents.first;
+    final nextEventDays = daysUntilEvent(hijriToday, nextEvent);
 
     return AppScaffold(
       title: t.cal_title,
@@ -88,60 +197,280 @@ class CalendarScreen extends ConsumerWidget {
           ),
           const SizedBox(height: SirajSpacing.s4),
 
+          // ─── شبكة التقويم الشهرية ───
+          _MonthGrid(
+            viewedMonth: _viewedMonth,
+            palette: palette,
+            t: t,
+            onPrev: _prevMonth,
+            onNext: _nextMonth,
+            onDayTap: (hijri) {
+              final match = islamicEvents.where(
+                (e) => e.hijriMonth == hijri.month && e.hijriDay == hijri.day);
+              if (match.isNotEmpty) {
+                _showEventDetail(context, match.first, palette, t);
+              }
+            },
+          ),
+          const SizedBox(height: SirajSpacing.s4),
+
           // ─── مناسبات اليوم ───
           if (todayEvents.isNotEmpty) ...[
             _SectionTitle(title: t.cal_todayEvents, palette: palette),
             ...todayEvents.map((e) =>
-              _EventCard(event: e, palette: palette, t: t)),
+              _EventCard(event: e, palette: palette, t: t,
+                onTap: () => _showEventDetail(context, e, palette, t))),
             const SizedBox(height: SirajSpacing.s2),
           ],
 
           // ─── المناسبة القادمة ───
           _SectionTitle(title: t.cal_nextEvent, palette: palette),
-          Container(
-            padding: const EdgeInsets.all(SirajSpacing.s4),
-            decoration: BoxDecoration(
-              color: palette.surface,
-              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: SirajSpacing.s3, vertical: SirajSpacing.s1),
-                  decoration: BoxDecoration(
-                    color: palette.accentPrimary,
-                    borderRadius: BorderRadius.circular(SirajRadiusFull.xl),
+          GestureDetector(
+            onTap: () => _showEventDetail(context, nextEvent, palette, t),
+            child: Container(
+              padding: const EdgeInsets.all(SirajSpacing.s4),
+              decoration: BoxDecoration(
+                color: palette.surface,
+                borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: SirajSpacing.s3, vertical: SirajSpacing.s1),
+                    decoration: BoxDecoration(
+                      color: palette.accentPrimary,
+                      borderRadius: BorderRadius.circular(SirajRadiusFull.xl),
+                    ),
+                    child: Text(t.cal_daysUntil(nextEventDays),
+                      style: AppText.bodySmall.copyWith(
+                        color: palette.background, fontWeight: FontWeight.w600)),
                   ),
-                  child: Text(t.cal_daysUntil(nextEvent['days'] as int),
-                    style: AppText.bodySmall.copyWith(
-                      color: palette.background, fontWeight: FontWeight.w600)),
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(eventName(t, nextEvent['event'] as IslamicEvent),
-                        style: AppText.body.copyWith(
-                          color: palette.textPrimary, fontWeight: FontWeight.w500)),
-                      Text('${(nextEvent['event'] as IslamicEvent).hijriDay} '
-                          '${hijriMonthName(t, (nextEvent['event'] as IslamicEvent).hijriMonth)}',
-                        style: AppText.caption.copyWith(color: palette.textSecondary)),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(eventName(t, nextEvent),
+                          style: AppText.body.copyWith(
+                            color: palette.textPrimary, fontWeight: FontWeight.w500)),
+                        Text('${nextEvent.hijriDay} ${hijriMonthName(t, nextEvent.hijriMonth)}',
+                          style: AppText.caption.copyWith(color: palette.textSecondary)),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           const SizedBox(height: SirajSpacing.s4),
 
-          // ─── كل المناسبات ───
+          // ─── كل المناسبات (مرتَّبة حسب الأقرب زمنياً) ───
           _SectionTitle(title: t.cal_allEvents, palette: palette),
-          ...islamicEvents.map((e) =>
-            _EventCard(event: e, palette: palette, t: t)),
+          ...sortedEvents.map((e) =>
+            _EventCard(event: e, palette: palette, t: t,
+              onTap: () => _showEventDetail(context, e, palette, t))),
           const SizedBox(height: SirajSpacing.s8),
         ],
+      ),
+    );
+  }
+}
+
+class _MonthGrid extends StatelessWidget {
+  final DateTime viewedMonth;
+  final dynamic palette;
+  final AppLocalizations t;
+  final VoidCallback onPrev;
+  final VoidCallback onNext;
+  final void Function(HijriDate hijri) onDayTap;
+
+  const _MonthGrid({
+    required this.viewedMonth,
+    required this.palette,
+    required this.t,
+    required this.onPrev,
+    required this.onNext,
+    required this.onDayTap,
+  });
+
+  static const _weekdayLabels = ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'];
+
+  @override
+  Widget build(BuildContext context) {
+    final daysInMonth = DateTime(viewedMonth.year, viewedMonth.month + 1, 0).day;
+    // Flutter: Monday=1..Sunday=7 → نريد الأحد=0..السبت=6
+    final leadingBlanks = viewedMonth.weekday % 7;
+    final now = DateTime.now();
+    final isCurrentMonth = now.year == viewedMonth.year && now.month == viewedMonth.month;
+
+    final monthLabel = '${_gregorianMonthName(viewedMonth.month)} ${viewedMonth.year}';
+
+    return Container(
+      padding: const EdgeInsets.all(SirajSpacing.s4),
+      decoration: BoxDecoration(
+        color: palette.surface,
+        borderRadius: BorderRadius.circular(SirajRadiusFull.xl),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Semantics(
+                button: true,
+                label: t.cal_prevMonth,
+                child: GestureDetector(
+                  onTap: onPrev,
+                  child: Container(
+                    width: 32, height: 32,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: palette.background,
+                    ),
+                    child: Icon(Icons.chevron_right, size: 18, color: palette.textSecondary),
+                  ),
+                ),
+              ),
+              Text(monthLabel, style: AppText.body.copyWith(
+                color: palette.textPrimary, fontWeight: FontWeight.w600)),
+              Semantics(
+                button: true,
+                label: t.cal_nextMonth,
+                child: GestureDetector(
+                  onTap: onNext,
+                  child: Container(
+                    width: 32, height: 32,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: palette.background,
+                    ),
+                    child: Icon(Icons.chevron_left, size: 18, color: palette.textSecondary),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: SirajSpacing.s3),
+          GridView.count(
+            crossAxisCount: 7,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              for (final label in _weekdayLabels)
+                Center(
+                  child: Text(label, style: AppText.caption.copyWith(
+                    color: palette.textSecondary, fontSize: 10)),
+                ),
+              for (var i = 0; i < leadingBlanks; i++) const SizedBox(),
+              for (var day = 1; day <= daysInMonth; day++)
+                _DayCell(
+                  date: DateTime(viewedMonth.year, viewedMonth.month, day),
+                  isToday: isCurrentMonth && day == now.day,
+                  palette: palette,
+                  onTap: onDayTap,
+                ),
+            ],
+          ),
+          const SizedBox(height: SirajSpacing.s3),
+          // مفتاح الألوان (Legend)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _LegendDot(color: eventColor('eid'), label: t.cal_legendEid, palette: palette),
+              const SizedBox(width: SirajSpacing.s3),
+              _LegendDot(color: eventColor('fast'), label: t.cal_legendFast, palette: palette),
+              const SizedBox(width: SirajSpacing.s3),
+              _LegendDot(color: eventColor('blessed'), label: t.cal_legendBlessed, palette: palette),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _gregorianMonthName(int m) {
+    const names = [
+      'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+      'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر',
+    ];
+    return names[m - 1];
+  }
+}
+
+class _LegendDot extends StatelessWidget {
+  final Color color;
+  final String label;
+  final dynamic palette;
+  const _LegendDot({required this.color, required this.label, required this.palette});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 6, height: 6,
+          decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+        ),
+        const SizedBox(width: 4),
+        Text(label, style: AppText.caption.copyWith(
+          color: palette.textSecondary, fontSize: 10)),
+      ],
+    );
+  }
+}
+
+class _DayCell extends StatelessWidget {
+  final DateTime date;
+  final bool isToday;
+  final dynamic palette;
+  final void Function(HijriDate hijri) onTap;
+
+  const _DayCell({
+    required this.date,
+    required this.isToday,
+    required this.palette,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final hijri = HijriDate.fromGregorian(date);
+    final matchingEvents = islamicEvents.where(
+      (e) => e.hijriMonth == hijri.month && e.hijriDay == hijri.day);
+    final hasEvent = matchingEvents.isNotEmpty;
+
+    return GestureDetector(
+      onTap: hasEvent ? () => onTap(hijri) : null,
+      child: Container(
+        margin: const EdgeInsets.all(2),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: isToday
+              ? Border.all(color: SirajGold.pure, width: 1.5)
+              : null,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('${date.day}', style: AppText.caption.copyWith(
+              color: isToday ? SirajGold.pure : palette.textPrimary,
+              fontWeight: isToday ? FontWeight.w700 : FontWeight.w400,
+            )),
+            if (hasEvent)
+              Container(
+                width: 4, height: 4,
+                margin: const EdgeInsets.only(top: 1),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: eventColor(matchingEvents.first.type),
+                ),
+              )
+            else
+              const SizedBox(height: 5),
+          ],
+        ),
       ),
     );
   }
@@ -169,52 +498,45 @@ class _EventCard extends StatelessWidget {
   final IslamicEvent event;
   final dynamic palette;
   final AppLocalizations t;
-  const _EventCard({required this.event, required this.palette, required this.t});
-
-  Color _eventColor() {
-    switch (event.type) {
-      case 'eid':     return const Color(0xFF50B478);
-      case 'fast':    return const Color(0xFF6EB4D0);
-      case 'blessed': return SirajGold.pure;
-      default:        return SirajWhite.w40;
-    }
-  }
-
-  String _eventIcon() {
-    switch (event.type) {
-      case 'eid':     return '🎉';
-      case 'fast':    return '🌙';
-      case 'blessed': return '✨';
-      default:        return '📅';
-    }
-  }
+  final VoidCallback onTap;
+  const _EventCard({
+    required this.event,
+    required this.palette,
+    required this.t,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
-      padding: const EdgeInsets.all(SirajSpacing.s4),
-      decoration: BoxDecoration(
-        color: palette.surface,
-        borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-        border: BorderDirectional(
-          start: BorderSide(color: _eventColor(), width: 3),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text('${event.hijriDay} ${hijriMonthName(t, event.hijriMonth)}',
-            style: AppText.caption.copyWith(color: palette.textSecondary)),
-          Row(
-            children: [
-              Text(eventName(t, event), style: AppText.bodySmall.copyWith(
-                color: palette.textPrimary)),
-              const SizedBox(width: SirajSpacing.s2),
-              Text(_eventIcon(), style: const TextStyle(fontSize: 16)),
-            ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
+        padding: const EdgeInsets.all(SirajSpacing.s4),
+        decoration: BoxDecoration(
+          color: palette.surface,
+          borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+          border: BorderDirectional(
+            start: BorderSide(color: eventColor(event.type), width: 3),
           ),
-        ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('${event.hijriDay} ${hijriMonthName(t, event.hijriMonth)}',
+              style: AppText.caption.copyWith(color: palette.textSecondary)),
+            Row(
+              children: [
+                Text(eventName(t, event), style: AppText.bodySmall.copyWith(
+                  color: palette.textPrimary)),
+                const SizedBox(width: SirajSpacing.s2),
+                Text(eventIcon(event.type), style: const TextStyle(fontSize: 16)),
+                const SizedBox(width: SirajSpacing.s1),
+                Icon(Icons.chevron_left, size: 14, color: palette.textSecondary),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

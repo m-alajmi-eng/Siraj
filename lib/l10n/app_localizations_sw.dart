@@ -399,6 +399,25 @@ class AppLocalizationsSw extends AppLocalizations {
   String get cal_hijri => 'Hijiria';
 
   @override
+  String get cal_prevMonth => 'Mwezi uliopita';
+
+  @override
+  String get cal_nextMonth => 'Mwezi ujao';
+
+  @override
+  String get cal_legendEid => 'Eid';
+
+  @override
+  String get cal_legendFast => 'Funga';
+
+  @override
+  String get cal_legendBlessed => 'Baraka';
+
+  @override
+  String get cal_detailPending =>
+      'Hakuna maelezo zaidi (aya/hadithi/maelezo) yaliyopo bado kwa tukio hili - yanasubiri mapitio ya kidini.';
+
+  @override
   String get hm_1 => 'Muharram';
 
   @override

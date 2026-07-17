@@ -399,6 +399,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get cal_hijri => '希吉来历';
 
   @override
+  String get cal_prevMonth => '上个月';
+
+  @override
+  String get cal_nextMonth => '下个月';
+
+  @override
+  String get cal_legendEid => '开斋节/宰牲节';
+
+  @override
+  String get cal_legendFast => '斋戒';
+
+  @override
+  String get cal_legendBlessed => '吉庆';
+
+  @override
+  String get cal_detailPending => '此纪念日暂无更多详情（经文/圣训/说明）- 待宗教审核。';
+
+  @override
   String get hm_1 => '穆哈兰姆月';
 
   @override

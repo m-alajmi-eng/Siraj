@@ -399,6 +399,25 @@ class AppLocalizationsUr extends AppLocalizations {
   String get cal_hijri => 'ہجری';
 
   @override
+  String get cal_prevMonth => 'پچھلا مہینہ';
+
+  @override
+  String get cal_nextMonth => 'اگلا مہینہ';
+
+  @override
+  String get cal_legendEid => 'عید';
+
+  @override
+  String get cal_legendFast => 'روزہ';
+
+  @override
+  String get cal_legendBlessed => 'مبارک';
+
+  @override
+  String get cal_detailPending =>
+      'اس موقع کے لیے ابھی کوئی اضافی تفصیل (آیت/حدیث/تفصیل) دستیاب نہیں - دینی جائزے کا انتظار ہے۔';
+
+  @override
   String get hm_1 => 'محرم';
 
   @override

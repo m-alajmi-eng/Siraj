@@ -868,6 +868,42 @@ abstract class AppLocalizations {
   /// **'هجري'**
   String get cal_hijri;
 
+  /// No description provided for @cal_prevMonth.
+  ///
+  /// In ar, this message translates to:
+  /// **'الشهر السابق'**
+  String get cal_prevMonth;
+
+  /// No description provided for @cal_nextMonth.
+  ///
+  /// In ar, this message translates to:
+  /// **'الشهر التالي'**
+  String get cal_nextMonth;
+
+  /// No description provided for @cal_legendEid.
+  ///
+  /// In ar, this message translates to:
+  /// **'عيد'**
+  String get cal_legendEid;
+
+  /// No description provided for @cal_legendFast.
+  ///
+  /// In ar, this message translates to:
+  /// **'صيام'**
+  String get cal_legendFast;
+
+  /// No description provided for @cal_legendBlessed.
+  ///
+  /// In ar, this message translates to:
+  /// **'مبارك'**
+  String get cal_legendBlessed;
+
+  /// No description provided for @cal_detailPending.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا تفاصيل إضافية (آية/حديث/وصف) متاحة بعد لهذه المناسبة - قيد المراجعة الدينية.'**
+  String get cal_detailPending;
+
   /// No description provided for @hm_1.
   ///
   /// In ar, this message translates to:

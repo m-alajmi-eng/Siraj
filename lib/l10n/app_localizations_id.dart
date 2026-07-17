@@ -399,6 +399,25 @@ class AppLocalizationsId extends AppLocalizations {
   String get cal_hijri => 'Hijriah';
 
   @override
+  String get cal_prevMonth => 'Bulan sebelumnya';
+
+  @override
+  String get cal_nextMonth => 'Bulan berikutnya';
+
+  @override
+  String get cal_legendEid => 'Idul Fitri/Adha';
+
+  @override
+  String get cal_legendFast => 'Puasa';
+
+  @override
+  String get cal_legendBlessed => 'Diberkahi';
+
+  @override
+  String get cal_detailPending =>
+      'Belum ada detail tambahan (ayat/hadits/deskripsi) untuk peristiwa ini - menunggu tinjauan keagamaan.';
+
+  @override
   String get hm_1 => 'Muharram';
 
   @override
