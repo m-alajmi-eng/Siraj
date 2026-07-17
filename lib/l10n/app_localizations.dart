@@ -454,6 +454,12 @@ abstract class AppLocalizations {
   /// **'من الشمال باتجاه القبلة'**
   String get qibla_fromNorth;
 
+  /// No description provided for @qibla_distanceKm.
+  ///
+  /// In ar, this message translates to:
+  /// **'{km} كم إلى {kaaba}'**
+  String qibla_distanceKm(int km, String kaaba);
+
   /// No description provided for @stats_title.
   ///
   /// In ar, this message translates to:
@@ -1084,6 +1090,78 @@ abstract class AppLocalizations {
   /// **'الهوية'**
   String get settings_secIdentity;
 
+  /// No description provided for @onboarding_modeTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر وضع التطبيق'**
+  String get onboarding_modeTitle;
+
+  /// No description provided for @onboarding_modeSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'يمكنك تغييره لاحقاً من الإعدادات'**
+  String get onboarding_modeSubtitle;
+
+  /// No description provided for @onboarding_liteSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأساسيات · سريع · offline كامل'**
+  String get onboarding_liteSubtitle;
+
+  /// No description provided for @onboarding_fullSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'كل الميزات · شامل · عميق'**
+  String get onboarding_fullSubtitle;
+
+  /// No description provided for @onboarding_andMore.
+  ///
+  /// In ar, this message translates to:
+  /// **'+ المزيد'**
+  String get onboarding_andMore;
+
+  /// No description provided for @onboarding_madhabTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'المذهب الفقهي'**
+  String get onboarding_madhabTitle;
+
+  /// No description provided for @onboarding_madhabSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'لحساب أوقات الصلاة بدقة'**
+  String get onboarding_madhabSubtitle;
+
+  /// No description provided for @onboarding_locationTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحديد موقعك'**
+  String get onboarding_locationTitle;
+
+  /// No description provided for @onboarding_locationSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'لأوقات صلاة دقيقة'**
+  String get onboarding_locationSubtitle;
+
+  /// No description provided for @onboarding_locationBody.
+  ///
+  /// In ar, this message translates to:
+  /// **'التطبيق سيطلب إذن الموقع\nلتحديد أوقات الصلاة تلقائياً'**
+  String get onboarding_locationBody;
+
+  /// No description provided for @onboarding_locationPrivacy.
+  ///
+  /// In ar, this message translates to:
+  /// **'بياناتك تبقى على جهازك فقط'**
+  String get onboarding_locationPrivacy;
+
+  /// No description provided for @onboarding_start.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابدأ'**
+  String get onboarding_start;
+
   /// No description provided for @settings_dirRtl.
   ///
   /// In ar, this message translates to:
@@ -1641,6 +1719,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تعذّر التحميل'**
   String get portal_loadError;
+
+  /// No description provided for @portal_translationPendingReview.
+  ///
+  /// In ar, this message translates to:
+  /// **'بانتظار مراجعة المجتمع'**
+  String get portal_translationPendingReview;
 
   /// No description provided for @portal_comingSoon.
   ///

@@ -186,6 +186,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get qibla_fromNorth => 'من الشمال باتجاه القبلة';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km كم إلى $kaaba';
+  }
+
+  @override
   String get stats_title => 'إحصائياتي';
 
   @override
@@ -508,6 +513,43 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settings_secIdentity => 'الهوية';
 
   @override
+  String get onboarding_modeTitle => 'اختر وضع التطبيق';
+
+  @override
+  String get onboarding_modeSubtitle => 'يمكنك تغييره لاحقاً من الإعدادات';
+
+  @override
+  String get onboarding_liteSubtitle => 'الأساسيات · سريع · offline كامل';
+
+  @override
+  String get onboarding_fullSubtitle => 'كل الميزات · شامل · عميق';
+
+  @override
+  String get onboarding_andMore => '+ المزيد';
+
+  @override
+  String get onboarding_madhabTitle => 'المذهب الفقهي';
+
+  @override
+  String get onboarding_madhabSubtitle => 'لحساب أوقات الصلاة بدقة';
+
+  @override
+  String get onboarding_locationTitle => 'تحديد موقعك';
+
+  @override
+  String get onboarding_locationSubtitle => 'لأوقات صلاة دقيقة';
+
+  @override
+  String get onboarding_locationBody =>
+      'التطبيق سيطلب إذن الموقع\nلتحديد أوقات الصلاة تلقائياً';
+
+  @override
+  String get onboarding_locationPrivacy => 'بياناتك تبقى على جهازك فقط';
+
+  @override
+  String get onboarding_start => 'ابدأ';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override
@@ -799,6 +841,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get portal_loadError => 'تعذّر التحميل';
+
+  @override
+  String get portal_translationPendingReview => 'بانتظار مراجعة المجتمع';
 
   @override
   String get portal_comingSoon => 'قريباً';

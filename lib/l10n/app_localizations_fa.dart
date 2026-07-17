@@ -186,6 +186,11 @@ class AppLocalizationsFa extends AppLocalizations {
   String get qibla_fromNorth => 'درجه از شمال به سمت قبله';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km کیلومتر تا $kaaba';
+  }
+
+  @override
   String get stats_title => 'آمار من';
 
   @override
@@ -508,6 +513,45 @@ class AppLocalizationsFa extends AppLocalizations {
   String get settings_secIdentity => 'هویت';
 
   @override
+  String get onboarding_modeTitle => 'حالت برنامه را انتخاب کنید';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'می‌توانید بعداً آن را از تنظیمات تغییر دهید';
+
+  @override
+  String get onboarding_liteSubtitle => 'اصول اولیه · سریع · کاملاً آفلاین';
+
+  @override
+  String get onboarding_fullSubtitle => 'همه ویژگی‌ها · جامع · عمیق';
+
+  @override
+  String get onboarding_andMore => '+ بیشتر';
+
+  @override
+  String get onboarding_madhabTitle => 'مذهب فقهی';
+
+  @override
+  String get onboarding_madhabSubtitle => 'برای محاسبه دقیق اوقات نماز';
+
+  @override
+  String get onboarding_locationTitle => 'مکان خود را تعیین کنید';
+
+  @override
+  String get onboarding_locationSubtitle => 'برای اوقات نماز دقیق';
+
+  @override
+  String get onboarding_locationBody =>
+      'برنامه اجازه دسترسی به مکان را درخواست می‌کند\nتا اوقات نماز را به‌طور خودکار تعیین کند';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'داده‌های شما فقط روی دستگاهتان باقی می‌ماند';
+
+  @override
+  String get onboarding_start => 'شروع';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override
@@ -799,6 +843,9 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get portal_loadError => 'بارگذاری ناموفق بود';
+
+  @override
+  String get portal_translationPendingReview => 'در انتظار بررسی جامعه';
 
   @override
   String get portal_comingSoon => 'به‌زودی';

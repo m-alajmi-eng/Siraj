@@ -186,6 +186,11 @@ class AppLocalizationsTr extends AppLocalizations {
   String get qibla_fromNorth => 'Kuzeyden Kıbleye derece';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$kaaba\'ye $km km';
+  }
+
+  @override
   String get stats_title => 'İstatistiklerim';
 
   @override
@@ -508,6 +513,48 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_secIdentity => 'Kimlik';
 
   @override
+  String get onboarding_modeTitle => 'Uygulama modunu seçin';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Bunu daha sonra ayarlardan değiştirebilirsiniz';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Temel özellikler · Hızlı · Tamamen çevrimdışı';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'Tüm özellikler · Kapsamlı · Derinlemesine';
+
+  @override
+  String get onboarding_andMore => '+ daha fazla';
+
+  @override
+  String get onboarding_madhabTitle => 'Fıkıh Mezhebi';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Namaz vakitlerini doğru hesaplamak için';
+
+  @override
+  String get onboarding_locationTitle => 'Konumunuzu belirleyin';
+
+  @override
+  String get onboarding_locationSubtitle => 'Doğru namaz vakitleri için';
+
+  @override
+  String get onboarding_locationBody =>
+      'Uygulama, namaz vakitlerini otomatik\nbelirlemek için konum izni isteyecek';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Verileriniz yalnızca cihazınızda kalır';
+
+  @override
+  String get onboarding_start => 'Başla';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override
@@ -799,6 +846,10 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get portal_loadError => 'Yüklenemedi';
+
+  @override
+  String get portal_translationPendingReview =>
+      'Topluluk incelemesi bekleniyor';
 
   @override
   String get portal_comingSoon => 'Yakında';

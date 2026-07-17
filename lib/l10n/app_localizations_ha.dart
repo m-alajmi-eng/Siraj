@@ -186,6 +186,11 @@ class AppLocalizationsHa extends AppLocalizations {
   String get qibla_fromNorth => 'Digiri daga Arewa zuwa Alkibla';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km km zuwa $kaaba';
+  }
+
+  @override
   String get stats_title => 'Ƙididdiga Na';
 
   @override
@@ -509,6 +514,46 @@ class AppLocalizationsHa extends AppLocalizations {
   String get settings_secIdentity => 'Shaida';
 
   @override
+  String get onboarding_modeTitle => 'Zaɓi yanayin manhaja';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Za ka iya canza shi daga baya a cikin saitunan';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Muhimman abubuwa · Sauri · Cikakken offline';
+
+  @override
+  String get onboarding_fullSubtitle => 'Dukkan fasaloli · Cikakke · Zurfi';
+
+  @override
+  String get onboarding_andMore => '+ ƙari';
+
+  @override
+  String get onboarding_madhabTitle => 'Mazhabin Fikihu';
+
+  @override
+  String get onboarding_madhabSubtitle => 'Don lissafin lokutan sallah daidai';
+
+  @override
+  String get onboarding_locationTitle => 'Tantance wurin da kake';
+
+  @override
+  String get onboarding_locationSubtitle => 'Don daidaitattun lokutan sallah';
+
+  @override
+  String get onboarding_locationBody =>
+      'Manhajar za ta nemi izinin wuri\ndon tantance lokutan sallah ta atomatik';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Bayananka suna zama a na\'urarka kawai';
+
+  @override
+  String get onboarding_start => 'Fara';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override
@@ -801,6 +846,9 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get portal_loadError => 'An kasa loda';
+
+  @override
+  String get portal_translationPendingReview => 'Ana jiran dubawar al\'umma';
 
   @override
   String get portal_comingSoon => 'Nan ba da jimawa ba';

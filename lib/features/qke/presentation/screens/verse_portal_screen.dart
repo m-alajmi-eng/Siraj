@@ -7,6 +7,7 @@ import '../../../../core/widgets/citation_badge.dart';
 import '../../data/qke_repository.dart';
 import '../../../../core/constants/translations.dart';
 import '../../data/translation_service.dart';
+import '../../data/translation_review_status_service.dart';
 
 class VersePortalScreen extends ConsumerStatefulWidget {
   final int surahId;
@@ -868,6 +869,7 @@ class _TranslationsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final reviewStatus = ref.watch(translationReviewStatusProvider).value ?? const {};
     return ListView(
       padding: const EdgeInsets.all(16),
       children: quranTranslations.map((t) {
@@ -877,6 +879,10 @@ class _TranslationsPage extends ConsumerWidget {
           ayahNumber: ayahNumber,
         )));
         final isRtl = t['direction'] == 'rtl';
+        final langCode = (t['edition'] ?? '').split('.').first;
+        // الافتراض الآمن عند غياب بيانات الحالة (لا اتصال/لغة غير
+        // مسجَّلة بعد): "غير مراجَعة" - لا نُخفي الشارة أبداً.
+        final isReviewed = reviewStatus[langCode] ?? false;
         return Container(
           margin:  const EdgeInsets.only(bottom: 12),
           padding: const EdgeInsets.all(16),
@@ -905,6 +911,17 @@ class _TranslationsPage extends ConsumerWidget {
                   ),
                 ],
               ),
+              if (!isReviewed) ...[
+                const SizedBox(height: 6),
+                Text(
+                  AppLocalizations.of(context).portal_translationPendingReview,
+                  style: TextStyle(
+                    color: palette.textSecondary,
+                    fontSize: 11,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
               const SizedBox(height: 10),
               async.when(
                 loading: () => Center(

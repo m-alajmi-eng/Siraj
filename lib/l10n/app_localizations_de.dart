@@ -186,6 +186,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get qibla_fromNorth => 'Grad vom Norden zur Qibla';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km km bis $kaaba';
+  }
+
+  @override
   String get stats_title => 'Meine Statistiken';
 
   @override
@@ -508,6 +513,48 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settings_secIdentity => 'Identität';
 
   @override
+  String get onboarding_modeTitle => 'App-Modus wählen';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Du kannst dies später in den Einstellungen ändern';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Das Wesentliche · Schnell · Vollständig offline';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'Alle Funktionen · Umfassend · Ausführlich';
+
+  @override
+  String get onboarding_andMore => '+ mehr';
+
+  @override
+  String get onboarding_madhabTitle => 'Rechtsschule (Madhhab)';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Für eine genaue Berechnung der Gebetszeiten';
+
+  @override
+  String get onboarding_locationTitle => 'Standort festlegen';
+
+  @override
+  String get onboarding_locationSubtitle => 'Für genaue Gebetszeiten';
+
+  @override
+  String get onboarding_locationBody =>
+      'Die App fragt nach dem Standortzugriff,\num die Gebetszeiten automatisch zu bestimmen';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Deine Daten verbleiben nur auf deinem Gerät';
+
+  @override
+  String get onboarding_start => 'Starten';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override
@@ -800,6 +847,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get portal_loadError => 'Laden fehlgeschlagen';
+
+  @override
+  String get portal_translationPendingReview =>
+      'Wartet auf Überprüfung durch die Community';
 
   @override
   String get portal_comingSoon => 'Bald';

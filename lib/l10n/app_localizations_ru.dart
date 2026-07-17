@@ -186,6 +186,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get qibla_fromNorth => 'Градусов от севера к Кибле';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km км до $kaaba';
+  }
+
+  @override
   String get stats_title => 'Моя статистика';
 
   @override
@@ -508,6 +513,46 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_secIdentity => 'Идентификация';
 
   @override
+  String get onboarding_modeTitle => 'Выберите режим приложения';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Вы можете изменить это позже в настройках';
+
+  @override
+  String get onboarding_liteSubtitle => 'Основное · Быстро · Полностью офлайн';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'Все функции · Полный набор · Углублённо';
+
+  @override
+  String get onboarding_andMore => '+ ещё';
+
+  @override
+  String get onboarding_madhabTitle => 'Мазхаб (правовая школа)';
+
+  @override
+  String get onboarding_madhabSubtitle => 'Для точного расчёта времени намаза';
+
+  @override
+  String get onboarding_locationTitle => 'Укажите своё местоположение';
+
+  @override
+  String get onboarding_locationSubtitle => 'Для точного времени намаза';
+
+  @override
+  String get onboarding_locationBody =>
+      'Приложение запросит доступ к местоположению,\nчтобы автоматически определять время намаза';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Ваши данные остаются только на вашем устройстве';
+
+  @override
+  String get onboarding_start => 'Начать';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override
@@ -801,6 +846,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get portal_loadError => 'Не удалось загрузить';
+
+  @override
+  String get portal_translationPendingReview => 'Ожидает проверки сообществом';
 
   @override
   String get portal_comingSoon => 'Скоро';
