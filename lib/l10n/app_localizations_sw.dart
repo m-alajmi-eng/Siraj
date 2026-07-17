@@ -334,6 +334,15 @@ class AppLocalizationsSw extends AppLocalizations {
   String get home_qiblaDirection => 'Mwelekeo wa Kibla';
 
   @override
+  String get time_hr => 'saa';
+
+  @override
+  String get time_min => 'dak';
+
+  @override
+  String get time_sec => 'sek';
+
+  @override
   String get home_continueReading => 'ENDELEA KUSOMA';
 
   @override
@@ -419,6 +428,25 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Hijiria';
+
+  @override
+  String get cal_prevMonth => 'Mwezi uliopita';
+
+  @override
+  String get cal_nextMonth => 'Mwezi ujao';
+
+  @override
+  String get cal_legendEid => 'Eid';
+
+  @override
+  String get cal_legendFast => 'Funga';
+
+  @override
+  String get cal_legendBlessed => 'Baraka';
+
+  @override
+  String get cal_detailPending =>
+      'Hakuna maelezo zaidi (aya/hadithi/maelezo) yaliyopo bado kwa tukio hili - yanasubiri mapitio ya kidini.';
 
   @override
   String get hm_1 => 'Muharram';
@@ -510,6 +538,12 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get settings_secIdentity => 'Utambulisho';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
 
   @override
   String get settings_secAdhan => 'Adhana';

@@ -334,6 +334,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get home_qiblaDirection => 'Dirección de la Quibla';
 
   @override
+  String get time_hr => 'h';
+
+  @override
+  String get time_min => 'min';
+
+  @override
+  String get time_sec => 'seg';
+
+  @override
   String get home_continueReading => 'Continuar leyendo';
 
   @override
@@ -419,6 +428,25 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Hégira';
+
+  @override
+  String get cal_prevMonth => 'Mes anterior';
+
+  @override
+  String get cal_nextMonth => 'Mes siguiente';
+
+  @override
+  String get cal_legendEid => 'Eid';
+
+  @override
+  String get cal_legendFast => 'Ayuno';
+
+  @override
+  String get cal_legendBlessed => 'Bendito';
+
+  @override
+  String get cal_detailPending =>
+      'Aún no hay detalles adicionales (versículo/hadiz/descripción) para esta ocasión - pendiente de revisión religiosa.';
 
   @override
   String get hm_1 => 'Muharram';
@@ -509,6 +537,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_secIdentity => 'Identidad';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
 
   @override
   String get settings_secAdhan => 'Adhan';

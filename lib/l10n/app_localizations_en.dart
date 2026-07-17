@@ -334,6 +334,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home_qiblaDirection => 'Qibla Direction';
 
   @override
+  String get time_hr => 'hr';
+
+  @override
+  String get time_min => 'min';
+
+  @override
+  String get time_sec => 'sec';
+
+  @override
   String get home_continueReading => 'CONTINUE READING';
 
   @override
@@ -419,6 +428,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Hijri';
+
+  @override
+  String get cal_prevMonth => 'Previous month';
+
+  @override
+  String get cal_nextMonth => 'Next month';
+
+  @override
+  String get cal_legendEid => 'Eid';
+
+  @override
+  String get cal_legendFast => 'Fast';
+
+  @override
+  String get cal_legendBlessed => 'Blessed';
+
+  @override
+  String get cal_detailPending =>
+      'No additional details (verse/hadith/description) available yet for this occasion - pending religious review.';
 
   @override
   String get hm_1 => 'Muharram';
@@ -509,6 +537,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_secIdentity => 'Identity';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
 
   @override
   String get settings_secAdhan => 'Adhan';

@@ -748,6 +748,24 @@ abstract class AppLocalizations {
   /// **'اتجاه القبلة'**
   String get home_qiblaDirection;
 
+  /// No description provided for @time_hr.
+  ///
+  /// In ar, this message translates to:
+  /// **'ساعة'**
+  String get time_hr;
+
+  /// No description provided for @time_min.
+  ///
+  /// In ar, this message translates to:
+  /// **'دقيقة'**
+  String get time_min;
+
+  /// No description provided for @time_sec.
+  ///
+  /// In ar, this message translates to:
+  /// **'ثانية'**
+  String get time_sec;
+
   /// No description provided for @home_continueReading.
   ///
   /// In ar, this message translates to:
@@ -909,6 +927,42 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'هجري'**
   String get cal_hijri;
+
+  /// No description provided for @cal_prevMonth.
+  ///
+  /// In ar, this message translates to:
+  /// **'الشهر السابق'**
+  String get cal_prevMonth;
+
+  /// No description provided for @cal_nextMonth.
+  ///
+  /// In ar, this message translates to:
+  /// **'الشهر التالي'**
+  String get cal_nextMonth;
+
+  /// No description provided for @cal_legendEid.
+  ///
+  /// In ar, this message translates to:
+  /// **'عيد'**
+  String get cal_legendEid;
+
+  /// No description provided for @cal_legendFast.
+  ///
+  /// In ar, this message translates to:
+  /// **'صيام'**
+  String get cal_legendFast;
+
+  /// No description provided for @cal_legendBlessed.
+  ///
+  /// In ar, this message translates to:
+  /// **'مبارك'**
+  String get cal_legendBlessed;
+
+  /// No description provided for @cal_detailPending.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا تفاصيل إضافية (آية/حديث/وصف) متاحة بعد لهذه المناسبة - قيد المراجعة الدينية.'**
+  String get cal_detailPending;
 
   /// No description provided for @hm_1.
   ///
@@ -1089,6 +1143,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الهوية'**
   String get settings_secIdentity;
+
+  /// No description provided for @settings_dirRtl.
+  ///
+  /// In ar, this message translates to:
+  /// **'RTL'**
+  String get settings_dirRtl;
+
+  /// No description provided for @settings_dirLtr.
+  ///
+  /// In ar, this message translates to:
+  /// **'LTR'**
+  String get settings_dirLtr;
 
   /// No description provided for @settings_secAdhan.
   ///
