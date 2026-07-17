@@ -202,6 +202,8 @@
   "stories_comingSoonMsg": "Próximamente — contenido en preparación",
   "children_title": "Historias para niños",
   "settings_secIdentity": "Identidad",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "Adhan",
   "settings_secApp": "Aplicación",
   "settings_secPrivacy": "Privacidad",

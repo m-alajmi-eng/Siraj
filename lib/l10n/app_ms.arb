@@ -202,6 +202,8 @@
   "stories_comingSoonMsg": "Akan datang — kandungan sedang disediakan",
   "children_title": "Kisah Kanak-kanak",
   "settings_secIdentity": "Identiti",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "Azan",
   "settings_secApp": "Aplikasi",
   "settings_secPrivacy": "Privasi",

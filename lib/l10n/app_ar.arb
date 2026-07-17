@@ -223,6 +223,8 @@
   "stories_comingSoonMsg": "قريباً — نعمل على إضافة المحتوى",
   "children_title": "قصص الأطفال",
   "settings_secIdentity": "الهوية",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "الأذان",
   "settings_secApp": "التطبيق",
   "settings_secPrivacy": "الخصوصية",

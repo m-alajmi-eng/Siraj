@@ -202,6 +202,8 @@
   "stories_comingSoonMsg": "শীঘ্রই আসছে — কনটেন্ট প্রস্তুত হচ্ছে",
   "children_title": "শিশুদের গল্প",
   "settings_secIdentity": "পরিচয়",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "আজান",
   "settings_secApp": "অ্যাপ",
   "settings_secPrivacy": "গোপনীয়তা",

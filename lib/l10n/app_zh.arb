@@ -202,6 +202,8 @@
   "stories_comingSoonMsg": "即将推出 — 内容准备中",
   "children_title": "儿童故事",
   "settings_secIdentity": "身份",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "宣礼",
   "settings_secApp": "应用",
   "settings_secPrivacy": "隐私",

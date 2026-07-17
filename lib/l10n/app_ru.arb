@@ -202,6 +202,8 @@
   "stories_comingSoonMsg": "Скоро — контент готовится",
   "children_title": "Детские истории",
   "settings_secIdentity": "Идентификация",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "Азан",
   "settings_secApp": "Приложение",
   "settings_secPrivacy": "Конфиденциальность",

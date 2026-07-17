@@ -202,6 +202,8 @@
   "stories_comingSoonMsg": "جلد آ رہا ہے — مواد تیار ہو رہا ہے",
   "children_title": "بچوں کی کہانیاں",
   "settings_secIdentity": "شناخت",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "اذان",
   "settings_secApp": "ایپ",
   "settings_secPrivacy": "رازداری",

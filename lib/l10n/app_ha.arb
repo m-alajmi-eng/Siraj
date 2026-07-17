@@ -202,6 +202,8 @@
   "stories_comingSoonMsg": "Nan ba da jimawa ba — ana shirya abun ciki",
   "children_title": "Labaran Yara",
   "settings_secIdentity": "Shaida",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "Kira",
   "settings_secApp": "Manhaja",
   "settings_secPrivacy": "Sirri",

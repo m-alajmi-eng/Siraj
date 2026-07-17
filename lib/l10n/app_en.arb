@@ -223,6 +223,8 @@
   "stories_comingSoonMsg": "Coming soon — content in progress",
   "children_title": "Children's Stories",
   "settings_secIdentity": "Identity",
+  "settings_dirRtl": "RTL",
+  "settings_dirLtr": "LTR",
   "settings_secAdhan": "Adhan",
   "settings_secApp": "App",
   "settings_secPrivacy": "Privacy",

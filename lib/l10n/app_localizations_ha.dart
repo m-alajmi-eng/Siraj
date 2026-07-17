@@ -509,6 +509,12 @@ class AppLocalizationsHa extends AppLocalizations {
   String get settings_secIdentity => 'Shaida';
 
   @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'Kira';
 
   @override
