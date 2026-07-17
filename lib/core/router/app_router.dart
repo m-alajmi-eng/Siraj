@@ -41,6 +41,7 @@ import '../../features/quran/presentation/screens/page_reader_screen.dart';
 import '../../features/library/presentation/screens/library_items_screen.dart';
 import '../../features/library/presentation/screens/library_type_categories_screen.dart';
 import '../../features/more/presentation/screens/more_screen.dart';
+import '../../features/settings/presentation/screens/licenses_screen.dart';
 
 // ─── Router ───────────────────────────────────────────────
 final appRouterProvider = Provider<GoRouter>((ref) {
@@ -171,6 +172,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                GoRoute(
                  path:    'settings',
                  builder: (_, _) => const SettingsScreen(),
+                 routes: [
+                   GoRoute(
+                     path:    'licenses',
+                     builder: (_, _) => const LicensesScreen(),
+                   ),
+                 ],
                ),
                GoRoute(
                  path:    'calendar',

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../providers/hadith_provider.dart';
 
 /// شاشة فئات الأحاديث - المدخل الرئيسي لقسم الأحاديث.
@@ -15,6 +16,7 @@ class HadithCategoriesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final palette = ref.watch(timeThemeProvider);
+    final t = AppLocalizations.of(context);
     final categoriesAsync = ref.watch(hadithCategoriesProvider);
 
     return Scaffold(
@@ -23,6 +25,7 @@ class HadithCategoriesScreen extends ConsumerWidget {
         backgroundColor: palette.background,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: palette.textPrimary),
+          tooltip: t.common_back,
           onPressed: () => context.pop(),
         ),
         title: Text('الأحاديث',

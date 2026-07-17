@@ -101,6 +101,13 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode =>
+      'Переключить режим отображения (Мусхаф/перевод)';
+
+  @override
+  String get quran_toggleTajweed => 'Переключить цветовую разметку таджвида';
+
+  @override
   String get athkar_title => 'Азкар';
 
   @override
@@ -186,6 +193,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get qibla_fromNorth => 'Градусов от севера к Кибле';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km км до $kaaba';
+  }
+
+  @override
   String get stats_title => 'Моя статистика';
 
   @override
@@ -264,6 +276,24 @@ class AppLocalizationsRu extends AppLocalizations {
   String get common_offline => 'Нет подключения к интернету';
 
   @override
+  String get common_close => 'Закрыть';
+
+  @override
+  String get common_share => 'Поделиться';
+
+  @override
+  String get common_refresh => 'Обновить';
+
+  @override
+  String get common_prevPage => 'Предыдущая страница';
+
+  @override
+  String get common_nextPage => 'Следующая страница';
+
+  @override
+  String get common_clearSearch => 'Очистить поиск';
+
+  @override
   String get nav_home => 'Главная';
 
   @override
@@ -307,6 +337,15 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get home_qiblaDirection => 'Направление Киблы';
+
+  @override
+  String get time_hr => 'ч';
+
+  @override
+  String get time_min => 'мин';
+
+  @override
+  String get time_sec => 'сек';
 
   @override
   String get home_continueReading => 'ПРОДОЛЖИТЬ ЧТЕНИЕ';
@@ -367,6 +406,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get radio_international => 'Международные';
 
   @override
+  String get radio_play => 'Воспроизвести';
+
+  @override
+  String get radio_pause => 'Пауза';
+
+  @override
   String get cal_title => 'Исламский календарь';
 
   @override
@@ -388,6 +433,25 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Хиджра';
+
+  @override
+  String get cal_prevMonth => 'Предыдущий месяц';
+
+  @override
+  String get cal_nextMonth => 'Следующий месяц';
+
+  @override
+  String get cal_legendEid => 'Ид';
+
+  @override
+  String get cal_legendFast => 'Пост';
+
+  @override
+  String get cal_legendBlessed => 'Благословенный';
+
+  @override
+  String get cal_detailPending =>
+      'Дополнительные сведения (аят/хадис/описание) для этого события пока недоступны - ожидает религиозной проверки.';
 
   @override
   String get hm_1 => 'Мухаррам';
@@ -480,6 +544,52 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_secIdentity => 'Идентификация';
 
   @override
+  String get onboarding_modeTitle => 'Выберите режим приложения';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Вы можете изменить это позже в настройках';
+
+  @override
+  String get onboarding_liteSubtitle => 'Основное · Быстро · Полностью офлайн';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'Все функции · Полный набор · Углублённо';
+
+  @override
+  String get onboarding_andMore => '+ ещё';
+
+  @override
+  String get onboarding_madhabTitle => 'Мазхаб (правовая школа)';
+
+  @override
+  String get onboarding_madhabSubtitle => 'Для точного расчёта времени намаза';
+
+  @override
+  String get onboarding_locationTitle => 'Укажите своё местоположение';
+
+  @override
+  String get onboarding_locationSubtitle => 'Для точного времени намаза';
+
+  @override
+  String get onboarding_locationBody =>
+      'Приложение запросит доступ к местоположению,\nчтобы автоматически определять время намаза';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Ваши данные остаются только на вашем устройстве';
+
+  @override
+  String get onboarding_start => 'Начать';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'Азан';
 
   @override
@@ -514,6 +624,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Голос муэдзина';
+
+  @override
+  String get settings_previewAdhan => 'Прослушать голос азана';
 
   @override
   String get settings_vibration => 'Вибрация вместо звука';
@@ -578,6 +691,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_shareApp => 'Поделиться приложением';
+
+  @override
+  String get settings_licenses => 'Лицензии';
+
+  @override
+  String get settings_openSourcePackages => 'Лицензии открытых пакетов';
 
   @override
   String get settings_tagline => 'Сирадж — Свет над светом';
@@ -767,6 +886,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get portal_loadError => 'Не удалось загрузить';
+
+  @override
+  String get portal_translationPendingReview => 'Ожидает проверки сообществом';
 
   @override
   String get portal_comingSoon => 'Скоро';

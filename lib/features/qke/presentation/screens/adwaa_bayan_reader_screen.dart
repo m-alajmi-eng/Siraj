@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../data/adwaa_bayan_repository.dart';
 
 /// شاشة قراءة كتاب "أضواء البيان في إيضاح القرآن بالقرآن" داخل التطبيق،
@@ -16,6 +17,7 @@ class AdwaaBayanReaderScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final palette = ref.watch(timeThemeProvider);
+    final t = AppLocalizations.of(context);
     final pageAsync = ref.watch(adwaaBayanPageProvider(pageNumber));
 
     final canGoPrev = pageNumber > AdwaaBayanRepository.firstPage;
@@ -27,6 +29,7 @@ class AdwaaBayanReaderScreen extends ConsumerWidget {
         backgroundColor: palette.background,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: palette.textPrimary),
+          tooltip: t.common_back,
           onPressed: () => context.pop(),
         ),
         title: Text('أضواء البيان - صفحة $pageNumber',
@@ -74,6 +77,7 @@ class AdwaaBayanReaderScreen extends ConsumerWidget {
                         color: canGoPrev
                             ? palette.accentPrimary
                             : palette.textSecondary.withValues(alpha: 0.3)),
+                    tooltip: t.common_prevPage,
                     onPressed: canGoPrev
                         ? () => context.pushReplacement(
                             '/more/adwaa-bayan/${pageNumber - 1}')
@@ -87,6 +91,7 @@ class AdwaaBayanReaderScreen extends ConsumerWidget {
                         color: canGoNext
                             ? palette.accentPrimary
                             : palette.textSecondary.withValues(alpha: 0.3)),
+                    tooltip: t.common_nextPage,
                     onPressed: canGoNext
                         ? () => context.pushReplacement(
                             '/more/adwaa-bayan/${pageNumber + 1}')

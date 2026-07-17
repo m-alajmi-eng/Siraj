@@ -25,7 +25,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   geolocator: ^14.0.3
-  flutter_local_notifications: ^20.1.0
+  flutter_local_notifications: ^22.0.1
   font_awesome_flutter: ^11.0.0
   just_audio: ^0.10.6
   just_audio_background: ^0.0.1-beta.17
@@ -34,7 +34,7 @@ dependencies:
   media_kit_libs_linux: ^1.2.1
   url_launcher: ^6.3.2
   quran_library: ^4.2.1
-  timezone: ^0.10.1
+  timezone: ^0.11.1
   share_plus: ^13.2.0
   sentry_flutter: ^9.14.0
 dev_dependencies:

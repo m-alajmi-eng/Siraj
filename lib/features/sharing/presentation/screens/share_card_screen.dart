@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:ui' as ui;
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../widgets/share_card_widget.dart';
 
 class ShareCardScreen extends ConsumerStatefulWidget {
@@ -50,6 +51,7 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
   @override
   Widget build(BuildContext context) {
     final palette = ref.watch(timeThemeProvider);
+    final t       = AppLocalizations.of(context);
     final theme   = _themes[_selectedTheme];
     final format  = _formats[_selectedFormat];
 
@@ -65,6 +67,7 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
                 children: [
                   IconButton(
                     icon: Icon(Icons.close, color: palette.textPrimary),
+                    tooltip: t.common_close,
                     onPressed: () => Navigator.pop(context),
                   ),
                   Expanded(

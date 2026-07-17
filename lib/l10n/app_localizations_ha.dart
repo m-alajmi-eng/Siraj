@@ -101,6 +101,12 @@ class AppLocalizationsHa extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode => 'Canza yanayin nuni (Mushaf/fassara)';
+
+  @override
+  String get quran_toggleTajweed => 'Canza launin tajwid';
+
+  @override
   String get athkar_title => 'Azkar';
 
   @override
@@ -186,6 +192,11 @@ class AppLocalizationsHa extends AppLocalizations {
   String get qibla_fromNorth => 'Digiri daga Arewa zuwa Alkibla';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km km zuwa $kaaba';
+  }
+
+  @override
   String get stats_title => 'Ƙididdiga Na';
 
   @override
@@ -264,6 +275,24 @@ class AppLocalizationsHa extends AppLocalizations {
   String get common_offline => 'Babu haɗin intanet';
 
   @override
+  String get common_close => 'Rufe';
+
+  @override
+  String get common_share => 'Raba';
+
+  @override
+  String get common_refresh => 'Sabunta';
+
+  @override
+  String get common_prevPage => 'Shafi na baya';
+
+  @override
+  String get common_nextPage => 'Shafi na gaba';
+
+  @override
+  String get common_clearSearch => 'Share bincike';
+
+  @override
   String get nav_home => 'Gida';
 
   @override
@@ -307,6 +336,15 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get home_qiblaDirection => 'Hanyar Alƙibla';
+
+  @override
+  String get time_hr => 'awa';
+
+  @override
+  String get time_min => 'min';
+
+  @override
+  String get time_sec => 'sec';
 
   @override
   String get home_continueReading => 'CI GABA DA KARANTAWA';
@@ -367,6 +405,12 @@ class AppLocalizationsHa extends AppLocalizations {
   String get radio_international => 'Na Duniya';
 
   @override
+  String get radio_play => 'Kunna';
+
+  @override
+  String get radio_pause => 'Dakata';
+
+  @override
   String get cal_title => 'Kalandar Musulunci';
 
   @override
@@ -388,6 +432,25 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Hijira';
+
+  @override
+  String get cal_prevMonth => 'Watan da ya gabata';
+
+  @override
+  String get cal_nextMonth => 'Watan mai zuwa';
+
+  @override
+  String get cal_legendEid => 'Sallah';
+
+  @override
+  String get cal_legendFast => 'Azumi';
+
+  @override
+  String get cal_legendBlessed => 'Mai albarka';
+
+  @override
+  String get cal_detailPending =>
+      'Babu ƙarin bayani (aya/hadisi/bayani) da ake da su tukuna kan wannan biki - ana jiran nazarin addini.';
 
   @override
   String get hm_1 => 'Muharram';
@@ -481,6 +544,52 @@ class AppLocalizationsHa extends AppLocalizations {
   String get settings_secIdentity => 'Shaida';
 
   @override
+  String get onboarding_modeTitle => 'Zaɓi yanayin manhaja';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Za ka iya canza shi daga baya a cikin saitunan';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Muhimman abubuwa · Sauri · Cikakken offline';
+
+  @override
+  String get onboarding_fullSubtitle => 'Dukkan fasaloli · Cikakke · Zurfi';
+
+  @override
+  String get onboarding_andMore => '+ ƙari';
+
+  @override
+  String get onboarding_madhabTitle => 'Mazhabin Fikihu';
+
+  @override
+  String get onboarding_madhabSubtitle => 'Don lissafin lokutan sallah daidai';
+
+  @override
+  String get onboarding_locationTitle => 'Tantance wurin da kake';
+
+  @override
+  String get onboarding_locationSubtitle => 'Don daidaitattun lokutan sallah';
+
+  @override
+  String get onboarding_locationBody =>
+      'Manhajar za ta nemi izinin wuri\ndon tantance lokutan sallah ta atomatik';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Bayananka suna zama a na\'urarka kawai';
+
+  @override
+  String get onboarding_start => 'Fara';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'Kira';
 
   @override
@@ -515,6 +624,9 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Muryar Ladani';
+
+  @override
+  String get settings_previewAdhan => 'Gwada sautin kiran sallah';
 
   @override
   String get settings_vibration => 'Girgiza maimakon sauti';
@@ -578,6 +690,12 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get settings_shareApp => 'Raba Manhaja';
+
+  @override
+  String get settings_licenses => 'Lasisi';
+
+  @override
+  String get settings_openSourcePackages => 'Lasisin Kunshin Buɗaɗɗen Tushen';
 
   @override
   String get settings_tagline => 'Siraj — Haske bisa Haske';
@@ -767,6 +885,9 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get portal_loadError => 'An kasa loda';
+
+  @override
+  String get portal_translationPendingReview => 'Ana jiran dubawar al\'umma';
 
   @override
   String get portal_comingSoon => 'Nan ba da jimawa ba';

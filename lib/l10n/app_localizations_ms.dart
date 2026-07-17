@@ -101,6 +101,12 @@ class AppLocalizationsMs extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode => 'Tukar mod paparan (Mushaf/terjemahan)';
+
+  @override
+  String get quran_toggleTajweed => 'Tukar pewarnaan tajwid';
+
+  @override
   String get athkar_title => 'Zikir';
 
   @override
@@ -186,6 +192,11 @@ class AppLocalizationsMs extends AppLocalizations {
   String get qibla_fromNorth => 'Darjah dari Utara ke Kiblat';
 
   @override
+  String qibla_distanceKm(int km, String kaaba) {
+    return '$km km ke $kaaba';
+  }
+
+  @override
   String get stats_title => 'Statistik Saya';
 
   @override
@@ -264,6 +275,24 @@ class AppLocalizationsMs extends AppLocalizations {
   String get common_offline => 'Tiada sambungan internet';
 
   @override
+  String get common_close => 'Tutup';
+
+  @override
+  String get common_share => 'Kongsi';
+
+  @override
+  String get common_refresh => 'Segar semula';
+
+  @override
+  String get common_prevPage => 'Halaman sebelumnya';
+
+  @override
+  String get common_nextPage => 'Halaman seterusnya';
+
+  @override
+  String get common_clearSearch => 'Kosongkan carian';
+
+  @override
   String get nav_home => 'Utama';
 
   @override
@@ -307,6 +336,15 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get home_qiblaDirection => 'Arah Kiblat';
+
+  @override
+  String get time_hr => 'jam';
+
+  @override
+  String get time_min => 'min';
+
+  @override
+  String get time_sec => 'saat';
 
   @override
   String get home_continueReading => 'TERUSKAN MEMBACA';
@@ -367,6 +405,12 @@ class AppLocalizationsMs extends AppLocalizations {
   String get radio_international => 'Antarabangsa';
 
   @override
+  String get radio_play => 'Main';
+
+  @override
+  String get radio_pause => 'Jeda';
+
+  @override
   String get cal_title => 'Kalendar Islam';
 
   @override
@@ -388,6 +432,25 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get cal_hijri => 'Hijrah';
+
+  @override
+  String get cal_prevMonth => 'Bulan sebelumnya';
+
+  @override
+  String get cal_nextMonth => 'Bulan seterusnya';
+
+  @override
+  String get cal_legendEid => 'Eid';
+
+  @override
+  String get cal_legendFast => 'Puasa';
+
+  @override
+  String get cal_legendBlessed => 'Diberkati';
+
+  @override
+  String get cal_detailPending =>
+      'Belum ada butiran tambahan (ayat/hadis/penerangan) untuk peristiwa ini - menunggu semakan agama.';
 
   @override
   String get hm_1 => 'Muharram';
@@ -481,6 +544,53 @@ class AppLocalizationsMs extends AppLocalizations {
   String get settings_secIdentity => 'Identiti';
 
   @override
+  String get onboarding_modeTitle => 'Pilih mod aplikasi';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Anda boleh menukarnya kemudian dalam tetapan';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Asas · Pantas · Sepenuhnya luar talian';
+
+  @override
+  String get onboarding_fullSubtitle => 'Semua ciri · Menyeluruh · Mendalam';
+
+  @override
+  String get onboarding_andMore => '+ lagi';
+
+  @override
+  String get onboarding_madhabTitle => 'Mazhab Fiqh';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Untuk mengira waktu solat dengan tepat';
+
+  @override
+  String get onboarding_locationTitle => 'Tetapkan lokasi anda';
+
+  @override
+  String get onboarding_locationSubtitle => 'Untuk waktu solat yang tepat';
+
+  @override
+  String get onboarding_locationBody =>
+      'Aplikasi akan meminta kebenaran lokasi\nuntuk menentukan waktu solat secara automatik';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Data anda kekal hanya pada peranti anda';
+
+  @override
+  String get onboarding_start => 'Mula';
+
+  @override
+  String get settings_dirRtl => 'RTL';
+
+  @override
+  String get settings_dirLtr => 'LTR';
+
+  @override
   String get settings_secAdhan => 'Azan';
 
   @override
@@ -515,6 +625,9 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Suara Muazin';
+
+  @override
+  String get settings_previewAdhan => 'Pratonton suara azan';
 
   @override
   String get settings_vibration => 'Getar dan bukan bunyi';
@@ -579,6 +692,12 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get settings_shareApp => 'Kongsi Aplikasi';
+
+  @override
+  String get settings_licenses => 'Lesen';
+
+  @override
+  String get settings_openSourcePackages => 'Lesen Pakej Sumber Terbuka';
 
   @override
   String get settings_tagline => 'Siraj — Cahaya di atas Cahaya';
@@ -767,6 +886,9 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get portal_loadError => 'Gagal memuatkan';
+
+  @override
+  String get portal_translationPendingReview => 'Menunggu semakan komuniti';
 
   @override
   String get portal_comingSoon => 'Tidak lama lagi';

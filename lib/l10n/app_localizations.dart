@@ -292,6 +292,18 @@ abstract class AppLocalizations {
   /// **'الآية {number}'**
   String quran_ayahNumber(int number);
 
+  /// No description provided for @quran_toggleDisplayMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'تبديل نمط العرض (مصحف/ترجمة)'**
+  String get quran_toggleDisplayMode;
+
+  /// No description provided for @quran_toggleTajweed.
+  ///
+  /// In ar, this message translates to:
+  /// **'تبديل تلوين أحكام التجويد'**
+  String get quran_toggleTajweed;
+
   /// No description provided for @athkar_title.
   ///
   /// In ar, this message translates to:
@@ -454,6 +466,12 @@ abstract class AppLocalizations {
   /// **'من الشمال باتجاه القبلة'**
   String get qibla_fromNorth;
 
+  /// No description provided for @qibla_distanceKm.
+  ///
+  /// In ar, this message translates to:
+  /// **'{km} كم إلى {kaaba}'**
+  String qibla_distanceKm(int km, String kaaba);
+
   /// No description provided for @stats_title.
   ///
   /// In ar, this message translates to:
@@ -610,6 +628,42 @@ abstract class AppLocalizations {
   /// **'لا يوجد اتصال بالإنترنت'**
   String get common_offline;
 
+  /// No description provided for @common_close.
+  ///
+  /// In ar, this message translates to:
+  /// **'إغلاق'**
+  String get common_close;
+
+  /// No description provided for @common_share.
+  ///
+  /// In ar, this message translates to:
+  /// **'مشاركة'**
+  String get common_share;
+
+  /// No description provided for @common_refresh.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحديث'**
+  String get common_refresh;
+
+  /// No description provided for @common_prevPage.
+  ///
+  /// In ar, this message translates to:
+  /// **'الصفحة السابقة'**
+  String get common_prevPage;
+
+  /// No description provided for @common_nextPage.
+  ///
+  /// In ar, this message translates to:
+  /// **'الصفحة التالية'**
+  String get common_nextPage;
+
+  /// No description provided for @common_clearSearch.
+  ///
+  /// In ar, this message translates to:
+  /// **'مسح البحث'**
+  String get common_clearSearch;
+
   /// No description provided for @nav_home.
   ///
   /// In ar, this message translates to:
@@ -699,6 +753,24 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'اتجاه القبلة'**
   String get home_qiblaDirection;
+
+  /// No description provided for @time_hr.
+  ///
+  /// In ar, this message translates to:
+  /// **'ساعة'**
+  String get time_hr;
+
+  /// No description provided for @time_min.
+  ///
+  /// In ar, this message translates to:
+  /// **'دقيقة'**
+  String get time_min;
+
+  /// No description provided for @time_sec.
+  ///
+  /// In ar, this message translates to:
+  /// **'ثانية'**
+  String get time_sec;
 
   /// No description provided for @home_continueReading.
   ///
@@ -808,6 +880,18 @@ abstract class AppLocalizations {
   /// **'إذاعات دولية'**
   String get radio_international;
 
+  /// No description provided for @radio_play.
+  ///
+  /// In ar, this message translates to:
+  /// **'تشغيل'**
+  String get radio_play;
+
+  /// No description provided for @radio_pause.
+  ///
+  /// In ar, this message translates to:
+  /// **'إيقاف مؤقت'**
+  String get radio_pause;
+
   /// No description provided for @cal_title.
   ///
   /// In ar, this message translates to:
@@ -849,6 +933,42 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'هجري'**
   String get cal_hijri;
+
+  /// No description provided for @cal_prevMonth.
+  ///
+  /// In ar, this message translates to:
+  /// **'الشهر السابق'**
+  String get cal_prevMonth;
+
+  /// No description provided for @cal_nextMonth.
+  ///
+  /// In ar, this message translates to:
+  /// **'الشهر التالي'**
+  String get cal_nextMonth;
+
+  /// No description provided for @cal_legendEid.
+  ///
+  /// In ar, this message translates to:
+  /// **'عيد'**
+  String get cal_legendEid;
+
+  /// No description provided for @cal_legendFast.
+  ///
+  /// In ar, this message translates to:
+  /// **'صيام'**
+  String get cal_legendFast;
+
+  /// No description provided for @cal_legendBlessed.
+  ///
+  /// In ar, this message translates to:
+  /// **'مبارك'**
+  String get cal_legendBlessed;
+
+  /// No description provided for @cal_detailPending.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا تفاصيل إضافية (آية/حديث/وصف) متاحة بعد لهذه المناسبة - قيد المراجعة الدينية.'**
+  String get cal_detailPending;
 
   /// No description provided for @hm_1.
   ///
@@ -1030,6 +1150,90 @@ abstract class AppLocalizations {
   /// **'الهوية'**
   String get settings_secIdentity;
 
+  /// No description provided for @onboarding_modeTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر وضع التطبيق'**
+  String get onboarding_modeTitle;
+
+  /// No description provided for @onboarding_modeSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'يمكنك تغييره لاحقاً من الإعدادات'**
+  String get onboarding_modeSubtitle;
+
+  /// No description provided for @onboarding_liteSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأساسيات · سريع · offline كامل'**
+  String get onboarding_liteSubtitle;
+
+  /// No description provided for @onboarding_fullSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'كل الميزات · شامل · عميق'**
+  String get onboarding_fullSubtitle;
+
+  /// No description provided for @onboarding_andMore.
+  ///
+  /// In ar, this message translates to:
+  /// **'+ المزيد'**
+  String get onboarding_andMore;
+
+  /// No description provided for @onboarding_madhabTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'المذهب الفقهي'**
+  String get onboarding_madhabTitle;
+
+  /// No description provided for @onboarding_madhabSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'لحساب أوقات الصلاة بدقة'**
+  String get onboarding_madhabSubtitle;
+
+  /// No description provided for @onboarding_locationTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحديد موقعك'**
+  String get onboarding_locationTitle;
+
+  /// No description provided for @onboarding_locationSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'لأوقات صلاة دقيقة'**
+  String get onboarding_locationSubtitle;
+
+  /// No description provided for @onboarding_locationBody.
+  ///
+  /// In ar, this message translates to:
+  /// **'التطبيق سيطلب إذن الموقع\nلتحديد أوقات الصلاة تلقائياً'**
+  String get onboarding_locationBody;
+
+  /// No description provided for @onboarding_locationPrivacy.
+  ///
+  /// In ar, this message translates to:
+  /// **'بياناتك تبقى على جهازك فقط'**
+  String get onboarding_locationPrivacy;
+
+  /// No description provided for @onboarding_start.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابدأ'**
+  String get onboarding_start;
+
+  /// No description provided for @settings_dirRtl.
+  ///
+  /// In ar, this message translates to:
+  /// **'RTL'**
+  String get settings_dirRtl;
+
+  /// No description provided for @settings_dirLtr.
+  ///
+  /// In ar, this message translates to:
+  /// **'LTR'**
+  String get settings_dirLtr;
+
   /// No description provided for @settings_secAdhan.
   ///
   /// In ar, this message translates to:
@@ -1101,6 +1305,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'صوت المؤذن'**
   String get settings_muezzinVoice;
+
+  /// No description provided for @settings_previewAdhan.
+  ///
+  /// In ar, this message translates to:
+  /// **'معاينة صوت الأذان'**
+  String get settings_previewAdhan;
 
   /// No description provided for @settings_vibration.
   ///
@@ -1221,6 +1431,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'مشاركة التطبيق'**
   String get settings_shareApp;
+
+  /// No description provided for @settings_licenses.
+  ///
+  /// In ar, this message translates to:
+  /// **'التراخيص'**
+  String get settings_licenses;
+
+  /// No description provided for @settings_openSourcePackages.
+  ///
+  /// In ar, this message translates to:
+  /// **'تراخيص الحزم مفتوحة المصدر'**
+  String get settings_openSourcePackages;
 
   /// No description provided for @settings_tagline.
   ///
@@ -1575,6 +1797,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تعذّر التحميل'**
   String get portal_loadError;
+
+  /// No description provided for @portal_translationPendingReview.
+  ///
+  /// In ar, this message translates to:
+  /// **'بانتظار مراجعة المجتمع'**
+  String get portal_translationPendingReview;
 
   /// No description provided for @portal_comingSoon.
   ///
