@@ -112,11 +112,13 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                     children: [
                       IconButton(
                         icon: Icon(Icons.close, color: palette.textPrimary),
+                        tooltip: t.common_close,
                         onPressed: () => Navigator.pop(context),
                       ),
                       IconButton(
                         icon: Icon(Icons.share_outlined,
                           color: palette.accentPrimary),
+                        tooltip: t.common_share,
                         onPressed: () => context.push('/more/share', extra: {
                           'title':    'آية كريمة',
                           'subtitle': '${portal.surahName} · آية ${portal.ayahNumber}',

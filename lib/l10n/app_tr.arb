@@ -49,6 +49,8 @@
   "quran_searchReciter": "Okuyucu ara...",
   "quran_playPrompt": "Dinlemek için dokun",
   "quran_ayahNumber": "{number}. Ayet",
+  "quran_toggleDisplayMode": "Görüntüleme modunu değiştir (Mushaf/çeviri)",
+  "quran_toggleTajweed": "Tecvid renklendirmesini değiştir",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -130,6 +132,12 @@
   "common_search": "Ara",
   "common_noData": "Veri yok",
   "common_offline": "İnternet bağlantısı yok",
+  "common_close": "Kapat",
+  "common_share": "Paylaş",
+  "common_refresh": "Yenile",
+  "common_prevPage": "Önceki sayfa",
+  "common_nextPage": "Sonraki sayfa",
+  "common_clearSearch": "Aramayı temizle",
   "nav_home": "Ana Sayfa",
   "nav_quran": "Kuran",
   "nav_athkar": "Zikirler",
@@ -166,6 +174,8 @@
   "radio_tafsir": "Tefsir ve Fetva",
   "radio_athkar": "Zikirler",
   "radio_international": "Uluslararası",
+  "radio_play": "Oynat",
+  "radio_pause": "Duraklat",
   "cal_title": "İslami Takvim",
   "cal_todayEvents": "Bugünün Olayları",
   "cal_nextEvent": "Sonraki Olay",
@@ -235,6 +245,7 @@
   "settings_chooseCalc": "Hesaplama Yöntemi",
   "settings_enableAdhan": "Ezanı Etkinleştir",
   "settings_muezzinVoice": "Müezzin Sesi",
+  "settings_previewAdhan": "Ezan sesini önizle",
   "settings_vibration": "Ses yerine titreşim",
   "settings_iqamaAlert": "Kamet öncesi uyarı",
   "settings_minutes": "{n} dk",

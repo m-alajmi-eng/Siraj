@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../l10n/app_localizations.dart';
 import '../theme/design_tokens.dart';
 import '../theme/app_text.dart';
 import '../theme/time_theme_provider.dart';
@@ -102,17 +103,21 @@ class _BackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => context.pop(),
-      child: Container(
-        width: 40, height: 40,
-        decoration: BoxDecoration(
-          color: SirajWhite.w7,
-          shape: BoxShape.circle,
-          border: Border.all(color: SirajWhite.w10),
+    return Semantics(
+      button: true,
+      label: AppLocalizations.of(context).common_back,
+      child: GestureDetector(
+        onTap: () => context.pop(),
+        child: Container(
+          width: 40, height: 40,
+          decoration: BoxDecoration(
+            color: SirajWhite.w7,
+            shape: BoxShape.circle,
+            border: Border.all(color: SirajWhite.w10),
+          ),
+          // الأيقونة تنعكس تلقائياً مع الاتجاه
+          child: const Icon(Icons.arrow_back, color: SirajWhite.w70, size: 18),
         ),
-        // الأيقونة تنعكس تلقائياً مع الاتجاه
-        child: const Icon(Icons.arrow_back, color: SirajWhite.w70, size: 18),
       ),
     );
   }

@@ -58,6 +58,9 @@ class RadioScreen extends ConsumerWidget {
                       color: isCurrent ? palette.accentPrimary
                           : palette.textSecondary,
                       size: 38),
+                    tooltip: (isCurrent && radioState.isPlaying)
+                        ? t.radio_pause
+                        : t.radio_play,
                     onPressed: () => ref.read(radioProvider.notifier).play(station),
                   ),
                 );

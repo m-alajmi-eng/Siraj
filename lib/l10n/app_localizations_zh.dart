@@ -101,6 +101,12 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode => '切换显示模式（古兰经页面/翻译）';
+
+  @override
+  String get quran_toggleTajweed => '切换塔吉维德颜色标注';
+
+  @override
   String get athkar_title => '记念词';
 
   @override
@@ -269,6 +275,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get common_offline => '无网络连接';
 
   @override
+  String get common_close => '关闭';
+
+  @override
+  String get common_share => '分享';
+
+  @override
+  String get common_refresh => '刷新';
+
+  @override
+  String get common_prevPage => '上一页';
+
+  @override
+  String get common_nextPage => '下一页';
+
+  @override
+  String get common_clearSearch => '清除搜索';
+
+  @override
   String get nav_home => '主页';
 
   @override
@@ -379,6 +403,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get radio_international => '国际';
+
+  @override
+  String get radio_play => '播放';
+
+  @override
+  String get radio_pause => '暂停';
 
   @override
   String get cal_title => '伊斯兰历';
@@ -588,6 +618,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => '宣礼员声音';
+
+  @override
+  String get settings_previewAdhan => '预览宣礼声音';
 
   @override
   String get settings_vibration => '震动代替声音';

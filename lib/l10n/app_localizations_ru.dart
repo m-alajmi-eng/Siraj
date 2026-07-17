@@ -101,6 +101,13 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode =>
+      'Переключить режим отображения (Мусхаф/перевод)';
+
+  @override
+  String get quran_toggleTajweed => 'Переключить цветовую разметку таджвида';
+
+  @override
   String get athkar_title => 'Азкар';
 
   @override
@@ -269,6 +276,24 @@ class AppLocalizationsRu extends AppLocalizations {
   String get common_offline => 'Нет подключения к интернету';
 
   @override
+  String get common_close => 'Закрыть';
+
+  @override
+  String get common_share => 'Поделиться';
+
+  @override
+  String get common_refresh => 'Обновить';
+
+  @override
+  String get common_prevPage => 'Предыдущая страница';
+
+  @override
+  String get common_nextPage => 'Следующая страница';
+
+  @override
+  String get common_clearSearch => 'Очистить поиск';
+
+  @override
   String get nav_home => 'Главная';
 
   @override
@@ -379,6 +404,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get radio_international => 'Международные';
+
+  @override
+  String get radio_play => 'Воспроизвести';
+
+  @override
+  String get radio_pause => 'Пауза';
 
   @override
   String get cal_title => 'Исламский календарь';
@@ -593,6 +624,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Голос муэдзина';
+
+  @override
+  String get settings_previewAdhan => 'Прослушать голос азана';
 
   @override
   String get settings_vibration => 'Вибрация вместо звука';

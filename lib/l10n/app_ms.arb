@@ -82,6 +82,12 @@
   "common_search": "Cari",
   "common_noData": "Tiada data",
   "common_offline": "Tiada sambungan internet",
+  "common_close": "Tutup",
+  "common_share": "Kongsi",
+  "common_refresh": "Segar semula",
+  "common_prevPage": "Halaman sebelumnya",
+  "common_nextPage": "Halaman seterusnya",
+  "common_clearSearch": "Kosongkan carian",
   "prayer_countdown": "Dalam {time}",
   "@prayer_countdown": {
     "placeholders": {
@@ -107,6 +113,8 @@
     }
   },
   "quran_ayahNumber": "Ayat {number}",
+  "quran_toggleDisplayMode": "Tukar mod paparan (Mushaf/terjemahan)",
+  "quran_toggleTajweed": "Tukar pewarnaan tajwid",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -166,6 +174,8 @@
   "radio_tafsir": "Tafsir & Fatwa",
   "radio_athkar": "Zikir",
   "radio_international": "Antarabangsa",
+  "radio_play": "Main",
+  "radio_pause": "Jeda",
   "cal_title": "Kalendar Islam",
   "cal_todayEvents": "Peristiwa Hari Ini",
   "cal_nextEvent": "Peristiwa Seterusnya",
@@ -235,6 +245,7 @@
   "settings_chooseCalc": "Kaedah Pengiraan",
   "settings_enableAdhan": "Aktifkan Azan",
   "settings_muezzinVoice": "Suara Muazin",
+  "settings_previewAdhan": "Pratonton suara azan",
   "settings_vibration": "Getar dan bukan bunyi",
   "settings_iqamaAlert": "Amaran sebelum Iqamah",
   "settings_minutes": "{n} min",

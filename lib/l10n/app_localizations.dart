@@ -292,6 +292,18 @@ abstract class AppLocalizations {
   /// **'الآية {number}'**
   String quran_ayahNumber(int number);
 
+  /// No description provided for @quran_toggleDisplayMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'تبديل نمط العرض (مصحف/ترجمة)'**
+  String get quran_toggleDisplayMode;
+
+  /// No description provided for @quran_toggleTajweed.
+  ///
+  /// In ar, this message translates to:
+  /// **'تبديل تلوين أحكام التجويد'**
+  String get quran_toggleTajweed;
+
   /// No description provided for @athkar_title.
   ///
   /// In ar, this message translates to:
@@ -616,6 +628,42 @@ abstract class AppLocalizations {
   /// **'لا يوجد اتصال بالإنترنت'**
   String get common_offline;
 
+  /// No description provided for @common_close.
+  ///
+  /// In ar, this message translates to:
+  /// **'إغلاق'**
+  String get common_close;
+
+  /// No description provided for @common_share.
+  ///
+  /// In ar, this message translates to:
+  /// **'مشاركة'**
+  String get common_share;
+
+  /// No description provided for @common_refresh.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحديث'**
+  String get common_refresh;
+
+  /// No description provided for @common_prevPage.
+  ///
+  /// In ar, this message translates to:
+  /// **'الصفحة السابقة'**
+  String get common_prevPage;
+
+  /// No description provided for @common_nextPage.
+  ///
+  /// In ar, this message translates to:
+  /// **'الصفحة التالية'**
+  String get common_nextPage;
+
+  /// No description provided for @common_clearSearch.
+  ///
+  /// In ar, this message translates to:
+  /// **'مسح البحث'**
+  String get common_clearSearch;
+
   /// No description provided for @nav_home.
   ///
   /// In ar, this message translates to:
@@ -831,6 +879,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إذاعات دولية'**
   String get radio_international;
+
+  /// No description provided for @radio_play.
+  ///
+  /// In ar, this message translates to:
+  /// **'تشغيل'**
+  String get radio_play;
+
+  /// No description provided for @radio_pause.
+  ///
+  /// In ar, this message translates to:
+  /// **'إيقاف مؤقت'**
+  String get radio_pause;
 
   /// No description provided for @cal_title.
   ///
@@ -1245,6 +1305,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'صوت المؤذن'**
   String get settings_muezzinVoice;
+
+  /// No description provided for @settings_previewAdhan.
+  ///
+  /// In ar, this message translates to:
+  /// **'معاينة صوت الأذان'**
+  String get settings_previewAdhan;
 
   /// No description provided for @settings_vibration.
   ///

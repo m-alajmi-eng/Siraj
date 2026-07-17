@@ -101,6 +101,12 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode => 'تغییر حالت نمایش (مصحف/ترجمه)';
+
+  @override
+  String get quran_toggleTajweed => 'تغییر رنگ‌آمیزی احکام تجوید';
+
+  @override
   String get athkar_title => 'اذکار';
 
   @override
@@ -269,6 +275,24 @@ class AppLocalizationsFa extends AppLocalizations {
   String get common_offline => 'اتصال به اینترنت وجود ندارد';
 
   @override
+  String get common_close => 'بستن';
+
+  @override
+  String get common_share => 'اشتراک‌گذاری';
+
+  @override
+  String get common_refresh => 'به‌روزرسانی';
+
+  @override
+  String get common_prevPage => 'صفحه قبل';
+
+  @override
+  String get common_nextPage => 'صفحه بعد';
+
+  @override
+  String get common_clearSearch => 'پاک کردن جستجو';
+
+  @override
   String get nav_home => 'خانه';
 
   @override
@@ -379,6 +403,12 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get radio_international => 'بینالمللی';
+
+  @override
+  String get radio_play => 'پخش';
+
+  @override
+  String get radio_pause => 'توقف';
 
   @override
   String get cal_title => 'تقویم اسلامی';
@@ -592,6 +622,9 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'صدای مؤذن';
+
+  @override
+  String get settings_previewAdhan => 'پیش‌نمایش صدای اذان';
 
   @override
   String get settings_vibration => 'لرزش به‌جای صدا';

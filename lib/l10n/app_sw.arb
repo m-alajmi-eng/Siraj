@@ -82,6 +82,12 @@
   "common_search": "Tafuta",
   "common_noData": "Hakuna data",
   "common_offline": "Hakuna muunganisho wa intaneti",
+  "common_close": "Funga",
+  "common_share": "Shiriki",
+  "common_refresh": "Onyesha upya",
+  "common_prevPage": "Ukurasa uliopita",
+  "common_nextPage": "Ukurasa unaofuata",
+  "common_clearSearch": "Futa utafutaji",
   "prayer_countdown": "Katika {time}",
   "@prayer_countdown": {
     "placeholders": {
@@ -107,6 +113,8 @@
     }
   },
   "quran_ayahNumber": "Aya {number}",
+  "quran_toggleDisplayMode": "Badilisha hali ya uonyeshaji (Msahafu/tafsiri)",
+  "quran_toggleTajweed": "Badilisha rangi za tajwid",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -166,6 +174,8 @@
   "radio_tafsir": "Tafsiri na Fatwa",
   "radio_athkar": "Adhkari",
   "radio_international": "Kimataifa",
+  "radio_play": "Cheza",
+  "radio_pause": "Simamisha",
   "cal_title": "Kalenda ya Kiislamu",
   "cal_todayEvents": "Matukio ya Leo",
   "cal_nextEvent": "Tukio Lijalo",
@@ -235,6 +245,7 @@
   "settings_chooseCalc": "Njia ya Kukokotoa",
   "settings_enableAdhan": "Washa Adhana",
   "settings_muezzinVoice": "Sauti ya Muadhini",
+  "settings_previewAdhan": "Hakiki sauti ya adhana",
   "settings_vibration": "Mtetemo badala ya sauti",
   "settings_iqamaAlert": "Tahadhari kabla ya Ikama",
   "settings_minutes": "Dakika {n}",

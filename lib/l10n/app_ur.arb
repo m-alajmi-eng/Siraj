@@ -49,6 +49,8 @@
   "quran_searchReciter": "قاری تلاش کریں...",
   "quran_playPrompt": "سننے کے لیے دبائیں",
   "quran_ayahNumber": "آیت {number}",
+  "quran_toggleDisplayMode": "ڈسپلے موڈ تبدیل کریں (مصحف/ترجمہ)",
+  "quran_toggleTajweed": "تجوید کی رنگین علامات تبدیل کریں",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -130,6 +132,12 @@
   "common_search": "تلاش",
   "common_noData": "کوئی ڈیٹا نہیں",
   "common_offline": "انٹرنیٹ کنکشن نہیں",
+  "common_close": "بند کریں",
+  "common_share": "شیئر کریں",
+  "common_refresh": "تازہ کریں",
+  "common_prevPage": "پچھلا صفحہ",
+  "common_nextPage": "اگلا صفحہ",
+  "common_clearSearch": "تلاش صاف کریں",
   "nav_home": "ہوم",
   "nav_quran": "قرآن",
   "nav_athkar": "اذکار",
@@ -166,6 +174,8 @@
   "radio_tafsir": "تفسیر و فتاویٰ",
   "radio_athkar": "اذکار",
   "radio_international": "بین الاقوامی",
+  "radio_play": "چلائیں",
+  "radio_pause": "روکیں",
   "cal_title": "اسلامی کیلنڈر",
   "cal_todayEvents": "آج کے واقعات",
   "cal_nextEvent": "اگلا واقعہ",
@@ -235,6 +245,7 @@
   "settings_chooseCalc": "حساب کا طریقہ",
   "settings_enableAdhan": "اذان فعال کریں",
   "settings_muezzinVoice": "مؤذن کی آواز",
+  "settings_previewAdhan": "اذان کی آواز کا پیش نظارہ",
   "settings_vibration": "آواز کے بجائے ارتعاش",
   "settings_iqamaAlert": "اقامت سے پہلے انتباہ",
   "settings_minutes": "{n} منٹ",

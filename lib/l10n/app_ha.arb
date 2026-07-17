@@ -82,6 +82,12 @@
   "common_search": "Bincike",
   "common_noData": "Babu bayanan",
   "common_offline": "Babu haɗin intanet",
+  "common_close": "Rufe",
+  "common_share": "Raba",
+  "common_refresh": "Sabunta",
+  "common_prevPage": "Shafi na baya",
+  "common_nextPage": "Shafi na gaba",
+  "common_clearSearch": "Share bincike",
   "prayer_countdown": "A cikin {time}",
   "@prayer_countdown": {
     "placeholders": {
@@ -107,6 +113,8 @@
     }
   },
   "quran_ayahNumber": "Aya ta {number}",
+  "quran_toggleDisplayMode": "Canza yanayin nuni (Mushaf/fassara)",
+  "quran_toggleTajweed": "Canza launin tajwid",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -166,6 +174,8 @@
   "radio_tafsir": "Tafsiri da Fatawa",
   "radio_athkar": "Azkari",
   "radio_international": "Na Duniya",
+  "radio_play": "Kunna",
+  "radio_pause": "Dakata",
   "cal_title": "Kalandar Musulunci",
   "cal_todayEvents": "Abubuwan Yau",
   "cal_nextEvent": "Abu Na Gaba",
@@ -235,6 +245,7 @@
   "settings_chooseCalc": "Hanyar Lissafi",
   "settings_enableAdhan": "Kunna Kiran Sallah",
   "settings_muezzinVoice": "Muryar Ladani",
+  "settings_previewAdhan": "Gwada sautin kiran sallah",
   "settings_vibration": "Girgiza maimakon sauti",
   "settings_iqamaAlert": "Sanarwa kafin Iƙama",
   "settings_minutes": "Minti {n}",

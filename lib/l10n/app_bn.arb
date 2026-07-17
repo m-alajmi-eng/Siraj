@@ -49,6 +49,8 @@
   "quran_searchReciter": "ক্রী অনুসন্ধান করুন...",
   "quran_playPrompt": "শুনতে স্পর্শ করুন",
   "quran_ayahNumber": "{number} নম্বর আয়াত",
+  "quran_toggleDisplayMode": "প্রদর্শন মোড পরিবর্তন করুন (মুসহাফ/অনুবাদ)",
+  "quran_toggleTajweed": "তাজবিদ রঙ পরিবর্তন করুন",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -130,6 +132,12 @@
   "common_search": "অনুসন্ধান",
   "common_noData": "কোনো ডেটা নেই",
   "common_offline": "ইন্টারনেট সংযোগ নেই",
+  "common_close": "বন্ধ করুন",
+  "common_share": "শেয়ার করুন",
+  "common_refresh": "রিফ্রেশ করুন",
+  "common_prevPage": "আগের পৃষ্ঠা",
+  "common_nextPage": "পরের পৃষ্ঠা",
+  "common_clearSearch": "অনুসন্ধান মুছুন",
   "nav_home": "হোম",
   "nav_quran": "কুরআন",
   "nav_athkar": "যকর",
@@ -166,6 +174,8 @@
   "radio_tafsir": "তফসির ও ফতোয়া",
   "radio_athkar": "যিকর",
   "radio_international": "আন্তর্জাতিক",
+  "radio_play": "চালান",
+  "radio_pause": "বিরতি",
   "cal_title": "ইসলামি ক্যালেন্ডার",
   "cal_todayEvents": "আজকের ঘটন",
   "cal_nextEvent": "পরবর্তী ঘটনা",
@@ -235,6 +245,7 @@
   "settings_chooseCalc": "গণনার পদ্ধতি",
   "settings_enableAdhan": "আজান চালু করুন",
   "settings_muezzinVoice": "মুয়াজ্জিনর কণ্ঠ",
+  "settings_previewAdhan": "আজানের আওয়াজ পূর্বরূপ",
   "settings_vibration": "শব্দের পরিবর্তে কম্পন",
   "settings_iqamaAlert": "ইকামতের আগে সতর্তা",
   "settings_minutes": "{n} মিনিট",

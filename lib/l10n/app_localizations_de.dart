@@ -101,6 +101,13 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode =>
+      'Anzeigemodus wechseln (Mushaf/Übersetzung)';
+
+  @override
+  String get quran_toggleTajweed => 'Tajwid-Farbmarkierung umschalten';
+
+  @override
   String get athkar_title => 'Athkar';
 
   @override
@@ -269,6 +276,24 @@ class AppLocalizationsDe extends AppLocalizations {
   String get common_offline => 'Keine Internetverbindung';
 
   @override
+  String get common_close => 'Schließen';
+
+  @override
+  String get common_share => 'Teilen';
+
+  @override
+  String get common_refresh => 'Aktualisieren';
+
+  @override
+  String get common_prevPage => 'Vorherige Seite';
+
+  @override
+  String get common_nextPage => 'Nächste Seite';
+
+  @override
+  String get common_clearSearch => 'Suche löschen';
+
+  @override
   String get nav_home => 'Start';
 
   @override
@@ -379,6 +404,12 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get radio_international => 'International';
+
+  @override
+  String get radio_play => 'Abspielen';
+
+  @override
+  String get radio_pause => 'Pause';
 
   @override
   String get cal_title => 'Islamischer Kalender';
@@ -595,6 +626,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'Stimme des Muezzins';
+
+  @override
+  String get settings_previewAdhan => 'Adhan-Stimme anhören';
 
   @override
   String get settings_vibration => 'Vibration statt Ton';

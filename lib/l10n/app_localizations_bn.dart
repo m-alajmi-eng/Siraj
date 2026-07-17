@@ -101,6 +101,13 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String get quran_toggleDisplayMode =>
+      'প্রদর্শন মোড পরিবর্তন করুন (মুসহাফ/অনুবাদ)';
+
+  @override
+  String get quran_toggleTajweed => 'তাজবিদ রঙ পরিবর্তন করুন';
+
+  @override
   String get athkar_title => 'যিকর';
 
   @override
@@ -269,6 +276,24 @@ class AppLocalizationsBn extends AppLocalizations {
   String get common_offline => 'ইন্টারনেট সংযোগ নেই';
 
   @override
+  String get common_close => 'বন্ধ করুন';
+
+  @override
+  String get common_share => 'শেয়ার করুন';
+
+  @override
+  String get common_refresh => 'রিফ্রেশ করুন';
+
+  @override
+  String get common_prevPage => 'আগের পৃষ্ঠা';
+
+  @override
+  String get common_nextPage => 'পরের পৃষ্ঠা';
+
+  @override
+  String get common_clearSearch => 'অনুসন্ধান মুছুন';
+
+  @override
   String get nav_home => 'হোম';
 
   @override
@@ -379,6 +404,12 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get radio_international => 'আন্তর্জাতিক';
+
+  @override
+  String get radio_play => 'চালান';
+
+  @override
+  String get radio_pause => 'বিরতি';
 
   @override
   String get cal_title => 'ইসলামি ক্যালেন্ডার';
@@ -594,6 +625,9 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get settings_muezzinVoice => 'মুয়াজ্জিনর কণ্ঠ';
+
+  @override
+  String get settings_previewAdhan => 'আজানের আওয়াজ পূর্বরূপ';
 
   @override
   String get settings_vibration => 'শব্দের পরিবর্তে কম্পন';

@@ -49,6 +49,8 @@
   "quran_searchReciter": "Search for a reciter...",
   "quran_playPrompt": "Tap to listen",
   "quran_ayahNumber": "Verse {number}",
+  "quran_toggleDisplayMode": "Toggle display mode (Mushaf/translation)",
+  "quran_toggleTajweed": "Toggle tajweed color coding",
   "@quran_ayahNumber": {
     "placeholders": {
       "number": {
@@ -130,6 +132,12 @@
   "common_search": "Search",
   "common_noData": "No data available",
   "common_offline": "No internet connection",
+  "common_close": "Close",
+  "common_share": "Share",
+  "common_refresh": "Refresh",
+  "common_prevPage": "Previous page",
+  "common_nextPage": "Next page",
+  "common_clearSearch": "Clear search",
   "nav_home": "Home",
   "nav_quran": "Quran",
   "nav_athkar": "Athkar",
@@ -180,6 +188,8 @@
   "radio_tafsir": "Tafsir & Fatwa",
   "radio_athkar": "Athkar",
   "radio_international": "International",
+  "radio_play": "Play",
+  "radio_pause": "Pause",
   "cal_title": "Islamic Calendar",
   "cal_todayEvents": "Today's Events",
   "cal_nextEvent": "Next Event",
@@ -256,6 +266,7 @@
   "settings_chooseCalc": "Calculation Method",
   "settings_enableAdhan": "Enable Adhan",
   "settings_muezzinVoice": "Muezzin Voice",
+  "settings_previewAdhan": "Preview adhan voice",
   "settings_vibration": "Vibrate instead of sound",
   "settings_iqamaAlert": "Pre-Iqama Alert",
   "settings_minutes": "{n} min",
