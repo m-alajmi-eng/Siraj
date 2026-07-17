@@ -514,6 +514,46 @@ class AppLocalizationsHa extends AppLocalizations {
   String get settings_secIdentity => 'Shaida';
 
   @override
+  String get onboarding_modeTitle => 'Zaɓi yanayin manhaja';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Za ka iya canza shi daga baya a cikin saitunan';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Muhimman abubuwa · Sauri · Cikakken offline';
+
+  @override
+  String get onboarding_fullSubtitle => 'Dukkan fasaloli · Cikakke · Zurfi';
+
+  @override
+  String get onboarding_andMore => '+ ƙari';
+
+  @override
+  String get onboarding_madhabTitle => 'Mazhabin Fikihu';
+
+  @override
+  String get onboarding_madhabSubtitle => 'Don lissafin lokutan sallah daidai';
+
+  @override
+  String get onboarding_locationTitle => 'Tantance wurin da kake';
+
+  @override
+  String get onboarding_locationSubtitle => 'Don daidaitattun lokutan sallah';
+
+  @override
+  String get onboarding_locationBody =>
+      'Manhajar za ta nemi izinin wuri\ndon tantance lokutan sallah ta atomatik';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Bayananka suna zama a na\'urarka kawai';
+
+  @override
+  String get onboarding_start => 'Fara';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override

@@ -513,6 +513,46 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_secIdentity => 'Identity';
 
   @override
+  String get onboarding_modeTitle => 'Choose app mode';
+
+  @override
+  String get onboarding_modeSubtitle => 'You can change this later in settings';
+
+  @override
+  String get onboarding_liteSubtitle => 'Essentials · Fast · Fully offline';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'All features · Comprehensive · In-depth';
+
+  @override
+  String get onboarding_andMore => '+ more';
+
+  @override
+  String get onboarding_madhabTitle => 'Fiqh School';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'To calculate prayer times accurately';
+
+  @override
+  String get onboarding_locationTitle => 'Set your location';
+
+  @override
+  String get onboarding_locationSubtitle => 'For accurate prayer times';
+
+  @override
+  String get onboarding_locationBody =>
+      'The app will request location permission\nto determine prayer times automatically';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Your data stays on your device only';
+
+  @override
+  String get onboarding_start => 'Start';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override

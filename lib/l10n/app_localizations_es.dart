@@ -513,6 +513,48 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_secIdentity => 'Identidad';
 
   @override
+  String get onboarding_modeTitle => 'Elige el modo de la app';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Puedes cambiarlo más tarde en los ajustes';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Lo esencial · Rápido · Totalmente sin conexión';
+
+  @override
+  String get onboarding_fullSubtitle =>
+      'Todas las funciones · Integral · Profundo';
+
+  @override
+  String get onboarding_andMore => '+ más';
+
+  @override
+  String get onboarding_madhabTitle => 'Escuela jurídica (madhhab)';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Para calcular los horarios de oración con precisión';
+
+  @override
+  String get onboarding_locationTitle => 'Establece tu ubicación';
+
+  @override
+  String get onboarding_locationSubtitle => 'Para horarios de oración precisos';
+
+  @override
+  String get onboarding_locationBody =>
+      'La app solicitará permiso de ubicación\npara determinar los horarios de oración automáticamente';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Tus datos permanecen solo en tu dispositivo';
+
+  @override
+  String get onboarding_start => 'Empezar';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override

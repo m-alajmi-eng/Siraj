@@ -513,6 +513,46 @@ class AppLocalizationsId extends AppLocalizations {
   String get settings_secIdentity => 'Identitas';
 
   @override
+  String get onboarding_modeTitle => 'Pilih mode aplikasi';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Anda dapat mengubahnya nanti di pengaturan';
+
+  @override
+  String get onboarding_liteSubtitle => 'Esensial · Cepat · Sepenuhnya offline';
+
+  @override
+  String get onboarding_fullSubtitle => 'Semua fitur · Lengkap · Mendalam';
+
+  @override
+  String get onboarding_andMore => '+ lainnya';
+
+  @override
+  String get onboarding_madhabTitle => 'Mazhab Fikih';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Untuk menghitung waktu salat secara akurat';
+
+  @override
+  String get onboarding_locationTitle => 'Tentukan lokasi Anda';
+
+  @override
+  String get onboarding_locationSubtitle => 'Untuk waktu salat yang akurat';
+
+  @override
+  String get onboarding_locationBody =>
+      'Aplikasi akan meminta izin lokasi\nuntuk menentukan waktu salat secara otomatis';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Data Anda tetap hanya di perangkat Anda';
+
+  @override
+  String get onboarding_start => 'Mulai';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override

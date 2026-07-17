@@ -514,6 +514,47 @@ class AppLocalizationsMs extends AppLocalizations {
   String get settings_secIdentity => 'Identiti';
 
   @override
+  String get onboarding_modeTitle => 'Pilih mod aplikasi';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'Anda boleh menukarnya kemudian dalam tetapan';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'Asas · Pantas · Sepenuhnya luar talian';
+
+  @override
+  String get onboarding_fullSubtitle => 'Semua ciri · Menyeluruh · Mendalam';
+
+  @override
+  String get onboarding_andMore => '+ lagi';
+
+  @override
+  String get onboarding_madhabTitle => 'Mazhab Fiqh';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'Untuk mengira waktu solat dengan tepat';
+
+  @override
+  String get onboarding_locationTitle => 'Tetapkan lokasi anda';
+
+  @override
+  String get onboarding_locationSubtitle => 'Untuk waktu solat yang tepat';
+
+  @override
+  String get onboarding_locationBody =>
+      'Aplikasi akan meminta kebenaran lokasi\nuntuk menentukan waktu solat secara automatik';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'Data anda kekal hanya pada peranti anda';
+
+  @override
+  String get onboarding_start => 'Mula';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override

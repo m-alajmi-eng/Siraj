@@ -513,6 +513,45 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settings_secIdentity => 'شناخت';
 
   @override
+  String get onboarding_modeTitle => 'ایپ کا موڈ منتخب کریں';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'آپ بعد میں اسے ترتیبات سے تبدیل کر سکتے ہیں';
+
+  @override
+  String get onboarding_liteSubtitle => 'بنیادی باتیں · تیز · مکمل آف لائن';
+
+  @override
+  String get onboarding_fullSubtitle => 'تمام خصوصیات · جامع · تفصیلی';
+
+  @override
+  String get onboarding_andMore => '+ مزید';
+
+  @override
+  String get onboarding_madhabTitle => 'فقہی مذہب';
+
+  @override
+  String get onboarding_madhabSubtitle => 'نماز کے اوقات کی درست گنتی کے لیے';
+
+  @override
+  String get onboarding_locationTitle => 'اپنا محل وقوع متعین کریں';
+
+  @override
+  String get onboarding_locationSubtitle => 'درست نماز کے اوقات کے لیے';
+
+  @override
+  String get onboarding_locationBody =>
+      'ایپ محل وقوع کی اجازت مانگے گی\nتاکہ نماز کے اوقات خودکار طور پر متعین ہوں';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'آپ کا ڈیٹا صرف آپ کے آلے پر رہتا ہے';
+
+  @override
+  String get onboarding_start => 'شروع کریں';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override

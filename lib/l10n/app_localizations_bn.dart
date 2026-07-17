@@ -513,6 +513,47 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settings_secIdentity => 'পরিচয়';
 
   @override
+  String get onboarding_modeTitle => 'অ্যাপ মোড নির্বাচন করুন';
+
+  @override
+  String get onboarding_modeSubtitle =>
+      'আপনি পরে সেটিংস থেকে এটি পরিবর্তন করতে পারেন';
+
+  @override
+  String get onboarding_liteSubtitle =>
+      'মৌলিক বিষয়াদি · দ্রুত · সম্পূর্ণ অফলাইন';
+
+  @override
+  String get onboarding_fullSubtitle => 'সমস্ত বৈশিষ্ট্য · ব্যাপক · গভীর';
+
+  @override
+  String get onboarding_andMore => '+ আরও';
+
+  @override
+  String get onboarding_madhabTitle => 'ফিকহি মাযহাব';
+
+  @override
+  String get onboarding_madhabSubtitle =>
+      'নামাজের সময় সঠিকভাবে গণনা করার জন্য';
+
+  @override
+  String get onboarding_locationTitle => 'আপনার অবস্থান নির্ধারণ করুন';
+
+  @override
+  String get onboarding_locationSubtitle => 'সঠিক নামাজের সময়ের জন্য';
+
+  @override
+  String get onboarding_locationBody =>
+      'অ্যাপটি অবস্থানের অনুমতি চাইবে\nনামাজের সময় স্বয়ংক্রিয়ভাবে নির্ধারণ করতে';
+
+  @override
+  String get onboarding_locationPrivacy =>
+      'আপনার তথ্য শুধুমাত্র আপনার ডিভাইসে থাকে';
+
+  @override
+  String get onboarding_start => 'শুরু করুন';
+
+  @override
   String get settings_dirRtl => 'RTL';
 
   @override
