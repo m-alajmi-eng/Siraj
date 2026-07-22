@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/khatmah_plan.dart';
 import '../providers/khatmah_provider.dart';
@@ -25,47 +26,35 @@ class KhatmahDetailScreen extends ConsumerWidget {
     final plan = plans.where((p) => p.id == khatmahId).firstOrNull;
 
     if (plan == null) {
-      return Scaffold(
-        appBar: AppBar(leading: BackButton(onPressed: () => context.pop())),
-        body: Center(
+      return AppScaffold(
+        title: '',
+        child: Center(
           child: Text(t.khatmah_empty,
               style: TextStyle(color: palette.textSecondary)),
         ),
       );
     }
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      appBar: AppBar(
-        backgroundColor: palette.background,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: palette.textPrimary),
-          tooltip: t.common_back,
-          onPressed: () => context.pop(),
+    return AppScaffold(
+      title: plan.name,
+      actions: [
+        IconButton(
+          icon: Icon(Icons.share_outlined, color: palette.textPrimary),
+          tooltip: t.common_share,
+          onPressed: () => _shareProgress(plan, t),
         ),
-        title: Text(plan.name, style: TextStyle(color: palette.textPrimary)),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.share_outlined, color: palette.textPrimary),
-            tooltip: t.common_share,
-            onPressed: () => _shareProgress(plan, t),
-          ),
+      ],
+      scrollable: true,
+      padding: const EdgeInsets.all(SirajSpacing.s4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _ProgressCard(plan: plan, palette: palette, t: t),
+          const SizedBox(height: SirajSpacing.s4),
+          _TodayPortionCard(plan: plan, palette: palette, t: t),
+          const SizedBox(height: SirajSpacing.s4),
+          _StatusRow(plan: plan, palette: palette, t: t),
         ],
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(SirajSpacing.s4),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _ProgressCard(plan: plan, palette: palette, t: t),
-              const SizedBox(height: SirajSpacing.s4),
-              _TodayPortionCard(plan: plan, palette: palette, t: t),
-              const SizedBox(height: SirajSpacing.s4),
-              _StatusRow(plan: plan, palette: palette, t: t),
-            ],
-          ),
-        ),
       ),
     );
   }

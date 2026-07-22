@@ -5,6 +5,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 
 class ChildrenStoriesScreen extends ConsumerWidget {
   const ChildrenStoriesScreen({super.key});
@@ -30,15 +31,10 @@ class ChildrenStoriesScreen extends ConsumerWidget {
     final t       = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      appBar: AppBar(
-        backgroundColor: palette.surface,
-        title: Text(t.children_title,
-          style: AppText.headline.copyWith(color: palette.textPrimary)),
-        iconTheme: IconThemeData(color: palette.textPrimary),
-      ),
-      body: Stack(
+    return AppScaffold(
+      title: t.children_title,
+      padding: EdgeInsets.zero,
+      child: Stack(
         children: [
           // توهّج دافئ خفيف خلف الشبكة - زخرفي بحت، لا يمس أي منطق.
           const Positioned.fill(child: _WarmGlow()),

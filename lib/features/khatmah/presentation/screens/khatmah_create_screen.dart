@@ -6,6 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../providers/khatmah_provider.dart';
 import '../../domain/entities/khatmah_plan.dart';
 
@@ -65,18 +66,10 @@ class _KhatmahCreateScreenState extends ConsumerState<KhatmahCreateScreen> {
     final t = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      appBar: AppBar(
-        backgroundColor: palette.background,
-        elevation: 0,
-        title: Text(t.khatmah_new,
-            style: AppText.body.copyWith(
-                color: palette.textPrimary, fontWeight: FontWeight.w600)),
-        iconTheme: IconThemeData(color: palette.textPrimary),
-      ),
-      body: SafeArea(
-        child: Directionality(
+    return AppScaffold(
+      title: t.khatmah_new,
+      padding: EdgeInsets.zero,
+      child: Directionality(
           textDirection: TextDirection.rtl,
           child: ListView(
             padding: const EdgeInsets.all(SirajLayout.pagePadding),
@@ -194,7 +187,6 @@ class _KhatmahCreateScreenState extends ConsumerState<KhatmahCreateScreen> {
               ),
             ],
           ),
-        ),
       ),
     );
   }

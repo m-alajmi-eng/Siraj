@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../data/adwaa_bayan_repository.dart';
 
@@ -23,20 +23,10 @@ class AdwaaBayanReaderScreen extends ConsumerWidget {
     final canGoPrev = pageNumber > AdwaaBayanRepository.firstPage;
     final canGoNext = pageNumber < AdwaaBayanRepository.lastPage;
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      appBar: AppBar(
-        backgroundColor: palette.background,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: palette.textPrimary),
-          tooltip: t.common_back,
-          onPressed: () => context.pop(),
-        ),
-        title: Text('أضواء البيان - صفحة $pageNumber',
-            style: AppText.headline.copyWith(
-                color: palette.textPrimary, fontSize: 16)),
-      ),
-      body: pageAsync.when(
+    return AppScaffold(
+      title: 'أضواء البيان - صفحة $pageNumber',
+      padding: EdgeInsets.zero,
+      child: pageAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(
           child: Text('تعذّر تحميل الصفحة',

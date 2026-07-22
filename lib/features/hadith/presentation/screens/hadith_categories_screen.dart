@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../providers/hadith_provider.dart';
 
@@ -19,22 +20,13 @@ class HadithCategoriesScreen extends ConsumerWidget {
     final t = AppLocalizations.of(context);
     final categoriesAsync = ref.watch(hadithCategoriesProvider);
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      appBar: AppBar(
-        backgroundColor: palette.background,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: palette.textPrimary),
-          tooltip: t.common_back,
-          onPressed: () => context.pop(),
-        ),
-        title: Text('الأحاديث',
-            style: AppText.headline.copyWith(color: palette.textPrimary)),
-      ),
-      body: categoriesAsync.when(
+    return AppScaffold(
+      title: t.hadith_title,
+      padding: EdgeInsets.zero,
+      child: categoriesAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(
-          child: Text('حدث خطأ في تحميل الفئات',
+          child: Text(t.hadith_loadError,
               style: TextStyle(color: palette.textSecondary)),
         ),
         data: (categories) => ListView.builder(

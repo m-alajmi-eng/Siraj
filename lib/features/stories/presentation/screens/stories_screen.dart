@@ -5,6 +5,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 
 class StoriesScreen extends ConsumerStatefulWidget {
   const StoriesScreen({super.key});
@@ -42,31 +43,35 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
     final t       = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      appBar: AppBar(
-        backgroundColor: palette.surface,
-        title: Text(t.stories_title,
-          style: AppText.headline.copyWith(color: palette.textPrimary)),
-        iconTheme: IconThemeData(color: palette.textPrimary),
-        bottom: TabBar(
-          controller: _tabController,
-          labelColor: palette.accentPrimary,
-          unselectedLabelColor: palette.textSecondary,
-          indicatorColor: palette.accentPrimary,
-          tabs: [
-            Tab(text: t.stories_prophets),
-            Tab(text: t.stories_companions),
-            Tab(text: t.stories_scholars),
-          ],
-        ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
+    // AppScaffold لا يوفّر مكان لـTabBar (لا "bottom" slot مثل AppBar) —
+    // نضع الشريط داخل child نفسه بدل appBar.bottom، فنحافظ على زر الرجوع
+    // الموحّد بلا فقدان وظيفة التبويبات الثلاثة.
+    return AppScaffold(
+      title: t.stories_title,
+      padding: EdgeInsets.zero,
+      child: Column(
         children: [
-          _StoriesList(category: 'prophets', palette: palette, fetch: _fetchStories, t: t),
-          _StoriesList(category: 'companions', palette: palette, fetch: _fetchStories, t: t),
-          _StoriesList(category: 'scholars', palette: palette, fetch: _fetchStories, t: t),
+          TabBar(
+            controller: _tabController,
+            labelColor: palette.accentPrimary,
+            unselectedLabelColor: palette.textSecondary,
+            indicatorColor: palette.accentPrimary,
+            tabs: [
+              Tab(text: t.stories_prophets),
+              Tab(text: t.stories_companions),
+              Tab(text: t.stories_scholars),
+            ],
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                _StoriesList(category: 'prophets', palette: palette, fetch: _fetchStories, t: t),
+                _StoriesList(category: 'companions', palette: palette, fetch: _fetchStories, t: t),
+                _StoriesList(category: 'scholars', palette: palette, fetch: _fetchStories, t: t),
+              ],
+            ),
+          ),
         ],
       ),
     );

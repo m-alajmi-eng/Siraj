@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../providers/hadith_provider.dart';
 
@@ -25,23 +25,13 @@ class HadithListScreen extends ConsumerWidget {
     final t = AppLocalizations.of(context);
     final hadithsAsync = ref.watch(hadithsByCategoryProvider(categoryId));
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      appBar: AppBar(
-        backgroundColor: palette.background,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: palette.textPrimary),
-          tooltip: t.common_back,
-          onPressed: () => context.pop(),
-        ),
-        title: Text(categoryTitle,
-            style: AppText.headline.copyWith(
-                color: palette.textPrimary, fontSize: 18)),
-      ),
-      body: hadithsAsync.when(
+    return AppScaffold(
+      title: categoryTitle,
+      padding: EdgeInsets.zero,
+      child: hadithsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(
-          child: Text('حدث خطأ في تحميل الأحاديث',
+          child: Text(t.hadith_loadError,
               style: TextStyle(color: palette.textSecondary)),
         ),
         data: (hadiths) => ListView.builder(

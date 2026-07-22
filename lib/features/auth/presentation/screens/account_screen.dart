@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../providers/auth_provider.dart';
 
@@ -21,7 +22,7 @@ class AccountScreen extends ConsumerWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
-            child: const Text('إلغاء'),
+            child: Text(t.common_cancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
@@ -60,22 +61,9 @@ class AccountScreen extends ConsumerWidget {
     final repo = ref.read(authRepositoryProvider);
     final isGuest = repo.isGuest;
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      appBar: AppBar(
-        backgroundColor: palette.background,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: palette.textPrimary),
-          tooltip: t.common_back,
-          onPressed: () => context.pop(),
-        ),
-        title: Text(t.auth_account_settings,
-            style: TextStyle(color: palette.textPrimary)),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(SirajSpacing.s4),
-          child: Column(
+    return AppScaffold(
+      title: t.auth_account_settings,
+      child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               if (user != null) ...[
@@ -141,8 +129,6 @@ class AccountScreen extends ConsumerWidget {
                 ),
             ],
           ),
-        ),
-      ),
     );
   }
 }
