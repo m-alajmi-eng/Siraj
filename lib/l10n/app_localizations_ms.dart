@@ -784,6 +784,13 @@ class AppLocalizationsMs extends AppLocalizations {
   String get search_typeHadith => 'Hadis';
 
   @override
+  String get search_typeAthkar => 'Zikir';
+
+  @override
+  String get search_partialResults =>
+      'Sesetengah sumber tidak tersedia — hasil mungkin tidak lengkap';
+
+  @override
   String get stats_daysStreak => 'hari berturut-turut';
 
   @override

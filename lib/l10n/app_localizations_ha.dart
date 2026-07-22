@@ -783,6 +783,13 @@ class AppLocalizationsHa extends AppLocalizations {
   String get search_typeHadith => 'Hadisi';
 
   @override
+  String get search_typeAthkar => 'Zikiri';
+
+  @override
+  String get search_partialResults =>
+      'Wasu majiyoyi ba su samu ba — sakamakon na iya zama bai cika ba';
+
+  @override
   String get stats_daysStreak => 'kwanaki a jere';
 
   @override

@@ -295,6 +295,8 @@
   "search_typeTafsir": "تفسیر",
   "search_typeWord": "واژه",
   "search_typeHadith": "حدیث",
+  "search_typeAthkar": "ذکر",
+  "search_partialResults": "برخی منابع در دسترس نبودند — نتایج ممکن است ناقص باشند",
   "stats_daysStreak": "روز پیاپی",
   "stats_prayersUnit": "نماز",
   "stats_pagesUnit": "صفحه",

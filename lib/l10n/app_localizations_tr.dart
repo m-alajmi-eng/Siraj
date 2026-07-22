@@ -784,6 +784,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get search_typeHadith => 'Hadis';
 
   @override
+  String get search_typeAthkar => 'Zikir';
+
+  @override
+  String get search_partialResults =>
+      'Bazı kaynaklara ulaşılamadı — sonuçlar eksik olabilir';
+
+  @override
   String get stats_daysStreak => 'art arda gün';
 
   @override

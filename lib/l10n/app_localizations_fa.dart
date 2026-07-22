@@ -780,6 +780,13 @@ class AppLocalizationsFa extends AppLocalizations {
   String get search_typeHadith => 'حدیث';
 
   @override
+  String get search_typeAthkar => 'ذکر';
+
+  @override
+  String get search_partialResults =>
+      'برخی منابع در دسترس نبودند — نتایج ممکن است ناقص باشند';
+
+  @override
   String get stats_daysStreak => 'روز پیاپی';
 
   @override

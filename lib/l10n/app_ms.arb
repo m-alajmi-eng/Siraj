@@ -295,6 +295,8 @@
   "search_typeTafsir": "Tafsir",
   "search_typeWord": "Perkataan",
   "search_typeHadith": "Hadis",
+  "search_typeAthkar": "Zikir",
+  "search_partialResults": "Sesetengah sumber tidak tersedia — hasil mungkin tidak lengkap",
   "stats_daysStreak": "hari berturut-turut",
   "stats_prayersUnit": "solat",
   "stats_pagesUnit": "halaman",

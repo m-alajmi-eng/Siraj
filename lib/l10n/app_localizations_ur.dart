@@ -780,6 +780,13 @@ class AppLocalizationsUr extends AppLocalizations {
   String get search_typeHadith => 'حدیث';
 
   @override
+  String get search_typeAthkar => 'ذکر';
+
+  @override
+  String get search_partialResults =>
+      'کچھ ذرائع دستیاب نہیں تھے — نتائج نامکمل ہو سکتے ہیں';
+
+  @override
   String get stats_daysStreak => 'مسلسل دن';
 
   @override

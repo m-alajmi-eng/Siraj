@@ -786,6 +786,13 @@ class AppLocalizationsSw extends AppLocalizations {
   String get search_typeHadith => 'Hadithi';
 
   @override
+  String get search_typeAthkar => 'Dhikr';
+
+  @override
+  String get search_partialResults =>
+      'Baadhi ya vyanzo havikupatikana — matokeo yanaweza kuwa hayajakamilika';
+
+  @override
   String get stats_daysStreak => 'siku mfululizo';
 
   @override

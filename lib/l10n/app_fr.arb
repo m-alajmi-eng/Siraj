@@ -295,6 +295,8 @@
   "search_typeTafsir": "Tafsir",
   "search_typeWord": "Mot",
   "search_typeHadith": "Hadith",
+  "search_typeAthkar": "Dhikr",
+  "search_partialResults": "Certaines sources étaient indisponibles — les résultats peuvent être incomplets",
   "stats_daysStreak": "jours d'affilée",
   "stats_prayersUnit": "prières",
   "stats_pagesUnit": "pages",

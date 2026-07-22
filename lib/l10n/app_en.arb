@@ -323,6 +323,8 @@
   "search_typeTafsir": "Tafsir",
   "search_typeWord": "Word",
   "search_typeHadith": "Hadith",
+  "search_typeAthkar": "Dhikr",
+  "search_partialResults": "Some sources were unavailable — results may be incomplete",
   "@search_noResults": {
     "placeholders": {
       "query": {

@@ -64,13 +64,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   )
                 : Icon(Icons.search, color: palette.textSecondary),
           ),
-          onChanged: (q) {
-            if (q.length >= 2) {
-              ref.read(searchProvider.notifier).search(q);
-            } else if (q.isEmpty) {
-              ref.read(searchProvider.notifier).clear();
-            }
-          },
+          onChanged: (q) => ref.read(searchProvider.notifier).search(q),
         ),
       ),
       child: Column(
@@ -80,21 +74,133 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               color: palette.accentPrimary,
               backgroundColor: palette.surface,
             ),
+          if (searchState.results.isNotEmpty)
+            _TypeFilterBar(state: searchState, palette: palette, t: t),
+          if (searchState.failedTypes.isNotEmpty)
+            _PartialFailureBanner(palette: palette, t: t),
           Expanded(
             child: searchState.query.isEmpty
                 ? _EmptyState(palette: palette, t: t)
                 : searchState.isLoading
                     ? const SizedBox.shrink()
                     : searchState.error != null
-                        ? _ErrorState(error: searchState.error!, palette: palette)
-                        : searchState.results.isEmpty
+                        ? _ErrorState(error: searchState.error!, palette: palette, t: t)
+                        : searchState.filteredResults.isEmpty
                             ? _NoResults(query: searchState.query, palette: palette, t: t)
                             : _ResultsList(
-                                results: searchState.results, palette: palette, t: t),
+                                results: searchState.filteredResults, palette: palette, t: t),
           ),
         ],
       ),
     );
+  }
+}
+
+/// شريط فلاتر حسب النوع (PHASE L2) — يظهر فقط إن وُجدت نتائج فعلية.
+class _TypeFilterBar extends StatelessWidget {
+  final SearchState state;
+  final dynamic palette;
+  final AppLocalizations t;
+  const _TypeFilterBar({required this.state, required this.palette, required this.t});
+
+  @override
+  Widget build(BuildContext context) {
+    final types = state.results.map((r) => r.type).toSet().toList();
+    if (types.length <= 1) return const SizedBox.shrink();
+
+    return Consumer(builder: (context, ref, _) {
+      return SizedBox(
+        height: 36,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s4, vertical: 4),
+          children: [
+            _FilterChip(
+              label: t.common_search,
+              selected: state.typeFilter == null,
+              palette: palette,
+              onTap: () => ref.read(searchProvider.notifier).setTypeFilter(null),
+            ),
+            const SizedBox(width: SirajSpacing.s2),
+            for (final type in types) ...[
+              _FilterChip(
+                label: _typeLabelFor(t, type),
+                selected: state.typeFilter == type,
+                palette: palette,
+                onTap: () => ref.read(searchProvider.notifier).setTypeFilter(type),
+              ),
+              const SizedBox(width: SirajSpacing.s2),
+            ],
+          ],
+        ),
+      );
+    });
+  }
+}
+
+class _FilterChip extends StatelessWidget {
+  final String label;
+  final bool selected;
+  final dynamic palette;
+  final VoidCallback onTap;
+  const _FilterChip({
+    required this.label, required this.selected,
+    required this.palette, required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s3, vertical: 6),
+        decoration: BoxDecoration(
+          color: selected ? palette.accentPrimary : palette.surface,
+          borderRadius: BorderRadius.circular(SirajRadiusFull.pill),
+        ),
+        child: Text(label, style: AppText.caption.copyWith(
+          color: selected ? palette.background : palette.textPrimary)),
+      ),
+    );
+  }
+}
+
+class _PartialFailureBanner extends StatelessWidget {
+  final dynamic palette;
+  final AppLocalizations t;
+  const _PartialFailureBanner({required this.palette, required this.t});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: SirajSpacing.s4, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s3, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.amber.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(SirajRadiusFull.sm),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.info_outline, size: 14, color: Colors.amber),
+          const SizedBox(width: SirajSpacing.s2),
+          Expanded(
+            child: Text(t.search_partialResults,
+              style: AppText.caption.copyWith(color: palette.textSecondary)),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String _typeLabelFor(AppLocalizations t, String type) {
+  switch (type) {
+    case 'ayah':   return t.search_typeAyah;
+    case 'tafsir': return t.search_typeTafsir;
+    case 'word':   return t.search_typeWord;
+    case 'hadith': return t.search_typeHadith;
+    case 'athkar': return t.search_typeAthkar;
+    default:       return type;
   }
 }
 
@@ -148,14 +254,15 @@ class _NoResults extends StatelessWidget {
 class _ErrorState extends StatelessWidget {
   final String error;
   final dynamic palette;
-  const _ErrorState({required this.error, required this.palette});
+  final AppLocalizations t;
+  const _ErrorState({required this.error, required this.palette, required this.t});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(SirajSpacing.s5),
-        child: Text(error, textAlign: TextAlign.center,
+        child: Text('${t.common_error}: $error', textAlign: TextAlign.center,
           style: AppText.bodySmall.copyWith(color: palette.textSecondary)),
       ),
     );
@@ -211,7 +318,7 @@ class _ResultsList extends StatelessWidget {
                         color: _typeColor(r.type).withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(SirajRadiusFull.xs),
                       ),
-                      child: Text(_typeLabel(t, r.type), style: AppText.caption.copyWith(
+                      child: Text(_typeLabelFor(t, r.type), style: AppText.caption.copyWith(
                         color: _typeColor(r.type), fontSize: 10)),
                     ),
                     Text('${r.surahName} · ${r.ayahNumber}',
@@ -238,22 +345,13 @@ class _ResultsList extends StatelessWidget {
     );
   }
 
-  String _typeLabel(AppLocalizations t, String type) {
-    switch (type) {
-      case 'ayah':   return t.search_typeAyah;
-      case 'tafsir': return t.search_typeTafsir;
-      case 'word':   return t.search_typeWord;
-      case 'hadith': return t.search_typeHadith;
-      default:       return type;
-    }
-  }
-
   Color _typeColor(String type) {
     switch (type) {
       case 'ayah':   return const Color(0xFF6EB4D0);
       case 'tafsir': return const Color(0xFF50B478);
       case 'word':   return const Color(0xFFE0A458);
       case 'hadith': return const Color(0xFF4DB6AC);
+      case 'athkar': return const Color(0xFFB07CC6);
       default:       return SirajWhite.w40;
     }
   }

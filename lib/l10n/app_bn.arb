@@ -295,6 +295,8 @@
   "search_typeTafsir": "তাফসির",
   "search_typeWord": "শব্দ",
   "search_typeHadith": "হাদিস",
+  "search_typeAthkar": "যিকর",
+  "search_partialResults": "কিছু উৎস অনুপলব্ধ ছিল — ফলাফল অসম্পূর্ণ হতে পারে",
   "stats_daysStreak": "টানা দিন",
   "stats_prayersUnit": "নামাজ",
   "stats_pagesUnit": "পৃষ্ঠা",

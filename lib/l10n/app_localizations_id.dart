@@ -782,6 +782,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get search_typeHadith => 'Hadis';
 
   @override
+  String get search_typeAthkar => 'Dzikir';
+
+  @override
+  String get search_partialResults =>
+      'Beberapa sumber tidak tersedia — hasil mungkin tidak lengkap';
+
+  @override
   String get stats_daysStreak => 'hari berturut-turut';
 
   @override

@@ -785,6 +785,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get search_typeHadith => 'Hadith';
 
   @override
+  String get search_typeAthkar => 'Dhikr';
+
+  @override
+  String get search_partialResults =>
+      'Einige Quellen waren nicht erreichbar — Ergebnisse könnten unvollständig sein';
+
+  @override
   String get stats_daysStreak => 'Tage in Folge';
 
   @override

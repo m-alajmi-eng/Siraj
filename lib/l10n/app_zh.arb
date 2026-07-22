@@ -295,6 +295,8 @@
   "search_typeTafsir": "经注",
   "search_typeWord": "词语",
   "search_typeHadith": "圣训",
+  "search_typeAthkar": "赞念",
+  "search_partialResults": "部分来源无法访问——结果可能不完整",
   "stats_daysStreak": "连续天数",
   "stats_prayersUnit": "次礼拜",
   "stats_pagesUnit": "页",

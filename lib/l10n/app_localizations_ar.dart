@@ -777,6 +777,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get search_typeHadith => 'حديث';
 
   @override
+  String get search_typeAthkar => 'ذكر';
+
+  @override
+  String get search_partialResults =>
+      'تعذّر الوصول لبعض المصادر — النتائج قد تكون غير مكتملة';
+
+  @override
   String get stats_daysStreak => 'يوم متتالي';
 
   @override

@@ -295,6 +295,8 @@
   "search_typeTafsir": "Tafsiri",
   "search_typeWord": "Neno",
   "search_typeHadith": "Hadithi",
+  "search_typeAthkar": "Dhikr",
+  "search_partialResults": "Baadhi ya vyanzo havikupatikana — matokeo yanaweza kuwa hayajakamilika",
   "stats_daysStreak": "siku mfululizo",
   "stats_prayersUnit": "swala",
   "stats_pagesUnit": "kurasa",

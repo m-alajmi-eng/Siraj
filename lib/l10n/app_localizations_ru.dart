@@ -784,6 +784,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get search_typeHadith => 'Хадис';
 
   @override
+  String get search_typeAthkar => 'Зикр';
+
+  @override
+  String get search_partialResults =>
+      'Некоторые источники недоступны — результаты могут быть неполными';
+
+  @override
   String get stats_daysStreak => 'дней подряд';
 
   @override

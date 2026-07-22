@@ -774,6 +774,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get search_typeHadith => '圣训';
 
   @override
+  String get search_typeAthkar => '赞念';
+
+  @override
+  String get search_partialResults => '部分来源无法访问——结果可能不完整';
+
+  @override
   String get stats_daysStreak => '连续天数';
 
   @override

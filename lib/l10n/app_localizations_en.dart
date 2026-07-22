@@ -782,6 +782,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get search_typeHadith => 'Hadith';
 
   @override
+  String get search_typeAthkar => 'Dhikr';
+
+  @override
+  String get search_partialResults =>
+      'Some sources were unavailable — results may be incomplete';
+
+  @override
   String get stats_daysStreak => 'days in a row';
 
   @override

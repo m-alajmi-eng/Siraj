@@ -783,6 +783,13 @@ class AppLocalizationsBn extends AppLocalizations {
   String get search_typeHadith => 'হাদিস';
 
   @override
+  String get search_typeAthkar => 'যিকর';
+
+  @override
+  String get search_partialResults =>
+      'কিছু উৎস অনুপলব্ধ ছিল — ফলাফল অসম্পূর্ণ হতে পারে';
+
+  @override
   String get stats_daysStreak => 'টানা দিন';
 
   @override

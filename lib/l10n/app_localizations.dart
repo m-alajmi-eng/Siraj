@@ -1606,6 +1606,18 @@ abstract class AppLocalizations {
   /// **'حديث'**
   String get search_typeHadith;
 
+  /// No description provided for @search_typeAthkar.
+  ///
+  /// In ar, this message translates to:
+  /// **'ذكر'**
+  String get search_typeAthkar;
+
+  /// No description provided for @search_partialResults.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذّر الوصول لبعض المصادر — النتائج قد تكون غير مكتملة'**
+  String get search_partialResults;
+
   /// No description provided for @stats_daysStreak.
   ///
   /// In ar, this message translates to:

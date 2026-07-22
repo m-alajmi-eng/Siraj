@@ -58,6 +58,12 @@ class AthkarLocalDataSource {
     await _load();
     return _athkar!.where((a) => a.category == categoryId).toList();
   }
+
+  /// كل الأذكار عبر كل الفئات — للبحث الموحّد (PHASE L2).
+  Future<List<AthkarEntity>> getAll() async {
+    await _load();
+    return _athkar!;
+  }
 }
 
 Map<String, String> _readNames(Map v) {

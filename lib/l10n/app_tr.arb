@@ -295,6 +295,8 @@
   "search_typeTafsir": "Tefsir",
   "search_typeWord": "Kelime",
   "search_typeHadith": "Hadis",
+  "search_typeAthkar": "Zikir",
+  "search_partialResults": "Bazı kaynaklara ulaşılamadı — sonuçlar eksik olabilir",
   "stats_daysStreak": "art arda gün",
   "stats_prayersUnit": "namaz",
   "stats_pagesUnit": "sayfa",

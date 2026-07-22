@@ -295,6 +295,8 @@
   "search_typeTafsir": "Tafsiri",
   "search_typeWord": "Kalma",
   "search_typeHadith": "Hadisi",
+  "search_typeAthkar": "Zikiri",
+  "search_partialResults": "Wasu majiyoyi ba su samu ba — sakamakon na iya zama bai cika ba",
   "stats_daysStreak": "kwanaki a jere",
   "stats_prayersUnit": "sallah",
   "stats_pagesUnit": "shafuka",

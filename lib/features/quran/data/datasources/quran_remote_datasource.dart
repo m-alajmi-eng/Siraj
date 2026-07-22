@@ -271,6 +271,34 @@ class QuranRemoteDataSource {
    return result;
  }
 
+ /// بحث نصي محلي مباشر (تطابق فرعي بسيط، بلا تطبيع/tsvector) عبر كل
+ /// آيات القرآن من الأصل المحلي — احتياطي عند انقطاع الشبكة أو فشل بحث
+ /// Supabase الأساسي (PHASE L2)، لا بديل دائم له (لا يطبّع التشكيل/الهمزات
+ /// كما تفعل دالة `search_ayahs` الخادمية).
+ Future<List<AyahEntity>> searchLocalAyahs(String query, {int limit = 10}) async {
+   final uthmaniSurahs = await _loadLocalUthmani();
+   final result = <AyahEntity>[];
+   for (final entry in uthmaniSurahs.entries) {
+     final surahId = int.parse(entry.key);
+     for (final a in (entry.value as List)) {
+       final m = Map<String, dynamic>.from(a as Map);
+       final text = m['text'] as String;
+       if (text.contains(query)) {
+         result.add(AyahEntity(
+           id: m['n'] as int,
+           surahId: surahId,
+           ayahNumber: m['n'] as int,
+           textUthmani: text,
+           juz: m['juz'] as int,
+           page: m['page'] as int,
+         ));
+         if (result.length >= limit) return result;
+       }
+     }
+   }
+   return result;
+ }
+
  Future<String> getTafsir(int surahId, int ayahNumber) async {
    // المسار المحلي أولاً (ADR-006): لا اعتماد على Supabase لعرض التفسير
    final local = await _getTafsirFromLocalAssets(surahId, ayahNumber);

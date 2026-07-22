@@ -295,6 +295,8 @@
   "search_typeTafsir": "Тафсир",
   "search_typeWord": "Слово",
   "search_typeHadith": "Хадис",
+  "search_typeAthkar": "Зикр",
+  "search_partialResults": "Некоторые источники недоступны — результаты могут быть неполными",
   "stats_daysStreak": "дней подряд",
   "stats_prayersUnit": "молитв",
   "stats_pagesUnit": "страниц",
