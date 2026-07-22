@@ -6,10 +6,18 @@
 -- (docs/adr/ADR-013-harvested-author-metadata-exemption.md)، محصور
 -- بهذين الحقلين فقط ولا يمتد لأي محتوى تحريري مستقبلي.
 --
+-- reviewed=true هنا استثناء على مستوى المصدر (IslamHouse get-author،
+-- معتمَد صراحة من مالك المشروع بتاريخ 2026-07-23 لهذا الغرض تحديداً)،
+-- لا مراجعة بشرية فردية لكل سطر - انظر COMMENT ON COLUMN أدناه وADR-013
+-- للصياغة الكاملة. هذا يختلف جوهرياً عن verse_hadith_relations التي
+-- تتطلب مراجعة فردية لكل علاقة.
+--
 -- الكتابة تمر حصراً عبر upsert_harvested_author (RPC واحد، SECURITY
 -- DEFINER) - لا صلاحية INSERT/UPDATE/DELETE مباشرة على الجدول لـ
--- anon/authenticated، فقط SELECT للقراءة العامة. هذا يمنع أي طرف من
--- إدخال بيانات مؤلفين مزيّفة مباشرة عبر REST API متجاوزاً منطق الدمج.
+-- anon/authenticated، فقط SELECT للقراءة العامة (وفقط للصفوف
+-- reviewed=true، نفس نمط verse_hadith_relations تماماً). هذا يمنع أي
+-- طرف من إدخال بيانات مؤلفين مزيّفة مباشرة عبر REST API متجاوزاً منطق
+-- الدمج.
 
 CREATE TABLE IF NOT EXISTS public.library_authors (
   id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -17,6 +25,7 @@ CREATE TABLE IF NOT EXISTS public.library_authors (
   localized jsonb NOT NULL DEFAULT '{}'::jsonb,
   items_count integer,
   first_seen_category_id integer,
+  reviewed boolean NOT NULL DEFAULT true,
   created_at timestamp with time zone NOT NULL DEFAULT now(),
   updated_at timestamp with time zone NOT NULL DEFAULT now(),
   CONSTRAINT library_authors_islamhouse_author_id_key UNIQUE (islamhouse_author_id)
@@ -25,13 +34,16 @@ CREATE TABLE IF NOT EXISTS public.library_authors (
 COMMENT ON TABLE public.library_authors IS
   'مؤلفو المكتبة محصودون تدريجياً من IslamHouse get-author أثناء التصفّح العادي. localized.title/description نسخ حرفي (ADR-013) - لا كتابة مباشرة، فقط عبر upsert_harvested_author.';
 
+COMMENT ON COLUMN public.library_authors.reviewed IS
+  'reviewed=true هنا يعني تحديداً: محتوى مُنسوخ حرفياً بلا أي تحويل من استجابة get-author لـIslamHouse (مصدر مؤسسي معتمَد صراحة من مالك المشروع لهذا الغرض بتاريخ 2026-07-23)، لا مراجعة بشرية فردية لكل سطر. هذا استثناء على مستوى المصدر، لا على مستوى العنصر - يختلف عن verse_hadith_relations التي تتطلب مراجعة فردية لكل علاقة. أي مصدر مستقبلي أقل ثقة لهذا الجدول نفسه يُدرَج بـreviewed=false افتراضياً.';
+
 CREATE INDEX IF NOT EXISTS idx_library_authors_items_count
   ON public.library_authors (items_count DESC NULLS LAST);
 
 ALTER TABLE public.library_authors ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Public read access" ON public.library_authors
-  FOR SELECT USING (true);
+  FOR SELECT USING (reviewed = true);
 
 -- قراءة فقط لـanon/authenticated - لا INSERT/UPDATE/DELETE مباشر على
 -- الجدول (خلافاً لنمط GRANT ALL المعتاد في هذا المشروع)؛ الكتابة الوحيدة
