@@ -963,6 +963,12 @@ class AppLocalizationsHa extends AppLocalizations {
   String get more_mosques => 'Masallatai Kusa';
 
   @override
+  String get more_groupPrayerTools => 'Kayan Aikin Salla';
+
+  @override
+  String get more_groupContent => 'Abin ciki';
+
+  @override
   String get mosques_searching => 'Ana neman masallatai kusa...';
 
   @override

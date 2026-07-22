@@ -962,6 +962,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get more_mosques => 'নিকটবর্তী মসজিদ';
 
   @override
+  String get more_groupPrayerTools => 'নামাজের সরঞ্জাম';
+
+  @override
+  String get more_groupContent => 'বিষয়বস্তু';
+
+  @override
   String get mosques_searching => 'কাছাকাছি মসজিদ খোঁজা হচ্ছে...';
 
   @override

@@ -959,6 +959,12 @@ class AppLocalizationsUr extends AppLocalizations {
   String get more_mosques => 'قریبی مساجد';
 
   @override
+  String get more_groupPrayerTools => 'نماز کے آلات';
+
+  @override
+  String get more_groupContent => 'مواد';
+
+  @override
   String get mosques_searching => 'قریبی مساجد تلاش کی جا رہی ہیں...';
 
   @override

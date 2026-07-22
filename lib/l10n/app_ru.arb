@@ -351,6 +351,8 @@
   "more_fullMode": "Полный режим",
   "more_radio": "Радио Корана",
   "more_mosques": "Мечети поблизости",
+  "more_groupPrayerTools": "Инструменты молитвы",
+  "more_groupContent": "Контент",
   "mosques_searching": "Поиск ближайших мечетей...",
   "mosques_unnamed": "Мечеть без названия",
   "mosques_notFound": "Ближайшие мечети не найдены",

@@ -960,6 +960,12 @@ class AppLocalizationsFa extends AppLocalizations {
   String get more_mosques => 'مساجد نزدیک';
 
   @override
+  String get more_groupPrayerTools => 'ابزارهای نماز';
+
+  @override
+  String get more_groupContent => 'محتوا';
+
+  @override
   String get mosques_searching => 'در حال جستجوی مساجد نزدیک...';
 
   @override

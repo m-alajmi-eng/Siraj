@@ -968,6 +968,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get more_mosques => 'Mosquées à proximité';
 
   @override
+  String get more_groupPrayerTools => 'Outils de prière';
+
+  @override
+  String get more_groupContent => 'Contenu';
+
+  @override
   String get mosques_searching => 'Recherche de mosquées à proximité...';
 
   @override

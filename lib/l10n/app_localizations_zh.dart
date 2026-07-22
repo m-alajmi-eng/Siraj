@@ -950,6 +950,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get more_mosques => '附近的清真寺';
 
   @override
+  String get more_groupPrayerTools => '礼拜工具';
+
+  @override
+  String get more_groupContent => '内容';
+
+  @override
   String get mosques_searching => '正在搜索附近的清真寺...';
 
   @override

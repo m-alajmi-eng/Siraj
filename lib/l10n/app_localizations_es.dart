@@ -969,6 +969,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get more_mosques => 'Mezquitas cercanas';
 
   @override
+  String get more_groupPrayerTools => 'Herramientas de oración';
+
+  @override
+  String get more_groupContent => 'Contenido';
+
+  @override
   String get mosques_searching => 'Buscando mezquitas cercanas...';
 
   @override

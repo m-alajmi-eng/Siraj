@@ -964,6 +964,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get more_mosques => 'Yakındaki Camiler';
 
   @override
+  String get more_groupPrayerTools => 'Namaz Araçları';
+
+  @override
+  String get more_groupContent => 'İçerik';
+
+  @override
   String get mosques_searching => 'Yakındaki camiler aranıyor...';
 
   @override

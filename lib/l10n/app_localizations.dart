@@ -1942,6 +1942,18 @@ abstract class AppLocalizations {
   /// **'المساجد القريبة'**
   String get more_mosques;
 
+  /// No description provided for @more_groupPrayerTools.
+  ///
+  /// In ar, this message translates to:
+  /// **'أدوات الصلاة'**
+  String get more_groupPrayerTools;
+
+  /// No description provided for @more_groupContent.
+  ///
+  /// In ar, this message translates to:
+  /// **'محتوى'**
+  String get more_groupContent;
+
   /// No description provided for @mosques_searching.
   ///
   /// In ar, this message translates to:

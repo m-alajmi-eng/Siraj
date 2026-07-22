@@ -420,6 +420,8 @@
   "more_fullMode": "Full Mode",
   "more_radio": "Quran Radio",
   "more_mosques": "Nearby Mosques",
+  "more_groupPrayerTools": "Prayer Tools",
+  "more_groupContent": "Content",
   "mosques_searching": "Searching for nearby mosques...",
   "mosques_unnamed": "Unnamed mosque",
   "mosques_notFound": "No nearby mosques found",

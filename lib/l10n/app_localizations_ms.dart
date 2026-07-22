@@ -964,6 +964,12 @@ class AppLocalizationsMs extends AppLocalizations {
   String get more_mosques => 'Masjid Berdekatan';
 
   @override
+  String get more_groupPrayerTools => 'Alat Solat';
+
+  @override
+  String get more_groupContent => 'Kandungan';
+
+  @override
   String get mosques_searching => 'Mencari masjid berhampiran...';
 
   @override

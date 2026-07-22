@@ -351,6 +351,8 @@
   "more_fullMode": "Modo completo",
   "more_radio": "Radio del Corán",
   "more_mosques": "Mezquitas cercanas",
+  "more_groupPrayerTools": "Herramientas de oración",
+  "more_groupContent": "Contenido",
   "mosques_searching": "Buscando mezquitas cercanas...",
   "mosques_unnamed": "Mezquita sin nombre",
   "mosques_notFound": "No se encontraron mezquitas cercanas",

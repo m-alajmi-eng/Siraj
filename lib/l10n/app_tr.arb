@@ -351,6 +351,8 @@
   "more_fullMode": "Tam Mod",
   "more_radio": "Kuran Radyo",
   "more_mosques": "Yakındaki Camiler",
+  "more_groupPrayerTools": "Namaz Araçları",
+  "more_groupContent": "İçerik",
   "mosques_searching": "Yakındaki camiler aranıyor...",
   "mosques_unnamed": "İsimsiz cami",
   "mosques_notFound": "Yakında cami bulunamadı",

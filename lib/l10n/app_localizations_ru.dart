@@ -965,6 +965,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get more_mosques => 'Мечети поблизости';
 
   @override
+  String get more_groupPrayerTools => 'Инструменты молитвы';
+
+  @override
+  String get more_groupContent => 'Контент';
+
+  @override
   String get mosques_searching => 'Поиск ближайших мечетей...';
 
   @override

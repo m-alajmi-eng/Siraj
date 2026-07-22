@@ -954,6 +954,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get more_mosques => 'المساجد القريبة';
 
   @override
+  String get more_groupPrayerTools => 'أدوات الصلاة';
+
+  @override
+  String get more_groupContent => 'محتوى';
+
+  @override
   String get mosques_searching => 'جاري البحث عن المساجد القريبة...';
 
   @override

@@ -638,10 +638,10 @@ class _QuickActions extends ConsumerWidget {
     final mode = ref.watch(appModeProvider);
     final enabled = ref.watch(enabledSectionsProvider);
     final flags = FeatureFlags(mode, enabledSections: enabled);
+    // القرآن/الأذكار/المكتبة/الحديث حُذفت من هنا (PHASE I، ADR-007) — صارت
+    // تبويبات في الشريط السفلي (PHASE H1)، فبقاؤها هنا كان تكراراً محضاً
+    // (مدخلان لنفس الوجهة). الشبكة الآن تعرض فقط ما ليس تبويباً.
     final allActions = [
-      (Icons.menu_book_rounded,    t.nav_quran,           '/quran',                 false, flags.showQuranReader),
-      (Icons.self_improvement,     t.nav_athkar,          '/athkar',                false, flags.showAthkar),
-      (Icons.local_library_outlined, t.nav_library,       '/library',               false, flags.showLibrary),
       (Icons.explore_outlined,     t.home_qiblaDirection, '/more/qibla',            true,  flags.showQibla),
       (Icons.radio,                t.home_radio,          '/more/radio',            true,  flags.showRadio),
       (Icons.calendar_month,       t.home_calendar,       '/more/calendar',         true,  flags.showCalendar),

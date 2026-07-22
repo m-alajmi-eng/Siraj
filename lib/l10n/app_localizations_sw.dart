@@ -966,6 +966,12 @@ class AppLocalizationsSw extends AppLocalizations {
   String get more_mosques => 'Misikiti ya Karibu';
 
   @override
+  String get more_groupPrayerTools => 'Zana za Sala';
+
+  @override
+  String get more_groupContent => 'Maudhui';
+
+  @override
   String get mosques_searching => 'Inatafuta misikiti iliyo karibu...';
 
   @override

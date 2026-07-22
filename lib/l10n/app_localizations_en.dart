@@ -962,6 +962,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get more_mosques => 'Nearby Mosques';
 
   @override
+  String get more_groupPrayerTools => 'Prayer Tools';
+
+  @override
+  String get more_groupContent => 'Content';
+
+  @override
   String get mosques_searching => 'Searching for nearby mosques...';
 
   @override
