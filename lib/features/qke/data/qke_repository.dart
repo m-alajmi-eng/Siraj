@@ -189,11 +189,13 @@ class QkeRepository {
     });
 
     // 3. معاني الكلمات
+    // postgrest .order() الافتراضي ascending:false (تنازلي) ما لم يُحدَّد
+    // صراحة — بدون هذا كانت الكلمات تصل معكوسة (آخر كلمة أولاً).
     final wordsRes = await _client
         .from('word_meanings')
         .select('word_position, word_text, meaning_ar, morphology')
         .eq('ayah_id', ayahId)
-        .order('word_position');
+        .order('word_position', ascending: true);
 
     final words = (wordsRes as List)
         .map((w) => WordMeaning.fromJson(w))
