@@ -135,6 +135,7 @@ class ContentCard extends StatelessWidget {
   final IconData icon;
 
   const ContentCard({
+    super.key,
     required this.item,
     required this.palette,
     required this.icon,
@@ -232,7 +233,7 @@ class LibraryErrorView extends StatelessWidget {
   final AppLocalizations t;
   final bool empty;
 
-  const LibraryErrorView({required this.palette, required this.isAr, required this.t, this.empty = false});
+  const LibraryErrorView({super.key, required this.palette, required this.isAr, required this.t, this.empty = false});
 
   @override
   Widget build(BuildContext context) {
