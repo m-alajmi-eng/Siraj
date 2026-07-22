@@ -7,6 +7,7 @@ import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../core/locale/locale_provider.dart';
 import '../../../../core/widgets/app_scaffold.dart';
 import '../providers/library_section_provider.dart';
+import '../providers/library_items_provider.dart';
 import '../../../../l10n/app_localizations.dart';
 
 /// المستوى 3: تصنيفات فرعية لقسم، ضمن نوع محتوى محدّد (كتب/صوت/فيديو/مقالات).
@@ -78,9 +79,24 @@ class _LibraryTypeCategoriesScreenState
               if (subs.isEmpty) {
                 return _EmptyView(isAr: isAr, palette: palette, t: t);
               }
+              // نُخفي مجلداً فرعياً فقط بعد تأكيد فعلي (شبكي) أن عدد
+              // عناصره لنوع المحتوى الحالي تحديداً صفر — لا حجب لعرض
+              // القائمة بانتظار هذا التأكيد؛ كل مجلد يظهر فوراً ويختفي
+              // لاحقاً فقط إن ثبت فراغه (fail-open أثناء التحميل/الفشل).
+              final visibleSubs = subs.where((s) {
+                final itemsAsync = ref.watch(librarySectionItemsProvider(
+                    LibraryItemsParams(categoryId: s.id, type: blockType)));
+                return itemsAsync.maybeWhen(
+                  data: (items) => items.isNotEmpty,
+                  orElse: () => true,
+                );
+              }).toList();
+              if (visibleSubs.isEmpty) {
+                return _EmptyView(isAr: isAr, palette: palette, t: t);
+              }
               final filtered = _query.trim().isEmpty
-                  ? subs
-                  : subs.where((s) =>
+                  ? visibleSubs
+                  : visibleSubs.where((s) =>
                       s.title.toLowerCase().contains(_query.trim().toLowerCase())
                   ).toList();
               return Directionality(
@@ -123,7 +139,7 @@ class _LibraryTypeCategoriesScreenState
                       child: Align(
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
-                          t.library_subcategoryCount(subs.length),
+                          t.library_subcategoryCount(visibleSubs.length),
                           style: AppText.caption.copyWith(
                             color: palette.textSecondary),
                         ),

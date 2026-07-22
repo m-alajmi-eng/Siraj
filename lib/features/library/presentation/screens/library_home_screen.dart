@@ -8,6 +8,7 @@ import '../../../../core/locale/locale_provider.dart';
 import '../../../../core/widgets/app_scaffold.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../providers/library_section_provider.dart';
+import '../providers/category_types_provider.dart';
 
 /// الشاشة الرئيسية للمكتبة الشاملة: 7 أقسام رئيسية كبطاقات.
 class LibraryHomeScreen extends ConsumerWidget {
@@ -44,7 +45,22 @@ class LibraryHomeScreen extends ConsumerWidget {
             style: AppText.body.copyWith(color: palette.textPrimary),
           ),
         ),
-        data: (sections) => Directionality(
+        data: (sections) {
+          // نُخفي قسماً فقط بعد تأكيد فعلي (شبكي) أن لا محتوى فيه إطلاقاً
+          // عبر أنواعه الأربعة — لا حجب لعرض الشبكة بانتظار هذا التأكيد
+          // (الأقسام كلها محلية وتُرسَم فوراً)؛ كل قسم يظهر منذ اللحظة
+          // الأولى ويختفي لاحقاً فقط إن ثبت فراغه (fail-open أثناء
+          // التحميل/الفشل، إذ لا دليل كافٍ لإخفائه في تلك الحالة).
+          final visibleSections = sections.where((s) {
+            final typesAsync =
+                ref.watch(categoryTypesProvider(s.islamhouseCategory));
+            return typesAsync.maybeWhen(
+              data: (types) => types.isNotEmpty,
+              orElse: () => true,
+            );
+          }).toList();
+
+          return Directionality(
           textDirection: isAr ? TextDirection.rtl : TextDirection.ltr,
           child: GridView.builder(
             padding: const EdgeInsets.all(SirajSpacing.s4),
@@ -54,9 +70,9 @@ class LibraryHomeScreen extends ConsumerWidget {
               mainAxisSpacing: SirajSpacing.s3,
               childAspectRatio: 0.95,
             ),
-            itemCount: sections.length,
+            itemCount: visibleSections.length,
             itemBuilder: (context, index) {
-              final section = sections[index];
+              final section = visibleSections[index];
               return GestureDetector(
                 onTap: () => context.push('/library/${section.id}'),
                 child: Container(
@@ -98,7 +114,8 @@ class LibraryHomeScreen extends ConsumerWidget {
               );
             },
           ),
-        ),
+        );
+        },
       ),
     );
   }
