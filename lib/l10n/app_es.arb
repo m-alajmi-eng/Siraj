@@ -419,6 +419,7 @@
       "count": { "type": "int" }
     }
   },
+  "library_authorsSection": "Autores",
   "library_type_books": "Libros",
   "library_type_audios": "Audio",
   "library_type_videos": "Vídeo",

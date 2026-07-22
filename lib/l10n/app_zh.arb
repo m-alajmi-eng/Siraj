@@ -443,6 +443,7 @@
       "count": { "type": "int" }
     }
   },
+  "library_authorsSection": "作者",
   "library_type_books": "书籍",
   "library_type_audios": "音频",
   "library_type_videos": "视频",

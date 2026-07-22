@@ -1154,6 +1154,9 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
+  String get library_authorsSection => 'Waandishi';
+
+  @override
   String get library_type_books => 'Vitabu';
 
   @override

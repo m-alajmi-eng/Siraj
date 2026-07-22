@@ -70,8 +70,42 @@ class LibraryHomeScreen extends ConsumerWidget {
               mainAxisSpacing: SirajSpacing.s3,
               childAspectRatio: 0.95,
             ),
-            itemCount: visibleSections.length,
+            // +1 لبطاقة "المؤلفون" الثامنة - قسم ثابت لا يأتي من
+            // library_sections.json (يقرأ من public.library_authors المحصود،
+            // لا من تصنيف IslamHouse مباشر)، فتُضاف يدوياً بعد الأقسام السبعة.
+            itemCount: visibleSections.length + 1,
             itemBuilder: (context, index) {
+              if (index == visibleSections.length) {
+                return GestureDetector(
+                  onTap: () => context.push('/library/authors'),
+                  child: Container(
+                    padding: const EdgeInsets.all(SirajSpacing.s4),
+                    decoration: BoxDecoration(
+                      color: palette.surface,
+                      borderRadius: BorderRadius.circular(SirajRadiusFull.lg),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.person_outline,
+                          color: palette.accentPrimary,
+                          size: 32,
+                        ),
+                        const SizedBox(height: SirajSpacing.s3),
+                        Text(
+                          t.library_authorsSection,
+                          style: AppText.body.copyWith(
+                            color: palette.textPrimary,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }
               final section = visibleSections[index];
               return GestureDetector(
                 onTap: () => context.push('/library/${section.id}'),

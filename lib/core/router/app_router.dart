@@ -39,6 +39,8 @@ import '../../features/khatmah/presentation/screens/khatmah_create_screen.dart';
 import '../../features/khatmah/presentation/screens/khatmah_detail_screen.dart';
 import '../../features/library/presentation/screens/library_items_screen.dart';
 import '../../features/library/presentation/screens/library_type_categories_screen.dart';
+import '../../features/library/presentation/screens/library_authors_screen.dart';
+import '../../features/library/presentation/screens/author_items_screen.dart';
 import '../../features/more/presentation/screens/more_screen.dart';
 import '../../features/settings/presentation/screens/licenses_screen.dart';
 
@@ -301,6 +303,19 @@ final appRouterProvider = Provider<GoRouter>((ref) {
            categoryTitle: categoryTitle,
          );
        },
+     ),
+     // ── المؤلفون: قسم ثامن داخل المكتبة (ADR-013) — مسارات حرفية
+     // `authors` قبل `:sectionId` العام لنفس سبب `hadith` أعلاه.
+     GoRoute(
+       path: '/library/authors',
+       builder: (_, _) => const LibraryAuthorsScreen(),
+     ),
+     GoRoute(
+       path: '/library/authors/:authorId',
+       builder: (_, state) => AuthorItemsScreen(
+         authorId: state.pathParameters['authorId'] ?? '',
+         authorName: state.extra as String? ?? '',
+       ),
      ),
      GoRoute(
        path: '/library/:sectionId/:blockType',

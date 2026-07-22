@@ -443,6 +443,7 @@
       "count": { "type": "int" }
     }
   },
+  "library_authorsSection": "نویسندگان",
   "library_type_books": "کتاب‌ها",
   "library_type_audios": "صوتی",
   "library_type_videos": "ویدیو",

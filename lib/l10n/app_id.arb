@@ -443,6 +443,7 @@
       "count": { "type": "int" }
     }
   },
+  "library_authorsSection": "Penulis",
   "library_type_books": "Buku",
   "library_type_audios": "Audio",
   "library_type_videos": "Video",

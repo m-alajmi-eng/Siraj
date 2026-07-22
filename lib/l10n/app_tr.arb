@@ -443,6 +443,7 @@
       "count": { "type": "int" }
     }
   },
+  "library_authorsSection": "Yazarlar",
   "library_type_books": "Kitaplar",
   "library_type_audios": "Sesli İçerik",
   "library_type_videos": "Video",

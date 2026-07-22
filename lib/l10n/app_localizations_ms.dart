@@ -1153,6 +1153,9 @@ class AppLocalizationsMs extends AppLocalizations {
   }
 
   @override
+  String get library_authorsSection => 'Penulis';
+
+  @override
   String get library_type_books => 'Buku';
 
   @override

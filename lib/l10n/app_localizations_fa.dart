@@ -1148,6 +1148,9 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
+  String get library_authorsSection => 'نویسندگان';
+
+  @override
   String get library_type_books => 'کتاب‌ها';
 
   @override

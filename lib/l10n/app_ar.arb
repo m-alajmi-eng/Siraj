@@ -512,6 +512,7 @@
       "count": { "type": "int" }
     }
   },
+  "library_authorsSection": "المؤلفون",
   "library_type_books": "كتب",
   "library_type_audios": "صوتيات",
   "library_type_videos": "مرئيات",

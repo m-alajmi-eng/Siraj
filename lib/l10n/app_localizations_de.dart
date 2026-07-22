@@ -1155,6 +1155,9 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get library_authorsSection => 'Autoren';
+
+  @override
   String get library_type_books => 'Bücher';
 
   @override

@@ -1149,6 +1149,9 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String get library_authorsSection => 'লেখকগণ';
+
+  @override
   String get library_type_books => 'বই';
 
   @override

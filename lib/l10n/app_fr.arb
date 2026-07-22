@@ -443,6 +443,7 @@
       "count": { "type": "int" }
     }
   },
+  "library_authorsSection": "Auteurs",
   "library_type_books": "Livres",
   "library_type_audios": "Audio",
   "library_type_videos": "Vidéo",

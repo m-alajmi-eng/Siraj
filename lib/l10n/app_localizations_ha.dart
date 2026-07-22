@@ -1151,6 +1151,9 @@ class AppLocalizationsHa extends AppLocalizations {
   }
 
   @override
+  String get library_authorsSection => 'Marubuta';
+
+  @override
   String get library_type_books => 'Littattafai';
 
   @override

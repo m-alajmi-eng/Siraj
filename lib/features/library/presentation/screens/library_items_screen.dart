@@ -54,10 +54,10 @@ class _LibraryItemsScreenState extends ConsumerState<LibraryItemsScreen> {
         loading: () => Center(
           child: CircularProgressIndicator(color: palette.accentPrimary),
         ),
-        error: (e, _) => _ErrorView(palette: palette, isAr: isAr, t: t),
+        error: (e, _) => LibraryErrorView(palette: palette, isAr: isAr, t: t),
         data: (items) {
           if (items.isEmpty) {
-            return _ErrorView(palette: palette, isAr: isAr, t: t, empty: true);
+            return LibraryErrorView(palette: palette, isAr: isAr, t: t, empty: true);
           }
           final filtered = _query.trim().isEmpty
               ? items
@@ -111,7 +111,7 @@ class _LibraryItemsScreenState extends ConsumerState<LibraryItemsScreen> {
                       itemCount: filtered.length,
                       separatorBuilder: (_, _) => const SizedBox(height: SirajSpacing.s2),
                       itemBuilder: (context, index) {
-                        return _ContentCard(
+                        return ContentCard(
                           item: filtered[index],
                           palette: palette,
                           icon: typeIcons[filtered[index].type] ??
@@ -129,12 +129,12 @@ class _LibraryItemsScreenState extends ConsumerState<LibraryItemsScreen> {
   }
 }
 
-class _ContentCard extends StatelessWidget {
+class ContentCard extends StatelessWidget {
   final LibraryItem item;
   final dynamic palette;
   final IconData icon;
 
-  const _ContentCard({
+  const ContentCard({
     required this.item,
     required this.palette,
     required this.icon,
@@ -226,13 +226,13 @@ class _ContentCard extends StatelessWidget {
   }
 }
 
-class _ErrorView extends StatelessWidget {
+class LibraryErrorView extends StatelessWidget {
   final dynamic palette;
   final bool isAr;
   final AppLocalizations t;
   final bool empty;
 
-  const _ErrorView({required this.palette, required this.isAr, required this.t, this.empty = false});
+  const LibraryErrorView({required this.palette, required this.isAr, required this.t, this.empty = false});
 
   @override
   Widget build(BuildContext context) {

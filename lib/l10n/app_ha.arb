@@ -443,6 +443,7 @@
       "count": { "type": "int" }
     }
   },
+  "library_authorsSection": "Marubuta",
   "library_type_books": "Littattafai",
   "library_type_audios": "Sauti",
   "library_type_videos": "Bidiyo",

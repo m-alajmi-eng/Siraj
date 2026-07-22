@@ -443,6 +443,7 @@
       "count": { "type": "int" }
     }
   },
+  "library_authorsSection": "লেখকগণ",
   "library_type_books": "বই",
   "library_type_audios": "অডিও",
   "library_type_videos": "ভিডিও",

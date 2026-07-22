@@ -1148,6 +1148,9 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
+  String get library_authorsSection => 'مصنفین';
+
+  @override
   String get library_type_books => 'کتابیں';
 
   @override

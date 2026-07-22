@@ -2284,6 +2284,12 @@ abstract class AppLocalizations {
   /// **'{count} مجلدات'**
   String library_subcategoryCount(int count);
 
+  /// No description provided for @library_authorsSection.
+  ///
+  /// In ar, this message translates to:
+  /// **'المؤلفون'**
+  String get library_authorsSection;
+
   /// No description provided for @library_type_books.
   ///
   /// In ar, this message translates to:

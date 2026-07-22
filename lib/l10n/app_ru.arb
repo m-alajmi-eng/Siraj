@@ -443,6 +443,7 @@
       "count": { "type": "int" }
     }
   },
+  "library_authorsSection": "Авторы",
   "library_type_books": "Книги",
   "library_type_audios": "Аудио",
   "library_type_videos": "Видео",

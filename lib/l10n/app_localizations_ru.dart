@@ -1153,6 +1153,9 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get library_authorsSection => 'Авторы';
+
+  @override
   String get library_type_books => 'Книги';
 
   @override

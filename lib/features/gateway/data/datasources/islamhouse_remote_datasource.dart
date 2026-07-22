@@ -90,6 +90,34 @@ class IslamHouseRemoteDataSource {
     return items;
   }
 
+  /// أعمال مؤلف معيّن عبر get-author-items - نفس شكل استجابة
+  /// get-category-items تماماً (مصفوفة "data" بعناصر LibraryItem)، فقط
+  /// مُفلترة حسب المؤلف بدل التصنيف. لا حصاد هنا (النطاق محصور بمصدر
+  /// get-category-items وحده).
+  Future<List<LibraryItem>> getAuthorItems(
+    String authorId, {
+    String lang = 'ar',
+    int page = 1,
+    int limit = 25,
+    String type = 'showall',
+  }) async {
+    final url = Uri.parse(
+      '$_base/$_key/main/get-author-items/$authorId/$type/$lang/$lang/$page/$limit/json',
+    );
+    try {
+      final res = await _client.get(url).timeout(const Duration(seconds: 20));
+      if (res.statusCode != 200) return [];
+      final decoded = jsonDecode(utf8.decode(res.bodyBytes));
+      if (decoded is! Map || decoded['data'] is! List) return [];
+      return (decoded['data'] as List)
+          .whereType<Map>()
+          .map((e) => LibraryItem.fromJson(Map<String, dynamic>.from(e)))
+          .toList();
+    } catch (_) {
+      return [];
+    }
+  }
+
   Future<List<LibraryItem>> _fetch(
     String categoryId,
     String lang,

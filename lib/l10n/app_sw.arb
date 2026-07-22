@@ -443,6 +443,7 @@
       "count": { "type": "int" }
     }
   },
+  "library_authorsSection": "Waandishi",
   "library_type_books": "Vitabu",
   "library_type_audios": "Sauti",
   "library_type_videos": "Video",

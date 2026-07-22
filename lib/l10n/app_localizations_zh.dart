@@ -1131,6 +1131,9 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get library_authorsSection => '作者';
+
+  @override
   String get library_type_books => '书籍';
 
   @override

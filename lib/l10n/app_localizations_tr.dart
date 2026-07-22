@@ -1151,6 +1151,9 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get library_authorsSection => 'Yazarlar';
+
+  @override
   String get library_type_books => 'Kitaplar';
 
   @override
