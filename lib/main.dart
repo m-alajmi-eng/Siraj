@@ -43,51 +43,61 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _initTimezone();
 
-  // backend سطح المكتب (Linux/Windows) لـ just_audio — اختياري للتطوير
-  if (Platform.isLinux || Platform.isWindows) {
-    try {
-      JustAudioMediaKit.ensureInitialized();
-    } catch (e, st) {
-      // لا نغيّر السلوك (التطبيق يستمر بلا صوت سطح مكتب إن فشلت هذه
-      // التهيئة، غالباً بسبب libmpv غير مثبّت) — لكن السبب كان يُبتلَع
-      // بصمت تام سابقاً، ما يُخفي أي فشل صوت مستقبلي مشابه حتى لو حدث
-      // يوماً على منصة أخرى. نسجّله الآن بدل تجاهله.
-      if (kDebugMode) {
-        debugPrint('JustAudioMediaKit.ensureInitialized فشلت: $e');
-      }
-      if (Sentry.isEnabled) {
-        unawaited(Sentry.captureException(e, stackTrace: st));
-      }
-    }
-  }
-
-  // تهيئة التشغيل الخلفي للصوت (قرآن + راديو)
-  await JustAudioBackground.init(
-    androidNotificationChannelId: 'com.siraj.audio',
-    androidNotificationChannelName: 'سراج — الصوتيات',
-    androidNotificationOngoing: true,
-  );
-
-  await Supabase.initialize(
-    url: _supabaseUrl,
-    anonKey: _supabaseAnonKey,
-  );
-
-  await CacheService.init();
-
-  // تفعيل الأذان (Android/iOS فقط)
-  if (Platform.isAndroid || Platform.isIOS) {
-    await AdhanService.init();
-  }
-
-  // مراقبة الأعطال عبر Sentry (مجاني، مستقل عن Firebase تماماً)
+  // مراقبة الأعطال عبر Sentry (مجاني، مستقل عن Firebase تماماً) — يجب أن
+  // تُهيَّأ قبل أي تهيئة أخرى قد تفشل (JustAudioMediaKit/JustAudioBackground/
+  // Supabase/CacheService/AdhanService)، لذا انتقلت كلها إلى داخل appRunner
+  // نفسه بدل أن تسبق SentryFlutter.init() — بلا أي تغيير في ترتيبها
+  // النسبي أو منطقها الداخلي، فقط موضعها.
   await SentryFlutter.init(
     (options) {
       options.dsn = _sentryDsn;
       // نسبة تتبع الأداء منخفضة عمداً لمشروع خيري (توفير الحصة المجانية)
       options.tracesSampleRate = 0.1;
     },
-    appRunner: () => runApp(const ProviderScope(child: SirajApp())),
+    appRunner: () async {
+      // Sentry يستدعي هذا داخلياً بنفسه بالفعل (أول تكامل لديه)، لكن
+      // استدعاؤه هنا أيضاً آمن تماماً (يُرجع نفس الـbinding الموجود).
+      WidgetsFlutterBinding.ensureInitialized();
+
+      // backend سطح المكتب (Linux/Windows) لـ just_audio — اختياري للتطوير
+      if (Platform.isLinux || Platform.isWindows) {
+        try {
+          JustAudioMediaKit.ensureInitialized();
+        } catch (e, st) {
+          // لا نغيّر السلوك (التطبيق يستمر بلا صوت سطح مكتب إن فشلت هذه
+          // التهيئة، غالباً بسبب libmpv غير مثبّت) — لكن السبب كان يُبتلَع
+          // بصمت تام سابقاً، ما يُخفي أي فشل صوت مستقبلي مشابه حتى لو
+          // حدث يوماً على منصة أخرى. نسجّله الآن بدل تجاهله.
+          if (kDebugMode) {
+            debugPrint('JustAudioMediaKit.ensureInitialized فشلت: $e');
+          }
+          if (Sentry.isEnabled) {
+            unawaited(Sentry.captureException(e, stackTrace: st));
+          }
+        }
+      }
+
+      // تهيئة التشغيل الخلفي للصوت (قرآن + راديو)
+      await JustAudioBackground.init(
+        androidNotificationChannelId: 'com.siraj.audio',
+        androidNotificationChannelName: 'سراج — الصوتيات',
+        androidNotificationOngoing: true,
+      );
+
+      await Supabase.initialize(
+        url: _supabaseUrl,
+        anonKey: _supabaseAnonKey,
+      );
+
+      await CacheService.init();
+
+      // تفعيل الأذان (Android/iOS فقط)
+      if (Platform.isAndroid || Platform.isIOS) {
+        await AdhanService.init();
+      }
+
+      runApp(const ProviderScope(child: SirajApp()));
+    },
   );
 }
 
