@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../providers/quran_provider.dart';
 import '../../domain/entities/ayah_entity.dart';
@@ -63,80 +64,58 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
     final results = ref.watch(searchResultsProvider);
     final surahs  = ref.watch(surahsProvider);
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      body: SafeArea(
-        child: Column(
-          children: [
-
-            // ─── Search Bar ───────────────────────────────────
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back,
-                      color: palette.textPrimary),
-                    tooltip: t.common_back,
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  Expanded(
-                    child: TextField(
-                      controller:    _controller,
-                      textDirection: TextDirection.rtl,
-                      autofocus:     true,
-                      style: TextStyle(color: palette.textPrimary),
-                      decoration: InputDecoration(
-                        hintText:  'ابحث في القرآن الكريم...',
-                        hintStyle: TextStyle(color: palette.textSecondary),
-                        filled:    true,
-                        fillColor: palette.surface,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide:   BorderSide.none,
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12),
-                      ),
-                      onChanged: (val) => ref
-                          .read(searchQueryProvider.notifier)
-                          .update(val),
-                    ),
-                  ),
-                ],
+    return AppScaffold(
+      title: t.common_search,
+      padding: EdgeInsets.zero,
+      titleWidget: TextField(
+        controller:    _controller,
+        textDirection: TextDirection.rtl,
+        autofocus:     true,
+        style: TextStyle(color: palette.textPrimary),
+        decoration: InputDecoration(
+          hintText:  t.quran_searchHint,
+          hintStyle: TextStyle(color: palette.textSecondary),
+          filled:    true,
+          fillColor: palette.surface,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide:   BorderSide.none,
+          ),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16, vertical: 12),
+        ),
+        onChanged: (val) => ref
+            .read(searchQueryProvider.notifier)
+            .update(val),
+      ),
+      child: query.length < 2
+          ? Center(
+              child: Text(
+                t.quran_searchPrompt,
+                style: TextStyle(
+                  color:    palette.textSecondary,
+                  fontSize: 16,
+                ),
               ),
-            ),
-
-            // ─── Results ──────────────────────────────────────
-            Expanded(
-              child: query.length < 2
+            )
+          : results.when(
+              loading: () => Center(
+                child: CircularProgressIndicator(
+                  color: palette.accentPrimary)),
+              error: (e, _) => Center(
+                child: Text(t.common_error,
+                  style: TextStyle(color: palette.textPrimary))),
+              data: (list) => list.isEmpty
                   ? Center(
                       child: Text(
-                        'اكتب كلمة للبحث',
+                        t.quran_noResults,
                         style: TextStyle(
                           color:    palette.textSecondary,
                           fontSize: 16,
                         ),
                       ),
                     )
-                  : results.when(
-                      loading: () => Center(
-                        child: CircularProgressIndicator(
-                          color: palette.accentPrimary)),
-                      error: (e, _) => Center(
-                        child: Text('خطأ في البحث',
-                          style: TextStyle(color: palette.textPrimary))),
-                      data: (list) => list.isEmpty
-                          ? Center(
-                              child: Text(
-                                'لا توجد نتائج',
-                                style: TextStyle(
-                                  color:    palette.textSecondary,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            )
-                          : ListView.builder(
+                  : ListView.builder(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 16),
                               itemCount: list.length,
@@ -206,11 +185,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen> {
                               },
                             ),
                     ),
-            ),
-          ],
-        ),
-      ),
-    );
+            );
   }
 
   Widget _buildHighlightedText(

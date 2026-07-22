@@ -26,6 +26,11 @@ class AppScaffold extends ConsumerWidget {
   final bool scrollable;
   final EdgeInsetsGeometry? padding;
   final Widget? floatingActionButton;
+  /// يستبدل عمود العنوان الافتراضي (Text(title) + العنوان الفرعي) بودجت
+  /// مخصّص — لشاشات هيدرها ليس عنواناً نصياً بل عنصر تفاعلي (حقل بحث
+  /// مثلاً). زر الرجوع والإجراءات الجانبية (actions) يبقيان كما هما.
+  /// [title] يبقى مطلوباً حتى مع هذا لأغراض القراءة الصوتية/التتبّع.
+  final Widget? titleWidget;
 
   const AppScaffold({
     super.key,
@@ -37,6 +42,7 @@ class AppScaffold extends ConsumerWidget {
     this.scrollable = false,
     this.padding,
     this.floatingActionButton,
+    this.titleWidget,
   });
 
   @override
@@ -71,7 +77,7 @@ class AppScaffold extends ConsumerWidget {
                   if (showBack && canPop)
                     const SizedBox(width: SirajSpacing.s3),
                   Expanded(
-                    child: Column(
+                    child: titleWidget ?? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(title, style: AppText.title.copyWith(

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:ui' as ui;
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../widgets/share_card_widget.dart';
 
@@ -55,36 +56,11 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
     final theme   = _themes[_selectedTheme];
     final format  = _formats[_selectedFormat];
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      body: SafeArea(
-        child: Column(
+    return AppScaffold(
+      title: t.more_shareCards,
+      padding: EdgeInsets.zero,
+      child: Column(
           children: [
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.close, color: palette.textPrimary),
-                    tooltip: t.common_close,
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  Expanded(
-                    child: Text(
-                      'بطاقة المشاركة',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color:      palette.textPrimary,
-                        fontSize:   20,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
             Expanded(
               child: Center(
                 child: RepaintBoundary(
@@ -267,7 +243,6 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
             ),
           ],
         ),
-      ),
     );
   }
 

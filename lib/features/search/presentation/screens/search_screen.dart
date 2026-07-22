@@ -4,6 +4,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../providers/search_provider.dart';
 import '../../../qke/presentation/screens/verse_portal_screen.dart';
 
@@ -29,88 +30,69 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final palette     = ref.watch(timeThemeProvider);
     final searchState = ref.watch(searchProvider);
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // ─── Header + Search Bar ───
-            Padding(
-              padding: const EdgeInsets.all(SirajSpacing.s4),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back, color: palette.textPrimary),
-                    tooltip: t.common_back,
-                    onPressed: () {
-                      ref.read(searchProvider.notifier).clear();
-                      Navigator.pop(context);
-                    },
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 44,
-                      decoration: BoxDecoration(
-                        color: palette.surface,
-                        borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-                      ),
-                      child: TextField(
-                        controller: _controller,
-                        autofocus: true,
-                        style: AppText.body.copyWith(color: palette.textPrimary),
-                        decoration: InputDecoration(
-                          hintText: t.search_hint,
-                          hintStyle: AppText.bodySmall.copyWith(
-                            color: palette.textSecondary),
-                          border: InputBorder.none,
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: SirajSpacing.s4, vertical: SirajSpacing.s2),
-                          suffixIcon: searchState.query.isNotEmpty
-                              ? IconButton(
-                                  icon: Icon(Icons.clear,
-                                    color: palette.textSecondary, size: 18),
-                                  tooltip: t.common_clearSearch,
-                                  onPressed: () {
-                                    _controller.clear();
-                                    ref.read(searchProvider.notifier).clear();
-                                  },
-                                )
-                              : Icon(Icons.search, color: palette.textSecondary),
-                        ),
-                        onChanged: (q) {
-                          if (q.length >= 2) {
-                            ref.read(searchProvider.notifier).search(q);
-                          } else if (q.isEmpty) {
-                            ref.read(searchProvider.notifier).clear();
-                          }
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            if (searchState.isLoading)
-              LinearProgressIndicator(
-                color: palette.accentPrimary,
-                backgroundColor: palette.surface,
-              ),
-
-            Expanded(
-              child: searchState.query.isEmpty
-                  ? _EmptyState(palette: palette, t: t)
-                  : searchState.isLoading
-                      ? const SizedBox.shrink()
-                      : searchState.error != null
-                          ? _ErrorState(error: searchState.error!, palette: palette)
-                          : searchState.results.isEmpty
-                              ? _NoResults(query: searchState.query, palette: palette, t: t)
-                              : _ResultsList(
-                                  results: searchState.results, palette: palette, t: t),
-            ),
-          ],
+    // العنوان هنا حقل بحث تفاعلي لا نص ثابت — titleWidget يستبدل عمود
+    // العنوان الافتراضي في AppScaffold بينما يبقى زر الرجوع الموحّد كما هو.
+    return AppScaffold(
+      title: t.common_search,
+      padding: EdgeInsets.zero,
+      titleWidget: Container(
+        height: 44,
+        decoration: BoxDecoration(
+          color: palette.surface,
+          borderRadius: BorderRadius.circular(SirajRadiusFull.md),
         ),
+        child: TextField(
+          controller: _controller,
+          autofocus: true,
+          style: AppText.body.copyWith(color: palette.textPrimary),
+          decoration: InputDecoration(
+            hintText: t.search_hint,
+            hintStyle: AppText.bodySmall.copyWith(
+              color: palette.textSecondary),
+            border: InputBorder.none,
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: SirajSpacing.s4, vertical: SirajSpacing.s2),
+            suffixIcon: searchState.query.isNotEmpty
+                ? IconButton(
+                    icon: Icon(Icons.clear,
+                      color: palette.textSecondary, size: 18),
+                    tooltip: t.common_clearSearch,
+                    onPressed: () {
+                      _controller.clear();
+                      ref.read(searchProvider.notifier).clear();
+                    },
+                  )
+                : Icon(Icons.search, color: palette.textSecondary),
+          ),
+          onChanged: (q) {
+            if (q.length >= 2) {
+              ref.read(searchProvider.notifier).search(q);
+            } else if (q.isEmpty) {
+              ref.read(searchProvider.notifier).clear();
+            }
+          },
+        ),
+      ),
+      child: Column(
+        children: [
+          if (searchState.isLoading)
+            LinearProgressIndicator(
+              color: palette.accentPrimary,
+              backgroundColor: palette.surface,
+            ),
+          Expanded(
+            child: searchState.query.isEmpty
+                ? _EmptyState(palette: palette, t: t)
+                : searchState.isLoading
+                    ? const SizedBox.shrink()
+                    : searchState.error != null
+                        ? _ErrorState(error: searchState.error!, palette: palette)
+                        : searchState.results.isEmpty
+                            ? _NoResults(query: searchState.query, palette: palette, t: t)
+                            : _ResultsList(
+                                results: searchState.results, palette: palette, t: t),
+          ),
+        ],
       ),
     );
   }
