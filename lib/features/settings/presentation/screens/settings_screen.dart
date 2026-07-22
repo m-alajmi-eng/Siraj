@@ -12,8 +12,10 @@ import '../../../../core/mode/app_mode_provider.dart';
 import '../../../../core/mode/feature_flags.dart';
 import '../../../../core/mode/enabled_sections_provider.dart';
 import '../../../../core/notifications/adhan_service.dart';
+import '../../../../core/notifications/adhan_settings_provider.dart';
 import '../../../../core/widgets/app_scaffold.dart';
 import '../../../prayer/presentation/providers/prayer_provider.dart';
+import '../../../quran/presentation/providers/reader_font_provider.dart';
 
 // اللغات ذات الاتجاه من اليمين لليسار المدعومة حالياً في التطبيق.
 const _rtlLocaleCodes = {'ar', 'ur', 'fa'};
@@ -28,15 +30,7 @@ class SettingsScreen extends ConsumerStatefulWidget {
 class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   late Box _box;
 
-  String _selectedAdhan    = 'مكي (الحرم المكي)';
-  bool   _adhanEnabled     = true;
-  bool   _vibrationEnabled = false;
-  int    _iqamaAlert       = 10;
-  String _madhab           = 'shafi';
-  String _calcMethod       = 'MWL';
-  String _quranFont        = 'uthmani';
-  double _fontSize         = 20;
-  String _locale           = 'ar';
+  String _locale = 'ar';
 
   // البيانات: id فقط (تُترجم وقت العرض)
   final _madhabIds   = ['hanafi', 'maliki', 'shafi', 'hanbali'];
@@ -88,19 +82,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   @override
   void initState() {
     super.initState();
-    _box              = Hive.box('settings');
-    _selectedAdhan    = _box.get('adhan_sound',   defaultValue: 'مكي (الحرم المكي)');
-    _adhanEnabled     = _box.get('adhan_enabled', defaultValue: true);
-    _vibrationEnabled = _box.get('vibration',     defaultValue: false);
-    _iqamaAlert       = _box.get('iqama_alert',   defaultValue: 10);
-    _madhab           = _box.get('madhab',        defaultValue: 'shafi');
-    _calcMethod       = _box.get('calc_method',   defaultValue: 'MWL');
-    _quranFont        = _box.get('quran_font',    defaultValue: 'uthmani');
-    _fontSize         = _box.get('font_size',     defaultValue: 20.0);
-    _locale           = _box.get('locale',        defaultValue: 'ar');
+    _box    = Hive.box('settings');
+    _locale = _box.get('locale', defaultValue: 'ar');
   }
-
-  void _save(String key, dynamic value) => _box.put(key, value);
 
   Future<void> _previewAdhan(String name) async {
     await AdhanService.playAdhan(name);
@@ -115,6 +99,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       orElse: () => _locales[0],
     );
     final isRtl = _rtlLocaleCodes.contains(_locale);
+
+    final madhab       = ref.watch(madhabProvider);
+    final calcMethod   = ref.watch(calcMethodProvider);
+    final adhanEnabled = ref.watch(adhanEnabledProvider);
+    final adhanSound   = ref.watch(adhanSoundProvider);
+    final vibration    = ref.watch(vibrationProvider);
+    final iqamaAlert   = ref.watch(iqamaAlertProvider);
+    final readerFont   = ref.watch(readerFontProvider);
 
     return AppScaffold(
       title: t.settings_title,
@@ -144,7 +136,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     final l = _locales.firstWhere(
                       (l) => '${l['flag']} ${l['name']}' == val);
                     setState(() => _locale = l['code']!);
-                    _save('locale', l['code']);
                     ref.read(localeProvider.notifier).setLocale(l['code']!);
                   },
                 ),
@@ -152,38 +143,33 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               _SettingsTile(
                 icon: Icons.mosque,
                 title: t.settings_madhab,
-                value: _madhabName(t, _madhab),
+                value: _madhabName(t, madhab),
                 palette: palette,
                 onTap: () => _showOptions(
                   context: context,
                   palette: palette,
                   title: t.settings_chooseMadhab,
                   options: _madhabIds.map((id) => _madhabName(t, id)).toList(),
-                  selected: _madhabName(t, _madhab),
+                  selected: _madhabName(t, madhab),
                   onSelect: (val) {
                     final id = _madhabIds.firstWhere((id) => _madhabName(t, id) == val);
-                    setState(() => _madhab = id);
-                    _save('madhab', id);
+                    ref.read(madhabProvider.notifier).setMadhab(id);
                   },
                 ),
               ),
               _SettingsTile(
                 icon: Icons.calculate,
                 title: t.settings_calcMethod,
-                value: _calcName(t, _calcMethod),
+                value: _calcName(t, calcMethod),
                 palette: palette,
                 onTap: () => _showOptions(
                   context: context,
                   palette: palette,
                   title: t.settings_chooseCalc,
                   options: _calcIds.map((id) => _calcName(t, id)).toList(),
-                  selected: _calcName(t, _calcMethod),
+                  selected: _calcName(t, calcMethod),
                   onSelect: (val) {
                     final id = _calcIds.firstWhere((id) => _calcName(t, id) == val);
-                    setState(() => _calcMethod = id);
-                    _save('calc_method', id);
-                    // ننشر التغيير فوراً لحساب الصلاة الفعلي عبر Riverpod
-                    // (بدل انتظار إعادة فتح التطبيق ليقرأ القيمة الجديدة من Hive)
                     ref.read(calcMethodProvider.notifier).setMethod(id);
                   },
                 ),
@@ -199,12 +185,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               _SettingsSwitch(
                 icon: Icons.volume_up,
                 title: t.settings_enableAdhan,
-                value: _adhanEnabled,
+                value: adhanEnabled,
                 palette: palette,
-                onChanged: (val) {
-                  setState(() => _adhanEnabled = val);
-                  _save('adhan_enabled', val);
-                },
+                onChanged: (val) =>
+                    ref.read(adhanEnabledProvider.notifier).setEnabled(val),
               ),
               // صوت المؤذن (أسماء المؤذنين تبقى عربية — محتوى)
               Padding(
@@ -222,12 +206,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     ),
                     const SizedBox(height: SirajSpacing.s3),
                     ...AdhanService.adhanSounds.keys.map((name) {
-                      final isSelected = _selectedAdhan == name;
+                      final isSelected = adhanSound == name;
                       return GestureDetector(
-                        onTap: () {
-                          setState(() => _selectedAdhan = name);
-                          _save('adhan_sound', name);
-                        },
+                        onTap: () =>
+                            ref.read(adhanSoundProvider.notifier).setSound(name),
                         child: Container(
                           margin: const EdgeInsets.only(bottom: SirajSpacing.s2),
                           padding: const EdgeInsets.symmetric(
@@ -276,12 +258,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               _SettingsSwitch(
                 icon: Icons.vibration,
                 title: t.settings_vibration,
-                value: _vibrationEnabled,
+                value: vibration,
                 palette: palette,
-                onChanged: (val) {
-                  setState(() => _vibrationEnabled = val);
-                  _save('vibration', val);
-                },
+                onChanged: (val) =>
+                    ref.read(vibrationProvider.notifier).setEnabled(val),
               ),
               // تنبيه قبل الإقامة
               Padding(
@@ -295,12 +275,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [5, 10, 15, 20].map((min) {
-                        final isSelected = _iqamaAlert == min;
+                        final isSelected = iqamaAlert == min;
                         return GestureDetector(
-                          onTap: () {
-                            setState(() => _iqamaAlert = min);
-                            _save('iqama_alert', min);
-                          },
+                          onTap: () =>
+                              ref.read(iqamaAlertProvider.notifier).setMinutes(min),
                           child: Container(
                             padding: const EdgeInsets.symmetric(
                               horizontal: SirajSpacing.s4, vertical: SirajSpacing.s2),
@@ -329,18 +307,17 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               _SettingsTile(
                 icon: Icons.menu_book,
                 title: t.settings_quranFont,
-                value: _quranFont == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
+                value: readerFont.quranFontKey == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
                 palette: palette,
                 onTap: () => _showOptions(
                   context: context,
                   palette: palette,
                   title: t.settings_quranFont,
                   options: [t.settings_fontUthmani, t.settings_fontHafs],
-                  selected: _quranFont == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
+                  selected: readerFont.quranFontKey == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
                   onSelect: (val) {
                     final f = val == t.settings_fontUthmani ? 'uthmani' : 'hafs';
-                    setState(() => _quranFont = f);
-                    _save('quran_font', f);
+                    ref.read(readerFontProvider.notifier).setQuranFont(f);
                   },
                 ),
               ),
@@ -353,21 +330,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     Text(t.settings_quranFontSize, style: AppText.body.copyWith(
                       color: palette.textPrimary)),
                     Slider(
-                      value: _fontSize,
+                      value: readerFont.baseSize,
                       min: 16, max: 32, divisions: 8,
-                      label: _fontSize.round().toString(),
+                      label: readerFont.baseSize.round().toString(),
                       activeColor: palette.accentPrimary,
-                      onChanged: (val) {
-                        setState(() => _fontSize = val);
-                        _save('font_size', val);
-                      },
+                      onChanged: (val) =>
+                          ref.read(readerFontProvider.notifier).setFontSize(val),
                     ),
                     Center(
                       child: Text('بِسْمِ اللَّهِ',
                         style: TextStyle(
-                          fontFamily: 'QuranFont',
+                          fontFamily: readerFont.fontFamily,
                           color: palette.textPrimary,
-                          fontSize: _fontSize)),
+                          fontSize: readerFont.baseSize)),
                     ),
                   ],
                 ),

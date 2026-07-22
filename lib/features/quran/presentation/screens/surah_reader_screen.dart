@@ -9,6 +9,7 @@ import '../../../../core/audio/audio_provider.dart';
 import '../../../../core/audio/audio_service.dart';
 import '../../../../core/storage/cache_service.dart';
 import '../providers/quran_provider.dart';
+import '../providers/reader_font_provider.dart';
 import '../../domain/entities/tajweed_entity.dart';
 import '../../../qke/presentation/screens/verse_portal_screen.dart';
 import '../../data/datasources/quran_remote_datasource.dart';
@@ -333,9 +334,10 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                                 Text(basmalaText,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontFamily: 'QuranFont',
+                                    fontFamily: ref.watch(readerFontProvider).fontFamily,
                                     color: palette.accentPrimary,
-                                    fontSize: 24, height: 2.0)),
+                                    fontSize: ref.watch(readerFontProvider).listBasmala,
+                                    height: 2.0)),
                                 Divider(
                                   color: palette.accentPrimary.withValues(alpha: 0.2),
                                   thickness: 0.5, height: 20),
@@ -371,11 +373,11 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                                 textDirection: TextDirection.rtl,
             child: Builder(builder: (context) {
               final baseStyle = TextStyle(
-                fontFamily: 'QuranFont',
+                fontFamily: ref.watch(readerFontProvider).fontFamily,
                 color: isCurrentAyah
                     ? palette.accentPrimary
                     : palette.textPrimary,
-                fontSize: 26, height: 2.2);
+                fontSize: ref.watch(readerFontProvider).listBody, height: 2.2);
 
               TajweedAyah? tajweedAyah;
               if (_tajweedEnabled) {
@@ -644,6 +646,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
     {List<TajweedAyah> tajweedAyahs = const [],
      Map<String, Color> tajweedColors = const {}}) {
     final spans = <InlineSpan>[];
+    final font = ref.watch(readerFontProvider);
 
     // خريطة سريعة: رقم الآية -> بيانات تجويدها (لتفادي البحث الخطي المتكرر)
     final tajweedByNumber = {for (final ta in tajweedAyahs) ta.number: ta};
@@ -655,9 +658,9 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
 
       // نص الآية — قابل للضغط المطول للخيارات
       final baseStyle = TextStyle(
-        fontFamily: 'QuranFont',
+        fontFamily: font.fontFamily,
         color: palette.textPrimary,
-        fontSize: 28, height: 2.4);
+        fontSize: font.mushafBody, height: 2.4);
       final recognizer = LongPressGestureRecognizer()
         ..onLongPress = () => _showAyahOptions(
           context: context, palette: palette, t: t,
@@ -690,9 +693,9 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
       spans.add(TextSpan(
         text: ' ﴿${_toArabicNumeral(ayah.ayahNumber)}﴾ ',
         style: TextStyle(
-          fontFamily: 'QuranFont',
+          fontFamily: font.fontFamily,
           color: palette.accentPrimary,
-          fontSize: 24, height: 2.4),
+          fontSize: font.mushafMarker, height: 2.4),
       ));
     }
 
@@ -708,9 +711,9 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
             Text(basmalaText,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontFamily: 'QuranFont',
+                fontFamily: font.fontFamily,
                 color: palette.accentPrimary,
-                fontSize: 26, height: 2.0)),
+                fontSize: font.mushafBasmala, height: 2.0)),
             Divider(
               color: palette.accentPrimary.withValues(alpha: 0.2),
               thickness: 0.5, height: 28),

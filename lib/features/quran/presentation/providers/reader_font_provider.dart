@@ -10,8 +10,16 @@ class ReaderFontSettings {
   /// الفروق النسبية المعتمَدة سابقاً في التصميم الثابت.
   final double baseSize;
   final String fontFamily;
+  /// المفتاح الخام كما يُحفَظ في الإعدادات ('uthmani'/'hafs') — يُستخدم
+  /// في واجهة الإعدادات نفسها للمقارنة/العرض، بينما [fontFamily] المشتقّ
+  /// منه هو ما يستهلكه القارئ فعلياً.
+  final String quranFontKey;
 
-  const ReaderFontSettings({required this.baseSize, required this.fontFamily});
+  const ReaderFontSettings({
+    required this.baseSize,
+    required this.fontFamily,
+    required this.quranFontKey,
+  });
 
   double get mushafBody   => baseSize;
   double get mushafMarker => baseSize - 4;
@@ -29,11 +37,19 @@ class ReaderFontNotifier extends Notifier<ReaderFontSettings> {
     final size = CacheService.getSetting('font_size', defaultValue: 28.0) as double;
     final fontKey =
         CacheService.getSetting('quran_font', defaultValue: 'uthmani') as String;
-    return ReaderFontSettings(baseSize: size, fontFamily: _familyForKey(fontKey));
+    return ReaderFontSettings(
+      baseSize: size,
+      fontFamily: _familyForKey(fontKey),
+      quranFontKey: fontKey,
+    );
   }
 
   Future<void> setFontSize(double size) async {
-    state = ReaderFontSettings(baseSize: size, fontFamily: state.fontFamily);
+    state = ReaderFontSettings(
+      baseSize: size,
+      fontFamily: state.fontFamily,
+      quranFontKey: state.quranFontKey,
+    );
     await CacheService.saveSetting('font_size', size);
   }
 
@@ -41,6 +57,7 @@ class ReaderFontNotifier extends Notifier<ReaderFontSettings> {
     state = ReaderFontSettings(
       baseSize: state.baseSize,
       fontFamily: _familyForKey(quranFontKey),
+      quranFontKey: quranFontKey,
     );
     await CacheService.saveSetting('quran_font', quranFontKey);
   }
