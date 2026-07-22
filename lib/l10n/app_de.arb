@@ -47,6 +47,8 @@
   "qibla_active": "Kompass aktiv",
   "qibla_error": "Qibla-Richtung konnte nicht bestimmt werden",
   "qibla_errorHint": "Kompass und Standort aktivieren",
+  "qibla_staticMode": "Statischer Modus (kein Kompasssensor)",
+  "qibla_calibrationHint": "Bewegen Sie Ihr Gerät in einer Achtelbewegung, um den Kompass zu kalibrieren",
   "qibla_kaaba": "Kaaba",
   "qibla_fromNorth": "Grad vom Norden zur Qibla",
   "qibla_distanceKm": "{km} km bis {kaaba}",

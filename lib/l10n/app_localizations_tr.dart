@@ -44,7 +44,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get prayer_locationGPS => 'Mevcut konumunuz';
 
   @override
-  String get prayer_locationDefault => 'Riyad (varsayılan)';
+  String get prayer_locationDefault => 'Mekke (varsayılan)';
 
   @override
   String get quran_title => 'Kur\'an-ı Kerim';
@@ -185,6 +185,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get qibla_errorHint => 'Pusulayı ve konumu etkinleştirin';
+
+  @override
+  String get qibla_staticMode => 'Sabit mod (pusula sensörü yok)';
+
+  @override
+  String get qibla_calibrationHint =>
+      'Pusulayı kalibre etmek için cihazınızı sekiz çizecek şekilde hareket ettirin';
 
   @override
   String get qibla_kaaba => 'Kabe';

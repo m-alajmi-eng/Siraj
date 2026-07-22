@@ -44,7 +44,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get prayer_locationGPS => 'موقعك الحالي';
 
   @override
-  String get prayer_locationDefault => 'الرياض (افتراضي)';
+  String get prayer_locationDefault => 'مكة المكرمة (افتراضي)';
 
   @override
   String get quran_title => 'القرآن الكريم';
@@ -184,6 +184,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get qibla_errorHint => 'تأكد من تفعيل البوصلة والموقع';
+
+  @override
+  String get qibla_staticMode => 'وضع ثابت (لا مستشعر بوصلة)';
+
+  @override
+  String get qibla_calibrationHint => 'حرّك جهازك على شكل ٨ لمعايرة البوصلة';
 
   @override
   String get qibla_kaaba => 'الكعبة';

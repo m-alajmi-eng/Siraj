@@ -193,7 +193,7 @@ abstract class AppLocalizations {
   /// No description provided for @prayer_locationDefault.
   ///
   /// In ar, this message translates to:
-  /// **'الرياض (افتراضي)'**
+  /// **'مكة المكرمة (افتراضي)'**
   String get prayer_locationDefault;
 
   /// No description provided for @quran_title.
@@ -453,6 +453,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تأكد من تفعيل البوصلة والموقع'**
   String get qibla_errorHint;
+
+  /// No description provided for @qibla_staticMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'وضع ثابت (لا مستشعر بوصلة)'**
+  String get qibla_staticMode;
+
+  /// No description provided for @qibla_calibrationHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'حرّك جهازك على شكل ٨ لمعايرة البوصلة'**
+  String get qibla_calibrationHint;
 
   /// No description provided for @qibla_kaaba.
   ///

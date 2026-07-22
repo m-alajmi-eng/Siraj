@@ -47,6 +47,8 @@
   "qibla_active": "指南针已激活",
   "qibla_error": "无法确定朝拜方向",
   "qibla_errorHint": "请开启指南针和位置服务",
+  "qibla_staticMode": "静态模式（无指南针传感器）",
+  "qibla_calibrationHint": "将设备沿8字形移动以校准指南针",
   "qibla_kaaba": "天房",
   "qibla_fromNorth": "从北方到朝拜方向的度数",
   "qibla_distanceKm": "距{kaaba} {km} 公里",

@@ -44,7 +44,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get prayer_locationGPS => 'Ваше текущее местоположение';
 
   @override
-  String get prayer_locationDefault => 'Эр-Рияд (по умолчанию)';
+  String get prayer_locationDefault => 'Мекка (по умолчанию)';
 
   @override
   String get quran_title => 'Священный Коран';
@@ -185,6 +185,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get qibla_errorHint => 'Включите компас и геолокацию';
+
+  @override
+  String get qibla_staticMode => 'Статичный режим (нет датчика компаса)';
+
+  @override
+  String get qibla_calibrationHint =>
+      'Двигайте устройством по траектории восьмёрки для калибровки компаса';
 
   @override
   String get qibla_kaaba => 'Кааба';

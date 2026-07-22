@@ -47,6 +47,8 @@
   "qibla_active": "Brújula activa",
   "qibla_error": "No se pudo determinar la dirección de la Qibla",
   "qibla_errorHint": "Activa la brújula y la ubicación",
+  "qibla_staticMode": "Modo estático (sin sensor de brújula)",
+  "qibla_calibrationHint": "Mueve tu dispositivo en forma de ocho para calibrar la brújula",
   "qibla_kaaba": "Kaaba",
   "qibla_fromNorth": "Grados desde el Norte hacia la Qibla",
   "qibla_distanceKm": "{km} km hasta {kaaba}",

@@ -47,6 +47,8 @@
   "qibla_active": "قطب‌نما فعال است",
   "qibla_error": "تعیین جهت قبله ممکن نیست",
   "qibla_errorHint": "قطب‌نما و موقعیت را فعال کنید",
+  "qibla_staticMode": "حالت ثابت (بدون حسگر قطب‌نما)",
+  "qibla_calibrationHint": "دستگاه خود را به شکل عدد ۸ حرکت دهید تا قطب‌نما کالیبره شود",
   "qibla_kaaba": "کعبه",
   "qibla_fromNorth": "درجه از شمال به سمت قبله",
   "qibla_distanceKm": "{km} کیلومتر تا {kaaba}",

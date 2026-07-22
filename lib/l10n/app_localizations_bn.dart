@@ -44,7 +44,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get prayer_locationGPS => 'আপনার বর্তমান অবস্থান';
 
   @override
-  String get prayer_locationDefault => 'রিয়াদ (ডফল্ট)';
+  String get prayer_locationDefault => 'মক্কা (ডিফল্ট)';
 
   @override
   String get quran_title => 'পবিত্র কুরআন';
@@ -185,6 +185,13 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get qibla_errorHint => 'কম্পাস এবং অবস্থান সক্রিয় করুন';
+
+  @override
+  String get qibla_staticMode => 'স্থির মোড (কম্পাস সেন্সর নেই)';
+
+  @override
+  String get qibla_calibrationHint =>
+      'কম্পাস ক্যালিব্রেট করতে ডিভাইসটি ৮ আকারে নাড়ান';
 
   @override
   String get qibla_kaaba => 'কাবা';

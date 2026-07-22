@@ -7,6 +7,7 @@ import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../core/widgets/app_scaffold.dart';
 import '../../../prayer/presentation/providers/prayer_provider.dart';
+import '../providers/qibla_heading_provider.dart';
 
 // إحداثيات الكعبة المشرَّفة (نفس الثابت المستخدَم كموقع احتياطي عالمي
 // في locationProvider — مصدر واحد بلا تكرار للرقم السحري).
@@ -20,8 +21,9 @@ class _QiblaResult {
 }
 
 /// اتجاه القبلة (bearing) والمسافة إلى الكعبة عبر صيغ الدائرة العظمى
-/// (great-circle) القياسية - لا يتطلب أي مستشعر بوصلة/مغناطيسي، فقط
-/// إحداثيات الموقع الحالي (نفس ما تستخدمه أوقات الصلاة فعلاً).
+/// (great-circle) القياسية - يحتاج فقط إحداثيات الموقع الحالي (نفس ما
+/// تستخدمه أوقات الصلاة فعلاً). اتجاه الجهاز الحيّ (البوصلة) منفصل تماماً
+/// ويأتي من qiblaHeadingProvider (PHASE F).
 _QiblaResult _computeQibla(double lat, double lng) {
   final phi1  = lat * math.pi / 180;
   final phi2  = _kaabaLat * math.pi / 180;
@@ -50,6 +52,7 @@ class QiblaScreen extends ConsumerWidget {
     final t          = AppLocalizations.of(context);
     final palette    = ref.watch(timeThemeProvider);
     final locationAsync = ref.watch(locationProvider);
+    final headingAsync  = ref.watch(qiblaHeadingProvider);
 
     return AppScaffold(
       title: t.qibla_title,
@@ -67,10 +70,12 @@ class QiblaScreen extends ConsumerWidget {
         error: (_, _) => _QiblaContent(
           palette: palette, t: t, hasGps: false,
           result: _computeQibla(_kaabaLat, _kaabaLng),
+          heading: headingAsync.value,
         ),
         data: (location) => _QiblaContent(
           palette: palette, t: t, hasGps: location.hasRealFix,
           result: _computeQibla(location.latitude, location.longitude),
+          heading: headingAsync.value,
         ),
       ),
     );
@@ -82,12 +87,16 @@ class _QiblaContent extends StatefulWidget {
   final AppLocalizations t;
   final bool hasGps;
   final _QiblaResult result;
+  /// null = لا بوصلة حيّة متاحة (منصة غير مدعومة أو لا مستشعر) — سهم ثابت
+  /// عند bearing المطلق كما كان الوضع الوحيد سابقاً.
+  final QiblaHeading? heading;
 
   const _QiblaContent({
     required this.palette,
     required this.t,
     required this.hasGps,
     required this.result,
+    required this.heading,
   });
 
   @override
@@ -116,6 +125,8 @@ class _QiblaContentState extends State<_QiblaContent> with SingleTickerProviderS
     final t       = widget.t;
     final bearing = widget.result.bearingDeg;
     final distKm  = widget.result.distanceKm;
+    final heading = widget.heading;
+    final isLive  = heading != null;
 
     return Center(
       child: SingleChildScrollView(
@@ -124,7 +135,7 @@ class _QiblaContentState extends State<_QiblaContent> with SingleTickerProviderS
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // موقع GPS أم الرياض الافتراضية (نفس نمط شاشة الصلاة تماماً)
+              // موقع GPS أم مكة الافتراضية (نفس نمط شاشة الصلاة تماماً)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -140,6 +151,33 @@ class _QiblaContentState extends State<_QiblaContent> with SingleTickerProviderS
                   ),
                 ],
               ),
+              const SizedBox(height: SirajSpacing.s2),
+
+              // حالة البوصلة: حيّة ودقيقة، أم وضع ثابت (لا مستشعر)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    isLive ? Icons.explore : Icons.explore_off_outlined,
+                    color: isLive ? palette.accentPrimary : palette.textSecondary,
+                    size: 14,
+                  ),
+                  const SizedBox(width: SirajSpacing.s1),
+                  Text(
+                    isLive ? t.qibla_active : t.qibla_staticMode,
+                    style: AppText.caption.copyWith(color: palette.textSecondary),
+                  ),
+                ],
+              ),
+              if (isLive && heading.needsCalibration) ...[
+                const SizedBox(height: SirajSpacing.s1),
+                Text(
+                  t.qibla_calibrationHint,
+                  textAlign: TextAlign.center,
+                  style: AppText.caption.copyWith(color: Colors.amber),
+                ),
+              ],
+
               const SizedBox(height: SirajSpacing.s6),
 
               AnimatedBuilder(
@@ -151,14 +189,31 @@ class _QiblaContentState extends State<_QiblaContent> with SingleTickerProviderS
                     child: Transform.scale(scale: 0.8 + 0.2 * curved, child: child),
                   );
                 },
-                child: SizedBox(
-                  width: 260, height: 260,
-                  child: CustomPaint(
-                    painter: _CompassPainter(
-                      bearingDeg: bearing,
-                      accent: palette.accentPrimary,
-                      ring: palette.textSecondary.withValues(alpha: 0.25),
-                      textColor: palette.textPrimary,
+                child: TweenAnimationBuilder<double>(
+                  // دوران القرص بالكامل بعكس اتجاه الجهاز الحيّ (0 عند عدم
+                  // توفّر بوصلة = يبقى السهم عند bearing المطلق كما في
+                  // الوضع الثابت السابق تماماً). تحريك سلس بين القراءات
+                  // المتتالية بدل قفزات مفاجئة.
+                  tween: Tween<double>(
+                    begin: 0,
+                    end: isLive ? -heading.headingDeg : 0,
+                  ),
+                  duration: const Duration(milliseconds: 150),
+                  builder: (context, dialRotationDeg, child) {
+                    return Transform.rotate(
+                      angle: dialRotationDeg * math.pi / 180,
+                      child: child,
+                    );
+                  },
+                  child: SizedBox(
+                    width: 260, height: 260,
+                    child: CustomPaint(
+                      painter: _CompassPainter(
+                        bearingDeg: bearing,
+                        accent: palette.accentPrimary,
+                        ring: palette.textSecondary.withValues(alpha: 0.25),
+                        textColor: palette.textPrimary,
+                      ),
                     ),
                   ),
                 ),
@@ -196,10 +251,13 @@ class _QiblaContentState extends State<_QiblaContent> with SingleTickerProviderS
   }
 }
 
-// ─── بوصلة ثابتة (لا حية) ───────────────────────────────────
-// رسم ثابت مرة واحدة عند التغيّر - سهم عند bearing المحسوب فعلياً من الموقع،
-// بلا أي استماع لمستشعر مغناطيسي/دوران الجهاز (غير مطلوب حسب تصميم
-// QiblaExperience.tsx الأصلي: QIBLA_DEG فيه ثابت مبرمَج بلا useEffect).
+// ─── بوصلة ─────────────────────────────────────────────────
+// ترسم القرص (علامات الاتجاهات N/E/S/W + السهم عند bearing القبلة
+// المطلق). يدور القرص كاملاً حول مركزه بعكس اتجاه الجهاز الحيّ (عبر
+// Transform.rotate في الودجت الأب) عند توفّر بوصلة فعلية، فيبقى السهم
+// دوماً مشيراً فعلياً نحو القبلة الحقيقية بصرف النظر عن اتجاه حمل
+// الجهاز — تماماً كسلوك أي تطبيق بوصلة قياسي. بلا بوصلة (وضع ثابت):
+// لا دوران، السهم يشير لـbearing المطلق كما كان الوضع الوحيد سابقاً.
 class _CompassPainter extends CustomPainter {
   final double bearingDeg;
   final Color accent;

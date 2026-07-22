@@ -47,6 +47,8 @@
   "qibla_active": "Dira inafanya kazi",
   "qibla_error": "Imeshindwa kuamua mwelekeo wa Qibla",
   "qibla_errorHint": "Washa dira na eneo",
+  "qibla_staticMode": "Hali tuli (hakuna sensa ya dira)",
+  "qibla_calibrationHint": "Sogeza kifaa chako kwa umbo la nane kusawazisha dira",
   "qibla_kaaba": "Kaaba",
   "qibla_fromNorth": "Digrii kutoka Kaskazini kwenda Qibla",
   "qibla_distanceKm": "{km} km hadi {kaaba}",

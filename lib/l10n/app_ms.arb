@@ -47,6 +47,8 @@
   "qibla_active": "Kompas aktif",
   "qibla_error": "Tidak dapat menentukan arah kiblat",
   "qibla_errorHint": "Pastikan kompas dan lokasi diaktifkan",
+  "qibla_staticMode": "Mod statik (tiada penderia kompas)",
+  "qibla_calibrationHint": "Gerakkan peranti anda dalam bentuk angka 8 untuk menentukur kompas",
   "qibla_kaaba": "Kaabah",
   "qibla_fromNorth": "Darjah dari Utara ke Kiblat",
   "qibla_distanceKm": "{km} km ke {kaaba}",

@@ -97,6 +97,8 @@
   "qibla_active": "Boussole active",
   "qibla_error": "Impossible de déterminer la direction de la Qibla",
   "qibla_errorHint": "Activez la boussole et la localisation",
+  "qibla_staticMode": "Mode statique (pas de capteur boussole)",
+  "qibla_calibrationHint": "Déplacez votre appareil en forme de 8 pour calibrer la boussole",
   "qibla_kaaba": "Kaaba",
   "qibla_fromNorth": "Degrés du Nord vers la Qibla",
   "qibla_distanceKm": "{km} km jusqu'à {kaaba}",

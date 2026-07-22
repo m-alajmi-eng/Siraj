@@ -44,7 +44,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get prayer_locationGPS => 'Your current location';
 
   @override
-  String get prayer_locationDefault => 'Riyadh (default)';
+  String get prayer_locationDefault => 'Makkah (default)';
 
   @override
   String get quran_title => 'The Holy Quran';
@@ -185,6 +185,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get qibla_errorHint => 'Make sure compass and location are enabled';
+
+  @override
+  String get qibla_staticMode => 'Static mode (no compass sensor)';
+
+  @override
+  String get qibla_calibrationHint =>
+      'Move your device in a figure-8 to calibrate the compass';
 
   @override
   String get qibla_kaaba => 'Kaaba';

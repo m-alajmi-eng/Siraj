@@ -44,7 +44,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get prayer_locationGPS => 'Mahali pako sasa hivi';
 
   @override
-  String get prayer_locationDefault => 'Riyadh (chaguo-msingi)';
+  String get prayer_locationDefault => 'Makka (chaguo-msingi)';
 
   @override
   String get quran_title => 'Qurani Tukufu';
@@ -185,6 +185,13 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get qibla_errorHint => 'Washa dira na eneo';
+
+  @override
+  String get qibla_staticMode => 'Hali tuli (hakuna sensa ya dira)';
+
+  @override
+  String get qibla_calibrationHint =>
+      'Sogeza kifaa chako kwa umbo la nane kusawazisha dira';
 
   @override
   String get qibla_kaaba => 'Kaaba';

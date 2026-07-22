@@ -47,6 +47,8 @@
   "qibla_active": "Compass yana aiki",
   "qibla_error": "Ba a iya tantance alkibla",
   "qibla_errorHint": "Kunna compass da wuri",
+  "qibla_staticMode": "Yanayin tsaye (babu na'urar auna compass)",
+  "qibla_calibrationHint": "Motsa na'urarka a siffar 8 don daidaita compass",
   "qibla_kaaba": "Ka'aba",
   "qibla_fromNorth": "Digiri daga Arewa zuwa Alkibla",
   "qibla_distanceKm": "{km} km zuwa {kaaba}",

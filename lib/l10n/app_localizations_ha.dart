@@ -44,7 +44,7 @@ class AppLocalizationsHa extends AppLocalizations {
   String get prayer_locationGPS => 'Wurinka na yanzu';
 
   @override
-  String get prayer_locationDefault => 'Riyadh (tsoho)';
+  String get prayer_locationDefault => 'Makka (tsoho)';
 
   @override
   String get quran_title => 'Al-Qur\'ani Mai Tsarki';
@@ -184,6 +184,13 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get qibla_errorHint => 'Kunna compass da wuri';
+
+  @override
+  String get qibla_staticMode => 'Yanayin tsaye (babu na\'urar auna compass)';
+
+  @override
+  String get qibla_calibrationHint =>
+      'Motsa na\'urarka a siffar 8 don daidaita compass';
 
   @override
   String get qibla_kaaba => 'Ka\'aba';

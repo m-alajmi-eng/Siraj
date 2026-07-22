@@ -44,7 +44,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get prayer_locationGPS => 'Lokasi semasa anda';
 
   @override
-  String get prayer_locationDefault => 'Riyadh (lalai)';
+  String get prayer_locationDefault => 'Makkah (lalai)';
 
   @override
   String get quran_title => 'Al-Quran Al-Karim';
@@ -184,6 +184,13 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get qibla_errorHint => 'Pastikan kompas dan lokasi diaktifkan';
+
+  @override
+  String get qibla_staticMode => 'Mod statik (tiada penderia kompas)';
+
+  @override
+  String get qibla_calibrationHint =>
+      'Gerakkan peranti anda dalam bentuk angka 8 untuk menentukur kompas';
 
   @override
   String get qibla_kaaba => 'Kaabah';

@@ -97,6 +97,8 @@
   "qibla_active": "কমস সক্রিয়",
   "qibla_error": "কিবলার দিক নির্ধারণ করা যায়নি",
   "qibla_errorHint": "কম্পাস এবং অবস্থান সক্রিয় করুন",
+  "qibla_staticMode": "স্থির মোড (কম্পাস সেন্সর নেই)",
+  "qibla_calibrationHint": "কম্পাস ক্যালিব্রেট করতে ডিভাইসটি ৮ আকারে নাড়ান",
   "qibla_kaaba": "কাবা",
   "qibla_fromNorth": "উত্তর থেকে কিবলার দিক ডিগ্রি",
   "qibla_distanceKm": "{kaaba} পর্যন্ত {km} কিমি",

@@ -44,7 +44,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get prayer_locationGPS => 'Tu ubicación actual';
 
   @override
-  String get prayer_locationDefault => 'Riad (predeterminado)';
+  String get prayer_locationDefault => 'La Meca (predeterminado)';
 
   @override
   String get quran_title => 'El Sagrado Corán';
@@ -185,6 +185,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get qibla_errorHint => 'Activa la brújula y la ubicación';
+
+  @override
+  String get qibla_staticMode => 'Modo estático (sin sensor de brújula)';
+
+  @override
+  String get qibla_calibrationHint =>
+      'Mueve tu dispositivo en forma de ocho para calibrar la brújula';
 
   @override
   String get qibla_kaaba => 'Kaaba';

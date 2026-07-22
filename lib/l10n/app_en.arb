@@ -97,6 +97,8 @@
   "qibla_active": "Compass active",
   "qibla_error": "Could not determine Qibla direction",
   "qibla_errorHint": "Make sure compass and location are enabled",
+  "qibla_staticMode": "Static mode (no compass sensor)",
+  "qibla_calibrationHint": "Move your device in a figure-8 to calibrate the compass",
   "qibla_kaaba": "Kaaba",
   "qibla_fromNorth": "Degrees from North toward Qibla",
   "qibla_distanceKm": "{km} km to {kaaba}",

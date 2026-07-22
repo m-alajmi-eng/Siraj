@@ -97,6 +97,8 @@
   "qibla_active": "Kompas aktif",
   "qibla_error": "Tidak dapat menentukan arah kiblat",
   "qibla_errorHint": "Pastikan kompas dan lokasi diaktifkan",
+  "qibla_staticMode": "Mode statis (tanpa sensor kompas)",
+  "qibla_calibrationHint": "Gerakkan perangkat Anda membentuk angka 8 untuk mengkalibrasi kompas",
   "qibla_kaaba": "Ka'bah",
   "qibla_fromNorth": "Derajat dari Utara ke Kiblat",
   "qibla_distanceKm": "{km} km ke {kaaba}",

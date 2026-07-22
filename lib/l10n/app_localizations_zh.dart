@@ -44,7 +44,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get prayer_locationGPS => '您的当前位置';
 
   @override
-  String get prayer_locationDefault => '利雅得（默认）';
+  String get prayer_locationDefault => '麦加（默认）';
 
   @override
   String get quran_title => '神圣古兰经';
@@ -184,6 +184,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get qibla_errorHint => '请开启指南针和位置服务';
+
+  @override
+  String get qibla_staticMode => '静态模式（无指南针传感器）';
+
+  @override
+  String get qibla_calibrationHint => '将设备沿8字形移动以校准指南针';
 
   @override
   String get qibla_kaaba => '天房';

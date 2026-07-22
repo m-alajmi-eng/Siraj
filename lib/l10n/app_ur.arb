@@ -97,6 +97,8 @@
   "qibla_active": "کمپاس فعال ہے",
   "qibla_error": "قبلہ کی سمت معلوم نہیں ہو سکی",
   "qibla_errorHint": "کمپاس اور مقام کو فعال کریں",
+  "qibla_staticMode": "مستقل وضع (کمپاس سینسر نہیں)",
+  "qibla_calibrationHint": "کمپاس کیلیبریٹ کرنے کے لیے اپنے آلے کو ٨ کی شکل میں حرکت دیں",
   "qibla_kaaba": "کعبہ",
   "qibla_fromNorth": "شمال سے قبلہ کی طرف ڈگری",
   "qibla_distanceKm": "{km} کلومیٹر - {kaaba} تک",

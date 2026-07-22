@@ -97,6 +97,8 @@
   "qibla_active": "Pusula aktif",
   "qibla_error": "Kıble yönü belirlenemedi",
   "qibla_errorHint": "Pusulayı ve konumu etkinleştirin",
+  "qibla_staticMode": "Sabit mod (pusula sensörü yok)",
+  "qibla_calibrationHint": "Pusulayı kalibre etmek için cihazınızı sekiz çizecek şekilde hareket ettirin",
   "qibla_kaaba": "Kabe",
   "qibla_fromNorth": "Kuzeyden Kıbleye derece",
   "qibla_distanceKm": "{kaaba}'ye {km} km",

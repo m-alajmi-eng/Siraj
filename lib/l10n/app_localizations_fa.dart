@@ -44,7 +44,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get prayer_locationGPS => 'موقعیت فعلی شما';
 
   @override
-  String get prayer_locationDefault => 'ریاض (پیش‌فرض)';
+  String get prayer_locationDefault => 'مکه (پیش‌فرض)';
 
   @override
   String get quran_title => 'قرآن کریم';
@@ -184,6 +184,13 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get qibla_errorHint => 'قطب‌نما و موقعیت را فعال کنید';
+
+  @override
+  String get qibla_staticMode => 'حالت ثابت (بدون حسگر قطب‌نما)';
+
+  @override
+  String get qibla_calibrationHint =>
+      'دستگاه خود را به شکل عدد ۸ حرکت دهید تا قطب‌نما کالیبره شود';
 
   @override
   String get qibla_kaaba => 'کعبه';

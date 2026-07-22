@@ -97,6 +97,8 @@
   "qibla_active": "البوصلة نشطة",
   "qibla_error": "تعذّر تحديد اتجاه القبلة",
   "qibla_errorHint": "تأكد من تفعيل البوصلة والموقع",
+  "qibla_staticMode": "وضع ثابت (لا مستشعر بوصلة)",
+  "qibla_calibrationHint": "حرّك جهازك على شكل ٨ لمعايرة البوصلة",
   "qibla_kaaba": "الكعبة",
   "qibla_fromNorth": "من الشمال باتجاه القبلة",
   "qibla_distanceKm": "{km} كم إلى {kaaba}",
