@@ -43,6 +43,13 @@
   "hadith_tapForDetail": "برای خواندن کامل لمس کنید",
   "hadith_retryButton": "تلاش مجدد",
   "hadith_loadError": "بارگذاری ناموفق",
+  "hadith_readProgress": "خوانده‌شده: {read} از {total}",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "جهت قبله",
   "qibla_active": "قطب‌نما فعال است",
   "qibla_error": "تعیین جهت قبله ممکن نیست",

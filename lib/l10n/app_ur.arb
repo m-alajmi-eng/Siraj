@@ -93,6 +93,13 @@
   "hadith_tapForDetail": "مکمل حدیث پڑھنے کے لیے دبائیں",
   "hadith_retryButton": "دوبارہ کوشش کریں",
   "hadith_loadError": "لوڈ نہیں ہو سکا",
+  "hadith_readProgress": "پڑھی گئیں: {read} از {total}",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "قبلہ کی سمت",
   "qibla_active": "کمپاس فعال ہے",
   "qibla_error": "قبلہ کی سمت معلوم نہیں ہو سکی",

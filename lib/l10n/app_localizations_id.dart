@@ -175,6 +175,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get hadith_loadError => 'Gagal memuat';
 
   @override
+  String hadith_readProgress(int read, int total) {
+    return 'Dibaca $read dari $total';
+  }
+
+  @override
   String get qibla_title => 'Arah Kiblat';
 
   @override

@@ -93,6 +93,13 @@
   "hadith_tapForDetail": "Tamamını okumak için dokun",
   "hadith_retryButton": "Tekrar Dene",
   "hadith_loadError": "Yüklenemedi",
+  "hadith_readProgress": "{read}/{total} okundu",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "Kıble Yönü",
   "qibla_active": "Pusula aktif",
   "qibla_error": "Kıble yönü belirlenemedi",

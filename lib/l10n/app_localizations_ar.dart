@@ -174,6 +174,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hadith_loadError => 'تعذّر التحميل';
 
   @override
+  String hadith_readProgress(int read, int total) {
+    return 'قرأت $read من $total';
+  }
+
+  @override
   String get qibla_title => 'اتجاه القبلة';
 
   @override

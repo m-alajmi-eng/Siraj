@@ -175,6 +175,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get hadith_loadError => 'Не удалось загрузить';
 
   @override
+  String hadith_readProgress(int read, int total) {
+    return 'Прочитано $read из $total';
+  }
+
+  @override
   String get qibla_title => 'Направление Киблы';
 
   @override

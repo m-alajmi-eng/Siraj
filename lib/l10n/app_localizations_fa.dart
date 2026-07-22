@@ -174,6 +174,11 @@ class AppLocalizationsFa extends AppLocalizations {
   String get hadith_loadError => 'بارگذاری ناموفق';
 
   @override
+  String hadith_readProgress(int read, int total) {
+    return 'خوانده‌شده: $read از $total';
+  }
+
+  @override
   String get qibla_title => 'جهت قبله';
 
   @override

@@ -175,6 +175,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get hadith_loadError => 'Échec du chargement';
 
   @override
+  String hadith_readProgress(int read, int total) {
+    return '$read sur $total lus';
+  }
+
+  @override
   String get qibla_title => 'Direction de la Qibla';
 
   @override

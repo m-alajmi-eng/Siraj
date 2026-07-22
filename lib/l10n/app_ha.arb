@@ -43,6 +43,13 @@
   "hadith_tapForDetail": "Taɓa don karanta cikakke",
   "hadith_retryButton": "Sake Gwadawa",
   "hadith_loadError": "Ba a iya loda",
+  "hadith_readProgress": "An karanta {read} daga {total}",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "Alkibla",
   "qibla_active": "Compass yana aiki",
   "qibla_error": "Ba a iya tantance alkibla",

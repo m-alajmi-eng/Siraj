@@ -175,6 +175,11 @@ class AppLocalizationsTr extends AppLocalizations {
   String get hadith_loadError => 'Yüklenemedi';
 
   @override
+  String hadith_readProgress(int read, int total) {
+    return '$read/$total okundu';
+  }
+
+  @override
   String get qibla_title => 'Kıble Yönü';
 
   @override

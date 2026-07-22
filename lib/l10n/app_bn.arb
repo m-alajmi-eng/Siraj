@@ -93,6 +93,13 @@
   "hadith_tapForDetail": "সম্পূর্ণ হাদীস পড়ত স্পর্শ করুন",
   "hadith_retryButton": "আবার চেষ্টা করুন",
   "hadith_loadError": "লোড করা যায়নি",
+  "hadith_readProgress": "পঠিত {read}/{total}",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "কিবলার দিক",
   "qibla_active": "কমস সক্রিয়",
   "qibla_error": "কিবলার দিক নির্ধারণ করা যায়নি",

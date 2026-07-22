@@ -43,6 +43,13 @@
   "hadith_tapForDetail": "Нажмите для полного чтения",
   "hadith_retryButton": "Повторить",
   "hadith_loadError": "Не удалось загрузить",
+  "hadith_readProgress": "Прочитано {read} из {total}",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "Направление Киблы",
   "qibla_active": "Компас активен",
   "qibla_error": "Не удалось определить направление Киблы",

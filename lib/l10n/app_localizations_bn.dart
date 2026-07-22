@@ -175,6 +175,11 @@ class AppLocalizationsBn extends AppLocalizations {
   String get hadith_loadError => 'লোড করা যায়নি';
 
   @override
+  String hadith_readProgress(int read, int total) {
+    return 'পঠিত $read/$total';
+  }
+
+  @override
   String get qibla_title => 'কিবলার দিক';
 
   @override

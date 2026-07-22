@@ -43,6 +43,13 @@
   "hadith_tapForDetail": "点击阅读完整内容",
   "hadith_retryButton": "重试",
   "hadith_loadError": "加载失败",
+  "hadith_readProgress": "已读 {read}/{total}",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "朝拜方向",
   "qibla_active": "指南针已激活",
   "qibla_error": "无法确定朝拜方向",

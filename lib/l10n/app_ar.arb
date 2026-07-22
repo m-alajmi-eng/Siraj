@@ -93,6 +93,13 @@
   "hadith_tapForDetail": "اضغط لعرض كامل",
   "hadith_retryButton": "إعادة المحاولة",
   "hadith_loadError": "تعذّر التحميل",
+  "hadith_readProgress": "قرأت {read} من {total}",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "اتجاه القبلة",
   "qibla_active": "البوصلة نشطة",
   "qibla_error": "تعذّر تحديد اتجاه القبلة",

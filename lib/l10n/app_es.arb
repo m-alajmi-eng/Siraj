@@ -43,6 +43,13 @@
   "hadith_tapForDetail": "Toca para leer completo",
   "hadith_retryButton": "Reintentar",
   "hadith_loadError": "Error al cargar",
+  "hadith_readProgress": "Leídos {read} de {total}",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "Dirección de la Qibla",
   "qibla_active": "Brújula activa",
   "qibla_error": "No se pudo determinar la dirección de la Qibla",

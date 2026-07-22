@@ -175,6 +175,11 @@ class AppLocalizationsSw extends AppLocalizations {
   String get hadith_loadError => 'Imeshindwa kupakia';
 
   @override
+  String hadith_readProgress(int read, int total) {
+    return 'Zimesomwa $read kati ya $total';
+  }
+
+  @override
   String get qibla_title => 'Mwelekeo wa Qibla';
 
   @override

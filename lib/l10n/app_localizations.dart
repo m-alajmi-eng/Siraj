@@ -430,6 +430,12 @@ abstract class AppLocalizations {
   /// **'تعذّر التحميل'**
   String get hadith_loadError;
 
+  /// No description provided for @hadith_readProgress.
+  ///
+  /// In ar, this message translates to:
+  /// **'قرأت {read} من {total}'**
+  String hadith_readProgress(int read, int total);
+
   /// No description provided for @qibla_title.
   ///
   /// In ar, this message translates to:

@@ -93,6 +93,13 @@
   "hadith_tapForDetail": "Appuyer pour lire le hadith complet",
   "hadith_retryButton": "Réessayer",
   "hadith_loadError": "Échec du chargement",
+  "hadith_readProgress": "{read} sur {total} lus",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "Direction de la Qibla",
   "qibla_active": "Boussole active",
   "qibla_error": "Impossible de déterminer la direction de la Qibla",

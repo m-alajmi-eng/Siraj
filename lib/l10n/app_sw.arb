@@ -43,6 +43,13 @@
   "hadith_tapForDetail": "Gusa kusoma kamili",
   "hadith_retryButton": "Jaribu Tena",
   "hadith_loadError": "Imeshindwa kupakia",
+  "hadith_readProgress": "Zimesomwa {read} kati ya {total}",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "Mwelekeo wa Qibla",
   "qibla_active": "Dira inafanya kazi",
   "qibla_error": "Imeshindwa kuamua mwelekeo wa Qibla",

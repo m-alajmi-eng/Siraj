@@ -93,6 +93,13 @@
   "hadith_tapForDetail": "Tap to read full hadith",
   "hadith_retryButton": "Try Again",
   "hadith_loadError": "Failed to load",
+  "hadith_readProgress": "Read {read} of {total}",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "Qibla Direction",
   "qibla_active": "Compass active",
   "qibla_error": "Could not determine Qibla direction",

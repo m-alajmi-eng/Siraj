@@ -174,6 +174,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get hadith_loadError => '加载失败';
 
   @override
+  String hadith_readProgress(int read, int total) {
+    return '已读 $read/$total';
+  }
+
+  @override
   String get qibla_title => '朝拜方向';
 
   @override

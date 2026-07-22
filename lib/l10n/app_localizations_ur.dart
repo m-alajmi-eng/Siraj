@@ -174,6 +174,11 @@ class AppLocalizationsUr extends AppLocalizations {
   String get hadith_loadError => 'لوڈ نہیں ہو سکا';
 
   @override
+  String hadith_readProgress(int read, int total) {
+    return 'پڑھی گئیں: $read از $total';
+  }
+
+  @override
   String get qibla_title => 'قبلہ کی سمت';
 
   @override

@@ -93,6 +93,13 @@
   "hadith_tapForDetail": "Ketuk untuk membaca lengkap",
   "hadith_retryButton": "Coba Lagi",
   "hadith_loadError": "Gagal memuat",
+  "hadith_readProgress": "Dibaca {read} dari {total}",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "Arah Kiblat",
   "qibla_active": "Kompas aktif",
   "qibla_error": "Tidak dapat menentukan arah kiblat",

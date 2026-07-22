@@ -43,6 +43,13 @@
   "hadith_tapForDetail": "Tippen für vollständigen Hadith",
   "hadith_retryButton": "Erneut versuchen",
   "hadith_loadError": "Laden fehlgeschlagen",
+  "hadith_readProgress": "{read} von {total} gelesen",
+  "@hadith_readProgress": {
+    "placeholders": {
+      "read": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "qibla_title": "Qibla-Richtung",
   "qibla_active": "Kompass aktiv",
   "qibla_error": "Qibla-Richtung konnte nicht bestimmt werden",

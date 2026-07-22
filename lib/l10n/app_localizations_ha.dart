@@ -174,6 +174,11 @@ class AppLocalizationsHa extends AppLocalizations {
   String get hadith_loadError => 'Ba a iya loda';
 
   @override
+  String hadith_readProgress(int read, int total) {
+    return 'An karanta $read daga $total';
+  }
+
+  @override
   String get qibla_title => 'Alkibla';
 
   @override
