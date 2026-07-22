@@ -1140,6 +1140,11 @@ class AppLocalizationsUr extends AppLocalizations {
   String get library_no_categories => 'فی الحال کوئی زمرہ دستیاب نہیں';
 
   @override
+  String library_subcategoryCount(int count) {
+    return '$count فولڈرز';
+  }
+
+  @override
   String get library_type_books => 'کتابیں';
 
   @override

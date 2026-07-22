@@ -1123,6 +1123,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get library_no_categories => '暂无可用分类';
 
   @override
+  String library_subcategoryCount(int count) {
+    return '$count 个文件夹';
+  }
+
+  @override
   String get library_type_books => '书籍';
 
   @override

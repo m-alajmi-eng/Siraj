@@ -436,6 +436,12 @@
   "library_not_found": "未找到",
   "library_search_in_section": "在此栏目中搜索...",
   "library_no_categories": "暂无可用分类",
+  "library_subcategoryCount": "{count} 个文件夹",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "书籍",
   "library_type_audios": "音频",
   "library_type_videos": "视频",

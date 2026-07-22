@@ -436,6 +436,12 @@
   "library_not_found": "یافت نشد",
   "library_search_in_section": "جستجو در این بخش...",
   "library_no_categories": "در حال حاضر دسته‌ای موجود نیست",
+  "library_subcategoryCount": "{count} پوشه",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "کتاب‌ها",
   "library_type_audios": "صوتی",
   "library_type_videos": "ویدیو",

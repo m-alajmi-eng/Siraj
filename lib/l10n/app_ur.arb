@@ -436,6 +436,12 @@
   "library_not_found": "نہیں ملا",
   "library_search_in_section": "اس سیکشن میں تلاش کریں...",
   "library_no_categories": "فی الحال کوئی زمرہ دستیاب نہیں",
+  "library_subcategoryCount": "{count} فولڈرز",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "کتابیں",
   "library_type_audios": "آڈیو",
   "library_type_videos": "ویڈیو",

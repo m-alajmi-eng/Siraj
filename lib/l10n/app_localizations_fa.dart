@@ -1140,6 +1140,11 @@ class AppLocalizationsFa extends AppLocalizations {
   String get library_no_categories => 'در حال حاضر دسته‌ای موجود نیست';
 
   @override
+  String library_subcategoryCount(int count) {
+    return '$count پوشه';
+  }
+
+  @override
   String get library_type_books => 'کتاب‌ها';
 
   @override

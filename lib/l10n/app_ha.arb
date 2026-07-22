@@ -436,6 +436,12 @@
   "library_not_found": "Ba a samu ba",
   "library_search_in_section": "Nema a wannan sashin...",
   "library_no_categories": "Babu rukuni tukuna",
+  "library_subcategoryCount": "Fayiloli {count}",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "Littattafai",
   "library_type_audios": "Sauti",
   "library_type_videos": "Bidiyo",

@@ -436,6 +436,12 @@
   "library_not_found": "পাওয়া যায়নি",
   "library_search_in_section": "এই বিভাগে অনুসন্ধান করুন...",
   "library_no_categories": "এখনও কোনো বিভাগ নেই",
+  "library_subcategoryCount": "{count}টি ফোল্ডার",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "বই",
   "library_type_audios": "অডিও",
   "library_type_videos": "ভিডিও",

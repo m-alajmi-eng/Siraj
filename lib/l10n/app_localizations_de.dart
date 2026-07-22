@@ -1147,6 +1147,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get library_no_categories => 'Noch keine Kategorien verfügbar';
 
   @override
+  String library_subcategoryCount(int count) {
+    return '$count Ordner';
+  }
+
+  @override
   String get library_type_books => 'Bücher';
 
   @override

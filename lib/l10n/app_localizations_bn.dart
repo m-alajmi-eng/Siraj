@@ -1141,6 +1141,11 @@ class AppLocalizationsBn extends AppLocalizations {
   String get library_no_categories => 'এখনও কোনো বিভাগ নেই';
 
   @override
+  String library_subcategoryCount(int count) {
+    return '$countটি ফোল্ডার';
+  }
+
+  @override
   String get library_type_books => 'বই';
 
   @override

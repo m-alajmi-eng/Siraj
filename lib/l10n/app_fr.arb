@@ -436,6 +436,12 @@
   "library_not_found": "Introuvable",
   "library_search_in_section": "Rechercher dans cette section...",
   "library_no_categories": "Aucune catégorie disponible pour l'instant",
+  "library_subcategoryCount": "{count} dossiers",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "Livres",
   "library_type_audios": "Audio",
   "library_type_videos": "Vidéo",

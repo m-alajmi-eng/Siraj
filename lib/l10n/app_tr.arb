@@ -436,6 +436,12 @@
   "library_not_found": "Bulunamadı",
   "library_search_in_section": "Bu bölümde ara...",
   "library_no_categories": "Henüz kategori yok",
+  "library_subcategoryCount": "{count} klasör",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "Kitaplar",
   "library_type_audios": "Sesli İçerik",
   "library_type_videos": "Video",

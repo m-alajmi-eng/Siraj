@@ -505,6 +505,12 @@
   "library_not_found": "غير موجود",
   "library_search_in_section": "ابحث في هذا القسم...",
   "library_no_categories": "لا توجد تصنيفات متاحة حالياً",
+  "library_subcategoryCount": "{count} مجلدات",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "كتب",
   "library_type_audios": "صوتيات",
   "library_type_videos": "مرئيات",

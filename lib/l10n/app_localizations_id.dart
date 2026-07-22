@@ -1142,6 +1142,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get library_no_categories => 'Belum ada kategori tersedia';
 
   @override
+  String library_subcategoryCount(int count) {
+    return '$count folder';
+  }
+
+  @override
   String get library_type_books => 'Buku';
 
   @override

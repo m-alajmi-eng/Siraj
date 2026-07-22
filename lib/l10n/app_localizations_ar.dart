@@ -1133,6 +1133,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get library_no_categories => 'لا توجد تصنيفات متاحة حالياً';
 
   @override
+  String library_subcategoryCount(int count) {
+    return '$count مجلدات';
+  }
+
+  @override
   String get library_type_books => 'كتب';
 
   @override

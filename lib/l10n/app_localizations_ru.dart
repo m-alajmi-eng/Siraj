@@ -1145,6 +1145,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get library_no_categories => 'Категории пока недоступны';
 
   @override
+  String library_subcategoryCount(int count) {
+    return '$count папок';
+  }
+
+  @override
   String get library_type_books => 'Книги';
 
   @override

@@ -1143,6 +1143,11 @@ class AppLocalizationsHa extends AppLocalizations {
   String get library_no_categories => 'Babu rukuni tukuna';
 
   @override
+  String library_subcategoryCount(int count) {
+    return 'Fayiloli $count';
+  }
+
+  @override
   String get library_type_books => 'Littattafai';
 
   @override

@@ -2272,6 +2272,12 @@ abstract class AppLocalizations {
   /// **'لا توجد تصنيفات متاحة حالياً'**
   String get library_no_categories;
 
+  /// No description provided for @library_subcategoryCount.
+  ///
+  /// In ar, this message translates to:
+  /// **'{count} مجلدات'**
+  String library_subcategoryCount(int count);
+
   /// No description provided for @library_type_books.
   ///
   /// In ar, this message translates to:

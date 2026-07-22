@@ -436,6 +436,12 @@
   "library_not_found": "Tidak dijumpai",
   "library_search_in_section": "Cari dalam bahagian ini...",
   "library_no_categories": "Belum ada kategori tersedia",
+  "library_subcategoryCount": "{count} folder",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "Buku",
   "library_type_audios": "Audio",
   "library_type_videos": "Video",

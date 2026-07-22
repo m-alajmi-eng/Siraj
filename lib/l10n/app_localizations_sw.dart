@@ -1146,6 +1146,11 @@ class AppLocalizationsSw extends AppLocalizations {
   String get library_no_categories => 'Bado hakuna jamii';
 
   @override
+  String library_subcategoryCount(int count) {
+    return 'Faili $count';
+  }
+
+  @override
   String get library_type_books => 'Vitabu';
 
   @override

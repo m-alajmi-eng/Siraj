@@ -436,6 +436,12 @@
   "library_not_found": "Haikupatikana",
   "library_search_in_section": "Tafuta katika sehemu hii...",
   "library_no_categories": "Bado hakuna jamii",
+  "library_subcategoryCount": "Faili {count}",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "Vitabu",
   "library_type_audios": "Sauti",
   "library_type_videos": "Video",

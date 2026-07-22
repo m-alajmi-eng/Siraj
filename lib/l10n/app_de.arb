@@ -429,6 +429,12 @@
   "library_not_found": "Nicht gefunden",
   "library_search_in_section": "In diesem Abschnitt suchen...",
   "library_no_categories": "Noch keine Kategorien verfügbar",
+  "library_subcategoryCount": "{count} Ordner",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "Bücher",
   "library_type_audios": "Audio",
   "library_type_videos": "Video",

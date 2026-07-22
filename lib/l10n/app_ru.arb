@@ -436,6 +436,12 @@
   "library_not_found": "Не найдено",
   "library_search_in_section": "Поиск в этом разделе...",
   "library_no_categories": "Категории пока недоступны",
+  "library_subcategoryCount": "{count} папок",
+  "@library_subcategoryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "library_type_books": "Книги",
   "library_type_audios": "Аудио",
   "library_type_videos": "Видео",

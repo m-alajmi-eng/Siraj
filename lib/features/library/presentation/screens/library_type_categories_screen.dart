@@ -110,6 +110,25 @@ class _LibraryTypeCategoriesScreenState
                         ),
                       ),
                     ),
+                    // تسمية صريحة "X مجلدات" — مختلفة عمداً عن بادج
+                    // إجمالي المحتوى في الشاشة السابقة (شاشة اختيار نوع
+                    // المحتوى)، حتى لا يظنّ المستخدم أنه نفس نوع العدّ:
+                    // هذا عدد المجلدات الظاهرة هنا فعلياً، لا إجمالي
+                    // العناصر داخلها كلها.
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                        start: SirajSpacing.s4, end: SirajSpacing.s4,
+                        bottom: SirajSpacing.s2,
+                      ),
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text(
+                          t.library_subcategoryCount(subs.length),
+                          style: AppText.caption.copyWith(
+                            color: palette.textSecondary),
+                        ),
+                      ),
+                    ),
                     if (filtered.isEmpty)
                       Expanded(
                         child: Center(

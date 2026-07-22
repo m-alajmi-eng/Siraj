@@ -1143,6 +1143,11 @@ class AppLocalizationsTr extends AppLocalizations {
   String get library_no_categories => 'Henüz kategori yok';
 
   @override
+  String library_subcategoryCount(int count) {
+    return '$count klasör';
+  }
+
+  @override
   String get library_type_books => 'Kitaplar';
 
   @override
