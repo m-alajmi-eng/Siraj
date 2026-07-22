@@ -5,6 +5,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../providers/quran_provider.dart';
 import '../../../../core/locale/locale_provider.dart';
 import '../../data/datasources/surah_names_datasource.dart';
@@ -20,49 +21,34 @@ class QuranHomeScreen extends ConsumerWidget {
     final lang        = ref.watch(localeProvider).languageCode;
     ref.watch(surahNamesLoadedProvider);
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: SirajLayout.pagePadding, vertical: SirajSpacing.s4),
-              child: Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(t.quran_title, style: AppText.title.copyWith(
-                  color: palette.textPrimary)),
-              ),
-            ),
-            Expanded(
-              child: surahsAsync.when(
-                loading: () => Center(
-                  child: CircularProgressIndicator(color: palette.accentPrimary),
-                ),
-                error: (e, _) => Center(
-                  child: Text(t.common_error, style: AppText.body.copyWith(
-                    color: palette.textPrimary)),
-                ),
-                data: (surahs) => ListView.builder(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: SirajLayout.pagePadding),
-                  itemCount: surahs.length,
-                  itemBuilder: (context, index) {
-                    final surah = surahs[index];
-                    return _SurahTile(
-                      surah:   surah,
-                      palette: palette,
-                      lang:    lang,
-                      typeLabel: surah.revelationType == 'Meccan'
-                          ? t.quran_meccan : t.quran_medinan,
-                      ayahLabel: t.quran_ayahCount(surah.ayahCount),
-                      onTap: () => context.go('/quran/surah/${surah.id}'),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ],
+    return AppScaffold(
+      title: t.quran_title,
+      showBack: false,
+      padding: EdgeInsets.zero,
+      child: surahsAsync.when(
+        loading: () => Center(
+          child: CircularProgressIndicator(color: palette.accentPrimary),
+        ),
+        error: (e, _) => Center(
+          child: Text(t.common_error, style: AppText.body.copyWith(
+            color: palette.textPrimary)),
+        ),
+        data: (surahs) => ListView.builder(
+          padding: const EdgeInsets.symmetric(
+            horizontal: SirajLayout.pagePadding),
+          itemCount: surahs.length,
+          itemBuilder: (context, index) {
+            final surah = surahs[index];
+            return _SurahTile(
+              surah:   surah,
+              palette: palette,
+              lang:    lang,
+              typeLabel: surah.revelationType == 'Meccan'
+                  ? t.quran_meccan : t.quran_medinan,
+              ayahLabel: t.quran_ayahCount(surah.ayahCount),
+              onTap: () => context.go('/quran/surah/${surah.id}'),
+            );
+          },
         ),
       ),
     );

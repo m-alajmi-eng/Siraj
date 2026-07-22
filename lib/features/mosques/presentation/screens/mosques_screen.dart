@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../providers/mosques_provider.dart';
 
@@ -40,43 +41,20 @@ class _MosquesScreenState extends ConsumerState<MosquesScreen> {
     final mosquesAsync = ref.watch(mosquesProvider);
     final isMobile = Platform.isAndroid || Platform.isIOS;
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      body: SafeArea(
-        child: Column(
+    return AppScaffold(
+      title: t.more_mosques,
+      padding: EdgeInsets.zero,
+      actions: [
+        IconButton(
+          icon: Icon(Icons.refresh, color: palette.accentPrimary),
+          tooltip: t.common_refresh,
+          onPressed: mosquesAsync.isLoading
+              ? null
+              : () => ref.read(mosquesProvider.notifier).fetchNearbyMosques(),
+        ),
+      ],
+      child: Column(
           children: [
-            // ─── Header ───────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back, color: palette.textPrimary),
-                    tooltip: t.common_back,
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  Expanded(
-                    child: Text(
-                      t.more_mosques,
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color:      palette.textPrimary,
-                        fontSize:   24,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.refresh, color: palette.accentPrimary),
-                    tooltip: t.common_refresh,
-                    onPressed: mosquesAsync.isLoading
-                        ? null
-                        : () => ref.read(mosquesProvider.notifier).fetchNearbyMosques(),
-                  ),
-                ],
-              ),
-            ),
-
             if (!isMobile)
               _InfoBanner(text: t.mosques_desktopOnly, palette: palette)
             else
@@ -153,7 +131,6 @@ class _MosquesScreenState extends ConsumerState<MosquesScreen> {
               ),
           ],
         ),
-      ),
     );
   }
 }

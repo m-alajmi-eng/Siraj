@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../providers/prayer_provider.dart';
 
 class PrayerScreen extends ConsumerWidget {
@@ -15,32 +16,28 @@ class PrayerScreen extends ConsumerWidget {
     final location   = ref.watch(locationProvider);
     final hasRealFix = location.value?.hasRealFix ?? false;
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: timesAsync.when(
-            loading: () => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(color: palette.accentPrimary),
-                  const SizedBox(height: 16),
-                  Text(
-                    t.common_loading,
-                    style: TextStyle(
-                      color: palette.textSecondary, fontSize: 14),
-                  ),
-                ],
+    return AppScaffold(
+      title: t.prayer_title,
+      padding: const EdgeInsets.all(20),
+      child: timesAsync.when(
+        loading: () => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(color: palette.accentPrimary),
+              const SizedBox(height: 16),
+              Text(
+                t.common_loading,
+                style: TextStyle(
+                  color: palette.textSecondary, fontSize: 14),
               ),
-            ),
-            error: (e, _) => _buildContent(
-              t, palette, null, false),
-            data: (times) => _buildContent(
-              t, palette, times, hasRealFix),
+            ],
           ),
         ),
+        error: (e, _) => _buildContent(
+          t, palette, null, false),
+        data: (times) => _buildContent(
+          t, palette, times, hasRealFix),
       ),
     );
   }

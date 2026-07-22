@@ -6,6 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 import '../providers/khatmah_provider.dart';
 import '../../domain/entities/khatmah_plan.dart';
 
@@ -20,58 +21,41 @@ class KhatmahListScreen extends ConsumerWidget {
     final active = plans.where((p) => p.isActive && !p.isCompleted).toList();
     final done = plans.where((p) => p.isCompleted || !p.isActive).toList();
 
-    return Scaffold(
-      backgroundColor: palette.background,
+    return AppScaffold(
+      title: t.khatmah_title,
+      padding: EdgeInsets.zero,
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: palette.accentPrimary,
         onPressed: () => context.push('/khatmah/create'),
         icon: const Icon(Icons.add),
         label: Text(t.khatmah_new),
       ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: SirajLayout.pagePadding, vertical: SirajSpacing.s4),
-              child: Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(t.khatmah_title,
-                    style: AppText.title.copyWith(color: palette.textPrimary)),
+      child: plans.isEmpty
+          ? Center(
+              child: Padding(
+                padding: const EdgeInsets.all(SirajSpacing.s8),
+                child: Text(t.khatmah_empty,
+                    textAlign: TextAlign.center,
+                    style: AppText.body
+                        .copyWith(color: palette.textSecondary)),
               ),
+            )
+          : ListView(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: SirajLayout.pagePadding),
+              children: [
+                ...active.map((p) => _KhatmahCard(plan: p, palette: palette, t: t)),
+                if (done.isNotEmpty) ...[
+                  const SizedBox(height: SirajSpacing.s4),
+                  Text(t.khatmah_status_completed,
+                      style: AppText.caption
+                          .copyWith(color: palette.textSecondary)),
+                  const SizedBox(height: SirajSpacing.s2),
+                  ...done.map((p) => _KhatmahCard(plan: p, palette: palette, t: t)),
+                ],
+                const SizedBox(height: SirajSpacing.s16),
+              ],
             ),
-            Expanded(
-              child: plans.isEmpty
-                  ? Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(SirajSpacing.s8),
-                        child: Text(t.khatmah_empty,
-                            textAlign: TextAlign.center,
-                            style: AppText.body
-                                .copyWith(color: palette.textSecondary)),
-                      ),
-                    )
-                  : ListView(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: SirajLayout.pagePadding),
-                      children: [
-                        ...active.map((p) => _KhatmahCard(plan: p, palette: palette, t: t)),
-                        if (done.isNotEmpty) ...[
-                          const SizedBox(height: SirajSpacing.s4),
-                          Text(t.khatmah_status_completed,
-                              style: AppText.caption
-                                  .copyWith(color: palette.textSecondary)),
-                          const SizedBox(height: SirajSpacing.s2),
-                          ...done.map((p) => _KhatmahCard(plan: p, palette: palette, t: t)),
-                        ],
-                        const SizedBox(height: SirajSpacing.s16),
-                      ],
-                    ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

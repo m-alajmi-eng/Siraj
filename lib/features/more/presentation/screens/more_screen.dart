@@ -5,6 +5,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../core/mode/app_mode_provider.dart';
 import '../../../../core/mode/enabled_sections_provider.dart';
 import '../../../../core/mode/feature_flags.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 
 class MoreScreen extends ConsumerWidget {
   const MoreScreen({super.key});
@@ -16,22 +17,13 @@ class MoreScreen extends ConsumerWidget {
     final enabled = ref.watch(enabledSectionsProvider);
     final flags = FeatureFlags(mode, enabledSections: enabled);
 
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(
+    return AppScaffold(
+      title: t.more_title,
+      showBack: false,
+      padding: EdgeInsets.zero,
+      child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            const SizedBox(height: 16),
-            const Text(
-              'المزيد',
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                fontSize:   28,
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-            const SizedBox(height: 24),
-
             _MoreTile(
               icon:  Icons.search,
               label: t.more_search,
@@ -90,7 +82,6 @@ class MoreScreen extends ConsumerWidget {
             ),
           ],
         ),
-      ),
     );
   }
 }
