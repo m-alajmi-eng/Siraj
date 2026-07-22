@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -45,8 +47,17 @@ Future<void> main() async {
   if (Platform.isLinux || Platform.isWindows) {
     try {
       JustAudioMediaKit.ensureInitialized();
-    } catch (_) {
-      // libmpv غير مثبّت — الصوت يعمل على الجوال
+    } catch (e, st) {
+      // لا نغيّر السلوك (التطبيق يستمر بلا صوت سطح مكتب إن فشلت هذه
+      // التهيئة، غالباً بسبب libmpv غير مثبّت) — لكن السبب كان يُبتلَع
+      // بصمت تام سابقاً، ما يُخفي أي فشل صوت مستقبلي مشابه حتى لو حدث
+      // يوماً على منصة أخرى. نسجّله الآن بدل تجاهله.
+      if (kDebugMode) {
+        debugPrint('JustAudioMediaKit.ensureInitialized فشلت: $e');
+      }
+      if (Sentry.isEnabled) {
+        unawaited(Sentry.captureException(e, stackTrace: st));
+      }
     }
   }
 
