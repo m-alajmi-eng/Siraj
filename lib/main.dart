@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:timezone/data/latest.dart' as tz_data;
+import 'package:timezone/timezone.dart' as tz;
 import 'l10n/app_localizations.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/time_theme_provider.dart';
@@ -16,6 +19,7 @@ import 'package:quran_library/quran_library.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await _initTimezone();
   await QuranLibrary.init();
 
   // backend سطح المكتب (Linux/Windows) لـ just_audio — اختياري للتطوير
@@ -56,6 +60,18 @@ Future<void> main() async {
     },
     appRunner: () => runApp(const ProviderScope(child: SirajApp())),
   );
+}
+
+/// يهيّئ قاعدة بيانات المناطق الزمنية ويضبط منطقة الجهاز الفعلية،
+/// بدلاً من الاعتماد على UTC الافتراضي (كان يسبب انزياح تذكيرات الختمة).
+Future<void> _initTimezone() async {
+  tz_data.initializeTimeZones();
+  try {
+    final name = await FlutterTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(name));
+  } catch (_) {
+    // تعذّر تحديد منطقة الجهاز — تبقى tz.local على UTC كحل احتياطي آمن.
+  }
 }
 
 class SirajApp extends ConsumerWidget {
