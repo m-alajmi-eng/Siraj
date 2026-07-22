@@ -51,6 +51,12 @@ class MoreScreen extends ConsumerWidget {
             title: t.more_groupContent,
             palette: palette,
             children: [
+              if (flags.showAthkar)
+                _MoreTile(icon: Icons.self_improvement, label: t.nav_athkar,
+                  onTap: () => context.push('/athkar')),
+              if (flags.showLibrary)
+                _MoreTile(icon: Icons.local_library, label: t.nav_library,
+                  onTap: () => context.push('/library')),
               if (flags.showRadio)
                 _MoreTile(icon: Icons.radio, label: t.more_radio,
                   onTap: () => context.push('/more/radio')),

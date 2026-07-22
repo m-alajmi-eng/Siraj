@@ -602,10 +602,14 @@ class _QuickActions extends ConsumerWidget {
     final mode = ref.watch(appModeProvider);
     final enabled = ref.watch(enabledSectionsProvider);
     final flags = FeatureFlags(mode, enabledSections: enabled);
-    // القرآن/الأذكار/المكتبة/الحديث حُذفت من هنا (PHASE I، ADR-007) — صارت
-    // تبويبات في الشريط السفلي (PHASE H1)، فبقاؤها هنا كان تكراراً محضاً
-    // (مدخلان لنفس الوجهة). الشبكة الآن تعرض فقط ما ليس تبويباً.
+    // القرآن/الأذكار/المكتبة/الحديث حُذفت من هنا سابقاً (PHASE I، ADR-007)
+    // حين كانت كلها تبويبات في الشريط السفلي. بعد تقليص الشريط لثلاث
+    // تبويبات فقط (FREEZE-ADR-006 v2: رئيسية·قرآن·مزيد) عادت الأذكار
+    // والمكتبة كأول عنصرين هنا (أعلى أولوية بصرية) لأنهما لم يعودا
+    // تبويبين — لا تكرار الآن، بل نقطة الوصول الوحيدة المرئية مباشرة.
     final allActions = [
+      (Icons.self_improvement_outlined, t.nav_athkar,      '/athkar',                false, flags.showAthkar),
+      (Icons.local_library_outlined,    t.nav_library,     '/library',               false, flags.showLibrary),
       (Icons.explore_outlined,     t.home_qiblaDirection, '/more/qibla',            true,  flags.showQibla),
       (Icons.radio,                t.home_radio,          '/more/radio',            true,  flags.showRadio),
       (Icons.calendar_month,       t.home_calendar,       '/more/calendar',         true,  flags.showCalendar),
