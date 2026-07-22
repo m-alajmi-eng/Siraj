@@ -680,6 +680,9 @@ class AppLocalizationsFa extends AppLocalizations {
   String get settings_fontHafs => 'حفص';
 
   @override
+  String get settings_fontQuran => 'شهرزاد';
+
+  @override
   String get settings_quranFontSize => 'اندازه فونت قرآن';
 
   @override

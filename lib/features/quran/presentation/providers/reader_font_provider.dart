@@ -10,9 +10,9 @@ class ReaderFontSettings {
   /// الفروق النسبية المعتمَدة سابقاً في التصميم الثابت.
   final double baseSize;
   final String fontFamily;
-  /// المفتاح الخام كما يُحفَظ في الإعدادات ('uthmani'/'hafs') — يُستخدم
-  /// في واجهة الإعدادات نفسها للمقارنة/العرض، بينما [fontFamily] المشتقّ
-  /// منه هو ما يستهلكه القارئ فعلياً.
+  /// المفتاح الخام كما يُحفَظ في الإعدادات ('quran'/'uthmani'/'hafs') —
+  /// يُستخدم في واجهة الإعدادات نفسها للمقارنة/العرض، بينما [fontFamily]
+  /// المشتقّ منه هو ما يستهلكه القارئ فعلياً.
   final String quranFontKey;
 
   const ReaderFontSettings({
@@ -28,16 +28,15 @@ class ReaderFontSettings {
   double get listBasmala  => baseSize - 4;
 }
 
-/// 'uthmani'/'hafs': اختيار صريح للمستخدم عبر شاشة الإعدادات — يُحترَم
-/// كما هو (منطق PHASE C5 الذي وصل هذا الاختيار فعلياً، لم يُلغَ). أي
-/// قيمة أخرى (تحديداً المفتاح الافتراضي عند عدم وجود اختيار محفوظ
-/// إطلاقاً في Hive) تعني "لم يختر المستخدم بعد" فتُستخدَم QuranFont —
-/// الخط الأوضح، وهو الافتراضي البصري المطلوب.
+/// ثلاثة خيارات صريحة قابلة للاختيار من شاشة الإعدادات: 'quran'
+/// (QuranFont)، 'uthmani' (UthmanTNB)، 'hafs' (HafsSmart — خط مجمّع
+/// الملك فهد، وهو أيضاً الافتراضي). لا مفهوم "غير مُختار" منفصلاً —
+/// الافتراضي نفسه أحد الخيارات الثلاثة صراحة.
 String _familyForKey(String quranFontKey) {
   switch (quranFontKey) {
     case 'uthmani': return 'UthmanTNB';
-    case 'hafs':    return 'HafsSmart';
-    default:        return 'QuranFont';
+    case 'quran':   return 'QuranFont';
+    default:        return 'HafsSmart';
   }
 }
 
@@ -45,10 +44,8 @@ class ReaderFontNotifier extends Notifier<ReaderFontSettings> {
   @override
   ReaderFontSettings build() {
     final size = CacheService.getSetting('font_size', defaultValue: 28.0) as double;
-    // 'default' هنا مفتاح داخلي فقط لتمييز "لا اختيار محفوظ" — لا يُكتب
-    // أبداً في Hive صراحة (setQuranFont لا تكتب سوى 'uthmani'/'hafs').
     final fontKey =
-        CacheService.getSetting('quran_font', defaultValue: 'default') as String;
+        CacheService.getSetting('quran_font', defaultValue: 'hafs') as String;
     return ReaderFontSettings(
       baseSize: size,
       fontFamily: _familyForKey(fontKey),

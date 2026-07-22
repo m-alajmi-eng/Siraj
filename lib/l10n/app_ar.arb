@@ -289,6 +289,7 @@
   "settings_quranFont": "خط القرآن",
   "settings_fontUthmani": "عثماني",
   "settings_fontHafs": "حفص",
+  "settings_fontQuran": "شهرزاد",
   "settings_quranFontSize": "حجم خط القرآن",
   "settings_privacyNote": "موقعك يبقى على جهازك فقط",
   "settings_clearCache": "حذف بيانات الكاش",

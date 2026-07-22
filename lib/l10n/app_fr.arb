@@ -268,6 +268,7 @@
   "settings_quranFont": "Police du Coran",
   "settings_fontUthmani": "Uthmani",
   "settings_fontHafs": "Hafs",
+  "settings_fontQuran": "Schéhérazade",
   "settings_quranFontSize": "Taille de police du Coran",
   "settings_privacyNote": "Votre position reste uniquement sur votre appareil",
   "settings_clearCache": "Effacer les données du cache",

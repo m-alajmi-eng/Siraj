@@ -1408,6 +1408,12 @@ abstract class AppLocalizations {
   /// **'حفص'**
   String get settings_fontHafs;
 
+  /// No description provided for @settings_fontQuran.
+  ///
+  /// In ar, this message translates to:
+  /// **'شهرزاد'**
+  String get settings_fontQuran;
+
   /// No description provided for @settings_quranFontSize.
   ///
   /// In ar, this message translates to:

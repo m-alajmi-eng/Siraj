@@ -261,6 +261,7 @@
   "settings_quranFont": "Koran-Schriftart",
   "settings_fontUthmani": "Uthmani",
   "settings_fontHafs": "Hafs",
+  "settings_fontQuran": "Scheherazade",
   "settings_quranFontSize": "Koran-Schriftgröße",
   "settings_privacyNote": "Ihr Standort bleibt nur auf Ihrem Gerät",
   "settings_clearCache": "Cache-Daten löschen",

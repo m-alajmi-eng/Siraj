@@ -313,16 +313,23 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               _SettingsTile(
                 icon: Icons.menu_book,
                 title: t.settings_quranFont,
-                value: readerFont.quranFontKey == 'hafs' ? t.settings_fontHafs : t.settings_fontUthmani,
+                value: _fontLabel(t, readerFont.quranFontKey),
                 palette: palette,
                 onTap: () => _showOptions(
                   context: context,
                   palette: palette,
                   title: t.settings_quranFont,
-                  options: [t.settings_fontUthmani, t.settings_fontHafs],
-                  selected: readerFont.quranFontKey == 'hafs' ? t.settings_fontHafs : t.settings_fontUthmani,
+                  options: [t.settings_fontQuran, t.settings_fontUthmani, t.settings_fontHafs],
+                  selected: _fontLabel(t, readerFont.quranFontKey),
                   onSelect: (val) {
-                    final f = val == t.settings_fontUthmani ? 'uthmani' : 'hafs';
+                    final String f;
+                    if (val == t.settings_fontQuran) {
+                      f = 'quran';
+                    } else if (val == t.settings_fontUthmani) {
+                      f = 'uthmani';
+                    } else {
+                      f = 'hafs';
+                    }
                     ref.read(readerFontProvider.notifier).setQuranFont(f);
                   },
                 ),
@@ -783,6 +790,17 @@ class _ModeAndSectionsCard extends ConsumerWidget {
         ],
       ),
     );
+  }
+}
+
+/// تحديد ثلاثي: 'quran' (Scheherazade، مضمَّن باسم مضلِّل QuranFont —
+/// راجع TD-08)، 'uthmani' (UthmanTNB)، وأي قيمة أخرى (تحديداً 'hafs'
+/// والافتراضي) تُعرَض كـHafsSmart.
+String _fontLabel(AppLocalizations t, String quranFontKey) {
+  switch (quranFontKey) {
+    case 'quran':   return t.settings_fontQuran;
+    case 'uthmani': return t.settings_fontUthmani;
+    default:        return t.settings_fontHafs;
   }
 }
 

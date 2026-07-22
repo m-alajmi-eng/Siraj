@@ -289,6 +289,7 @@
   "settings_quranFont": "Quran Font",
   "settings_fontUthmani": "Uthmani",
   "settings_fontHafs": "Hafs",
+  "settings_fontQuran": "Scheherazade",
   "settings_quranFontSize": "Quran Font Size",
   "settings_privacyNote": "Your location stays on your device only",
   "settings_clearCache": "Clear Cache Data",

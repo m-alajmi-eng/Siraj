@@ -268,6 +268,7 @@
   "settings_quranFont": "কুরআন ফন্ট",
   "settings_fontUthmani": "উসমনি",
   "settings_fontHafs": "হাফস",
+  "settings_fontQuran": "শাহরাজাদ",
   "settings_quranFontSize": "কুরআন ফন্র আকার",
   "settings_privacyNote": "আপনার অবস্থান শুধু আপনার ডিভাইসে থাকে",
   "settings_clearCache": "ক্যাশ ডেটা মুছুন",

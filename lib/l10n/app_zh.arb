@@ -268,6 +268,7 @@
   "settings_quranFont": "古兰经字体",
   "settings_fontUthmani": "奥斯曼体",
   "settings_fontHafs": "哈夫斯体",
+  "settings_fontQuran": "舍赫拉查德",
   "settings_quranFontSize": "古兰经字体大小",
   "settings_privacyNote": "您的位置仅保留在您的设备上",
   "settings_clearCache": "清除缓存数据",

@@ -683,6 +683,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settings_fontHafs => 'হাফস';
 
   @override
+  String get settings_fontQuran => 'শাহরাজাদ';
+
+  @override
   String get settings_quranFontSize => 'কুরআন ফন্র আকার';
 
   @override

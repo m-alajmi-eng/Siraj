@@ -675,6 +675,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_fontHafs => '哈夫斯体';
 
   @override
+  String get settings_fontQuran => '舍赫拉查德';
+
+  @override
   String get settings_quranFontSize => '古兰经字体大小';
 
   @override

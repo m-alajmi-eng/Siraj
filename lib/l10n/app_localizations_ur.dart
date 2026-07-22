@@ -680,6 +680,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settings_fontHafs => 'حفص';
 
   @override
+  String get settings_fontQuran => 'شہرزاد';
+
+  @override
   String get settings_quranFontSize => 'قرآن فونٹ سائز';
 
   @override

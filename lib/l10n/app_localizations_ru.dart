@@ -682,6 +682,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_fontHafs => 'Хафс';
 
   @override
+  String get settings_fontQuran => 'Шахерезада';
+
+  @override
   String get settings_quranFontSize => 'Размер шрифта Корана';
 
   @override

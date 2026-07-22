@@ -686,6 +686,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_fontHafs => 'Hafs';
 
   @override
+  String get settings_fontQuran => 'Schéhérazade';
+
+  @override
   String get settings_quranFontSize => 'Taille de police du Coran';
 
   @override
