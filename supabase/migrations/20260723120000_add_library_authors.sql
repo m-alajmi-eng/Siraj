@@ -2,8 +2,8 @@
 -- IslamHouse API (get-author) أثناء التصفّح العادي للمستخدمين، بدل نداء
 -- شبكي مباشر من كل جهاز في كل مرة. الحقلان title/description داخل
 -- localized نسخ حرفي غير معدَّل من IslamHouse - استثناء ضيّق من بوابة
--- reviewed=false القياسية موثَّق في ADR-009
--- (docs/adr/ADR-009-harvested-author-metadata-exemption.md)، محصور
+-- reviewed=false القياسية موثَّق في ADR-013
+-- (docs/adr/ADR-013-harvested-author-metadata-exemption.md)، محصور
 -- بهذين الحقلين فقط ولا يمتد لأي محتوى تحريري مستقبلي.
 --
 -- الكتابة تمر حصراً عبر upsert_harvested_author (RPC واحد، SECURITY
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS public.library_authors (
 );
 
 COMMENT ON TABLE public.library_authors IS
-  'مؤلفو المكتبة محصودون تدريجياً من IslamHouse get-author أثناء التصفّح العادي. localized.title/description نسخ حرفي (ADR-009) - لا كتابة مباشرة، فقط عبر upsert_harvested_author.';
+  'مؤلفو المكتبة محصودون تدريجياً من IslamHouse get-author أثناء التصفّح العادي. localized.title/description نسخ حرفي (ADR-013) - لا كتابة مباشرة، فقط عبر upsert_harvested_author.';
 
 CREATE INDEX IF NOT EXISTS idx_library_authors_items_count
   ON public.library_authors (items_count DESC NULLS LAST);
