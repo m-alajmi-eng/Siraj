@@ -28,15 +28,27 @@ class ReaderFontSettings {
   double get listBasmala  => baseSize - 4;
 }
 
-String _familyForKey(String quranFontKey) =>
-    quranFontKey == 'hafs' ? 'HafsSmart' : 'UthmanTNB';
+/// 'uthmani'/'hafs': اختيار صريح للمستخدم عبر شاشة الإعدادات — يُحترَم
+/// كما هو (منطق PHASE C5 الذي وصل هذا الاختيار فعلياً، لم يُلغَ). أي
+/// قيمة أخرى (تحديداً المفتاح الافتراضي عند عدم وجود اختيار محفوظ
+/// إطلاقاً في Hive) تعني "لم يختر المستخدم بعد" فتُستخدَم QuranFont —
+/// الخط الأوضح، وهو الافتراضي البصري المطلوب.
+String _familyForKey(String quranFontKey) {
+  switch (quranFontKey) {
+    case 'uthmani': return 'UthmanTNB';
+    case 'hafs':    return 'HafsSmart';
+    default:        return 'QuranFont';
+  }
+}
 
 class ReaderFontNotifier extends Notifier<ReaderFontSettings> {
   @override
   ReaderFontSettings build() {
     final size = CacheService.getSetting('font_size', defaultValue: 28.0) as double;
+    // 'default' هنا مفتاح داخلي فقط لتمييز "لا اختيار محفوظ" — لا يُكتب
+    // أبداً في Hive صراحة (setQuranFont لا تكتب سوى 'uthmani'/'hafs').
     final fontKey =
-        CacheService.getSetting('quran_font', defaultValue: 'uthmani') as String;
+        CacheService.getSetting('quran_font', defaultValue: 'default') as String;
     return ReaderFontSettings(
       baseSize: size,
       fontFamily: _familyForKey(fontKey),

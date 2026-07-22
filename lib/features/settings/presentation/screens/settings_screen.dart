@@ -313,14 +313,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               _SettingsTile(
                 icon: Icons.menu_book,
                 title: t.settings_quranFont,
-                value: readerFont.quranFontKey == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
+                value: readerFont.quranFontKey == 'hafs' ? t.settings_fontHafs : t.settings_fontUthmani,
                 palette: palette,
                 onTap: () => _showOptions(
                   context: context,
                   palette: palette,
                   title: t.settings_quranFont,
                   options: [t.settings_fontUthmani, t.settings_fontHafs],
-                  selected: readerFont.quranFontKey == 'uthmani' ? t.settings_fontUthmani : t.settings_fontHafs,
+                  selected: readerFont.quranFontKey == 'hafs' ? t.settings_fontHafs : t.settings_fontUthmani,
                   onSelect: (val) {
                     final f = val == t.settings_fontUthmani ? 'uthmani' : 'hafs';
                     ref.read(readerFontProvider.notifier).setQuranFont(f);
