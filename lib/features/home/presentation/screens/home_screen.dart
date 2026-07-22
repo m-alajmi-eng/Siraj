@@ -17,6 +17,7 @@ import '../../../../core/mode/app_mode.dart';
 import '../../../../core/mode/app_mode_provider.dart';
 import '../../../../core/mode/feature_flags.dart';
 import '../../../../core/mode/enabled_sections_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -46,9 +47,63 @@ class HomeScreen extends ConsumerWidget {
     // التصميم الذي يربط كثافة النجوم بمرحلة السماء الحالية.
     final showStars   = skyPhase == SkyPhase.fajr || skyPhase == SkyPhase.isha;
 
-    return Scaffold(
-      backgroundColor: SirajCanvas.base,
-      body: Stack(
+    return AppScaffold(
+      showBack: false,
+      title: t.app_brand_name,
+      titleWidget: Row(
+        children: [
+          const _ModeToggleIcon(),
+          const SizedBox(width: SirajSpacing.s2),
+          const _SearchIcon(),
+          const SizedBox(width: SirajSpacing.s2),
+          Stack(
+            children: [
+              Container(
+                width: 40, height: 40,
+                decoration: BoxDecoration(
+                  color:  SirajWhite.w7,
+                  shape:  BoxShape.circle,
+                  border: Border.all(color: SirajWhite.w10),
+                ),
+                child: const Icon(Icons.notifications_none_rounded,
+                  color: SirajWhite.w60, size: 16),
+              ),
+              PositionedDirectional(
+                top: 9, start: 9,
+                child: Container(
+                  width: 6, height: 6,
+                  decoration: const BoxDecoration(
+                    color: SirajGold.pure,
+                    shape: BoxShape.circle,
+                    boxShadow: [BoxShadow(color: SirajGold.muted, blurRadius: 5)],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      actions: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(t.app_brand_name, style: AppText.headline.copyWith(
+                  fontWeight: FontWeight.w300, letterSpacing: 6.0,
+                  fontSize: SirajSizes.sXl)),
+                Text(t.app_tagline, style: AppText.label.copyWith(
+                  letterSpacing: 1.6)),
+                const SizedBox(height: 2),
+                Text('سـراج', style: TextStyle(
+                  fontFamily: SirajFonts.brand,
+                  fontWeight: FontWeight.w700,
+                  fontSize: SirajSizes.sXl,
+                  letterSpacing: 0.5,
+                  color: AppText.headline.color,
+                )),
+          ],
+        ),
+      ],
+      child: Stack(
         children: [
           Positioned.fill(
             child: DecoratedBox(
@@ -69,7 +124,6 @@ class HomeScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const SizedBox(height: SirajSpacing.s2),
-                  const _Header(),
                   const SizedBox(height: SirajSpacing.s5),
                   _Greeting(greeting: _greet(t, h), hijriDate: hijriStr),
                   const SizedBox(height: SirajSpacing.s5),
@@ -157,71 +211,6 @@ class _ModeToggleIcon extends ConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _Header extends StatelessWidget {
-  const _Header();
-
-  @override
-  Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            const _ModeToggleIcon(),
-            const SizedBox(width: SirajSpacing.s2),
-            const _SearchIcon(),
-            const SizedBox(width: SirajSpacing.s2),
-            Stack(
-              children: [
-            Container(
-              width: 40, height: 40,
-              decoration: BoxDecoration(
-                color:  SirajWhite.w7,
-                shape:  BoxShape.circle,
-                border: Border.all(color: SirajWhite.w10),
-              ),
-              child: const Icon(Icons.notifications_none_rounded,
-                color: SirajWhite.w60, size: 16),
-            ),
-            PositionedDirectional(
-              top: 9, start: 9,
-              child: Container(
-                width: 6, height: 6,
-                decoration: const BoxDecoration(
-                  color: SirajGold.pure,
-                  shape: BoxShape.circle,
-                  boxShadow: [BoxShadow(color: SirajGold.muted, blurRadius: 5)],
-                ),
-              ),
-            ),
-              ],
-            ),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(t.app_brand_name, style: AppText.headline.copyWith(
-                  fontWeight: FontWeight.w300, letterSpacing: 6.0,
-                  fontSize: SirajSizes.sXl)),
-                Text(t.app_tagline, style: AppText.label.copyWith(
-                  letterSpacing: 1.6)),
-                const SizedBox(height: 2),
-                Text('سـراج', style: TextStyle(
-                  fontFamily: SirajFonts.brand,
-                  fontWeight: FontWeight.w700,
-                  fontSize: SirajSizes.sXl,
-                  letterSpacing: 0.5,
-                  color: AppText.headline.color,
-                )),
-          ],
-        ),
-      ],
     );
   }
 }

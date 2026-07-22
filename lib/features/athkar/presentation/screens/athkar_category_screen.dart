@@ -5,6 +5,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../providers/athkar_provider.dart';
 import '../../../../core/locale/locale_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 
 class AthkarCategoryScreen extends ConsumerStatefulWidget {
   final String categoryId;
@@ -94,10 +95,53 @@ class _AthkarCategoryScreenState
     final athkarAsync = ref.watch(
       athkarByCategoryProvider(widget.categoryId));
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      body: SafeArea(
-        child: athkarAsync.when(
+    final listToggle = athkarAsync.maybeWhen(
+      data: (athkar) {
+        if (athkar.isEmpty || _allDone) return null;
+        return GestureDetector(
+          onTap: () =>
+              setState(() => _showList = !_showList),
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10, vertical: 6),
+            decoration: BoxDecoration(
+              color: _showList
+                  ? palette.accentPrimary
+                  : palette.accentPrimary.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.list,
+                  color: _showList
+                      ? palette.surface
+                      : palette.accentPrimary,
+                  size: 16,
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  '${_currentIndex + 1}/${athkar.length}',
+                  style: TextStyle(
+                    color: _showList
+                        ? palette.surface
+                        : palette.accentPrimary,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+      orElse: () => null,
+    );
+
+    return AppScaffold(
+      title: _catName(t),
+      showBack: true,
+      actions: listToggle != null ? [listToggle] : null,
+      child: athkarAsync.when(
           loading: () => Center(
             child: CircularProgressIndicator(
               color: palette.accentPrimary)),
@@ -157,68 +201,6 @@ class _AthkarCategoryScreenState
 
             return Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 12),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.arrow_back,
-                          color: palette.textPrimary),
-                        tooltip: t.common_back,
-                        onPressed: () => Navigator.pop(context),
-                      ),
-                      Expanded(
-                        child: Text(
-                          _catName(t),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color:      palette.textPrimary,
-                            fontSize:   18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () =>
-                            setState(() => _showList = !_showList),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: _showList
-                                ? palette.accentPrimary
-                                : palette.accentPrimary.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.list,
-                                color: _showList
-                                    ? palette.surface
-                                    : palette.accentPrimary,
-                                size: 16,
-                              ),
-                              const SizedBox(width: 4),
-                              Text(
-                                '${_currentIndex + 1}/${athkar.length}',
-                                style: TextStyle(
-                                  color: _showList
-                                      ? palette.surface
-                                      : palette.accentPrimary,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                  ),
-                ),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: ClipRRect(
@@ -297,7 +279,6 @@ class _AthkarCategoryScreenState
             );
           },
         ),
-      ),
     );
   }
 

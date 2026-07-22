@@ -26,6 +26,9 @@ class AppScaffold extends ConsumerWidget {
   final bool scrollable;
   final EdgeInsetsGeometry? padding;
   final Widget? floatingActionButton;
+  /// يستبدل سلوك زر الرجوع الافتراضي (`context.pop()`) بمنطق مخصَّص —
+  /// لشاشات تحتاج تنفيذ عمل إضافي قبل الخروج (إيقاف صوت، حفظ حالة).
+  final VoidCallback? onBack;
   /// يستبدل عمود العنوان الافتراضي (Text(title) + العنوان الفرعي) بودجت
   /// مخصّص — لشاشات هيدرها ليس عنواناً نصياً بل عنصر تفاعلي (حقل بحث
   /// مثلاً). زر الرجوع والإجراءات الجانبية (actions) يبقيان كما هما.
@@ -43,6 +46,7 @@ class AppScaffold extends ConsumerWidget {
     this.padding,
     this.floatingActionButton,
     this.titleWidget,
+    this.onBack,
   });
 
   @override
@@ -73,7 +77,7 @@ class AppScaffold extends ConsumerWidget {
               child: Row(
                 children: [
                   if (showBack && canPop)
-                    _BackButton(palette: palette),
+                    _BackButton(palette: palette, onBack: onBack),
                   if (showBack && canPop)
                     const SizedBox(width: SirajSpacing.s3),
                   Expanded(
@@ -105,7 +109,8 @@ class AppScaffold extends ConsumerWidget {
 
 class _BackButton extends StatelessWidget {
   final dynamic palette;
-  const _BackButton({required this.palette});
+  final VoidCallback? onBack;
+  const _BackButton({required this.palette, this.onBack});
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +118,7 @@ class _BackButton extends StatelessWidget {
       button: true,
       label: AppLocalizations.of(context).common_back,
       child: GestureDetector(
-        onTap: () => context.pop(),
+        onTap: onBack ?? () => context.pop(),
         child: Container(
           width: 40, height: 40,
           decoration: BoxDecoration(

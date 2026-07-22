@@ -15,6 +15,7 @@ import '../../../qke/presentation/screens/verse_portal_screen.dart';
 import '../../data/datasources/quran_remote_datasource.dart';
 import '../../data/datasources/mushaf_page_map.dart';
 import '../../../khatmah/presentation/providers/khatmah_provider.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 
 class SurahReaderScreen extends ConsumerStatefulWidget {
   final int surahId;
@@ -142,83 +143,68 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
         )
         .key;
 
+    void handleBack() {
+      ref.read(audioProvider.notifier).stopAudio();
+      if (audioState.currentAyahId != null) {
+        CacheService.saveLastReadingContext(
+            type: 'surah',
+            surahId: widget.surahId,
+            ayahNumber: audioState.currentAyahId!);
+        _recordKhatmahProgress(audioState.currentAyahId!);
+      }
+    }
+
     return PopScope(
       onPopInvokedWithResult: (didPop, result) {
-        if (didPop) {
-          ref.read(audioProvider.notifier).stopAudio();
-          if (audioState.currentAyahId != null) {
-            CacheService.saveLastReadingContext(type: 'surah', surahId: widget.surahId, ayahNumber: audioState.currentAyahId!);
-            _recordKhatmahProgress(audioState.currentAyahId!);
-          }
-        }
+        if (didPop) handleBack();
       },
-      child: Scaffold(
-        backgroundColor: palette.background,
-        body: SafeArea(
-          child: Column(
+      child: AppScaffold(
+        title: surah?.nameArabic ?? '',
+        titleWidget: Column(
+          children: [
+            Text(surah?.nameArabic ?? '',
+              style: TextStyle(
+                fontFamily: 'QuranFont',
+                color: palette.textPrimary,
+                fontSize: 28)),
+            Text(
+              surah != null
+                  ? '${surah.revelationType == 'Meccan' ? t.quran_meccan : t.quran_medinan} · ${t.quran_ayahCount(surah.ayahCount)}'
+                  : '',
+              style: TextStyle(color: palette.textSecondary, fontSize: 12)),
+          ],
+        ),
+        onBack: () {
+          handleBack();
+          Navigator.pop(context);
+        },
+        actions: [
+          IconButton(
+            icon: Icon(
+              _mushafMode ? Icons.translate : Icons.menu_book,
+              color: palette.accentPrimary, size: 22),
+            tooltip: t.quran_toggleDisplayMode,
+            onPressed: () {
+              setState(() => _mushafMode = !_mushafMode);
+              CacheService.saveSetting('mushaf_mode', _mushafMode);
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.format_color_text,
+              color: _tajweedEnabled
+                  ? palette.accentPrimary
+                  : palette.accentPrimary.withValues(alpha: 0.4),
+              size: 22),
+            tooltip: t.quran_toggleTajweed,
+            onPressed: () {
+              setState(() => _tajweedEnabled = !_tajweedEnabled);
+              CacheService.saveSetting('tajweed_enabled', _tajweedEnabled);
+            },
+          ),
+        ],
+        child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.arrow_back, color: palette.textPrimary),
-                      tooltip: t.common_back,
-                      onPressed: () {
-                        ref.read(audioProvider.notifier).stopAudio();
-                        if (audioState.currentAyahId != null) {
-                          CacheService.saveLastReadingContext(
-                              type: 'surah',
-                              surahId: widget.surahId,
-                              ayahNumber: audioState.currentAyahId!);
-                          _recordKhatmahProgress(audioState.currentAyahId!);
-                        }
-                        Navigator.pop(context);
-                      },
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Text(surah?.nameArabic ?? '',
-                            style: TextStyle(
-                              fontFamily: 'QuranFont',
-                              color: palette.textPrimary,
-                              fontSize: 28)),
-                          Text(
-                            surah != null
-                                ? '${surah.revelationType == 'Meccan' ? t.quran_meccan : t.quran_medinan} · ${t.quran_ayahCount(surah.ayahCount)}'
-                                : '',
-                            style: TextStyle(color: palette.textSecondary, fontSize: 12)),
-                        ],
-                      ),
-                    ),
-         IconButton(
-           icon: Icon(
-             _mushafMode ? Icons.translate : Icons.menu_book,
-             color: palette.accentPrimary, size: 22),
-           tooltip: t.quran_toggleDisplayMode,
-           onPressed: () {
-             setState(() => _mushafMode = !_mushafMode);
-             CacheService.saveSetting('mushaf_mode', _mushafMode);
-           },
-         ),
-         IconButton(
-           icon: Icon(
-             Icons.format_color_text,
-             color: _tajweedEnabled
-                 ? palette.accentPrimary
-                 : palette.accentPrimary.withValues(alpha: 0.4),
-             size: 22),
-           tooltip: t.quran_toggleTajweed,
-           onPressed: () {
-             setState(() => _tajweedEnabled = !_tajweedEnabled);
-             CacheService.saveSetting('tajweed_enabled', _tajweedEnabled);
-           },
-         ),
-                  ],
-                ),
-              ),
-
               ayahsAsync.maybeWhen(
                 data: (ayahs) => Container(
                   margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -477,8 +463,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 
   void _showAyahOptions({

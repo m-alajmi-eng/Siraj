@@ -9,6 +9,7 @@ import '../../../../core/constants/translations.dart';
 import '../../data/translation_service.dart';
 import '../widgets/translation_report_dialog.dart';
 import '../../data/translation_review_status_service.dart';
+import '../../../../core/widgets/app_scaffold.dart';
 
 class VersePortalScreen extends ConsumerStatefulWidget {
   final int surahId;
@@ -78,9 +79,32 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
       ayahNumber: widget.ayahNumber,
     )));
 
-    return Scaffold(
-      backgroundColor: palette.background,
-      body: portalAsync.when(
+    // قرار نهائي متعمَّد: سهم الرجوع الافتراضي لـAppScaffold (لا "X")،
+    // لتناسق لغة التنقّل عبر التطبيق.
+    final title = portalAsync.maybeWhen(
+      data: (portal) =>
+          '${portal.surahName} · آية ${portal.ayahNumber}',
+      orElse: () => '...',
+    );
+
+    final shareAction = portalAsync.maybeWhen(
+      data: (portal) => IconButton(
+        icon: Icon(Icons.share_outlined, color: palette.accentPrimary),
+        tooltip: t.common_share,
+        onPressed: () => context.push('/more/share', extra: {
+          'title':    'آية كريمة',
+          'subtitle': '${portal.surahName} · آية ${portal.ayahNumber}',
+          'content':  portal.textUthmani,
+          'type':     'quran',
+        }),
+      ),
+      orElse: () => null,
+    );
+
+    return AppScaffold(
+      title: title,
+      actions: shareAction != null ? [shareAction] : null,
+      child: portalAsync.when(
         loading: () => Center(
           child: CircularProgressIndicator(color: palette.accentPrimary)),
         error: (e, _) => Center(
@@ -101,54 +125,8 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
         ),
         data: (portal) {
           final pages = _buildPageItems(portal, t);
-          return SafeArea(
-            child: Column(
+          return Column(
               children: [
-
-                // ─── Header ────────────────────────────
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 8),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.close, color: palette.textPrimary),
-                        tooltip: t.common_close,
-                        onPressed: () => Navigator.pop(context),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.share_outlined,
-                          color: palette.accentPrimary),
-                        tooltip: t.common_share,
-                        onPressed: () => context.push('/more/share', extra: {
-                          'title':    'آية كريمة',
-                          'subtitle': '${portal.surahName} · آية ${portal.ayahNumber}',
-                          'content':  portal.textUthmani,
-                          'type':     'quran',
-                        }),
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(portal.surahName,
-                              style: TextStyle(
-                                color:      palette.textPrimary,
-                                fontSize:   17,
-                                fontWeight: FontWeight.w500,
-                              )),
-                            Text(
-                              'آية ${portal.ayahNumber}/${portal.ayahCount} · ${portal.revelationType == "Meccan" ? "مكية" : "مدنية"}',
-                              style: TextStyle(
-                                color:    palette.accentPrimary,
-                                fontSize: 12,
-                              )),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
 
                 // ─── الآية ─────────────────────────────
                 Container(
@@ -340,8 +318,7 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
                   ),
                 ),
               ],
-            ),
-          );
+            );
         },
       ),
     );
