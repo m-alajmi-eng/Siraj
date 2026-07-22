@@ -17,6 +17,26 @@ import 'core/notifications/adhan_service.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:just_audio_media_kit/just_audio_media_kit.dart';
 
+// أسرار قابلة للتخصيص عبر --dart-define وقت البناء (PHASE L3): المفتاح
+// العلني (anon key) عام بطبيعته في Supabase ولا يمثّل ثغرة أمنية بذاته،
+// لكن فصله يُمكّن تدوير المفاتيح بلا تعديل الكود، ويطابق توصية
+// docs/02_STORE_COMPLIANCE.md. القيم الافتراضية هنا هي قيم الإنتاج
+// الحالية — البناء العادي بلا أي --dart-define يعمل تماماً كما كان.
+const String _supabaseUrl = String.fromEnvironment(
+  'SUPABASE_URL',
+  defaultValue: 'https://pzcnkzsicyxlzqwjznvh.supabase.co',
+);
+const String _supabaseAnonKey = String.fromEnvironment(
+  'SUPABASE_ANON_KEY',
+  defaultValue:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6Y25renNpY3l4bHpxd2p6bnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyMDY2NjQsImV4cCI6MjA5Nzc4MjY2NH0.W2z_NZKyc1HD9CifqKvupIVcSrW1MinDAYsfpZ6ewm8',
+);
+const String _sentryDsn = String.fromEnvironment(
+  'SENTRY_DSN',
+  defaultValue:
+      'https://795e91c7bb4515d11239d0c5e3f4b0e6@o4511711586615296.ingest.de.sentry.io/4511711604310096',
+);
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _initTimezone();
@@ -38,8 +58,8 @@ Future<void> main() async {
   );
 
   await Supabase.initialize(
-    url: 'https://pzcnkzsicyxlzqwjznvh.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6Y25renNpY3l4bHpxd2p6bnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyMDY2NjQsImV4cCI6MjA5Nzc4MjY2NH0.W2z_NZKyc1HD9CifqKvupIVcSrW1MinDAYsfpZ6ewm8',
+    url: _supabaseUrl,
+    anonKey: _supabaseAnonKey,
   );
 
   await CacheService.init();
@@ -52,8 +72,7 @@ Future<void> main() async {
   // مراقبة الأعطال عبر Sentry (مجاني، مستقل عن Firebase تماماً)
   await SentryFlutter.init(
     (options) {
-      options.dsn =
-          'https://795e91c7bb4515d11239d0c5e3f4b0e6@o4511711586615296.ingest.de.sentry.io/4511711604310096';
+      options.dsn = _sentryDsn;
       // نسبة تتبع الأداء منخفضة عمداً لمشروع خيري (توفير الحصة المجانية)
       options.tracesSampleRate = 0.1;
     },

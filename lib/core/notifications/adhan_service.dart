@@ -45,20 +45,20 @@ class AdhanService {
   // 7 أيام × 5 صلوات = مدى 0-69 لإشعارات الأذان، و4000-4069 للإقامة
   // (ضمن المدى الموصى به 4000-7999 في خارطة التنفيذ). لا تعارض بين
   // المدَيين ولا مع معرّفات KhatmahReminderService (1000000+).
-  static int _prayerId(int dayOffset, int prayerIndex) =>
+  static int prayerNotificationId(int dayOffset, int prayerIndex) =>
       dayOffset * 10 + prayerIndex;
-  static int _iqamaId(int dayOffset, int prayerIndex) =>
+  static int iqamaNotificationId(int dayOffset, int prayerIndex) =>
       4000 + dayOffset * 10 + prayerIndex;
 
-  static const int _daysAhead = 7;
+  static const int daysAhead = 7;
 
   /// يلغي كل إشعارات الأذان/الإقامة المجدولة سلفاً (لا يمسّ تذكيرات
   /// الختمة، معرّفاتها في مدى مختلف تماماً).
   static Future<void> _cancelAllScheduled() async {
-    for (var day = 0; day < _daysAhead; day++) {
+    for (var day = 0; day < daysAhead; day++) {
       for (var i = 0; i < 5; i++) {
-        await NotificationService.plugin.cancel(id: _prayerId(day, i));
-        await NotificationService.plugin.cancel(id: _iqamaId(day, i));
+        await NotificationService.plugin.cancel(id: prayerNotificationId(day, i));
+        await NotificationService.plugin.cancel(id: iqamaNotificationId(day, i));
       }
     }
   }
@@ -101,7 +101,7 @@ class AdhanService {
     final scheduleMode = await NotificationService.scheduleMode();
     final now = DateTime.now();
 
-    for (var dayOffset = 0; dayOffset < _daysAhead; dayOffset++) {
+    for (var dayOffset = 0; dayOffset < daysAhead; dayOffset++) {
       final date = now.add(Duration(days: dayOffset));
       final dateComponents = DateComponents.from(date);
       final times = PrayerTimes(coordinates, dateComponents, params);
@@ -120,7 +120,7 @@ class AdhanService {
         final tzTime = tz.TZDateTime.from(time, tz.local);
 
         await NotificationService.plugin.zonedSchedule(
-          id: _prayerId(dayOffset, i),
+          id: prayerNotificationId(dayOffset, i),
           title: t.prayer_notification_title(name),
           body: t.prayer_notification_body,
           scheduledDate: tzTime,
@@ -135,7 +135,7 @@ class AdhanService {
         if (iqamaMinutes > 0) {
           final iqamaTime = tzTime.add(Duration(minutes: iqamaMinutes));
           await NotificationService.plugin.zonedSchedule(
-            id: _iqamaId(dayOffset, i),
+            id: iqamaNotificationId(dayOffset, i),
             title: t.iqama_notification_title,
             body: t.iqama_notification_body(iqamaMinutes, name),
             scheduledDate: iqamaTime,

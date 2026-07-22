@@ -1,14 +1,18 @@
-# SIRAAJ — Development Progress Report
+# Siraj — Development Progress Report
 
 ## Project Overview
-SIRAAJ is an elite Islamic Knowledge & Guidance Platform built with Flutter + Supabase.
+Siraj is an elite Islamic Knowledge & Guidance Platform built with Flutter + Supabase.
 Solo developer leading all architecture, decisions, and testing. Claude used as a coding assistant.
 
 ## Tech Stack
 - Flutter 3.44.2 + Riverpod 3.x + GoRouter
 - Supabase (PostgreSQL) — primary database
 - Firebase Auth
-- audioplayers + Hive (offline cache)
+- just_audio family (just_audio + just_audio_background + just_audio_media_kit)
+  behind a `SirajAudioController` abstraction layer + Hive (offline cache).
+  `audioplayers` fully migrated off (ADR-001) — package removed from
+  `pubspec.yaml` only after the Platform Validation Checklist passes on
+  real Android/iOS devices.
 - Ubuntu 22.04 / Target: Android
 
 ## Phase 1 — COMPLETED ✅
@@ -17,16 +21,23 @@ Solo developer leading all architecture, decisions, and testing. Claude used as 
 - Clean Architecture (features/core/data/presentation)
 - 8 dynamic prayer-time themes (Fajr → Night)
 - Offline-first with Hive cache
-- 30-language localization (l10n)
+- 15-language localization (l10n): ar, en, ur, fa, id, tr, fr, bn, ms,
+  ha, sw, de, ru, zh, es
 - AppMode (Lite/Full) via feature flags
 - Onboarding screen
 - Settings screen
 
 ### Islamic Features
-- Prayer times (Adhan package, 6 calculation methods)
-- Azan audio (8 voices, islamcan.com)
-- Qibla direction (compass)
-- Islamic calendar + upcoming events
+- Prayer times (Adhan package, calc method + madhab both wired into
+  calculation AND scheduled notifications from one shared resolver)
+- Azan: real `zonedSchedule` notifications (8 voices) with a channel
+  per sound + real raw-resource sound, not the instant `.show()` burst
+  from earlier sessions
+- Qibla direction — real tilt-compensated compass via `sensors_plus`
+  (accelerometer + magnetometer), with a clearly labeled static
+  fallback on platforms/devices without a magnetometer
+- Islamic calendar + upcoming events (dual Hijri/Gregorian day cells +
+  manual ±2 day Hijri correction)
 - Athkar (morning/evening/sleep)
 - Radio (50+ Quran stations)
 - Nearby mosques (Overpass API)
@@ -98,10 +109,16 @@ Solo developer leading all architecture, decisions, and testing. Claude used as 
 
 ## Phase 2 — IN PROGRESS 🔄
 - Figma design system (full UI/UX redesign)
-- King Fahd Mushaf pages (604 pages)
 - Stories & Sira content
 - Hadith linked to ayahs in Verse Portal
 - Prophet stories + Companions biographies
+
+Note: the printed King Fahd Mushaf page-by-page reader (`quran_library`
+package) was built, then deliberately removed (ADR-005) once the
+portal-style `SurahReaderScreen` covered the same reading need without
+duplicating the Khatmah/reading-position data model. `MushafPageMap`
+converts old page-based reading positions to the surah/ayah reader
+transparently, no user data migration needed.
 
 ## Phase 3 — PLANNED
 - Smart azan notifications
@@ -156,9 +173,10 @@ All product decisions, Islamic content standards, and release criteria were defi
 - Design Brief (DESIGN_BRIEF.md) للـ Figma
 - Figma React code في ~/projects/DesignSIRAJHomeScreen
 
-### معلّق ⚠️
-- Home Screen الجديدة تعطي شاشة حمراء — لم يُحل بعد
-- Audio Hub الموحّد (just_audio + audio_service) — لم يُبدأ
+### معلّق ⚠️ (كما وردت أصلاً — كلاهما مُنجَز الآن، انظر تحديث 2026-07-22 أدناه)
+- ~~Home Screen الجديدة تعطي شاشة حمراء~~ — أُصلح
+- ~~Audio Hub الموحّد (just_audio + audio_service)~~ — مكتمل عبر
+  `SirajAudioController` (ADR-001)
 
 ### القواعد الثابتة
 - flutter clean يعلّق الجهاز — ممنوع
@@ -166,3 +184,34 @@ All product decisions, Islamic content standards, and release criteria were defi
 - Supabase: https://pzcnkzsicyxlzqwjznvh.supabase.co
 - GitHub: git@github.com:m-alajmi-eng/Siraj.git
 - التعديلات عبر python3 أو Cursor مباشرة
+
+## آخر تحديث — جلسة تنفيذ ADR المجمَّد (2026-07-22)
+
+نُفِّذت خطة SIRAJ_Master_Implementation_Roadmap.md كاملة (PHASE A→L) في
+جلسة واحدة طويلة عبر Claude Code، محكومة بـSIRAJ_ADR.md v1.1 المعتمد.
+التفاصيل الكاملة (ملفاً بملف، مع أي تعارض بين وثيقتين مجمَّدتين اكتُشف
+أثناء التنفيذ) موثَّقة في `SESSION_STATUS.md`. ملخّص:
+
+- **الإشعارات:** أُعيد بناؤها بالكامل — `zonedSchedule` حقيقي بدل
+  `.show()` الفوري، يحترم كل الإعدادات التسعة المحفوظة سابقاً بلا أثر.
+- **الصوت:** طبقة تجريد `SirajAudioController` جديدة توحّد القرآن/
+  الراديو/معاينة الأذان على محرّك واحد (just_audio) خلف عقد مجرّد؛
+  `audioplayers` غير مستخدَم في الكود (`grep` = صفر) لكن لم يُحذَف من
+  `pubspec.yaml` بعد — بانتظار Platform Validation Checklist على جهاز
+  حقيقي.
+- **القبلة:** بوصلة حقيقية (كانت معطّلة بالكامل) — بانتظار اختبار الإبرة
+  الفعلي على جهاز حقيقي.
+- **المساجد:** إعادة كتابة كاملة (AsyncNotifier، 4 حالات خطأ، توسّع نصف
+  قطر تلقائي، اتجاهات).
+- **الملاحة:** 5 تبويبات في الشريط السفلي (كانت 3)، الحديث انتقل من
+  فرع مستقل تحت "المزيد" ليصبح قسماً أول داخل المكتبة، AppScaffold على
+  16 من 24 شاشة (8 مستثناة بقرار موثَّق — هويات بصرية مقصودة أو شاشات
+  ستُعاد كتابتها لاحقاً).
+- **المصحف المطبوع:** أُزيل بالكامل (`quran_library` + `page_reader_
+  screen.dart`) بعد بناء `MushafPageMap` واختباره؛ الختمة لا تزال
+  تعمل بالصفحات، القراءة تفتح القارئ الموحّد فقط.
+- **التقويم:** خلايا مزدوجة هجري/ميلادي + تصحيح هجري يدوي ±2.
+- **البحث:** موازٍ بدل تسلسلي، عزل كل مصدر، سقوط احتياطي محلي، فلاتر
+  حسب النوع، الأذكار مصدر بحث جديد.
+- **اللغة:** توحيد الاسم على "Siraj" (Android label كان "siraj" بحرف
+  صغير، أُصلح).

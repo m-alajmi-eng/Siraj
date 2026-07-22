@@ -1,7 +1,7 @@
-# SIRAAJ — Design Brief for Figma
+# Siraj — Design Brief for Figma
 
 ## App Overview
-SIRAAJ is an elite Islamic Knowledge & Guidance Platform.
+Siraj is an elite Islamic Knowledge & Guidance Platform.
 Philosophy: Spiritual Minimalism — every pixel must justify its existence.
 
 ---

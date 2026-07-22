@@ -18,7 +18,7 @@ class KhatmahReminderService {
 
   /// معرّف إشعار ثابت ومميّز لكل خطة (يعتمد على hashCode للـid النصي
   /// كي لا يتعارض مع معرّفات AdhanService الرقمية البسيطة).
-  static int _notificationIdFor(String planId) =>
+  static int notificationIdFor(String planId) =>
       1000000 + (planId.hashCode.abs() % 900000);
 
   /// يجدول تذكيراً يومياً متكرراً لخطة واحدة عند وقتها المحدَد.
@@ -31,7 +31,7 @@ class KhatmahReminderService {
     if (!Platform.isAndroid && !Platform.isIOS) return;
     await _ensureInit();
 
-    final id = _notificationIdFor(plan.id);
+    final id = notificationIdFor(plan.id);
     await _notifications.cancel(id: id);
 
     if (!plan.isActive || plan.reminderTime == null || plan.isCompleted) {
@@ -70,7 +70,7 @@ class KhatmahReminderService {
   static Future<void> cancelForPlan(String planId) async {
     if (!Platform.isAndroid && !Platform.isIOS) return;
     await _ensureInit();
-    await _notifications.cancel(id: _notificationIdFor(planId));
+    await _notifications.cancel(id: notificationIdFor(planId));
   }
 
   static tz.TZDateTime _nextInstanceOf(int hour, int minute) {
