@@ -2230,6 +2230,18 @@ abstract class AppLocalizations {
   /// **'الله أكبر، حي على الصلاة'**
   String get prayer_notification_body;
 
+  /// No description provided for @iqama_notification_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'تنبيه الإقامة'**
+  String get iqama_notification_title;
+
+  /// No description provided for @iqama_notification_body.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإقامة بعد {minutes} دقيقة — {prayer}'**
+  String iqama_notification_body(Object minutes, Object prayer);
+
   /// No description provided for @khatmah_title.
   ///
   /// In ar, this message translates to:

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../l10n/app_localizations.dart';
+import '../notifications/adhan_service.dart';
+import '../notifications/adhan_settings_provider.dart';
 import '../theme/time_theme_provider.dart';
+import '../../features/prayer/presentation/providers/prayer_provider.dart';
 
 /// الشريط السفلي: 3 وجهات فقط (رئيسية، قرآن، مزيد) - القيد التقني
 /// المؤكَّد (يوليو 2026): StatefulShellRoute.indexedStack لا يدعم
@@ -14,10 +17,59 @@ class MainShell extends ConsumerWidget {
   final StatefulNavigationShell navigationShell;
   const MainShell({super.key, required this.navigationShell});
 
+  /// يعيد جدولة إشعارات الصلاة (كل الإعدادات التسعة ذات الصلة تُقرأ
+  /// طازجة من داخل AdhanService نفسه). يُستدعى عند: فتح التطبيق (أول
+  /// موقع متاح)، تغيّر الموقع الفعلي >10كم، أو تغيّر أي إعداد أذان
+  /// (PHASE B4 — نُقلت من MaterialApp.builder ذي التنفيذ الواحد).
+  void _reschedule(BuildContext context, LocationState location) {
+    AdhanService.schedulePrayerNotifications(
+      latitude: location.latitude,
+      longitude: location.longitude,
+      t: AppLocalizations.of(context),
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t       = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
+
+    // مستمعات إعادة الجدولة: مصدر واحد للتشغيل الأول (تحوّل الموقع من
+    // "جارٍ التحميل" إلى بيانات فعلية عند أول تحميل للتطبيق — WidgetRef.listen
+    // في هذا الإصدار بلا fireImmediately، لكن انتقال loading→data نفسه
+    // "تغيّر" يلتقطه listen طبيعياً بلا حاجة له)، وبقية الإعدادات تُعيد
+    // الجدولة عند تغيّرها فقط (AdhanService يقرأ كل الإعدادات طازجة من
+    // CacheService عند كل استدعاء بصرف النظر عن أيها استدعى).
+    ref.listen<AsyncValue<LocationState>>(locationProvider, (prev, next) {
+      final location = next.value;
+      if (location == null) return;
+      _reschedule(context, location);
+    });
+
+    ref.listen(calcMethodProvider, (prev, next) {
+      final location = ref.read(locationProvider).value;
+      if (location != null && prev != next) _reschedule(context, location);
+    });
+    ref.listen(madhabProvider, (prev, next) {
+      final location = ref.read(locationProvider).value;
+      if (location != null && prev != next) _reschedule(context, location);
+    });
+    ref.listen(adhanEnabledProvider, (prev, next) {
+      final location = ref.read(locationProvider).value;
+      if (location != null && prev != next) _reschedule(context, location);
+    });
+    ref.listen(adhanSoundProvider, (prev, next) {
+      final location = ref.read(locationProvider).value;
+      if (location != null && prev != next) _reschedule(context, location);
+    });
+    ref.listen(vibrationProvider, (prev, next) {
+      final location = ref.read(locationProvider).value;
+      if (location != null && prev != next) _reschedule(context, location);
+    });
+    ref.listen(iqamaAlertProvider, (prev, next) {
+      final location = ref.read(locationProvider).value;
+      if (location != null && prev != next) _reschedule(context, location);
+    });
 
     final visibleTabs = [
       _TabItem(branchIndex: 0, icon: Icons.home_outlined,      activeIcon: Icons.home,      label: t.nav_home),

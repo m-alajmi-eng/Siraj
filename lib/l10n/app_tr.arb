@@ -18,7 +18,7 @@
     }
   },
   "prayer_locationGPS": "Mevcut konumunuz",
-  "prayer_locationDefault": "Riyad (varsayılan)",
+  "prayer_locationDefault": "Mekke (varsayılan)",
   "quran_title": "Kur'an-ı Kerim",
   "quran_meccan": "Mekki",
   "quran_medinan": "Medeni",
@@ -423,6 +423,8 @@
   "adhan_classic": "Klasik",
   "prayer_notification_title": "{prayer} vakti geldi",
   "prayer_notification_body": "Allahu Ekber, haydi namaza",
+  "iqama_notification_title": "Kamet Uyarısı",
+  "iqama_notification_body": "Kamete {minutes} dakika — {prayer}",
   "khatmah_title": "Hatimler",
   "khatmah_new": "Yeni Hatim",
   "khatmah_empty": "Henüz hatim yok. İlkini başlatın!",

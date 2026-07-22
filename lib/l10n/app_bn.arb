@@ -18,7 +18,7 @@
     }
   },
   "prayer_locationGPS": "আপনার বর্তমান অবস্থান",
-  "prayer_locationDefault": "রিয়াদ (ডফল্ট)",
+  "prayer_locationDefault": "মক্কা (ডিফল্ট)",
   "quran_title": "পবিত্র কুরআন",
   "quran_meccan": "মক",
   "quran_medinan": "মাদানী",
@@ -423,6 +423,8 @@
   "adhan_classic": "ক্লাসিক",
   "prayer_notification_title": "{prayer}-এর সময় হয়েছে",
   "prayer_notification_body": "আল্লাহু আকবার, নামাজর দিকে এসো",
+  "iqama_notification_title": "ইকামত সতর্কতা",
+  "iqama_notification_body": "{minutes} মিনিট পর ইকামত — {prayer}",
   "khatmah_title": "খতম",
   "khatmah_new": "নতুন খতম",
   "khatmah_empty": "এখনও কোনো খতম নেই। প্রথমটি শুরু করন!",

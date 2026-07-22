@@ -8,9 +8,10 @@ import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../core/widgets/app_scaffold.dart';
 import '../../../prayer/presentation/providers/prayer_provider.dart';
 
-// إحداثيات الكعبة المشرَّفة.
-const _kaabaLat = 21.4225;
-const _kaabaLng = 39.8262;
+// إحداثيات الكعبة المشرَّفة (نفس الثابت المستخدَم كموقع احتياطي عالمي
+// في locationProvider — مصدر واحد بلا تكرار للرقم السحري).
+const _kaabaLat = kMakkahLatitude;
+const _kaabaLng = kMakkahLongitude;
 
 class _QiblaResult {
   final double bearingDeg; // من الشمال (0-360) باتجاه القبلة
@@ -65,14 +66,11 @@ class QiblaScreen extends ConsumerWidget {
         ),
         error: (_, _) => _QiblaContent(
           palette: palette, t: t, hasGps: false,
-          result: _computeQibla(24.7136, 46.6753),
+          result: _computeQibla(_kaabaLat, _kaabaLng),
         ),
-        data: (position) => _QiblaContent(
-          palette: palette, t: t, hasGps: position != null,
-          result: _computeQibla(
-            position?.latitude  ?? 24.7136,
-            position?.longitude ?? 46.6753,
-          ),
+        data: (location) => _QiblaContent(
+          palette: palette, t: t, hasGps: location.hasRealFix,
+          result: _computeQibla(location.latitude, location.longitude),
         ),
       ),
     );

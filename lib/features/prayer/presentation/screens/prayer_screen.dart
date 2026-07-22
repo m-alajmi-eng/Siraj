@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../providers/prayer_provider.dart';
 
@@ -8,9 +9,11 @@ class PrayerScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t          = AppLocalizations.of(context);
     final palette    = ref.watch(timeThemeProvider);
     final timesAsync = ref.watch(prayerTimesProvider);
     final location   = ref.watch(locationProvider);
+    final hasRealFix = location.value?.hasRealFix ?? false;
 
     return Scaffold(
       backgroundColor: palette.background,
@@ -25,7 +28,7 @@ class PrayerScreen extends ConsumerWidget {
                   CircularProgressIndicator(color: palette.accentPrimary),
                   const SizedBox(height: 16),
                   Text(
-                    'جارٍ تحديد موقعك...',
+                    t.common_loading,
                     style: TextStyle(
                       color: palette.textSecondary, fontSize: 14),
                   ),
@@ -33,19 +36,19 @@ class PrayerScreen extends ConsumerWidget {
               ),
             ),
             error: (e, _) => _buildContent(
-              palette, null, false),
+              t, palette, null, false),
             data: (times) => _buildContent(
-              palette, times, location.value != null),
+              t, palette, times, hasRealFix),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildContent(palette, times, bool hasGPS) {
-    final nextPrayer = times?.nextPrayerName ?? '---';
+  Widget _buildContent(AppLocalizations t, palette, times, bool hasGPS) {
+    final nextPrayer = times != null ? _prayerName(t, times) : '---';
     final countdown  = times != null
-        ? _formatCountdown(times.timeUntilNextPrayer)
+        ? _formatCountdown(t, times.timeUntilNextPrayer)
         : '---';
 
     return Column(
@@ -65,7 +68,7 @@ class PrayerScreen extends ConsumerWidget {
             ),
             const SizedBox(width: 4),
             Text(
-              hasGPS ? 'موقعك الحالي' : 'الرياض (افتراضي)',
+              hasGPS ? t.prayer_locationGPS : t.prayer_locationDefault,
               style: TextStyle(
                 color: palette.textSecondary, fontSize: 12),
             ),
@@ -108,22 +111,34 @@ class PrayerScreen extends ConsumerWidget {
 
         // 5 Prayers
         if (times != null) ...[
-          _PrayerRow(name: 'الفجر',  time: times.fajr,    palette: palette),
-          _PrayerRow(name: 'الشروق', time: times.sunrise, palette: palette),
-          _PrayerRow(name: 'الظهر',  time: times.dhuhr,   palette: palette),
-          _PrayerRow(name: 'العصر',  time: times.asr,     palette: palette),
-          _PrayerRow(name: 'المغرب', time: times.maghrib, palette: palette),
-          _PrayerRow(name: 'العشاء', time: times.isha,    palette: palette),
+          _PrayerRow(name: t.prayer_fajr,    time: times.fajr,    palette: palette),
+          _PrayerRow(name: t.prayer_sunrise, time: times.sunrise, palette: palette),
+          _PrayerRow(name: t.prayer_dhuhr,   time: times.dhuhr,   palette: palette),
+          _PrayerRow(name: t.prayer_asr,     time: times.asr,     palette: palette),
+          _PrayerRow(name: t.prayer_maghrib, time: times.maghrib, palette: palette),
+          _PrayerRow(name: t.prayer_isha,    time: times.isha,    palette: palette),
         ],
       ],
     );
   }
 
-  String _formatCountdown(Duration duration) {
+  String _prayerName(AppLocalizations t, dynamic times) {
+    final now = DateTime.now();
+    if (now.isBefore(times.fajr))    return t.prayer_fajr;
+    if (now.isBefore(times.dhuhr))   return t.prayer_dhuhr;
+    if (now.isBefore(times.asr))     return t.prayer_asr;
+    if (now.isBefore(times.maghrib)) return t.prayer_maghrib;
+    if (now.isBefore(times.isha))    return t.prayer_isha;
+    return t.prayer_fajr;
+  }
+
+  String _formatCountdown(AppLocalizations t, Duration duration) {
     final hours   = duration.inHours;
     final minutes = duration.inMinutes % 60;
-    if (hours > 0) return 'في $hours ساعة و$minutes دقيقة';
-    return 'في $minutes دقيقة';
+    final time = hours > 0
+        ? '$hours ${t.time_hr} $minutes ${t.time_min}'
+        : '$minutes ${t.time_min}';
+    return t.prayer_countdown(time);
   }
 }
 

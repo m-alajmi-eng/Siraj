@@ -1,29 +1,20 @@
 import 'dart:io';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz_data;
+import '../../../../core/notifications/notification_service.dart';
 import '../../domain/entities/khatmah_plan.dart';
 
 /// خدمة تذكيرات الختمة اليومية: إشعار محلي متكرر يومياً في وقت
 /// [KhatmahPlan.reminderTime] لكل خطة نشطة (المرحلة 5 من KHATMAH_DESIGN.md).
 ///
 /// يستخدم zonedSchedule + matchDateTimeComponents.time للتكرار اليومي
-/// الحقيقي (بخلاف AdhanService الحالي الذي يستخدم .show() الفوري).
+/// الحقيقي، عبر نفس [NotificationService.plugin] المشترك مع الأذان
+/// (instance واحد للتطبيق كله بدل نسخة منفصلة لكل خدمة).
 class KhatmahReminderService {
-  static final FlutterLocalNotificationsPlugin _notifications =
-      FlutterLocalNotificationsPlugin();
-  static bool _tzInitialized = false;
+  static FlutterLocalNotificationsPlugin get _notifications =>
+      NotificationService.plugin;
 
-  static Future<void> _ensureInit() async {
-    if (!Platform.isAndroid && !Platform.isIOS) return;
-    if (!_tzInitialized) {
-      tz_data.initializeTimeZones();
-      _tzInitialized = true;
-    }
-    const android = AndroidInitializationSettings('@mipmap/ic_launcher');
-    const settings = InitializationSettings(android: android);
-    await _notifications.initialize(settings: settings);
-  }
+  static Future<void> _ensureInit() => NotificationService.init();
 
   /// معرّف إشعار ثابت ومميّز لكل خطة (يعتمد على hashCode للـid النصي
   /// كي لا يتعارض مع معرّفات AdhanService الرقمية البسيطة).
@@ -54,6 +45,7 @@ class KhatmahReminderService {
     if (hour == null || minute == null) return;
 
     final scheduled = _nextInstanceOf(hour, minute);
+    final scheduleMode = await NotificationService.scheduleMode();
 
     await _notifications.zonedSchedule(
       id: id,
@@ -69,7 +61,7 @@ class KhatmahReminderService {
           priority: Priority.high,
         ),
       ),
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      androidScheduleMode: scheduleMode,
       matchDateTimeComponents: DateTimeComponents.time,
     );
   }

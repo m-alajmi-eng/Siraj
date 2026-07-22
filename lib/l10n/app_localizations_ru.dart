@@ -1118,6 +1118,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String get prayer_notification_body => 'Аллаху Акбар, спешите на молитву';
 
   @override
+  String get iqama_notification_title => 'Уведомление об икаме';
+
+  @override
+  String iqama_notification_body(Object minutes, Object prayer) {
+    return 'Икама через $minutes мин. — $prayer';
+  }
+
+  @override
   String get khatmah_title => 'Хатмы';
 
   @override

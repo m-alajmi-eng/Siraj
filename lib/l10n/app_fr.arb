@@ -18,7 +18,7 @@
     }
   },
   "prayer_locationGPS": "Votre position actuelle",
-  "prayer_locationDefault": "Riyad (par défaut)",
+  "prayer_locationDefault": "La Mecque (par défaut)",
   "quran_title": "Le Saint Coran",
   "quran_meccan": "Mecquoise",
   "quran_medinan": "Médinoise",
@@ -423,6 +423,8 @@
   "adhan_classic": "Classique",
   "prayer_notification_title": "C'est l'heure de {prayer}",
   "prayer_notification_body": "Allahu Akbar, venez à la prière",
+  "iqama_notification_title": "Alerte Iqama",
+  "iqama_notification_body": "Iqama dans {minutes} minutes — {prayer}",
   "khatmah_title": "Khatmas",
   "khatmah_new": "Nouvelle Khatma",
   "khatmah_empty": "Aucune khatma. Commencez la première !",

@@ -1108,6 +1108,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get prayer_notification_body => 'الله أكبر، حي على الصلاة';
 
   @override
+  String get iqama_notification_title => 'تنبيه الإقامة';
+
+  @override
+  String iqama_notification_body(Object minutes, Object prayer) {
+    return 'الإقامة بعد $minutes دقيقة — $prayer';
+  }
+
+  @override
   String get khatmah_title => 'الختمات';
 
   @override

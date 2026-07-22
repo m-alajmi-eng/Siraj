@@ -18,7 +18,7 @@
     }
   },
   "prayer_locationGPS": "موقعك الحالي",
-  "prayer_locationDefault": "الرياض (افتراضي)",
+  "prayer_locationDefault": "مكة المكرمة (افتراضي)",
   "quran_title": "القرآن الكريم",
   "quran_meccan": "مكية",
   "quran_medinan": "مدنية",
@@ -492,6 +492,8 @@
   "adhan_classic": "كلاسيكي",
   "prayer_notification_title": "حان وقت {prayer}",
   "prayer_notification_body": "الله أكبر، حي على الصلاة",
+  "iqama_notification_title": "تنبيه الإقامة",
+  "iqama_notification_body": "الإقامة بعد {minutes} دقيقة — {prayer}",
   "khatmah_title": "الختمات",
   "khatmah_new": "ختمة جديدة",
   "khatmah_empty": "لا توجد ختمات بعد. ابدأ ختمتك الأولى!",

@@ -1102,6 +1102,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get prayer_notification_body => '真主至大，快来礼拜';
 
   @override
+  String get iqama_notification_title => '成拜提醒';
+
+  @override
+  String iqama_notification_body(Object minutes, Object prayer) {
+    return '$minutes 分钟后成拜 — $prayer';
+  }
+
+  @override
   String get khatmah_title => '诵读计划';
 
   @override

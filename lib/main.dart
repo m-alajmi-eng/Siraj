@@ -143,27 +143,9 @@ class SirajApp extends ConsumerWidget {
                   : palette.surface),
         ),
       ),
-    builder: (context, child) {
-      // جدولة إشعارات الصلاة المترجمة - مرة واحدة فقط بعد توفر context
-      if (Platform.isAndroid || Platform.isIOS) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (!_prayerNotificationsScheduled) {
-            _prayerNotificationsScheduled = true;
-            AdhanService.schedulePrayerNotifications(
-              latitude: 24.7136,
-              longitude: 46.6753,
-              t: AppLocalizations.of(context),
-            );
-          }
-        });
-      }
-      return child!;
-    },
     );
   }
 }
-
-bool _prayerNotificationsScheduled = false;
 
 class _FallbackMaterialDelegate
     extends LocalizationsDelegate<MaterialLocalizations> {

@@ -18,7 +18,7 @@
     }
   },
   "prayer_locationGPS": "آپ کا موجودہ مقام",
-  "prayer_locationDefault": "ریاض (پہلے سے طے شدہ)",
+  "prayer_locationDefault": "مکہ مکرمہ (پہلے سے طے شدہ)",
   "quran_title": "قرآن کریم",
   "quran_meccan": "مکی",
   "quran_medinan": "مدنی",
@@ -423,6 +423,8 @@
   "adhan_classic": "کلاسیکی",
   "prayer_notification_title": "{prayer} کا وقت ہو گیا ہے",
   "prayer_notification_body": "اللہ اکبر، نماز کی طرف آؤ",
+  "iqama_notification_title": "اقامت کا انتباہ",
+  "iqama_notification_body": "اقامت {minutes} منٹ میں — {prayer}",
   "khatmah_title": "ختمات",
   "khatmah_new": "نئی ختم",
   "khatmah_empty": "ابھی کوئی ختم نہیں۔ اپنی پہلی ختم شروع کریں!",

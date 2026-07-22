@@ -18,7 +18,7 @@
     }
   },
   "prayer_locationGPS": "Lokasi Anda saat ini",
-  "prayer_locationDefault": "Riyadh (default)",
+  "prayer_locationDefault": "Makkah (default)",
   "quran_title": "Al-Qur'an Al-Karim",
   "quran_meccan": "Makkiyah",
   "quran_medinan": "Madaniyah",
@@ -423,6 +423,8 @@
   "adhan_classic": "Klasik",
   "prayer_notification_title": "Waktu {prayer} telah tiba",
   "prayer_notification_body": "Allahu Akbar, mari mendirikan shalat",
+  "iqama_notification_title": "Peringatan Ikamah",
+  "iqama_notification_body": "Ikamah dalam {minutes} menit — {prayer}",
   "khatmah_title": "Khatam",
   "khatmah_new": "Khatam Baru",
   "khatmah_empty": "Belum ada khatam. Mulai yang pertama!",

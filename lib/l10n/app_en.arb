@@ -18,7 +18,7 @@
     }
   },
   "prayer_locationGPS": "Your current location",
-  "prayer_locationDefault": "Riyadh (default)",
+  "prayer_locationDefault": "Makkah (default)",
   "quran_title": "The Holy Quran",
   "quran_meccan": "Meccan",
   "quran_medinan": "Medinan",
@@ -492,6 +492,8 @@
   "adhan_classic": "Classic",
   "prayer_notification_title": "It's time for {prayer}",
   "prayer_notification_body": "Allahu Akbar, come to prayer",
+  "iqama_notification_title": "Iqama Alert",
+  "iqama_notification_body": "Iqama in {minutes} minutes — {prayer}",
   "khatmah_title": "Khatmahs",
   "khatmah_new": "New Khatmah",
   "khatmah_empty": "No khatmahs yet. Start your first one!",
