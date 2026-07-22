@@ -6,6 +6,7 @@ import '../notifications/adhan_service.dart';
 import '../notifications/adhan_settings_provider.dart';
 import '../theme/time_theme_provider.dart';
 import '../../features/prayer/presentation/providers/prayer_provider.dart';
+import '../../features/quran/presentation/providers/reading_context_provider.dart';
 
 /// الشريط السفلي: الفروع الخمسة كلها ظاهرة (رئيسية، قرآن، أذكار، مكتبة،
 /// مزيد) — ADR-006. القيد التقني المذكور سابقاً ("indexedStack لا يدعم
@@ -33,6 +34,9 @@ class MainShell extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t       = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
+    // نفس مصدر الحقيقة الواحد الذي تقرأ منه بطاقة "متابعة القراءة" في
+    // الرئيسية — لضمان أن الوجهتين تفتحان دائماً نفس الموضع بالضبط.
+    final continueReadingAsync = ref.watch(continueReadingContextProvider);
 
     // مستمعات إعادة الجدولة: مصدر واحد للتشغيل الأول (تحوّل الموقع من
     // "جارٍ التحميل" إلى بيانات فعلية عند أول تحميل للتطبيق — WidgetRef.listen
@@ -104,10 +108,26 @@ class MainShell extends ConsumerWidget {
 
                 return Expanded(
                   child: GestureDetector(
-                    onTap: () => navigationShell.goBranch(
-                      tab.branchIndex,
-                      initialLocation: tab.branchIndex == navigationShell.currentIndex,
-                    ),
+                    onTap: () {
+                      // تبويب القرآن تحديداً: إن وُجد سياق قراءة محفوظ
+                      // (نفس المصدر الذي تستخدمه بطاقة "متابعة القراءة")
+                      // نفتح آخر موضع مباشرة بدل قائمة السور — فقط عند
+                      // الدخول للتبويب من تبويب آخر، لا عند إعادة الضغط
+                      // عليه وهو نشط (ذلك يبقى "إعادة ضبط" كالمعتاد).
+                      if (tab.branchIndex == 1 &&
+                          navigationShell.currentIndex != 1) {
+                        final surahId =
+                            continueReadingAsync.value?['surahId'] as int?;
+                        if (surahId != null) {
+                          context.go('/quran/surah/$surahId');
+                          return;
+                        }
+                      }
+                      navigationShell.goBranch(
+                        tab.branchIndex,
+                        initialLocation: tab.branchIndex == navigationShell.currentIndex,
+                      );
+                    },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
                       padding: const EdgeInsets.symmetric(
