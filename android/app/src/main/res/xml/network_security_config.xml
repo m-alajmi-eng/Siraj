@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  استثناء cleartext محصور بأربعة نطاقات بث إذاعي لا تدعم HTTPS (ADR-002).
+  كل ما عدا هذه النطاقات يبقى ممنوعاً من cleartext عبر base-config.
+-->
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">live.mp3quran.net</domain>
+        <domain includeSubdomains="false">server03.quran.com.kw</domain>
+        <domain includeSubdomains="false">live.radiorodja.com</domain>
+        <domain includeSubdomains="false">live.radioislam.org.za</domain>
+    </domain-config>
+
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
+    </base-config>
+</network-security-config>
