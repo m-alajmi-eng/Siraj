@@ -50,7 +50,6 @@ flutter:
   assets:
     - assets/fonts/
     - assets/data/
-    - assets/images/
     - assets/audio/adhan/
 
   fonts:
