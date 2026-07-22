@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
@@ -35,13 +36,106 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
   bool _mushafMode = true; // الافتراضي: مصحف متّصل
   bool _tajweedEnabled = false; // التجويد الملوّن (اختياري، افتراضياً معطّل)
 
+  /// آخر آية محفوظة لهذه السورة تحديداً (إن وُجدت) — تُقرأ مرة واحدة
+  /// عند الفتح لاستعادة موضع القراءة، قبل أي كتابة جديدة.
+  int _initialAyahNumber = 1;
+  bool _didAutoScroll = false;
+  final Map<int, GlobalKey> _ayahKeys = {};
+  final GlobalKey _viewportKey = GlobalKey();
+  final ScrollController _scrollController = ScrollController();
+  Timer? _scrollDebounce;
+
   @override
   void initState() {
     super.initState();
-    CacheService.saveLastReadingContext(type: 'surah', surahId: widget.surahId, ayahNumber: 1);
+    // نقرأ الموضع المحفوظ سابقاً لهذه السورة تحديداً *قبل* أي كتابة —
+    // الكود سابقاً كان يكتب ayahNumber:1 فوراً هنا فيمحو أي تقدّم محفوظ
+    // قبل حتى قراءته، وهذا هو السبب الجذري لفتح السورة من البداية دائماً.
+    final existing = CacheService.getLastReadingContext();
+    if (existing != null &&
+        existing['type'] == 'surah' &&
+        existing['surahId'] == widget.surahId &&
+        existing['ayahNumber'] != null) {
+      _initialAyahNumber = existing['ayahNumber'] as int;
+    }
+    CacheService.saveLastReadingContext(
+        type: 'surah', surahId: widget.surahId, ayahNumber: _initialAyahNumber);
     _mushafMode = CacheService.getSetting('mushaf_mode', defaultValue: true) as bool;
     _tajweedEnabled = CacheService.getSetting('tajweed_enabled', defaultValue: false) as bool;
-    _recordKhatmahProgress(1);
+    _recordKhatmahProgress(_initialAyahNumber);
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollDebounce?.cancel();
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  /// يُستدعى عند كل حدث تمرير؛ يُعيد ضبط مؤقّت 2 ثانية حتى لا نكتب على
+  /// كل بكسل تمرير (debounce) — الكتابة الفعلية تحدث فقط بعد استقرار
+  /// التمرير لثانيتين متتاليتين.
+  void _onScroll() {
+    _scrollDebounce?.cancel();
+    _scrollDebounce = Timer(const Duration(seconds: 2), () {
+      if (!mounted) return;
+      final visible = _findVisibleAyah();
+      if (visible != null) {
+        CacheService.saveLastReadingContext(
+            type: 'surah', surahId: widget.surahId, ayahNumber: visible);
+      }
+    });
+  }
+
+  /// يحدّد الآية الظاهرة حالياً أعلى منطقة العرض، عبر مقارنة مواضع
+  /// علامات (markers) غير مرئية (WidgetSpan/SizedBox بحجم صفر) وُضعت
+  /// عند بداية كل آية — تعمل بنفس الأسلوب في وضعي المصحف والقائمة.
+  int? _findVisibleAyah() {
+    final viewportBox =
+        _viewportKey.currentContext?.findRenderObject() as RenderBox?;
+    if (viewportBox == null || !viewportBox.attached) return null;
+    final viewportTop = viewportBox.localToGlobal(Offset.zero).dy;
+
+    int? best;
+    var bestDelta = double.infinity;
+    for (final entry in _ayahKeys.entries) {
+      final box =
+          entry.value.currentContext?.findRenderObject() as RenderBox?;
+      if (box == null || !box.attached) continue;
+      final delta = box.localToGlobal(Offset.zero).dy - viewportTop;
+      if (delta >= -40 && delta < bestDelta) {
+        bestDelta = delta;
+        best = entry.key;
+      }
+    }
+    return best;
+  }
+
+  /// يمرّر تلقائياً (مرة واحدة فقط لكل فتح للشاشة) إلى آخر آية محفوظة،
+  /// بعد اكتمال البناء الأول (postFrameCallback) حتى تكون كل الودجتات
+  /// (وعلاماتها) مبنيّة فعلياً.
+  void _scheduleAutoScroll(List ayahs) {
+    for (final ayah in ayahs) {
+      _ayahKeys.putIfAbsent(ayah.ayahNumber, () => GlobalKey());
+    }
+    if (_didAutoScroll || _initialAyahNumber <= 1) {
+      _didAutoScroll = true;
+      return;
+    }
+    _didAutoScroll = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final key = _ayahKeys[_initialAyahNumber];
+      final targetContext = key?.currentContext;
+      if (targetContext != null) {
+        Scrollable.ensureVisible(targetContext,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeInOut,
+            alignment: 0.1);
+      }
+    });
   }
 
   /// يسجّل الآية الحالية كتقدّم ختمة (بتحويلها لصفحة) — عند فتح القارئ
@@ -292,6 +386,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                     child: Text(t.common_error,
                       style: TextStyle(color: palette.textPrimary))),
                   data: (ayahs) {
+                    _scheduleAutoScroll(ayahs);
                     final firstText = ayahs.isNotEmpty ? ayahs[0].textUthmani : '';
                     final separateBasmala = widget.surahId != 9 &&
                         firstText.length >= _basmalaLength;
@@ -320,6 +415,8 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                         color: palette.surface,
                         borderRadius: BorderRadius.circular(16)),
                       child: ListView.builder(
+                        key: _viewportKey,
+                        controller: _scrollController,
                         padding: const EdgeInsets.all(20),
                         itemCount: ayahs.length + (separateBasmala ? 1 : 0),
                         itemBuilder: (context, index) {
@@ -349,6 +446,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                               audioState.currentAyahId == ayah.ayahNumber;
 
                           return GestureDetector(
+                            key: _ayahKeys[ayah.ayahNumber],
                             onLongPress: () => _showAyahOptions(
                               context: context, palette: palette, t: t,
                               surahId: widget.surahId, surahName: surahName,
@@ -650,6 +748,15 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
       final text = (i == 0 && separateBasmala)
           ? firstAyahText : ayah.textUthmani;
 
+      // علامة غير مرئية (حجم صفر) عند بداية كل آية — تُستخدَم لتتبّع
+      // الآية الظاهرة أثناء التمرير والتمرير التلقائي لموضع محفوظ،
+      // بما أن نص المصحف المتّصل مبني كـRichText واحد بلا عناصر مستقلة.
+      spans.add(WidgetSpan(
+        child: SizedBox(
+          key: _ayahKeys.putIfAbsent(ayah.ayahNumber, () => GlobalKey()),
+          width: 0, height: 0),
+      ));
+
       // نص الآية — قابل للضغط المطول للخيارات
       final baseStyle = TextStyle(
         fontFamily: font.fontFamily,
@@ -699,6 +806,8 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
         color: palette.surface,
         borderRadius: BorderRadius.circular(16)),
       child: ListView(
+        key: _viewportKey,
+        controller: _scrollController,
         padding: const EdgeInsets.all(24),
         children: [
           if (separateBasmala) ...[
