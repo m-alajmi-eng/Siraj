@@ -951,6 +951,45 @@ class AppLocalizationsAr extends AppLocalizations {
   String get more_mosques => 'المساجد القريبة';
 
   @override
+  String get mosques_searching => 'جاري البحث عن المساجد القريبة...';
+
+  @override
+  String get mosques_unnamed => 'مسجد غير مسمى';
+
+  @override
+  String get mosques_notFound => 'لم يتم العثور على مساجد قريبة';
+
+  @override
+  String get mosques_permissionDenied => 'الإذن بالموقع مرفوض';
+
+  @override
+  String get mosques_permissionDeniedHint =>
+      'امنح إذن الموقع من إعدادات الجهاز لعرض المساجد القريبة';
+
+  @override
+  String get mosques_serviceDisabled => 'خدمة الموقع معطّلة';
+
+  @override
+  String get mosques_serviceDisabledHint =>
+      'فعّل خدمة الموقع (GPS) من إعدادات جهازك';
+
+  @override
+  String get mosques_networkError => 'تعذّر الاتصال بالخادم';
+
+  @override
+  String get mosques_networkErrorHint =>
+      'تحقّق من اتصالك بالإنترنت وحاول مجدداً';
+
+  @override
+  String get mosques_openSettings => 'فتح الإعدادات';
+
+  @override
+  String get mosques_directions => 'الاتجاهات';
+
+  @override
+  String get mosques_desktopOnly => 'هذه الميزة تعمل على Android وiOS فقط';
+
+  @override
   String get athkarcat_error => 'خطأ';
 
   @override

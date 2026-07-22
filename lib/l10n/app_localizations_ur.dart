@@ -956,6 +956,46 @@ class AppLocalizationsUr extends AppLocalizations {
   String get more_mosques => 'قریبی مساجد';
 
   @override
+  String get mosques_searching => 'قریبی مساجد تلاش کی جا رہی ہیں...';
+
+  @override
+  String get mosques_unnamed => 'بے نام مسجد';
+
+  @override
+  String get mosques_notFound => 'قریب کوئی مسجد نہیں ملی';
+
+  @override
+  String get mosques_permissionDenied => 'مقام کی اجازت مسترد';
+
+  @override
+  String get mosques_permissionDeniedHint =>
+      'قریبی مساجد دیکھنے کے لیے آلے کی ترتیبات سے مقام کی اجازت دیں';
+
+  @override
+  String get mosques_serviceDisabled => 'مقام کی سروس بند ہے';
+
+  @override
+  String get mosques_serviceDisabledHint =>
+      'اپنے آلے کی ترتیبات سے مقام کی سروس (GPS) آن کریں';
+
+  @override
+  String get mosques_networkError => 'سرور سے رابطہ نہیں ہو سکا';
+
+  @override
+  String get mosques_networkErrorHint =>
+      'اپنا انٹرنیٹ کنکشن چیک کریں اور دوبارہ کوشش کریں';
+
+  @override
+  String get mosques_openSettings => 'ترتیبات کھولیں';
+
+  @override
+  String get mosques_directions => 'راستہ';
+
+  @override
+  String get mosques_desktopOnly =>
+      'یہ خصوصیت صرف Android اور iOS پر کام کرتی ہے';
+
+  @override
   String get athkarcat_error => 'خرابی';
 
   @override

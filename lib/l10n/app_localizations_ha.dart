@@ -960,6 +960,46 @@ class AppLocalizationsHa extends AppLocalizations {
   String get more_mosques => 'Masallatai Kusa';
 
   @override
+  String get mosques_searching => 'Ana neman masallatai kusa...';
+
+  @override
+  String get mosques_unnamed => 'Masallaci mara suna';
+
+  @override
+  String get mosques_notFound => 'Ba a sami masallatai kusa ba';
+
+  @override
+  String get mosques_permissionDenied => 'An ƙi izinin wuri';
+
+  @override
+  String get mosques_permissionDeniedHint =>
+      'Ba da izinin wuri daga saitunan na\'ura don ganin masallatai kusa';
+
+  @override
+  String get mosques_serviceDisabled => 'An kashe sabis na wuri';
+
+  @override
+  String get mosques_serviceDisabledHint =>
+      'Kunna sabis na wuri (GPS) daga saitunan na\'urarka';
+
+  @override
+  String get mosques_networkError => 'An kasa haɗawa da uwar garke';
+
+  @override
+  String get mosques_networkErrorHint =>
+      'Duba haɗin intanet ɗinka sannan ka sake gwadawa';
+
+  @override
+  String get mosques_openSettings => 'Buɗe Saitunan';
+
+  @override
+  String get mosques_directions => 'Hanya';
+
+  @override
+  String get mosques_desktopOnly =>
+      'Wannan fasalin yana aiki akan Android da iOS kawai';
+
+  @override
   String get athkarcat_error => 'Kuskure';
 
   @override

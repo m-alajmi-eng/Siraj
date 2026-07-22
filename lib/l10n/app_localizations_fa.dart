@@ -957,6 +957,45 @@ class AppLocalizationsFa extends AppLocalizations {
   String get more_mosques => 'مساجد نزدیک';
 
   @override
+  String get mosques_searching => 'در حال جستجوی مساجد نزدیک...';
+
+  @override
+  String get mosques_unnamed => 'مسجد بی‌نام';
+
+  @override
+  String get mosques_notFound => 'مسجدی در این نزدیکی یافت نشد';
+
+  @override
+  String get mosques_permissionDenied => 'دسترسی به موقعیت مکانی رد شد';
+
+  @override
+  String get mosques_permissionDeniedHint =>
+      'برای مشاهده مساجد نزدیک، دسترسی موقعیت مکانی را از تنظیمات دستگاه فعال کنید';
+
+  @override
+  String get mosques_serviceDisabled => 'سرویس موقعیت مکانی خاموش است';
+
+  @override
+  String get mosques_serviceDisabledHint =>
+      'سرویس موقعیت مکانی (GPS) را از تنظیمات دستگاه خود روشن کنید';
+
+  @override
+  String get mosques_networkError => 'اتصال به سرور ممکن نشد';
+
+  @override
+  String get mosques_networkErrorHint =>
+      'اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید';
+
+  @override
+  String get mosques_openSettings => 'باز کردن تنظیمات';
+
+  @override
+  String get mosques_directions => 'مسیریابی';
+
+  @override
+  String get mosques_desktopOnly => 'این ویژگی فقط در اندروید و iOS کار می‌کند';
+
+  @override
   String get athkarcat_error => 'خطا';
 
   @override

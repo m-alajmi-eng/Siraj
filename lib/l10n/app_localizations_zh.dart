@@ -947,6 +947,42 @@ class AppLocalizationsZh extends AppLocalizations {
   String get more_mosques => '附近的清真寺';
 
   @override
+  String get mosques_searching => '正在搜索附近的清真寺...';
+
+  @override
+  String get mosques_unnamed => '未命名清真寺';
+
+  @override
+  String get mosques_notFound => '未找到附近的清真寺';
+
+  @override
+  String get mosques_permissionDenied => '位置权限被拒绝';
+
+  @override
+  String get mosques_permissionDeniedHint => '请在设备设置中授予位置权限以查看附近的清真寺';
+
+  @override
+  String get mosques_serviceDisabled => '定位服务已关闭';
+
+  @override
+  String get mosques_serviceDisabledHint => '请在设备设置中打开定位服务（GPS）';
+
+  @override
+  String get mosques_networkError => '无法连接到服务器';
+
+  @override
+  String get mosques_networkErrorHint => '请检查您的网络连接并重试';
+
+  @override
+  String get mosques_openSettings => '打开设置';
+
+  @override
+  String get mosques_directions => '路线';
+
+  @override
+  String get mosques_desktopOnly => '此功能仅适用于 Android 和 iOS';
+
+  @override
   String get athkarcat_error => '错误';
 
   @override

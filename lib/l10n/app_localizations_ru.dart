@@ -962,6 +962,46 @@ class AppLocalizationsRu extends AppLocalizations {
   String get more_mosques => 'Мечети поблизости';
 
   @override
+  String get mosques_searching => 'Поиск ближайших мечетей...';
+
+  @override
+  String get mosques_unnamed => 'Мечеть без названия';
+
+  @override
+  String get mosques_notFound => 'Ближайшие мечети не найдены';
+
+  @override
+  String get mosques_permissionDenied => 'Доступ к геолокации запрещён';
+
+  @override
+  String get mosques_permissionDeniedHint =>
+      'Разрешите доступ к геолокации в настройках устройства, чтобы увидеть ближайшие мечети';
+
+  @override
+  String get mosques_serviceDisabled => 'Служба геолокации отключена';
+
+  @override
+  String get mosques_serviceDisabledHint =>
+      'Включите службы геолокации (GPS) в настройках устройства';
+
+  @override
+  String get mosques_networkError => 'Не удалось подключиться к серверу';
+
+  @override
+  String get mosques_networkErrorHint =>
+      'Проверьте подключение к интернету и попробуйте снова';
+
+  @override
+  String get mosques_openSettings => 'Открыть настройки';
+
+  @override
+  String get mosques_directions => 'Маршрут';
+
+  @override
+  String get mosques_desktopOnly =>
+      'Эта функция доступна только на Android и iOS';
+
+  @override
   String get athkarcat_error => 'Ошибка';
 
   @override

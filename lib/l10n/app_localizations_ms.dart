@@ -961,6 +961,46 @@ class AppLocalizationsMs extends AppLocalizations {
   String get more_mosques => 'Masjid Berdekatan';
 
   @override
+  String get mosques_searching => 'Mencari masjid berhampiran...';
+
+  @override
+  String get mosques_unnamed => 'Masjid tanpa nama';
+
+  @override
+  String get mosques_notFound => 'Tiada masjid berhampiran ditemui';
+
+  @override
+  String get mosques_permissionDenied => 'Kebenaran lokasi ditolak';
+
+  @override
+  String get mosques_permissionDeniedHint =>
+      'Berikan kebenaran lokasi dari tetapan peranti untuk melihat masjid berhampiran';
+
+  @override
+  String get mosques_serviceDisabled => 'Perkhidmatan lokasi dimatikan';
+
+  @override
+  String get mosques_serviceDisabledHint =>
+      'Hidupkan perkhidmatan lokasi (GPS) dari tetapan peranti anda';
+
+  @override
+  String get mosques_networkError => 'Tidak dapat menyambung ke pelayan';
+
+  @override
+  String get mosques_networkErrorHint =>
+      'Semak sambungan internet anda dan cuba lagi';
+
+  @override
+  String get mosques_openSettings => 'Buka Tetapan';
+
+  @override
+  String get mosques_directions => 'Arah';
+
+  @override
+  String get mosques_desktopOnly =>
+      'Ciri ini hanya berfungsi pada Android dan iOS';
+
+  @override
   String get athkarcat_error => 'Ralat';
 
   @override

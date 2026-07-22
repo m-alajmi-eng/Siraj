@@ -958,6 +958,46 @@ class AppLocalizationsId extends AppLocalizations {
   String get more_mosques => 'Masjid Terdekat';
 
   @override
+  String get mosques_searching => 'Mencari masjid terdekat...';
+
+  @override
+  String get mosques_unnamed => 'Masjid tanpa nama';
+
+  @override
+  String get mosques_notFound => 'Tidak ada masjid terdekat yang ditemukan';
+
+  @override
+  String get mosques_permissionDenied => 'Izin lokasi ditolak';
+
+  @override
+  String get mosques_permissionDeniedHint =>
+      'Berikan izin lokasi dari pengaturan perangkat untuk melihat masjid terdekat';
+
+  @override
+  String get mosques_serviceDisabled => 'Layanan lokasi mati';
+
+  @override
+  String get mosques_serviceDisabledHint =>
+      'Aktifkan layanan lokasi (GPS) dari pengaturan perangkat Anda';
+
+  @override
+  String get mosques_networkError => 'Tidak dapat terhubung ke server';
+
+  @override
+  String get mosques_networkErrorHint =>
+      'Periksa koneksi internet Anda dan coba lagi';
+
+  @override
+  String get mosques_openSettings => 'Buka Pengaturan';
+
+  @override
+  String get mosques_directions => 'Petunjuk Arah';
+
+  @override
+  String get mosques_desktopOnly =>
+      'Fitur ini hanya tersedia di Android dan iOS';
+
+  @override
   String get athkarcat_error => 'Kesalahan';
 
   @override

@@ -963,6 +963,46 @@ class AppLocalizationsSw extends AppLocalizations {
   String get more_mosques => 'Misikiti ya Karibu';
 
   @override
+  String get mosques_searching => 'Inatafuta misikiti iliyo karibu...';
+
+  @override
+  String get mosques_unnamed => 'Msikiti usio na jina';
+
+  @override
+  String get mosques_notFound => 'Hakuna misikiti iliyo karibu iliyopatikana';
+
+  @override
+  String get mosques_permissionDenied => 'Ruhusa ya eneo imekataliwa';
+
+  @override
+  String get mosques_permissionDeniedHint =>
+      'Ruhusu eneo kutoka mipangilio ya kifaa ili kuona misikiti iliyo karibu';
+
+  @override
+  String get mosques_serviceDisabled => 'Huduma ya eneo imezimwa';
+
+  @override
+  String get mosques_serviceDisabledHint =>
+      'Washa huduma za eneo (GPS) kutoka mipangilio ya kifaa chako';
+
+  @override
+  String get mosques_networkError => 'Imeshindwa kuunganisha na seva';
+
+  @override
+  String get mosques_networkErrorHint =>
+      'Angalia muunganisho wako wa intaneti kisha ujaribu tena';
+
+  @override
+  String get mosques_openSettings => 'Fungua Mipangilio';
+
+  @override
+  String get mosques_directions => 'Maelekezo';
+
+  @override
+  String get mosques_desktopOnly =>
+      'Kipengele hiki kinafanya kazi kwenye Android na iOS pekee';
+
+  @override
   String get athkarcat_error => 'Hitilafu';
 
   @override

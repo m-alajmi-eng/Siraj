@@ -959,6 +959,46 @@ class AppLocalizationsBn extends AppLocalizations {
   String get more_mosques => 'নিকটবর্তী মসজিদ';
 
   @override
+  String get mosques_searching => 'কাছাকাছি মসজিদ খোঁজা হচ্ছে...';
+
+  @override
+  String get mosques_unnamed => 'নামহীন মসজিদ';
+
+  @override
+  String get mosques_notFound => 'কাছাকাছি কোনো মসজিদ পাওয়া যায়নি';
+
+  @override
+  String get mosques_permissionDenied => 'অবস্থানের অনুমতি প্রত্যাখ্যাত হয়েছে';
+
+  @override
+  String get mosques_permissionDeniedHint =>
+      'কাছাকাছি মসজিদ দেখতে ডিভাইস সেটিংস থেকে অবস্থানের অনুমতি দিন';
+
+  @override
+  String get mosques_serviceDisabled => 'অবস্থান পরিষেবা বন্ধ আছে';
+
+  @override
+  String get mosques_serviceDisabledHint =>
+      'আপনার ডিভাইসের সেটিংস থেকে অবস্থান পরিষেবা (GPS) চালু করুন';
+
+  @override
+  String get mosques_networkError => 'সার্ভারের সাথে সংযোগ করা যায়নি';
+
+  @override
+  String get mosques_networkErrorHint =>
+      'আপনার ইন্টারনেট সংযোগ পরীক্ষা করে আবার চেষ্টা করুন';
+
+  @override
+  String get mosques_openSettings => 'সেটিংস খুলুন';
+
+  @override
+  String get mosques_directions => 'দিকনির্দেশনা';
+
+  @override
+  String get mosques_desktopOnly =>
+      'এই বৈশিষ্ট্যটি শুধুমাত্র Android এবং iOS-এ কাজ করে';
+
+  @override
   String get athkarcat_error => 'ত্রুটি';
 
   @override

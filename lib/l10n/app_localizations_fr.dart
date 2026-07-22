@@ -965,6 +965,47 @@ class AppLocalizationsFr extends AppLocalizations {
   String get more_mosques => 'Mosquées à proximité';
 
   @override
+  String get mosques_searching => 'Recherche de mosquées à proximité...';
+
+  @override
+  String get mosques_unnamed => 'Mosquée sans nom';
+
+  @override
+  String get mosques_notFound => 'Aucune mosquée trouvée à proximité';
+
+  @override
+  String get mosques_permissionDenied => 'Autorisation de localisation refusée';
+
+  @override
+  String get mosques_permissionDeniedHint =>
+      'Accordez l\'autorisation de localisation dans les paramètres de l\'appareil pour voir les mosquées à proximité';
+
+  @override
+  String get mosques_serviceDisabled =>
+      'Le service de localisation est désactivé';
+
+  @override
+  String get mosques_serviceDisabledHint =>
+      'Activez les services de localisation (GPS) depuis les paramètres de votre appareil';
+
+  @override
+  String get mosques_networkError => 'Impossible de se connecter au serveur';
+
+  @override
+  String get mosques_networkErrorHint =>
+      'Vérifiez votre connexion internet et réessayez';
+
+  @override
+  String get mosques_openSettings => 'Ouvrir les paramètres';
+
+  @override
+  String get mosques_directions => 'Itinéraire';
+
+  @override
+  String get mosques_desktopOnly =>
+      'Cette fonctionnalité est disponible uniquement sur Android et iOS';
+
+  @override
   String get athkarcat_error => 'Erreur';
 
   @override

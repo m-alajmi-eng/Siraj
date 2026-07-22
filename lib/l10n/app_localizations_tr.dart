@@ -961,6 +961,46 @@ class AppLocalizationsTr extends AppLocalizations {
   String get more_mosques => 'Yakındaki Camiler';
 
   @override
+  String get mosques_searching => 'Yakındaki camiler aranıyor...';
+
+  @override
+  String get mosques_unnamed => 'İsimsiz cami';
+
+  @override
+  String get mosques_notFound => 'Yakında cami bulunamadı';
+
+  @override
+  String get mosques_permissionDenied => 'Konum izni reddedildi';
+
+  @override
+  String get mosques_permissionDeniedHint =>
+      'Yakındaki camileri görmek için cihaz ayarlarından konum izni verin';
+
+  @override
+  String get mosques_serviceDisabled => 'Konum hizmeti kapalı';
+
+  @override
+  String get mosques_serviceDisabledHint =>
+      'Cihaz ayarlarından konum hizmetlerini (GPS) açın';
+
+  @override
+  String get mosques_networkError => 'Sunucuya bağlanılamadı';
+
+  @override
+  String get mosques_networkErrorHint =>
+      'İnternet bağlantınızı kontrol edip tekrar deneyin';
+
+  @override
+  String get mosques_openSettings => 'Ayarları Aç';
+
+  @override
+  String get mosques_directions => 'Yol Tarifi';
+
+  @override
+  String get mosques_desktopOnly =>
+      'Bu özellik yalnızca Android ve iOS\'ta çalışır';
+
+  @override
   String get athkarcat_error => 'Hata';
 
   @override

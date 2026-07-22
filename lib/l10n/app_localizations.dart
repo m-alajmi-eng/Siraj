@@ -1936,6 +1936,78 @@ abstract class AppLocalizations {
   /// **'المساجد القريبة'**
   String get more_mosques;
 
+  /// No description provided for @mosques_searching.
+  ///
+  /// In ar, this message translates to:
+  /// **'جاري البحث عن المساجد القريبة...'**
+  String get mosques_searching;
+
+  /// No description provided for @mosques_unnamed.
+  ///
+  /// In ar, this message translates to:
+  /// **'مسجد غير مسمى'**
+  String get mosques_unnamed;
+
+  /// No description provided for @mosques_notFound.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم يتم العثور على مساجد قريبة'**
+  String get mosques_notFound;
+
+  /// No description provided for @mosques_permissionDenied.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإذن بالموقع مرفوض'**
+  String get mosques_permissionDenied;
+
+  /// No description provided for @mosques_permissionDeniedHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'امنح إذن الموقع من إعدادات الجهاز لعرض المساجد القريبة'**
+  String get mosques_permissionDeniedHint;
+
+  /// No description provided for @mosques_serviceDisabled.
+  ///
+  /// In ar, this message translates to:
+  /// **'خدمة الموقع معطّلة'**
+  String get mosques_serviceDisabled;
+
+  /// No description provided for @mosques_serviceDisabledHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'فعّل خدمة الموقع (GPS) من إعدادات جهازك'**
+  String get mosques_serviceDisabledHint;
+
+  /// No description provided for @mosques_networkError.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذّر الاتصال بالخادم'**
+  String get mosques_networkError;
+
+  /// No description provided for @mosques_networkErrorHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحقّق من اتصالك بالإنترنت وحاول مجدداً'**
+  String get mosques_networkErrorHint;
+
+  /// No description provided for @mosques_openSettings.
+  ///
+  /// In ar, this message translates to:
+  /// **'فتح الإعدادات'**
+  String get mosques_openSettings;
+
+  /// No description provided for @mosques_directions.
+  ///
+  /// In ar, this message translates to:
+  /// **'الاتجاهات'**
+  String get mosques_directions;
+
+  /// No description provided for @mosques_desktopOnly.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذه الميزة تعمل على Android وiOS فقط'**
+  String get mosques_desktopOnly;
+
   /// No description provided for @athkarcat_error.
   ///
   /// In ar, this message translates to:
