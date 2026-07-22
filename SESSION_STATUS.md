@@ -260,6 +260,68 @@ adwaa_bayan_reader, children_stories, stories (دفعة 1 — الثمانية �
 هذه الثمانية ليست "متروكة صدفة" — كل واحدة إما (أ) هوية بصرية مقصودة تتضرّر
 من التوحيد الميكانيكي، أو (ب) ستُعاد كتابتها على أي حال في PHASE K القادمة.
 
+### PHASE K — إزالة المصحف المطبوع ✅ مكتمل (ADR-005) — تحقّق بـ`flutter test` كامل (34/34 ناجح)
+أخطر مرحلة في الخطة (موثَّقة كذلك صراحة: "الرجوع = استعادة quran_library
+كاملة"). نُفِّذت بالترتيب الآمن المنصوص: بناء الخريطة واختبارها أولاً، ثم
+التحويل، ثم الحذف فقط بعد نجاح الاثنين.
+
+- **K1 — `MushafPageMap`** (`lib/features/quran/data/datasources/mushaf_page_map.dart`،
+  جديد): يبني خريطة صفحة↔آية من `quran_uthmani.json` المحلي (604 صفحة،
+  مصدر واحد للحقيقة). `firstAyahOfPage(page)` و`pageOfAyah(surahId, ayah)`.
+  اختبار جديد (`test/mushaf_page_map_test.dart`، 6 حالات: أول آية،
+  تحويل عكسي لعيّنة صفحات، آخر آية 114:6→604، تغطية كل الصفحات 1-604،
+  سقوط آمن لمعرّف غير صالح) — **نفّذته وشغّلته فعلياً قبل أي حذف** (أنجح
+  6/6)، تماماً كما تشترط خطة الرجوع.
+- **K2 — إعادة توصيل نقاط الدخول الأربع:**
+  - `home_screen.dart`: بطاقة "متابعة القراءة" كانت تتفرّع لثلاث حالات
+    (سورة/صفحة حرة/صفحة ختمة) بمسارين يفتحان `/page-reader`. أُنشئ
+    `continueReadingContextProvider` (جديد) يُطبِّع أي سياق قديم محفوظ
+    بالصفحات (`page`/`khatmah_page`) لسياق سورة/آية عبر `MushafPageMap`
+    **قبل** وصوله للواجهة — فـ`_buildContinueReadingCard` تبسّط لحالة
+    "سورة" واحدة فقط. **هذا هو تحويل "السياق القديم legacy 'page' عبر
+    الخريطة" المطلوب حرفياً في K3** — يعمل تلقائياً بلا أي ترحيل بيانات،
+    لأي مستخدم كان قد حفظ سياق قراءة بالصفحات قبل هذا التحديث.
+  - `khatmah_detail_screen.dart`: زر "اقرأ الآن" كان يفتح `/page-reader`؛
+    يحوّل الآن رقم الصفحة المستهدَفة لأول آية مقابلة (`MushafPageMap.
+    firstAyahOfPage`) ويفتح `SurahReaderScreen` عندها، مع تمرير
+    `khatmahId` عبر معامل استعلام `?khatmah=` جديد في المسار.
+  - `surah_reader_screen.dart`: أضيف معامل `khatmahId` اختياري. عند
+    وجوده، يُسجَّل تقدّم الختمة (بالصفحات، **نموذج بيانات الختمة نفسه
+    لم يُمَس إطلاقاً** كما تشترط ADR-005) بتحويل الآية الحالية→صفحة عبر
+    `MushafPageMap.pageOfAyah` — عند فتح القارئ وعند مغادرته (الحالة
+    الوحيدة المتاحة فعلياً لـ"الموضع الحالي" في هذا القارئ المبني على
+    الصوت لا التمرير الحرّ؛ موثَّق كتبسيط عملي، ليس تتبّعاً للصفحات
+    الحيّ الذي كان في `page_reader_screen.dart` القديم عند كل قلب صفحة).
+    حُذف أيضاً زر "وضع الصفحات" (كان يفتح `/page-reader` من داخل القارئ).
+- **K3 — الحذف الآمن (بعد نجاح K1/K2 فقط):**
+  - حُذف `page_reader_screen.dart` + مساره من `app_router.dart`.
+  - حُذف `quran_library: ^4.2.1` من `pubspec.yaml` + `QuranLibrary.init()`
+    من `main.dart` (**اكتُشفت مشكلة أثناء الحذف وحُلّت فوراً:** إزالة
+    استيراد الحزمة كسرت `JustAudioMediaKit.ensureInitialized()` في نفس
+    الملف — كانت `quran_library` تُصدِّر `just_audio_media_kit` عبر
+    تصدير متعدٍّ (transitive) بلا استيراد مباشر؛ أُضيف
+    `import 'package:just_audio_media_kit/just_audio_media_kit.dart'`
+    المباشر، `flutter pub get` نجح، `flutter analyze` نظيف).
+  - حُذف بند ترخيص `quran_library` (MIT) من `licenses_screen.dart` —
+    بند ترخيص خطوط KFGQPC **بقي كما هو** (لا يزال مستخدَماً فعلياً في
+    readerFontProvider، غير متعلق بحزمة العرض المحذوفة).
+  - `grep -r quran_library lib` = صفر، `grep -r QuranLibrary lib` = صفر.
+- **ملاحظة جانبية (لم تُلمَس، خارج نطاق K الحرفي):** اكتُشف أثناء الفحص
+  أن `mushaf_page_datasource.dart` (يقرأ `hafs_smart_v8.json`، بيانات
+  مصحف KFGQPC الرسمية بخط PUA خاص) ومزوّداه في `quran_provider.dart`
+  (`mushafPageDataSourceProvider`/`mushafPageProvider`) **كانا كوداً
+  ميتاً بالفعل قبل هذه الجلسة** — لا مستهلك واحد في كل الواجهة
+  (`page_reader_screen.dart` القديم كان يستخدم `quran_library` مباشرة،
+  لا هذا المصدر). لم أحذفه لأنه غير مذكور صراحة في K3، لكنه يستحق تنظيفاً
+  منفصلاً لاحقاً.
+- **تحقّق فعلي (بديل البناء الكامل غير المتاح لعائق القرص):**
+  `flutter test` **الحزمة الكاملة نجحت 34/34** — بما فيها
+  `khatmah_widget_test.dart` (يُنشئ خطة ختمة حقيقية عبر واجهة كاملة)،
+  `khatmah_plan_test.dart` (12 حالة حسابية)، `mushaf_data_test.dart`
+  (604 صفحة/6236 آية/114 سورة)، و`mushaf_page_map_test.dart` الجديد.
+  هذا تحقّق حقيقي غير نظري لسلامة تعديلات K2 على منطق الختمة، لا مجرّد
+  فحص تجميع.
+
 ## 2) مؤجَّل بانتظار جهاز فعلي
 
 - **PHASE E7 (حذف audioplayers من pubspec.yaml):** الكود جاهز بالكامل

@@ -10,7 +10,7 @@ import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/widgets/glass_card.dart';
 import '../../../../core/widgets/section_label.dart';
-import '../../../../core/storage/cache_service.dart';
+import '../../../quran/presentation/providers/reading_context_provider.dart';
 import '../../../prayer/presentation/providers/prayer_provider.dart';
 import '../../../calendar/presentation/providers/calendar_provider.dart';
 import '../../../../core/mode/app_mode.dart';
@@ -36,7 +36,7 @@ class HomeScreen extends ConsumerWidget {
     final t           = AppLocalizations.of(context);
     final prayerAsync = ref.watch(prayerTimesProvider);
     final hijriDate   = ref.watch(hijriTodayProvider);
-    final lastContext = CacheService.getLastReadingContext();
+    final lastContextAsync = ref.watch(continueReadingContextProvider);
     final now         = DateTime.now();
     final h           = now.hour;
     final skyPhase    = SirajSky.fromHour(h);
@@ -79,8 +79,8 @@ class HomeScreen extends ConsumerWidget {
                     data:    (times) => _NextPrayerCard(times: times),
                   ),
                   const SizedBox(height: SirajSpacing.s3),
-                  if (lastContext != null) ...[
-                    _buildContinueReadingCard(context, t, lastContext),
+                  if (lastContextAsync.value != null) ...[
+                    _buildContinueReadingCard(context, t, lastContextAsync.value!),
                     const SizedBox(height: SirajSpacing.s3),
                   ],
                   const _DailyAyah(),
@@ -465,47 +465,22 @@ class _CountdownColon extends StatelessWidget {
   }
 }
 
-/// يبني بطاقة "متابعة القراءة" المناسبة حسب نوع آخر سياق قراءة
-/// (المرحلة 6 من KHATMAH_DESIGN.md): سورة عادية، صفحة مصحف حرة،
-/// أو صفحة ضمن ختمة - كل نوع نص ووجهة مختلفة.
+/// يبني بطاقة "متابعة القراءة". بعد إزالة المصحف المطبوع (PHASE K)
+/// كل سياق (بما فيه القديم بالصفحات) يصل هنا مطبَّعاً كسورة/آية عبر
+/// continueReadingContextProvider — سياق واحد فقط للتعامل معه.
 Widget _buildContinueReadingCard(
   BuildContext context,
   AppLocalizations t,
   Map<String, dynamic> ctx,
 ) {
-  final type = ctx['type'] as String?;
-
-  switch (type) {
-    case 'khatmah_page':
-      final page = ctx['page'] as int?;
-      final khatmahId = ctx['khatmahId'] as String?;
-      if (page == null || khatmahId == null) return const SizedBox();
-      return _ContinueReading(
-        primaryLine: t.khatmah_page + ' $page',
-        secondaryLine: t.khatmah_title,
-        onTap: () => context.push('/khatmah/detail/$khatmahId'),
-      );
-
-    case 'page':
-      final page = ctx['page'] as int?;
-      if (page == null) return const SizedBox();
-      return _ContinueReading(
-        primaryLine: t.khatmah_page + ' $page',
-        secondaryLine: '',
-        onTap: () => context.push('/page-reader?page=$page'),
-      );
-
-    case 'surah':
-    default:
-      final surahId = ctx['surahId'] as int?;
-      final ayahNumber = ctx['ayahNumber'] as int? ?? 1;
-      if (surahId == null) return const SizedBox();
-      return _ContinueReading(
-        primaryLine: t.home_surah(surahId),
-        secondaryLine: t.home_ayah(ayahNumber),
-        onTap: () => context.push('/quran/surah/$surahId'),
-      );
-  }
+  final surahId = ctx['surahId'] as int?;
+  final ayahNumber = ctx['ayahNumber'] as int? ?? 1;
+  if (surahId == null) return const SizedBox();
+  return _ContinueReading(
+    primaryLine: t.home_surah(surahId),
+    secondaryLine: t.home_ayah(ayahNumber),
+    onTap: () => context.push('/quran/surah/$surahId'),
+  );
 }
 
 class _ContinueReading extends StatelessWidget {

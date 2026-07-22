@@ -15,12 +15,11 @@ import 'core/storage/cache_service.dart';
 import 'core/locale/locale_provider.dart';
 import 'core/notifications/adhan_service.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:quran_library/quran_library.dart';
+import 'package:just_audio_media_kit/just_audio_media_kit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _initTimezone();
-  await QuranLibrary.init();
 
   // backend سطح المكتب (Linux/Windows) لـ just_audio — اختياري للتطوير
   if (Platform.isLinux || Platform.isWindows) {

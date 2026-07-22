@@ -13,10 +13,17 @@ import '../providers/reader_font_provider.dart';
 import '../../domain/entities/tajweed_entity.dart';
 import '../../../qke/presentation/screens/verse_portal_screen.dart';
 import '../../data/datasources/quran_remote_datasource.dart';
+import '../../data/datasources/mushaf_page_map.dart';
+import '../../../khatmah/presentation/providers/khatmah_provider.dart';
 
 class SurahReaderScreen extends ConsumerStatefulWidget {
   final int surahId;
-  const SurahReaderScreen({super.key, required this.surahId});
+  /// إن جاءت القراءة من ختمة نشطة (PHASE K — بعد إزالة المصحف المطبوع)
+  /// نسجّل تقدّم الختمة (بالصفحات، نموذج بياناتها لم يتغيّر) بتحويل
+  /// الآية الحالية إلى صفحة عبر MushafPageMap، بدل تتبّع صفحات مباشر
+  /// لم يعد له وجود في هذا القارئ.
+  final String? khatmahId;
+  const SurahReaderScreen({super.key, required this.surahId, this.khatmahId});
 
   @override
   ConsumerState<SurahReaderScreen> createState() => _SurahReaderScreenState();
@@ -33,6 +40,18 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
     CacheService.saveLastReadingContext(type: 'surah', surahId: widget.surahId, ayahNumber: 1);
     _mushafMode = CacheService.getSetting('mushaf_mode', defaultValue: true) as bool;
     _tajweedEnabled = CacheService.getSetting('tajweed_enabled', defaultValue: false) as bool;
+    _recordKhatmahProgress(1);
+  }
+
+  /// يسجّل الآية الحالية كتقدّم ختمة (بتحويلها لصفحة) — عند فتح القارئ
+  /// من ختمة، وعند مغادرته (المرجعان الوحيدان المتاحان لـ"الموضع
+  /// الحالي" في هذا القارئ، المبني على الصوت لا التمرير الحرّ).
+  Future<void> _recordKhatmahProgress(int ayahNumber) async {
+    final khatmahId = widget.khatmahId;
+    if (khatmahId == null) return;
+    final page = await MushafPageMap.pageOfAyah(widget.surahId, ayahNumber);
+    if (!mounted) return;
+    ref.read(khatmahProvider.notifier).recordProgress(khatmahId, page);
   }
 
   /// يبني قائمة TextSpan ملوّنة من بيانات التجويد لآية واحدة،
@@ -129,6 +148,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
           ref.read(audioProvider.notifier).stopAudio();
           if (audioState.currentAyahId != null) {
             CacheService.saveLastReadingContext(type: 'surah', surahId: widget.surahId, ayahNumber: audioState.currentAyahId!);
+            _recordKhatmahProgress(audioState.currentAyahId!);
           }
         }
       },
@@ -151,6 +171,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                               type: 'surah',
                               surahId: widget.surahId,
                               ayahNumber: audioState.currentAyahId!);
+                          _recordKhatmahProgress(audioState.currentAyahId!);
                         }
                         Navigator.pop(context);
                       },
@@ -192,18 +213,6 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
            onPressed: () {
              setState(() => _tajweedEnabled = !_tajweedEnabled);
              CacheService.saveSetting('tajweed_enabled', _tajweedEnabled);
-           },
-         ),
-         IconButton(
-           icon: Icon(Icons.auto_stories,
-             color: palette.accentPrimary, size: 22),
-           tooltip: 'وضع الصفحات',
-           onPressed: () {
-             // نفتح صفحة المصحف التي تبدأ فيها هذه السورة
-             final ayahs = ref.read(ayahsProvider(widget.surahId)).value;
-             final startPage = (ayahs != null && ayahs.isNotEmpty)
-                 ? ayahs.first.page : 1;
-             context.push('/page-reader?page=$startPage');
            },
          ),
                   ],

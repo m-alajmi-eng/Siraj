@@ -8,6 +8,7 @@ import '../../../../core/widgets/app_scaffold.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/khatmah_plan.dart';
 import '../providers/khatmah_provider.dart';
+import '../../../quran/data/datasources/mushaf_page_map.dart';
 import 'package:share_plus/share_plus.dart';
 
 /// شاشة تفاصيل ختمة واحدة: شريط تقدّم + ورد اليوم + حالة + زر متابعة.
@@ -180,9 +181,13 @@ class _TodayPortionCard extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: FilledButton(
-                onPressed: () {
+                onPressed: () async {
                   final startPage = range.isNotEmpty ? range.first : plan.currentPage;
-                  context.push('/page-reader?page=$startPage&khatmah=${plan.id}');
+                  final ayahRef = await MushafPageMap.firstAyahOfPage(startPage);
+                  if (context.mounted) {
+                    context.push(
+                      '/quran/surah/${ayahRef.surahId}?khatmah=${plan.id}');
+                  }
                 },
                 child: Text(t.khatmah_read_now),
               ),

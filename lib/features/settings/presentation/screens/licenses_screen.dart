@@ -43,13 +43,6 @@ class LicensesScreen extends ConsumerWidget {
           ),
           _LicenseCard(
             palette: palette,
-            icon: Icons.menu_book_outlined,
-            title: 'حزمة عرض المصحف quran_library',
-            subtitle: 'رخصة MIT',
-            body: _quranLibraryMit,
-          ),
-          _LicenseCard(
-            palette: palette,
             icon: Icons.info_outline,
             title: 'مصادر محتوى ديني خارجية',
             subtitle: 'IslamHouse / HadeethEnc.com · التفسير الميسّر · بيانات التجويد الملوّن',
@@ -181,9 +174,8 @@ class _PackagesTile extends StatelessWidget {
 }
 
 // النصوص التالية مستخرجة حرفياً (verbatim) من ملفات الخطوط الفعلية
-// المضمّنة في assets/fonts/ عبر فحص جدول "name" في كل ملف، ومن ملف
-// LICENSE الخاص بحزمة quran_library. لا تُترجَم — الترخيص يشترط نصاً
-// أصلياً غير معدَّل.
+// المضمّنة في assets/fonts/ عبر فحص جدول "name" في كل ملف. لا تُترجَم —
+// الترخيص يشترط نصاً أصلياً غير معدَّل.
 
 const String _kfgqpcEula = '''
 ELECTRONIC END-USER LICENSE AGREEMENT
@@ -246,29 +238,4 @@ DISCLAIMER
 THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE.
 
 (النص أعلاه مستخرَج حرفياً من ملفات الخطوط QuranFont.ttf وAmiri-Bold.ttf وNotoSans-Regular.ttf وNotoSansArabic-Regular.ttf المضمَّنة في التطبيق. ملاحظة: QuranFont.ttf هو فعلياً خط "Scheherazade New" باسم مضلَّل داخل مشروع سراج — راجع TD-08 في docs/05_TECH_DEBT.md.)
-''';
-
-const String _quranLibraryMit = '''
-MIT License
-
-Copyright (c) 2025 Alheekmah Library
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ''';

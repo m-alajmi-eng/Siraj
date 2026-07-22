@@ -37,7 +37,6 @@ import '../../features/library/presentation/screens/library_section_screen.dart'
 import '../../features/khatmah/presentation/screens/khatmah_list_screen.dart';
 import '../../features/khatmah/presentation/screens/khatmah_create_screen.dart';
 import '../../features/khatmah/presentation/screens/khatmah_detail_screen.dart';
-import '../../features/quran/presentation/screens/page_reader_screen.dart';
 import '../../features/library/presentation/screens/library_items_screen.dart';
 import '../../features/library/presentation/screens/library_type_categories_screen.dart';
 import '../../features/more/presentation/screens/more_screen.dart';
@@ -106,6 +105,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                  builder: (_, state) => SurahReaderScreen(
                    surahId: int.parse(
                      state.pathParameters['id']!),
+                   khatmahId: state.uri.queryParameters['khatmah'],
                  ),
                ),
                GoRoute(
@@ -334,16 +334,6 @@ final appRouterProvider = Provider<GoRouter>((ref) {
        ],
      ),
 
-     // ── وضع قراءة الصفحات (المصحف بالصفحات) ──
-     GoRoute(
-       path: '/page-reader',
-       builder: (_, state) => PageReaderScreen(
-         initialPage: int.tryParse(
-                 state.uri.queryParameters['page'] ?? '1') ??
-             1,
-         khatmahId: state.uri.queryParameters['khatmah'],
-       ),
-     ),
    ],
  );
 });
