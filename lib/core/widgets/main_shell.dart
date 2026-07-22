@@ -8,12 +8,11 @@ import '../theme/time_theme_provider.dart';
 import '../../features/prayer/presentation/providers/prayer_provider.dart';
 import '../../features/quran/presentation/providers/reading_context_provider.dart';
 
-/// الشريط السفلي: الفروع الخمسة كلها ظاهرة (رئيسية، قرآن، أذكار، مكتبة،
-/// مزيد) — ADR-006. القيد التقني المذكور سابقاً ("indexedStack لا يدعم
-/// تغيير عدد الفروع ديناميكياً") كان وهمياً هنا: لسنا بحاجة لتغيير العدد
-/// ديناميكياً أصلاً، فقط لعرض الفروع الخمسة الثابتة الموجودة في الراوتر
-/// بلا إخفاء أي منها (كانت الأذكار والمكتبة مدفونتين، الوصول لهما فقط
-/// عبر شبكة الرئيسية أو "المزيد").
+/// الشريط السفلي: 3 تبويبات فقط (رئيسية، قرآن، مزيد) — قرار معتمَد
+/// FREEZE-ADR-006 v2 (يحلّ محلّ نسخة ADR-006 السابقة التي أظهرت الفروع
+/// الخمسة كلها). فرعا الأذكار والمكتبة يبقيان في الراوتر وقابلين للوصول
+/// إليهما عبر context.go من شبكة الرئيسية/"المزيد" — لم يُحذَفا، فقط
+/// أُزيلا من هذا الشريط.
 class MainShell extends ConsumerWidget {
   final StatefulNavigationShell navigationShell;
   const MainShell({super.key, required this.navigationShell});
@@ -78,8 +77,6 @@ class MainShell extends ConsumerWidget {
     final visibleTabs = [
       _TabItem(branchIndex: 0, icon: Icons.home_outlined,        activeIcon: Icons.home,             label: t.nav_home),
       _TabItem(branchIndex: 1, icon: Icons.menu_book_outlined,   activeIcon: Icons.menu_book,         label: t.nav_quran),
-      _TabItem(branchIndex: 2, icon: Icons.self_improvement_outlined, activeIcon: Icons.self_improvement, label: t.nav_athkar),
-      _TabItem(branchIndex: 3, icon: Icons.local_library_outlined, activeIcon: Icons.local_library,   label: t.nav_library),
       _TabItem(branchIndex: 4, icon: Icons.more_horiz,           activeIcon: Icons.more_horiz,        label: t.nav_more),
     ];
 
@@ -99,9 +96,9 @@ class MainShell extends ConsumerWidget {
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-            // Expanded (لا Row+spaceAround غير محدود) لأن 5 تبويبات على
-            // شاشات ضيّقة (<360dp) تحتاج توزيعاً متساوياً صارماً بدل عرض
-            // مبنيّ على المحتوى قد يفيض — قيد الأجهزة الضعيفة (ADR-006 §7).
+            // Expanded (لا Row+spaceAround غير محدود) لتوزيع متساوٍ صارم
+            // للتبويبات الثلاثة بدل عرض مبنيّ على المحتوى قد يفيض — قيد
+            // الأجهزة الضعيفة (ADR-006 §7).
             child: Row(
               children: visibleTabs.map((tab) {
                 final isActive = navigationShell.currentIndex == tab.branchIndex;
