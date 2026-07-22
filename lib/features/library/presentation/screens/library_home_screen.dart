@@ -32,7 +32,7 @@ class LibraryHomeScreen extends ConsumerWidget {
     final sectionsAsync = ref.watch(librarySectionsProvider);
 
     return AppScaffold(
-      title: t.hadith_title,
+      title: t.library_title,
       showBack: false,
       child: sectionsAsync.when(
         loading: () => Center(

@@ -244,6 +244,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get more_title => 'Daha Fazla';
 
   @override
+  String get library_title => 'Kapsamlı Kütüphane';
+
+  @override
   String get more_qibla => 'Kıble Yönü';
 
   @override

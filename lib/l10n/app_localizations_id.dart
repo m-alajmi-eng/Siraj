@@ -244,6 +244,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get more_title => 'Lainnya';
 
   @override
+  String get library_title => 'Perpustakaan Lengkap';
+
+  @override
   String get more_qibla => 'Arah Kiblat';
 
   @override

@@ -242,6 +242,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get more_title => '更多';
 
   @override
+  String get library_title => '综合图书馆';
+
+  @override
   String get more_qibla => '朝拜方向';
 
   @override

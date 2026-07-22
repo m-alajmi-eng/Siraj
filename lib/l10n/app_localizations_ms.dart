@@ -243,6 +243,9 @@ class AppLocalizationsMs extends AppLocalizations {
   String get more_title => 'Lagi';
 
   @override
+  String get library_title => 'Perpustakaan Komprehensif';
+
+  @override
   String get more_qibla => 'Arah Kiblat';
 
   @override

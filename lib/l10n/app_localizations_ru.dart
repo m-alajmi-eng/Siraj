@@ -244,6 +244,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get more_title => 'Ещё';
 
   @override
+  String get library_title => 'Полная библиотека';
+
+  @override
   String get more_qibla => 'Направление Киблы';
 
   @override

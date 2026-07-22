@@ -562,6 +562,12 @@ abstract class AppLocalizations {
   /// **'المزيد'**
   String get more_title;
 
+  /// No description provided for @library_title.
+  ///
+  /// In ar, this message translates to:
+  /// **'المكتبة الشاملة'**
+  String get library_title;
+
   /// No description provided for @more_qibla.
   ///
   /// In ar, this message translates to:

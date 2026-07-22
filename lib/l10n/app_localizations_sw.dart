@@ -244,6 +244,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get more_title => 'Zaidi';
 
   @override
+  String get library_title => 'Maktaba Kamili';
+
+  @override
   String get more_qibla => 'Mwelekeo wa Qibla';
 
   @override

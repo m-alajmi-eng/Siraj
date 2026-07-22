@@ -43,7 +43,7 @@ class HadithCategoriesScreen extends ConsumerWidget {
           itemBuilder: (context, i) {
             final cat = categories[i];
             return GestureDetector(
-              onTap: () => context.push('/more/hadith/${cat.id}',
+              onTap: () => context.push('/library/hadith/${cat.id}',
                   extra: cat.titleAr),
               child: Container(
                 margin: const EdgeInsets.only(bottom: SirajSpacing.s3),

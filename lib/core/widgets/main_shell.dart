@@ -7,12 +7,12 @@ import '../notifications/adhan_settings_provider.dart';
 import '../theme/time_theme_provider.dart';
 import '../../features/prayer/presentation/providers/prayer_provider.dart';
 
-/// الشريط السفلي: 3 وجهات فقط (رئيسية، قرآن، مزيد) - القيد التقني
-/// المؤكَّد (يوليو 2026): StatefulShellRoute.indexedStack لا يدعم
-/// تغيير عدد الفروع ديناميكياً، فتبقى الفروع الخمسة كما هي في
-/// الراوتر (لتفادي كسر أي مسار فرعي عميق يعتمد عليها)، لكن الشريط
-/// المرئي يعرض فقط 3 منها، مع فهرس الفرع الفعلي محفوظاً لكل زر.
-/// الأذكار والمكتبة يبقى الوصول لهما عبر شبكة الرئيسية و"المزيد".
+/// الشريط السفلي: الفروع الخمسة كلها ظاهرة (رئيسية، قرآن، أذكار، مكتبة،
+/// مزيد) — ADR-006. القيد التقني المذكور سابقاً ("indexedStack لا يدعم
+/// تغيير عدد الفروع ديناميكياً") كان وهمياً هنا: لسنا بحاجة لتغيير العدد
+/// ديناميكياً أصلاً، فقط لعرض الفروع الخمسة الثابتة الموجودة في الراوتر
+/// بلا إخفاء أي منها (كانت الأذكار والمكتبة مدفونتين، الوصول لهما فقط
+/// عبر شبكة الرئيسية أو "المزيد").
 class MainShell extends ConsumerWidget {
   final StatefulNavigationShell navigationShell;
   const MainShell({super.key, required this.navigationShell});
@@ -72,9 +72,11 @@ class MainShell extends ConsumerWidget {
     });
 
     final visibleTabs = [
-      _TabItem(branchIndex: 0, icon: Icons.home_outlined,      activeIcon: Icons.home,      label: t.nav_home),
-      _TabItem(branchIndex: 1, icon: Icons.menu_book_outlined, activeIcon: Icons.menu_book, label: t.nav_quran),
-      _TabItem(branchIndex: 4, icon: Icons.more_horiz,         activeIcon: Icons.more_horiz, label: t.nav_more),
+      _TabItem(branchIndex: 0, icon: Icons.home_outlined,        activeIcon: Icons.home,             label: t.nav_home),
+      _TabItem(branchIndex: 1, icon: Icons.menu_book_outlined,   activeIcon: Icons.menu_book,         label: t.nav_quran),
+      _TabItem(branchIndex: 2, icon: Icons.self_improvement_outlined, activeIcon: Icons.self_improvement, label: t.nav_athkar),
+      _TabItem(branchIndex: 3, icon: Icons.local_library_outlined, activeIcon: Icons.local_library,   label: t.nav_library),
+      _TabItem(branchIndex: 4, icon: Icons.more_horiz,           activeIcon: Icons.more_horiz,        label: t.nav_more),
     ];
 
     return Scaffold(
@@ -92,48 +94,55 @@ class MainShell extends ConsumerWidget {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+            // Expanded (لا Row+spaceAround غير محدود) لأن 5 تبويبات على
+            // شاشات ضيّقة (<360dp) تحتاج توزيعاً متساوياً صارماً بدل عرض
+            // مبنيّ على المحتوى قد يفيض — قيد الأجهزة الضعيفة (ADR-006 §7).
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: visibleTabs.map((tab) {
                 final isActive = navigationShell.currentIndex == tab.branchIndex;
 
-                return GestureDetector(
-                  onTap: () => navigationShell.goBranch(
-                    tab.branchIndex,
-                    initialLocation: tab.branchIndex == navigationShell.currentIndex,
-                  ),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: isActive
-                          ? palette.accentPrimary.withValues(alpha: 0.15)
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.circular(20),
+                return Expanded(
+                  child: GestureDetector(
+                    onTap: () => navigationShell.goBranch(
+                      tab.branchIndex,
+                      initialLocation: tab.branchIndex == navigationShell.currentIndex,
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          isActive ? tab.activeIcon : tab.icon,
-                          color: isActive
-                              ? palette.accentPrimary
-                              : palette.textSecondary,
-                          size: 22,
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          tab.label,
-                          style: TextStyle(
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 4, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: isActive
+                            ? palette.accentPrimary.withValues(alpha: 0.15)
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            isActive ? tab.activeIcon : tab.icon,
                             color: isActive
                                 ? palette.accentPrimary
                                 : palette.textSecondary,
-                            fontSize: 10,
+                            size: 22,
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 2),
+                          Text(
+                            tab.label,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: isActive
+                                  ? palette.accentPrimary
+                                  : palette.textSecondary,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );

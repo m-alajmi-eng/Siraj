@@ -82,12 +82,6 @@ class MoreScreen extends ConsumerWidget {
               label: t.more_radio,
               onTap: () => context.push('/more/radio'),
             ),
-            if (flags.showHadith)
-            _MoreTile(
-              icon:  Icons.format_quote,
-              label: 'الأحاديث',
-              onTap: () => context.push('/more/hadith-categories'),
-            ),
             if (flags.showMosques)
             _MoreTile(
               icon:  Icons.mosque,

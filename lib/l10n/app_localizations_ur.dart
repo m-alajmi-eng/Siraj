@@ -243,6 +243,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get more_title => 'مزید';
 
   @override
+  String get library_title => 'جامع لائبریری';
+
+  @override
   String get more_qibla => 'قبلہ کی سمت';
 
   @override

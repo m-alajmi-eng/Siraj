@@ -243,6 +243,9 @@ class AppLocalizationsFa extends AppLocalizations {
   String get more_title => 'بیشتر';
 
   @override
+  String get library_title => 'کتابخانه جامع';
+
+  @override
   String get more_qibla => 'جهت قبله';
 
   @override

@@ -242,6 +242,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get more_title => 'المزيد';
 
   @override
+  String get library_title => 'المكتبة الشاملة';
+
+  @override
   String get more_qibla => 'اتجاه القبلة';
 
   @override

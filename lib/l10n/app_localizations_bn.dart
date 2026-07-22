@@ -244,6 +244,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get more_title => 'আরও';
 
   @override
+  String get library_title => 'সমন্বিত লাইব্রেরি';
+
+  @override
   String get more_qibla => 'কিবলার দিক';
 
   @override

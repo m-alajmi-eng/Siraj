@@ -244,6 +244,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get more_title => 'More';
 
   @override
+  String get library_title => 'Comprehensive Library';
+
+  @override
   String get more_qibla => 'Qibla Direction';
 
   @override

@@ -207,9 +207,16 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                  path:    'radio',
                  builder: (_, _) => const RadioScreen(),
                ),
+               // مسارات الحديث القديمة (ADR-009): تحويل دائم لـ/library/hadith/...
+               // — الحديث أصبح قسماً أول داخل المكتبة، مصدر حقيقة واحد بلا تكرار.
                GoRoute(
-                 path:    'hadith-categories',
-                 builder: (_, _) => const HadithCategoriesScreen(),
+                 path: 'hadith-categories',
+                 redirect: (_, _) => '/library/hadith',
+               ),
+               GoRoute(
+                 path: 'hadith/:categoryId',
+                 redirect: (_, state) =>
+                     '/library/hadith/${state.pathParameters['categoryId']}',
                ),
                GoRoute(
                  path:    'adwaa-bayan/:pageNumber',
@@ -217,18 +224,6 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                    final pageNumber =
                        int.parse(state.pathParameters['pageNumber']!);
                    return AdwaaBayanReaderScreen(pageNumber: pageNumber);
-                 },
-               ),
-               GoRoute(
-                 path:    'hadith/:categoryId',
-                 builder: (context, state) {
-                   final categoryId =
-                       int.parse(state.pathParameters['categoryId']!);
-                   final categoryTitle = state.extra as String? ?? 'الأحاديث';
-                   return HadithListScreen(
-                     categoryId: categoryId,
-                     categoryTitle: categoryTitle,
-                   );
                  },
                ),
                GoRoute(
@@ -286,6 +281,26 @@ final appRouterProvider = Provider<GoRouter>((ref) {
          categoryId: state.pathParameters['categoryId'] ?? '',
          type: state.uri.queryParameters['type'] ?? 'showall',
        ),
+     ),
+     // ── الحديث: قسم أول داخل المكتبة (ADR-009) — مصدر حقيقة واحد،
+     // مسارات حرفية `hadith` مُعرَّفة قبل `:sectionId` العام كي تُطابَق
+     // أولاً (نفس نظام التصنيف/القوائم القديم المبني على Supabase، فقط
+     // بمسار جديد؛ لا علاقة له بقسم "hadith" في مكتبة IslamHouse العامة
+     // الذي يبقى يعمل لبقية الأقسام عبر LibrarySectionScreen).
+     GoRoute(
+       path: '/library/hadith',
+       builder: (_, _) => const HadithCategoriesScreen(),
+     ),
+     GoRoute(
+       path: '/library/hadith/:categoryId',
+       builder: (context, state) {
+         final categoryId = int.parse(state.pathParameters['categoryId']!);
+         final categoryTitle = state.extra as String? ?? 'الأحاديث';
+         return HadithListScreen(
+           categoryId: categoryId,
+           categoryTitle: categoryTitle,
+         );
+       },
      ),
      GoRoute(
        path: '/library/:sectionId/:blockType',

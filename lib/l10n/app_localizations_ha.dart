@@ -243,6 +243,9 @@ class AppLocalizationsHa extends AppLocalizations {
   String get more_title => 'Ƙari';
 
   @override
+  String get library_title => 'Cikakkiyar Laburare';
+
+  @override
   String get more_qibla => 'Alkibla';
 
   @override
