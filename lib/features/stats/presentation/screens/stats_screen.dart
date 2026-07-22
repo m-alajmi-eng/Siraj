@@ -18,7 +18,6 @@ class StatsScreen extends ConsumerWidget {
 
     return AppScaffold(
       title: t.stats_title,
-      showBack: false,
       child: ListView(
         children: [
           _StatCard(
