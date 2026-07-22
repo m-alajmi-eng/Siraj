@@ -41,14 +41,21 @@ class _VersePortalScreenState extends ConsumerState<VersePortalScreen> {
       pages.add(_PageItem(id: 'words', icon: Icons.abc, label: t.portal_words));
     }
 
-    // ٣. أحاديث
-    pages.add(_PageItem(id: 'hadiths', icon: Icons.format_quote, label: t.portal_hadiths));
+    // ٣. أحاديث — يُخفى إن كان المصدر فارغاً (لا يُحذَف، فقط لا يُعرض)
+    if (portal.relatedHadiths.isNotEmpty) {
+      pages.add(_PageItem(id: 'hadiths', icon: Icons.format_quote, label: t.portal_hadiths));
+    }
 
-    // ٣ب. تفسير بالسنة (استشهادات أضواء البيان)
-    pages.add(_PageItem(id: 'adwaa_hadiths', icon: Icons.history_edu, label: t.portal_adwaaHadiths));
+    // ٣ب. تفسير بالسنة (استشهادات أضواء البيان) — نفس منطق الإخفاء الشرطي
+    if (portal.adwaaCitations.isNotEmpty) {
+      pages.add(_PageItem(id: 'adwaa_hadiths', icon: Icons.history_edu, label: t.portal_adwaaHadiths));
+    }
 
-    // ٤. قصص وسير
-    pages.add(_PageItem(id: 'stories', icon: Icons.auto_stories, label: t.portal_stories, comingSoon: true));
+    // ٤. قصص وسير — لا مصدر بيانات فعلي بعد (PortalData لا يضمّ حقل قصص
+    // إطلاقاً)، فالتبويب مُعطَّل مؤقتاً (لا يُحذَف الكود، فقط لا يُضاف
+    // لقائمة الصفحات) حتى تُضاف بيانات فعلية — نفس مبدأ "لا يُعرض تبويب
+    // فارغ" أعلاه:
+    // pages.add(_PageItem(id: 'stories', icon: Icons.auto_stories, label: t.portal_stories, comingSoon: true));
 
     // ٥. التفاسير بالعربية
     pages.add(_PageItem(id: 'arabic_tafsir', icon: Icons.menu_book, label: t.portal_arabicTafsir));
