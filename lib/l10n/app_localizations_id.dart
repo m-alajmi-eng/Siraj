@@ -460,6 +460,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get cal_legendBlessed => 'Diberkahi';
 
   @override
+  String get cal_hijriOffset => 'Koreksi Hijriah';
+
+  @override
   String get cal_detailPending =>
       'Belum ada detail tambahan (ayat/hadits/deskripsi) untuk peristiwa ini - menunggu tinjauan keagamaan.';
 

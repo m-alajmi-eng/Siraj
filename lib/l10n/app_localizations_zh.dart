@@ -458,6 +458,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get cal_legendBlessed => '吉庆';
 
   @override
+  String get cal_hijriOffset => '伊斯兰历修正';
+
+  @override
   String get cal_detailPending => '此纪念日暂无更多详情（经文/圣训/说明）- 待宗教审核。';
 
   @override

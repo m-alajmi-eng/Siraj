@@ -191,6 +191,7 @@
   "cal_legendEid": "Idul Fitri/Adha",
   "cal_legendFast": "Puasa",
   "cal_legendBlessed": "Diberkahi",
+  "cal_hijriOffset": "Koreksi Hijriah",
   "cal_detailPending": "Belum ada detail tambahan (ayat/hadits/deskripsi) untuk peristiwa ini - menunggu tinjauan keagamaan.",
   "hm_1": "Muharram",
   "hm_2": "Safar",

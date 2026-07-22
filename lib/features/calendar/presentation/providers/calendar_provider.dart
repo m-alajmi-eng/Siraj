@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/storage/cache_service.dart';
 
 // ─── تحويل ميلادي → هجري ─────────────────────────────────
 class HijriDate {
@@ -25,10 +26,16 @@ class HijriDate {
 
   String get monthName => monthNames[month - 1];
 
-  static HijriDate fromGregorian(DateTime date) {
-    int y = date.year;
-    int m = date.month;
-    int d = date.day;
+  /// [dayOffset] تصحيح اجتهاد الرؤية اليدوي (عادة ±2 يوماً) — الخوارزمية
+  /// الجدولية (Kuwaiti) قد تنحرف عن إعلان رؤية الهلال الرسمي محلياً؛
+  /// الإزاحة تُطبَّق على التاريخ الميلادي قبل التحويل، فتنسحب تلقائياً
+  /// على الشهر/السنة الهجريَّين بلا حساب لفّ يدوي.
+  static HijriDate fromGregorian(DateTime date, {int dayOffset = 0}) {
+    final shifted =
+        dayOffset == 0 ? date : date.add(Duration(days: dayOffset));
+    int y = shifted.year;
+    int m = shifted.month;
+    int d = shifted.day;
 
     int jd = ((1461 * (y + 4800 + (m - 14) ~/ 12)) ~/ 4) +
              ((367 * (m - 2 - 12 * ((m - 14) ~/ 12))) ~/ 12) -
@@ -94,8 +101,26 @@ final selectedDateProvider =
   return SelectedDateNotifier();
 });
 
+/// تصحيح الهجري اليدوي (ADR PHASE L §I): -2..+2 يوماً، محفوظ في الإعدادات.
+class HijriOffsetNotifier extends Notifier<int> {
+  @override
+  int build() =>
+      (CacheService.getSetting('hijri_offset', defaultValue: 0) as int)
+          .clamp(-2, 2);
+
+  Future<void> setOffset(int offset) async {
+    final clamped = offset.clamp(-2, 2);
+    state = clamped;
+    await CacheService.saveSetting('hijri_offset', clamped);
+  }
+}
+
+final hijriOffsetProvider =
+    NotifierProvider<HijriOffsetNotifier, int>(HijriOffsetNotifier.new);
+
 final hijriTodayProvider = Provider<HijriDate>((ref) {
-  return HijriDate.fromGregorian(DateTime.now());
+  final offset = ref.watch(hijriOffsetProvider);
+  return HijriDate.fromGregorian(DateTime.now(), dayOffset: offset);
 });
 
 final todayEventsProvider = Provider<List<IslamicEvent>>((ref) {
@@ -111,7 +136,7 @@ final monthEventsProvider =
 });
 
 final nextEventProvider = Provider<Map<String, dynamic>>((ref) {
-  final today = HijriDate.fromGregorian(DateTime.now());
+  final today = ref.watch(hijriTodayProvider);
   final events = islamicEvents.where((e) =>
     e.hijriMonth > today.month ||
     (e.hijriMonth == today.month && e.hijriDay > today.day)

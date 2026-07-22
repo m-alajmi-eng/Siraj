@@ -191,6 +191,7 @@
   "cal_legendEid": "Aïd",
   "cal_legendFast": "Jeûne",
   "cal_legendBlessed": "Béni",
+  "cal_hijriOffset": "Correction Hijri",
   "cal_detailPending": "Aucun détail supplémentaire (verset/hadith/description) n'est encore disponible pour cette occasion - en attente de révision religieuse.",
   "hm_1": "Mouharram",
   "hm_2": "Safar",

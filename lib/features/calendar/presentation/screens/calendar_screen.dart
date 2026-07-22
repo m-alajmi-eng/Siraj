@@ -156,6 +156,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     final palette     = ref.watch(timeThemeProvider);
     final hijriToday  = ref.watch(hijriTodayProvider);
     final todayEvents = ref.watch(todayEventsProvider);
+    final hijriOffset = ref.watch(hijriOffsetProvider);
     final now         = DateTime.now();
 
     final sortedEvents = [...islamicEvents]
@@ -192,6 +193,10 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                 const SizedBox(height: SirajSpacing.s3),
                 Text('${now.day} / ${now.month} / ${now.year}',
                   style: AppText.bodySmall.copyWith(color: palette.textSecondary)),
+                const SizedBox(height: SirajSpacing.s3),
+                _HijriOffsetControl(palette: palette, t: t, offset: hijriOffset,
+                  onChanged: (v) =>
+                      ref.read(hijriOffsetProvider.notifier).setOffset(v)),
               ],
             ),
           ),
@@ -202,6 +207,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
             viewedMonth: _viewedMonth,
             palette: palette,
             t: t,
+            hijriOffset: hijriOffset,
             onPrev: _prevMonth,
             onNext: _nextMonth,
             onDayTap: (hijri) {
@@ -281,6 +287,7 @@ class _MonthGrid extends StatelessWidget {
   final DateTime viewedMonth;
   final dynamic palette;
   final AppLocalizations t;
+  final int hijriOffset;
   final VoidCallback onPrev;
   final VoidCallback onNext;
   final void Function(HijriDate hijri) onDayTap;
@@ -289,6 +296,7 @@ class _MonthGrid extends StatelessWidget {
     required this.viewedMonth,
     required this.palette,
     required this.t,
+    required this.hijriOffset,
     required this.onPrev,
     required this.onNext,
     required this.onDayTap,
@@ -368,6 +376,7 @@ class _MonthGrid extends StatelessWidget {
                   date: DateTime(viewedMonth.year, viewedMonth.month, day),
                   isToday: isCurrentMonth && day == now.day,
                   palette: palette,
+                  hijriOffset: hijriOffset,
                   onTap: onDayTap,
                 ),
             ],
@@ -398,6 +407,63 @@ class _MonthGrid extends StatelessWidget {
   }
 }
 
+/// تصحيح الهجري اليدوي (ADR PHASE L §I): ±2 يوماً — الخوارزمية الجدولية
+/// (Kuwaiti) قد تنحرف عن إعلان رؤية الهلال الرسمي محلياً.
+class _HijriOffsetControl extends StatelessWidget {
+  final dynamic palette;
+  final AppLocalizations t;
+  final int offset;
+  final ValueChanged<int> onChanged;
+
+  const _HijriOffsetControl({
+    required this.palette,
+    required this.t,
+    required this.offset,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final label = offset == 0 ? '0' : (offset > 0 ? '+$offset' : '$offset');
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(t.cal_hijriOffset, style: AppText.caption.copyWith(
+          color: palette.textSecondary)),
+        const SizedBox(width: SirajSpacing.s2),
+        Semantics(
+          button: true,
+          label: t.common_prevPage,
+          child: GestureDetector(
+            onTap: offset > -2 ? () => onChanged(offset - 1) : null,
+            child: Icon(Icons.remove_circle_outline, size: 18,
+              color: offset > -2
+                  ? palette.accentPrimary
+                  : palette.textSecondary.withValues(alpha: 0.3)),
+          ),
+        ),
+        SizedBox(
+          width: 28,
+          child: Text(label, textAlign: TextAlign.center,
+            style: AppText.caption.copyWith(
+              color: palette.textPrimary, fontWeight: FontWeight.w600)),
+        ),
+        Semantics(
+          button: true,
+          label: t.common_nextPage,
+          child: GestureDetector(
+            onTap: offset < 2 ? () => onChanged(offset + 1) : null,
+            child: Icon(Icons.add_circle_outline, size: 18,
+              color: offset < 2
+                  ? palette.accentPrimary
+                  : palette.textSecondary.withValues(alpha: 0.3)),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class _LegendDot extends StatelessWidget {
   final Color color;
   final String label;
@@ -425,22 +491,26 @@ class _DayCell extends StatelessWidget {
   final DateTime date;
   final bool isToday;
   final dynamic palette;
+  final int hijriOffset;
   final void Function(HijriDate hijri) onTap;
 
   const _DayCell({
     required this.date,
     required this.isToday,
     required this.palette,
+    required this.hijriOffset,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final hijri = HijriDate.fromGregorian(date);
+    final hijri = HijriDate.fromGregorian(date, dayOffset: hijriOffset);
     final matchingEvents = islamicEvents.where(
       (e) => e.hijriMonth == hijri.month && e.hijriDay == hijri.day);
     final hasEvent = matchingEvents.isNotEmpty;
 
+    // الرقمان معاً (ADR PHASE L §I): هجري بارز + ميلادي ثانوي صغير أسفله
+    // بدل الميلادي وحده كما كان سابقاً رغم حساب hijri فعلياً لكل خلية.
     return GestureDetector(
       onTap: hasEvent ? () => onTap(hijri) : null,
       child: Container(
@@ -454,10 +524,12 @@ class _DayCell extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('${date.day}', style: AppText.caption.copyWith(
+            Text('${hijri.day}', style: AppText.caption.copyWith(
               color: isToday ? SirajGold.pure : palette.textPrimary,
               fontWeight: isToday ? FontWeight.w700 : FontWeight.w400,
             )),
+            Text('${date.day}', style: AppText.caption.copyWith(
+              color: palette.textSecondary, fontSize: 8)),
             if (hasEvent)
               Container(
                 width: 4, height: 4,

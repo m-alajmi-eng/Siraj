@@ -191,6 +191,7 @@
   "cal_legendEid": "Bayram",
   "cal_legendFast": "Oruç",
   "cal_legendBlessed": "Mübarek",
+  "cal_hijriOffset": "Hicri Düzeltme",
   "cal_detailPending": "Bu vesile için henüz ek ayrıntı (ayet/hadis/açıklama) mevcut değil - dini incelemeyi bekliyor.",
   "hm_1": "Muharrem",
   "hm_2": "Safer",

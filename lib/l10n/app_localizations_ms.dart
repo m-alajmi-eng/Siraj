@@ -459,6 +459,9 @@ class AppLocalizationsMs extends AppLocalizations {
   String get cal_legendBlessed => 'Diberkati';
 
   @override
+  String get cal_hijriOffset => 'Pembetulan Hijrah';
+
+  @override
   String get cal_detailPending =>
       'Belum ada butiran tambahan (ayat/hadis/penerangan) untuk peristiwa ini - menunggu semakan agama.';
 

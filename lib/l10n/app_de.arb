@@ -184,6 +184,7 @@
   "cal_legendEid": "Eid",
   "cal_legendFast": "Fasten",
   "cal_legendBlessed": "Gesegnet",
+  "cal_hijriOffset": "Hijri-Korrektur",
   "cal_detailPending": "Für diesen Anlass sind noch keine weiteren Details (Vers/Hadith/Beschreibung) verfügbar - religiöse Prüfung steht aus.",
   "hm_1": "Muharram",
   "hm_2": "Safar",

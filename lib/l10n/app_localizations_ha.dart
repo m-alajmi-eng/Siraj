@@ -459,6 +459,9 @@ class AppLocalizationsHa extends AppLocalizations {
   String get cal_legendBlessed => 'Mai albarka';
 
   @override
+  String get cal_hijriOffset => 'Gyaran Hijri';
+
+  @override
   String get cal_detailPending =>
       'Babu ƙarin bayani (aya/hadisi/bayani) da ake da su tukuna kan wannan biki - ana jiran nazarin addini.';
 

@@ -191,6 +191,7 @@
   "cal_legendEid": "Eid",
   "cal_legendFast": "Ayuno",
   "cal_legendBlessed": "Bendito",
+  "cal_hijriOffset": "Corrección Hiyri",
   "cal_detailPending": "Aún no hay detalles adicionales (versículo/hadiz/descripción) para esta ocasión - pendiente de revisión religiosa.",
   "hm_1": "Muharram",
   "hm_2": "Safar",

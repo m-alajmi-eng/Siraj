@@ -982,6 +982,12 @@ abstract class AppLocalizations {
   /// **'مبارك'**
   String get cal_legendBlessed;
 
+  /// No description provided for @cal_hijriOffset.
+  ///
+  /// In ar, this message translates to:
+  /// **'تصحيح الهجري'**
+  String get cal_hijriOffset;
+
   /// No description provided for @cal_detailPending.
   ///
   /// In ar, this message translates to:

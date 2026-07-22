@@ -460,6 +460,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get cal_legendBlessed => 'Béni';
 
   @override
+  String get cal_hijriOffset => 'Correction Hijri';
+
+  @override
   String get cal_detailPending =>
       'Aucun détail supplémentaire (verset/hadith/description) n\'est encore disponible pour cette occasion - en attente de révision religieuse.';
 

@@ -191,6 +191,7 @@
   "cal_legendEid": "عید",
   "cal_legendFast": "روزه",
   "cal_legendBlessed": "مبارک",
+  "cal_hijriOffset": "تصحیح هجری",
   "cal_detailPending": "هنوز جزئیات بیشتری (آیه/حدیث/توضیح) برای این مناسبت موجود نیست - در انتظار بررسی دینی.",
   "hm_1": "محرم",
   "hm_2": "صفر",

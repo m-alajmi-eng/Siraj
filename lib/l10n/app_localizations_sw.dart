@@ -460,6 +460,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get cal_legendBlessed => 'Baraka';
 
   @override
+  String get cal_hijriOffset => 'Marekebisho ya Hijria';
+
+  @override
   String get cal_detailPending =>
       'Hakuna maelezo zaidi (aya/hadithi/maelezo) yaliyopo bado kwa tukio hili - yanasubiri mapitio ya kidini.';
 

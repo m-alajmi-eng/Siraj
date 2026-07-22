@@ -460,6 +460,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get cal_legendBlessed => 'বরকতময়';
 
   @override
+  String get cal_hijriOffset => 'হিজরি সংশোধন';
+
+  @override
   String get cal_detailPending =>
       'এই উপলক্ষের জন্য এখনো কোনো অতিরিক্ত বিবরণ (আয়াত/হাদিস/বর্ণনা) উপলব্ধ নেই - ধর্মীয় পর্যালোচনার অপেক্ষায়।';
 

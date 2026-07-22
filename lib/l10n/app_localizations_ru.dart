@@ -460,6 +460,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get cal_legendBlessed => 'Благословенный';
 
   @override
+  String get cal_hijriOffset => 'Коррекция хиджры';
+
+  @override
   String get cal_detailPending =>
       'Дополнительные сведения (аят/хадис/описание) для этого события пока недоступны - ожидает религиозной проверки.';
 

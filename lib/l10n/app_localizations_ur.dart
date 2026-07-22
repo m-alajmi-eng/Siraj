@@ -459,6 +459,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get cal_legendBlessed => 'مبارک';
 
   @override
+  String get cal_hijriOffset => 'ہجری اصلاح';
+
+  @override
   String get cal_detailPending =>
       'اس موقع کے لیے ابھی کوئی اضافی تفصیل (آیت/حدیث/تفصیل) دستیاب نہیں - دینی جائزے کا انتظار ہے۔';
 

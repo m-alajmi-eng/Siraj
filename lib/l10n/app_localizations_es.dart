@@ -460,6 +460,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cal_legendBlessed => 'Bendito';
 
   @override
+  String get cal_hijriOffset => 'Corrección Hiyri';
+
+  @override
   String get cal_detailPending =>
       'Aún no hay detalles adicionales (versículo/hadiz/descripción) para esta ocasión - pendiente de revisión religiosa.';
 

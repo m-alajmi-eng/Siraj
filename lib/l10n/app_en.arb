@@ -205,6 +205,7 @@
   "cal_legendEid": "Eid",
   "cal_legendFast": "Fast",
   "cal_legendBlessed": "Blessed",
+  "cal_hijriOffset": "Hijri Correction",
   "cal_detailPending": "No additional details (verse/hadith/description) available yet for this occasion - pending religious review.",
   "hm_1": "Muharram",
   "hm_2": "Safar",

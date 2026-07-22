@@ -460,6 +460,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get cal_legendBlessed => 'Gesegnet';
 
   @override
+  String get cal_hijriOffset => 'Hijri-Korrektur';
+
+  @override
   String get cal_detailPending =>
       'Für diesen Anlass sind noch keine weiteren Details (Vers/Hadith/Beschreibung) verfügbar - religiöse Prüfung steht aus.';
 

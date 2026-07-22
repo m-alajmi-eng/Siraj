@@ -458,6 +458,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cal_legendBlessed => 'مبارك';
 
   @override
+  String get cal_hijriOffset => 'تصحيح الهجري';
+
+  @override
   String get cal_detailPending =>
       'لا تفاصيل إضافية (آية/حديث/وصف) متاحة بعد لهذه المناسبة - قيد المراجعة الدينية.';
 
