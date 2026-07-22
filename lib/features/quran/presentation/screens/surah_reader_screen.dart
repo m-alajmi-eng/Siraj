@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../core/audio/audio_provider.dart';
-import '../../../../core/audio/audio_service.dart';
+import '../../domain/entities/reciter_catalog.dart';
 import '../../../../core/storage/cache_service.dart';
 import '../providers/quran_provider.dart';
 import '../providers/reader_font_provider.dart';
@@ -116,7 +116,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
       orElse: () => null,
     );
 
-    final reciterName = SirajAudioService.reciters.entries
+    final reciterName = quranReciters.entries
         .firstWhere(
           (e) => e.value == selectedReciter,
           orElse: () => const MapEntry('مشاري راشد العفاسي', 'Alafasy_128kbps'),
@@ -746,7 +746,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (_) => StatefulBuilder(
         builder: (context, setState) {
-          final allReciters = SirajAudioService.reciters.entries.toList();
+          final allReciters = quranReciters.entries.toList();
           final filtered = searchController.text.isEmpty
               ? allReciters
               : allReciters.where((e) => e.key.contains(searchController.text)).toList();

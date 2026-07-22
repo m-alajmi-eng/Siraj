@@ -11,6 +11,8 @@ import '../../../../core/mode/app_mode.dart';
 import '../../../../core/mode/app_mode_provider.dart';
 import '../../../../core/mode/feature_flags.dart';
 import '../../../../core/mode/enabled_sections_provider.dart';
+import '../../../../core/audio/audio_providers.dart';
+import '../../../../core/audio/audio_source_spec.dart';
 import '../../../../core/notifications/adhan_service.dart';
 import '../../../../core/notifications/adhan_settings_provider.dart';
 import '../../../../core/widgets/app_scaffold.dart';
@@ -87,7 +89,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   Future<void> _previewAdhan(String name) async {
-    await AdhanService.playAdhan(name);
+    final assetPath = AdhanService.adhanSounds[name];
+    if (assetPath == null) return;
+    await ref.read(audioControllerProvider).previewAdhan(
+          AssetAudioSpec(assetPath: assetPath, title: name),
+        );
   }
 
   @override

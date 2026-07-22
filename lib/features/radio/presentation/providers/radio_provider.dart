@@ -1,6 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:audioplayers/audioplayers.dart';
+import '../../../../core/audio/audio_providers.dart';
+import '../../../../core/audio/audio_source_spec.dart';
+import '../../../../core/audio/siraj_audio_controller.dart';
 
 // ─── نماذج البيانات ───────────────────────────────────────
 class RadioStation {
@@ -129,21 +130,33 @@ class RadioState {
 }
 
 // ─── Radio Notifier ───────────────────────────────────────
+// يستهلك SirajAudioController المجرّد (PHASE E3) — لا يعرف just_audio ولا
+// audioplayers. المشغّل مشترك مع القرآن/معاينة الأذان (حصرية مجّانية،
+// PHASE E6): نتحقّق من ملكية أحداث nowPlaying عبر مطابقة اسم المحطة قبل
+// تحديث isPlaying، وإلا نعتبر الراديو متوقّفاً فعلياً (شيء آخر أخذ
+// المشغّل الوحيد — سلوك صحيح دلالياً لا عطل).
 class RadioNotifier extends Notifier<RadioState> {
-  late final AudioPlayer _player;
-
   @override
   RadioState build() {
-    _player = AudioPlayer();
-    
-    // الاستماع لحالة المشغل لمعرفة متى يتوقف البث
-    _player.onPlayerStateChanged.listen((playerState) {
-      if (playerState == PlayerState.completed || playerState == PlayerState.stopped) {
-        state = state.copyWith(isPlaying: false, isLoading: false);
+    final controller = ref.read(audioControllerProvider);
+
+    final sub = controller.nowPlaying.listen((np) {
+      final isMine = state.currentStation != null &&
+          np.title == state.currentStation!.nameAr;
+      if (!isMine) {
+        if (state.isPlaying || state.isLoading) {
+          state = state.copyWith(isPlaying: false, isLoading: false);
+        }
+        return;
       }
+      state = state.copyWith(
+        isLoading: np.state == SirajPlaybackState.loading,
+        isPlaying: np.state == SirajPlaybackState.playing,
+        error: np.state == SirajPlaybackState.error ? 'تعذّر تشغيل المحطة' : null,
+      );
     });
 
-    ref.onDispose(() => _player.dispose());
+    ref.onDispose(sub.cancel);
     return const RadioState();
   }
 
@@ -161,11 +174,14 @@ class RadioNotifier extends Notifier<RadioState> {
     );
 
     try {
-      await _player.stop();
-      await _player.play(UrlSource(station.streamUrl));
-      state = state.copyWith(isLoading: false, isPlaying: true);
-    } catch (e) {
-      debugPrint('Exception during playback: $e');
+      final controller = ref.read(audioControllerProvider);
+      await controller.playRadio(RadioAudioSpec(
+        stationId: station.id,
+        streamUrl: station.streamUrl,
+        title: station.nameAr,
+        subtitle: station.nameEn,
+      ));
+    } catch (_) {
       state = state.copyWith(
         isLoading: false,
         isPlaying: false,
@@ -175,7 +191,7 @@ class RadioNotifier extends Notifier<RadioState> {
   }
 
   Future<void> pause() async {
-    await _player.pause();
+    await ref.read(audioControllerProvider).pause();
     state = state.copyWith(isPlaying: false);
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:adhan/adhan.dart';
@@ -10,8 +9,6 @@ import '../storage/cache_service.dart';
 import 'notification_service.dart';
 
 class AdhanService {
-  static final AudioPlayer _player = AudioPlayer();
-
   /// مفاتيح أصوات الأذان الثمانية -> مسار الأصل المحلي (لا اعتماد خارجي).
   /// العرض المترجم للاسم يتم عبر [labelFor] وقت الاستخدام في الواجهة.
   /// نفس المفاتيح موجودة كموارد Android خام (`android/.../res/raw/adhan_<key>`)
@@ -43,18 +40,6 @@ class AdhanService {
   }
 
   static Future<void> init() => NotificationService.init();
-
-  /// يشغّل صوت أذان محلي بمفتاحه (لا رابط خارجي).
-  static Future<void> playAdhan(String soundKey) async {
-    final assetPath = adhanSounds[soundKey];
-    if (assetPath == null) return;
-    await _player.stop();
-    await _player.play(AssetSource(assetPath.replaceFirst('assets/', '')));
-  }
-
-  static Future<void> stopAdhan() async {
-    await _player.stop();
-  }
 
   // ─── معرّفات الإشعارات ──────────────────────────────────────────
   // 7 أيام × 5 صلوات = مدى 0-69 لإشعارات الأذان، و4000-4069 للإقامة
@@ -220,6 +205,4 @@ class AdhanService {
 
     return NotificationDetails(android: android, iOS: darwin);
   }
-
-  static void dispose() => _player.dispose();
 }
