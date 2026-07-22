@@ -25,12 +25,29 @@ class AthkarHomeScreen extends ConsumerWidget {
     'star':   Icons.auto_awesome_outlined,
   };
 
+  /// وزن ترتيب تقريبي حسب صلة كل مجموعة بالوقت الحالي. "الصباح والمساء"
+  /// مثبّتة دائماً أولاً (اسمها يغطي الوقتين معاً، ولا تمييز في البيانات
+  /// بين ذكر صباحي وآخر مسائي داخلها لإبراز أحدهما تحديداً). البقية لا
+  /// تحمل أي وسم وقتي في athkar_groups.json أصلاً، فيُطبَّق تقريب بسيط
+  /// فقط على المجموعتين اللتين لهما صلة زمنية بديهية (النوم ليلاً/فجراً،
+  /// الطعام قرب أوقات الوجبات)، والباقي يبقى بترتيبه الأصلي في الملف.
+  int _timeWeight(String groupId, int hour) {
+    if (groupId == 'morning_evening') return 0;
+    if (groupId == 'sleep_wake' && (hour >= 20 || hour < 4)) return 1;
+    final isMealTime =
+        (hour >= 11 && hour < 14) || (hour >= 17 && hour < 20);
+    if (groupId == 'food' && isMealTime) return 1;
+    if (groupId == 'prayer') return 2;
+    return 3;
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t       = AppLocalizations.of(context);
     final palette = ref.watch(timeThemeProvider);
     final lang    = ref.watch(localeProvider).languageCode;
     final groups  = ref.watch(athkarGroupsProvider);
+    final hour    = DateTime.now().hour;
 
     return AppScaffold(
       title: t.athkar_title,
@@ -43,7 +60,11 @@ class AthkarHomeScreen extends ConsumerWidget {
           child: Text(t.common_error, style: AppText.body.copyWith(
             color: palette.textPrimary)),
         ),
-        data: (grps) => GridView.builder(
+        data: (rawGrps) {
+          final grps = [...rawGrps]
+            ..sort((a, b) => _timeWeight(a.id, hour)
+                .compareTo(_timeWeight(b.id, hour)));
+          return GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount:   2,
             crossAxisSpacing: SirajSpacing.s3,
@@ -71,7 +92,8 @@ class AthkarHomeScreen extends ConsumerWidget {
               onTap: () => context.push('/athkar/group/${g.id}?name=${Uri.encodeComponent(g.nameFor(lang))}'),
             );
           },
-        ),
+        );
+        },
       ),
     );
   }
