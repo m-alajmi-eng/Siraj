@@ -48,17 +48,31 @@ class LibraryAuthorsRemoteDataSource {
     );
   }
 
-  // يعرض لغة الواجهة الحالية إن حُصدت، وإلا يسقط لأي لغة مُحصودة متاحة
+  // يعرض لغة الواجهة الحالية إن حُصدت بعنوان فعلي، وإلا يسقط للعربية ثم
+  // الإنجليزية (أكثر لغتين تغطيةً في الحصاد)، ثم لأي لغة مُحصودة متاحة أخيراً
   // (لا نُخفي مؤلفاً بأكمله لمجرّد غياب لغة العرض الحالية لسيرته).
   Map<String, dynamic> _resolveLocalizedEntry(
     Map<String, dynamic> localized,
     String lang,
   ) {
-    if (localized[lang] is Map) {
-      return Map<String, dynamic>.from(localized[lang] as Map);
+    Map<String, dynamic>? withTitle(String key) {
+      final value = localized[key];
+      if (value is! Map) return null;
+      final entry = Map<String, dynamic>.from(value);
+      return (entry['title'] ?? '').toString().isNotEmpty ? entry : null;
     }
+
+    final direct = withTitle(lang);
+    if (direct != null) return direct;
+    final arabic = withTitle('ar');
+    if (arabic != null) return arabic;
+    final english = withTitle('en');
+    if (english != null) return english;
     for (final value in localized.values) {
-      if (value is Map) return Map<String, dynamic>.from(value);
+      if (value is Map) {
+        final entry = Map<String, dynamic>.from(value);
+        if ((entry['title'] ?? '').toString().isNotEmpty) return entry;
+      }
     }
     return const {};
   }
