@@ -115,6 +115,23 @@
       "kaaba": {"type": "String"}
     }
   },
+  "qibla_infoLocation": "Position",
+  "qibla_infoDirection": "Direction",
+  "qibla_infoDistance": "Distance",
+  "qibla_infoAccuracy": "Précision GPS",
+  "qibla_distanceValueKm": "{km} km",
+  "@qibla_distanceValueKm": {
+    "placeholders": {
+      "km": {"type": "int"}
+    }
+  },
+  "qibla_accuracyValueM": "±{m} m",
+  "@qibla_accuracyValueM": {
+    "placeholders": {
+      "m": {"type": "int"}
+    }
+  },
+  "qibla_accuracyUnknown": "Indisponible",
   "stats_title": "Mes Statistiques",
   "stats_prayerStreak": "Série de Prières",
   "stats_totalPrayers": "Total des Prières",

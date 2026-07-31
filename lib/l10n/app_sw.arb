@@ -65,6 +65,23 @@
       "kaaba": {"type": "String"}
     }
   },
+  "qibla_infoLocation": "Mahali",
+  "qibla_infoDirection": "Mwelekeo",
+  "qibla_infoDistance": "Umbali",
+  "qibla_infoAccuracy": "Usahihi wa GPS",
+  "qibla_distanceValueKm": "{km} km",
+  "@qibla_distanceValueKm": {
+    "placeholders": {
+      "km": {"type": "int"}
+    }
+  },
+  "qibla_accuracyValueM": "±{m} m",
+  "@qibla_accuracyValueM": {
+    "placeholders": {
+      "m": {"type": "int"}
+    }
+  },
+  "qibla_accuracyUnknown": "Haipatikani",
   "stats_title": "Takwimu Zangu",
   "stats_prayerStreak": "Mfululizo wa Sala",
   "stats_totalPrayers": "Jumla ya Sala",

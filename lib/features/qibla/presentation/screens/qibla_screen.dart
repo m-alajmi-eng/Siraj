@@ -71,11 +71,13 @@ class QiblaScreen extends ConsumerWidget {
           palette: palette, t: t, hasGps: false,
           result: _computeQibla(_kaabaLat, _kaabaLng),
           heading: headingAsync.value,
+          accuracyMeters: null,
         ),
         data: (location) => _QiblaContent(
           palette: palette, t: t, hasGps: location.hasRealFix,
           result: _computeQibla(location.latitude, location.longitude),
           heading: headingAsync.value,
+          accuracyMeters: location.accuracyMeters,
         ),
       ),
     );
@@ -90,6 +92,9 @@ class _QiblaContent extends StatefulWidget {
   /// null = لا بوصلة حيّة متاحة (منصة غير مدعومة أو لا مستشعر) — سهم ثابت
   /// عند bearing المطلق كما كان الوضع الوحيد سابقاً.
   final QiblaHeading? heading;
+  /// دقة GPS بالأمتار (Position.accuracy) - null حين لا يتوفر إحداثي طازج
+  /// بعد (موقع محفوظ من جلسة سابقة، أو سقوط احتياطي على مكة).
+  final double? accuracyMeters;
 
   const _QiblaContent({
     required this.palette,
@@ -97,6 +102,7 @@ class _QiblaContent extends StatefulWidget {
     required this.hasGps,
     required this.result,
     required this.heading,
+    required this.accuracyMeters,
   });
 
   @override
@@ -243,9 +249,130 @@ class _QiblaContentState extends State<_QiblaContent> with SingleTickerProviderS
                     color: palette.accentPrimary, fontWeight: FontWeight.w600),
                 ),
               ),
+
+              const SizedBox(height: SirajSpacing.s6),
+
+              // شبكة معلومات 2×2 - طبقة عرض إضافية فقط، تستهلك نفس البيانات
+              // المحسوبة أعلاه (bearing/distKm من _computeQibla، hasGps من
+              // locationProvider) بلا أي تغيير لمنطق الحساب أو البوصلة.
+              _QiblaInfoGrid(
+                palette: palette,
+                t: t,
+                hasGps: widget.hasGps,
+                bearingDeg: bearing,
+                distanceKm: distKm,
+                accuracyMeters: widget.accuracyMeters,
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _QiblaInfoGrid extends StatelessWidget {
+  final dynamic palette;
+  final AppLocalizations t;
+  final bool hasGps;
+  final double bearingDeg;
+  final double distanceKm;
+  final double? accuracyMeters;
+
+  const _QiblaInfoGrid({
+    required this.palette,
+    required this.t,
+    required this.hasGps,
+    required this.bearingDeg,
+    required this.distanceKm,
+    required this.accuracyMeters,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final tiles = [
+      _InfoTile(
+        icon: hasGps ? Icons.location_on : Icons.location_off_outlined,
+        label: t.qibla_infoLocation,
+        value: hasGps ? t.prayer_locationGPS : t.prayer_locationDefault,
+        palette: palette,
+      ),
+      _InfoTile(
+        icon: Icons.explore_outlined,
+        label: t.qibla_infoDirection,
+        value: '${bearingDeg.round()}°',
+        palette: palette,
+      ),
+      _InfoTile(
+        icon: Icons.straighten,
+        label: t.qibla_infoDistance,
+        value: t.qibla_distanceValueKm(distanceKm.round()),
+        palette: palette,
+      ),
+      _InfoTile(
+        icon: Icons.gps_fixed,
+        label: t.qibla_infoAccuracy,
+        value: accuracyMeters != null
+            ? t.qibla_accuracyValueM(accuracyMeters!.round())
+            : t.qibla_accuracyUnknown,
+        palette: palette,
+      ),
+    ];
+
+    return GridView.count(
+      crossAxisCount: 2,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      mainAxisSpacing: SirajSpacing.s3,
+      crossAxisSpacing: SirajSpacing.s3,
+      childAspectRatio: 2.4,
+      children: tiles,
+    );
+  }
+}
+
+class _InfoTile extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+  final dynamic palette;
+
+  const _InfoTile({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.palette,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(SirajSpacing.s3),
+      decoration: BoxDecoration(
+        color: palette.surface,
+        borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            children: [
+              Icon(icon, size: 14, color: palette.accentPrimary),
+              const SizedBox(width: SirajSpacing.s1),
+              Expanded(
+                child: Text(label,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppText.caption.copyWith(color: palette.textSecondary)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(value,
+            overflow: TextOverflow.ellipsis,
+            style: AppText.bodySmall.copyWith(
+              color: palette.textPrimary, fontWeight: FontWeight.w600)),
+        ],
       ),
     );
   }

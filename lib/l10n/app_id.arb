@@ -115,6 +115,23 @@
       "kaaba": {"type": "String"}
     }
   },
+  "qibla_infoLocation": "Lokasi",
+  "qibla_infoDirection": "Arah",
+  "qibla_infoDistance": "Jarak",
+  "qibla_infoAccuracy": "Akurasi GPS",
+  "qibla_distanceValueKm": "{km} km",
+  "@qibla_distanceValueKm": {
+    "placeholders": {
+      "km": {"type": "int"}
+    }
+  },
+  "qibla_accuracyValueM": "±{m} m",
+  "@qibla_accuracyValueM": {
+    "placeholders": {
+      "m": {"type": "int"}
+    }
+  },
+  "qibla_accuracyUnknown": "Tidak tersedia",
   "stats_title": "Statistik Saya",
   "stats_prayerStreak": "Streak Shalat",
   "stats_totalPrayers": "Total Shalat",

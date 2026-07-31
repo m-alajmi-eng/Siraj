@@ -210,6 +210,31 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get qibla_infoLocation => 'Konum';
+
+  @override
+  String get qibla_infoDirection => 'Yön';
+
+  @override
+  String get qibla_infoDistance => 'Mesafe';
+
+  @override
+  String get qibla_infoAccuracy => 'GPS Doğruluğu';
+
+  @override
+  String qibla_distanceValueKm(int km) {
+    return '$km km';
+  }
+
+  @override
+  String qibla_accuracyValueM(int m) {
+    return '±$m m';
+  }
+
+  @override
+  String get qibla_accuracyUnknown => 'Kullanılamıyor';
+
+  @override
   String get stats_title => 'İstatistiklerim';
 
   @override

@@ -115,6 +115,23 @@
       "kaaba": {"type": "String"}
     }
   },
+  "qibla_infoLocation": "অবস্থান",
+  "qibla_infoDirection": "দিক",
+  "qibla_infoDistance": "দূরত্ব",
+  "qibla_infoAccuracy": "GPS নির্ভুলতা",
+  "qibla_distanceValueKm": "{km} কিমি",
+  "@qibla_distanceValueKm": {
+    "placeholders": {
+      "km": {"type": "int"}
+    }
+  },
+  "qibla_accuracyValueM": "±{m} মি",
+  "@qibla_accuracyValueM": {
+    "placeholders": {
+      "m": {"type": "int"}
+    }
+  },
+  "qibla_accuracyUnknown": "অনুপলব্ধ",
   "stats_title": "আমার পরিসখ্যান",
   "stats_prayerStreak": "নামাজের ধারাবাহিকতা",
   "stats_totalPrayers": "মোট নামাজ",

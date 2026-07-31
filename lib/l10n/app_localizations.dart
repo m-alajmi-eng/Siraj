@@ -490,6 +490,48 @@ abstract class AppLocalizations {
   /// **'{km} كم إلى {kaaba}'**
   String qibla_distanceKm(int km, String kaaba);
 
+  /// No description provided for @qibla_infoLocation.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموقع'**
+  String get qibla_infoLocation;
+
+  /// No description provided for @qibla_infoDirection.
+  ///
+  /// In ar, this message translates to:
+  /// **'الاتجاه'**
+  String get qibla_infoDirection;
+
+  /// No description provided for @qibla_infoDistance.
+  ///
+  /// In ar, this message translates to:
+  /// **'المسافة'**
+  String get qibla_infoDistance;
+
+  /// No description provided for @qibla_infoAccuracy.
+  ///
+  /// In ar, this message translates to:
+  /// **'دقة GPS'**
+  String get qibla_infoAccuracy;
+
+  /// No description provided for @qibla_distanceValueKm.
+  ///
+  /// In ar, this message translates to:
+  /// **'{km} كم'**
+  String qibla_distanceValueKm(int km);
+
+  /// No description provided for @qibla_accuracyValueM.
+  ///
+  /// In ar, this message translates to:
+  /// **'±{m} م'**
+  String qibla_accuracyValueM(int m);
+
+  /// No description provided for @qibla_accuracyUnknown.
+  ///
+  /// In ar, this message translates to:
+  /// **'غير متاحة'**
+  String get qibla_accuracyUnknown;
+
   /// No description provided for @stats_title.
   ///
   /// In ar, this message translates to:

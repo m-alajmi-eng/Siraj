@@ -210,6 +210,31 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
+  String get qibla_infoLocation => 'Mahali';
+
+  @override
+  String get qibla_infoDirection => 'Mwelekeo';
+
+  @override
+  String get qibla_infoDistance => 'Umbali';
+
+  @override
+  String get qibla_infoAccuracy => 'Usahihi wa GPS';
+
+  @override
+  String qibla_distanceValueKm(int km) {
+    return '$km km';
+  }
+
+  @override
+  String qibla_accuracyValueM(int m) {
+    return '±$m m';
+  }
+
+  @override
+  String get qibla_accuracyUnknown => 'Haipatikani';
+
+  @override
   String get stats_title => 'Takwimu Zangu';
 
   @override

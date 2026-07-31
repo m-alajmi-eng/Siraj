@@ -20,11 +20,18 @@ class LocationState {
   final double latitude;
   final double longitude;
   final bool hasRealFix;
+  /// دقة تحديد الموقع بالأمتار (Position.accuracy الفعلية من GPS) - null
+  /// حين لا يتوفر إحداثي طازج بعد (مثلاً: عرض موقع محفوظ من جلسة سابقة
+  /// قبل انتهاء التحديث الخلفي، أو السقوط الاحتياطي على مكة). لا تُحفَظ
+  /// في الذاكرة الدائمة (Hive) مع lat/lng - قيمة لحظية لا معنى لتخزينها
+  /// بعد انتهاء صلاحيتها الزمنية.
+  final double? accuracyMeters;
 
   const LocationState({
     required this.latitude,
     required this.longitude,
     required this.hasRealFix,
+    this.accuracyMeters,
   });
 
   static const fallback = LocationState(
@@ -62,6 +69,7 @@ class LocationNotifier extends AsyncNotifier<LocationState> {
       latitude: fresh.latitude,
       longitude: fresh.longitude,
       hasRealFix: true,
+      accuracyMeters: fresh.accuracy,
     );
   }
 
@@ -86,6 +94,7 @@ class LocationNotifier extends AsyncNotifier<LocationState> {
       latitude: fresh.latitude,
       longitude: fresh.longitude,
       hasRealFix: true,
+      accuracyMeters: fresh.accuracy,
     ));
   }
 

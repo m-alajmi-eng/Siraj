@@ -209,6 +209,31 @@ class AppLocalizationsHa extends AppLocalizations {
   }
 
   @override
+  String get qibla_infoLocation => 'Wuri';
+
+  @override
+  String get qibla_infoDirection => 'Alkibla';
+
+  @override
+  String get qibla_infoDistance => 'Nisa';
+
+  @override
+  String get qibla_infoAccuracy => 'Daidaiton GPS';
+
+  @override
+  String qibla_distanceValueKm(int km) {
+    return '$km km';
+  }
+
+  @override
+  String qibla_accuracyValueM(int m) {
+    return '±$m m';
+  }
+
+  @override
+  String get qibla_accuracyUnknown => 'Ba ya samuwa';
+
+  @override
   String get stats_title => 'Ƙididdiga Na';
 
   @override

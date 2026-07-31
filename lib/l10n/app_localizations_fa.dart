@@ -209,6 +209,31 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
+  String get qibla_infoLocation => 'موقعیت';
+
+  @override
+  String get qibla_infoDirection => 'جهت';
+
+  @override
+  String get qibla_infoDistance => 'فاصله';
+
+  @override
+  String get qibla_infoAccuracy => 'دقت GPS';
+
+  @override
+  String qibla_distanceValueKm(int km) {
+    return '$km کیلومتر';
+  }
+
+  @override
+  String qibla_accuracyValueM(int m) {
+    return '±$m متر';
+  }
+
+  @override
+  String get qibla_accuracyUnknown => 'در دسترس نیست';
+
+  @override
   String get stats_title => 'آمار من';
 
   @override

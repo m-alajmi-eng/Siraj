@@ -210,6 +210,31 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get qibla_infoLocation => 'Ubicación';
+
+  @override
+  String get qibla_infoDirection => 'Dirección';
+
+  @override
+  String get qibla_infoDistance => 'Distancia';
+
+  @override
+  String get qibla_infoAccuracy => 'Precisión GPS';
+
+  @override
+  String qibla_distanceValueKm(int km) {
+    return '$km km';
+  }
+
+  @override
+  String qibla_accuracyValueM(int m) {
+    return '±$m m';
+  }
+
+  @override
+  String get qibla_accuracyUnknown => 'No disponible';
+
+  @override
   String get stats_title => 'Mis Estadísticas';
 
   @override

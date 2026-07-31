@@ -65,6 +65,23 @@
       "kaaba": {"type": "String"}
     }
   },
+  "qibla_infoLocation": "Местоположение",
+  "qibla_infoDirection": "Направление",
+  "qibla_infoDistance": "Расстояние",
+  "qibla_infoAccuracy": "Точность GPS",
+  "qibla_distanceValueKm": "{km} км",
+  "@qibla_distanceValueKm": {
+    "placeholders": {
+      "km": {"type": "int"}
+    }
+  },
+  "qibla_accuracyValueM": "±{m} м",
+  "@qibla_accuracyValueM": {
+    "placeholders": {
+      "m": {"type": "int"}
+    }
+  },
+  "qibla_accuracyUnknown": "Недоступно",
   "stats_title": "Моя статистика",
   "stats_prayerStreak": "Серия намазов",
   "stats_totalPrayers": "Всего намазов",

@@ -208,6 +208,31 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get qibla_infoLocation => '位置';
+
+  @override
+  String get qibla_infoDirection => '方向';
+
+  @override
+  String get qibla_infoDistance => '距离';
+
+  @override
+  String get qibla_infoAccuracy => 'GPS精度';
+
+  @override
+  String qibla_distanceValueKm(int km) {
+    return '$km 公里';
+  }
+
+  @override
+  String qibla_accuracyValueM(int m) {
+    return '±$m 米';
+  }
+
+  @override
+  String get qibla_accuracyUnknown => '不可用';
+
+  @override
   String get stats_title => '我的统计';
 
   @override
