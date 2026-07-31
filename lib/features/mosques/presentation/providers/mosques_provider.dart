@@ -57,7 +57,7 @@ class MosquesNotifier extends AsyncNotifier<List<Mosque>> {
     }
 
     final position = await Geolocator.getCurrentPosition(
-      locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
+      locationSettings: const LocationSettings(accuracy: LocationAccuracy.reduced),
     );
 
     // توسّع تلقائي 2→5→10كم: نتوقّف عند أول نطاق يعطي نتيجة، أو نُرجع
