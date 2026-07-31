@@ -7,6 +7,27 @@ import '../../domain/entities/surah_entity.dart';
 import '../../domain/entities/ayah_entity.dart';
 import '../../../../core/storage/cache_service.dart';
 
+// دوال تفكيك JSON على مستوى الملف (لا داخل الصنف) - compute() يتطلب دالة
+// top-level أو static قابلة للإرسال لـIsolate منفصل. القراءة (rootBundle.
+// loadString) تبقى في الخيط الرئيسي (I/O غير حاجب فعلياً)، والتفكيك الثقيل
+// (jsonDecode) وحده ينتقل للـIsolate - فتفادينا مشاكل قنوات المنصّة
+// (platform channels) التي لا تعمل مباشرة داخل Isolates ثانوية بلا تهيئة
+// إضافية (BackgroundIsolateBinaryMessenger).
+Map<String, dynamic> _parseUthmaniIsolate(String raw) {
+  final data = jsonDecode(raw) as Map<String, dynamic>;
+  return data['surahs'] as Map<String, dynamic>;
+}
+
+Map<String, dynamic> _parseTranslationsIsolate(String raw) {
+  final data = jsonDecode(raw) as Map<String, dynamic>;
+  return data['translations'] as Map<String, dynamic>;
+}
+
+Map<String, dynamic> _parseTafsirIsolate(String raw) {
+  final data = jsonDecode(raw) as Map<String, dynamic>;
+  return data['tafsir'] as Map<String, dynamic>;
+}
+
 class QuranRemoteDataSource {
  static const String _baseUrl = 'https://api.alquran.cloud/v1';
 
@@ -17,16 +38,14 @@ class QuranRemoteDataSource {
  static Future<Map<String, dynamic>> _loadLocalUthmani() async {
    if (_localUthmaniCache != null) return _localUthmaniCache!;
    final raw = await rootBundle.loadString('assets/data/quran_uthmani.json');
-   final data = jsonDecode(raw) as Map<String, dynamic>;
-   _localUthmaniCache = data['surahs'] as Map<String, dynamic>;
+   _localUthmaniCache = await compute(_parseUthmaniIsolate, raw);
    return _localUthmaniCache!;
  }
 
  static Future<Map<String, dynamic>> _loadLocalTranslations() async {
    if (_localTranslationsCache != null) return _localTranslationsCache!;
    final raw = await rootBundle.loadString('assets/data/quran_translations.json');
-   final data = jsonDecode(raw) as Map<String, dynamic>;
-   _localTranslationsCache = data['translations'] as Map<String, dynamic>;
+   _localTranslationsCache = await compute(_parseTranslationsIsolate, raw);
    return _localTranslationsCache!;
  }
 
@@ -35,8 +54,7 @@ class QuranRemoteDataSource {
  static Future<Map<String, dynamic>> _loadLocalTafsir() async {
    if (_localTafsirCache != null) return _localTafsirCache!;
    final raw = await rootBundle.loadString('assets/data/quran_tafsir.json');
-   final data = jsonDecode(raw) as Map<String, dynamic>;
-   _localTafsirCache = data['tafsir'] as Map<String, dynamic>;
+   _localTafsirCache = await compute(_parseTafsirIsolate, raw);
    return _localTafsirCache!;
  }
 
