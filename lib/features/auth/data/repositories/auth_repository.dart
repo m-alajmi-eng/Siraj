@@ -17,7 +17,10 @@ class AuthRepository {
   /// يرسل رابط دخول سحرياً إلى البريد المُدخَل. المستخدم يكمل الدخول
   /// بالضغط على الرابط في بريده (لا كلمة مرور مطلوبة إطلاقاً).
   Future<void> sendMagicLink(String email) async {
-    await _client.auth.signInWithOtp(email: email);
+    await _client.auth.signInWithOtp(
+      email: email,
+      emailRedirectTo: 'app.siraj.siraj://auth-callback',
+    );
   }
 
   /// تسجيل الدخول عبر Google (يفتح نافذة OAuth عبر المتصفح/النظام).
