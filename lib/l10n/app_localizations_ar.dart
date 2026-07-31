@@ -560,6 +560,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settings_secIdentity => 'الهوية';
 
   @override
+  String get onboarding_languageTitle => 'اختر اللغة';
+
+  @override
+  String get onboarding_languageSubtitle => 'يمكنك تغييره لاحقاً من الإعدادات';
+
+  @override
   String get onboarding_modeTitle => 'اختر وضع التطبيق';
 
   @override

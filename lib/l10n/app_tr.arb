@@ -230,6 +230,8 @@
   "stories_comingSoonMsg": "Yakında — içerik hazırlanıyor",
   "children_title": "Çocuk Hikâyeleri",
   "settings_secIdentity": "Kimlik",
+  "onboarding_languageTitle": "Dil Seçin",
+  "onboarding_languageSubtitle": "Bunu daha sonra ayarlardan değiştirebilirsiniz",
   "onboarding_modeTitle": "Uygulama modunu seçin",
   "onboarding_modeSubtitle": "Bunu daha sonra ayarlardan değiştirebilirsiniz",
   "onboarding_liteSubtitle": "Temel özellikler · Hızlı · Tamamen çevrimdışı",

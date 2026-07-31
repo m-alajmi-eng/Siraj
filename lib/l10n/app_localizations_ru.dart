@@ -562,6 +562,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_secIdentity => 'Идентификация';
 
   @override
+  String get onboarding_languageTitle => 'Выберите язык';
+
+  @override
+  String get onboarding_languageSubtitle =>
+      'Вы можете изменить это позже в настройках';
+
+  @override
   String get onboarding_modeTitle => 'Выберите режим приложения';
 
   @override

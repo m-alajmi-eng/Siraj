@@ -230,6 +230,8 @@
   "stories_comingSoonMsg": "به‌زودی — محتوا در حال آماده‌سازی است",
   "children_title": "داستان‌های کودکان",
   "settings_secIdentity": "هویت",
+  "onboarding_languageTitle": "انتخاب زبان",
+  "onboarding_languageSubtitle": "می‌توانید بعداً آن را از تنظیمات تغییر دهید",
   "onboarding_modeTitle": "حالت برنامه را انتخاب کنید",
   "onboarding_modeSubtitle": "می‌توانید بعداً آن را از تنظیمات تغییر دهید",
   "onboarding_liteSubtitle": "اصول اولیه · سریع · کاملاً آفلاین",

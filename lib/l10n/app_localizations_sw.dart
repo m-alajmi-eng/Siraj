@@ -563,6 +563,13 @@ class AppLocalizationsSw extends AppLocalizations {
   String get settings_secIdentity => 'Utambulisho';
 
   @override
+  String get onboarding_languageTitle => 'Chagua Lugha';
+
+  @override
+  String get onboarding_languageSubtitle =>
+      'Unaweza kubadilisha hii baadaye kwenye mipangilio';
+
+  @override
   String get onboarding_modeTitle => 'Chagua hali ya programu';
 
   @override

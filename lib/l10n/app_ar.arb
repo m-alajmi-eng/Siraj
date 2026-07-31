@@ -251,6 +251,8 @@
   "stories_comingSoonMsg": "قريباً — نعمل على إضافة المحتوى",
   "children_title": "قصص الأطفال",
   "settings_secIdentity": "الهوية",
+  "onboarding_languageTitle": "اختر اللغة",
+  "onboarding_languageSubtitle": "يمكنك تغييره لاحقاً من الإعدادات",
   "onboarding_modeTitle": "اختر وضع التطبيق",
   "onboarding_modeSubtitle": "يمكنك تغييره لاحقاً من الإعدادات",
   "onboarding_liteSubtitle": "الأساسيات · سريع · offline كامل",

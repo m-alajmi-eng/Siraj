@@ -230,6 +230,8 @@
   "stories_comingSoonMsg": "Segera hadir — konten dalam proses",
   "children_title": "Kisah Anak",
   "settings_secIdentity": "Identitas",
+  "onboarding_languageTitle": "Pilih Bahasa",
+  "onboarding_languageSubtitle": "Anda dapat mengubahnya nanti di pengaturan",
   "onboarding_modeTitle": "Pilih mode aplikasi",
   "onboarding_modeSubtitle": "Anda dapat mengubahnya nanti di pengaturan",
   "onboarding_liteSubtitle": "Esensial · Cepat · Sepenuhnya offline",

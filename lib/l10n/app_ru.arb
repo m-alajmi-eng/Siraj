@@ -230,6 +230,8 @@
   "stories_comingSoonMsg": "Скоро — контент готовится",
   "children_title": "Детские истории",
   "settings_secIdentity": "Идентификация",
+  "onboarding_languageTitle": "Выберите язык",
+  "onboarding_languageSubtitle": "Вы можете изменить это позже в настройках",
   "onboarding_modeTitle": "Выберите режим приложения",
   "onboarding_modeSubtitle": "Вы можете изменить это позже в настройках",
   "onboarding_liteSubtitle": "Основное · Быстро · Полностью офлайн",

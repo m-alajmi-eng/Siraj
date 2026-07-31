@@ -230,6 +230,8 @@
   "stories_comingSoonMsg": "即将推出 — 内容准备中",
   "children_title": "儿童故事",
   "settings_secIdentity": "身份",
+  "onboarding_languageTitle": "选择语言",
+  "onboarding_languageSubtitle": "您可以稍后在设置中更改",
   "onboarding_modeTitle": "选择应用模式",
   "onboarding_modeSubtitle": "您可以稍后在设置中更改",
   "onboarding_liteSubtitle": "核心功能 · 快速 · 完全离线",

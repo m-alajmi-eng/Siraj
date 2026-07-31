@@ -33,6 +33,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   AppMode  _selectedMode   = AppMode.full;
   String   _selectedMadhab = 'shafi';
 
+  // تطابق AppLocalizations.supportedLocales كاملة (15 لغة)
   final _locales = [
     {'code': 'ar', 'name': 'العربية',      'flag': '🇸🇦'},
     {'code': 'en', 'name': 'English',      'flag': '🇬🇧'},
@@ -44,6 +45,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     {'code': 'ms', 'name': 'Melayu',       'flag': '🇲🇾'},
     {'code': 'fa', 'name': 'فارسی',        'flag': '🇮🇷'},
     {'code': 'ru', 'name': 'Русский',      'flag': '🇷🇺'},
+    {'code': 'de', 'name': 'Deutsch',      'flag': '🇩🇪'},
+    {'code': 'es', 'name': 'Español',      'flag': '🇪🇸'},
+    {'code': 'zh', 'name': '中文',          'flag': '🇨🇳'},
+    {'code': 'ha', 'name': 'Hausa',        'flag': '🇳🇬'},
+    {'code': 'sw', 'name': 'Kiswahili',    'flag': '🇹🇿'},
   ];
 
   final _madhabIds = ['hanafi', 'maliki', 'shafi', 'hanbali'];
@@ -130,6 +136,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       locales:  _locales,
                       selected: _selectedLocale,
                       palette:  palette,
+                      t:        t,
                       onSelect: _selectLocale,
                     ),
                   ),
@@ -239,20 +246,22 @@ class _FadeSlidePage extends StatelessWidget {
 }
 
 // ─── Page 1: اختيار اللغة ─────────────────────────────────
-// العنوان الفرعي "Choose your language" يبقى ثابتاً بالإنجليزية عمداً (غير
-// مُدوَّل) - هذه هي الصفحة الوحيدة التي تُعرض قبل معرفة لغة المستخدم أصلاً،
-// فإبقاء نص إنجليزي عالمي هنا يساعد أي مستخدم أول مرة على فهمها بغض النظر
-// عن لغته، وهذا هو التصميم الأصلي المقصود لا نصاً منسياً بلا ترجمة.
+// ملاحظة: هذه الصفحة تُعرض بعد /language (شاشة اختيار اللغة الأولى فعلياً
+// قبل Onboarding بالكامل، انظر app_router.dart) - أي أن لغة المستخدم
+// معروفة بالفعل هنا خلافاً للتعليق السابق الذي افترض العكس، فالنصوص
+// الثابتة هنا كانت فجوة ترجمة حقيقية لا تصميماً مقصوداً.
 class _LanguagePage extends StatelessWidget {
   final List<Map<String, String>> locales;
   final String   selected;
   final dynamic  palette;
+  final AppLocalizations t;
   final Function(String) onSelect;
 
   const _LanguagePage({
     required this.locales,
     required this.selected,
     required this.palette,
+    required this.t,
     required this.onSelect,
   });
 
@@ -265,7 +274,7 @@ class _LanguagePage extends StatelessWidget {
         children: [
           const SizedBox(height: 24),
           Text(
-            'اختر لغتك',
+            t.onboarding_languageTitle,
             style: TextStyle(
               color:      palette.textPrimary,
               fontSize:   32,
@@ -274,7 +283,7 @@ class _LanguagePage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Choose your language',
+            t.onboarding_languageSubtitle,
             style: TextStyle(
               color:    palette.textSecondary,
               fontSize: 16,

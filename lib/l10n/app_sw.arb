@@ -230,6 +230,8 @@
   "stories_comingSoonMsg": "Inakuja hivi karibuni — maudhui yanaandaliwa",
   "children_title": "Hadithi za Watoto",
   "settings_secIdentity": "Utambulisho",
+  "onboarding_languageTitle": "Chagua Lugha",
+  "onboarding_languageSubtitle": "Unaweza kubadilisha hii baadaye kwenye mipangilio",
   "onboarding_modeTitle": "Chagua hali ya programu",
   "onboarding_modeSubtitle": "Unaweza kubadilisha hii baadaye kwenye mipangilio",
   "onboarding_liteSubtitle": "Mambo ya msingi · Haraka · Nje ya mtandao kikamilifu",

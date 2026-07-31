@@ -562,6 +562,13 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settings_secIdentity => 'পরিচয়';
 
   @override
+  String get onboarding_languageTitle => 'ভাষা নির্বাচন করুন';
+
+  @override
+  String get onboarding_languageSubtitle =>
+      'আপনি পরে সেটিংস থেকে এটি পরিবর্তন করতে পারেন';
+
+  @override
   String get onboarding_modeTitle => 'অ্যাপ মোড নির্বাচন করুন';
 
   @override

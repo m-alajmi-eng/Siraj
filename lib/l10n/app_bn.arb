@@ -230,6 +230,8 @@
   "stories_comingSoonMsg": "শীঘ্রই আসছে — কনটেন্ট প্রস্তুত হচ্ছে",
   "children_title": "শিশুদের গল্প",
   "settings_secIdentity": "পরিচয়",
+  "onboarding_languageTitle": "ভাষা নির্বাচন করুন",
+  "onboarding_languageSubtitle": "আপনি পরে সেটিংস থেকে এটি পরিবর্তন করতে পারেন",
   "onboarding_modeTitle": "অ্যাপ মোড নির্বাচন করুন",
   "onboarding_modeSubtitle": "আপনি পরে সেটিংস থেকে এটি পরিবর্তন করতে পারেন",
   "onboarding_liteSubtitle": "মৌলিক বিষয়াদি · দ্রুত · সম্পূর্ণ অফলাইন",

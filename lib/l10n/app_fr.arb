@@ -230,6 +230,8 @@
   "stories_comingSoonMsg": "Bientôt disponible — contenu en cours",
   "children_title": "Histoires pour enfants",
   "settings_secIdentity": "Identité",
+  "onboarding_languageTitle": "Choisir la langue",
+  "onboarding_languageSubtitle": "Vous pourrez le modifier plus tard dans les paramètres",
   "onboarding_modeTitle": "Choisissez le mode de l'application",
   "onboarding_modeSubtitle": "Vous pourrez le modifier plus tard dans les paramètres",
   "onboarding_liteSubtitle": "L'essentiel · Rapide · Entièrement hors ligne",

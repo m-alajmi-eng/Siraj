@@ -223,6 +223,8 @@
   "stories_comingSoonMsg": "Demnächst — Inhalt wird vorbereitet",
   "children_title": "Kindergeschichten",
   "settings_secIdentity": "Identität",
+  "onboarding_languageTitle": "Sprache wählen",
+  "onboarding_languageSubtitle": "Du kannst dies später in den Einstellungen ändern",
   "onboarding_modeTitle": "App-Modus wählen",
   "onboarding_modeSubtitle": "Du kannst dies später in den Einstellungen ändern",
   "onboarding_liteSubtitle": "Das Wesentliche · Schnell · Vollständig offline",

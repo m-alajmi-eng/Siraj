@@ -251,6 +251,8 @@
   "stories_comingSoonMsg": "Coming soon — content in progress",
   "children_title": "Children's Stories",
   "settings_secIdentity": "Identity",
+  "onboarding_languageTitle": "Choose Language",
+  "onboarding_languageSubtitle": "You can change this later in settings",
   "onboarding_modeTitle": "Choose app mode",
   "onboarding_modeSubtitle": "You can change this later in settings",
   "onboarding_liteSubtitle": "Essentials · Fast · Fully offline",

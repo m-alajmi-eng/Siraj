@@ -561,6 +561,13 @@ class AppLocalizationsFa extends AppLocalizations {
   String get settings_secIdentity => 'هویت';
 
   @override
+  String get onboarding_languageTitle => 'انتخاب زبان';
+
+  @override
+  String get onboarding_languageSubtitle =>
+      'می‌توانید بعداً آن را از تنظیمات تغییر دهید';
+
+  @override
   String get onboarding_modeTitle => 'حالت برنامه را انتخاب کنید';
 
   @override

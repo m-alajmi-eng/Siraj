@@ -562,6 +562,13 @@ class AppLocalizationsMs extends AppLocalizations {
   String get settings_secIdentity => 'Identiti';
 
   @override
+  String get onboarding_languageTitle => 'Pilih Bahasa';
+
+  @override
+  String get onboarding_languageSubtitle =>
+      'Anda boleh menukarnya kemudian dalam tetapan';
+
+  @override
   String get onboarding_modeTitle => 'Pilih mod aplikasi';
 
   @override

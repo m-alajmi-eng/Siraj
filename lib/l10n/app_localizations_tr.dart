@@ -562,6 +562,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_secIdentity => 'Kimlik';
 
   @override
+  String get onboarding_languageTitle => 'Dil Seçin';
+
+  @override
+  String get onboarding_languageSubtitle =>
+      'Bunu daha sonra ayarlardan değiştirebilirsiniz';
+
+  @override
   String get onboarding_modeTitle => 'Uygulama modunu seçin';
 
   @override

@@ -561,6 +561,13 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settings_secIdentity => 'شناخت';
 
   @override
+  String get onboarding_languageTitle => 'زبان منتخب کریں';
+
+  @override
+  String get onboarding_languageSubtitle =>
+      'آپ بعد میں اسے ترتیبات سے تبدیل کر سکتے ہیں';
+
+  @override
   String get onboarding_modeTitle => 'ایپ کا موڈ منتخب کریں';
 
   @override

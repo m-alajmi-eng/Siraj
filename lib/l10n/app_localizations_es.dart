@@ -562,6 +562,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_secIdentity => 'Identidad';
 
   @override
+  String get onboarding_languageTitle => 'Elegir idioma';
+
+  @override
+  String get onboarding_languageSubtitle =>
+      'Puedes cambiarlo más tarde en los ajustes';
+
+  @override
   String get onboarding_modeTitle => 'Elige el modo de la app';
 
   @override

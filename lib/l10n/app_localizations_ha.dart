@@ -562,6 +562,13 @@ class AppLocalizationsHa extends AppLocalizations {
   String get settings_secIdentity => 'Shaida';
 
   @override
+  String get onboarding_languageTitle => 'Zaɓi Harshe';
+
+  @override
+  String get onboarding_languageSubtitle =>
+      'Za ka iya canza shi daga baya a cikin saitunan';
+
+  @override
   String get onboarding_modeTitle => 'Zaɓi yanayin manhaja';
 
   @override

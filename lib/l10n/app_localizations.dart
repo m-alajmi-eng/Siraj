@@ -1180,6 +1180,18 @@ abstract class AppLocalizations {
   /// **'الهوية'**
   String get settings_secIdentity;
 
+  /// No description provided for @onboarding_languageTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر اللغة'**
+  String get onboarding_languageTitle;
+
+  /// No description provided for @onboarding_languageSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'يمكنك تغييره لاحقاً من الإعدادات'**
+  String get onboarding_languageSubtitle;
+
   /// No description provided for @onboarding_modeTitle.
   ///
   /// In ar, this message translates to:

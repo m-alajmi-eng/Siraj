@@ -559,6 +559,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_secIdentity => '身份';
 
   @override
+  String get onboarding_languageTitle => '选择语言';
+
+  @override
+  String get onboarding_languageSubtitle => '您可以稍后在设置中更改';
+
+  @override
   String get onboarding_modeTitle => '选择应用模式';
 
   @override
