@@ -50,6 +50,11 @@ android/.kotlin/
 android/build/
 .sentry-native/
 
+# مفاتيح توقيع Android الإصدارية وكلمات مرورها - لا تُدفَع إلى git إطلاقاً
+*.jks
+*.keystore
+android/key.properties
+
 # مخرجات بحثية مؤقتة (استخراج أضواء البيان من شاملة) - ليست جزءاً من التطبيق
 adwaa_*.json
 adwaa_*.jsonl
