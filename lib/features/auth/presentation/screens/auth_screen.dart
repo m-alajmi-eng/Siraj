@@ -6,8 +6,16 @@ import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../providers/auth_provider.dart';
 
-/// شاشة تسجيل الدخول: رابط سحري بالبريد، Google، Apple، أو ضيف.
+/// شاشة تسجيل الدخول: رابط سحري بالبريد (الطريقة الوحيدة الظاهرة حالياً).
 /// لا كلمات مرور - يتماشى مع معايير 2026 (passwordless).
+///
+/// أزرار Google/Apple والدخول كضيف مُخفاة (لا محذوفة) لأن إعدادات
+/// Supabase الحية تُعطّلها فعلياً: enable_anonymous_sign_ins=false،
+/// auth.external.apple.enabled=false، ولا قسم google في
+/// supabase/config.toml. أعد "true" هنا حين تُفعَّل هذه الإعدادات فعلياً.
+const bool _kEnableSocialSignIn = false;
+const bool _kEnableGuestSignIn = false;
+
 class AuthScreen extends ConsumerStatefulWidget {
   const AuthScreen({super.key});
 
@@ -181,50 +189,54 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                       ),
                     ),
                   ],
-                  const SizedBox(height: SirajSpacing.s5),
-                  Row(
-                    children: [
-                      Expanded(child: Divider(color: palette.textSecondary.withValues(alpha: 0.3))),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s3),
-                        child: Text(t.auth_or, style: TextStyle(color: palette.textSecondary)),
-                      ),
-                      Expanded(child: Divider(color: palette.textSecondary.withValues(alpha: 0.3))),
-                    ],
-                  ),
-                  const SizedBox(height: SirajSpacing.s5),
-                  _SocialButton(
-                    icon: Icons.g_mobiledata,
-                    label: t.auth_continue_google,
-                    palette: palette,
-                    onPressed: () => _signInWithProvider(
-                        () => ref.read(authRepositoryProvider).signInWithGoogle()),
-                  ),
-                  const SizedBox(height: SirajSpacing.s3),
-                  _SocialButton(
-                    icon: Icons.apple,
-                    label: t.auth_continue_apple,
-                    palette: palette,
-                    onPressed: () => _signInWithProvider(
-                        () => ref.read(authRepositoryProvider).signInWithApple()),
-                  ),
-                  const SizedBox(height: SirajSpacing.s5),
-                  TextButton(
-                    onPressed: _isLoading ? null : _continueAsGuest,
-                    child: Column(
+                  if (_kEnableSocialSignIn) ...[
+                    const SizedBox(height: SirajSpacing.s5),
+                    Row(
                       children: [
-                        Text(t.auth_continue_guest,
-                            style: TextStyle(
-                                color: palette.accentPrimary,
-                                fontWeight: FontWeight.w600)),
-                        const SizedBox(height: 2),
-                        Text(t.auth_guest_note,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: palette.textSecondary, fontSize: 12)),
+                        Expanded(child: Divider(color: palette.textSecondary.withValues(alpha: 0.3))),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s3),
+                          child: Text(t.auth_or, style: TextStyle(color: palette.textSecondary)),
+                        ),
+                        Expanded(child: Divider(color: palette.textSecondary.withValues(alpha: 0.3))),
                       ],
                     ),
-                  ),
+                    const SizedBox(height: SirajSpacing.s5),
+                    _SocialButton(
+                      icon: Icons.g_mobiledata,
+                      label: t.auth_continue_google,
+                      palette: palette,
+                      onPressed: () => _signInWithProvider(
+                          () => ref.read(authRepositoryProvider).signInWithGoogle()),
+                    ),
+                    const SizedBox(height: SirajSpacing.s3),
+                    _SocialButton(
+                      icon: Icons.apple,
+                      label: t.auth_continue_apple,
+                      palette: palette,
+                      onPressed: () => _signInWithProvider(
+                          () => ref.read(authRepositoryProvider).signInWithApple()),
+                    ),
+                  ],
+                  if (_kEnableGuestSignIn) ...[
+                    const SizedBox(height: SirajSpacing.s5),
+                    TextButton(
+                      onPressed: _isLoading ? null : _continueAsGuest,
+                      child: Column(
+                        children: [
+                          Text(t.auth_continue_guest,
+                              style: TextStyle(
+                                  color: palette.accentPrimary,
+                                  fontWeight: FontWeight.w600)),
+                          const SizedBox(height: 2),
+                          Text(t.auth_guest_note,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: palette.textSecondary, fontSize: 12)),
+                        ],
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),
