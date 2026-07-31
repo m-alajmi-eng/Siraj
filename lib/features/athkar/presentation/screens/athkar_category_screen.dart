@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../providers/athkar_provider.dart';
+import '../providers/athkar_audio_provider.dart';
 import '../../../../core/locale/locale_provider.dart';
 import '../../../../core/widgets/app_scaffold.dart';
 
@@ -424,6 +425,10 @@ class _AthkarCategoryScreenState
                   fontSize: 12,
                 ),
               ),
+              if (current.audio.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                _ListenButton(athkar: current, palette: palette),
+              ],
               const SizedBox(height: 24),
               AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
@@ -470,6 +475,51 @@ class _AthkarCategoryScreenState
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ListenButton extends ConsumerWidget {
+  final dynamic athkar;
+  final dynamic palette;
+
+  const _ListenButton({required this.athkar, required this.palette});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final audioState  = ref.watch(athkarAudioProvider);
+    final isThisOne    = audioState.playingId == athkar.id;
+    final isLoadingThis = isThisOne && audioState.isLoading;
+    final isPlayingThis = isThisOne && !audioState.isLoading;
+
+    return GestureDetector(
+      onTap: () =>
+          ref.read(athkarAudioProvider.notifier).toggle(athkar),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          color: palette.accentPrimary.withValues(alpha: 0.12),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (isLoadingThis)
+              SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2, color: palette.accentPrimary),
+              )
+            else
+              Icon(
+                isPlayingThis ? Icons.pause : Icons.volume_up_outlined,
+                size: 16,
+                color: palette.accentPrimary,
+              ),
+          ],
         ),
       ),
     );

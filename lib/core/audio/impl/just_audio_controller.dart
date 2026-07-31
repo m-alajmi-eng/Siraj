@@ -155,6 +155,21 @@ class JustAudioController implements SirajAudioController {
   }
 
   @override
+  Future<void> playAthkar(AthkarAudioSpec spec) async {
+    final source = AudioSource.uri(
+      Uri.parse(spec.url),
+      tag: MediaItem(
+        id: 'athkar_${spec.id}',
+        title: spec.title,
+        artist: spec.subtitle,
+        extras: {'ayah': spec.id},
+      ),
+    );
+    await _player.setAudioSource(source);
+    await _player.play();
+  }
+
+  @override
   Future<void> previewAdhan(AssetAudioSpec spec) async {
     final source = AudioSource.asset(
       spec.assetPath,

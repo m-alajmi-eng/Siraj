@@ -27,6 +27,7 @@ abstract interface class SirajAudioController {
   Future<void> playQuran(QuranAudioSpec spec);
   Future<void> playRadio(RadioAudioSpec spec);
   Future<void> previewAdhan(AssetAudioSpec spec);
+  Future<void> playAthkar(AthkarAudioSpec spec);
   Future<void> pause();
   Future<void> resume();
   Future<void> stop();

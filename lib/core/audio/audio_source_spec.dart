@@ -43,3 +43,20 @@ class AssetAudioSpec {
 
   const AssetAudioSpec({required this.assetPath, required this.title});
 }
+
+/// تسجيل صوتي مفرد لذكر واحد (مصدر بعيد، بلا قائمة تشغيل) - hisnmuslim.com.
+class AthkarAudioSpec {
+  /// معرّف الذكر (AthkarEntity.id) - يُستخدم لاحقاً لمطابقة "هل هذا الذكر
+  /// هو ما يُشغَّل فعلياً الآن" عبر SirajNowPlaying.currentIndex.
+  final int id;
+  final String url;
+  final String title;
+  final String subtitle;
+
+  const AthkarAudioSpec({
+    required this.id,
+    required this.url,
+    required this.title,
+    required this.subtitle,
+  });
+}
