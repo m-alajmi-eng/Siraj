@@ -467,6 +467,27 @@ class AppLocalizationsUr extends AppLocalizations {
   String get cal_hijriOffset => 'ہجری اصلاح';
 
   @override
+  String get cal_wd_sun => 'اتوار';
+
+  @override
+  String get cal_wd_mon => 'پیر';
+
+  @override
+  String get cal_wd_tue => 'منگل';
+
+  @override
+  String get cal_wd_wed => 'بدھ';
+
+  @override
+  String get cal_wd_thu => 'جمعرات';
+
+  @override
+  String get cal_wd_fri => 'جمعہ';
+
+  @override
+  String get cal_wd_sat => 'ہفتہ';
+
+  @override
   String get cal_detailPending =>
       'اس موقع کے لیے ابھی کوئی اضافی تفصیل (آیت/حدیث/تفصیل) دستیاب نہیں - دینی جائزے کا انتظار ہے۔';
 

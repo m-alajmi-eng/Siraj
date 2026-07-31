@@ -468,6 +468,27 @@ class AppLocalizationsId extends AppLocalizations {
   String get cal_hijriOffset => 'Koreksi Hijriah';
 
   @override
+  String get cal_wd_sun => 'Min';
+
+  @override
+  String get cal_wd_mon => 'Sen';
+
+  @override
+  String get cal_wd_tue => 'Sel';
+
+  @override
+  String get cal_wd_wed => 'Rab';
+
+  @override
+  String get cal_wd_thu => 'Kam';
+
+  @override
+  String get cal_wd_fri => 'Jum';
+
+  @override
+  String get cal_wd_sat => 'Sab';
+
+  @override
   String get cal_detailPending =>
       'Belum ada detail tambahan (ayat/hadits/deskripsi) untuk peristiwa ini - menunggu tinjauan keagamaan.';
 

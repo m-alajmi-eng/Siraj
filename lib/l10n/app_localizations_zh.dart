@@ -466,6 +466,27 @@ class AppLocalizationsZh extends AppLocalizations {
   String get cal_hijriOffset => '伊斯兰历修正';
 
   @override
+  String get cal_wd_sun => '周日';
+
+  @override
+  String get cal_wd_mon => '周一';
+
+  @override
+  String get cal_wd_tue => '周二';
+
+  @override
+  String get cal_wd_wed => '周三';
+
+  @override
+  String get cal_wd_thu => '周四';
+
+  @override
+  String get cal_wd_fri => '周五';
+
+  @override
+  String get cal_wd_sat => '周六';
+
+  @override
   String get cal_detailPending => '此纪念日暂无更多详情（经文/圣训/说明）- 待宗教审核。';
 
   @override

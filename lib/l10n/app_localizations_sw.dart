@@ -468,6 +468,27 @@ class AppLocalizationsSw extends AppLocalizations {
   String get cal_hijriOffset => 'Marekebisho ya Hijria';
 
   @override
+  String get cal_wd_sun => 'Jpi';
+
+  @override
+  String get cal_wd_mon => 'Jtt';
+
+  @override
+  String get cal_wd_tue => 'Jnn';
+
+  @override
+  String get cal_wd_wed => 'Jtn';
+
+  @override
+  String get cal_wd_thu => 'Alh';
+
+  @override
+  String get cal_wd_fri => 'Ijm';
+
+  @override
+  String get cal_wd_sat => 'Jmo';
+
+  @override
   String get cal_detailPending =>
       'Hakuna maelezo zaidi (aya/hadithi/maelezo) yaliyopo bado kwa tukio hili - yanasubiri mapitio ya kidini.';
 

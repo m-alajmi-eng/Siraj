@@ -467,6 +467,27 @@ class AppLocalizationsFa extends AppLocalizations {
   String get cal_hijriOffset => 'تصحیح هجری';
 
   @override
+  String get cal_wd_sun => 'یکشنبه';
+
+  @override
+  String get cal_wd_mon => 'دوشنبه';
+
+  @override
+  String get cal_wd_tue => 'سه‌شنبه';
+
+  @override
+  String get cal_wd_wed => 'چهارشنبه';
+
+  @override
+  String get cal_wd_thu => 'پنجشنبه';
+
+  @override
+  String get cal_wd_fri => 'جمعه';
+
+  @override
+  String get cal_wd_sat => 'شنبه';
+
+  @override
   String get cal_detailPending =>
       'هنوز جزئیات بیشتری (آیه/حدیث/توضیح) برای این مناسبت موجود نیست - در انتظار بررسی دینی.';
 

@@ -135,18 +135,33 @@ final monthEventsProvider =
   return islamicEvents.where((e) => e.hijriMonth == month).toList();
 });
 
+/// أيام حتى مناسبة معيّنة من اليوم الهجري الحالي، مع لفّ للعام القادم
+/// (شهر هجري ≈ 29 يوماً - نفس التقريب المعتمَد في كل حسابات "الأيام
+/// المتبقية" بالتطبيق، لا حساب أدق مصطنَع). مصدر حقيقة واحد يستهلكه
+/// sortedEventsProvider/nextEventProvider أدناه وشاشة التقويم، بدل نسخة
+/// مكرَّرة كانت محسوبة محلياً داخل calendar_screen.dart.
+int daysUntilEvent(HijriDate today, IslamicEvent e) {
+  var monthDiff = e.hijriMonth - today.month;
+  var dayDiff   = e.hijriDay   - today.day;
+  if (monthDiff < 0 || (monthDiff == 0 && dayDiff < 0)) {
+    monthDiff += 12; // العام القادم
+  }
+  return monthDiff * 29 + dayDiff;
+}
+
+/// كل المناسبات مرتَّبة ديناميكياً حسب القرب الزمني الفعلي من اليوم
+/// الحالي - لا الترتيب التصريحي الثابت في مصفوفة islamicEvents (كان يعرض
+/// المناسبات بترتيب كتابتها في الكود بلا علاقة بالتاريخ الفعلي).
+final sortedEventsProvider = Provider<List<IslamicEvent>>((ref) {
+  final today = ref.watch(hijriTodayProvider);
+  final sorted = [...islamicEvents]
+    ..sort((a, b) =>
+        daysUntilEvent(today, a).compareTo(daysUntilEvent(today, b)));
+  return sorted;
+});
+
 final nextEventProvider = Provider<Map<String, dynamic>>((ref) {
   final today = ref.watch(hijriTodayProvider);
-  final events = islamicEvents.where((e) =>
-    e.hijriMonth > today.month ||
-    (e.hijriMonth == today.month && e.hijriDay > today.day)
-  ).toList();
-
-  if (events.isEmpty) return {'event': islamicEvents.first, 'days': 30};
-
-  final next     = events.first;
-  final daysLeft = (next.hijriMonth - today.month) * 29 +
-                   (next.hijriDay  - today.day);
-
-  return {'event': next, 'days': daysLeft};
+  final next  = ref.watch(sortedEventsProvider).first;
+  return {'event': next, 'days': daysUntilEvent(today, next)};
 });

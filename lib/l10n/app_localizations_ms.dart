@@ -467,6 +467,27 @@ class AppLocalizationsMs extends AppLocalizations {
   String get cal_hijriOffset => 'Pembetulan Hijrah';
 
   @override
+  String get cal_wd_sun => 'Ahd';
+
+  @override
+  String get cal_wd_mon => 'Isn';
+
+  @override
+  String get cal_wd_tue => 'Sel';
+
+  @override
+  String get cal_wd_wed => 'Rab';
+
+  @override
+  String get cal_wd_thu => 'Kha';
+
+  @override
+  String get cal_wd_fri => 'Jum';
+
+  @override
+  String get cal_wd_sat => 'Sab';
+
+  @override
   String get cal_detailPending =>
       'Belum ada butiran tambahan (ayat/hadis/penerangan) untuk peristiwa ini - menunggu semakan agama.';
 

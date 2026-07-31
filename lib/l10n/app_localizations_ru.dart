@@ -468,6 +468,27 @@ class AppLocalizationsRu extends AppLocalizations {
   String get cal_hijriOffset => 'Коррекция хиджры';
 
   @override
+  String get cal_wd_sun => 'Вс';
+
+  @override
+  String get cal_wd_mon => 'Пн';
+
+  @override
+  String get cal_wd_tue => 'Вт';
+
+  @override
+  String get cal_wd_wed => 'Ср';
+
+  @override
+  String get cal_wd_thu => 'Чт';
+
+  @override
+  String get cal_wd_fri => 'Пт';
+
+  @override
+  String get cal_wd_sat => 'Сб';
+
+  @override
   String get cal_detailPending =>
       'Дополнительные сведения (аят/хадис/описание) для этого события пока недоступны - ожидает религиозной проверки.';
 

@@ -468,6 +468,27 @@ class AppLocalizationsBn extends AppLocalizations {
   String get cal_hijriOffset => 'হিজরি সংশোধন';
 
   @override
+  String get cal_wd_sun => 'রবি';
+
+  @override
+  String get cal_wd_mon => 'সোম';
+
+  @override
+  String get cal_wd_tue => 'মঙ্গল';
+
+  @override
+  String get cal_wd_wed => 'বুধ';
+
+  @override
+  String get cal_wd_thu => 'বৃহ';
+
+  @override
+  String get cal_wd_fri => 'শুক্র';
+
+  @override
+  String get cal_wd_sat => 'শনি';
+
+  @override
   String get cal_detailPending =>
       'এই উপলক্ষের জন্য এখনো কোনো অতিরিক্ত বিবরণ (আয়াত/হাদিস/বর্ণনা) উপলব্ধ নেই - ধর্মীয় পর্যালোচনার অপেক্ষায়।';
 

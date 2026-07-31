@@ -468,6 +468,27 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cal_hijriOffset => 'Corrección Hiyri';
 
   @override
+  String get cal_wd_sun => 'Dom';
+
+  @override
+  String get cal_wd_mon => 'Lun';
+
+  @override
+  String get cal_wd_tue => 'Mar';
+
+  @override
+  String get cal_wd_wed => 'Mié';
+
+  @override
+  String get cal_wd_thu => 'Jue';
+
+  @override
+  String get cal_wd_fri => 'Vie';
+
+  @override
+  String get cal_wd_sat => 'Sáb';
+
+  @override
   String get cal_detailPending =>
       'Aún no hay detalles adicionales (versículo/hadiz/descripción) para esta ocasión - pendiente de revisión religiosa.';
 

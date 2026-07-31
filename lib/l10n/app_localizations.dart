@@ -994,6 +994,48 @@ abstract class AppLocalizations {
   /// **'تصحيح الهجري'**
   String get cal_hijriOffset;
 
+  /// No description provided for @cal_wd_sun.
+  ///
+  /// In ar, this message translates to:
+  /// **'أحد'**
+  String get cal_wd_sun;
+
+  /// No description provided for @cal_wd_mon.
+  ///
+  /// In ar, this message translates to:
+  /// **'اثنين'**
+  String get cal_wd_mon;
+
+  /// No description provided for @cal_wd_tue.
+  ///
+  /// In ar, this message translates to:
+  /// **'ثلاثاء'**
+  String get cal_wd_tue;
+
+  /// No description provided for @cal_wd_wed.
+  ///
+  /// In ar, this message translates to:
+  /// **'أربعاء'**
+  String get cal_wd_wed;
+
+  /// No description provided for @cal_wd_thu.
+  ///
+  /// In ar, this message translates to:
+  /// **'خميس'**
+  String get cal_wd_thu;
+
+  /// No description provided for @cal_wd_fri.
+  ///
+  /// In ar, this message translates to:
+  /// **'جمعة'**
+  String get cal_wd_fri;
+
+  /// No description provided for @cal_wd_sat.
+  ///
+  /// In ar, this message translates to:
+  /// **'سبت'**
+  String get cal_wd_sat;
+
   /// No description provided for @cal_detailPending.
   ///
   /// In ar, this message translates to:

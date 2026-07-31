@@ -467,6 +467,27 @@ class AppLocalizationsHa extends AppLocalizations {
   String get cal_hijriOffset => 'Gyaran Hijri';
 
   @override
+  String get cal_wd_sun => 'Lah';
+
+  @override
+  String get cal_wd_mon => 'Lit';
+
+  @override
+  String get cal_wd_tue => 'Tal';
+
+  @override
+  String get cal_wd_wed => 'Lar';
+
+  @override
+  String get cal_wd_thu => 'Alh';
+
+  @override
+  String get cal_wd_fri => 'Jum';
+
+  @override
+  String get cal_wd_sat => 'Asa';
+
+  @override
   String get cal_detailPending =>
       'Babu ƙarin bayani (aya/hadisi/bayani) da ake da su tukuna kan wannan biki - ana jiran nazarin addini.';
 

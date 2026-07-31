@@ -468,6 +468,27 @@ class AppLocalizationsTr extends AppLocalizations {
   String get cal_hijriOffset => 'Hicri Düzeltme';
 
   @override
+  String get cal_wd_sun => 'Paz';
+
+  @override
+  String get cal_wd_mon => 'Pzt';
+
+  @override
+  String get cal_wd_tue => 'Sal';
+
+  @override
+  String get cal_wd_wed => 'Çar';
+
+  @override
+  String get cal_wd_thu => 'Per';
+
+  @override
+  String get cal_wd_fri => 'Cum';
+
+  @override
+  String get cal_wd_sat => 'Cmt';
+
+  @override
   String get cal_detailPending =>
       'Bu vesile için henüz ek ayrıntı (ayet/hadis/açıklama) mevcut değil - dini incelemeyi bekliyor.';
 

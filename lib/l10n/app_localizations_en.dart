@@ -468,6 +468,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cal_hijriOffset => 'Hijri Correction';
 
   @override
+  String get cal_wd_sun => 'Sun';
+
+  @override
+  String get cal_wd_mon => 'Mon';
+
+  @override
+  String get cal_wd_tue => 'Tue';
+
+  @override
+  String get cal_wd_wed => 'Wed';
+
+  @override
+  String get cal_wd_thu => 'Thu';
+
+  @override
+  String get cal_wd_fri => 'Fri';
+
+  @override
+  String get cal_wd_sat => 'Sat';
+
+  @override
   String get cal_detailPending =>
       'No additional details (verse/hadith/description) available yet for this occasion - pending religious review.';
 

@@ -60,18 +60,6 @@ String eventIcon(String type) {
   }
 }
 
-/// تقدير أيام حتى مناسبة معيّنة، بنفس منطق التقريب المستخدَم أصلاً في
-/// nextEventProvider (شهر هجري ≈ 29 يوماً) - لا نخترع حساباً أدق مما
-/// هو معتمَد فعلياً في بقية التطبيق.
-int daysUntilEvent(HijriDate today, IslamicEvent e) {
-  var monthDiff = e.hijriMonth - today.month;
-  var dayDiff   = e.hijriDay   - today.day;
-  if (monthDiff < 0 || (monthDiff == 0 && dayDiff < 0)) {
-    monthDiff += 12; // العام القادم
-  }
-  return monthDiff * 29 + dayDiff;
-}
-
 class CalendarScreen extends ConsumerStatefulWidget {
   const CalendarScreen({super.key});
 
@@ -159,8 +147,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     final hijriOffset = ref.watch(hijriOffsetProvider);
     final now         = DateTime.now();
 
-    final sortedEvents = [...islamicEvents]
-      ..sort((a, b) => daysUntilEvent(hijriToday, a).compareTo(daysUntilEvent(hijriToday, b)));
+    final sortedEvents = ref.watch(sortedEventsProvider);
     final nextEvent = sortedEvents.first;
     final nextEventDays = daysUntilEvent(hijriToday, nextEvent);
 
@@ -302,7 +289,10 @@ class _MonthGrid extends StatelessWidget {
     required this.onDayTap,
   });
 
-  static const _weekdayLabels = ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'];
+  List<String> _weekdayLabels(AppLocalizations t) => [
+    t.cal_wd_sun, t.cal_wd_mon, t.cal_wd_tue, t.cal_wd_wed,
+    t.cal_wd_thu, t.cal_wd_fri, t.cal_wd_sat,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -365,7 +355,7 @@ class _MonthGrid extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              for (final label in _weekdayLabels)
+              for (final label in _weekdayLabels(t))
                 Center(
                   child: Text(label, style: AppText.caption.copyWith(
                     color: palette.textSecondary, fontSize: 10)),
