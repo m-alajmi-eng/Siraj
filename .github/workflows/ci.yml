@@ -41,8 +41,69 @@ jobs:
       - name: Run tests
         run: flutter test
 
+      # يتطلب هذا القسم إضافة الأسرار التالية يدوياً من قِبل مالك المستودع في:
+      # Settings → Secrets and variables → Actions — قبل أن يعمل التوقيع الإصداري
+      # الحقيقي في CI فعلياً:
+      #   KEYSTORE_BASE64          - محتوى ملف siraj-release.jks بصيغة base64
+      #                              (يُنتَج محلياً بأمر: base64 -w0 siraj-release.jks)
+      #   KEYSTORE_STORE_PASSWORD  - كلمة مرور الـkeystore
+      #   KEYSTORE_KEY_PASSWORD    - كلمة مرور المفتاح
+      #   KEYSTORE_KEY_ALIAS       - alias المفتاح (القيمة محلياً: siraj-release)
+      # إلى أن تُضاف هذه الأسرار: لا يُنشأ android/key.properties هنا، فيبني Gradle
+      # توقيعاً غير مكتمل حسب منطقه الحالي في build.gradle.kts، وخطوة "Verify release
+      # signing" أدناه تُفشل CI صراحة بدل الصمت - سلوك مقصود لحين إضافة الأسرار.
+      - name: Set up release signing config from GitHub secrets
+        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+        run: |
+          KEYSTORE_PATH="$RUNNER_TEMP/siraj-release.jks"
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > "$KEYSTORE_PATH"
+          cat > android/key.properties <<EOF
+          storePassword=${{ secrets.KEYSTORE_STORE_PASSWORD }}
+          keyPassword=${{ secrets.KEYSTORE_KEY_PASSWORD }}
+          keyAlias=${{ secrets.KEYSTORE_KEY_ALIAS }}
+          storeFile=$KEYSTORE_PATH
+          EOF
+
       - name: Build release APK
         run: flutter build apk --release
+
+      # يقارن بصمة الشهادة المُضمَّنة فعلياً في الـAPK الناتج ببصمة شهادة الإصدار في
+      # الـkeystore نفسه (وليس مجرد التحقق من وجود أي توقيع) - لضمان أن الفشل يشمل أي
+      # توقيع غير حقيقي (غياب الأسرار، توقيع debug افتراضي، أو keystore مختلف) لا فقط
+      # "error •" في flutter analyze كما كان سابقاً.
+      - name: Verify release signing
+        run: |
+          set -e
+          APK="build/app/outputs/flutter-apk/app-release.apk"
+          KEYSTORE_PATH="$RUNNER_TEMP/siraj-release.jks"
+          ALIAS="${{ secrets.KEYSTORE_KEY_ALIAS }}"
+
+          if [ -z "${{ secrets.KEYSTORE_BASE64 }}" ] || [ ! -f "$KEYSTORE_PATH" ]; then
+            echo "فشل: أسرار التوقيع الإصداري (KEYSTORE_BASE64 وما يعادلها) غير مضافة بعد في إعدادات المستودع."
+            echo "أضِف الأسرار الموثقة في تعليق خطوة 'Set up release signing config' أعلاه، ثم أعد تشغيل CI."
+            exit 1
+          fi
+
+          APKSIGNER=$(command -v apksigner || find "${ANDROID_HOME:-/usr/local/lib/android/sdk}" -type f -name apksigner 2>/dev/null | sort -V | tail -1)
+          if [ -z "$APKSIGNER" ]; then
+            echo "فشل: تعذّر إيجاد أداة apksigner على العامل - لا يمكن التحقق من التوقيع."
+            exit 1
+          fi
+
+          EXPECTED_FP=$(keytool -list -v -keystore "$KEYSTORE_PATH" -alias "$ALIAS" -storepass "${{ secrets.KEYSTORE_STORE_PASSWORD }}" 2>/dev/null | awk -F'SHA256: ' '/SHA256:/ {print $2; exit}')
+          ACTUAL_FP=$("$APKSIGNER" verify --print-certs "$APK" 2>/dev/null | awk -F': ' '/SHA-256 digest/ {print $2; exit}')
+
+          if [ -z "$EXPECTED_FP" ] || [ -z "$ACTUAL_FP" ]; then
+            echo "فشل: تعذّر استخراج بصمة الشهادة (من الـkeystore أو من الـAPK) - لا يمكن تأكيد التوقيع."
+            exit 1
+          fi
+
+          if [ "$EXPECTED_FP" != "$ACTUAL_FP" ]; then
+            echo "فشل: الـAPK غير موقَّع بمفتاح الإصدار (siraj-release) - قد يكون موقَّعاً بمفتاح debug أو keystore مختلف."
+            exit 1
+          fi
+
+          echo "التحقق ناجح: الـAPK موقَّع فعلياً بمفتاح الإصدار الصحيح."
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
