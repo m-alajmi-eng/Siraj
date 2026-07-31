@@ -52,6 +52,12 @@ class AudioState {
 /// متوقّفاً فعلياً (صحيح دلالياً: شيء آخر أخذ المشغّل الوحيد).
 class AudioNotifier extends Notifier<AudioState> {
   String _surahName = '';
+  // تتبّع بنية مصدر الصوت المحمَّل فعلياً حالياً (من أي آية يبدأ، وهل
+  // البسملة مُدرَجة كعنصر إضافي في البداية) - ضروري لحساب فهرس seekToIndex
+  // الصحيح عند السحب على seek bar، لأن playFromStart/changeReciter يبنيان
+  // المصدر بترتيبين مختلفين (PHASE Q1: seek bar لقارئ القرآن).
+  int _loadedStartAyah = 1;
+  bool _loadedHasBasmala = false;
 
   @override
   AudioState build() {
@@ -79,6 +85,8 @@ class AudioNotifier extends Notifier<AudioState> {
       {String surahName = ''}) async {
     final controller = ref.read(audioControllerProvider);
     _surahName = surahName.isNotEmpty ? surahName : 'سورة';
+    _loadedStartAyah = 1;
+    _loadedHasBasmala = surahId != 1 && surahId != 9;
     state = AudioState(
       isPlaying: true,
       currentSurahId: surahId,
@@ -100,6 +108,8 @@ class AudioNotifier extends Notifier<AudioState> {
     final current = state.currentAyahId ?? 1;
     if (surahId == null) return;
     final controller = ref.read(audioControllerProvider);
+    _loadedStartAyah = current;
+    _loadedHasBasmala = false;
     state = state.copyWith(isPlaying: true, currentAyahId: current);
     await controller.playQuran(QuranAudioSpec(
       surahId: surahId,
@@ -107,6 +117,38 @@ class AudioNotifier extends Notifier<AudioState> {
       reciter: reciter,
       surahName: _surahName.isEmpty ? 'سورة' : _surahName,
       startAyah: current,
+      withBasmala: false,
+    ));
+  }
+
+  /// seek bar في قارئ القرآن - يقفز لآية محدَّدة. إن كانت ضمن مصدر الصوت
+  /// المحمَّل فعلياً (بعد بداية startAyah)، نستخدم seekToIndex الموجود في
+  /// SirajAudioController مباشرة (بلا إعادة تحميل). إن كانت قبل بداية
+  /// المصدر المحمَّل (تراجع لآية أقدم من التي بدأ منها آخر تحميل)، لا مفر
+  /// من إعادة بناء مصدر جديد يبدأ من الآية الهدف - بنفس نمط changeReciter
+  /// تماماً (لا آلية تشغيل جديدة، فقط استدعاء playQuran الموجود ببداية مختلفة).
+  Future<void> seekToAyah(int ayahNumber) async {
+    final surahId = state.currentSurahId;
+    if (surahId == null) return;
+    final controller = ref.read(audioControllerProvider);
+
+    if (ayahNumber >= _loadedStartAyah) {
+      final index = ayahNumber - _loadedStartAyah + (_loadedHasBasmala ? 1 : 0);
+      state = state.copyWith(currentAyahId: ayahNumber, isPlaying: true);
+      await controller.seekToIndex(index);
+      return;
+    }
+
+    final reciter = ref.read(selectedReciterProvider);
+    _loadedStartAyah = ayahNumber;
+    _loadedHasBasmala = false;
+    state = state.copyWith(currentAyahId: ayahNumber, isPlaying: true);
+    await controller.playQuran(QuranAudioSpec(
+      surahId: surahId,
+      totalAyahs: state.totalAyahs,
+      reciter: reciter,
+      surahName: _surahName.isEmpty ? 'سورة' : _surahName,
+      startAyah: ayahNumber,
       withBasmala: false,
     ));
   }

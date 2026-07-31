@@ -10,6 +10,7 @@ import '../../../../core/audio/audio_provider.dart';
 import '../../domain/entities/reciter_catalog.dart';
 import '../../../../core/storage/cache_service.dart';
 import '../providers/quran_provider.dart';
+import '../../domain/entities/ayah_entity.dart';
 import '../providers/reader_font_provider.dart';
 import '../../domain/entities/tajweed_entity.dart';
 import '../../../qke/presentation/screens/verse_portal_screen.dart';
@@ -31,6 +32,108 @@ class SurahReaderScreen extends ConsumerStatefulWidget {
   ConsumerState<SurahReaderScreen> createState() => _SurahReaderScreenState();
 }
 
+/// seek bar فوق شريط معلومات الصوت - يستهلك SirajAudioController الموجود
+/// عبر audioProvider.seekToAyah فقط (لا منطق تشغيل جديد). مُعطَّل بصرياً
+/// (تفاعل معطَّل، لا مخفي) حين لا يوجد تشغيل جارٍ لهذه السورة تحديداً.
+class _AyahSeekBar extends StatelessWidget {
+  final dynamic palette;
+  final int totalAyahs;
+  final int currentAyah;
+  final bool enabled;
+  final ValueChanged<int> onChanged;
+  final ValueChanged<int> onChangeEnd;
+
+  const _AyahSeekBar({
+    required this.palette,
+    required this.totalAyahs,
+    required this.currentAyah,
+    required this.enabled,
+    required this.onChanged,
+    required this.onChangeEnd,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (totalAyahs < 2) return const SizedBox.shrink();
+    final value = currentAyah.toDouble().clamp(1.0, totalAyahs.toDouble());
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: SliderTheme(
+        data: SliderTheme.of(context).copyWith(
+          trackHeight: 3,
+          thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+          overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
+        ),
+        child: Slider(
+          value: value,
+          min: 1,
+          max: totalAyahs.toDouble(),
+          divisions: totalAyahs - 1,
+          activeColor: palette.accentPrimary,
+          inactiveColor: palette.accentPrimary.withValues(alpha: 0.2),
+          onChanged: enabled ? (v) => onChanged(v.round()) : null,
+          onChangeEnd: enabled ? (v) => onChangeEnd(v.round()) : null,
+        ),
+      ),
+    );
+  }
+}
+
+/// لوحة إجراءات عائمة بسيطة (لا زجاجية معقدة) تجمع الإجراءات المتفرقة
+/// سابقاً (بوابة الآية/التفسير/مشاركة/نسخ) في مكان واحد ظاهر دوماً، بدل
+/// حصرها خلف الضغط المطوّل على آية فقط. تعمل على "الآية الحالية"
+/// (_targetAyah أعلاه).
+class _FloatingActionsPanel extends StatelessWidget {
+  final dynamic palette;
+  final VoidCallback onVersePortal;
+  final VoidCallback onTafsir;
+  final VoidCallback onShare;
+  final VoidCallback onCopy;
+
+  const _FloatingActionsPanel({
+    required this.palette,
+    required this.onVersePortal,
+    required this.onTafsir,
+    required this.onShare,
+    required this.onCopy,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+      decoration: BoxDecoration(
+        color: palette.surface,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(
+          color: palette.accentPrimary.withValues(alpha: 0.25)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.12),
+            blurRadius: 8, offset: const Offset(0, 2)),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _panelButton(Icons.auto_awesome, onVersePortal),
+          _panelButton(Icons.auto_stories, onTafsir),
+          _panelButton(Icons.share, onShare),
+          _panelButton(Icons.copy, onCopy),
+        ],
+      ),
+    );
+  }
+
+  Widget _panelButton(IconData icon, VoidCallback onTap) {
+    return IconButton(
+      icon: Icon(icon, color: palette.accentPrimary, size: 20),
+      onPressed: onTap,
+      visualDensity: VisualDensity.compact,
+    );
+  }
+}
+
 class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
   static const int _basmalaLength = 39;
   bool _mushafMode = true; // الافتراضي: مصحف متّصل
@@ -44,6 +147,10 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
   final GlobalKey _viewportKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
   Timer? _scrollDebounce;
+  /// قيمة مؤقتة أثناء سحب seek bar فقط (معاينة فورية بلا انتظار seekToAyah
+  /// الفعلي) - null خارج السحب، فتُستخدَم قيمة audioState.currentAyahId
+  /// الحقيقية بدلاً منها.
+  int? _dragAyah;
 
   @override
   void initState() {
@@ -300,7 +407,25 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
         child: Column(
             children: [
               ayahsAsync.maybeWhen(
-                data: (ayahs) => Container(
+                data: (ayahs) => Column(
+                  children: [
+                    _AyahSeekBar(
+                      palette: palette,
+                      totalAyahs: ayahs.length,
+                      currentAyah: _dragAyah ??
+                          (audioState.currentSurahId == widget.surahId
+                              ? audioState.currentAyahId
+                              : null) ??
+                          1,
+                      enabled: audioState.currentSurahId == widget.surahId,
+                      onChanged: (v) => setState(() => _dragAyah = v),
+                      onChangeEnd: (v) {
+                        setState(() => _dragAyah = null);
+                        ref.read(audioProvider.notifier).seekToAyah(v);
+                      },
+                    ),
+                    const SizedBox(height: 6),
+                    Container(
                   margin: const EdgeInsets.symmetric(horizontal: 16),
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   decoration: BoxDecoration(
@@ -373,13 +498,17 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                     ],
                   ),
                 ),
+                  ],
+                ),
                 orElse: () => const SizedBox.shrink(),
               ),
 
               const SizedBox(height: 12),
 
               Expanded(
-                child: ayahsAsync.when(
+                child: Stack(
+                  children: [
+                    ayahsAsync.when(
                   loading: () => Center(
                     child: CircularProgressIndicator(color: palette.accentPrimary)),
                   error: (e, _) => Center(
@@ -550,6 +679,38 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                     );
                   },
                 ),
+                    ayahsAsync.maybeWhen(
+                      data: (ayahs) => PositionedDirectional(
+                        bottom: 12,
+                        end: 12,
+                        child: _FloatingActionsPanel(
+                          palette: palette,
+                          onVersePortal: () {
+                            final target = _targetAyah(ayahs, audioState.currentSurahId == widget.surahId ? audioState.currentAyahId : null);
+                            _openVersePortal(context, widget.surahId, target);
+                          },
+                          onTafsir: () {
+                            final target = _targetAyah(ayahs, audioState.currentSurahId == widget.surahId ? audioState.currentAyahId : null);
+                            _showTafsir(context, palette, widget.surahId, target, t);
+                          },
+                          onShare: () {
+                            final target = _targetAyah(ayahs, audioState.currentSurahId == widget.surahId ? audioState.currentAyahId : null);
+                            final surahNameForShare = surahsAsync.maybeWhen(
+                              data: (s) => s.firstWhere((su) => su.id == widget.surahId).nameArabic,
+                              orElse: () => '');
+                            _shareAyah(context, surahNameForShare, target,
+                                _ayahTextFor(ayahs, target), t);
+                          },
+                          onCopy: () {
+                            final target = _targetAyah(ayahs, audioState.currentSurahId == widget.surahId ? audioState.currentAyahId : null);
+                            _copyAyah(context, _ayahTextFor(ayahs, target), t);
+                          },
+                        ),
+                      ),
+                      orElse: () => const SizedBox.shrink(),
+                    ),
+                  ],
+                ),
               ),
 
               Padding(
@@ -604,18 +765,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                 style: TextStyle(color: palette.textSecondary, fontSize: 12)),
               onTap: () {
                 Navigator.pop(ctx);
-                Navigator.of(context).push(
-                  PageRouteBuilder(
-                    transitionDuration: const Duration(milliseconds: 400),
-                    pageBuilder: (_, _, _) => VersePortalScreen(
-                      surahId: surahId, ayahNumber: ayahNumber),
-                    transitionsBuilder: (_, animation, _, child) =>
-                        FadeTransition(
-                          opacity: CurvedAnimation(
-                            parent: animation, curve: Curves.easeInOut),
-                          child: child),
-                  ),
-                );
+                _openVersePortal(context, surahId, ayahNumber);
               },
             ),
             ListTile(
@@ -633,12 +783,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                 textAlign: TextAlign.right, style: TextStyle(color: palette.textPrimary)),
               onTap: () {
                 Navigator.pop(ctx);
-                context.push('/more/share', extra: {
-                  'title': t.reader_shareTitle,
-                  'subtitle': t.reader_shareSubtitle(surahName, ayahNumber),
-                  'content': ayahText,
-                  'type': 'quran',
-                });
+                _shareAyah(context, surahName, ayahNumber, ayahText, t);
               },
             ),
             ListTile(
@@ -647,11 +792,7 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                 textAlign: TextAlign.right, style: TextStyle(color: palette.textPrimary)),
               onTap: () {
                 Navigator.pop(ctx);
-                Clipboard.setData(ClipboardData(text: ayahText));
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(t.reader_ayahCopied),
-                    duration: const Duration(seconds: 2)),
-                );
+                _copyAyah(context, ayahText, t);
               },
             ),
             const SizedBox(height: 8),
@@ -659,6 +800,55 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
         ),
       ),
     );
+  }
+
+  void _openVersePortal(BuildContext context, int surahId, int ayahNumber) {
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 400),
+        pageBuilder: (_, _, _) => VersePortalScreen(
+          surahId: surahId, ayahNumber: ayahNumber),
+        transitionsBuilder: (_, animation, _, child) =>
+            FadeTransition(
+              opacity: CurvedAnimation(
+                parent: animation, curve: Curves.easeInOut),
+              child: child),
+      ),
+    );
+  }
+
+  void _shareAyah(BuildContext context, String surahName, int ayahNumber,
+      String ayahText, AppLocalizations t) {
+    context.push('/more/share', extra: {
+      'title': t.reader_shareTitle,
+      'subtitle': t.reader_shareSubtitle(surahName, ayahNumber),
+      'content': ayahText,
+      'type': 'quran',
+    });
+  }
+
+  void _copyAyah(BuildContext context, String ayahText, AppLocalizations t) {
+    Clipboard.setData(ClipboardData(text: ayahText));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(t.reader_ayahCopied),
+        duration: const Duration(seconds: 2)),
+    );
+  }
+
+  /// الآية "الحالية" لأغراض لوحة الإجراءات العائمة: آية التشغيل الصوتي
+  /// الجارية إن وُجدت، وإلا الآية الظاهرة فعلياً أعلى منطقة العرض (نفس
+  /// آلية تتبّع موضع القراءة المستخدَمة أصلاً لحفظ التقدّم)، وإلا آخر آية
+  /// محفوظة عند فتح الشاشة.
+  int _targetAyah(List<AyahEntity> ayahs, int? currentAyahId) {
+    final candidate = currentAyahId ?? _findVisibleAyah() ?? _initialAyahNumber;
+    final exists = ayahs.any((a) => a.ayahNumber == candidate);
+    if (exists) return candidate;
+    return ayahs.isNotEmpty ? ayahs.first.ayahNumber : 1;
+  }
+
+  String _ayahTextFor(List<AyahEntity> ayahs, int ayahNumber) {
+    final match = ayahs.where((a) => a.ayahNumber == ayahNumber);
+    return match.isNotEmpty ? match.first.textUthmani : '';
   }
 
   void _showTafsir(BuildContext context, dynamic palette, int surahId,
