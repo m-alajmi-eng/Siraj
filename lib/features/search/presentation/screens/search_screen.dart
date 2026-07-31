@@ -88,7 +88,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         : searchState.filteredResults.isEmpty
                             ? _NoResults(query: searchState.query, palette: palette, t: t)
                             : _ResultsList(
-                                results: searchState.filteredResults, palette: palette, t: t),
+                                results: searchState.filteredResults,
+                                query: searchState.query,
+                                palette: palette, t: t),
           ),
         ],
       ),
@@ -269,90 +271,213 @@ class _ErrorState extends StatelessWidget {
   }
 }
 
+/// ترتيب الأقسام الثابت عند التجميع - يطابق ترتيب مصادر البحث في
+/// search_provider.dart (آيات ثم تفسير ثم كلمات ثم أحاديث ثم أذكار).
+const _kSectionOrder = ['ayah', 'tafsir', 'word', 'hadith', 'athkar'];
+
 class _ResultsList extends StatelessWidget {
   final List<SearchResult> results;
+  final String query;
   final dynamic palette;
   final AppLocalizations t;
 
   const _ResultsList({
     required this.results,
+    required this.query,
     required this.palette,
     required this.t,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    final grouped = <String, List<SearchResult>>{};
+    for (final r in results) {
+      grouped.putIfAbsent(r.type, () => []).add(r);
+    }
+    final sections = _kSectionOrder.where(grouped.containsKey).toList();
+
+    return ListView(
       padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s4),
-      itemCount: results.length,
-      itemBuilder: (_, i) {
-        final r = results[i];
-        return GestureDetector(
-          onTap: () {
-            if (r.surahId > 0 && r.ayahNumber > 0) {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (_) => VersePortalScreen(
-                  surahId: r.surahId,
-                  ayahNumber: r.ayahNumber,
-                ),
-              ));
-            }
-          },
-          child: Container(
-            margin: const EdgeInsets.only(bottom: SirajSpacing.s3),
-            padding: const EdgeInsets.all(SirajSpacing.s4),
-            decoration: BoxDecoration(
-              color: palette.surface,
-              borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: SirajSpacing.s2, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: _typeColor(r.type).withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(SirajRadiusFull.xs),
-                      ),
-                      child: Text(_typeLabelFor(t, r.type), style: AppText.caption.copyWith(
-                        color: _typeColor(r.type), fontSize: 10)),
-                    ),
-                    Text('${r.surahName} · ${r.ayahNumber}',
-                      style: AppText.caption.copyWith(color: palette.accentPrimary)),
-                  ],
-                ),
-                const SizedBox(height: SirajSpacing.s2),
-                Text(
-                  r.text.length > 200 ? '${r.text.substring(0, 200)}...' : r.text,
-                  textAlign: TextAlign.right,
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                    color: palette.textPrimary,
-                    fontSize: r.type == 'ayah' ? 18 : 14,
-                    fontFamily: r.type == 'ayah' ? 'QuranFont' : null,
-                    height: 1.7,
-                  ),
-                ),
-              ],
-            ),
+      children: [
+        for (final type in sections) ...[
+          _SectionHeader(
+            label: _typeLabelFor(t, type),
+            color: _typeColor(type),
+            count: grouped[type]!.length,
+            palette: palette,
           ),
-        );
-      },
+          for (final r in grouped[type]!)
+            _ResultCard(result: r, query: query, palette: palette, t: t),
+          const SizedBox(height: SirajSpacing.s2),
+        ],
+      ],
     );
   }
+}
 
-  Color _typeColor(String type) {
-    switch (type) {
-      case 'ayah':   return const Color(0xFF6EB4D0);
-      case 'tafsir': return const Color(0xFF50B478);
-      case 'word':   return const Color(0xFFE0A458);
-      case 'hadith': return const Color(0xFF4DB6AC);
-      case 'athkar': return const Color(0xFFB07CC6);
-      default:       return SirajWhite.w40;
-    }
+class _SectionHeader extends StatelessWidget {
+  final String label;
+  final Color color;
+  final int count;
+  final dynamic palette;
+
+  const _SectionHeader({
+    required this.label,
+    required this.color,
+    required this.count,
+    required this.palette,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: SirajSpacing.s2, top: SirajSpacing.s1),
+      child: Row(
+        children: [
+          Container(width: 8, height: 8,
+            decoration: BoxDecoration(shape: BoxShape.circle, color: color)),
+          const SizedBox(width: SirajSpacing.s2),
+          Text('$label ($count)', style: AppText.bodySmall.copyWith(
+            color: palette.accentPrimary, fontWeight: FontWeight.w600)),
+        ],
+      ),
+    );
   }
 }
+
+class _ResultCard extends StatelessWidget {
+  final SearchResult result;
+  final String query;
+  final dynamic palette;
+  final AppLocalizations t;
+
+  const _ResultCard({
+    required this.result,
+    required this.query,
+    required this.palette,
+    required this.t,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final r = result;
+    final baseStyle = TextStyle(
+      color: palette.textPrimary,
+      fontSize: r.type == 'ayah' ? 18 : 14,
+      fontFamily: r.type == 'ayah' ? 'QuranFont' : null,
+      height: 1.7,
+    );
+    final highlightStyle = baseStyle.copyWith(
+      color: palette.accentPrimary,
+      fontWeight: FontWeight.w700,
+      backgroundColor: palette.accentPrimary.withValues(alpha: 0.18),
+    );
+
+    return GestureDetector(
+      onTap: () {
+        if (r.surahId > 0 && r.ayahNumber > 0) {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (_) => VersePortalScreen(
+              surahId: r.surahId,
+              ayahNumber: r.ayahNumber,
+            ),
+          ));
+        }
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: SirajSpacing.s3),
+        padding: const EdgeInsets.all(SirajSpacing.s4),
+        decoration: BoxDecoration(
+          color: palette.surface,
+          borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: SirajSpacing.s2, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: _typeColor(r.type).withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(SirajRadiusFull.xs),
+                  ),
+                  child: Text(_typeLabelFor(t, r.type), style: AppText.caption.copyWith(
+                    color: _typeColor(r.type), fontSize: 10)),
+                ),
+                Text('${r.surahName} · ${r.ayahNumber}',
+                  style: AppText.caption.copyWith(color: palette.accentPrimary)),
+              ],
+            ),
+            const SizedBox(height: SirajSpacing.s2),
+            RichText(
+              textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
+              text: TextSpan(
+                children: _highlightedSpans(r.text, query, baseStyle, highlightStyle),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Color _typeColor(String type) {
+  switch (type) {
+    case 'ayah':   return const Color(0xFF6EB4D0);
+    case 'tafsir': return const Color(0xFF50B478);
+    case 'word':   return const Color(0xFFE0A458);
+    case 'hadith': return const Color(0xFF4DB6AC);
+    case 'athkar': return const Color(0xFFB07CC6);
+    default:       return SirajWhite.w40;
+  }
+}
+
+/// يبني TextSpans مع تظليل أول تطابق حرفي للاستعلام (بلا حساسية لحالة
+/// الأحرف). عند تجاوز النص 200 حرف، يقتصّ نافذة حول موضع التطابق نفسه (لا
+/// أول 200 حرف ثابتة كما كان سابقاً) حتى لا يختفي التظليل خلف اقتصاص لا
+/// علاقة له بموضع المطابقة الفعلي.
+List<InlineSpan> _highlightedSpans(
+    String text, String query, TextStyle baseStyle, TextStyle highlightStyle) {
+  final trimmedQuery = query.trim();
+  if (trimmedQuery.isEmpty) {
+    return [TextSpan(text: _truncatePlain(text, 200), style: baseStyle)];
+  }
+
+  final idx = text.toLowerCase().indexOf(trimmedQuery.toLowerCase());
+  if (idx < 0) {
+    return [TextSpan(text: _truncatePlain(text, 200), style: baseStyle)];
+  }
+
+  var display = text;
+  var matchStart = idx;
+  var matchEnd = idx + trimmedQuery.length;
+
+  const maxLen = 200;
+  if (text.length > maxLen) {
+    final windowStart = (idx - 60).clamp(0, text.length);
+    final windowEnd = (matchEnd + 140).clamp(0, text.length);
+    final prefix = windowStart > 0 ? '...' : '';
+    final suffix = windowEnd < text.length ? '...' : '';
+    display = '$prefix${text.substring(windowStart, windowEnd)}$suffix';
+    matchStart = idx - windowStart + prefix.length;
+    matchEnd = matchStart + trimmedQuery.length;
+  }
+
+  final spans = <InlineSpan>[];
+  if (matchStart > 0) {
+    spans.add(TextSpan(text: display.substring(0, matchStart), style: baseStyle));
+  }
+  spans.add(TextSpan(text: display.substring(matchStart, matchEnd), style: highlightStyle));
+  if (matchEnd < display.length) {
+    spans.add(TextSpan(text: display.substring(matchEnd), style: baseStyle));
+  }
+  return spans;
+}
+
+String _truncatePlain(String text, int maxLen) =>
+    text.length > maxLen ? '${text.substring(0, maxLen)}...' : text;
