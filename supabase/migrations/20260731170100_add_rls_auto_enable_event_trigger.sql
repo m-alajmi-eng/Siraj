@@ -1,14 +1,22 @@
--- اقتراح فقط (المهمة 3 من دفعة المستوى 2) - غير مُطبَّق على القاعدة الحية.
--- لا db push حتى مراجعة صريحة من المالك.
-
--- دالة "public"."rls_auto_enable"() موجودة أصلاً منذ baseline.sql (ترجع
--- event_trigger وتُفعّل RLS تلقائياً على أي جدول جديد في public)، لكن لا
--- يوجد أي CREATE EVENT TRIGGER يربطها فعلياً بحدث DDL - فهي معطّلة تماماً
--- منذ إنشائها، وأي جدول جديد يُنشأ بعدها يبقى بلا RLS تلقائي (يعتمد فقط
--- على تذكّر الكاتب لسطر ENABLE ROW LEVEL SECURITY يدوياً في كل هجرة - وهو
--- بالضبط ما فشل سابقاً وأدى لثغرة RLS المذكورة في تعليق هجرة
--- translation_reports وenable_rls_missing_tables.sql).
-CREATE EVENT TRIGGER "rls_auto_enable_trigger"
-    ON "ddl_command_end"
-    WHEN TAG IN ('CREATE TABLE', 'CREATE TABLE AS', 'SELECT INTO')
-    EXECUTE FUNCTION "public"."rls_auto_enable"();
+-- تصحيح بتاريخ 2026-08-01: هذا الملف كان يقترح CREATE EVENT TRIGGER جديداً
+-- (rls_auto_enable_trigger) بافتراض أن لا event trigger مربوط فعلياً بدالة
+-- public.rls_auto_enable() على القاعدة الحية - استناداً فقط لغياب أي
+-- CREATE EVENT TRIGGER في تاريخ الهجرات.
+--
+-- تبيّن أن هذا الافتراض خاطئ: تحقّق المالك مباشرة من القاعدة الإنتاجية
+-- الحية عبر:
+--   SELECT evtname, evtfoid::regproc, evtenabled FROM pg_event_trigger;
+-- ووجد أن event trigger باسم "ensure_rls" موجود فعلاً، مربوط بدالة
+-- rls_auto_enable()، ومُفعَّل (evtenabled = 'O'). أي أن الحماية التلقائية
+-- تعمل فعلياً على الإنتاج، لكنها رُكِّبت يدوياً مباشرة (خارج ملفات الهجرة
+-- المُصدَّرة بالمستودع) بدل عبر migration - فجوة توثيق فقط لا فجوة أمنية.
+--
+-- لذا: لا DDL في هذا الملف إطلاقاً. تطبيق CREATE EVENT TRIGGER هنا كان
+-- سيُنشئ تريغراً ثانياً مكرراً (اسم مختلف "rls_auto_enable_trigger" يستدعي
+-- نفس الدالة) بلا أي فائدة حقيقية.
+--
+-- إن ظهرت حاجة فعلية لاحقاً لتعديل سلوك ensure_rls الموجود (مثال: توسيع
+-- التاغات المشمولة، أو تصديره رسمياً كملف هجرة عبر
+-- `supabase db pull`/`migration repair` ليصبح موثَّقاً في المستودع بدل
+-- الاعتماد على ذاكرة/فحص يدوي) - ذلك قرار منفصل يحتاج نقاشاً مستقلاً،
+-- وليس هذا الملف.
