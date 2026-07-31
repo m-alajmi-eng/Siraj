@@ -659,6 +659,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_secApp => '应用';
 
   @override
+  String get settings_secAppearance => '外观';
+
+  @override
+  String get settings_secAccessibility => '无障碍';
+
+  @override
+  String get settings_highContrast => '高对比度';
+
+  @override
+  String get settings_reduceMotion => '减少动态效果';
+
+  @override
   String get settings_secPrivacy => '隐私';
 
   @override

@@ -665,6 +665,18 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settings_secApp => 'ایپ';
 
   @override
+  String get settings_secAppearance => 'ظاہری شکل';
+
+  @override
+  String get settings_secAccessibility => 'رسائی';
+
+  @override
+  String get settings_highContrast => 'زیادہ تضاد';
+
+  @override
+  String get settings_reduceMotion => 'حرکت کم کریں';
+
+  @override
   String get settings_secPrivacy => 'رازداری';
 
   @override

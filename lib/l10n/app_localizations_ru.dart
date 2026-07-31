@@ -667,6 +667,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_secApp => 'Приложение';
 
   @override
+  String get settings_secAppearance => 'Оформление';
+
+  @override
+  String get settings_secAccessibility => 'Доступность';
+
+  @override
+  String get settings_highContrast => 'Высокий контраст';
+
+  @override
+  String get settings_reduceMotion => 'Уменьшить движение';
+
+  @override
   String get settings_secPrivacy => 'Конфиденциальность';
 
   @override

@@ -670,6 +670,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_secApp => 'Application';
 
   @override
+  String get settings_secAppearance => 'Apparence';
+
+  @override
+  String get settings_secAccessibility => 'Accessibilité';
+
+  @override
+  String get settings_highContrast => 'Contraste élevé';
+
+  @override
+  String get settings_reduceMotion => 'Réduire les animations';
+
+  @override
   String get settings_secPrivacy => 'Confidentialité';
 
   @override

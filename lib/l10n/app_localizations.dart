@@ -1372,6 +1372,30 @@ abstract class AppLocalizations {
   /// **'التطبيق'**
   String get settings_secApp;
 
+  /// No description provided for @settings_secAppearance.
+  ///
+  /// In ar, this message translates to:
+  /// **'المظهر'**
+  String get settings_secAppearance;
+
+  /// No description provided for @settings_secAccessibility.
+  ///
+  /// In ar, this message translates to:
+  /// **'إتاحة الوصول'**
+  String get settings_secAccessibility;
+
+  /// No description provided for @settings_highContrast.
+  ///
+  /// In ar, this message translates to:
+  /// **'تباين عالٍ'**
+  String get settings_highContrast;
+
+  /// No description provided for @settings_reduceMotion.
+  ///
+  /// In ar, this message translates to:
+  /// **'تقليل الحركة'**
+  String get settings_reduceMotion;
+
   /// No description provided for @settings_secPrivacy.
   ///
   /// In ar, this message translates to:

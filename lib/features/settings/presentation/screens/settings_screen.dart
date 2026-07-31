@@ -310,6 +310,15 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             palette: palette,
             children: [
               const _ModeAndSectionsCard(),
+            ],
+          ),
+
+          // ── المظهر (حجم/نوع خط القرآن - readerFontProvider الموجود
+          // أصلاً، كان مدموجاً سابقاً داخل قسم "التطبيق" العام) ──
+          _SettingsGroup(
+            title: t.settings_secAppearance,
+            palette: palette,
+            children: [
               _SettingsTile(
                 icon: Icons.menu_book,
                 title: t.settings_quranFont,
@@ -359,6 +368,37 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     ),
                   ],
                 ),
+              ),
+            ],
+          ),
+
+          // ── إتاحة الوصول ──
+          // تباين عالٍ/تقليل الحركة: لا بنية تحتية فعلية لهما بعد في
+          // design_tokens.dart (بحثنا فلم نجد أي متغيّر/provider لأي منهما
+          // في كل المشروع) - المفتاحان معطَّلان بصرياً عمداً (onChanged: null
+          // + شارة "قريباً") بدل التظاهر بأنهما يعملان. تفعيلهما لاحقاً
+          // يتطلب أولاً إضافة تلك البنية التحتية في design_tokens (نطاق ثيم
+          // بديل عالي التباين، وربط كل AnimatedContainer/AnimatedBuilder في
+          // التطبيق بمدة صفر حين مُفعَّل) - خارج نطاق هذه المهمة.
+          _SettingsGroup(
+            title: t.settings_secAccessibility,
+            palette: palette,
+            children: [
+              _SettingsSwitch(
+                icon: Icons.contrast,
+                title: t.settings_highContrast,
+                value: false,
+                palette: palette,
+                onChanged: null,
+                badge: t.stories_comingSoon,
+              ),
+              _SettingsSwitch(
+                icon: Icons.motion_photos_off_outlined,
+                title: t.settings_reduceMotion,
+                value: false,
+                palette: palette,
+                onChanged: null,
+                badge: t.stories_comingSoon,
               ),
             ],
           ),
@@ -685,7 +725,11 @@ class _SettingsSwitch extends StatelessWidget {
   final String title;
   final bool value;
   final dynamic palette;
-  final Function(bool) onChanged;
+  /// null = مفتاح معطَّل بصرياً (لا تفاعل) - يُستخدم لضوابط "قريباً" لا
+  /// بنية تحتية فعلية خلفها بعد (مثال: تباين عالٍ/تقليل الحركة).
+  final Function(bool)? onChanged;
+  /// شارة اختيارية بجانب العنوان (مثال: "قريباً") - لا تؤثر على value/onChanged.
+  final String? badge;
 
   const _SettingsSwitch({
     required this.icon,
@@ -693,6 +737,7 @@ class _SettingsSwitch extends StatelessWidget {
     required this.value,
     required this.palette,
     required this.onChanged,
+    this.badge,
   });
 
   @override
@@ -706,6 +751,18 @@ class _SettingsSwitch extends StatelessWidget {
           Expanded(
             child: Text(title, style: AppText.body.copyWith(color: palette.textPrimary)),
           ),
+          if (badge != null) ...[
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s2, vertical: 2),
+              decoration: BoxDecoration(
+                color: palette.accentPrimary.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(SirajRadiusFull.xs),
+              ),
+              child: Text(badge!, style: AppText.caption.copyWith(
+                color: palette.accentPrimary, fontSize: 10)),
+            ),
+            const SizedBox(width: SirajSpacing.s2),
+          ],
           Switch(value: value, onChanged: onChanged),
         ],
       ),

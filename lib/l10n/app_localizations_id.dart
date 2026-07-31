@@ -667,6 +667,18 @@ class AppLocalizationsId extends AppLocalizations {
   String get settings_secApp => 'Aplikasi';
 
   @override
+  String get settings_secAppearance => 'Tampilan';
+
+  @override
+  String get settings_secAccessibility => 'Aksesibilitas';
+
+  @override
+  String get settings_highContrast => 'Kontras Tinggi';
+
+  @override
+  String get settings_reduceMotion => 'Kurangi Gerakan';
+
+  @override
   String get settings_secPrivacy => 'Privasi';
 
   @override

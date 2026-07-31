@@ -667,6 +667,18 @@ class AppLocalizationsHa extends AppLocalizations {
   String get settings_secApp => 'Manhaja';
 
   @override
+  String get settings_secAppearance => 'Kamanni';
+
+  @override
+  String get settings_secAccessibility => 'Samun dama';
+
+  @override
+  String get settings_highContrast => 'Bambanci Mai Girma';
+
+  @override
+  String get settings_reduceMotion => 'Rage Motsi';
+
+  @override
   String get settings_secPrivacy => 'Sirri';
 
   @override

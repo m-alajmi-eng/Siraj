@@ -669,6 +669,18 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_secApp => 'Uygulama';
 
   @override
+  String get settings_secAppearance => 'Görünüm';
+
+  @override
+  String get settings_secAccessibility => 'Erişilebilirlik';
+
+  @override
+  String get settings_highContrast => 'Yüksek Kontrast';
+
+  @override
+  String get settings_reduceMotion => 'Hareketi Azalt';
+
+  @override
   String get settings_secPrivacy => 'Gizlilik';
 
   @override

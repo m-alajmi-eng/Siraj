@@ -661,6 +661,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settings_secApp => 'التطبيق';
 
   @override
+  String get settings_secAppearance => 'المظهر';
+
+  @override
+  String get settings_secAccessibility => 'إتاحة الوصول';
+
+  @override
+  String get settings_highContrast => 'تباين عالٍ';
+
+  @override
+  String get settings_reduceMotion => 'تقليل الحركة';
+
+  @override
   String get settings_secPrivacy => 'الخصوصية';
 
   @override

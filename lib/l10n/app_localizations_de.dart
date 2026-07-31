@@ -669,6 +669,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settings_secApp => 'App';
 
   @override
+  String get settings_secAppearance => 'Erscheinungsbild';
+
+  @override
+  String get settings_secAccessibility => 'Barrierefreiheit';
+
+  @override
+  String get settings_highContrast => 'Hoher Kontrast';
+
+  @override
+  String get settings_reduceMotion => 'Bewegung reduzieren';
+
+  @override
   String get settings_secPrivacy => 'Datenschutz';
 
   @override

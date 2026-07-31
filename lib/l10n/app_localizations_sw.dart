@@ -669,6 +669,18 @@ class AppLocalizationsSw extends AppLocalizations {
   String get settings_secApp => 'Programu';
 
   @override
+  String get settings_secAppearance => 'Muonekano';
+
+  @override
+  String get settings_secAccessibility => 'Ufikiaji';
+
+  @override
+  String get settings_highContrast => 'Utofautishaji wa Juu';
+
+  @override
+  String get settings_reduceMotion => 'Punguza Mwendo';
+
+  @override
   String get settings_secPrivacy => 'Faragha';
 
   @override

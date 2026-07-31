@@ -665,6 +665,18 @@ class AppLocalizationsFa extends AppLocalizations {
   String get settings_secApp => 'برنامه';
 
   @override
+  String get settings_secAppearance => 'ظاهر';
+
+  @override
+  String get settings_secAccessibility => 'دسترسی‌پذیری';
+
+  @override
+  String get settings_highContrast => 'کنتراست بالا';
+
+  @override
+  String get settings_reduceMotion => 'کاهش حرکت';
+
+  @override
   String get settings_secPrivacy => 'حریم خصوصی';
 
   @override

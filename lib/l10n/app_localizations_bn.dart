@@ -668,6 +668,18 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settings_secApp => 'অ্যাপ';
 
   @override
+  String get settings_secAppearance => 'চেহারা';
+
+  @override
+  String get settings_secAccessibility => 'অ্যাক্সেসযোগ্যতা';
+
+  @override
+  String get settings_highContrast => 'উচ্চ কনট্রাস্ট';
+
+  @override
+  String get settings_reduceMotion => 'গতি কমান';
+
+  @override
   String get settings_secPrivacy => 'গোপনীয়তা';
 
   @override

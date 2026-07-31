@@ -668,6 +668,18 @@ class AppLocalizationsMs extends AppLocalizations {
   String get settings_secApp => 'Aplikasi';
 
   @override
+  String get settings_secAppearance => 'Rupa';
+
+  @override
+  String get settings_secAccessibility => 'Kebolehcapaian';
+
+  @override
+  String get settings_highContrast => 'Kontras Tinggi';
+
+  @override
+  String get settings_reduceMotion => 'Kurangkan Pergerakan';
+
+  @override
   String get settings_secPrivacy => 'Privasi';
 
   @override
