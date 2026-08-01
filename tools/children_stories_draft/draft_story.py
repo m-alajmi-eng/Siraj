@@ -355,12 +355,17 @@ def cmd_upload_final(args: argparse.Namespace) -> None:
     images_dir = Path(args.images_dir)
     texts_dir = Path(args.texts_dir)
 
+    if args.story_id is not None and args.story_id not in STORY_IMAGE_ROLES:
+        raise SystemExit(f"--story-id يجب أن يكون بين 1 و9 - وصل {args.story_id}")
+
+    story_ids = [args.story_id] if args.story_id is not None else list(STORY_IDS)
+
     _print_expected_filenames_map()
 
     completed: list[int] = []
     skipped: list[int] = []
 
-    for story_id in STORY_IDS:
+    for story_id in story_ids:
         expected_roles = STORY_IMAGE_ROLES[story_id]
         image_paths = {}
         missing = []
@@ -456,6 +461,7 @@ def main() -> None:
     )
     upload_final.add_argument("--images-dir", required=True, help="مجلد محلي فيه صور بأسماء <story-id>_<opening|climax|closing>.<ext>")
     upload_final.add_argument("--texts-dir", required=True, help="مجلد محلي فيه ملفات نص <story-id>.json (نفس حقول ملف generate)")
+    upload_final.add_argument("--story-id", type=int, default=None, help="عالج قصة واحدة فقط بمعرّفها (1-9) بدل التسع كلها")
     upload_final.set_defaults(func=cmd_upload_final)
 
     args = parser.parse_args()
