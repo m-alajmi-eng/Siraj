@@ -1,5 +1,6 @@
 # Translation review tool: raw API cache (regenerable, not source of truth)
 tools/translation_review/.raw_cache/
+tools/children_stories_draft/drafts/
 
 # Miscellaneous
 *.class
