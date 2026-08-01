@@ -12,21 +12,19 @@ docs/reviews/CHILDREN_STORIES_DRAFTS_REVIEW_GUIDE.md.
     1) generate  - يستدعي Anthropic API، يطبع المسودة على الشاشة، ويحفظها في
                    ملف JSON محلي (tools/children_stories_draft/drafts/*.json،
                    غير مرفوع لـgit) للمراجعة/التعديل اليدوي.
-    2) commit    - يقرأ ملف المسودة (بعد أي تعديل يدوي عليه من المالك)، يطبع
-                   محتواه الكامل للمراجعة الأخيرة، يطلب تأكيداً تفاعلياً صريحاً
-                   بكتابة "نعم" حرفياً، ثم يستدعي upsert_draft_story عبر واجهة
-                   Supabase REST (بمفتاح anon العام - نفس صلاحية العميل تماماً،
-                   لا مفتاح خدمة).
+    2) commit    - يقرأ ملف المسودة (بعد أي تعديل يدوي عليه من المالك)، يجلب
+                   الصفّ الحالي بـ--story-id (1-9) عبر get_children_stories_
+                   catalog للمراجعة، يطبع كل شيء للمراجعة الأخيرة، يطلب
+                   تأكيداً تفاعلياً صريحاً بكتابة "نعم" حرفياً، ثم يستدعي
+                   update_draft_story_by_id (المهجرة 20260801150000) عبر
+                   واجهة Supabase REST بمفتاح anon العام - نفس صلاحية العميل
+                   تماماً، لا مفتاح خدمة.
 
-**تنبيه معماري مهم (اقرأه قبل commit):**
-upsert_draft_story يُدرج صفاً *جديداً* دوماً عند source=NULL,NULL (القيد
-UNIQUE(source_author_id, source_item_id) لا يتعارض بين NULL,NULL وNULL,NULL في
-PostgreSQL - انظر دليل المراجعة). هذا يعني أن commit **لا يملأ** صفّ القصة
-المخطَّط لها مسبقاً بنفس العنوان (الذي يحمل legacy_emoji/legacy_color/
-legacy_category الحقيقية) - بل يُنشئ صفاً موازياً جديداً بلا هوية بصرية مخصَّصة
-(سيظهر في الشبكة بإيموجي/لون افتراضيَين حتى يدمجه المالك يدوياً لاحقاً بتحديث
-مباشر بـid، كما هو موثَّق في دليل المراجعة). هذا سلوك متعمَّد حسب توجيه المالك
-لهذه الأداة تحديداً - لا حل تلقائي له هنا.
+**ملاحظة معمارية:** commit يستهدف صفاً *موجوداً* بمعرّفه (--story-id) - لا
+يُدرج صفاً جديداً. upsert_draft_story (مصدر NULL,NULL يُدرج صفاً جديداً دوماً،
+لا يُحدّث - انظر دليل المراجعة القسم 3) لا تُستخدَم هنا إطلاقاً؛ update_draft_
+story_by_id ترفض صراحة أي id خارج التسع القصص الأصلية أو أي صف reviewed=true
+بالفعل - ضمانتان داخل الدالة نفسها، لا تعتمدان على انضباط هذا السكربت.
 
 الاستخدام:
     export ANTHROPIC_API_KEY=...
@@ -35,7 +33,7 @@ legacy_category الحقيقية) - بل يُنشئ صفاً موازياً جد
 
     python3 draft_story.py generate --source-file src.txt --title "أصحاب الكهف"
     # راجع/عدّل tools/children_stories_draft/drafts/<...>.json يدوياً إن أردت
-    python3 draft_story.py commit --draft-file tools/children_stories_draft/drafts/<...>.json
+    python3 draft_story.py commit --draft-file tools/children_stories_draft/drafts/<...>.json --story-id 9
 """
 
 from __future__ import annotations
@@ -192,26 +190,41 @@ def _supabase_rpc(function_name: str, params: dict) -> dict:
         raise SystemExit(f"فشل استدعاء {function_name}: HTTP {e.code} - {e.read().decode('utf-8', 'replace')}")
 
 
+def _fetch_catalog_row(lang: str, story_id: int) -> dict:
+    rows = _supabase_rpc("get_children_stories_catalog", {"p_lang": lang})
+    for row in rows:
+        if row.get("id") == story_id:
+            return row
+    raise SystemExit(
+        f"لا صفّ بهذا id ({story_id}) في get_children_stories_catalog - تحقّق من "
+        "الرقم عبر استعلام القسم (1) في دليل المراجعة."
+    )
+
+
 def cmd_commit(args: argparse.Namespace) -> None:
     draft_path = Path(args.draft_file)
     draft = json.loads(draft_path.read_text(encoding="utf-8"))
 
-    for field in ("target_title", "lang", "simplified_text", "reading_time_minutes"):
+    for field in ("lang", "simplified_text", "reading_time_minutes"):
         if field not in draft:
             raise SystemExit(f"ملف المسودة ناقص - الحقل '{field}' غير موجود.")
+
+    current_row = _fetch_catalog_row(draft["lang"], args.story_id)
 
     print("─" * 60)
     print("مراجعة أخيرة قبل الكتابة في القاعدة (reviewed=false دائماً):")
     print("─" * 60)
-    print(f"العنوان: {draft['target_title']}")
+    print(f"id المستهدف: {args.story_id}")
+    print(f"العنوان الحالي في القاعدة: {current_row.get('title')}")
+    print(f"التصنيف: {current_row.get('legacy_category')}  الإيموجي: {current_row.get('legacy_emoji')}")
     print(f"اللغة: {draft['lang']}")
-    print(f"زمن القراءة: {draft['reading_time_minutes']} دقيقة")
+    print(f"زمن القراءة الجديد: {draft['reading_time_minutes']} دقيقة")
     print("─" * 60)
     print(draft["simplified_text"])
     print("─" * 60)
     print(
-        "تذكير: upsert_draft_story يُدرج صفاً جديداً دوماً - لن يملأ صفّ القصة "
-        "المخطَّط لها مسبقاً بنفس العنوان تلقائياً. راجع دليل المراجعة للدمج اليدوي."
+        "تذكير: هذا سيُحدِّث صفاً موجوداً بـid أعلاه (العنوان يبقى كما هو ما لم "
+        "تُعدِّله يدوياً في القاعدة لاحقاً) - لا يُنشئ صفاً جديداً."
     )
     print(
         "هذه مسودة ذكاء اصطناعي دائماً - لا تُنشَر بلا قراءتك الفعلية الكاملة "
@@ -223,12 +236,10 @@ def cmd_commit(args: argparse.Namespace) -> None:
         raise SystemExit("أُلغيت العملية - لم تُكتب أي مسودة.")
 
     result = _supabase_rpc(
-        "upsert_draft_story",
+        "update_draft_story_by_id",
         {
-            "p_source_author_id": None,
-            "p_source_item_id": None,
+            "p_id": args.story_id,
             "p_original_language": draft["lang"],
-            "p_title": draft["target_title"],
             "p_simplified_text": draft["simplified_text"],
             "p_reading_time_minutes": draft["reading_time_minutes"],
         },
@@ -247,8 +258,9 @@ def main() -> None:
     gen.add_argument("-o", "--output", help="مسار ملف المسودة الناتج (افتراضي: tools/children_stories_draft/drafts/)")
     gen.set_defaults(func=cmd_generate)
 
-    commit = sub.add_parser("commit", help="يكتب مسودة (بعد موافقة يدوية صريحة) عبر upsert_draft_story")
+    commit = sub.add_parser("commit", help="يحدّث نص صفّ موجود بمعرّفه (بعد موافقة يدوية صريحة) عبر update_draft_story_by_id")
     commit.add_argument("--draft-file", required=True, help="ملف المسودة الناتج من generate (بعد أي تعديل يدوي)")
+    commit.add_argument("--story-id", required=True, type=int, help="id الصف المستهدف من التسع القصص الأصلية (1-9)")
     commit.set_defaults(func=cmd_commit)
 
     args = parser.parse_args()
