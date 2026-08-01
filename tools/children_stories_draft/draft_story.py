@@ -74,6 +74,21 @@ IMAGE_ROLES = ("opening", "climax", "closing")
 IMAGE_BUCKET = "children-stories-images"
 IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp")
 
+# عدد صور مختلف عمداً حسب فئة طول كل قصة (قرار منتجي مُتعمَّد، لا موحَّد على
+# التسع): القصص القصيرة جداً (5،6،7) صورة افتتاحية واحدة فقط؛ القصص القصيرة
+# (1،2،8) افتتاحية+ختامية بلا climax؛ القصص الأطول (3،4،9) الثلاث صور كاملة.
+STORY_IMAGE_ROLES: dict[int, tuple[str, ...]] = {
+    1: ("opening", "closing"),
+    2: ("opening", "closing"),
+    3: ("opening", "climax", "closing"),
+    4: ("opening", "climax", "closing"),
+    5: ("opening",),
+    6: ("opening",),
+    7: ("opening",),
+    8: ("opening", "closing"),
+    9: ("opening", "climax", "closing"),
+}
+
 SYSTEM_PROMPT_TEMPLATE = """أنت أداة تلخيص حرفي فقط - لا صياغة إبداعية ولا سرد قصصي حر ولا اجتهاد.
 
 المهمة الوحيدة: لخّص النص المصدر المرفق أدناه بلغة عربية مبسّطة تناسب أطفالاً
@@ -277,8 +292,8 @@ def _print_expected_filenames_map() -> None:
     )
     print(f"  الامتدادات المقبولة: {', '.join(IMAGE_EXTENSIONS)}")
     for story_id in STORY_IDS:
-        names = [f"{story_id}_{role}.<ext>" for role in IMAGE_ROLES]
-        print(f"  story-id {story_id}: {', '.join(names)}")
+        names = [f"{story_id}_{role}.<ext>" for role in STORY_IMAGE_ROLES[story_id]]
+        print(f"  story-id {story_id} ({len(STORY_IMAGE_ROLES[story_id])} صورة): {', '.join(names)}")
     print(
         "  النصوص المتوقَّعة في --texts-dir: <story-id>.json بنفس حقول ملف "
         "generate (lang, simplified_text, reading_time_minutes)."
@@ -346,9 +361,10 @@ def cmd_upload_final(args: argparse.Namespace) -> None:
     skipped: list[int] = []
 
     for story_id in STORY_IDS:
+        expected_roles = STORY_IMAGE_ROLES[story_id]
         image_paths = {}
         missing = []
-        for role in IMAGE_ROLES:
+        for role in expected_roles:
             found = _find_image_file(images_dir, story_id, role)
             if found is None:
                 missing.append(role)
@@ -379,7 +395,7 @@ def cmd_upload_final(args: argparse.Namespace) -> None:
         print("─" * 60)
         print(text_data["simplified_text"])
         print("─" * 60)
-        for role in IMAGE_ROLES:
+        for role in expected_roles:
             print(f"صورة {role}: {image_paths[role]}")
         print("─" * 60)
         print(
@@ -394,7 +410,7 @@ def cmd_upload_final(args: argparse.Namespace) -> None:
             continue
 
         images_payload = []
-        for role in IMAGE_ROLES:
+        for role in expected_roles:
             local_path = image_paths[role]
             object_path = f"{story_id}/{role}{local_path.suffix.lower()}"
             url = _upload_storage_object(local_path, object_path)
