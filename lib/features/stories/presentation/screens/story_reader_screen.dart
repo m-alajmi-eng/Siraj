@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -13,6 +14,12 @@ const _kImageRoleOrder = {'opening': 0, 'climax': 1, 'closing': 2};
 
 /// أقصى نسبة من ارتفاع الصفحة تُخصَّص للصورة - الباقي للنص دائماً.
 const _kImageHeightFraction = 0.46;
+
+/// أقصى نسبة من عرض الصفحة يُسمح لارتفاع الصورة أن يبلغها - يمنع الصورة
+/// من أن تصبح طويلة عمودياً بشكل غير متناسب مع عرضها الفعلي على شاشة
+/// جوال ضيقة (~390px)، حتى لو كانت نسبة الارتفاع وحدها (فوق) تسمح
+/// بارتفاع أكبر. القيد الفعلي في كل صفحة هو الأصغر بين القيدين.
+const _kImageMaxWidthAspect = 0.75;
 
 /// يقسّم نص القصة (فقرات مفصولة بسطرين فارغين \n\n) إلى فقرات مفردة -
 /// كل فقرة تُعرض في صفحتها الخاصة كاملة، بلا دمج فقرتين أو أكثر في صفحة
@@ -268,7 +275,10 @@ class _StoryPage extends StatelessWidget {
       builder: (context, constraints) {
         final imageHeight = imageUrl == null
             ? 0.0
-            : constraints.maxHeight * _kImageHeightFraction;
+            : math.min(
+                constraints.maxHeight * _kImageHeightFraction,
+                constraints.maxWidth * _kImageMaxWidthAspect,
+              );
 
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: SirajSpacing.s3),
