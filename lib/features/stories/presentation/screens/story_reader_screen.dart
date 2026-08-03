@@ -338,6 +338,7 @@ class _StoryPage extends StatelessWidget {
                           fontSize: SirajSizes.s2xl,
                           fontWeight: FontWeight.w500,
                           height: SirajLineHeights.loose,
+                          letterSpacing: 0.4,
                         )),
                     ],
                   ),
