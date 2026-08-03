@@ -182,6 +182,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           return Column(
             children: [
               Expanded(
+                // TODO(قبل بناء APK): تفعيل/اختبار التمرير باللمس (يمين/يسار)
+                // بشكل حقيقي على جهاز محمول فعلي - الأزرار الحالية بديل مؤقت
+                // للاختبار على سطح المكتب فقط. لا تحذف هذا التعليق حتى يُختبَر
+                // فعلياً على جوال/آيباد حقيقي.
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: pages.length,
