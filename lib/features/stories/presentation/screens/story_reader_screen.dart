@@ -29,8 +29,8 @@ List<String> splitStoryParagraphs(String text) {
 /// مربكة.
 ///
 /// تجربة القراءة الفعلية PageView: صفحة واحدة لكل فقرة (لا دمج فقرات)،
-/// وصور الافتتاحية/الذروة/الختامية تُثبَّت على صفحاتها المقابلة (الأولى/
-/// الوسطى/الأخيرة) بنسبة ارتفاع ثابتة من الصفحة، لا تطغى على النص.
+/// وكل صفحة نصية - بلا استثناء - تعرض صورة "المرحلة" الأقرب لها
+/// (افتتاحية/ذروة/ختامية) بنسبة ارتفاع محدودة من الصفحة، لا تطغى على النص.
 class StoryReaderScreen extends ConsumerStatefulWidget {
   final int storyId;
   final String titleAr;
@@ -81,22 +81,44 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           .compareTo(_kImageRoleOrder[b['role']] ?? 99));
   }
 
-  /// يربط كل صورة بصفحتها حسب دورها: الافتتاحية أول صفحة، الختامية آخر
-  /// صفحة، الذروة (إن وُجدت) الصفحة الوسطى. صفحات بلا دور مطابق تبقى
-  /// نصاً خالصاً - وهذا طبيعي في كتيّب مصوَّر، لا كل صفحة تحتاج صورة.
+  /// يضمن صورة لكل صفحة نصية بلا استثناء: عدد الفقرات غالباً أكبر من عدد
+  /// الصور (افتتاحية/ذروة/ختامية)، فكل صفحة تأخذ صورة "المرحلة" الأقرب
+  /// لها حتى لو لم تملك صورة أصلية مطابقة - النصف الأول من الصفحات
+  /// يعرض صورة الافتتاحية، الثلث الأوسط (إن وُجدت صورة ذروة) يعرض
+  /// صورة الذروة، والباقي يعرض صورة الختامية.
   Map<int, String> _imagePageMap(
       List<Map<String, dynamic>> sortedRows, int pageCount) {
-    final map = <int, String>{};
+    String? opening, climax, closing;
     for (final row in sortedRows) {
-      final idx = switch (row['role']) {
-        'opening' => 0,
-        'closing' => pageCount - 1,
-        'climax' => pageCount ~/ 2,
-        _ => 0,
-      };
-      map[idx] = row['url'] as String;
+      final url = row['url'] as String;
+      switch (row['role']) {
+        case 'opening': opening = url;
+        case 'climax': climax = url;
+        case 'closing': closing = url;
+      }
+    }
+
+    final map = <int, String>{};
+    for (var i = 0; i < pageCount; i++) {
+      final url = _phaseImage(i, pageCount, opening, climax, closing);
+      if (url != null) map[i] = url;
     }
     return map;
+  }
+
+  /// صورة المرحلة المناسبة لفهرس صفحة بعينها، مع رجوع لأقرب صورة متاحة
+  /// إن كانت صورة المرحلة المتوقعة (افتتاحية/ذروة/ختامية) غير موجودة.
+  String? _phaseImage(int index, int pageCount, String? opening,
+      String? climax, String? closing) {
+    if (climax != null && pageCount >= 3) {
+      final third = pageCount / 3;
+      if (index < third) return opening ?? climax;
+      if (index < third * 2) return climax;
+      return closing ?? climax;
+    }
+    final half = pageCount / 2;
+    if (index < half) return opening ?? closing ?? climax;
+    return closing ?? opening ?? climax;
   }
 
   @override
