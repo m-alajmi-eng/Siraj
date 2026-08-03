@@ -35,6 +35,11 @@ OPTIONAL_FIELDS = (
     "lessons",
     "tags",
     "order_index",
+    "source_book",
+    "author",
+    "source_volume",
+    "source_page",
+    "source_url",
 )
 
 
@@ -98,6 +103,12 @@ def main() -> None:
     print(f"الفترة: {story.get('period', '(بلا)')}")
     print(f"ترتيب العرض: {story.get('order_index', '(بلا)')}")
     print(f"الوسوم: {story.get('tags', [])}")
+    print("─" * 60)
+    print(f"الكتاب المصدر (source_book): {story.get('source_book', '(بلا)')}")
+    print(f"المؤلف (author): {story.get('author', '(بلا)')}")
+    print(f"الجزء (source_volume): {story.get('source_volume', '(بلا)')}")
+    print(f"الصفحة (source_page): {story.get('source_page', '(بلا)')}")
+    print(f"رابط المصدر (source_url): {story.get('source_url', '(بلا)')}")
     print("─" * 60)
     print("الملخص (summary_ar):")
     print(story.get("summary_ar", "(بلا)"))
