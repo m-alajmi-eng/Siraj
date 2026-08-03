@@ -6,6 +6,7 @@ import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
 import '../../../../core/theme/time_theme_provider.dart';
 import '../../../../core/widgets/app_scaffold.dart';
+import 'story_biography_reader_screen.dart';
 
 class StoriesScreen extends ConsumerStatefulWidget {
   const StoriesScreen({super.key});
@@ -32,7 +33,7 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
   Future<List<Map>> _fetchStories(String category) async {
     final res = await Supabase.instance.client
         .from('stories')
-        .select('id, title_ar, person_name, period, summary_ar')
+        .select('id, title_ar, person_name, period, summary_ar, content_ar')
         .eq('category', category)
         .order('order_index');
     return List<Map>.from(res);
@@ -115,56 +116,69 @@ class _StoriesList extends StatelessWidget {
           itemCount: items.length,
           itemBuilder: (_, i) {
             final s = items[i];
-            return Container(
-              margin: const EdgeInsets.only(bottom: SirajSpacing.s3),
-              padding: const EdgeInsets.all(SirajSpacing.s4),
-              decoration: BoxDecoration(
-                color: palette.surface,
-                borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-                border: Border.all(color: palette.accentPrimary.withValues(alpha: 0.1)),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    width: 48, height: 48,
-                    decoration: BoxDecoration(
-                      color: palette.accentPrimary.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(SirajRadiusFull.md),
-                    ),
-                    child: Icon(Icons.person, color: palette.accentPrimary),
+            final hasContent = (s['content_ar'] as String?)?.trim().isNotEmpty ?? false;
+            return GestureDetector(
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => StoryBiographyReaderScreen(
+                    storyId: s['id'] as int,
+                    titleAr: s['title_ar'] ?? '',
                   ),
-                  const SizedBox(width: SirajSpacing.s3),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(s['title_ar'] ?? '',
-                          textAlign: TextAlign.right,
-                          textDirection: TextDirection.rtl,
-                          style: AppText.body.copyWith(
-                            color: palette.textPrimary, fontWeight: FontWeight.w600)),
-                        if (s['period'] != null) ...[
-                          const SizedBox(height: SirajSpacing.s1),
-                          Text(s['period'],
+                ),
+              ),
+              child: Container(
+                margin: const EdgeInsets.only(bottom: SirajSpacing.s3),
+                padding: const EdgeInsets.all(SirajSpacing.s4),
+                decoration: BoxDecoration(
+                  color: palette.surface,
+                  borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+                  border: Border.all(color: palette.accentPrimary.withValues(alpha: 0.1)),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 48, height: 48,
+                      decoration: BoxDecoration(
+                        color: palette.accentPrimary.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+                      ),
+                      child: Icon(Icons.person, color: palette.accentPrimary),
+                    ),
+                    const SizedBox(width: SirajSpacing.s3),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(s['title_ar'] ?? '',
                             textAlign: TextAlign.right,
                             textDirection: TextDirection.rtl,
-                            style: AppText.caption.copyWith(color: palette.textSecondary)),
+                            style: AppText.body.copyWith(
+                              color: palette.textPrimary, fontWeight: FontWeight.w600)),
+                          if (s['period'] != null) ...[
+                            const SizedBox(height: SirajSpacing.s1),
+                            Text(s['period'],
+                              textAlign: TextAlign.right,
+                              textDirection: TextDirection.rtl,
+                              style: AppText.caption.copyWith(color: palette.textSecondary)),
+                          ],
                         ],
-                      ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: SirajSpacing.s2),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: SirajSpacing.s2, vertical: SirajSpacing.s1),
-                    decoration: BoxDecoration(
-                      color: palette.accentPrimary.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(SirajRadiusFull.sm),
-                    ),
-                    child: Text(t.stories_comingSoon, style: AppText.caption.copyWith(
-                      color: palette.accentPrimary, fontSize: SirajSizes.sSm)),
-                  ),
-                ],
+                    if (!hasContent) ...[
+                      const SizedBox(width: SirajSpacing.s2),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: SirajSpacing.s2, vertical: SirajSpacing.s1),
+                        decoration: BoxDecoration(
+                          color: palette.accentPrimary.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(SirajRadiusFull.sm),
+                        ),
+                        child: Text(t.stories_comingSoon, style: AppText.caption.copyWith(
+                          color: palette.accentPrimary, fontSize: SirajSizes.sSm)),
+                      ),
+                    ],
+                  ],
+                ),
               ),
             );
           },
