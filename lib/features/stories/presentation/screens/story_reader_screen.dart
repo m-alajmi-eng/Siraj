@@ -52,6 +52,19 @@ class StoryReaderScreen extends ConsumerStatefulWidget {
 class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   final _pageController = PageController();
   int _currentPage = 0;
+  // يُخزَّن مرة واحدة في initState - لو استُدعي _fetchStory() مباشرة داخل
+  // FutureBuilder.future ضمن build()، كل setState (مثل onPageChanged عند
+  // كل قلب صفحة) يُنشئ Future جديداً، فيعيد FutureBuilder حالة الانتظار
+  // ويهدم PageView بأكملها؛ لأن _pageController نفسه يُعاد ربطه بشجرة
+  // جديدة بلا موضع تمرير محفوظ، تقفز الصفحة فعلياً إلى البداية (0) بدل
+  // الانتقال لحيث ضغط المستخدم - وهذا ما بدا وكأن "الصفحة لا تتغيّر".
+  late final Future<Map<String, dynamic>?> _storyFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _storyFuture = _fetchStory();
+  }
 
   Future<Map<String, dynamic>?> _fetchStory() async {
     final res = await Supabase.instance.client
@@ -103,7 +116,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
       title: widget.titleAr,
       showBack: true,
       child: FutureBuilder<Map<String, dynamic>?>(
-        future: _fetchStory(),
+        future: _storyFuture,
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.waiting) {
             return Center(
