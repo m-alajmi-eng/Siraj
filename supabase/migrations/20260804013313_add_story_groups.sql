@@ -3,8 +3,14 @@
 -- هذه الجلسة** (لم يُذكَر story_groups قبل الآن إطلاقاً)، بل اجتهاد
 -- معقول يتّبع نفس أنماط المشروع القائمة (SECURITY DEFINER، is_published
 -- بلا مسار كتابة آلي، لا مفتاح خدمة). راجع
--- tools/stories_biography/NEEDS_REVIEW.md قبل push هذه المهجرة على
--- المشروع البعيد - **لم تُنفَّذ db push بعد، اختبار محلي فقط**.
+-- tools/stories_biography/NEEDS_REVIEW.md.
+--
+-- 2026-08-05: أُضيفت 6 slugs إضافية بطلب محمد الصريح (ashara_mubashara/
+-- ummahat_muminin/kuttab_wahy/khaybar/muta/hunayn) - مطابقة لمجموعات
+-- فعلية موثَّقة في progress_log.md ومسجَّلة محلياً في حقل intended_group
+-- بملفات tools/stories_biography/ready/**/*.json. **موافقة محمد الصريحة
+-- على db push لهذه المهجرة تحديداً وردت في نفس الرسالة** - راجع محضر
+-- المحادثة. push نُفِّذ بعد عرض هذا الملف عليه.
 --
 -- لا تعديل مباشر على is_published أو reviewed_by/reviewed_at - هذه
 -- المهجرة تضيف تصنيفاً تنظيمياً فقط (أي مجموعة مصدرية تنتمي إليها كل
@@ -32,11 +38,17 @@ REVOKE ALL ON SEQUENCE public.story_groups_id_seq FROM anon;
 REVOKE ALL ON SEQUENCE public.story_groups_id_seq FROM authenticated;
 
 INSERT INTO public.story_groups (slug, title_ar) VALUES
-  ('badr',    'أهل بدر'),
-  ('uhud',    'أهل أُحد'),
-  ('ridwan',  'بيعة الرضوان'),
-  ('tabieen', 'التابعون'),
-  ('ulama',   'العلماء')
+  ('badr',              'أهل بدر'),
+  ('uhud',              'أهل أُحد'),
+  ('ridwan',            'بيعة الرضوان'),
+  ('tabieen',           'التابعون'),
+  ('ulama',             'العلماء'),
+  ('ashara_mubashara',  'العشرة المبشرون بالجنة'),
+  ('ummahat_muminin',   'أمهات المؤمنين'),
+  ('kuttab_wahy',       'كتّاب الوحي'),
+  ('khaybar',           'أهل خيبر'),
+  ('muta',              'أهل مؤتة'),
+  ('hunayn',            'أهل حنين وأوطاس')
 ON CONFLICT (slug) DO NOTHING;
 
 ALTER TABLE public.stories ADD COLUMN IF NOT EXISTS group_slug text

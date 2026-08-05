@@ -590,7 +590,16 @@ class AppLocalizationsSw extends AppLocalizations {
   String get stories_prophets => 'Mitume';
 
   @override
+  String get children_category_values => 'Maadili';
+
+  @override
+  String get children_category_quran => 'Hadithi za Kiquraan';
+
+  @override
   String get stories_companions => 'Maswahaba';
+
+  @override
+  String get stories_tabieen => 'Tabiina';
 
   @override
   String get stories_scholars => 'Wanazuoni';
@@ -601,6 +610,24 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get stories_comingSoonMsg =>
       'Inakuja hivi karibuni — maudhui yanaandaliwa';
+
+  @override
+  String get stories_all => 'Zote';
+
+  @override
+  String get stories_otherCompanions => 'Masahaba Wengine';
+
+  @override
+  String get stories_fourImams => 'Maimamu Wanne';
+
+  @override
+  String get stories_otherScholars => 'Wasomi Wengine';
+
+  @override
+  String get stories_searchHint => 'Tafuta kwa jina...';
+
+  @override
+  String get stories_noResults => 'Hakuna matokeo';
 
   @override
   String get children_title => 'Hadithi za Watoto';

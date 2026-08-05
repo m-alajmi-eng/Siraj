@@ -589,7 +589,16 @@ class AppLocalizationsHa extends AppLocalizations {
   String get stories_prophets => 'Annabawa';
 
   @override
+  String get children_category_values => 'Dabi\'u';
+
+  @override
+  String get children_category_quran => 'Labaran Kur\'ani';
+
+  @override
   String get stories_companions => 'Sahabbai';
+
+  @override
+  String get stories_tabieen => 'Tabi\'ai';
 
   @override
   String get stories_scholars => 'Malamai';
@@ -600,6 +609,24 @@ class AppLocalizationsHa extends AppLocalizations {
   @override
   String get stories_comingSoonMsg =>
       'Nan ba da jimawa ba — ana shirya abun ciki';
+
+  @override
+  String get stories_all => 'Duka';
+
+  @override
+  String get stories_otherCompanions => 'Wasu Sahabbai';
+
+  @override
+  String get stories_fourImams => 'Manyan Imamai Hudu';
+
+  @override
+  String get stories_otherScholars => 'Sauran Malamai';
+
+  @override
+  String get stories_searchHint => 'Nemo ta suna...';
+
+  @override
+  String get stories_noResults => 'Babu sakamako';
 
   @override
   String get children_title => 'Labaran Yara';

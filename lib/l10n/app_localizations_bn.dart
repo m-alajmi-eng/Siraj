@@ -590,7 +590,16 @@ class AppLocalizationsBn extends AppLocalizations {
   String get stories_prophets => 'নবিগণ';
 
   @override
+  String get children_category_values => 'মূল্যবোধ';
+
+  @override
+  String get children_category_quran => 'কুরআনের গল্প';
+
+  @override
   String get stories_companions => 'সাহাবিগণ';
+
+  @override
+  String get stories_tabieen => 'তাবিঈন';
 
   @override
   String get stories_scholars => 'আলিমগণ';
@@ -600,6 +609,24 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get stories_comingSoonMsg => 'শীঘ্রই আসছে — কনটেন্ট প্রস্তুত হচ্ছে';
+
+  @override
+  String get stories_all => 'সব';
+
+  @override
+  String get stories_otherCompanions => 'অন্যান্য সাহাবী';
+
+  @override
+  String get stories_fourImams => 'চার ইমাম';
+
+  @override
+  String get stories_otherScholars => 'অন্যান্য আলেম';
+
+  @override
+  String get stories_searchHint => 'নাম দিয়ে খুঁজুন...';
+
+  @override
+  String get stories_noResults => 'কোনো ফলাফল পাওয়া যায়নি';
 
   @override
   String get children_title => 'শিশুদের গল্প';

@@ -589,7 +589,16 @@ class AppLocalizationsFa extends AppLocalizations {
   String get stories_prophets => 'پیامبران';
 
   @override
+  String get children_category_values => 'ارزش‌ها';
+
+  @override
+  String get children_category_quran => 'داستان‌های قرآنی';
+
+  @override
   String get stories_companions => 'صحابه';
+
+  @override
+  String get stories_tabieen => 'تابعین';
 
   @override
   String get stories_scholars => 'علما';
@@ -599,6 +608,24 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get stories_comingSoonMsg => 'به‌زودی — محتوا در حال آماده‌سازی است';
+
+  @override
+  String get stories_all => 'همه';
+
+  @override
+  String get stories_otherCompanions => 'دیگر صحابه';
+
+  @override
+  String get stories_fourImams => 'چهار امام';
+
+  @override
+  String get stories_otherScholars => 'دیگر علما';
+
+  @override
+  String get stories_searchHint => 'جستجو بر اساس نام...';
+
+  @override
+  String get stories_noResults => 'نتیجه‌ای یافت نشد';
 
   @override
   String get children_title => 'داستان‌های کودکان';

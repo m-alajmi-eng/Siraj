@@ -587,7 +587,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get stories_prophets => '众先知';
 
   @override
+  String get children_category_values => '价值观';
+
+  @override
+  String get children_category_quran => '古兰经故事';
+
+  @override
   String get stories_companions => '圣门弟子';
+
+  @override
+  String get stories_tabieen => '再传弟子';
 
   @override
   String get stories_scholars => '学者';
@@ -597,6 +606,24 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get stories_comingSoonMsg => '即将推出 — 内容准备中';
+
+  @override
+  String get stories_all => '全部';
+
+  @override
+  String get stories_otherCompanions => '其他圣门弟子';
+
+  @override
+  String get stories_fourImams => '四大伊玛目';
+
+  @override
+  String get stories_otherScholars => '其他学者';
+
+  @override
+  String get stories_searchHint => '按姓名搜索...';
+
+  @override
+  String get stories_noResults => '无匹配结果';
 
   @override
   String get children_title => '儿童故事';

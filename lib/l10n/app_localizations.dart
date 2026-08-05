@@ -1228,11 +1228,29 @@ abstract class AppLocalizations {
   /// **'الأنبياء'**
   String get stories_prophets;
 
+  /// No description provided for @children_category_values.
+  ///
+  /// In ar, this message translates to:
+  /// **'قيم'**
+  String get children_category_values;
+
+  /// No description provided for @children_category_quran.
+  ///
+  /// In ar, this message translates to:
+  /// **'قصص قرآنية'**
+  String get children_category_quran;
+
   /// No description provided for @stories_companions.
   ///
   /// In ar, this message translates to:
   /// **'الصحابة'**
   String get stories_companions;
+
+  /// No description provided for @stories_tabieen.
+  ///
+  /// In ar, this message translates to:
+  /// **'التابعون'**
+  String get stories_tabieen;
 
   /// No description provided for @stories_scholars.
   ///
@@ -1251,6 +1269,42 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'قريباً — نعمل على إضافة المحتوى'**
   String get stories_comingSoonMsg;
+
+  /// No description provided for @stories_all.
+  ///
+  /// In ar, this message translates to:
+  /// **'الكل'**
+  String get stories_all;
+
+  /// No description provided for @stories_otherCompanions.
+  ///
+  /// In ar, this message translates to:
+  /// **'صحابة آخرون'**
+  String get stories_otherCompanions;
+
+  /// No description provided for @stories_fourImams.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأئمة الأربعة'**
+  String get stories_fourImams;
+
+  /// No description provided for @stories_otherScholars.
+  ///
+  /// In ar, this message translates to:
+  /// **'بقية العلماء'**
+  String get stories_otherScholars;
+
+  /// No description provided for @stories_searchHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث بالاسم...'**
+  String get stories_searchHint;
+
+  /// No description provided for @stories_noResults.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا نتائج مطابقة'**
+  String get stories_noResults;
 
   /// No description provided for @children_title.
   ///

@@ -590,7 +590,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get stories_prophets => 'Пророки';
 
   @override
+  String get children_category_values => 'Ценности';
+
+  @override
+  String get children_category_quran => 'Коранические истории';
+
+  @override
   String get stories_companions => 'Сподвижники';
+
+  @override
+  String get stories_tabieen => 'Табиины';
 
   @override
   String get stories_scholars => 'Учёные';
@@ -600,6 +609,24 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get stories_comingSoonMsg => 'Скоро — контент готовится';
+
+  @override
+  String get stories_all => 'Все';
+
+  @override
+  String get stories_otherCompanions => 'Другие сподвижники';
+
+  @override
+  String get stories_fourImams => 'Четыре имама';
+
+  @override
+  String get stories_otherScholars => 'Другие учёные';
+
+  @override
+  String get stories_searchHint => 'Поиск по имени...';
+
+  @override
+  String get stories_noResults => 'Нет результатов';
 
   @override
   String get children_title => 'Детские истории';

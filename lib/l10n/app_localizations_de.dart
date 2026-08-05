@@ -590,7 +590,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get stories_prophets => 'Propheten';
 
   @override
+  String get children_category_values => 'Werte';
+
+  @override
+  String get children_category_quran => 'Koranische Geschichten';
+
+  @override
   String get stories_companions => 'Gefährten';
+
+  @override
+  String get stories_tabieen => 'Tabi\'un';
 
   @override
   String get stories_scholars => 'Gelehrte';
@@ -600,6 +609,24 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get stories_comingSoonMsg => 'Demnächst — Inhalt wird vorbereitet';
+
+  @override
+  String get stories_all => 'Alle';
+
+  @override
+  String get stories_otherCompanions => 'Weitere Gefährten';
+
+  @override
+  String get stories_fourImams => 'Die vier Imame';
+
+  @override
+  String get stories_otherScholars => 'Weitere Gelehrte';
+
+  @override
+  String get stories_searchHint => 'Nach Namen suchen...';
+
+  @override
+  String get stories_noResults => 'Keine Treffer';
 
   @override
   String get children_title => 'Kindergeschichten';

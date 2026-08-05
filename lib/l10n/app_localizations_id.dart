@@ -590,7 +590,16 @@ class AppLocalizationsId extends AppLocalizations {
   String get stories_prophets => 'Para Nabi';
 
   @override
+  String get children_category_values => 'Nilai';
+
+  @override
+  String get children_category_quran => 'Kisah Al-Quran';
+
+  @override
   String get stories_companions => 'Para Sahabat';
+
+  @override
+  String get stories_tabieen => 'Para Tabi\'in';
 
   @override
   String get stories_scholars => 'Para Ulama';
@@ -600,6 +609,24 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get stories_comingSoonMsg => 'Segera hadir — konten dalam proses';
+
+  @override
+  String get stories_all => 'Semua';
+
+  @override
+  String get stories_otherCompanions => 'Sahabat Lainnya';
+
+  @override
+  String get stories_fourImams => 'Empat Imam';
+
+  @override
+  String get stories_otherScholars => 'Ulama Lainnya';
+
+  @override
+  String get stories_searchHint => 'Cari berdasarkan nama...';
+
+  @override
+  String get stories_noResults => 'Tidak ada hasil';
 
   @override
   String get children_title => 'Kisah Anak';

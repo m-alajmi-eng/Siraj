@@ -588,7 +588,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get stories_prophets => 'الأنبياء';
 
   @override
+  String get children_category_values => 'قيم';
+
+  @override
+  String get children_category_quran => 'قصص قرآنية';
+
+  @override
   String get stories_companions => 'الصحابة';
+
+  @override
+  String get stories_tabieen => 'التابعون';
 
   @override
   String get stories_scholars => 'العلماء';
@@ -598,6 +607,24 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get stories_comingSoonMsg => 'قريباً — نعمل على إضافة المحتوى';
+
+  @override
+  String get stories_all => 'الكل';
+
+  @override
+  String get stories_otherCompanions => 'صحابة آخرون';
+
+  @override
+  String get stories_fourImams => 'الأئمة الأربعة';
+
+  @override
+  String get stories_otherScholars => 'بقية العلماء';
+
+  @override
+  String get stories_searchHint => 'ابحث بالاسم...';
+
+  @override
+  String get stories_noResults => 'لا نتائج مطابقة';
 
   @override
   String get children_title => 'قصص الأطفال';

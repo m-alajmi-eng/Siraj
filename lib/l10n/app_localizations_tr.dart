@@ -590,7 +590,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get stories_prophets => 'Peygamberler';
 
   @override
+  String get children_category_values => 'Değerler';
+
+  @override
+  String get children_category_quran => 'Kur\'an Kıssaları';
+
+  @override
   String get stories_companions => 'Sahabeler';
+
+  @override
+  String get stories_tabieen => 'Tabiîn';
 
   @override
   String get stories_scholars => 'Âlimler';
@@ -600,6 +609,24 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get stories_comingSoonMsg => 'Yakında — içerik hazırlanıyor';
+
+  @override
+  String get stories_all => 'Tümü';
+
+  @override
+  String get stories_otherCompanions => 'Diğer Sahabeler';
+
+  @override
+  String get stories_fourImams => 'Dört İmam';
+
+  @override
+  String get stories_otherScholars => 'Diğer Âlimler';
+
+  @override
+  String get stories_searchHint => 'İsme göre ara...';
+
+  @override
+  String get stories_noResults => 'Sonuç bulunamadı';
 
   @override
   String get children_title => 'Çocuk Hikâyeleri';
