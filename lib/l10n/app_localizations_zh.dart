@@ -620,6 +620,21 @@ class AppLocalizationsZh extends AppLocalizations {
   String get stories_otherScholars => '其他学者';
 
   @override
+  String get stories_sevenFuqaha => '七大法学家';
+
+  @override
+  String get stories_ahlBayt => '先知圣裔';
+
+  @override
+  String get stories_otherTabieen => '其他再传弟子';
+
+  @override
+  String get stories_zuhhad => '苦行者与虔修者';
+
+  @override
+  String get stories_hanafiCompanions => '艾布·哈尼法的门生';
+
+  @override
   String get stories_searchHint => '按姓名搜索...';
 
   @override

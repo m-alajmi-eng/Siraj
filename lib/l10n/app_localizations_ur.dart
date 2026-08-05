@@ -622,6 +622,21 @@ class AppLocalizationsUr extends AppLocalizations {
   String get stories_otherScholars => 'دیگر علماء';
 
   @override
+  String get stories_sevenFuqaha => 'سات فقہاء';
+
+  @override
+  String get stories_ahlBayt => 'اہل بیت نبی ﷺ سے';
+
+  @override
+  String get stories_otherTabieen => 'دیگر تابعین';
+
+  @override
+  String get stories_zuhhad => 'زاہد و عابد';
+
+  @override
+  String get stories_hanafiCompanions => 'امام ابوحنیفہ کے اصحاب';
+
+  @override
   String get stories_searchHint => 'نام سے تلاش کریں...';
 
   @override

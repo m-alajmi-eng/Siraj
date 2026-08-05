@@ -623,6 +623,21 @@ class AppLocalizationsId extends AppLocalizations {
   String get stories_otherScholars => 'Ulama Lainnya';
 
   @override
+  String get stories_sevenFuqaha => 'Tujuh Fuqaha';
+
+  @override
+  String get stories_ahlBayt => 'Dari Ahlul Bait Nabi ﷺ';
+
+  @override
+  String get stories_otherTabieen => 'Tabiin Lainnya';
+
+  @override
+  String get stories_zuhhad => 'Para Zahid dan Ahli Ibadah';
+
+  @override
+  String get stories_hanafiCompanions => 'Sahabat Imam Abu Hanifah';
+
+  @override
   String get stories_searchHint => 'Cari berdasarkan nama...';
 
   @override

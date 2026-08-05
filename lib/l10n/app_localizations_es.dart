@@ -623,6 +623,21 @@ class AppLocalizationsEs extends AppLocalizations {
   String get stories_otherScholars => 'Otros eruditos';
 
   @override
+  String get stories_sevenFuqaha => 'Los siete juristas';
+
+  @override
+  String get stories_ahlBayt => 'De la familia del Profeta';
+
+  @override
+  String get stories_otherTabieen => 'Otros sucesores';
+
+  @override
+  String get stories_zuhhad => 'Los ascetas y devotos';
+
+  @override
+  String get stories_hanafiCompanions => 'Compañeros del imam Abu Hanifa';
+
+  @override
   String get stories_searchHint => 'Buscar por nombre...';
 
   @override

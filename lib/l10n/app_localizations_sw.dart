@@ -624,6 +624,21 @@ class AppLocalizationsSw extends AppLocalizations {
   String get stories_otherScholars => 'Wasomi Wengine';
 
   @override
+  String get stories_sevenFuqaha => 'Mafaqihi Saba';
+
+  @override
+  String get stories_ahlBayt => 'Kutoka Ahlul-Bayt wa Mtume ﷺ';
+
+  @override
+  String get stories_otherTabieen => 'Tabiina Wengine';
+
+  @override
+  String get stories_zuhhad => 'Wazuhdi na Waabudu';
+
+  @override
+  String get stories_hanafiCompanions => 'Wafuasi wa Imam Abu Hanifa';
+
+  @override
   String get stories_searchHint => 'Tafuta kwa jina...';
 
   @override

@@ -1294,6 +1294,36 @@ abstract class AppLocalizations {
   /// **'بقية العلماء'**
   String get stories_otherScholars;
 
+  /// No description provided for @stories_sevenFuqaha.
+  ///
+  /// In ar, this message translates to:
+  /// **'الفقهاء السبعة'**
+  String get stories_sevenFuqaha;
+
+  /// No description provided for @stories_ahlBayt.
+  ///
+  /// In ar, this message translates to:
+  /// **'من آل بيت النبي ﷺ'**
+  String get stories_ahlBayt;
+
+  /// No description provided for @stories_otherTabieen.
+  ///
+  /// In ar, this message translates to:
+  /// **'بقية التابعين'**
+  String get stories_otherTabieen;
+
+  /// No description provided for @stories_zuhhad.
+  ///
+  /// In ar, this message translates to:
+  /// **'الزهاد والعبّاد'**
+  String get stories_zuhhad;
+
+  /// No description provided for @stories_hanafiCompanions.
+  ///
+  /// In ar, this message translates to:
+  /// **'أصحاب الإمام أبي حنيفة'**
+  String get stories_hanafiCompanions;
+
   /// No description provided for @stories_searchHint.
   ///
   /// In ar, this message translates to:

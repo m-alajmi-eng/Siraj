@@ -26,6 +26,16 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
 
   static const List<String> _categories = ['prophets', 'companions', 'tabieen', 'ulama'];
 
+  // TASK H-2: تصنيف فرعي للتابعين والعلماء، مقترَح نصياً لمحمد ووافق عليه
+  // بالكامل قبل التنفيذ (2026-08-06) - كل مجموعة مسندة بنص صريح داخل
+  // content_ar لكل id (راجع تقرير الاقتراح بالمحادثة)، لا تخمين. البقية
+  // (غير المدرجة بأي مجموعة) تبقى أبجدية بلا تصنيف عقدي/فرقي إضافي.
+  static const Set<int> _sevenFuqahaIds = {229, 237, 264, 228};
+  static const Set<int> _ahlBaytIds = {250, 254, 256, 265};
+  static const Set<int> _fourImamsIds = {267, 268, 283, 284};
+  static const Set<int> _hanafiCompanionsIds = {285, 275};
+  static const Set<int> _zuhhadIds = {282, 266, 272, 276, 269, 286, 273};
+
   @override
   void initState() {
     super.initState();
@@ -142,8 +152,23 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
                 palette: palette, t: t,
                 fetchStories: _fetchStories, fetchGroups: _fetchGroups,
               ),
-              _StoriesList(category: 'tabieen', palette: palette, fetch: _fetchStories, t: t),
-              _UlamaList(palette: palette, t: t, fetch: _fetchStories),
+              _SectionedList(
+                palette: palette, t: t, category: 'tabieen', fetch: _fetchStories,
+                restLabel: t.stories_otherTabieen,
+                sections: [
+                  _StorySection(label: t.stories_sevenFuqaha, ids: _sevenFuqahaIds),
+                  _StorySection(label: t.stories_ahlBayt, ids: _ahlBaytIds),
+                ],
+              ),
+              _SectionedList(
+                palette: palette, t: t, category: 'ulama', fetch: _fetchStories,
+                restLabel: t.stories_otherScholars,
+                sections: [
+                  _StorySection(label: t.stories_fourImams, ids: _fourImamsIds),
+                  _StorySection(label: t.stories_hanafiCompanions, ids: _hanafiCompanionsIds),
+                  _StorySection(label: t.stories_zuhhad, ids: _zuhhadIds),
+                ],
+              ),
             ],
           ),
         ),
@@ -522,22 +547,32 @@ class _CompanionsListState extends State<_CompanionsList> {
   }
 }
 
-// TASK M-3a: قسم ثابت "الأئمة الأربعة" (أبو حنيفة، مالك، الشافعي، أحمد بن
-// حنبل تحديداً بطلب محمد الصريح) أعلى تبويب العلماء، ثم البقية أبجدياً
-// (TASK N) تحت "بقية العلماء". تصنيف البقية الفرعي (محدّثون/زهّاد...)
-// مقترَح نصياً فقط بانتظار الموافقة - لم يُطبَّق هنا.
-class _UlamaList extends StatelessWidget {
+// TASK H-2: مجموعة فرعية ثابتة بمعرّفات id صريحة (فقهاء سبعة/آل بيت/
+// أئمة أربعة/أصحاب أبي حنيفة/زهّاد) - كل مجموعة تُعرض بعنوانها إن وُجد
+// فيها صف واحد على الأقل، بنفس ترتيب `sections`، ثم البقية أبجدياً
+// (TASK N) تحت `restLabel` بلا أي تصنيف إضافي.
+class _StorySection {
+  final String label;
+  final Set<int> ids;
+  const _StorySection({required this.label, required this.ids});
+}
+
+class _SectionedList extends StatelessWidget {
   final dynamic palette;
   final AppLocalizations t;
+  final String category;
   final Future<List<Map>> Function(String) fetch;
-  const _UlamaList({required this.palette, required this.t, required this.fetch});
-
-  static const Set<int> _fourImamsIds = {267, 268, 283, 284};
+  final List<_StorySection> sections;
+  final String restLabel;
+  const _SectionedList({
+    required this.palette, required this.t, required this.category,
+    required this.fetch, required this.sections, required this.restLabel,
+  });
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Map>>(
-      future: fetch('ulama'),
+      future: fetch(category),
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator(color: palette.accentPrimary));
@@ -549,22 +584,22 @@ class _UlamaList extends StatelessWidget {
               style: AppText.body.copyWith(color: palette.textSecondary)),
           );
         }
-        final fourImams = all.where((s) => _fourImamsIds.contains(s['id'] as int)).toList();
-        final others = all.where((s) => !_fourImamsIds.contains(s['id'] as int)).toList();
-        return ListView(
-          padding: const EdgeInsets.all(SirajSpacing.s4),
-          children: [
-            if (fourImams.isNotEmpty) ...[
-              _SectionHeader(label: t.stories_fourImams, palette: palette),
-              for (final s in fourImams) _StoryCard(story: s, palette: palette),
-              const SizedBox(height: SirajSpacing.s2),
-            ],
-            if (others.isNotEmpty) ...[
-              _SectionHeader(label: t.stories_otherScholars, palette: palette),
-              for (final s in others) _StoryCard(story: s, palette: palette),
-            ],
-          ],
-        );
+        final claimed = <int>{};
+        final blocks = <Widget>[];
+        for (final section in sections) {
+          final items = all.where((s) => section.ids.contains(s['id'] as int)).toList();
+          if (items.isEmpty) continue;
+          claimed.addAll(section.ids);
+          blocks.add(_SectionHeader(label: section.label, palette: palette));
+          blocks.addAll(items.map((s) => _StoryCard(story: s, palette: palette)));
+          blocks.add(const SizedBox(height: SirajSpacing.s2));
+        }
+        final rest = all.where((s) => !claimed.contains(s['id'] as int)).toList();
+        if (rest.isNotEmpty) {
+          blocks.add(_SectionHeader(label: restLabel, palette: palette));
+          blocks.addAll(rest.map((s) => _StoryCard(story: s, palette: palette)));
+        }
+        return ListView(padding: const EdgeInsets.all(SirajSpacing.s4), children: blocks);
       },
     );
   }

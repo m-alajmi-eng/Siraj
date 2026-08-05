@@ -623,6 +623,21 @@ class AppLocalizationsRu extends AppLocalizations {
   String get stories_otherScholars => 'Другие учёные';
 
   @override
+  String get stories_sevenFuqaha => 'Семь факихов';
+
+  @override
+  String get stories_ahlBayt => 'Из семьи Пророка ﷺ';
+
+  @override
+  String get stories_otherTabieen => 'Другие табиины';
+
+  @override
+  String get stories_zuhhad => 'Аскеты и подвижники';
+
+  @override
+  String get stories_hanafiCompanions => 'Сподвижники имама Абу Ханифы';
+
+  @override
   String get stories_searchHint => 'Поиск по имени...';
 
   @override

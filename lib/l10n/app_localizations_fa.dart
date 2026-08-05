@@ -622,6 +622,21 @@ class AppLocalizationsFa extends AppLocalizations {
   String get stories_otherScholars => 'دیگر علما';
 
   @override
+  String get stories_sevenFuqaha => 'فقهای هفت‌گانه';
+
+  @override
+  String get stories_ahlBayt => 'از اهل بیت پیامبر ﷺ';
+
+  @override
+  String get stories_otherTabieen => 'دیگر تابعین';
+
+  @override
+  String get stories_zuhhad => 'زاهدان و عابدان';
+
+  @override
+  String get stories_hanafiCompanions => 'یاران امام ابوحنیفه';
+
+  @override
   String get stories_searchHint => 'جستجو بر اساس نام...';
 
   @override

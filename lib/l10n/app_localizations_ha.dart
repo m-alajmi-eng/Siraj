@@ -623,6 +623,21 @@ class AppLocalizationsHa extends AppLocalizations {
   String get stories_otherScholars => 'Sauran Malamai';
 
   @override
+  String get stories_sevenFuqaha => 'Fukaha Bakwai';
+
+  @override
+  String get stories_ahlBayt => 'Daga Iyalan Annabi ﷺ';
+
+  @override
+  String get stories_otherTabieen => 'Sauran Tabi\'ai';
+
+  @override
+  String get stories_zuhhad => 'Zahidawa da Masu Ibada';
+
+  @override
+  String get stories_hanafiCompanions => 'Sahabban Imam Abu Hanifa';
+
+  @override
   String get stories_searchHint => 'Nemo ta suna...';
 
   @override

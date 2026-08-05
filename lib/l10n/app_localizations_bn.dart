@@ -623,6 +623,21 @@ class AppLocalizationsBn extends AppLocalizations {
   String get stories_otherScholars => 'অন্যান্য আলেম';
 
   @override
+  String get stories_sevenFuqaha => 'সাত ফকীহ';
+
+  @override
+  String get stories_ahlBayt => 'নবীর ﷺ আহলে বাইত থেকে';
+
+  @override
+  String get stories_otherTabieen => 'অন্যান্য তাবেয়ীন';
+
+  @override
+  String get stories_zuhhad => 'যাহিদ ও আবিদগণ';
+
+  @override
+  String get stories_hanafiCompanions => 'ইমাম আবু হানিফার সাথীগণ';
+
+  @override
   String get stories_searchHint => 'নাম দিয়ে খুঁজুন...';
 
   @override
