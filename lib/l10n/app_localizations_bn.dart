@@ -623,7 +623,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get stories_otherScholars => 'অন্যান্য আলেম';
 
   @override
-  String get stories_sevenFuqaha => 'সাত ফকীহ';
+  String get stories_sevenFuqaha => 'মদীনার ফকীহগণ';
 
   @override
   String get stories_ahlBayt => 'নবীর ﷺ আহলে বাইত থেকে';
@@ -642,6 +642,11 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get stories_sourceLinkLabel => 'মূল লেখা দেখুন';
+
+  @override
+  String stories_groupCount(int count) {
+    return '$countটি জীবনী';
+  }
 
   @override
   String get stories_searchHint => 'নাম দিয়ে খুঁজুন...';

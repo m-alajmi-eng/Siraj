@@ -259,13 +259,19 @@
   "stories_otherCompanions": "Diğer Sahabeler",
   "stories_fourImams": "Dört İmam",
   "stories_otherScholars": "Diğer Âlimler",
-  "stories_sevenFuqaha": "Yedi Fakih",
+  "stories_sevenFuqaha": "Medine Fakihleri",
   "stories_ahlBayt": "Peygamber'in Ehl-i Beytinden",
   "stories_otherTabieen": "Diğer Tabiîn",
   "stories_zuhhad": "Zahidler ve Abidler",
   "stories_hanafiCompanions": "İmam Ebu Hanife'nin Ashabı",
   "stories_sourceLabel": "Kaynak",
   "stories_sourceLinkLabel": "Orijinal Metni Görüntüle",
+  "stories_groupCount": "{count} biyografi",
+  "@stories_groupCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "stories_searchHint": "İsme göre ara...",
   "stories_noResults": "Sonuç bulunamadı",
   "children_title": "Çocuk Hikâyeleri",

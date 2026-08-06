@@ -623,7 +623,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get stories_otherScholars => 'Diğer Âlimler';
 
   @override
-  String get stories_sevenFuqaha => 'Yedi Fakih';
+  String get stories_sevenFuqaha => 'Medine Fakihleri';
 
   @override
   String get stories_ahlBayt => 'Peygamber\'in Ehl-i Beytinden';
@@ -642,6 +642,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get stories_sourceLinkLabel => 'Orijinal Metni Görüntüle';
+
+  @override
+  String stories_groupCount(int count) {
+    return '$count biyografi';
+  }
 
   @override
   String get stories_searchHint => 'İsme göre ara...';

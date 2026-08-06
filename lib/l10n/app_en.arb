@@ -280,13 +280,19 @@
   "stories_otherCompanions": "Other Companions",
   "stories_fourImams": "The Four Imams",
   "stories_otherScholars": "Other Scholars",
-  "stories_sevenFuqaha": "The Seven Jurists",
+  "stories_sevenFuqaha": "Jurists of Medina",
   "stories_ahlBayt": "From the Prophet's Household",
   "stories_otherTabieen": "Other Followers",
   "stories_zuhhad": "The Ascetics and Worshippers",
   "stories_hanafiCompanions": "Companions of Imam Abu Hanifa",
   "stories_sourceLabel": "Source",
   "stories_sourceLinkLabel": "View Original Text",
+  "stories_groupCount": "{count} biographies",
+  "@stories_groupCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "stories_searchHint": "Search by name...",
   "stories_noResults": "No matching results",
   "children_title": "Children's Stories",

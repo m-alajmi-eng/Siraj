@@ -1297,7 +1297,7 @@ abstract class AppLocalizations {
   /// No description provided for @stories_sevenFuqaha.
   ///
   /// In ar, this message translates to:
-  /// **'الفقهاء السبعة'**
+  /// **'من فقهاء المدينة السبعة'**
   String get stories_sevenFuqaha;
 
   /// No description provided for @stories_ahlBayt.
@@ -1335,6 +1335,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'عرض النص الأصلي'**
   String get stories_sourceLinkLabel;
+
+  /// No description provided for @stories_groupCount.
+  ///
+  /// In ar, this message translates to:
+  /// **'{count} ترجمة'**
+  String stories_groupCount(int count);
 
   /// No description provided for @stories_searchHint.
   ///

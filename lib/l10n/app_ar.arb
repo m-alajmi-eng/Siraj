@@ -280,13 +280,19 @@
   "stories_otherCompanions": "صحابة آخرون",
   "stories_fourImams": "الأئمة الأربعة",
   "stories_otherScholars": "بقية العلماء",
-  "stories_sevenFuqaha": "الفقهاء السبعة",
+  "stories_sevenFuqaha": "من فقهاء المدينة السبعة",
   "stories_ahlBayt": "من آل بيت النبي ﷺ",
   "stories_otherTabieen": "بقية التابعين",
   "stories_zuhhad": "الزهاد والعبّاد",
   "stories_hanafiCompanions": "أصحاب الإمام أبي حنيفة",
   "stories_sourceLabel": "المصدر",
   "stories_sourceLinkLabel": "عرض النص الأصلي",
+  "stories_groupCount": "{count} ترجمة",
+  "@stories_groupCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "stories_searchHint": "ابحث بالاسم...",
   "stories_noResults": "لا نتائج مطابقة",
   "children_title": "قصص الأطفال",

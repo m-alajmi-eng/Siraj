@@ -620,7 +620,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get stories_otherScholars => '其他学者';
 
   @override
-  String get stories_sevenFuqaha => '七大法学家';
+  String get stories_sevenFuqaha => '麦地那的法学家';
 
   @override
   String get stories_ahlBayt => '先知圣裔';
@@ -639,6 +639,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get stories_sourceLinkLabel => '查看原文';
+
+  @override
+  String stories_groupCount(int count) {
+    return '$count 篇传记';
+  }
 
   @override
   String get stories_searchHint => '按姓名搜索...';

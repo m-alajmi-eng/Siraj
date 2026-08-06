@@ -622,7 +622,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get stories_otherScholars => 'دیگر علماء';
 
   @override
-  String get stories_sevenFuqaha => 'سات فقہاء';
+  String get stories_sevenFuqaha => 'مدینہ کے فقہاء';
 
   @override
   String get stories_ahlBayt => 'اہل بیت نبی ﷺ سے';
@@ -641,6 +641,11 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get stories_sourceLinkLabel => 'اصل متن دیکھیں';
+
+  @override
+  String stories_groupCount(int count) {
+    return '$count سوانح';
+  }
 
   @override
   String get stories_searchHint => 'نام سے تلاش کریں...';

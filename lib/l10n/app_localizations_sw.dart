@@ -624,7 +624,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get stories_otherScholars => 'Wasomi Wengine';
 
   @override
-  String get stories_sevenFuqaha => 'Mafaqihi Saba';
+  String get stories_sevenFuqaha => 'Mafaqihi wa Madina';
 
   @override
   String get stories_ahlBayt => 'Kutoka Ahlul-Bayt wa Mtume ﷺ';
@@ -643,6 +643,11 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get stories_sourceLinkLabel => 'Tazama Maandishi Asili';
+
+  @override
+  String stories_groupCount(int count) {
+    return 'Wasifu $count';
+  }
 
   @override
   String get stories_searchHint => 'Tafuta kwa jina...';

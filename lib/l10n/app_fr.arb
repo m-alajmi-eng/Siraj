@@ -259,13 +259,19 @@
   "stories_otherCompanions": "Autres compagnons",
   "stories_fourImams": "Les quatre imams",
   "stories_otherScholars": "Autres savants",
-  "stories_sevenFuqaha": "Les sept juristes",
+  "stories_sevenFuqaha": "Juristes de Médine",
   "stories_ahlBayt": "De la famille du Prophète",
   "stories_otherTabieen": "Autres successeurs",
   "stories_zuhhad": "Les ascètes et dévots",
   "stories_hanafiCompanions": "Compagnons de l'imam Abou Hanifa",
   "stories_sourceLabel": "Source",
   "stories_sourceLinkLabel": "Voir le texte original",
+  "stories_groupCount": "{count} biographies",
+  "@stories_groupCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "stories_searchHint": "Rechercher par nom...",
   "stories_noResults": "Aucun résultat",
   "children_title": "Histoires pour enfants",

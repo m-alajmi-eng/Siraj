@@ -259,13 +259,19 @@
   "stories_otherCompanions": "অন্যান্য সাহাবী",
   "stories_fourImams": "চার ইমাম",
   "stories_otherScholars": "অন্যান্য আলেম",
-  "stories_sevenFuqaha": "সাত ফকীহ",
+  "stories_sevenFuqaha": "মদীনার ফকীহগণ",
   "stories_ahlBayt": "নবীর ﷺ আহলে বাইত থেকে",
   "stories_otherTabieen": "অন্যান্য তাবেয়ীন",
   "stories_zuhhad": "যাহিদ ও আবিদগণ",
   "stories_hanafiCompanions": "ইমাম আবু হানিফার সাথীগণ",
   "stories_sourceLabel": "উৎস",
   "stories_sourceLinkLabel": "মূল লেখা দেখুন",
+  "stories_groupCount": "{count}টি জীবনী",
+  "@stories_groupCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "stories_searchHint": "নাম দিয়ে খুঁজুন...",
   "stories_noResults": "কোনো ফলাফল পাওয়া যায়নি",
   "children_title": "শিশুদের গল্প",

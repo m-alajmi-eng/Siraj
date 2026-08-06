@@ -623,7 +623,7 @@ class AppLocalizationsHa extends AppLocalizations {
   String get stories_otherScholars => 'Sauran Malamai';
 
   @override
-  String get stories_sevenFuqaha => 'Fukaha Bakwai';
+  String get stories_sevenFuqaha => 'Malaman Fikihu na Madina';
 
   @override
   String get stories_ahlBayt => 'Daga Iyalan Annabi ﷺ';
@@ -642,6 +642,11 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get stories_sourceLinkLabel => 'Duba Ainihin Rubutu';
+
+  @override
+  String stories_groupCount(int count) {
+    return 'Tarihin rayuwa $count';
+  }
 
   @override
   String get stories_searchHint => 'Nemo ta suna...';

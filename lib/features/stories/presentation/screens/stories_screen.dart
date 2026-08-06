@@ -56,7 +56,7 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
         .from('stories')
         .select('id, title_ar, person_name, period, summary_ar, content_ar, group_slug')
         .eq('category', category)
-        .order(category == 'prophets' ? 'order_index' : 'title_ar');
+        .order(category == 'prophets' ? 'order_index' : 'title_ar', ascending: true);
     return List<Map>.from(res);
   }
 
@@ -64,7 +64,7 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
     final res = await Supabase.instance.client
         .from('story_groups')
         .select('slug, title_ar')
-        .order('id');
+        .order('id', ascending: true);
     return List<Map>.from(res);
   }
 
@@ -75,7 +75,7 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
     final res = await Supabase.instance.client
         .from('stories')
         .select('id, title_ar, category, person_name, period, summary_ar, content_ar')
-        .order('title_ar');
+        .order('title_ar', ascending: true);
     return List<Map>.from(res);
   }
 
@@ -284,6 +284,86 @@ class _CategoryChip extends StatelessWidget {
   }
 }
 
+// TASK O: بطاقة مجموعة موحَّدة (صحابة/تابعين/علماء) - نفس الشكل البصري
+// لبطاقات hadith_categories_screen.dart (بلا حدود، خلافاً لـ_StoryCard)،
+// النقر يفتح _GroupMembersScreen بقائمة أفراد المجموعة.
+class _GroupCard extends StatelessWidget {
+  final String label;
+  final int count;
+  final dynamic palette;
+  final AppLocalizations t;
+  final VoidCallback onTap;
+  const _GroupCard({
+    required this.label, required this.count,
+    required this.palette, required this.t, required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: SirajSpacing.s3),
+        padding: const EdgeInsets.all(SirajSpacing.s4),
+        decoration: BoxDecoration(
+          color: palette.surface,
+          borderRadius: BorderRadius.circular(SirajRadiusFull.md),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(Icons.chevron_left, color: palette.textSecondary),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(label,
+                    textAlign: TextAlign.right,
+                    textDirection: TextDirection.rtl,
+                    style: AppText.body.copyWith(
+                      color: palette.textPrimary, fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 4),
+                  Text(t.stories_groupCount(count),
+                    textAlign: TextAlign.right,
+                    textDirection: TextDirection.rtl,
+                    style: AppText.caption.copyWith(color: palette.textSecondary)),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// شاشة أفراد مجموعة واحدة (تُفتَح من _GroupCard) - القائمة مُجلَّبة مسبقاً
+// بالذاكرة، لا رحلة شبكة إضافية عند الضغط.
+class _GroupMembersScreen extends StatelessWidget {
+  final String titleAr;
+  final List<Map> items;
+  final dynamic palette;
+  final AppLocalizations t;
+  const _GroupMembersScreen({
+    required this.titleAr, required this.items,
+    required this.palette, required this.t,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AppScaffold(
+      title: titleAr,
+      padding: EdgeInsets.zero,
+      child: _StoryListView(
+        items: items,
+        palette: palette,
+        emptyMessage: t.stories_comingSoonMsg,
+        comingSoonLabel: t.stories_comingSoon,
+      ),
+    );
+  }
+}
+
 class _StoriesList extends StatelessWidget {
   final String category;
   final dynamic palette;
@@ -425,29 +505,10 @@ class _StoryCard extends StatelessWidget {
   }
 }
 
-class _SectionHeader extends StatelessWidget {
-  final String label;
-  final dynamic palette;
-  const _SectionHeader({required this.label, required this.palette});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        SirajSpacing.s1, SirajSpacing.s2, SirajSpacing.s1, SirajSpacing.s2,
-      ),
-      child: Text(label,
-        textAlign: TextAlign.right,
-        textDirection: TextDirection.rtl,
-        style: AppText.body.copyWith(color: palette.accentPrimary, fontWeight: FontWeight.bold)),
-    );
-  }
-}
-
-// TASK M-1: الصحابة مصنَّفون فرعياً بمجموعاتهم المصدرية (story_groups) -
-// شريط رقاقات أفقي يفلتر القائمة الأبجدية (TASK N) دون تغيير ترتيبها.
-// group_slug=NULL (غير مصنَّف بعد) يظهر تحت رقاقة "صحابة آخرون" منفصلة
-// إن وُجد أي صف كذلك فعلياً - لا افتراض مسبق.
+// TASK O: الصحابة مصنَّفون ببطاقة لكل مجموعة مصدرية (story_groups) -
+// النقر على بطاقة يفتح _GroupMembersScreen بأفرادها. group_slug=NULL
+// (غير مصنَّف بعد) يظهر ببطاقة "صحابة آخرون" منفصلة إن وُجد أي صف كذلك
+// فعلياً - لا افتراض مسبق. لا خيار "عرض الكل مدمجاً" - البحث يغطي هذا.
 class _CompanionsList extends StatefulWidget {
   final dynamic palette;
   final AppLocalizations t;
@@ -464,7 +525,6 @@ class _CompanionsList extends StatefulWidget {
 
 class _CompanionsListState extends State<_CompanionsList> {
   late final Future<List<List<Map>>> _future;
-  String _selectedGroup = 'all';
 
   @override
   void initState() {
@@ -488,58 +548,37 @@ class _CompanionsListState extends State<_CompanionsList> {
         final hasOther = presentSlugs.contains(null);
         final relevantGroups = groups.where((g) => presentSlugs.contains(g['slug'] as String)).toList();
 
-        final filtered = stories.where((s) {
-          if (_selectedGroup == 'all') return true;
-          if (_selectedGroup == 'other') return s['group_slug'] == null;
-          return s['group_slug'] == _selectedGroup;
-        }).toList();
-
-        return Column(
+        return ListView(
+          padding: const EdgeInsets.all(SirajSpacing.s4),
           children: [
-            SizedBox(
-              height: 40,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: SirajSpacing.s4, vertical: SirajSpacing.s2),
-                children: [
-                  _CategoryChip(
-                    label: t.stories_all,
-                    selected: _selectedGroup == 'all',
-                    palette: palette,
-                    onTap: () => setState(() => _selectedGroup = 'all'),
-                  ),
-                  for (final g in relevantGroups)
-                    Padding(
-                      padding: const EdgeInsets.only(right: SirajSpacing.s2),
-                      child: _CategoryChip(
-                        label: g['title_ar'] as String,
-                        selected: _selectedGroup == g['slug'],
-                        palette: palette,
-                        onTap: () => setState(() => _selectedGroup = g['slug'] as String),
-                      ),
-                    ),
-                  if (hasOther)
-                    Padding(
-                      padding: const EdgeInsets.only(right: SirajSpacing.s2),
-                      child: _CategoryChip(
-                        label: t.stories_otherCompanions,
-                        selected: _selectedGroup == 'other',
-                        palette: palette,
-                        onTap: () => setState(() => _selectedGroup = 'other'),
-                      ),
-                    ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: _StoryListView(
-                items: filtered,
+            for (final g in relevantGroups)
+              _GroupCard(
+                label: g['title_ar'] as String,
+                count: stories.where((s) => s['group_slug'] == g['slug']).length,
                 palette: palette,
-                emptyMessage: t.stories_comingSoonMsg,
-                comingSoonLabel: t.stories_comingSoon,
+                t: t,
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => _GroupMembersScreen(
+                    titleAr: g['title_ar'] as String,
+                    items: stories.where((s) => s['group_slug'] == g['slug']).toList(),
+                    palette: palette, t: t,
+                  ),
+                )),
               ),
-            ),
+            if (hasOther)
+              _GroupCard(
+                label: t.stories_otherCompanions,
+                count: stories.where((s) => s['group_slug'] == null).length,
+                palette: palette,
+                t: t,
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => _GroupMembersScreen(
+                    titleAr: t.stories_otherCompanions,
+                    items: stories.where((s) => s['group_slug'] == null).toList(),
+                    palette: palette, t: t,
+                  ),
+                )),
+              ),
           ],
         );
       },
@@ -547,10 +586,11 @@ class _CompanionsListState extends State<_CompanionsList> {
   }
 }
 
-// TASK H-2: مجموعة فرعية ثابتة بمعرّفات id صريحة (فقهاء سبعة/آل بيت/
-// أئمة أربعة/أصحاب أبي حنيفة/زهّاد) - كل مجموعة تُعرض بعنوانها إن وُجد
-// فيها صف واحد على الأقل، بنفس ترتيب `sections`، ثم البقية أبجدياً
-// (TASK N) تحت `restLabel` بلا أي تصنيف إضافي.
+// TASK H-2/O: مجموعة فرعية ثابتة بمعرّفات id صريحة (فقهاء سبعة/آل بيت/
+// أئمة أربعة/أصحاب أبي حنيفة/زهّاد) - كل مجموعة تُعرض ببطاقة منفصلة إن
+// وُجد فيها صف واحد على الأقل، بنفس ترتيب `sections`، ثم بطاقة "البقية"
+// أخيراً (TASK N) تحت `restLabel` بلا أي تصنيف إضافي. النقر على أي
+// بطاقة يفتح _GroupMembersScreen بأفرادها (TASK O).
 class _StorySection {
   final String label;
   final Set<int> ids;
@@ -585,21 +625,32 @@ class _SectionedList extends StatelessWidget {
           );
         }
         final claimed = <int>{};
-        final blocks = <Widget>[];
+        final cards = <Widget>[];
         for (final section in sections) {
           final items = all.where((s) => section.ids.contains(s['id'] as int)).toList();
           if (items.isEmpty) continue;
           claimed.addAll(section.ids);
-          blocks.add(_SectionHeader(label: section.label, palette: palette));
-          blocks.addAll(items.map((s) => _StoryCard(story: s, palette: palette)));
-          blocks.add(const SizedBox(height: SirajSpacing.s2));
+          cards.add(_GroupCard(
+            label: section.label, count: items.length, palette: palette, t: t,
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => _GroupMembersScreen(
+                titleAr: section.label, items: items, palette: palette, t: t,
+              ),
+            )),
+          ));
         }
         final rest = all.where((s) => !claimed.contains(s['id'] as int)).toList();
         if (rest.isNotEmpty) {
-          blocks.add(_SectionHeader(label: restLabel, palette: palette));
-          blocks.addAll(rest.map((s) => _StoryCard(story: s, palette: palette)));
+          cards.add(_GroupCard(
+            label: restLabel, count: rest.length, palette: palette, t: t,
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => _GroupMembersScreen(
+                titleAr: restLabel, items: rest, palette: palette, t: t,
+              ),
+            )),
+          ));
         }
-        return ListView(padding: const EdgeInsets.all(SirajSpacing.s4), children: blocks);
+        return ListView(padding: const EdgeInsets.all(SirajSpacing.s4), children: cards);
       },
     );
   }

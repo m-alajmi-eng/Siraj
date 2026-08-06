@@ -623,7 +623,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get stories_otherScholars => 'Weitere Gelehrte';
 
   @override
-  String get stories_sevenFuqaha => 'Die sieben Rechtsgelehrten';
+  String get stories_sevenFuqaha => 'Die Rechtsgelehrten von Medina';
 
   @override
   String get stories_ahlBayt => 'Aus dem Haus des Propheten';
@@ -642,6 +642,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get stories_sourceLinkLabel => 'Originaltext ansehen';
+
+  @override
+  String stories_groupCount(int count) {
+    return '$count Biografien';
+  }
 
   @override
   String get stories_searchHint => 'Nach Namen suchen...';

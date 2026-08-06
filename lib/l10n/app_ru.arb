@@ -259,13 +259,19 @@
   "stories_otherCompanions": "Другие сподвижники",
   "stories_fourImams": "Четыре имама",
   "stories_otherScholars": "Другие учёные",
-  "stories_sevenFuqaha": "Семь факихов",
+  "stories_sevenFuqaha": "Правоведы Медины",
   "stories_ahlBayt": "Из семьи Пророка ﷺ",
   "stories_otherTabieen": "Другие табиины",
   "stories_zuhhad": "Аскеты и подвижники",
   "stories_hanafiCompanions": "Сподвижники имама Абу Ханифы",
   "stories_sourceLabel": "Источник",
   "stories_sourceLinkLabel": "Смотреть оригинал текста",
+  "stories_groupCount": "{count} биографий",
+  "@stories_groupCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "stories_searchHint": "Поиск по имени...",
   "stories_noResults": "Нет результатов",
   "children_title": "Детские истории",

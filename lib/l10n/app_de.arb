@@ -252,13 +252,19 @@
   "stories_otherCompanions": "Weitere Gefährten",
   "stories_fourImams": "Die vier Imame",
   "stories_otherScholars": "Weitere Gelehrte",
-  "stories_sevenFuqaha": "Die sieben Rechtsgelehrten",
+  "stories_sevenFuqaha": "Die Rechtsgelehrten von Medina",
   "stories_ahlBayt": "Aus dem Haus des Propheten",
   "stories_otherTabieen": "Weitere Nachfolger",
   "stories_zuhhad": "Die Asketen und Frommen",
   "stories_hanafiCompanions": "Gefährten des Imam Abu Hanifa",
   "stories_sourceLabel": "Quelle",
   "stories_sourceLinkLabel": "Originaltext ansehen",
+  "stories_groupCount": "{count} Biografien",
+  "@stories_groupCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "stories_searchHint": "Nach Namen suchen...",
   "stories_noResults": "Keine Treffer",
   "children_title": "Kindergeschichten",
