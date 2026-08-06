@@ -635,6 +635,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get stories_hanafiCompanions => '艾布·哈尼法的门生';
 
   @override
+  String get stories_sourceLabel => '来源';
+
+  @override
+  String get stories_sourceLinkLabel => '查看原文';
+
+  @override
   String get stories_searchHint => '按姓名搜索...';
 
   @override

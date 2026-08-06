@@ -639,6 +639,12 @@ class AppLocalizationsSw extends AppLocalizations {
   String get stories_hanafiCompanions => 'Wafuasi wa Imam Abu Hanifa';
 
   @override
+  String get stories_sourceLabel => 'Chanzo';
+
+  @override
+  String get stories_sourceLinkLabel => 'Tazama Maandishi Asili';
+
+  @override
   String get stories_searchHint => 'Tafuta kwa jina...';
 
   @override

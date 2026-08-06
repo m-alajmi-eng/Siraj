@@ -638,6 +638,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get stories_hanafiCompanions => 'ইমাম আবু হানিফার সাথীগণ';
 
   @override
+  String get stories_sourceLabel => 'উৎস';
+
+  @override
+  String get stories_sourceLinkLabel => 'মূল লেখা দেখুন';
+
+  @override
   String get stories_searchHint => 'নাম দিয়ে খুঁজুন...';
 
   @override

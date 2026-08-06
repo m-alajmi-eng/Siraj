@@ -636,6 +636,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get stories_hanafiCompanions => 'أصحاب الإمام أبي حنيفة';
 
   @override
+  String get stories_sourceLabel => 'المصدر';
+
+  @override
+  String get stories_sourceLinkLabel => 'عرض النص الأصلي';
+
+  @override
   String get stories_searchHint => 'ابحث بالاسم...';
 
   @override

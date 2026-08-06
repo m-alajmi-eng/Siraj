@@ -637,6 +637,12 @@ class AppLocalizationsFa extends AppLocalizations {
   String get stories_hanafiCompanions => 'یاران امام ابوحنیفه';
 
   @override
+  String get stories_sourceLabel => 'منبع';
+
+  @override
+  String get stories_sourceLinkLabel => 'مشاهده متن اصلی';
+
+  @override
   String get stories_searchHint => 'جستجو بر اساس نام...';
 
   @override

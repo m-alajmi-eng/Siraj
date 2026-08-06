@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/design_tokens.dart';
 import '../../../../core/theme/app_text.dart';
@@ -48,7 +49,10 @@ class _StoryBiographyReaderScreenState
   Future<Map<String, dynamic>?> _fetchStory() async {
     final res = await Supabase.instance.client
         .from('stories')
-        .select('title_ar, person_name, period, content_ar')
+        .select(
+          'title_ar, person_name, period, content_ar, '
+          'source_book, author, source_volume, source_page, source_url',
+        )
         .eq('id', widget.storyId)
         .maybeSingle();
     return res;
@@ -149,11 +153,131 @@ class _StoryBiographyReaderScreenState
                     ),
                     const SizedBox(height: SirajSpacing.s4),
                   ],
+                  _SourceFooter(
+                    sourceBook: snap.data?['source_book'] as String?,
+                    author: snap.data?['author'] as String?,
+                    sourceVolume: snap.data?['source_volume'] as String?,
+                    sourcePage: snap.data?['source_page'] as String?,
+                    sourceUrl: snap.data?['source_url'] as String?,
+                    palette: palette,
+                    t: t,
+                  ),
                 ],
               ),
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+/// TASK I: هامش مصادر ثابت أسفل المتن - يُخفى بالكامل إن لم يوجد
+/// source_book (بدل عرض هامش فارغ) لأن التغطية ليست 100% لكل صف بعد.
+/// خط أصغر ولون أهدأ من المتن + فاصل أعلاه، ليتميّز بصرياً بوضوح عن
+/// النص الديني نفسه بلا التباس بينهما.
+class _SourceFooter extends StatelessWidget {
+  final String? sourceBook;
+  final String? author;
+  final String? sourceVolume;
+  final String? sourcePage;
+  final String? sourceUrl;
+  final dynamic palette;
+  final AppLocalizations t;
+  const _SourceFooter({
+    required this.sourceBook,
+    required this.author,
+    required this.sourceVolume,
+    required this.sourcePage,
+    required this.sourceUrl,
+    required this.palette,
+    required this.t,
+  });
+
+  Future<void> _openSource() async {
+    final url = sourceUrl;
+    if (url == null || url.isEmpty) return;
+    final uri = Uri.tryParse(url);
+    if (uri != null) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final book = sourceBook?.trim();
+    if (book == null || book.isEmpty) return const SizedBox.shrink();
+
+    final refParts = [
+      sourceVolume,
+      sourcePage,
+    ].where((s) => s != null && s.trim().isNotEmpty).join(' - ');
+
+    return Padding(
+      padding: const EdgeInsets.only(top: SirajSpacing.s3),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Divider(color: palette.accentPrimary.withValues(alpha: 0.15)),
+          const SizedBox(height: SirajSpacing.s2),
+          Text(
+            t.stories_sourceLabel,
+            style: AppText.caption.copyWith(
+              color: palette.textSecondary,
+              fontSize: SirajSizes.sXs,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: SirajSpacing.s1),
+          Text(
+            book,
+            style: AppText.caption.copyWith(
+              color: palette.textSecondary,
+              fontSize: SirajSizes.sSm,
+            ),
+          ),
+          if (author != null && author!.trim().isNotEmpty) ...[
+            const SizedBox(height: 2),
+            Text(
+              author!.trim(),
+              style: AppText.caption.copyWith(
+                color: palette.textSecondary,
+                fontSize: SirajSizes.sSm,
+              ),
+            ),
+          ],
+          if (refParts.isNotEmpty) ...[
+            const SizedBox(height: 2),
+            Text(
+              refParts,
+              style: AppText.caption.copyWith(
+                color: palette.textSecondary,
+                fontSize: SirajSizes.sSm,
+              ),
+            ),
+          ],
+          if (sourceUrl != null && sourceUrl!.trim().isNotEmpty) ...[
+            const SizedBox(height: SirajSpacing.s2),
+            GestureDetector(
+              onTap: _openSource,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.open_in_new, size: SirajSizes.sSm, color: palette.accentPrimary),
+                  const SizedBox(width: SirajSpacing.s1),
+                  Text(
+                    t.stories_sourceLinkLabel,
+                    style: AppText.caption.copyWith(
+                      color: palette.accentPrimary,
+                      fontSize: SirajSizes.sSm,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }

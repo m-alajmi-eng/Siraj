@@ -638,6 +638,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get stories_hanafiCompanions => 'Сподвижники имама Абу Ханифы';
 
   @override
+  String get stories_sourceLabel => 'Источник';
+
+  @override
+  String get stories_sourceLinkLabel => 'Смотреть оригинал текста';
+
+  @override
   String get stories_searchHint => 'Поиск по имени...';
 
   @override

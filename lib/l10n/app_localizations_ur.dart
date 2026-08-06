@@ -637,6 +637,12 @@ class AppLocalizationsUr extends AppLocalizations {
   String get stories_hanafiCompanions => 'امام ابوحنیفہ کے اصحاب';
 
   @override
+  String get stories_sourceLabel => 'ماخذ';
+
+  @override
+  String get stories_sourceLinkLabel => 'اصل متن دیکھیں';
+
+  @override
   String get stories_searchHint => 'نام سے تلاش کریں...';
 
   @override

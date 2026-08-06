@@ -638,6 +638,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get stories_hanafiCompanions => 'İmam Ebu Hanife\'nin Ashabı';
 
   @override
+  String get stories_sourceLabel => 'Kaynak';
+
+  @override
+  String get stories_sourceLinkLabel => 'Orijinal Metni Görüntüle';
+
+  @override
   String get stories_searchHint => 'İsme göre ara...';
 
   @override

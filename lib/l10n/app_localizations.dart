@@ -1324,6 +1324,18 @@ abstract class AppLocalizations {
   /// **'أصحاب الإمام أبي حنيفة'**
   String get stories_hanafiCompanions;
 
+  /// No description provided for @stories_sourceLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'المصدر'**
+  String get stories_sourceLabel;
+
+  /// No description provided for @stories_sourceLinkLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'عرض النص الأصلي'**
+  String get stories_sourceLinkLabel;
+
   /// No description provided for @stories_searchHint.
   ///
   /// In ar, this message translates to:

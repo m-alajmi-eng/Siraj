@@ -638,6 +638,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get stories_hanafiCompanions => 'Companions of Imam Abu Hanifa';
 
   @override
+  String get stories_sourceLabel => 'Source';
+
+  @override
+  String get stories_sourceLinkLabel => 'View Original Text';
+
+  @override
   String get stories_searchHint => 'Search by name...';
 
   @override
