@@ -274,6 +274,21 @@
   },
   "stories_searchHint": "Cari mengikut nama...",
   "stories_noResults": "Tiada hasil",
+  "stories_seerahEntry": "Sirah Nabawiyah",
+  "stories_seerahPhasesTitle": "Fasa-Fasa Sirah",
+  "stories_seerahPhase1": "Kelahiran hingga Hijrah",
+  "stories_seerahPhase2": "Hijrah hingga Badar",
+  "stories_seerahPhase3": "Uhud hingga Bani Quraizah",
+  "stories_seerahPhase4": "Bani Mustaliq hingga Khaibar",
+  "stories_seerahPhase5": "Mu'tah hingga Pembukaan Makkah dan Hunain",
+  "stories_seerahPhase6": "Tabuk dan Perutusan",
+  "stories_seerahPhase7": "Haji Wada' dan Kewafatan",
+  "stories_chapterCount": "{count} bab",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "Kisah Kanak-kanak",
   "settings_secIdentity": "Identiti",
   "onboarding_languageTitle": "Pilih Bahasa",

@@ -655,6 +655,38 @@ class AppLocalizationsHa extends AppLocalizations {
   String get stories_noResults => 'Babu sakamako';
 
   @override
+  String get stories_seerahEntry => 'Tarihin Annabi (Sira)';
+
+  @override
+  String get stories_seerahPhasesTitle => 'Matakan Sira';
+
+  @override
+  String get stories_seerahPhase1 => 'Haihuwa zuwa Hijira';
+
+  @override
+  String get stories_seerahPhase2 => 'Hijira zuwa Badar';
+
+  @override
+  String get stories_seerahPhase3 => 'Uhud zuwa Bani Kuraiza';
+
+  @override
+  String get stories_seerahPhase4 => 'Bani Mustalik zuwa Khaibar';
+
+  @override
+  String get stories_seerahPhase5 => 'Mu\'ta zuwa Cin Makka da Hunaini';
+
+  @override
+  String get stories_seerahPhase6 => 'Tabuk da Wakilai';
+
+  @override
+  String get stories_seerahPhase7 => 'Hajjin Bankwana da Rasuwa';
+
+  @override
+  String stories_chapterCount(int count) {
+    return 'Babuka $count';
+  }
+
+  @override
   String get children_title => 'Labaran Yara';
 
   @override

@@ -295,6 +295,21 @@
   },
   "stories_searchHint": "Search by name...",
   "stories_noResults": "No matching results",
+  "stories_seerahEntry": "The Prophet's Seerah ﷺ",
+  "stories_seerahPhasesTitle": "Phases of the Seerah",
+  "stories_seerahPhase1": "Birth to the Hijrah",
+  "stories_seerahPhase2": "Hijrah to Badr",
+  "stories_seerahPhase3": "Uhud to Banu Qurayzah",
+  "stories_seerahPhase4": "Banu al-Mustaliq to Khaybar",
+  "stories_seerahPhase5": "Mu'tah to the Conquest of Makkah and Hunayn",
+  "stories_seerahPhase6": "Tabuk and the Delegations",
+  "stories_seerahPhase7": "The Farewell Pilgrimage and Death",
+  "stories_chapterCount": "{count} chapters",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "Children's Stories",
   "settings_secIdentity": "Identity",
   "onboarding_languageTitle": "Choose Language",

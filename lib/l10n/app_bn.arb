@@ -274,6 +274,21 @@
   },
   "stories_searchHint": "নাম দিয়ে খুঁজুন...",
   "stories_noResults": "কোনো ফলাফল পাওয়া যায়নি",
+  "stories_seerahEntry": "নবীজির সীরাত",
+  "stories_seerahPhasesTitle": "সীরাতের পর্যায়সমূহ",
+  "stories_seerahPhase1": "জন্ম থেকে হিজরত পর্যন্ত",
+  "stories_seerahPhase2": "হিজরত থেকে বদর পর্যন্ত",
+  "stories_seerahPhase3": "উহুদ থেকে বনু কুরাইজা পর্যন্ত",
+  "stories_seerahPhase4": "বনু মুস্তালিক থেকে খাইবার পর্যন্ত",
+  "stories_seerahPhase5": "মুতা থেকে মক্কা বিজয় ও হুনাইন পর্যন্ত",
+  "stories_seerahPhase6": "তাবুক ও প্রতিনিধিদল",
+  "stories_seerahPhase7": "বিদায় হজ্জ ও ওফাত",
+  "stories_chapterCount": "{count}টি অধ্যায়",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "শিশুদের গল্প",
   "settings_secIdentity": "পরিচয়",
   "onboarding_languageTitle": "ভাষা নির্বাচন করুন",

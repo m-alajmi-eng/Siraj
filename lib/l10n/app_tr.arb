@@ -274,6 +274,21 @@
   },
   "stories_searchHint": "İsme göre ara...",
   "stories_noResults": "Sonuç bulunamadı",
+  "stories_seerahEntry": "Peygamberimizin Siyeri",
+  "stories_seerahPhasesTitle": "Siyer Dönemleri",
+  "stories_seerahPhase1": "Doğumdan Hicret'e",
+  "stories_seerahPhase2": "Hicret'ten Bedir'e",
+  "stories_seerahPhase3": "Uhud'dan Beni Kurayza'ya",
+  "stories_seerahPhase4": "Beni Mustalik'ten Hayber'e",
+  "stories_seerahPhase5": "Mute'den Mekke'nin Fethi ve Huneyn'e",
+  "stories_seerahPhase6": "Tebük ve Heyetler",
+  "stories_seerahPhase7": "Veda Haccı ve Vefatı",
+  "stories_chapterCount": "{count} bölüm",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "Çocuk Hikâyeleri",
   "settings_secIdentity": "Kimlik",
   "onboarding_languageTitle": "Dil Seçin",

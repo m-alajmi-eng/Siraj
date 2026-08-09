@@ -654,6 +654,38 @@ class AppLocalizationsFa extends AppLocalizations {
   String get stories_noResults => 'نتیجه‌ای یافت نشد';
 
   @override
+  String get stories_seerahEntry => 'سیره نبوی';
+
+  @override
+  String get stories_seerahPhasesTitle => 'مراحل سیره نبوی';
+
+  @override
+  String get stories_seerahPhase1 => 'از تولد تا هجرت';
+
+  @override
+  String get stories_seerahPhase2 => 'از هجرت تا بدر';
+
+  @override
+  String get stories_seerahPhase3 => 'از احد تا بنی‌قریظه';
+
+  @override
+  String get stories_seerahPhase4 => 'از بنی‌مصطلق تا خیبر';
+
+  @override
+  String get stories_seerahPhase5 => 'از موته تا فتح مکه و حنین';
+
+  @override
+  String get stories_seerahPhase6 => 'تبوک و هیئت‌ها';
+
+  @override
+  String get stories_seerahPhase7 => 'حجة‌الوداع و وفات';
+
+  @override
+  String stories_chapterCount(int count) {
+    return '$count فصل';
+  }
+
+  @override
   String get children_title => 'داستان‌های کودکان';
 
   @override

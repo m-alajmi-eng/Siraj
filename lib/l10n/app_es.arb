@@ -274,6 +274,21 @@
   },
   "stories_searchHint": "Buscar por nombre...",
   "stories_noResults": "Sin resultados",
+  "stories_seerahEntry": "La Sira del Profeta",
+  "stories_seerahPhasesTitle": "Etapas de la Sira",
+  "stories_seerahPhase1": "Del nacimiento a la Hégira",
+  "stories_seerahPhase2": "De la Hégira a Badr",
+  "stories_seerahPhase3": "De Uhud a Banu Qurayza",
+  "stories_seerahPhase4": "De Banu al-Mustaliq a Jáybar",
+  "stories_seerahPhase5": "De Mu'ta a la conquista de La Meca y Hunayn",
+  "stories_seerahPhase6": "Tabuk y las delegaciones",
+  "stories_seerahPhase7": "La peregrinación de despedida y la muerte",
+  "stories_chapterCount": "{count} capítulos",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "Historias para niños",
   "settings_secIdentity": "Identidad",
   "onboarding_languageTitle": "Elegir idioma",

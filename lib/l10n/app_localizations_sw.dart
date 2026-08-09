@@ -656,6 +656,38 @@ class AppLocalizationsSw extends AppLocalizations {
   String get stories_noResults => 'Hakuna matokeo';
 
   @override
+  String get stories_seerahEntry => 'Wasifu wa Mtume (Sira)';
+
+  @override
+  String get stories_seerahPhasesTitle => 'Hatua za Sira';
+
+  @override
+  String get stories_seerahPhase1 => 'Kuzaliwa hadi Hijra';
+
+  @override
+  String get stories_seerahPhase2 => 'Hijra hadi Badr';
+
+  @override
+  String get stories_seerahPhase3 => 'Uhud hadi Bani Qurayza';
+
+  @override
+  String get stories_seerahPhase4 => 'Bani Mustaliq hadi Khaybar';
+
+  @override
+  String get stories_seerahPhase5 => 'Mu\'tah hadi Ushindi wa Makka na Hunayn';
+
+  @override
+  String get stories_seerahPhase6 => 'Tabuk na Ujumbe';
+
+  @override
+  String get stories_seerahPhase7 => 'Hija ya Kuaga na Kifo';
+
+  @override
+  String stories_chapterCount(int count) {
+    return 'Sura $count';
+  }
+
+  @override
   String get children_title => 'Hadithi za Watoto';
 
   @override

@@ -655,6 +655,39 @@ class AppLocalizationsFr extends AppLocalizations {
   String get stories_noResults => 'Aucun résultat';
 
   @override
+  String get stories_seerahEntry => 'La Sîra prophétique';
+
+  @override
+  String get stories_seerahPhasesTitle => 'Les phases de la Sîra';
+
+  @override
+  String get stories_seerahPhase1 => 'De la naissance à l\'Hégire';
+
+  @override
+  String get stories_seerahPhase2 => 'De l\'Hégire à Badr';
+
+  @override
+  String get stories_seerahPhase3 => 'D\'Uhud à Banu Qurayza';
+
+  @override
+  String get stories_seerahPhase4 => 'De Banu al-Mustaliq à Khaybar';
+
+  @override
+  String get stories_seerahPhase5 =>
+      'De Mu\'ta à la conquête de La Mecque et Hunayn';
+
+  @override
+  String get stories_seerahPhase6 => 'Tabuk et les délégations';
+
+  @override
+  String get stories_seerahPhase7 => 'Le pèlerinage d\'adieu et la mort';
+
+  @override
+  String stories_chapterCount(int count) {
+    return '$count chapitres';
+  }
+
+  @override
   String get children_title => 'Histoires pour enfants';
 
   @override

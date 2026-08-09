@@ -274,6 +274,21 @@
   },
   "stories_searchHint": "按姓名搜索...",
   "stories_noResults": "无匹配结果",
+  "stories_seerahEntry": "先知传记（西拉）",
+  "stories_seerahPhasesTitle": "西拉阶段",
+  "stories_seerahPhase1": "从出生到迁徙",
+  "stories_seerahPhase2": "从迁徙到白德尔之战",
+  "stories_seerahPhase3": "从伍侯德到古莱扎",
+  "stories_seerahPhase4": "从穆斯塔利克到海拜尔",
+  "stories_seerahPhase5": "从穆塔到麦加的开放与侯奈因",
+  "stories_seerahPhase6": "塔布克与使团",
+  "stories_seerahPhase7": "辞朝与归真",
+  "stories_chapterCount": "{count} 章",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "儿童故事",
   "settings_secIdentity": "身份",
   "onboarding_languageTitle": "选择语言",

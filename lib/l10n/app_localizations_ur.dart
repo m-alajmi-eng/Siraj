@@ -654,6 +654,38 @@ class AppLocalizationsUr extends AppLocalizations {
   String get stories_noResults => 'کوئی نتیجہ نہیں ملا';
 
   @override
+  String get stories_seerahEntry => 'سیرت النبی ﷺ';
+
+  @override
+  String get stories_seerahPhasesTitle => 'سیرت کے مراحل';
+
+  @override
+  String get stories_seerahPhase1 => 'ولادت سے ہجرت تک';
+
+  @override
+  String get stories_seerahPhase2 => 'ہجرت سے بدر تک';
+
+  @override
+  String get stories_seerahPhase3 => 'احد سے بنو قریظہ تک';
+
+  @override
+  String get stories_seerahPhase4 => 'بنو مصطلق سے خیبر تک';
+
+  @override
+  String get stories_seerahPhase5 => 'موتہ سے فتح مکہ اور حنین تک';
+
+  @override
+  String get stories_seerahPhase6 => 'تبوک اور وفود';
+
+  @override
+  String get stories_seerahPhase7 => 'حجۃ الوداع اور وفات';
+
+  @override
+  String stories_chapterCount(int count) {
+    return '$count ابواب';
+  }
+
+  @override
   String get children_title => 'بچوں کی کہانیاں';
 
   @override

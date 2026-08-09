@@ -655,6 +655,39 @@ class AppLocalizationsId extends AppLocalizations {
   String get stories_noResults => 'Tidak ada hasil';
 
   @override
+  String get stories_seerahEntry => 'Sirah Nabawiyah';
+
+  @override
+  String get stories_seerahPhasesTitle => 'Fase-Fase Sirah';
+
+  @override
+  String get stories_seerahPhase1 => 'Kelahiran hingga Hijrah';
+
+  @override
+  String get stories_seerahPhase2 => 'Hijrah hingga Badar';
+
+  @override
+  String get stories_seerahPhase3 => 'Uhud hingga Bani Quraizhah';
+
+  @override
+  String get stories_seerahPhase4 => 'Bani Musthaliq hingga Khaibar';
+
+  @override
+  String get stories_seerahPhase5 =>
+      'Mu\'tah hingga Penaklukan Makkah dan Hunain';
+
+  @override
+  String get stories_seerahPhase6 => 'Tabuk dan Utusan-Utusan';
+
+  @override
+  String get stories_seerahPhase7 => 'Haji Wada\' dan Wafat';
+
+  @override
+  String stories_chapterCount(int count) {
+    return '$count bab';
+  }
+
+  @override
   String get children_title => 'Kisah Anak';
 
   @override

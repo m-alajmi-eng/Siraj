@@ -295,6 +295,21 @@
   },
   "stories_searchHint": "ابحث بالاسم...",
   "stories_noResults": "لا نتائج مطابقة",
+  "stories_seerahEntry": "السيرة النبوية",
+  "stories_seerahPhasesTitle": "مراحل السيرة النبوية",
+  "stories_seerahPhase1": "المولد والهجرة",
+  "stories_seerahPhase2": "الهجرة إلى بدر",
+  "stories_seerahPhase3": "أُحد إلى بني قريظة",
+  "stories_seerahPhase4": "بني المصطلق إلى خيبر",
+  "stories_seerahPhase5": "مؤتة إلى فتح مكة وحنين",
+  "stories_seerahPhase6": "تبوك والوفود",
+  "stories_seerahPhase7": "حجة الوداع والوفاة",
+  "stories_chapterCount": "{count} فصل",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "قصص الأطفال",
   "settings_secIdentity": "الهوية",
   "onboarding_languageTitle": "اختر اللغة",

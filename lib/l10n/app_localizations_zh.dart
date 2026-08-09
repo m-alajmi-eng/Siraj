@@ -652,6 +652,38 @@ class AppLocalizationsZh extends AppLocalizations {
   String get stories_noResults => '无匹配结果';
 
   @override
+  String get stories_seerahEntry => '先知传记（西拉）';
+
+  @override
+  String get stories_seerahPhasesTitle => '西拉阶段';
+
+  @override
+  String get stories_seerahPhase1 => '从出生到迁徙';
+
+  @override
+  String get stories_seerahPhase2 => '从迁徙到白德尔之战';
+
+  @override
+  String get stories_seerahPhase3 => '从伍侯德到古莱扎';
+
+  @override
+  String get stories_seerahPhase4 => '从穆斯塔利克到海拜尔';
+
+  @override
+  String get stories_seerahPhase5 => '从穆塔到麦加的开放与侯奈因';
+
+  @override
+  String get stories_seerahPhase6 => '塔布克与使团';
+
+  @override
+  String get stories_seerahPhase7 => '辞朝与归真';
+
+  @override
+  String stories_chapterCount(int count) {
+    return '$count 章';
+  }
+
+  @override
   String get children_title => '儿童故事';
 
   @override

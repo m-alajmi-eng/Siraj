@@ -274,6 +274,21 @@
   },
   "stories_searchHint": "Rechercher par nom...",
   "stories_noResults": "Aucun résultat",
+  "stories_seerahEntry": "La Sîra prophétique",
+  "stories_seerahPhasesTitle": "Les phases de la Sîra",
+  "stories_seerahPhase1": "De la naissance à l'Hégire",
+  "stories_seerahPhase2": "De l'Hégire à Badr",
+  "stories_seerahPhase3": "D'Uhud à Banu Qurayza",
+  "stories_seerahPhase4": "De Banu al-Mustaliq à Khaybar",
+  "stories_seerahPhase5": "De Mu'ta à la conquête de La Mecque et Hunayn",
+  "stories_seerahPhase6": "Tabuk et les délégations",
+  "stories_seerahPhase7": "Le pèlerinage d'adieu et la mort",
+  "stories_chapterCount": "{count} chapitres",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "Histoires pour enfants",
   "settings_secIdentity": "Identité",
   "onboarding_languageTitle": "Choisir la langue",

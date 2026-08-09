@@ -655,6 +655,38 @@ class AppLocalizationsBn extends AppLocalizations {
   String get stories_noResults => 'কোনো ফলাফল পাওয়া যায়নি';
 
   @override
+  String get stories_seerahEntry => 'নবীজির সীরাত';
+
+  @override
+  String get stories_seerahPhasesTitle => 'সীরাতের পর্যায়সমূহ';
+
+  @override
+  String get stories_seerahPhase1 => 'জন্ম থেকে হিজরত পর্যন্ত';
+
+  @override
+  String get stories_seerahPhase2 => 'হিজরত থেকে বদর পর্যন্ত';
+
+  @override
+  String get stories_seerahPhase3 => 'উহুদ থেকে বনু কুরাইজা পর্যন্ত';
+
+  @override
+  String get stories_seerahPhase4 => 'বনু মুস্তালিক থেকে খাইবার পর্যন্ত';
+
+  @override
+  String get stories_seerahPhase5 => 'মুতা থেকে মক্কা বিজয় ও হুনাইন পর্যন্ত';
+
+  @override
+  String get stories_seerahPhase6 => 'তাবুক ও প্রতিনিধিদল';
+
+  @override
+  String get stories_seerahPhase7 => 'বিদায় হজ্জ ও ওফাত';
+
+  @override
+  String stories_chapterCount(int count) {
+    return '$countটি অধ্যায়';
+  }
+
+  @override
   String get children_title => 'শিশুদের গল্প';
 
   @override

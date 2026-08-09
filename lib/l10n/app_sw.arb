@@ -274,6 +274,21 @@
   },
   "stories_searchHint": "Tafuta kwa jina...",
   "stories_noResults": "Hakuna matokeo",
+  "stories_seerahEntry": "Wasifu wa Mtume (Sira)",
+  "stories_seerahPhasesTitle": "Hatua za Sira",
+  "stories_seerahPhase1": "Kuzaliwa hadi Hijra",
+  "stories_seerahPhase2": "Hijra hadi Badr",
+  "stories_seerahPhase3": "Uhud hadi Bani Qurayza",
+  "stories_seerahPhase4": "Bani Mustaliq hadi Khaybar",
+  "stories_seerahPhase5": "Mu'tah hadi Ushindi wa Makka na Hunayn",
+  "stories_seerahPhase6": "Tabuk na Ujumbe",
+  "stories_seerahPhase7": "Hija ya Kuaga na Kifo",
+  "stories_chapterCount": "Sura {count}",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "Hadithi za Watoto",
   "settings_secIdentity": "Utambulisho",
   "onboarding_languageTitle": "Chagua Lugha",

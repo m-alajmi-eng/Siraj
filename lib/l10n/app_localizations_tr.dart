@@ -655,6 +655,38 @@ class AppLocalizationsTr extends AppLocalizations {
   String get stories_noResults => 'Sonuç bulunamadı';
 
   @override
+  String get stories_seerahEntry => 'Peygamberimizin Siyeri';
+
+  @override
+  String get stories_seerahPhasesTitle => 'Siyer Dönemleri';
+
+  @override
+  String get stories_seerahPhase1 => 'Doğumdan Hicret\'e';
+
+  @override
+  String get stories_seerahPhase2 => 'Hicret\'ten Bedir\'e';
+
+  @override
+  String get stories_seerahPhase3 => 'Uhud\'dan Beni Kurayza\'ya';
+
+  @override
+  String get stories_seerahPhase4 => 'Beni Mustalik\'ten Hayber\'e';
+
+  @override
+  String get stories_seerahPhase5 => 'Mute\'den Mekke\'nin Fethi ve Huneyn\'e';
+
+  @override
+  String get stories_seerahPhase6 => 'Tebük ve Heyetler';
+
+  @override
+  String get stories_seerahPhase7 => 'Veda Haccı ve Vefatı';
+
+  @override
+  String stories_chapterCount(int count) {
+    return '$count bölüm';
+  }
+
+  @override
   String get children_title => 'Çocuk Hikâyeleri';
 
   @override

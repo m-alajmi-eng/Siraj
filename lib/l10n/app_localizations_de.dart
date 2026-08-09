@@ -655,6 +655,39 @@ class AppLocalizationsDe extends AppLocalizations {
   String get stories_noResults => 'Keine Treffer';
 
   @override
+  String get stories_seerahEntry => 'Die Prophetenbiografie (Sira)';
+
+  @override
+  String get stories_seerahPhasesTitle => 'Phasen der Sira';
+
+  @override
+  String get stories_seerahPhase1 => 'Geburt bis zur Hidschra';
+
+  @override
+  String get stories_seerahPhase2 => 'Hidschra bis Badr';
+
+  @override
+  String get stories_seerahPhase3 => 'Uhud bis Banu Quraiza';
+
+  @override
+  String get stories_seerahPhase4 => 'Banu al-Mustaliq bis Khaibar';
+
+  @override
+  String get stories_seerahPhase5 =>
+      'Mu\'ta bis zur Eroberung Mekkas und Hunain';
+
+  @override
+  String get stories_seerahPhase6 => 'Tabuk und die Delegationen';
+
+  @override
+  String get stories_seerahPhase7 => 'Abschiedswallfahrt und Tod';
+
+  @override
+  String stories_chapterCount(int count) {
+    return '$count Kapitel';
+  }
+
+  @override
   String get children_title => 'Kindergeschichten';
 
   @override

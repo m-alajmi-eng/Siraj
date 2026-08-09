@@ -655,6 +655,38 @@ class AppLocalizationsRu extends AppLocalizations {
   String get stories_noResults => 'Нет результатов';
 
   @override
+  String get stories_seerahEntry => 'Жизнеописание Пророка (Сира)';
+
+  @override
+  String get stories_seerahPhasesTitle => 'Этапы Сиры';
+
+  @override
+  String get stories_seerahPhase1 => 'От рождения до Хиджры';
+
+  @override
+  String get stories_seerahPhase2 => 'От Хиджры до Бадра';
+
+  @override
+  String get stories_seerahPhase3 => 'От Ухуда до Бану Курайза';
+
+  @override
+  String get stories_seerahPhase4 => 'От Бану Мусталик до Хайбара';
+
+  @override
+  String get stories_seerahPhase5 => 'От Муты до завоевания Мекки и Хунайна';
+
+  @override
+  String get stories_seerahPhase6 => 'Табук и делегации';
+
+  @override
+  String get stories_seerahPhase7 => 'Прощальное паломничество и кончина';
+
+  @override
+  String stories_chapterCount(int count) {
+    return '$count глав';
+  }
+
+  @override
   String get children_title => 'Детские истории';
 
   @override

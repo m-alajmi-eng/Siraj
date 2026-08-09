@@ -274,6 +274,21 @@
   },
   "stories_searchHint": "Nemo ta suna...",
   "stories_noResults": "Babu sakamako",
+  "stories_seerahEntry": "Tarihin Annabi (Sira)",
+  "stories_seerahPhasesTitle": "Matakan Sira",
+  "stories_seerahPhase1": "Haihuwa zuwa Hijira",
+  "stories_seerahPhase2": "Hijira zuwa Badar",
+  "stories_seerahPhase3": "Uhud zuwa Bani Kuraiza",
+  "stories_seerahPhase4": "Bani Mustalik zuwa Khaibar",
+  "stories_seerahPhase5": "Mu'ta zuwa Cin Makka da Hunaini",
+  "stories_seerahPhase6": "Tabuk da Wakilai",
+  "stories_seerahPhase7": "Hajjin Bankwana da Rasuwa",
+  "stories_chapterCount": "Babuka {count}",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "Labaran Yara",
   "settings_secIdentity": "Shaida",
   "onboarding_languageTitle": "Zaɓi Harshe",

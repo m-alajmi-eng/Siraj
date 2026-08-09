@@ -274,6 +274,21 @@
   },
   "stories_searchHint": "Поиск по имени...",
   "stories_noResults": "Нет результатов",
+  "stories_seerahEntry": "Жизнеописание Пророка (Сира)",
+  "stories_seerahPhasesTitle": "Этапы Сиры",
+  "stories_seerahPhase1": "От рождения до Хиджры",
+  "stories_seerahPhase2": "От Хиджры до Бадра",
+  "stories_seerahPhase3": "От Ухуда до Бану Курайза",
+  "stories_seerahPhase4": "От Бану Мусталик до Хайбара",
+  "stories_seerahPhase5": "От Муты до завоевания Мекки и Хунайна",
+  "stories_seerahPhase6": "Табук и делегации",
+  "stories_seerahPhase7": "Прощальное паломничество и кончина",
+  "stories_chapterCount": "{count} глав",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "Детские истории",
   "settings_secIdentity": "Идентификация",
   "onboarding_languageTitle": "Выберите язык",

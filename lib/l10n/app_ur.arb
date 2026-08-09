@@ -274,6 +274,21 @@
   },
   "stories_searchHint": "نام سے تلاش کریں...",
   "stories_noResults": "کوئی نتیجہ نہیں ملا",
+  "stories_seerahEntry": "سیرت النبی ﷺ",
+  "stories_seerahPhasesTitle": "سیرت کے مراحل",
+  "stories_seerahPhase1": "ولادت سے ہجرت تک",
+  "stories_seerahPhase2": "ہجرت سے بدر تک",
+  "stories_seerahPhase3": "احد سے بنو قریظہ تک",
+  "stories_seerahPhase4": "بنو مصطلق سے خیبر تک",
+  "stories_seerahPhase5": "موتہ سے فتح مکہ اور حنین تک",
+  "stories_seerahPhase6": "تبوک اور وفود",
+  "stories_seerahPhase7": "حجۃ الوداع اور وفات",
+  "stories_chapterCount": "{count} ابواب",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "بچوں کی کہانیاں",
   "settings_secIdentity": "شناخت",
   "onboarding_languageTitle": "زبان منتخب کریں",

@@ -655,6 +655,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String get stories_noResults => 'No matching results';
 
   @override
+  String get stories_seerahEntry => 'The Prophet\'s Seerah ﷺ';
+
+  @override
+  String get stories_seerahPhasesTitle => 'Phases of the Seerah';
+
+  @override
+  String get stories_seerahPhase1 => 'Birth to the Hijrah';
+
+  @override
+  String get stories_seerahPhase2 => 'Hijrah to Badr';
+
+  @override
+  String get stories_seerahPhase3 => 'Uhud to Banu Qurayzah';
+
+  @override
+  String get stories_seerahPhase4 => 'Banu al-Mustaliq to Khaybar';
+
+  @override
+  String get stories_seerahPhase5 =>
+      'Mu\'tah to the Conquest of Makkah and Hunayn';
+
+  @override
+  String get stories_seerahPhase6 => 'Tabuk and the Delegations';
+
+  @override
+  String get stories_seerahPhase7 => 'The Farewell Pilgrimage and Death';
+
+  @override
+  String stories_chapterCount(int count) {
+    return '$count chapters';
+  }
+
+  @override
   String get children_title => 'Children\'s Stories';
 
   @override

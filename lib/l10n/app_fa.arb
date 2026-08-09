@@ -274,6 +274,21 @@
   },
   "stories_searchHint": "جستجو بر اساس نام...",
   "stories_noResults": "نتیجه‌ای یافت نشد",
+  "stories_seerahEntry": "سیره نبوی",
+  "stories_seerahPhasesTitle": "مراحل سیره نبوی",
+  "stories_seerahPhase1": "از تولد تا هجرت",
+  "stories_seerahPhase2": "از هجرت تا بدر",
+  "stories_seerahPhase3": "از احد تا بنی‌قریظه",
+  "stories_seerahPhase4": "از بنی‌مصطلق تا خیبر",
+  "stories_seerahPhase5": "از موته تا فتح مکه و حنین",
+  "stories_seerahPhase6": "تبوک و هیئت‌ها",
+  "stories_seerahPhase7": "حجة‌الوداع و وفات",
+  "stories_chapterCount": "{count} فصل",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "داستان‌های کودکان",
   "settings_secIdentity": "هویت",
   "onboarding_languageTitle": "انتخاب زبان",

@@ -267,6 +267,21 @@
   },
   "stories_searchHint": "Nach Namen suchen...",
   "stories_noResults": "Keine Treffer",
+  "stories_seerahEntry": "Die Prophetenbiografie (Sira)",
+  "stories_seerahPhasesTitle": "Phasen der Sira",
+  "stories_seerahPhase1": "Geburt bis zur Hidschra",
+  "stories_seerahPhase2": "Hidschra bis Badr",
+  "stories_seerahPhase3": "Uhud bis Banu Quraiza",
+  "stories_seerahPhase4": "Banu al-Mustaliq bis Khaibar",
+  "stories_seerahPhase5": "Mu'ta bis zur Eroberung Mekkas und Hunain",
+  "stories_seerahPhase6": "Tabuk und die Delegationen",
+  "stories_seerahPhase7": "Abschiedswallfahrt und Tod",
+  "stories_chapterCount": "{count} Kapitel",
+  "@stories_chapterCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
   "children_title": "Kindergeschichten",
   "settings_secIdentity": "Identität",
   "onboarding_languageTitle": "Sprache wählen",

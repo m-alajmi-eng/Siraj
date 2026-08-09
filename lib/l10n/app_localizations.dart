@@ -1354,6 +1354,66 @@ abstract class AppLocalizations {
   /// **'لا نتائج مطابقة'**
   String get stories_noResults;
 
+  /// No description provided for @stories_seerahEntry.
+  ///
+  /// In ar, this message translates to:
+  /// **'السيرة النبوية'**
+  String get stories_seerahEntry;
+
+  /// No description provided for @stories_seerahPhasesTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'مراحل السيرة النبوية'**
+  String get stories_seerahPhasesTitle;
+
+  /// No description provided for @stories_seerahPhase1.
+  ///
+  /// In ar, this message translates to:
+  /// **'المولد والهجرة'**
+  String get stories_seerahPhase1;
+
+  /// No description provided for @stories_seerahPhase2.
+  ///
+  /// In ar, this message translates to:
+  /// **'الهجرة إلى بدر'**
+  String get stories_seerahPhase2;
+
+  /// No description provided for @stories_seerahPhase3.
+  ///
+  /// In ar, this message translates to:
+  /// **'أُحد إلى بني قريظة'**
+  String get stories_seerahPhase3;
+
+  /// No description provided for @stories_seerahPhase4.
+  ///
+  /// In ar, this message translates to:
+  /// **'بني المصطلق إلى خيبر'**
+  String get stories_seerahPhase4;
+
+  /// No description provided for @stories_seerahPhase5.
+  ///
+  /// In ar, this message translates to:
+  /// **'مؤتة إلى فتح مكة وحنين'**
+  String get stories_seerahPhase5;
+
+  /// No description provided for @stories_seerahPhase6.
+  ///
+  /// In ar, this message translates to:
+  /// **'تبوك والوفود'**
+  String get stories_seerahPhase6;
+
+  /// No description provided for @stories_seerahPhase7.
+  ///
+  /// In ar, this message translates to:
+  /// **'حجة الوداع والوفاة'**
+  String get stories_seerahPhase7;
+
+  /// No description provided for @stories_chapterCount.
+  ///
+  /// In ar, this message translates to:
+  /// **'{count} فصل'**
+  String stories_chapterCount(int count);
+
   /// No description provided for @children_title.
   ///
   /// In ar, this message translates to:
