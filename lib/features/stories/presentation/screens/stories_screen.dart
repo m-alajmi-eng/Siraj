@@ -313,10 +313,9 @@ class _GroupCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.chevron_left, color: palette.textSecondary),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(label,
                     textAlign: TextAlign.start,
@@ -329,6 +328,7 @@ class _GroupCard extends StatelessWidget {
                 ],
               ),
             ),
+            Icon(Icons.chevron_left, color: palette.textSecondary),
           ],
         ),
       ),
