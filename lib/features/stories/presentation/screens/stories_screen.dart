@@ -54,7 +54,7 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
   Future<List<Map>> _fetchStories(String category) async {
     final res = await Supabase.instance.client
         .from('stories')
-        .select('id, title_ar, person_name, period, summary_ar, content_ar, group_slug')
+        .select('id, title_ar, person_name, period, summary_ar, content_ar, group_slug, order_index')
         .eq('category', category)
         .order(category == 'prophets' ? 'order_index' : 'title_ar', ascending: true);
     return List<Map>.from(res);
@@ -147,7 +147,7 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
           child: TabBarView(
             controller: _tabController,
             children: [
-              _StoriesList(category: 'prophets', palette: palette, fetch: _fetchStories, t: t),
+              _ProphetsList(palette: palette, fetch: _fetchStories, t: t),
               _CompanionsList(
                 palette: palette, t: t,
                 fetchStories: _fetchStories, fetchGroups: _fetchGroups,
@@ -192,8 +192,7 @@ class _StoriesScreenState extends ConsumerState<StoriesScreen>
           child: TextField(
             controller: _searchController,
             autofocus: true,
-            textAlign: TextAlign.right,
-            textDirection: TextDirection.rtl,
+            textAlign: TextAlign.start,
             style: AppText.body.copyWith(color: palette.textPrimary),
             decoration: InputDecoration(
               hintText: t.stories_searchHint,
@@ -293,9 +292,11 @@ class _GroupCard extends StatelessWidget {
   final dynamic palette;
   final AppLocalizations t;
   final VoidCallback onTap;
+  final String? countLabel;
   const _GroupCard({
     required this.label, required this.count,
     required this.palette, required this.t, required this.onTap,
+    this.countLabel,
   });
 
   @override
@@ -318,14 +319,12 @@ class _GroupCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(label,
-                    textAlign: TextAlign.right,
-                    textDirection: TextDirection.rtl,
+                    textAlign: TextAlign.start,
                     style: AppText.body.copyWith(
                       color: palette.textPrimary, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 4),
-                  Text(t.stories_groupCount(count),
-                    textAlign: TextAlign.right,
-                    textDirection: TextDirection.rtl,
+                  Text(countLabel ?? t.stories_groupCount(count),
+                    textAlign: TextAlign.start,
                     style: AppText.caption.copyWith(color: palette.textSecondary)),
                 ],
               ),
@@ -364,31 +363,119 @@ class _GroupMembersScreen extends StatelessWidget {
   }
 }
 
-class _StoriesList extends StatelessWidget {
-  final String category;
+// TASK Q: تبويب الأنبياء يفصل بين قصص الأنبياء الأفراد (order_index 1-21،
+// بطاقات مباشرة كالسابق) وفصول السيرة النبوية (order_index 22-72، 51 فصلاً)
+// التي تُجمَع خلف بطاقة واحدة "السيرة النبوية" تفتح _SeeraPhasesScreen
+// بدل عرضها كقائمة مسطّحة من 51 عنصراً.
+class _ProphetsList extends StatelessWidget {
   final dynamic palette;
   final Future<List<Map>> Function(String) fetch;
   final AppLocalizations t;
-  const _StoriesList({
-    required this.category, required this.palette,
-    required this.fetch, required this.t,
-  });
+  const _ProphetsList({required this.palette, required this.fetch, required this.t});
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Map>>(
-      future: fetch(category),
+      future: fetch('prophets'),
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator(color: palette.accentPrimary));
         }
-        return _StoryListView(
-          items: snap.data ?? [],
-          palette: palette,
-          emptyMessage: t.stories_comingSoonMsg,
-          comingSoonLabel: t.stories_comingSoon,
+        final all = snap.data ?? [];
+        if (all.isEmpty) {
+          return Center(
+            child: Text(t.stories_comingSoonMsg, textAlign: TextAlign.center,
+              style: AppText.body.copyWith(color: palette.textSecondary)),
+          );
+        }
+        final seerahChapters = all.where((s) => (s['order_index'] as int) >= 22).toList()
+          ..sort((a, b) => (a['order_index'] as int).compareTo(b['order_index'] as int));
+        final individualProphets = all.where((s) => (s['order_index'] as int) < 22).toList();
+
+        return ListView(
+          padding: const EdgeInsets.all(SirajSpacing.s4),
+          children: [
+            if (seerahChapters.isNotEmpty)
+              _GroupCard(
+                label: t.stories_seerahEntry,
+                count: seerahChapters.length,
+                countLabel: t.stories_chapterCount(seerahChapters.length),
+                palette: palette,
+                t: t,
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => _SeeraPhasesScreen(
+                    chapters: seerahChapters, palette: palette, t: t,
+                  ),
+                )),
+              ),
+            for (final s in individualProphets)
+              _StoryCard(story: s, palette: palette, comingSoonLabel: t.stories_comingSoon),
+          ],
         );
       },
+    );
+  }
+}
+
+// TASK Q: 7 مراحل زمنية للسيرة النبوية الـ51 فصلاً، محدَّدة بنطاقات
+// order_index مُتحقَّق منها مباشرة من القاعدة (لا حدس) - حادثة الإفك
+// (order_index=47) تقع ضمن نطاق المرحلة الرابعة (45-50) بين غزوة بني
+// المصطلق (46) وصلح الحديبية (48)، تماماً كما طلب محمد.
+class _SeeraPhase {
+  final String label;
+  final int start;
+  final int end;
+  const _SeeraPhase({required this.label, required this.start, required this.end});
+}
+
+class _SeeraPhasesScreen extends StatelessWidget {
+  final List<Map> chapters;
+  final dynamic palette;
+  final AppLocalizations t;
+  const _SeeraPhasesScreen({required this.chapters, required this.palette, required this.t});
+
+  @override
+  Widget build(BuildContext context) {
+    final phases = [
+      _SeeraPhase(label: t.stories_seerahPhase1, start: 22, end: 33),
+      _SeeraPhase(label: t.stories_seerahPhase2, start: 34, end: 38),
+      _SeeraPhase(label: t.stories_seerahPhase3, start: 39, end: 44),
+      _SeeraPhase(label: t.stories_seerahPhase4, start: 45, end: 50),
+      _SeeraPhase(label: t.stories_seerahPhase5, start: 51, end: 58),
+      _SeeraPhase(label: t.stories_seerahPhase6, start: 59, end: 63),
+      _SeeraPhase(label: t.stories_seerahPhase7, start: 64, end: 72),
+    ];
+
+    return AppScaffold(
+      title: t.stories_seerahPhasesTitle,
+      padding: EdgeInsets.zero,
+      child: ListView(
+        padding: const EdgeInsets.all(SirajSpacing.s4),
+        children: [
+          for (final phase in phases)
+            _buildPhaseCard(context, phase),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPhaseCard(BuildContext context, _SeeraPhase phase) {
+    final items = chapters.where((c) {
+      final idx = c['order_index'] as int;
+      return idx >= phase.start && idx <= phase.end;
+    }).toList();
+    if (items.isEmpty) return const SizedBox.shrink();
+    return _GroupCard(
+      label: phase.label,
+      count: items.length,
+      countLabel: t.stories_chapterCount(items.length),
+      palette: palette,
+      t: t,
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => _GroupMembersScreen(
+          titleAr: phase.label, items: items, palette: palette, t: t,
+        ),
+      )),
     );
   }
 }
@@ -471,14 +558,16 @@ class _StoryCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(s['title_ar'] ?? '',
-                    textAlign: TextAlign.right,
+                    // content_ar/title_ar بجدول stories عربي خام بلا localized
+                    // متعدد اللغات حالياً (نفس تبرير story_biography_reader_screen.dart)
+                    textAlign: TextAlign.start,
                     textDirection: TextDirection.rtl,
                     style: AppText.body.copyWith(
                       color: palette.textPrimary, fontWeight: FontWeight.w600)),
                   if (s['period'] != null) ...[
                     const SizedBox(height: SirajSpacing.s1),
                     Text(s['period'],
-                      textAlign: TextAlign.right,
+                      textAlign: TextAlign.start,
                       textDirection: TextDirection.rtl,
                       style: AppText.caption.copyWith(color: palette.textSecondary)),
                   ],
