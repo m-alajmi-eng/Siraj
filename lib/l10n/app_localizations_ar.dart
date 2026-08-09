@@ -653,10 +653,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get stories_noResults => 'لا نتائج مطابقة';
 
   @override
-  String get stories_seerahEntry => 'السيرة النبوية';
+  String get stories_seerahEntry => 'سيرة النبي محمد صلى الله عليه وسلم';
 
   @override
-  String get stories_seerahPhasesTitle => 'مراحل السيرة النبوية';
+  String get stories_seerahPhasesTitle =>
+      'مراحل سيرة النبي محمد صلى الله عليه وسلم';
 
   @override
   String get stories_seerahPhase1 => 'المولد والهجرة';

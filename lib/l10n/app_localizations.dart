@@ -1357,13 +1357,13 @@ abstract class AppLocalizations {
   /// No description provided for @stories_seerahEntry.
   ///
   /// In ar, this message translates to:
-  /// **'السيرة النبوية'**
+  /// **'سيرة النبي محمد صلى الله عليه وسلم'**
   String get stories_seerahEntry;
 
   /// No description provided for @stories_seerahPhasesTitle.
   ///
   /// In ar, this message translates to:
-  /// **'مراحل السيرة النبوية'**
+  /// **'مراحل سيرة النبي محمد صلى الله عليه وسلم'**
   String get stories_seerahPhasesTitle;
 
   /// No description provided for @stories_seerahPhase1.
