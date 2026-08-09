@@ -290,8 +290,10 @@ class _StoryCardState extends State<_StoryCard> with TickerProviderStateMixin {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: SirajSpacing.s2),
                 child: Text(widget.titleAr,
+                  // العنوان يُجلَب مترجَماً حسب لغة الواجهة الفعلية (p_lang بـ
+                  // get_children_stories_catalog RPC) - ليس عربياً دائماً، فلا
+                  // اتجاه ثابت هنا؛ Directionality المحيطة تتبع لغة التطبيق.
                   textAlign: TextAlign.center,
-                  textDirection: TextDirection.rtl,
                   style: AppText.body.copyWith(
                     color: widget.palette.textPrimary, fontWeight: FontWeight.bold)),
               ),
