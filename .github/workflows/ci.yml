@@ -106,7 +106,7 @@ jobs:
           echo "التحقق ناجح: الـAPK موقَّع فعلياً بمفتاح الإصدار الصحيح."
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: app-release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
