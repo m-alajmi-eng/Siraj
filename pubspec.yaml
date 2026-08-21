@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   intl: ^0.20.2
   cupertino_icons: ^1.0.8
-  supabase_flutter: ^2.16.0
+  supabase_flutter: ^2.17.2
   flutter_riverpod: ^3.3.2
   riverpod_annotation: ^4.0.3
   adhan: ^2.0.0+1
