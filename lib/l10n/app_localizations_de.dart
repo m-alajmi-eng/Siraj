@@ -361,22 +361,22 @@ class AppLocalizationsDe extends AppLocalizations {
   String get home_greetingNoon => 'Guten Tag,';
 
   @override
-  String get home_greetingAsr => 'عصر مبارك،';
+  String get home_greetingAsr => 'Gesegneten Nachmittag,';
 
   @override
-  String get home_greetingEvening => 'مساء الخير،';
+  String get home_greetingEvening => 'Guten Abend,';
 
   @override
-  String get home_greetingLateNight => 'ليلة هادئة،';
+  String get home_greetingLateNight => 'Friedliche Nacht,';
 
   @override
-  String get home_welcome => 'أهلاً وسهلاً';
+  String get home_welcome => 'Willkommen';
 
   @override
-  String get home_nextPrayer => 'الصلاة القادمة';
+  String get home_nextPrayer => 'Nächstes Gebet';
 
   @override
-  String get home_qiblaDirection => 'اتجاه القبلة';
+  String get home_qiblaDirection => 'Qibla-Richtung';
 
   @override
   String get time_hr => 'Std';
@@ -388,7 +388,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get time_sec => 'Sek';
 
   @override
-  String get home_continueReading => 'متابعة القراءة';
+  String get home_continueReading => 'WEITERLESEN';
 
   @override
   String home_surah(int id) {
