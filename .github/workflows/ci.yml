@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   analyze-and-test:
@@ -41,9 +42,25 @@ jobs:
       - name: Run tests
         run: flutter test
 
-      # يتطلب هذا القسم إضافة الأسرار التالية يدوياً من قِبل مالك المستودع في:
-      # Settings → Secrets and variables → Actions — قبل أن يعمل التوقيع الإصداري
-      # الحقيقي في CI فعلياً:
+      # ⚠️ 2026-09-08: بناء/توقيع/رفع الإصدار كان يعمل تلقائياً على *كل* push
+      # (حتى دفعات docs فقط لا تمس أي كود) - هذا هو السبب الجذري الفعلي لفشل
+      # CI بالكامل بمدة 0 ثانية وصفر job منذ 2026-08-18: مستودع خاص على خطة
+      # مجانية (حد تخزين 500MB لمرفقات Actions) تراكم لديه 35 مرفق APK قديمة
+      # (~4.2GB، أكثر من 8 أضعاف الحد) من طفرة رفع واحدة بتاريخ 2026-07-17،
+      # فرفض GitHub استحداث أي job جديد إطلاقاً حتى تحرير المساحة (رسالة الخطأ
+      # الفعلية من سجل التشغيل الناجح الأخير 2026-08-14: "Failed to
+      # CreateArtifact: Artifact storage quota has been hit"). حُذفت الـ35
+      # مرفقاً القديمة يدوياً (`gh api -X DELETE .../actions/artifacts/{id}`)
+      # لتحرير الحصة فوراً. **الإصلاح الجذري هنا**: فصل بناء/توقيع/رفع الإصدار
+      # عن مسار push/PR الروتيني تماماً وحصره بتشغيل يدوي (workflow_dispatch)
+      # فقط - فلا يستهلك أي push/PR مستقبلي (بما فيها آلاف دفعات docs(stories))
+      # وقت بناء Gradle (~14 دقيقة) ولا مساحة تخزين المرفقات، ولا يفشل بسبب
+      # غياب أسرار التوقيع (KEYSTORE_*) التي لم تُضَف بعد. مسار push/PR
+      # الروتيني الآن يقتصر على analyze+test فقط (يطابق اسم الـjob نفسه
+      # "Analyze & Test" حرفياً) - سريع (~1 دقيقة) ولا يعتمد على أي سر مفقود.
+      #
+      # يتطلب هذا القسم (عند تشغيله يدوياً) إضافة الأسرار التالية من قِبل مالك
+      # المستودع في: Settings → Secrets and variables → Actions:
       #   KEYSTORE_BASE64          - محتوى ملف siraj-release.jks بصيغة base64
       #                              (يُنتَج محلياً بأمر: base64 -w0 siraj-release.jks)
       #   KEYSTORE_STORE_PASSWORD  - كلمة مرور الـkeystore
@@ -51,9 +68,10 @@ jobs:
       #   KEYSTORE_KEY_ALIAS       - alias المفتاح (القيمة محلياً: siraj-release)
       # إلى أن تُضاف هذه الأسرار: لا يُنشأ android/key.properties هنا، فيبني Gradle
       # توقيعاً غير مكتمل حسب منطقه الحالي في build.gradle.kts، وخطوة "Verify release
-      # signing" أدناه تُفشل CI صراحة بدل الصمت - سلوك مقصود لحين إضافة الأسرار.
+      # signing" أدناه تُفشل صراحة بدل الصمت - سلوك مقصود لحين إضافة الأسرار
+      # (لا يؤثر على push/PR الروتيني بعد الآن لأنه لا يُشغَّل إلا يدوياً).
       - name: Set up release signing config from GitHub secrets
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && secrets.KEYSTORE_BASE64 != '' }}
         run: |
           KEYSTORE_PATH="$RUNNER_TEMP/siraj-release.jks"
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > "$KEYSTORE_PATH"
@@ -65,6 +83,7 @@ jobs:
           EOF
 
       - name: Build release APK
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: flutter build apk --release
 
       # يقارن بصمة الشهادة المُضمَّنة فعلياً في الـAPK الناتج ببصمة شهادة الإصدار في
@@ -72,6 +91,7 @@ jobs:
       # توقيع غير حقيقي (غياب الأسرار، توقيع debug افتراضي، أو keystore مختلف) لا فقط
       # "error •" في flutter analyze كما كان سابقاً.
       - name: Verify release signing
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           set -e
           APK="build/app/outputs/flutter-apk/app-release.apk"
@@ -106,6 +126,7 @@ jobs:
           echo "التحقق ناجح: الـAPK موقَّع فعلياً بمفتاح الإصدار الصحيح."
 
       - name: Upload APK artifact
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
