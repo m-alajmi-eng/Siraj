@@ -136,7 +136,13 @@ class JustAudioController implements SirajAudioController {
           spec.surahId, a, spec.reciter, spec.surahName, 'آية $a', a));
     }
 
-    await _player.setAudioSource(ConcatenatingAudioSource(children: children));
+    // setAudioSources (لا ConcatenatingAudioSource المهجورة) - البديل
+    // الموصى به رسمياً بتوثيق just_audio 0.10.6 نفسه ("Use
+    // AudioPlayer.setAudioSources instead"). يبني نفس قائمة التشغيل
+    // المتصلة داخلياً (`_playlist._init(audioSources, ...)`) فسلوك
+    // التلاوة المتصلة بلا فجوات بين الآيات مطابق تماماً - فقط عبر
+    // واجهة عامة غير مهجورة.
+    await _player.setAudioSources(children);
     await _player.play();
   }
 
