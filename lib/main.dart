@@ -20,18 +20,25 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:just_audio_media_kit/just_audio_media_kit.dart';
 
 // أسرار قابلة للتخصيص عبر --dart-define وقت البناء (PHASE L3): المفتاح
-// العلني (anon key) عام بطبيعته في Supabase ولا يمثّل ثغرة أمنية بذاته،
-// لكن فصله يُمكّن تدوير المفاتيح بلا تعديل الكود، ويطابق توصية
+// العلني (publishable key) عام بطبيعته في Supabase ولا يمثّل ثغرة أمنية
+// بذاته، لكن فصله يُمكّن تدوير المفاتيح بلا تعديل الكود، ويطابق توصية
 // docs/02_STORE_COMPLIANCE.md. القيم الافتراضية هنا هي قيم الإنتاج
 // الحالية — البناء العادي بلا أي --dart-define يعمل تماماً كما كان.
+//
+// 2026-09-08: انتقال من anonKey (JWT قديم) إلى publishableKey (نظام
+// مفاتيح Supabase الجديد sb_publishable_*) - المشروع لم يعد يملك صفحة
+// "JWT Settings" بلوحة التحكم إطلاقاً (تحقَّق محمد بنفسه)، والمفتاح
+// القديم مهجور رسمياً بحزمة supabase_flutter (anonKey will be removed
+// in a future major version). المفتاح الفعلي جُلب مباشرة عبر
+// `supabase projects api-keys --project-ref pzcnkzsicyxlzqwjznvh`
+// (النوع "publishable"، لا "Legacy anon API key").
 const String _supabaseUrl = String.fromEnvironment(
   'SUPABASE_URL',
   defaultValue: 'https://pzcnkzsicyxlzqwjznvh.supabase.co',
 );
-const String _supabaseAnonKey = String.fromEnvironment(
-  'SUPABASE_ANON_KEY',
-  defaultValue:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6Y25renNpY3l4bHpxd2p6bnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyMDY2NjQsImV4cCI6MjA5Nzc4MjY2NH0.W2z_NZKyc1HD9CifqKvupIVcSrW1MinDAYsfpZ6ewm8',
+const String _supabasePublishableKey = String.fromEnvironment(
+  'SUPABASE_PUBLISHABLE_KEY',
+  defaultValue: 'sb_publishable_No_no5hRjIZU9dIBuqFcbQ_9I8IxWu9',
 );
 const String _sentryDsn = String.fromEnvironment(
   'SENTRY_DSN',
@@ -91,7 +98,7 @@ Future<void> main() async {
 
       await Supabase.initialize(
         url: _supabaseUrl,
-        anonKey: _supabaseAnonKey,
+        publishableKey: _supabasePublishableKey,
       );
 
       await CacheService.init();
