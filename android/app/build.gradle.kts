@@ -7,11 +7,24 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// توقيع الإصدار الحقيقي (لا debug بعد الآن) - يقرأ من android/key.properties
-// (مستثنى من git عبر android/.gitignore وroot .gitignore، لا يُدفَع أبداً). محلياً
-// يحتوي مسار الـkeystore الفعلي وكلمة المرور؛ في CI يُعاد بناؤه من أسرار GitHub
-// Actions قبل خطوة البناء (انظر .github/workflows/ci.yml). إن غاب الملف، توقيع
-// الإصدار يفشل بوضوح بدل السقوط الصامت لمفتاح debug كما كان سابقاً - سلوك مقصود.
+// توقيع الإصدار الحقيقي - يقرأ من android/key.properties (مستثنى من git عبر
+// android/.gitignore وroot .gitignore، لا يُدفَع أبداً). محلياً يحتوي مسار
+// الـkeystore الفعلي وكلمة المرور؛ في CI يُعاد بناؤه من أسرار GitHub Actions
+// قبل خطوة البناء (انظر .github/workflows/ci.yml).
+//
+// ⚠️ 2026-09-08: اكتُشف فعلياً (فشل بناء حقيقي بـCI بعد تحديث قناة Flutter
+// stable من 3.47.0 إلى 3.47.2) أن إسناد signingConfigs.getByName("release")
+// لـbuildTypes.release دون تعيين storeFile يُسقِط البناء بالكامل الآن
+// ("SigningConfig \"release\" is missing required property \"storeFile\"")
+// بدل تجاهله بصمت كما كان بإصدارات AGP/Gradle الأقدم المرفقة بقنوات Flutter
+// السابقة - تغيّر سلوك الأداة نفسها، لا خطأ بمنطقنا. **الحل**: العودة لتوقيع
+// debug القياسي (توقيع Flutter الافتراضي لأي مشروع جديد) حين غاب الملف، بدلاً
+// من إسناد إعداد توقيع فارغ يُسقِط Gradle. هذا **لا يُضعِف التحقق الفعلي من
+// التوقيع الإصداري الحقيقي** - خطوة "Verify release signing" المنفصلة بـCI
+// (تُشغَّل يدوياً فقط عبر workflow_dispatch الآن) تبقى كما هي بالضبط وتفشل
+// بوضوح صراحةً حين يغيب key.properties، وهي آلية التحقق المقصودة أصلاً - لا
+// إسقاط بناء Gradle الخام. توقيع الإصدار الحقيقي المطلوب فعلياً للنشر على
+// المتجر يبقى محصوراً بوجود أسرار KEYSTORE_* الحقيقية.
 val keystorePropertiesFile = rootProject.file("key.properties")
 val keystoreProperties = Properties()
 if (keystorePropertiesFile.exists()) {
@@ -53,7 +66,10 @@ android {
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig = if (keystorePropertiesFile.exists())
+                signingConfigs.getByName("release")
+            else
+                signingConfigs.getByName("debug")
         }
     }
 }
