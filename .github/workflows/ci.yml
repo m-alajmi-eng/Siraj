@@ -70,9 +70,22 @@ jobs:
       # توقيعاً غير مكتمل حسب منطقه الحالي في build.gradle.kts، وخطوة "Verify release
       # signing" أدناه تُفشل صراحة بدل الصمت - سلوك مقصود لحين إضافة الأسرار
       # (لا يؤثر على push/PR الروتيني بعد الآن لأنه لا يُشغَّل إلا يدوياً).
+      # ⚠️ ملاحظة: لا يمكن دمج `secrets.X` مع شروط أخرى (مثل github.event_name)
+      # داخل `if:` لخطوة عندما يحوي الملف مُطلِق workflow_dispatch - يرفض GitHub
+      # التحقق من صلاحية الطلب برسالة "Unrecognized named-value: 'secrets'"
+      # (اكتُشف فعلياً أثناء اختبار هذا الإصلاح بمحاولة تشغيل يدوي عبر
+      # `gh workflow run` - قيد توثيقي معروف بمنصة GitHub Actions: سياق secrets
+      # غير متاح وقت التحقق من صحة طلبات workflow_dispatch قبل تنفيذها). لذلك
+      # الشرط هنا مقتصر على github.event_name فقط، وفحص خُلوّ السر انتقل لداخل
+      # سكربت bash نفسه (مكافئ سلوكياً تماماً - يخرج فوراً بلا إنشاء أي ملف إن
+      # كان السر فارغاً).
       - name: Set up release signing config from GitHub secrets
-        if: ${{ github.event_name == 'workflow_dispatch' && secrets.KEYSTORE_BASE64 != '' }}
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
+          if [ -z "${{ secrets.KEYSTORE_BASE64 }}" ]; then
+            echo "لا سر KEYSTORE_BASE64 مُضاف - تخطي إنشاء android/key.properties."
+            exit 0
+          fi
           KEYSTORE_PATH="$RUNNER_TEMP/siraj-release.jks"
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > "$KEYSTORE_PATH"
           cat > android/key.properties <<EOF
