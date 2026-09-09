@@ -247,3 +247,31 @@ All product decisions, Islamic content standards, and release criteria were defi
 (بحث مفتوح عالمياً، لا حل جاهز)، تفعيل تبويب "أحاديث" داخل بوابة
 الآية، ومشروع توحيد قراءة الختمة/الصفحات (لم يبدأ التنفيذ بعد بقرار
 واعٍ).
+
+## تسميات Semantics لإتاحة الوصول — home/prayer/quran (2026-09-09)
+
+بطلب محمد: فحص كل الأزرار أيقونة-فقط بالشاشات الرئيسية home/prayer/quran
+بحثاً عن فجوة إتاحة الوصول الموثَّقة سابقاً (03_MASTER_CHECKLIST.md §ز).
+
+- **`surah_reader_screen.dart`**: 4 أزرار بلوحة الإجراءات العائمة
+  (`_FloatingActionsPanel` — بوابة الآية/التفسير/مشاركة/نسخ) كانت
+  بلا `tooltip` إطلاقاً — أُضيف لكل منها من مفاتيح l10n موجودة مسبقاً
+  (`reader_versePortal`، `reader_showTafsir`، `reader_shareAyah`،
+  `reader_copyAyah`). وزر تشغيل/إيقاف التلاوة (دائرة أيقونة فقط، لا
+  `IconButton` بل `GestureDetector` مخصَّص) لم يكن له أي اسم accessible
+  — أُضيف `Semantics(button: true, label: ...)` يتبدَّل بين
+  `radio_play`/`radio_pause` (مفاتيح موجودة مسبقاً، أعيد استخدامها
+  بدل مفاتيح جديدة لتفادي تعديل 15 ملف ترجمة لمهمة صغيرة).
+- **`prayer_screen.dart`**, **`quran_home_screen.dart`**,
+  **`quran_search_screen.dart`**: فُحصت بالكامل سطراً بسطر — **لا يوجد
+  بها أي زر أيقونة-فقط أصلاً** (كل عنصر تفاعلي إما بجانبه نص واضح، أو
+  أيقونة زخرفية بلا `onTap` مطلقاً، أو زر رجوع `AppScaffold` المُغطّى
+  مسبقاً بـ`Semantics` بشكل مركزي).
+- **`home_screen.dart`**: أُعيد فحصه للتأكد — الإصلاحات السابقة (زر
+  البحث/تبديل الوضع) لا تزال قائمة، وشبكة الأزرار السريعة (`_QuickActions`)
+  كل عنصر فيها له `Text(label)` ظاهر تحت الأيقونة (ليست icon-only أصلاً).
+
+`dart analyze` على الملف المعدَّل: **لا أخطاء**. لم يتوفّر جهاز حقيقي
+لاختبار TalkBack فعلياً (راجع بند اختبار الجهاز أعلاه) — يبقى تحسين
+كود موثَّق، لا اختباراً فعلياً بقارئ شاشة كما هو موضَّح بالفعل بـ
+03_MASTER_CHECKLIST.md.

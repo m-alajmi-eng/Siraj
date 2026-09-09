@@ -100,6 +100,7 @@ class _FloatingActionsPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
       decoration: BoxDecoration(
@@ -116,19 +117,20 @@ class _FloatingActionsPanel extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _panelButton(Icons.auto_awesome, onVersePortal),
-          _panelButton(Icons.auto_stories, onTafsir),
-          _panelButton(Icons.share, onShare),
-          _panelButton(Icons.copy, onCopy),
+          _panelButton(Icons.auto_awesome, t.reader_versePortal, onVersePortal),
+          _panelButton(Icons.auto_stories, t.reader_showTafsir, onTafsir),
+          _panelButton(Icons.share, t.reader_shareAyah, onShare),
+          _panelButton(Icons.copy, t.reader_copyAyah, onCopy),
         ],
       ),
     );
   }
 
-  Widget _panelButton(IconData icon, VoidCallback onTap) {
+  Widget _panelButton(IconData icon, String tooltip, VoidCallback onTap) {
     return IconButton(
       icon: Icon(icon, color: palette.accentPrimary, size: 20),
       onPressed: onTap,
+      tooltip: tooltip,
       visualDensity: VisualDensity.compact,
     );
   }
@@ -436,30 +438,36 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                   ),
                   child: Row(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          if (audioState.isPlaying &&
-                              audioState.currentSurahId == widget.surahId) {
-                            ref.read(audioProvider.notifier).pause();
-                          } else if (!audioState.isPlaying &&
-                              audioState.currentSurahId == widget.surahId &&
-                              audioState.currentAyahId != null) {
-                            ref.read(audioProvider.notifier).resume();
-                          } else {
-                            ref.read(audioProvider.notifier).playFromStart(
-                              widget.surahId, ayahs.length, selectedReciter,
-                              surahName: surah?.nameArabic ?? '');
-                          }
-                        },
-                        child: Container(
-                          width: 40, height: 40,
-                          decoration: BoxDecoration(
-                            color: palette.accentPrimary, shape: BoxShape.circle),
-                          child: Icon(
-                            audioState.isPlaying &&
+                      Semantics(
+                        button: true,
+                        label: audioState.isPlaying &&
                                 audioState.currentSurahId == widget.surahId
-                                ? Icons.pause : Icons.play_arrow,
-                            color: palette.surface, size: 22),
+                            ? t.radio_pause : t.radio_play,
+                        child: GestureDetector(
+                          onTap: () {
+                            if (audioState.isPlaying &&
+                                audioState.currentSurahId == widget.surahId) {
+                              ref.read(audioProvider.notifier).pause();
+                            } else if (!audioState.isPlaying &&
+                                audioState.currentSurahId == widget.surahId &&
+                                audioState.currentAyahId != null) {
+                              ref.read(audioProvider.notifier).resume();
+                            } else {
+                              ref.read(audioProvider.notifier).playFromStart(
+                                widget.surahId, ayahs.length, selectedReciter,
+                                surahName: surah?.nameArabic ?? '');
+                            }
+                          },
+                          child: Container(
+                            width: 40, height: 40,
+                            decoration: BoxDecoration(
+                              color: palette.accentPrimary, shape: BoxShape.circle),
+                            child: Icon(
+                              audioState.isPlaying &&
+                                  audioState.currentSurahId == widget.surahId
+                                  ? Icons.pause : Icons.play_arrow,
+                              color: palette.surface, size: 22),
+                          ),
                         ),
                       ),
                       const SizedBox(width: 12),
