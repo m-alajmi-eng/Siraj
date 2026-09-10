@@ -21,7 +21,39 @@ class HadithCategory {
   }
 }
 
-/// حديث واحد كامل (نص، درجة، شرح، تخريج).
+/// حكم عالِم واحد على الحديث (من عمود grades JSONB - عدة آراء متساوية
+/// بلا ترجيح، راجع supabase/migrations/20260909060000_add_hadith_grades_jsonb.sql).
+class HadithGrade {
+  final String? scholar;
+  final String gradeAr;
+
+  HadithGrade({this.scholar, required this.gradeAr});
+
+  factory HadithGrade.fromJson(Map<String, dynamic> j) {
+    return HadithGrade(
+      scholar: j['scholar'] as String?,
+      gradeAr: j['grade_ar'] as String? ?? '',
+    );
+  }
+}
+
+/// آية مرتبطة بالحديث (من kg_edges، edge_type='ayah_hadith') - كافية
+/// لعرض معاينة قصيرة والتنقل إلى VersePortalScreen عند الضغط.
+class AyahLink {
+  final int surahId;
+  final int ayahNumber;
+  final String surahName;
+  final String ayahText;
+
+  AyahLink({
+    required this.surahId,
+    required this.ayahNumber,
+    required this.surahName,
+    required this.ayahText,
+  });
+}
+
+/// حديث واحد كامل (نص، درجة، شرح، تخريج، مراجع، ربط بآية إن وُجد).
 class Hadith {
   final int id;
   final String title;
@@ -29,6 +61,10 @@ class Hadith {
   final String? narrator;
   final String? grade;
   final String? explanation;
+  final String? bookId;
+  final List<HadithGrade>? grades;
+  final List<String>? references;
+  final AyahLink? linkedAyah;
 
   Hadith({
     required this.id,
@@ -37,6 +73,10 @@ class Hadith {
     this.narrator,
     this.grade,
     this.explanation,
+    this.bookId,
+    this.grades,
+    this.references,
+    this.linkedAyah,
   });
 
   factory Hadith.fromJson(Map<String, dynamic> j) {
@@ -47,9 +87,37 @@ class Hadith {
       narrator: j['narrator'] as String?,
       grade: j['grade'] as String?,
       explanation: j['explanation'] as String?,
+      bookId: j['book_id'] as String?,
+      grades: (j['grades'] as List?)
+          ?.map((g) => HadithGrade.fromJson(g as Map<String, dynamic>))
+          .toList(),
+      references: (j['references'] as List?)?.map((r) => r as String).toList(),
+    );
+  }
+
+  Hadith copyWithAyahLink(AyahLink? link) {
+    return Hadith(
+      id: id,
+      title: title,
+      textAr: textAr,
+      narrator: narrator,
+      grade: grade,
+      explanation: explanation,
+      bookId: bookId,
+      grades: grades,
+      references: references,
+      linkedAyah: link,
     );
   }
 }
+
+// أسماء الكتب المعروفة لشارة "من الصحيحين" - تعريف ببليوغرافي بحت
+// لاسم الكتاب نفسه، لا حكم مخترَع (bukhari/muslim فقط بلا grades
+// بقرار متعمَّد سابق - راجع الـmigration المذكورة أعلاه).
+const Map<String, String> sahihaynBookNames = {
+  'bukhari': 'صحيح البخاري',
+  'muslim': 'صحيح مسلم',
+};
 
 class HadithRepository {
   final SupabaseClient _client;
@@ -76,9 +144,57 @@ class HadithRepository {
 
     final res = await _client
         .from('hadiths')
-        .select('id, title, text_ar, narrator, grade, explanation')
+        .select(
+          'id, title, text_ar, narrator, grade, explanation, book_id, '
+          'grades, references',
+        )
         .inFilter('id', hadithIds);
 
-    return (res as List).map((j) => Hadith.fromJson(j)).toList();
+    final hadiths = (res as List).map((j) => Hadith.fromJson(j)).toList();
+
+    final ayahLinks = await _getAyahLinks(hadithIds);
+    if (ayahLinks.isEmpty) return hadiths;
+
+    return hadiths
+        .map((h) => h.copyWithAyahLink(ayahLinks[h.id]))
+        .toList();
+  }
+
+  /// روابط الآيات المرتبطة (kg_edges) لمجموعة أحاديث دفعة واحدة (لا
+  /// استعلام منفصل لكل حديث). edge_type='authentic_hadith_citation' -
+  /// وليس 'ayah_hadith' (الأخير 0 صف فعلياً بالقاعدة؛ مشروع ربط
+  /// حديث↔آية استخدم authentic_hadith_citation عمداً ليخضع لقيد
+  /// reviewed بدل تجاوزه - راجع PROGRESS.md "دفعة تجريبية أولى لربط
+  /// حديث↔آية"). كل الروابط الـ476 reviewed=true فعلياً فتظهر لـanon
+  /// بسياسة RLS الحالية بلا حاجة لشرط إضافي هنا.
+  Future<Map<int, AyahLink>> _getAyahLinks(List<int> hadithIds) async {
+    try {
+      final res = await _client
+          .from('kg_edges')
+          .select(
+            'dst_id, ayahs!kg_edges_src_ayah_fkey(surah_id, ayah_number, '
+            'text_uthmani, surahs(name_arabic))',
+          )
+          .eq('dst_type', 'hadith')
+          .eq('edge_type', 'authentic_hadith_citation')
+          .inFilter('dst_id', hadithIds);
+
+      final map = <int, AyahLink>{};
+      for (final j in (res as List)) {
+        final ayah = j['ayahs'] as Map<String, dynamic>?;
+        final hadithId = j['dst_id'] as int?;
+        if (ayah == null || hadithId == null) continue;
+        final surah = ayah['surahs'] as Map<String, dynamic>? ?? {};
+        map[hadithId] = AyahLink(
+          surahId: ayah['surah_id'] as int,
+          ayahNumber: ayah['ayah_number'] as int,
+          surahName: surah['name_arabic'] as String? ?? '',
+          ayahText: ayah['text_uthmani'] as String? ?? '',
+        );
+      }
+      return map;
+    } catch (_) {
+      return {};
+    }
   }
 }
