@@ -19,7 +19,12 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          # رقم مثبَّت صراحة (لا channel: 'stable') - تحديث تلقائي غير
+          # مقصود لقناة stable (3.47.0→3.47.2) سبَّب فشل بناء حقيقي
+          # 2026-09-08 (راجع تعليق android/app/build.gradle.kts). هذا
+          # الرقم مطابق تماماً لنسخة التطوير المحلية المُختبَرة فعلياً
+          # (flutter analyze/test/build) طوال هذا المشروع.
+          flutter-version: '3.44.2'
 
       - name: Install dependencies
         run: flutter pub get
