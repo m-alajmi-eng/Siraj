@@ -16,6 +16,7 @@ import '../../domain/entities/tajweed_entity.dart';
 import '../../../qke/presentation/screens/verse_portal_screen.dart';
 import '../../data/datasources/quran_remote_datasource.dart';
 import '../../data/datasources/mushaf_page_map.dart';
+import '../../../../core/locale/locale_provider.dart';
 import '../../../khatmah/presentation/providers/khatmah_provider.dart';
 import '../../../../core/widgets/app_scaffold.dart';
 
@@ -678,6 +679,18 @@ class _SurahReaderScreenState extends ConsumerState<SurahReaderScreen> {
                                   style: TextStyle(
                                     color: palette.textSecondary,
                                     fontSize: 15, height: 1.6)),
+                                Builder(builder: (context) {
+                                  final translator = quranTranslationTranslators[
+                                      ref.watch(localeProvider).languageCode];
+                                  if (translator == null) return const SizedBox.shrink();
+                                  return Padding(
+                                    padding: const EdgeInsets.only(top: 4),
+                                    child: Text('— $translator',
+                                      style: TextStyle(
+                                        color: palette.textSecondary.withValues(alpha: 0.7),
+                                        fontSize: 11, fontStyle: FontStyle.italic)),
+                                  );
+                                }),
                               ],
                               ]),
                             ),

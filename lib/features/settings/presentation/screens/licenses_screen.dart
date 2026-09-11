@@ -43,9 +43,16 @@ class LicensesScreen extends ConsumerWidget {
           ),
           _LicenseCard(
             palette: palette,
+            icon: Icons.menu_book_outlined,
+            title: 'نص القرآن للتجويد الملوَّن وترجمات المعاني',
+            subtitle: 'alquran.cloud (Islamic Network) — 14 لغة',
+            body: _alquranCloudTerms,
+          ),
+          _LicenseCard(
+            palette: palette,
             icon: Icons.info_outline,
-            title: 'مصادر محتوى ديني خارجية',
-            subtitle: 'IslamHouse / HadeethEnc.com · التفسير الميسّر · بيانات التجويد الملوّن',
+            title: 'مصادر محتوى ديني خارجية أخرى',
+            subtitle: 'IslamHouse · التفسير الميسّر',
             body: 'هذه المصادر تُستخدَم حالياً في التطبيق، لكن ترخيصها '
                 'الرسمي الكامل **لم يُحسم توثيقه بعد** من قِبل فريق سراج '
                 '(بند مفتوح موثَّق في سجلّي المخاطر والامتثال الداخليَين). '
@@ -176,6 +183,24 @@ class _PackagesTile extends StatelessWidget {
 // النصوص التالية مستخرجة حرفياً (verbatim) من ملفات الخطوط الفعلية
 // المضمّنة في assets/fonts/ عبر فحص جدول "name" في كل ملف. لا تُترجَم —
 // الترخيص يشترط نصاً أصلياً غير معدَّل.
+
+// النص التالي ملخَّص أمين (لا نص حرفي مُقتبَس بترخيص، لأن alquran.cloud
+// لا تنشر نصاً قانونياً واحداً موحَّداً بل صفحة "Terms & Conditions" نثرية) -
+// تحقَّقنا منه مباشرة بزيارة https://alquran.cloud/terms-and-conditions
+// (2026-09-11). أسماء المترجمين هنا مطابقة حرفياً لحقل englishName الذي
+// يُرجِعه alquran.cloud API نفسه (https://api.alquran.cloud/v1/edition) -
+// لا اجتهاد بالتهجئة. لا مترجم مذكور لـ"id" (الإندونيسية) لأن المصدر نفسه
+// يسجّله "Unknown" (ترجمة مؤسسية جماعية بلا فرد مسمّى) - لم نخترع اسماً.
+const String _alquranCloudTerms = '''
+المصدر: alquran.cloud (مشروع Islamic Network، © 2014 وما بعده) — نص القرآن العثماني المستخدَم لتوليد بيانات التجويد الملوَّن محلياً (assets/data/quran_tajweed.json)، وترجمات المعاني الأربع عشرة (assets/data/quran_translations.json).
+
+ملخَّص شروط الاستخدام ذات الصلة (بتصرُّف أمين، لا اقتباس حرفي - الصفحة نفسها نثرية لا نص ترخيص موحَّد):
+• النص القرآني قابل لإعادة النشر بحرية للاستخدام غير التجاري، بشرط الحفاظ الكامل على التشكيل والرسم العثماني بلا أي تعديل. سراج مشروع خيري غير تجاري بالكامل (لا أرباح، لا إعلانات، لا تتبّع) - يستوفي هذا الشرط.
+• عند إعادة نشر أي ترجمة، يجب نسب المترجم بالاسم صراحة - لذلك يظهر الآن اسم مترجم كل لغة تحت نص الترجمة مباشرة بشاشة قراءة القرآن.
+
+المترجمون (١٤ لغة، بالتهجئة الرسمية من مصدرهم):
+Saheeh International (EN) · Fateh Muhammad Jalandhry (UR) · Naser Makarem Shirazi (FA) · Diyanet Isleri (TR) · Muhammad Hamidullah (FR) · Muhiuddin Khan (BN) · Abdullah Muhammad Basmeih (MS) · Abubakar Mahmoud Gumi (HA) · Ali Muhsin Al-Barwani (SW) · A. S. F. Bubenheim and N. Elyas (DE) · Elmir Kuliev (RU) · Ma Jian (ZH) · Garcia (ES) · Bahasa Indonesia (ID، ترجمة مؤسسية جماعية بلا مترجم فردي مسمّى بالمصدر).
+''';
 
 const String _kfgqpcEula = '''
 ELECTRONIC END-USER LICENSE AGREEMENT

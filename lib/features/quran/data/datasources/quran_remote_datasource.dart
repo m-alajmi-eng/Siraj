@@ -7,6 +7,28 @@ import '../../domain/entities/surah_entity.dart';
 import '../../domain/entities/ayah_entity.dart';
 import '../../../../core/storage/cache_service.dart';
 
+/// اسم كل مترجم (بصيغة اسمه بالحروف اللاتينية كما وثَّقه alquran.cloud
+/// نفسه - مصدر ترجمات assets/data/quran_translations.json)، لعرض النسب
+/// الصريح المطلوب فعلياً بشروط استخدام المصدر ("attribute the translator
+/// by name" عند إعادة نشر أي ترجمة). لا مفتاح لـ'id' عمداً - المصدر
+/// نفسه يسجّل مترجمها كـ"Unknown" (ترجمة مؤسسية جماعية بلا مترجم فردي
+/// مسمّى)، فلا نخترع اسماً غير موجود بالمصدر.
+const Map<String, String> quranTranslationTranslators = {
+  'en': 'Saheeh International',
+  'ur': 'Fateh Muhammad Jalandhry',
+  'fa': 'Naser Makarem Shirazi',
+  'tr': 'Diyanet Isleri',
+  'fr': 'Muhammad Hamidullah',
+  'bn': 'Muhiuddin Khan',
+  'ms': 'Abdullah Muhammad Basmeih',
+  'ha': 'Abubakar Mahmoud Gumi',
+  'sw': 'Ali Muhsin Al-Barwani',
+  'de': 'A. S. F. Bubenheim and N. Elyas',
+  'ru': 'Elmir Kuliev',
+  'zh': 'Ma Jian',
+  'es': 'Garcia',
+};
+
 // دوال تفكيك JSON على مستوى الملف (لا داخل الصنف) - compute() يتطلب دالة
 // top-level أو static قابلة للإرسال لـIsolate منفصل. القراءة (rootBundle.
 // loadString) تبقى في الخيط الرئيسي (I/O غير حاجب فعلياً)، والتفكيك الثقيل
