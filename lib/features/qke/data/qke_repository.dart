@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../hadith/data/hadith_repository.dart' show Hadith;
+
 // ═══════════════════════════════════════════════════════════
 // نماذج البيانات
 // ═══════════════════════════════════════════════════════════
@@ -26,33 +28,10 @@ class WordMeaning {
   );
 }
 
-class RelatedHadith {
-  final int    id;
-  final String text;
-  final String bookName;
-  final int    hadithNumber;
-
-  RelatedHadith({
-    required this.id,
-    required this.text,
-    required this.bookName,
-    required this.hadithNumber,
-  });
-
-  // ملاحظة: يُبنى من صفوف جدول kg_edges الموحَّد (dst_id يشير لـhadiths.id
-  // فعلياً عند edge_type='ayah_hadith') - راجع
-  // supabase/migrations/20260716102020_kg_edges_unify_hadith_relations.sql
-  factory RelatedHadith.fromJson(Map<String, dynamic> j) {
-    final hadith = j['hadiths'] as Map?;
-    final book   = hadith?['hadith_books'] as Map?;
-    return RelatedHadith(
-      id:           j['dst_id'] ?? 0,
-      text:         hadith?['text_ar'] ?? '',
-      bookName:     book?['name_ar'] ?? '',
-      hadithNumber: hadith?['hadith_number'] ?? 0,
-    );
-  }
-}
+// ملاحظة: الأحاديث المرتبطة بآية (تبويب "أحاديث" ببوابة الآية) تُبنى
+// من نموذج Hadith المشترَك (lib/features/hadith/data/hadith_repository.dart)
+// مباشرة - لا نموذج منفصل هنا - لإعادة استخدام نفس بطاقة العرض الغنية
+// (متن+درجات+شرح+مراجع) المبنية أصلاً لشاشة الحديث المستقلة.
 
 class AdwaaCitation {
   final int    id;
@@ -122,7 +101,7 @@ class PortalData {
   final String revelationType;
   final int    ayahCount;
   final List<TafsirEntry>    tafsirs;
-  final List<RelatedHadith>  relatedHadiths;
+  final List<Hadith>         relatedHadiths;
   final List<AdwaaCitation>  adwaaCitations;
   final List<WordMeaning> words;
   final String? asbabAlNuzul;
@@ -216,35 +195,44 @@ class QkeRepository {
     final surah = ayahRes['surahs'] ?? {};
 
       // جلب الأحاديث المرتبطة + استشهادات أضواء البيان معاً من جدول
-      // kg_edges الموحَّد (بدل ayah_hadiths وverse_hadith_relations
-      // مباشرة) - راجع
+      // kg_edges الموحَّد - راجع
       // supabase/migrations/20260716102020_kg_edges_unify_hadith_relations.sql
-      // سياسة RLS على kg_edges نفسها تكفل عرض ayah_hadith دوماً
-      // واستشهادات أضواء البيان فقط عند reviewed=true (لا حاجة لتكرار
-      // شرط reviewed هنا - الاستعلام .eq('reviewed', true) القديم على
-      // verse_hadith_relations كان تكراراً دفاعياً لنفس قيد RLS أصلاً).
-      List<RelatedHadith> relatedHadiths = [];
+      // ⚠ edge_type='ayah_hadith' (الأصلي بتصميم هذا الاستعلام) صفر صف
+      // فعلياً بالقاعدة - مشروع ربط حديث↔آية (476 رابطاً، راجع
+      // PROGRESS.md) استخدم عمداً 'authentic_hadith_citation' بدلاً منه
+      // (قرار أمان: يخضع لقيد reviewed بدل تجاوزه). لذلك relatedHadiths
+      // تُبنى الآن من edge_type='authentic_hadith_citation' AND
+      // dst_type='hadith' AND dst_id IS NOT NULL تحديداً - يستبعد 518
+      // صفاً بنفس edge_type لكن dst_type='citation' (استشهاد نصي عام
+      // بلا حديث مطابَق فعلياً، تحقَّق مباشرة بالقاعدة أن dst_id لها
+      // كلها NULL). لا تصفية جديدة على adwaaCitations - تبقى كما كانت
+      // تماماً (تشمل الـ476 نفسها + الـ518 + israiliyyat_citation)، أي
+      // الأحاديث الحقيقية تظهر بالمكانين معاً الآن، لا نقل ولا فقدان.
+      List<Hadith> relatedHadiths = [];
       List<AdwaaCitation> adwaaCitations = [];
       try {
         final edgesRes = await _client
             .from('kg_edges')
             .select(
-              'id, edge_type, dst_id, source_reference, citation_text, '
-              'citation_context, citation_book, citation_author, '
-              'citation_url, citation_page, '
-              'hadiths(text_ar, hadith_number, hadith_books(name_ar))',
+              'id, edge_type, dst_type, dst_id, source_reference, '
+              'citation_text, citation_context, citation_book, '
+              'citation_author, citation_url, citation_page, '
+              'hadiths(id, title, text_ar, narrator, grade, explanation, '
+              'book_id, grades, references, hadith_number, '
+              'hadith_books(name_ar))',
             )
             .eq('src_id', ayahId)
             .eq('src_type', 'ayah')
             .order('id');
 
         for (final j in (edgesRes as List)) {
-          if (j['edge_type'] == 'ayah_hadith') {
-            if (relatedHadiths.length < 5) {
-              relatedHadiths.add(RelatedHadith.fromJson(j));
-            }
-          } else {
-            adwaaCitations.add(AdwaaCitation.fromJson(j));
+          adwaaCitations.add(AdwaaCitation.fromJson(j));
+          if (relatedHadiths.length < 5 &&
+              j['edge_type'] == 'authentic_hadith_citation' &&
+              j['dst_type'] == 'hadith' &&
+              j['dst_id'] != null) {
+            final hj = j['hadiths'] as Map<String, dynamic>?;
+            if (hj != null) relatedHadiths.add(Hadith.fromJson(hj));
           }
         }
       } catch (_) {}

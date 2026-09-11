@@ -10,6 +10,9 @@ import '../../data/translation_service.dart';
 import '../widgets/translation_report_dialog.dart';
 import '../../data/translation_review_status_service.dart';
 import '../../../../core/widgets/app_scaffold.dart';
+import '../../../hadith/data/hadith_repository.dart';
+import '../../../hadith/presentation/screens/hadith_list_screen.dart'
+    show HadithGradeSection, HadithExplanationSection;
 
 class VersePortalScreen extends ConsumerStatefulWidget {
   final int surahId;
@@ -770,9 +773,15 @@ class _AdwaaHadithsPage extends StatelessWidget {
 }
 
 // ─── Hadiths Page ─────────────────────────────────────────
+// كل عنصر ببطاقة غنية (متن+درجات+شرح+مراجع) - نفس أقسام شاشة الحديث
+// المستقلة (HadithGradeSection/HadithExplanationSection)، لأن hadiths
+// هنا نموذج Hadith المشترَك نفسه (راجع qke_repository.dart: relatedHadiths
+// تُبنى فقط من edge_type='authentic_hadith_citation' AND dst_type=
+// 'hadith' AND dst_id IS NOT NULL - أحاديث حقيقية مطابَقة فعلاً بجدول
+// hadiths، لا استشهادات نصية عامة بلا حديث مطابَق).
 class _HadithsPage extends StatelessWidget {
-  final dynamic              palette;
-  final List<RelatedHadith>  hadiths;
+  final dynamic       palette;
+  final List<Hadith>  hadiths;
   const _HadithsPage({required this.palette, required this.hadiths});
 
   @override
@@ -807,35 +816,51 @@ class _HadithsPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(14),
             border: Border.all(color: palette.accentPrimary.withValues(alpha: 0.15)),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('حديث \${h.hadithNumber}',
-                    style: TextStyle(color: palette.textSecondary, fontSize: 12)),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                    decoration: BoxDecoration(
-                      color:        palette.accentPrimary.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(h.bookName,
-                      style: TextStyle(color: palette.accentPrimary, fontSize: 12)),
-                  ),
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    if (h.hadithNumber != null)
+                      Text('حديث ${h.hadithNumber}',
+                        style: TextStyle(color: palette.textSecondary, fontSize: 12)),
+                    if (h.bookNameAr != null && h.bookNameAr!.isNotEmpty)
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          color:        palette.accentPrimary.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(h.bookNameAr!,
+                          style: TextStyle(color: palette.accentPrimary, fontSize: 12)),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Text(h.textAr,
+                  textAlign:     TextAlign.right,
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                    color:    palette.textPrimary,
+                    fontSize: 14,
+                    height:   1.8,
+                  )),
+                if (h.narrator != null && h.narrator!.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  Text(h.narrator!,
+                    style: TextStyle(
+                      color: palette.textSecondary,
+                      fontSize: 11,
+                      fontStyle: FontStyle.italic,
+                    )),
                 ],
-              ),
-              const SizedBox(height: 10),
-              Text(h.text,
-                textAlign:     TextAlign.right,
-                textDirection: TextDirection.rtl,
-                style: TextStyle(
-                  color:    palette.textPrimary,
-                  fontSize: 14,
-                  height:   1.8,
-                )),
-            ],
+                HadithGradeSection(hadith: h, palette: palette),
+                HadithExplanationSection(hadith: h, palette: palette),
+              ],
+            ),
           ),
         );
       },
