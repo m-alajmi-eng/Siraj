@@ -50,6 +50,13 @@ class LicensesScreen extends ConsumerWidget {
           ),
           _LicenseCard(
             palette: palette,
+            icon: Icons.menu_book_outlined,
+            title: 'شرح الأحاديث ومراجعها',
+            subtitle: 'موسوعة الحديث — HadeethEnc.com',
+            body: _hadeethEncTerms,
+          ),
+          _LicenseCard(
+            palette: palette,
             icon: Icons.info_outline,
             title: 'مصادر محتوى ديني خارجية أخرى',
             subtitle: 'IslamHouse · التفسير الميسّر',
@@ -200,6 +207,25 @@ const String _alquranCloudTerms = '''
 
 المترجمون (١٤ لغة، بالتهجئة الرسمية من مصدرهم):
 Saheeh International (EN) · Fateh Muhammad Jalandhry (UR) · Naser Makarem Shirazi (FA) · Diyanet Isleri (TR) · Muhammad Hamidullah (FR) · Muhiuddin Khan (BN) · Abdullah Muhammad Basmeih (MS) · Abubakar Mahmoud Gumi (HA) · Ali Muhsin Al-Barwani (SW) · A. S. F. Bubenheim and N. Elyas (DE) · Elmir Kuliev (RU) · Ma Jian (ZH) · Garcia (ES) · Bahasa Indonesia (ID، ترجمة مؤسسية جماعية بلا مترجم فردي مسمّى بالمصدر).
+''';
+
+// ملخَّص أمين (لا نص حرفي مُقتبَس) لشروط HadeethEnc.com كما تظهر فعلياً
+// بنافذة الشروط المنبثقة عند تنزيل المحتوى من موقعهم - تحقَّقنا منها
+// مباشرة (2026-09-11). موسوعة الحديث (HadeethEnc.com) مؤسسة سعودية
+// رسمية مرخَّصة، شرح مبسَّط مؤلَّف من فريق - راجع مشروع استيراد المراجع
+// بـPROGRESS.md لتفاصيل تحقق المصداقية.
+const String _hadeethEncTerms = '''
+المصدر: HadeethEnc.com (موسوعة الحديث) - نُستخدَم منها الشرح المبسَّط لكل حديث + قائمة المراجع الحقيقية المرفقة به (عمودا hadiths.explanation وhadiths.references).
+
+الشرطان المنصوصان صراحة بشروط الموقع:
+• عدم التعديل أو الإضافة أو الحذف من المحتوى.
+• الإشارة بوضوح للناشر وللمصدر.
+
+الامتثال الفعلي بسراج:
+• نسخ حرفي كامل بلا أي تعديل (سياسة المشروع الثابتة لكل محتوى ديني، لا استثناء).
+• إسناد صريح ظاهر فعلياً بالتطبيق - كل بطاقة شرح حديث تعرض تحديداً "شرح مبسَّط من موسوعة الحديث (HadeethEnc.com)" قبل نص الشرح مباشرة.
+
+كلا الشرطين مستوفيان فعلياً بالكود الحالي - لا حاجة لتغيير سلوك، هذا توثيق للحالة الراهنة فقط.
 ''';
 
 const String _kfgqpcEula = '''
