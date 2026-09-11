@@ -172,12 +172,12 @@ class HadithListScreen extends ConsumerWidget {
                                           ),
                                         ],
                                         // ٢. الدرجة/الحكم - قسم منفصل بصرياً
-                                        _GradeSection(
+                                        HadithGradeSection(
                                           hadith: h,
                                           palette: palette,
                                         ),
                                         // ٣+٤. الشرح المبسَّط + المراجع تحته
-                                        _ExplanationSection(
+                                        HadithExplanationSection(
                                           hadith: h,
                                           palette: palette,
                                         ),
@@ -223,11 +223,11 @@ class HadithListScreen extends ConsumerWidget {
 /// قسم الدرجة/الحكم - كل عالِم بسطر مستقل بنفس الوزن البصري بلا ترجيح
 /// بينهم (عمود grades). لبخاري/مسلم (بلا grades بقرار متعمَّد سابق)
 /// شارة ببليوغرافية بحتة باسم الكتاب - تسمية لا حكم مخترَع.
-class _GradeSection extends StatelessWidget {
+class HadithGradeSection extends StatelessWidget {
   final Hadith hadith;
   final SirajPalette palette;
 
-  const _GradeSection({required this.hadith, required this.palette});
+  const HadithGradeSection({super.key, required this.hadith, required this.palette});
 
   @override
   Widget build(BuildContext context) {
@@ -319,11 +319,11 @@ class _GradeSection extends StatelessWidget {
 
 /// قسم الشرح المبسَّط (معنون بمصدره صراحة) + المراجع الحقيقية تحته -
 /// يعطي الشرح سنداً موثقاً بدل أن يبدو معلَّقاً بلا مصدر.
-class _ExplanationSection extends StatelessWidget {
+class HadithExplanationSection extends StatelessWidget {
   final Hadith hadith;
   final SirajPalette palette;
 
-  const _ExplanationSection({required this.hadith, required this.palette});
+  const HadithExplanationSection({super.key, required this.hadith, required this.palette});
 
   @override
   Widget build(BuildContext context) {

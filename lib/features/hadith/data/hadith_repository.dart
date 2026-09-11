@@ -65,6 +65,11 @@ class Hadith {
   final List<HadithGrade>? grades;
   final List<String>? references;
   final AyahLink? linkedAyah;
+  // اسم الكتاب/رقم الحديث المعروضان بسياقات تجمع أحاديث من عدة كتب معاً
+  // (مثل تبويب "أحاديث" ببوابة الآية) - لا حاجة لهما بقائمة أحاديث فئة
+  // واحدة (يبقيان null هناك، غير مُستعلَم عنهما أصلاً بذلك الاستعلام).
+  final String? bookNameAr;
+  final int? hadithNumber;
 
   Hadith({
     required this.id,
@@ -77,9 +82,12 @@ class Hadith {
     this.grades,
     this.references,
     this.linkedAyah,
+    this.bookNameAr,
+    this.hadithNumber,
   });
 
   factory Hadith.fromJson(Map<String, dynamic> j) {
+    final book = j['hadith_books'] as Map<String, dynamic>?;
     return Hadith(
       id: j['id'] as int,
       title: j['title'] as String? ?? '',
@@ -92,6 +100,8 @@ class Hadith {
           ?.map((g) => HadithGrade.fromJson(g as Map<String, dynamic>))
           .toList(),
       references: (j['references'] as List?)?.map((r) => r as String).toList(),
+      bookNameAr: book?['name_ar'] as String?,
+      hadithNumber: j['hadith_number'] as int?,
     );
   }
 
@@ -107,6 +117,8 @@ class Hadith {
       grades: grades,
       references: references,
       linkedAyah: link,
+      bookNameAr: bookNameAr,
+      hadithNumber: hadithNumber,
     );
   }
 }
