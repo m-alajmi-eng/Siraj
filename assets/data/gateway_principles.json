@@ -251,23 +251,6 @@
         "verified_by": "developer_review",
         "verified_date": "2026-07-10"
       },
-      "note": {
-        "ar": "ملاحظة: تأكّد من ضبط النص العربي ونطقه من مصدر معتمد قبل الإطلاق.",
-        "en": "Note: verify the Arabic text and transliteration from an authenticated source before launch.",
-        "tr": "Not: Arapça metni ve okunuşunu, yayından önce güvenilir bir kaynaktan doğrulayın.",
-        "ur": "نوٹ: اجرا سے پہلے عربی متن اور اس کے تلفظ کو کسی مستند ماخذ سے تصدیق کریں۔",
-        "fa": "یادآوری: پیش از انتشار، متن عربی و تلفظ آن را از منبعی معتبر راستی‌آزمایی کنید.",
-        "id": "Catatan: verifikasi teks Arab dan pelafalannya dari sumber terpercaya sebelum diluncurkan.",
-        "bn": "নট: প্রকাশের আগে আরবি পাঠ্য ও তার উচ্চারণ একটি নির্ভরযোগ্য উৎস থেকে যাচাই করুন।",
-        "ms": "Nota: sahkan teks Arab dan sebutannya daripada sumber yang dipercayai sebelum dilancarkan.",
-        "fr": "Note : vérifiez le texte arabe et sa translittération auprès d'une source authentifiée avant le lancement.",
-        "de": "Hinweis: Überprüfen Sie den arabischen Text und seine Transliteration vor der Veröffentlichung anhand einer authentifizierten Quelle.",
-        "ru": "Примечание: перед публикацией проверьте арабский текст и его транслитерацию по достоверному источнику.",
-        "es": "Nota: verifique el texto árabe y su transliteración con una fuente autenticada antes del lanzamiento.",
-        "zh": "注意：在发布前，请从可靠来源核实阿拉伯语文本及其音译。",
-        "ha": "Lura: tabbatar da rubutun Larabci da furucinsa daga tushe mai inganci kafin fitarwa.",
-        "sw": "Kumbuka: thibitisha maandishi ya Kiarabu na matamshi yake kutoka chanzo cha kuaminika kabla ya kuzindua."
-      },
       "deep_link": {
         "islamhouse_category": "730153",
         "label": {
@@ -749,23 +732,6 @@
           "sw": "Rudia kulingana na idadi ya rakaa za kila sala, na malizia kwa tashahhud na salamu."
         }
       ],
-      "note": {
-        "ar": "ملاحظة: نصوص الأذكار داخل الصلاة تُوثق من مصدر معتمد. يمكن ربطها بنظام الأذكار الموجود.",
-        "en": "Note: the texts recited within prayer must be sourced from an authenticated reference.",
-        "tr": "Not: Namaz içinde okunan metinler (Fâtiha, rükû ve secde zikirleri) güvenilir bir kaynaktan alınmalıdır. Uygulamadaki mevcut zikir sistemine bağlanabilir.",
-        "ur": "نوٹ: نماز کے اندر پڑھے جانے والے متون کو کسی مستند ماخذ سے لیا جانا چاہیے۔ اسے ایپ میں موجود اذکار کے نظام سے جوڑا جا سکتا ہے۔",
-        "fa": "یادآوری: متنهایی که در نماز خوانده می‌شوند باید از منبعی معتبر گرفته شوند. می‌توان آن را به سامانهٔ اذکار موجود در برنامه پیوند داد.",
-        "id": "Catatan: teks-teks yang dibaca dalam salat harus bersumber dari rujukan terpercaya. Dapat dihubungkan dengan sistem zikir yang ada di aplikasi.",
-        "bn": "নোট: নামাজের ভেতরে পঠিত পাঠ্যগুলো একটি নির্ভরযোগ্য উৎস থেকে নেওয়া উচিত। এটি অ্যাপে বিদ্যমান জিকিরের ব্যবস্থার সাথে যক্ত করা যেতে পারে।",
-        "ms": "Nota: teks-teks yang dibaca dalam solat mestilah bersumberkan rujukan yang dipercayai. Boleh dihubungkan dengan sistem zikir yang sedia ada dalam aplikasi.",
-        "fr": "Note : les textes récités durant la prière doivent provenir d'une source authentifiée. Ils peuvent être reliés au système d'invocations existant dans l'application.",
-        "de": "Hinweis: Die im Gebet rezitierten Texte müssen aus einer authentifizierten Quelle stammen. Sie können mit dem bestehenden Bittgebets-System der App verknüpft werden.",
-        "ru": "Примечание: тексты, читаемые во время молитвы, должны браться из достоверного источника. Их можно связать с существующей системой поминаний в приложении.",
-        "es": "Nota: los textos recitados durante la oración deben proceder de una fuente autenticada. Pueden vincularse al sistema de invocaciones existente en la aplicación.",
-        "zh": "注意：礼拜中诵读的经文必须来自可靠的来源。可以与应用程序中现有的祈祷系统相连接。",
-        "ha": "Lura: rubuce-rubucen da ake karantawa a cikin salla dole ne su fito daga tushe mai inganci. Ana iya hada su da tsarin azkari da ke a cikin manhajar.",
-        "sw": "Kumbuka: maandishi yanayosomwa ndani ya sala lazima yatoke chanzo cha kuaminika. Yanaweza kuunganishwa na mfumo wa dhikri uliopo kwenye programu."
-      },
       "deep_link": {
         "islamhouse_category": "192812",
         "label": {
